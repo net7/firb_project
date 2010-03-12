@@ -6,6 +6,7 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&CustomTemplate"><ht key="custom_templates.nav_item">Templates</ht></nav-item>
+    <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Firb Images</ht></nav-item>
     <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Collections</ht></nav-item>
     <nav-item with="&TaliaSource"><ht key="talia_sources.nav_item">Sources</ht></nav-item>
     <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
@@ -122,6 +123,126 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'custom_templates.actions.delete', :default=>['Remove This Template']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== FirbImage Pages ====== -->
+
+<def tag="index-page" for="FirbImage">
+  <page merge title="#{ht 'firb_images.index.title', :default=>['Firb Images'] }">
+    <body: class="index-page firb-image" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="firb_images.index.heading">
+            Firb Images
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="firb_images.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="firb_images.actions.new">New Firb Image</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="FirbImage">
+  <page merge title="#{ht 'firb_images.new.title', :default=>[' New Firb Image'] }">
+    <body: class="new-page firb-image" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="firb_images.new.heading">
+            New Firb Image
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'firb_images.actions.create', :default=>['Create Firb Image']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="FirbImage">
+  <page merge title="#{ht 'firb_images.show.title', :default=>['Firb Image'] }">
+
+    <body: class="show-page firb-image" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="firb_images.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="firb_images.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Firb Image
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="uri" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="FirbImage">
+  <page merge title="#{ht 'firb_images.edit.title', :default=>['Edit Firb Image'] }">
+
+    <body: class="edit-page firb-image" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="firb_images.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'firb_images.actions.delete', :default=>['Remove This Firb Image']}" param/>
       </section>
 
       <section param="content-body">
