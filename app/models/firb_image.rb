@@ -11,14 +11,50 @@ class FirbImage < TaliaCore::Source
     self[:uri]
   end
   
-  set_table_name "active_sources"
+  # Creates an Image object from the given file, using the given name
+  def self.create(name, file)
+  end
   
+  # Loads a file into this object. This may delay the actual processing into
+  # a background task. #file_attached? can be used to check if the file has
+  # already been loaded.
+  def attach_file(tmp_file)
+  end
+  
+  # Checks if a file is attached to the image. This can also be used to see
+  # if the file has already been attached by a background task
+  def file_attached?
+  end
+  
+  # Returns the XML for the "Zones" polygons. This returns an XML which can be
+  # passed to the Image Mapper Tool
+  def zones_xml
+  end
+  
+  # Updates all zones from the given XML file (from the Image Mapper Tool)
+  def update_zones(xml)
+  end
+  
+  # Adds a new, empty zone. If a parent is given, this will be a child of
+  # the named parent zone (the parent will be identified by the zone name)
+  def add_zone(name, parent_name = nil)
+  end
+  
+  # Deletes the name zone
+  def delete_zone(name)
+  end
+  
+  # Sets the name of this Image. '''Attention''': This also modifies
+  # the uri of the Source. The name will be stored in the talia:name
+  # property.  
   def name=(name)
-    self.uri = (N::LOCAL + name).to_s
+    self.uri = (N::LOCAL.images + name).to_s
+    self[N::TALIA.name].remove
+    self[N::TALIA.name] << name
   end
   
   def name
-    self.uri.nil? ? nil : self.uri.to_uri.local_name
+    self[N::TALIA.name].first
   end
   
   def create_permitted?
@@ -30,7 +66,7 @@ class FirbImage < TaliaCore::Source
   end
   
   def view_permitted?(field)
-    true
+    acting_user.signed_up?
   end
   
 end
