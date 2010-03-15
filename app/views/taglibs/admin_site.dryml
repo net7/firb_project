@@ -15,12 +15,7 @@
   <card class="firb-image" param="default" merge>
     <header: param>
       <h4 param="heading">Nome: <name/></h4>
-      <%= 
-      qry = ActiveRDF::Query.new(FirbImageZone).select(:z).distinct
-      qry.where(:z, N::TALIA.isPartOf, this.uri)
-      @g = qry.execute      
-      @g.size
-      %>
+      <%= this.zoneCount %>
     </header:>
   </card>
 </def>

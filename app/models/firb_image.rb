@@ -44,10 +44,13 @@ class FirbImage < TaliaCore::Source
   def update_zones(xml)
   end
 
+  def zoneCount
+    zones.count
+  end
   
   def zones
     qry = ActiveRDF::Query.new(FirbImageZone).select(:z).distinct
-    qry.where(self.uri, N::TALIA.isPartOf, :z)
+    qry.where(:z, N::TALIA.isPartOf, self)
     qry.execute
   end
   
