@@ -1,6 +1,8 @@
 class FirbImageZone < TaliaCore::Source
   hobo_model # Don't put anything above this
   
+  belongs_to :FirbImage
+  
   fields do
     uri :string
   end

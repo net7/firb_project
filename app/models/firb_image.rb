@@ -1,6 +1,8 @@
 class FirbImage < TaliaCore::Source
   hobo_model # Don't put anything above this
   
+  has_many :FirbImageZones
+  
   fields do
     uri :string
   end
@@ -13,12 +15,19 @@ class FirbImage < TaliaCore::Source
   
   # Creates an Image object from the given file, using the given name
   def self.create(name, file)
+    logger.info "@@ called create with #{name} and #{file}"
+    @me = FirbImage.new();
+    @me.attach_file(file);
+    @me.name = name;
+    @me.save()
+    @me
   end
   
   # Loads a file into this object. This may delay the actual processing into
   # a background task. #file_attached? can be used to check if the file has
   # already been loaded.
   def attach_file(tmp_file)
+    logger.info "@@ called attach_file with #{tmp_file}"
   end
   
   # Checks if a file is attached to the image. This can also be used to see
@@ -34,10 +43,22 @@ class FirbImage < TaliaCore::Source
   # Updates all zones from the given XML file (from the Image Mapper Tool)
   def update_zones(xml)
   end
+
+  
+  def zones
+    qry = ActiveRDF::Query.new(FirbImageZone).select(:z).distinct
+    qry.where(self.uri, N::TALIA.isPartOf, :z)
+    qry.execute
+  end
   
   # Adds a new, empty zone. If a parent is given, this will be a child of
   # the named parent zone (the parent will be identified by the zone name)
   def add_zone(name, parent_name = nil)
+    logger.info "@@ called add_zone with #{name} (parent #{parent_name})"
+    @zone = FirbImageZone.new
+    @zone.name = "#{self.name}__#{name}"
+    @zone[N::TALIA.isPartOf] << self
+    @zone.save()
   end
   
   # Deletes the name zone
