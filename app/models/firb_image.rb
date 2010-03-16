@@ -44,7 +44,7 @@ class FirbImage < TaliaCore::Source
   def update_zones(xml)
   end
 
-  def zoneCount
+  def zone_count
     zones.count
   end
   

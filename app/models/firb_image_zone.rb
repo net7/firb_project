@@ -1,8 +1,6 @@
 class FirbImageZone < TaliaCore::Source
   hobo_model # Don't put anything above this
   
-  belongs_to :FirbImage
-  
   fields do
     uri :string
   end
@@ -14,6 +12,16 @@ class FirbImageZone < TaliaCore::Source
   end
   
   set_table_name "active_sources"
+
+  def zone_count
+    zones.count
+  end
+  
+  def zones
+    qry = ActiveRDF::Query.new(FirbImageZone).select(:z).distinct
+    qry.where(:z, N::TALIA.isPartOf, self)
+    qry.execute
+  end
   
   def name=(name)
     self.uri = (N::LOCAL + name).to_s

@@ -13,12 +13,36 @@
 
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
-    <header: param>
-      <h4 param="heading">Nome: <name/></h4>
-      <%= this.zoneCount %>
-    </header:>
+    <h4 param="heading"><name/><span>[ Cancella ]</span></h4> 
+    <span class="firb-image-zone-count"><%= this.zone_count %> zones</span>
+    <span> [ Aggiungi zona a <%= this.id %> ]</span>
+    <div class="firb-image-zones">
+        <ul>
+            <li repeat="&this.zones">
+                <firbimagezone />
+            </li>
+        </ul>
+    </div>
   </card>
 </def>
+
+<!-- Shows an image zone, if there's children, shows them as well -->
+<def tag="firbimagezone">
+    <firbimagesinglezone />
+
+    <% if this.zone_count > 0 %>
+        <ul>
+            <li repeat="&this.zones">
+                <firbimagesinglezone />
+            </li>
+        </ul>
+    <% end %>
+</def>
+<!-- shows a single zone, along with its manage links -->
+<def tag="firbimagesinglezone">
+    <%= this.name %><span>[ Aggiungi sottozona a <%= this.id %>]</span> <span>[ Cancella <%= this.id %> ]</span>
+</def>
+
 
 <def tag="card" for="TaliaCollection">
   <card class="talia-collection" param="default" merge>

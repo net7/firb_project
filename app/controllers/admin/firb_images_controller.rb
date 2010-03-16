@@ -14,9 +14,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
       if (params[f] == "on") 
         @img.add_zone(f, @img.name)
       end
-      
     end
-
   end
   
   
