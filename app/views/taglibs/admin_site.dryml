@@ -29,7 +29,6 @@
 <!-- Shows an image zone, if there's children, shows them as well -->
 <def tag="firbimagezone">
     <firbimagesinglezone />
-
     <% if this.zone_count > 0 %>
         <ul>
             <li repeat="&this.zones">
@@ -38,9 +37,11 @@
         </ul>
     <% end %>
 </def>
+
 <!-- shows a single zone, along with its manage links -->
 <def tag="firbimagesinglezone">
-    <%= this.name %><span>[ Aggiungi sottozona a <%= this.id %>]</span> <span>[ Cancella <%= this.id %> ]</span>
+   <%= h this.name.to_s %> <%= h this.uri.to_s %>
+   <span>[ Aggiungi sottozona a <%= this.id %>]</span> <span>[ Cancella <%= this.id %> ]</span>
 </def>
 
 
