@@ -25,7 +25,6 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   # Will add a zone to the FirbImage with the given id
   def add_zone
     logger.info "@@@@ Aggiungo la firb image #{params[:id]}"
-
   end
   
   

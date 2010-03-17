@@ -13,9 +13,9 @@
 
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
-    <h4 param="heading">::<name/>::<span>[ Cancella ]</span></h4> 
+    <h4 param="heading"><editor:name /> <span><%= link_to "[Cancella]", :action => "remove_image", :id => this.id %></span></h4> 
     <span class="firb-image-zone-count"><%= this.zone_count %> zones</span>
-    <span> [ Aggiungi zona a <%= this.id %> ]</span>
+    <span> <link-add /></span>
     <div class="firb-image-zones">
         <ul>
             <li repeat="&this.zones">
@@ -39,12 +39,14 @@
     <% end %>
 </def>
 
+
+<def tag="link-add"><%= link_to "[Aggiungi sottozona]", {:action => "add_zone", :id => this.id}, :class => "link-add" %></def>
+<def tag="link-del"><%= link_to "[Cancella]", {:action => "remove_zone", :id => this.id}, :class=> "link-del" %></def>
+
+
 <!-- shows a single zone, along with its manage links -->
 <def tag="firbimagesinglezone">
-
-    <editor:name /><br />
-    <%= link_to "[Aggiungi sottozona]", :action => "add_zone", :id => this.id %>
-    <%= link_to "[Cancella]", :action => "remove_zone", :id => this.id %>
+    <editor:name />: <link-add /> <link-del />
 </def>
 
 
