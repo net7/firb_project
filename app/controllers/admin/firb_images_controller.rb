@@ -17,14 +17,21 @@ class Admin::FirbImagesController < Admin::AdminSiteController
     end
   end
 
-  # Will remove a zone from the db
+  # Will remove an image from the db, with all of its zones?
+  # TODO : child zones? 
   def remove_zone 
     logger.info "@@@@ Rimuovo la firb image #{params[:id]}"
+    
   end
   
   # Will add a zone to the FirbImage with the given id
   def add_zone
     logger.info "@@@@ Aggiungo la firb image #{params[:id]}"
+    img = FirbImage.find(params[:id])
+    name = "auto_zone_#{Digest::SHA1.hexdigest Time.now.to_s}"
+    img.add_zone(name)
+    flash[:notice] = "Aggiunta zona #{name} a #{img.name}"
+    redirect_to :controller => :firb_images, :action => :index
   end
   
   

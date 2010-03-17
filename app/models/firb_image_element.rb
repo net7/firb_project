@@ -2,7 +2,10 @@ class FirbImageElement < TaliaCore::Source
 
   # Returns the number of zones directly linked to this object
   def zone_count
-    zones.count
+    @zones=zones
+    @count = @zones.count
+    @zones.each{ |z| @count += z.zone_count }
+    @count
   end
 
   # Returns the FirbImageZone sources which is part of this object

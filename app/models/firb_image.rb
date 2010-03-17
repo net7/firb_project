@@ -14,9 +14,9 @@ class FirbImage < FirbImageElement
   # Creates an Image object from the given file, using the given name
   def self.create(name, file)
     logger.info "@@ called create with #{name} and #{file}"
-    @me = FirbImage.new();
-    @me.attach_file(file);
-    @me.name = name;
+    @me = FirbImage.new()
+    @me.attach_file(file)
+    @me.name = name.parameterize("_").to_s
     @me.save()
     @me
   end
