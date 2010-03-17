@@ -1,4 +1,4 @@
-class FirbImage < TaliaCore::Source
+class FirbImage < FirbImageElement
   hobo_model # Don't put anything above this
   
   has_many :FirbImageZones
@@ -34,36 +34,11 @@ class FirbImage < TaliaCore::Source
   # if the file has already been attached by a background task
   def file_attached?
   end
-  
-  # Returns the XML for the "Zones" polygons. This returns an XML which can be
-  # passed to the Image Mapper Tool
-  def zones_xml
-  end
-  
+   
   # Updates all zones from the given XML file (from the Image Mapper Tool)
   def update_zones(xml)
   end
 
-  def zone_count
-    zones.count
-  end
-  
-  def zones
-    qry = ActiveRDF::Query.new(FirbImageZone).select(:z).distinct
-    qry.where(:z, N::TALIA.isPartOf, self)
-    qry.execute
-  end
-  
-  # Adds a new, empty zone. If a parent is given, this will be a child of
-  # the named parent zone (the parent will be identified by the zone name)
-  def add_zone(name, parent_name = nil)
-    logger.info "@@ called add_zone with #{name} (parent #{parent_name})"
-    @zone = FirbImageZone.new
-    @zone.name = "#{self.name}__#{name}"
-    @zone[N::TALIA.isPartOf] << self
-    @zone.save()
-  end
-  
   # Deletes the name zone
   def delete_zone(name)
   end
@@ -92,5 +67,7 @@ class FirbImage < TaliaCore::Source
   def view_permitted?(field)
     acting_user.signed_up?
   end
+
+  private
   
 end
