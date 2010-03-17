@@ -27,6 +27,7 @@
 </def>
 
 <!-- Shows an image zone, if there's children, shows them as well -->
+<!-- TODO: recursion into this????? this stops at lvl 2, ofcourse -->
 <def tag="firbimagezone">
     <firbimagesinglezone />
     <% if this.zone_count > 0 %>
@@ -40,7 +41,7 @@
 
 <!-- shows a single zone, along with its manage links -->
 <def tag="firbimagesinglezone">
-   <%= h this.name.to_s %> <%= h this.uri.to_s %>
+   <%= h this.name.to_s %>
    <span>[ Aggiungi sottozona a <%= this.id %>]</span> <span>[ Cancella <%= this.id %> ]</span>
 </def>
 

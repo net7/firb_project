@@ -1,7 +1,5 @@
 class FirbImageZone < FirbImageElement
   hobo_model # Don't put anything above this
-
-  has_many :FirbImageZones
   
   fields do
     uri :string
