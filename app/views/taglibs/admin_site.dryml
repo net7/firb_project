@@ -13,7 +13,7 @@
 
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
-    <h4 param="heading"><name/><span>[ Cancella ]</span></h4> 
+    <h4 param="heading">::<name/>::<span>[ Cancella ]</span></h4> 
     <span class="firb-image-zone-count"><%= this.zone_count %> zones</span>
     <span> [ Aggiungi zona a <%= this.id %> ]</span>
     <div class="firb-image-zones">
@@ -41,8 +41,10 @@
 
 <!-- shows a single zone, along with its manage links -->
 <def tag="firbimagesinglezone">
-   <%= h this.name.to_s %>
-   <span>[ Aggiungi sottozona a <%= this.id %>]</span> <span>[ Cancella <%= this.id %> ]</span>
+
+    <editor:name /><br />
+    <%= link_to "[Aggiungi sottozona]", :action => "add_zone", :id => this.id %>
+    <%= link_to "[Cancella]", :action => "remove_zone", :id => this.id %>
 </def>
 
 

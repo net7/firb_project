@@ -1,8 +1,8 @@
 class TestController < ApplicationController
   def index
 
-#        destroy_all
-#        create_stuff
+        destroy_all
+        create_stuff
 
     @imgs = FirbImage.find(:all)
     @count = FirbImage.find(:all).count
@@ -15,7 +15,8 @@ class TestController < ApplicationController
 
 
   def create_stuff
-    i = FirbImage.new('immagine_1')
+    i = FirbImage.new
+    i.name = "Immagine_1"
     z1 = i.add_zone('zona_1')
     z2 = i.add_zone('zona_2')
     z1_1 = z1.add_zone('zona_1_1')
