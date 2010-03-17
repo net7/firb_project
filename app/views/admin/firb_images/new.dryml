@@ -1,0 +1,27 @@
+<new-page> 
+	<form: for="FirbImage" multipart="true">
+
+        <input type="file" name="firb_image[file]"/><br />
+
+        <input:name />
+        <label for='firb_image[name]'><ht key='FirbImage.nome'>Nome dell'immagine</ht></label><br />
+
+        <br/><br/>
+        <ht key="FirbImage.connect_automatically">Connetti automaticamente le seguenti zone:</ht>
+        <ul>
+            <li><input type='checkbox' id='auto_text_1' name='auto_text_1' CHECKED />
+                <label for='auto_text_1'><ht key='FirbImage.porzione_testo'>Porzione di testo</ht></label></li>
+            <li><input type='checkbox' id='auto_text_2' name='auto_text_2' />
+                <label for='auto_text_2'><ht key='FirbImage.altra_porzione_testo'>Altra porzione di testo</ht></label></li>
+            <li><input type='checkbox' id='auto_img_1' name='auto_img_1' CHECKED />
+                <label for='auto_img_1'><ht key="FirbImage.illustrazione">Illustrazione</ht></label></li>
+            <li><input type='checkbox' id='auto_img_2' name='auto_img_2' />
+                <label for='auto_img_2'><ht key="FirbImage.altra_illustrazione"> Altra illustrazione </ht></label></li>
+            <li><input type='checkbox' id='auto_capo' name='auto_capo' CHECKED />
+                <label for='auto_capo'><ht key="FirbImage.capolettera"> Capolettera</ht> </label></li>
+        </ul>
+
+        <submit label="Upload image" />
+
+	</form>
+</new-page>

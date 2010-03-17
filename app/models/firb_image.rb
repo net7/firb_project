@@ -1,9 +1,9 @@
 require 'fileutils'
 require 'digest/md5'
 
-class FirbImage < TaliaCore::Source
+class FirbImage < FirbImageElement
   hobo_model # Don't put anything above this
-  
+
   def self.file_staging_dir
     @file_staging_dir ||=  begin
       staging_dir = File.join(TaliaCore::CONFIG['data_directory_location'], 'staged_images')
@@ -42,7 +42,7 @@ class FirbImage < TaliaCore::Source
   def file_attached?
     !(self.data(TaliaCore::DataTypes::ImageData).empty?)
   end
-  
+   
   # Returns the XML for the "Zones" polygons. This returns an XML which can be
   # passed to the Image Mapper Tool
   def zones_xml
@@ -51,7 +51,7 @@ class FirbImage < TaliaCore::Source
   # Updates all zones from the given XML file (from the Image Mapper Tool)
   def update_zones(xml)
   end
-  
+
   # Adds a new, empty zone. If a parent is given, this will be a child of
   # the named parent zone (the parent will be identified by the zone name)
   def add_zone(name, parent_name = nil)
@@ -94,5 +94,5 @@ class FirbImage < TaliaCore::Source
   def view_permitted?(field)
     acting_user.signed_up?
   end
-  
+
 end

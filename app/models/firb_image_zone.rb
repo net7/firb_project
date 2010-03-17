@@ -1,4 +1,4 @@
-class FirbImageZone < TaliaCore::Source
+class FirbImageZone < FirbImageElement
   hobo_model # Don't put anything above this
   
   attr_reader :image
@@ -21,7 +21,7 @@ class FirbImageZone < TaliaCore::Source
     image[N::TALIA.hasSubZone] << self
     parent[N::TALIA.hasSubZone] << self if(parent)
   end
-  
+
   # Returns the XML describing the polygon that this zone contains
   def polygon
   end

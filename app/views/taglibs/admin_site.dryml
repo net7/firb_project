@@ -10,6 +10,50 @@
 
 <def tag="app-name">Talia Admin Panel</def>
 
+
+<def tag="card" for="FirbImage">
+  <card class="firb-image" param="default" merge>
+    <h4 param="heading"><editor:name /> <span><link-del /></span></h4> 
+    <span class="firb-image-zone-count"><%= this.zone_count %> zones</span>
+    <span> <link-add /> </span>
+    <div class="firb-image-zones">
+        <ul>
+            <li repeat="&this.zones">
+                <firbimagezone />
+            </li>
+        </ul>
+    </div>
+  </card>
+</def>
+
+<!-- Shows an image zone, if there's children, shows them as well -->
+<!-- TODO: recursion into this????? this stops at lvl 2, ofcourse -->
+<def tag="firbimagezone">
+    <firbimagesinglezone />
+    <% if this.zone_count > 0 %>
+        <ul>
+            <li repeat="&this.zones">
+                <firbimagezone />
+            </li>
+        </ul>
+    <% end %>
+</def>
+
+
+<def tag="link-add">
+    <%= link_to "[Aggiungi sottozona]", {:action => "add_zone", :id => this.id}, :class => "link-add" %>
+</def>
+<def tag="link-del">
+    <%= link_to "[Cancella]", {:action => "remove_zone", :id => this.id}, :class=> "link-del" %>
+</def>
+
+
+<!-- shows a single zone, along with its manage links -->
+<def tag="firbimagesinglezone">
+    <editor:name />: <link-add /> <link-del />
+</def>
+
+
 <def tag="card" for="TaliaCollection">
   <card class="talia-collection" param="default" merge>
     <header: param>

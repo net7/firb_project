@@ -7,6 +7,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/import/:action', :controller => 'admin/import'
   map.connect '/admin/talia_sources/:action/:id', :controller => 'admin/talia_sources'
   Hobo.add_routes(map)
+
+  map.connect '/test/:action/:id', :controller => 'test'
+  map.connect '/admin/firb_images/:action/:id', :controller => 'admin/firb_images'
   
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'
   map.resources :swicky_notebooks, :path_prefix => 'users/:user_name'
