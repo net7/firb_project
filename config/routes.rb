@@ -3,8 +3,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.site_search  'search', :controller => 'admin/front', :action => 'search'
 
-  map.test 'test', :controller => 'test', :action => 'index'
-
   map.admin '/admin', :controller => 'admin/front', :action => 'index'
   map.connect '/admin/import/:action', :controller => 'admin/import'
   map.connect '/admin/talia_sources/:action/:id', :controller => 'admin/talia_sources'
