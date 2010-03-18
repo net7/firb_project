@@ -22,7 +22,7 @@ class FirbImageElement < TaliaCore::Source
   # Returns the FirbImageZone sources which is part of this object
   def zones
     qry = ActiveRDF::Query.new(FirbImageZone).select(:zone).distinct
-    qry.where(:zone, N::TALIA.hasSubZone, self)
+    qry.where(self, N::TALIA.hasSubZone, :zone)
     qry.execute
   end
 
@@ -33,8 +33,7 @@ class FirbImageElement < TaliaCore::Source
   # Adds a new, empty zone to this object.
   def add_zone(name)
     zone = FirbImageZone.create_with_name(name)
-    zone[N::TALIA.hasSubZone] << self
-    zone.save!
+    self[N::TALIA.hasSubZone] << zone
     zone
   end
   
