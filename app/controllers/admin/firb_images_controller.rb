@@ -11,7 +11,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
     %w{auto_img_1 auto_img_2 auto_text_1 auto_text_2 auto_capo}.each do |f|
       logger.info "@@@ Param #{f} is #{params[f]}"
       if (params[f] == "on") 
-        @img.add_zone(f)
+        @img.add_zone(f).save!
       end
     end
     if(@img.save)
