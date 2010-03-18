@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect '/test/:action/:id', :controller => 'test'
   map.connect '/admin/firb_images/:action/:id', :controller => 'admin/firb_images'
+  map.connect '/admin/firb_image_zones/:action/:id', :controller => 'admin/firb_image_zones'
   
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'
   map.resources :swicky_notebooks, :path_prefix => 'users/:user_name'

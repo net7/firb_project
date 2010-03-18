@@ -9,3 +9,16 @@
 .drop_ready div.card {
 	border: solid 2px blue;
 }
+
+
+div.card.firb-image a.link-add,
+div.card.firb-image a.link-del  {
+    text-decoration: none;
+    border: 0px;
+    padding: 0px; margin: 0px;
+}
+
+div.card.firb-image a.link-add img,
+div.card.firb-image a.link-del img {
+    border: 0px; padding: 0px; margin: 0px;
+}
