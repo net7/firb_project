@@ -1,5 +1,16 @@
 class FirbImageElement < TaliaCore::Source
 
+  singular_property :name, N::TALIA.name
+
+  # Creates a random id string
+  def self.random_id
+    rand Time.now.to_i
+  end
+  
+  def random_id
+    self.class.random_id
+  end
+
   # Returns the number of zones directly linked to this object
   def zone_count
     @zones=zones
@@ -10,8 +21,8 @@ class FirbImageElement < TaliaCore::Source
 
   # Returns the FirbImageZone sources which is part of this object
   def zones
-    qry = ActiveRDF::Query.new(FirbImageZone).select(:z).distinct
-    qry.where(:z, N::TALIA.isPartOf, self)
+    qry = ActiveRDF::Query.new(FirbImageZone).select(:zone).distinct
+    qry.where(:zone, N::TALIA.hasSubZone, self)
     qry.execute
   end
 
@@ -21,11 +32,14 @@ class FirbImageElement < TaliaCore::Source
 
   # Adds a new, empty zone to this object.
   def add_zone(name)
-    zone = FirbImageZone.new
-    zone.name = "#{self.name}__#{name}"
-    zone[N::TALIA.isPartOf] << self
-    zone.save()
+    zone = FirbImageZone.create_with_name(name)
+    self[N::TALIA.hasSubZone] << zone
+    zone.save!
     zone
+  end
+  
+  # Updates all zones from the given XML file (from the Image Mapper Tool)
+  def update_zones(xml)
   end
 
 
