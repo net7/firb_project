@@ -37,6 +37,11 @@ class FirbImageElement < TaliaCore::Source
     zone
   end
   
+  # Adds the zone and save it automatically
+  def add_zone!(name)
+    add_zone(name).save!
+  end
+  
 
   # Returns the XML for the "Zones" polygons. This returns an XML which can be
   # passed to the Image Mapper Tool

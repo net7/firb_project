@@ -11,7 +11,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
     %w{auto_img_1 auto_img_2 auto_text_1 auto_text_2 auto_capo}.each do |f|
       logger.info "@@@ Param #{f} is #{params[f]}"
       if (params[f] == "on") 
-        @img.add_zone(f).save!
+        @img.add_zone!(f)
       end
     end
     if(@img.save)
@@ -33,7 +33,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
     logger.info "@@@@ Aggiungo la firb image #{params[:id]}"
     img = FirbImage.find(params[:id])
     name = "auto_zone_#{Digest::SHA1.hexdigest Time.now.to_s}"
-    img.add_zone(name)
+    img.add_zone!(name)
     flash[:notice] = "Aggiunta zona #{name} a #{img.name}"
     redirect_to :controller => :firb_images, :action => :index
   end

@@ -12,7 +12,7 @@ class FirbImageZone < FirbImageElement
   # Creates a new zone. You must pass in the image object to which this zone will 
   # be connected. Optionally, you may also pass in a parent zone
   def self.create_with_name(name)
-    new_url = N::LOCAL + '/zones/' + random_id
+    new_url = N::LOCAL + 'zones/' + random_id
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     zone = self.new(new_url)
     zone.name = name 
