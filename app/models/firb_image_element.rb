@@ -33,7 +33,7 @@ class FirbImageElement < TaliaCore::Source
   # Adds a new, empty zone to this object.
   def add_zone(name)
     zone = FirbImageZone.create_with_name(name)
-    self[N::TALIA.hasSubZone] << zone
+    zone[N::TALIA.hasSubZone] << self
     zone.save!
     zone
   end
