@@ -7,29 +7,35 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
     logger.info "@@@@ Arrivati #{params[:firb_image][:file]} con nome #{params[:firb_image][:name]}"
-    @img = FirbImage.create_with_file(params[:firb_image][:name], params[:firb_image][:file])
+    img = FirbImage.create_with_file(params[:firb_image][:name], params[:firb_image][:file])
     %w{auto_img_1 auto_img_2 auto_text_1 auto_text_2 auto_capo}.each do |f|
       logger.info "@@@ Param #{f} is #{params[f]}"
       if (params[f] == "on") 
-        @img.add_zone!(f)
+        img.add_zone!(f)
       end
     end
-    if(@img.save)
-      flash[:notice] = "Image save"
+    if(img.save)
+      flash[:notice] = "Image #{img.name} succesfully created"
     else
-      flash[:notice] = "Error in adding the image"
+      flash[:notice] = "Error creating the image"
     end
+    redirect_to :controller => :firb_images, :action => :index
   end
 
-  # Will remove an image from the db, with all of its zones?
-  # TODO : child zones? 
-  def remove_zone 
-    logger.info "@@@@ Rimuovo dalla firb image #{params[:id]}"
+  # Will remove an image from the db, with all of its zones
+  def remove_image
+    img = FirbImage.find(params[:id])
+    name = img.name
+    if (img.remove)
+      flash[:notice] = "Image #{name} removed with all of its zones"
+    else
+      flash[:noteice] = "Error removing the image"
+    end
+    redirect_to :controller => :firb_images, :action => :index
   end
 
   # Will add a zone to the FirbImage with the given id
   def add_zone
-    logger.info "@@@@ Aggiungo la firb image #{params[:id]}"
     img = FirbImage.find(params[:id])
     name = "auto_zone_#{Digest::SHA1.hexdigest Time.now.to_s}"
     img.add_zone!(name)

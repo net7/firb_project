@@ -42,12 +42,7 @@ class FirbImageZone < FirbImageElement
     parent[N::TALIA.hasSubZone].remove(self)
 
     self.destroy
-
-    if (parent.save)
-      return true
-    else
-      return false
-    end
+    parent.save
   end
   
   def self.find_by_name(name)
