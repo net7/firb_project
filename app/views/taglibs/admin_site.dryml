@@ -13,13 +13,14 @@
 
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
-    <h4 param="heading"><editor:name />: <%= this.zone_count %> <ht key='firb_image.zones'>zones</ht> <span><link-del-image /><link-add-to-image /></span></h4> 
+    <h4 param="heading"><editor:name /> <span><link-del-image /><link-add-to-image /></span></h4> 
     <div class="firb-image-picture">
         <img class="firb-picture" src="http://auto.blog.nl/files/2008/11/zastava-yugo-45.jpg" />
         <span><ht key='firb_image.original_name'>Original name</ht>:  something</span>
         <span><a href="#"><img src="/images/icons/vector_add.png" /> <ht key='firb_image.draw_in_editor'>Draw the zones in the Editor</ht></a></span>
     </div>
     <div class="firb-image-zones">
+        <h4><%= this.zone_count %> <ht key='firb_image.zones'>zones</ht>:</h4> 
         <ul>
             <li repeat="&this.zones">
                 <firbimagezone />

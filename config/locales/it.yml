@@ -1,0 +1,17 @@
+it:
+    # Used in new.dryml
+    new_firb_image:
+        text: "Porzione di testo"
+        other_text: "Altra porzione di testo"
+        picture: "Illustrazione"
+        other_picture: "Altra illustrazione"
+        headletter: "Capolettera"
+      
+    # Used in admin_site.dryml
+    firb_image:
+        zones: "Zone"
+        original_name: "Nome originale"
+        zone_add: "Aggiungi una zona"
+        zone_del: "Cancella questa zona"
+        image_del: "Cancella questa illustrazione"
+        draw_in_editor: "Apri nell'editor"
