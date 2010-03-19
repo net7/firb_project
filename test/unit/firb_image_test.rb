@@ -30,8 +30,8 @@ class FirbImageTest < ActiveSupport::TestCase
     image.attach_file(@test_file_name)
     image.save!
     wait_for_attach(image)
-    assert_equal(1, image.data_records.size)
-    assert_kind_of(TaliaCore::DataTypes::ImageData, image.data_records.first)
+    recs = image.data_records.reject { |r| r.kind_of?(TaliaCore::DataTypes::ImageData) }
+    assert_equal(1, recs.size)
   end
   
   def test_attach_tempfile
@@ -41,8 +41,8 @@ class FirbImageTest < ActiveSupport::TestCase
       image.attach_file(tf)
       image.save!
       wait_for_attach(image)
-      assert_equal(1, image.data_records.size)
-      assert_kind_of(TaliaCore::DataTypes::ImageData, image.data_records.first)
+      recs = image.data_records.reject { |r| r.kind_of?(TaliaCore::DataTypes::ImageData) }
+      assert_equal(1, recs.size)
     end
   end
   
