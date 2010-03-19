@@ -2,4 +2,19 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+    # Used in new.dryml
+    new_firb_image:
+        text: "Text portion"
+        other_text: "Yet another text portion"
+        picture: "Picture"
+        other_picture: "Yet another picture"
+        headletter: "Letter"
+      
+    # Used in admin_site.dryml
+    firb_image:
+        zones: "Zones"
+        original_name: "Original name"
+        zone_add: "Add a zone"
+        zone_del: "Remove this zone"
+        image_del: "Remove this image"
+        draw_in_editor: "Open in the editor"

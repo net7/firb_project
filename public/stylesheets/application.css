@@ -10,7 +10,6 @@
 	border: solid 2px blue;
 }
 
-
 div.card.firb-image a.link-add,
 div.card.firb-image a.link-del  {
     text-decoration: none;
@@ -37,4 +36,9 @@ div.card.firb-image div.firb-image-zones {
     display: inline; float: left;
     border: 0px; padding: 2px; margin: 5px;
 }
-
+div.card.firb-image div.firb-image-picture span {
+    display: block; text-align: center;
+}
+div.card.firb-image div.firb-image-zones span.single-zone:hover {
+   border-bottom: 1px dashed #666;
+}
