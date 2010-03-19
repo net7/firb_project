@@ -1,4 +1,7 @@
+require "base64"
+
 class FirbImageElement < TaliaCore::Source
+
 
   singular_property :name, N::TALIA.name
  
@@ -45,7 +48,7 @@ class FirbImageElement < TaliaCore::Source
   end
   
 
-  # Returns the XML (as a String) for the "Zones" polygons. This returns an XML which can be
+  # Returns the XML (as a base64-encoded text) for the "Zones" polygons. This returns an XML which can be
   # passed to the Image Mapper Tool
   def zones_xml
     xml = Builder::XmlMarkup.new(:indent => 2)
@@ -59,7 +62,7 @@ class FirbImageElement < TaliaCore::Source
         end
       }
     }
-    xml.target!
+    Base64.encode64(xml.target!)
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
@@ -72,8 +75,9 @@ class FirbImageElement < TaliaCore::Source
   end
 
   # Updates all zones from the given XML file (from the Image Mapper Tool)
+  # input XML is base64-encoded
   def self.save_from_xml(xml)
-    doc = Hpricot.XML(xml)
+    doc = Hpricot.XML(Base64.decode64(xml))
     doc.search('//dctl_ext_init/xml/a').each do |zone|
       save_zone_data(zone)
     end
