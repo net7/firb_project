@@ -33,6 +33,11 @@ class ActiveSupport::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
+  
+  # Clean the RDF
+  def flush_rdf
+    ActiveRDF::ConnectionPool.write_adapter.clear
+  end
 
   # Add more helper methods to be used by all tests here...
 end

@@ -3,7 +3,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class FirbImageTest < ActiveSupport::TestCase
   
   def setup
-    @my_image = FirbImage.new
+    flush_rdf
+    @my_image = FirbImage.new("http://default-firb.com/image")
   end
   
   def test_name
@@ -15,9 +16,11 @@ class FirbImageTest < ActiveSupport::TestCase
   
   def test_add_zone
     image = FirbImage.new("http://firbimage/addzone")
+    assert(image.zones.empty?)
     image.add_zone('test2')
     image.add_zone('test')
     image.save!
+    assert_equal(2, image.zones.size)
     assert_equal(['test2', 'test'], image.zones.collect { |z| z.name })
   end
 
