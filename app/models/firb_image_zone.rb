@@ -19,6 +19,37 @@ class FirbImageZone < FirbImageElement
     zone
   end
   
+  # Removes the zone and all of its children
+  def remove
+    
+    # Remove all of its subzones
+    zones.each{|z| z.remove }
+
+    # Look for the parent, either a FirbImageZone or a FirbImage
+    qry = ActiveRDF::Query.new(FirbImageZone).select(:parent).distinct
+    qry.where(:parent, N::TALIA.hasSubZone, self)
+    qry.where(:parent, N::RDF.type, N::TALIA.FirbImageZone)
+    parent = qry.execute
+    
+    if(parent.empty?)
+      qry = ActiveRDF::Query.new(FirbImage).select(:parent).distinct
+      qry.where(:parent, N::TALIA.hasSubZone, self)
+      qry.where(:parent, N::RDF.type, N::TALIA.FirbImage)
+      parent = qry.execute
+    end
+
+    parent = parent.first
+    parent[N::TALIA.hasSubZone].remove(self)
+
+    self.destroy
+
+    if (parent.save)
+      return true
+    else
+      return false
+    end
+  end
+  
   def self.find_by_name(name)
     ActiveRDF::Query.new(FirbImageZone).select(:zone).where(:zone).where(:zone, N::TALIA.name, name).execute.first
   end
