@@ -2,6 +2,8 @@ class FirbImageZone < FirbImageElement
   hobo_model # Don't put anything above this
   
   attr_accessor :image
+
+  singular_property :coordinates, N::TALIA.hasCoordinates
   
   fields do
     uri :string

@@ -1,7 +1,7 @@
 class FirbImageElement < TaliaCore::Source
 
   singular_property :name, N::TALIA.name
-
+ 
   # Creates a random id string
   def self.random_id
     rand Time.now.to_i
@@ -39,11 +39,13 @@ class FirbImageElement < TaliaCore::Source
   
   # Adds the zone and save it automatically
   def add_zone!(name)
-    add_zone(name).save!
+    zone = add_zone(name)
+    zone.save!
+    zone
   end
   
 
-  # Returns the XML for the "Zones" polygons. This returns an XML which can be
+  # Returns the XML (as a String) for the "Zones" polygons. This returns an XML which can be
   # passed to the Image Mapper Tool
   def zones_xml
     xml = Builder::XmlMarkup.new(:indent => 2)
@@ -52,19 +54,19 @@ class FirbImageElement < TaliaCore::Source
         xml.a(:s => self.uri.to_s, :l => self.name, :u => '') #TODO FILL "u" WITH THE IMAGE FILE URI)
       }
       xml.xml{
-        zones.each do |z|
+        self.zones.each do |z|
           add_zone_to_xml(z, xml, self.uri.to_s)
         end
       }
     }
-    xml
+    xml.target!
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
     # r attribute doesn't seem to be useful for us
-    xml.a(:r => 'foo', :s => zone.uri, :l=> zone.name, :t => image_uri + '@' + zone.coordinates) {
+    xml.a(:r => 'foo', :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
       zone.zones.each do |z|
-        add_zone_to_xml(z, xml, image_uri) if zone.has_zones
+        add_zone_to_xml(z, xml, image_uri)
       end
     }
   end
@@ -72,7 +74,6 @@ class FirbImageElement < TaliaCore::Source
   # Updates all zones from the given XML file (from the Image Mapper Tool)
   def self.save_from_xml(xml)
     doc = Hpricot.XML(xml)
-    firb_image_uri = doc.search('//dctl_ext_init/img/a').first[:s]
     doc.search('//dctl_ext_init/xml/a').each do |zone|
       save_zone_data(zone)
     end
@@ -85,6 +86,7 @@ class FirbImageElement < TaliaCore::Source
     zone = FirbImageZone.find(zone_uri)
     zone.name = zone_name
     zone.coordinates = zone_coordinates
+    zone.save!
     zone_xml.search('a').each do |subzone_xml|
       save_zone_data(subzone_xml)
     end
