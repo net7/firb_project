@@ -43,6 +43,11 @@ div.card.firb-image div.firb-image-zones span.single-zone:hover {
    border-bottom: 1px dashed #666;
 }
 
+div.card.firb-image div.firb-image-zones span.single-zone.highlighted {
+    background: #fc0;
+    border: 1px solid red;
+}
+
 div.card.firb-image div.firb-image-picture div.imt-viewer {
     border: 1px dashed #666;
     margin: 5px 0 5px 0;
@@ -50,3 +55,5 @@ div.card.firb-image div.firb-image-picture div.imt-viewer {
     width: 200px;
     height: 200px;
 }
+
+

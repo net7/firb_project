@@ -14,12 +14,13 @@
   <card class="firb-image" param="default" merge>
     <h4 param="heading"><editor:name /> <span><link-del-image /><link-add-to-image /></span></h4> 
 
-    <div class="firb-image-picture">
+    <%= @imageid = this.id %>
+    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
 
         <!-- 
         <img class="firb-picture" src="http://auto.blog.nl/files/2008/11/zastava-yugo-45.jpg" />
         -->
-        <imt-viewer id="firb_image_#{this.id}" b64="PGRjdGxfZXh0X2luaXQ+DQogIDx4bWw+DQogICAgICA8YSByPSJyZWYtaWQtMDIiIHM9InhtbDovL2FmZC9tYXJtaV9pbWcvcDAwNGtpMDAycDAwMSIgdD0iaW1nOi8vYWZkL21hcm1pX3AxXzA4LmpwZ0AwLjMxNzM4MjgxMjU6MC4yOTY4NzU6MC4zMTU0Mjk2ODc1OjAuMjM5NTgzMzMzMzMzMzMzMzQ6MC4zNDI3NzM0Mzc1OjAuMjE2MTQ1ODMzMzMzMzMzMzQ6MC4zODA4NTkzNzU6MC4yMDMxMjU6MC40MDcyMjY1NjI1OjAuMjA3MDMxMjU6MC40MzI2MTcxODc1OjAuMjUxMzAyMDgzMzMzMzMzMzowLjQ2MTkxNDA2MjU6MC4zMDk4OTU4MzMzMzMzMzMzOjAuNDY5NzI2NTYyNTowLjM5MzIyOTE2NjY2NjY2Njc6MC40OTQxNDA2MjU6MC40NDE0MDYyNTowLjUwNDg4MjgxMjU6MC40NjM1NDE2NjY2NjY2NjY3OjAuNDk2MDkzNzU6MC40Nzc4NjQ1ODMzMzMzMzMzOjAuNDY1ODIwMzEyNTowLjQ4MTc3MDgzMzMzMzMzMzM6MC40Mzk0NTMxMjU6MC40NzI2NTYyNTowLjQxNTAzOTA2MjU6MC40NDc5MTY2NjY2NjY2NjY3OjAuMzgzNzg5MDYyNTowLjQyMzE3NzA4MzMzMzMzMzM6MC4zNDc2NTYyNTowLjM3NzYwNDE2NjY2NjY2Njc6MC4zMjEyODkwNjI1OjAuMzI2ODIyOTE2NjY2NjY2NyIgbD0icGV0YWxvIGdpZ2FudGUgOikiIGM9ImFyZWEgMiIvPg0KICAgICAgPGEgcj0icmVmLWlkLTAzIiBzPSJ4bWw6Ly9hZmQvbWFybWlfaW1nL3AwMDRraTAwMnAwMDEiIHQ9ImltZzovL2FmZC9tYXJtaV9wMV8wOC5qcGdAMC4zODM3ODkwNjI1OjAuNTU5ODk1ODMzMzMzMzMzNDowLjQwOTE3OTY4NzU6MC41MzEyNTowLjQxNDA2MjU6MC41MjA4MzMzMzMzMzMzMzM0OjAuNDM2NTIzNDM3NTowLjUzNzc2MDQxNjY2NjY2NjY6MC40Mzc1OjAuNTU3MjkxNjY2NjY2NjY2NjowLjQ2Mzg2NzE4NzU6MC41NzE2MTQ1ODMzMzMzMzM0OjAuNDQ5MjE4NzU6MC41NzgxMjU6MC40NDA0Mjk2ODc1OjAuNTY2NDA2MjU6MC40MzA2NjQwNjI1OjAuNTYzODAyMDgzMzMzMzMzNDowLjQwNDI5Njg3NTowLjU3MjkxNjY2NjY2NjY2NjY6MC4zOTU1MDc4MTI1OjAuNTcyOTE2NjY2NjY2NjY2NjowLjM4MTgzNTkzNzU6MC41NjkwMTA0MTY2NjY2NjY2IiBsPSJwaWNjb2xhIHNlemlvbmUgZGkgY2llbG8iIGM9ImFyZWEgMyIvPg0KICAgICAgPGEgcj0icmVmLWlkLTA0IiBzPSJ4bWw6Ly9hZmQvbWFybWlfaW1nL3AwMDRraTAwMnAwMDEiIHQ9ImltZzovL2FmZC9tYXJtaV9wMV8wOC5qcGdAMC4yNjg1NTQ2ODc1OjAuNTUzMzg1NDE2NjY2NjY2NjowLjIwMDE5NTMxMjU6MC41MTY5MjcwODMzMzMzMzM0OjAuMTU0Mjk2ODc1OjAuNDQ1MzEyNTowLjE1MDM5MDYyNTowLjM5ODQzNzU6MC4xNzM4MjgxMjU6MC4zNTI4NjQ1ODMzMzMzMzMzOjAuMTkxNDA2MjU6MC4zMzcyMzk1ODMzMzMzMzMzOjAuMjIyNjU2MjU6MC4zMzA3MjkxNjY2NjY2NjY3OjAuMjUzOTA2MjU6MC4zNDUwNTIwODMzMzMzMzMzOjAuMjc2MzY3MTg3NTowLjM3NjMwMjA4MzMzMzMzMzM6MC4yOTAwMzkwNjI1OjAuNDMyMjkxNjY2NjY2NjY2NzowLjI5MTk5MjE4NzU6MC40OTM0ODk1ODMzMzMzMzMzOjAuMjg5MDYyNTowLjUzNTE1NjI1IiBsPSJwZXRhbG8gb21icmVnZ2lhdG8iIGM9ImFyZWEgNCIvPg0KICA8L3htbD4NCiAgPGltZz4NCiAgICA8YSBzPSJpbWc6Ly9hZmQvbWFybWlfcDFfMDguanBnIiB1PSJodHRwOi8vYXV0by5ibG9nLm5sL2ZpbGVzLzIwMDgvMTEvemFzdGF2YS15dWdvLTQ1LmpwZyIgbD0iQW5hc3NpbWFuZHJvIi8+DQogIDwvaW1nPg0KPC9kY3RsX2V4dF9pbml0Pg=="/>
+        <imt-viewer id="firb_image_#{@imageid}" b64="PGRjdGxfZXh0X2luaXQ+DQogIDx4bWw+DQogICAgICA8YSByPSJmaXJiX2ltYWdlX3pvbmVfNTIwIiBzPSJ4bWw6Ly9hZmQvbWFybWlfaW1nL3AwMDRraTAwMnAwMDEiIHQ9ImltZzovL2FmZC9tYXJtaV9wMV8wOC5qcGdAMC4zMTczODI4MTI1OjAuMjk2ODc1OjAuMzE1NDI5Njg3NTowLjIzOTU4MzMzMzMzMzMzMzM0OjAuMzQyNzczNDM3NTowLjIxNjE0NTgzMzMzMzMzMzM0OjAuMzgwODU5Mzc1OjAuMjAzMTI1OjAuNDA3MjI2NTYyNTowLjIwNzAzMTI1OjAuNDMyNjE3MTg3NTowLjI1MTMwMjA4MzMzMzMzMzM6MC40NjE5MTQwNjI1OjAuMzA5ODk1ODMzMzMzMzMzMzowLjQ2OTcyNjU2MjU6MC4zOTMyMjkxNjY2NjY2NjY3OjAuNDk0MTQwNjI1OjAuNDQxNDA2MjU6MC41MDQ4ODI4MTI1OjAuNDYzNTQxNjY2NjY2NjY2NzowLjQ5NjA5Mzc1OjAuNDc3ODY0NTgzMzMzMzMzMzowLjQ2NTgyMDMxMjU6MC40ODE3NzA4MzMzMzMzMzMzOjAuNDM5NDUzMTI1OjAuNDcyNjU2MjU6MC40MTUwMzkwNjI1OjAuNDQ3OTE2NjY2NjY2NjY2NzowLjM4Mzc4OTA2MjU6MC40MjMxNzcwODMzMzMzMzMzOjAuMzQ3NjU2MjU6MC4zNzc2MDQxNjY2NjY2NjY3OjAuMzIxMjg5MDYyNTowLjMyNjgyMjkxNjY2NjY2NjciIGw9InBldGFsbyBnaWdhbnRlIDopIiBjPSJhcmVhIDIiLz4NCiAgICAgIDxhIHI9ImZpcmJfaW1hZ2Vfem9uZV81MjEiIHM9InhtbDovL2FmZC9tYXJtaV9pbWcvcDAwNGtpMDAycDAwMSIgdD0iaW1nOi8vYWZkL21hcm1pX3AxXzA4LmpwZ0AwLjM4Mzc4OTA2MjU6MC41NTk4OTU4MzMzMzMzMzM0OjAuNDA5MTc5Njg3NTowLjUzMTI1OjAuNDE0MDYyNTowLjUyMDgzMzMzMzMzMzMzMzQ6MC40MzY1MjM0Mzc1OjAuNTM3NzYwNDE2NjY2NjY2NjowLjQzNzU6MC41NTcyOTE2NjY2NjY2NjY2OjAuNDYzODY3MTg3NTowLjU3MTYxNDU4MzMzMzMzMzQ6MC40NDkyMTg3NTowLjU3ODEyNTowLjQ0MDQyOTY4NzU6MC41NjY0MDYyNTowLjQzMDY2NDA2MjU6MC41NjM4MDIwODMzMzMzMzM0OjAuNDA0Mjk2ODc1OjAuNTcyOTE2NjY2NjY2NjY2NjowLjM5NTUwNzgxMjU6MC41NzI5MTY2NjY2NjY2NjY2OjAuMzgxODM1OTM3NTowLjU2OTAxMDQxNjY2NjY2NjYiIGw9InBpY2NvbGEgc2V6aW9uZSBkaSBjaWVsbyIgYz0iYXJlYSAzIi8+DQogICAgICA8YSByPSJmaXJiX2ltYWdlX3pvbmVfNTE3IiBzPSJ4bWw6Ly9hZmQvbWFybWlfaW1nL3AwMDRraTAwMnAwMDEiIHQ9ImltZzovL2FmZC9tYXJtaV9wMV8wOC5qcGdAMC4yNjg1NTQ2ODc1OjAuNTUzMzg1NDE2NjY2NjY2NjowLjIwMDE5NTMxMjU6MC41MTY5MjcwODMzMzMzMzM0OjAuMTU0Mjk2ODc1OjAuNDQ1MzEyNTowLjE1MDM5MDYyNTowLjM5ODQzNzU6MC4xNzM4MjgxMjU6MC4zNTI4NjQ1ODMzMzMzMzMzOjAuMTkxNDA2MjU6MC4zMzcyMzk1ODMzMzMzMzMzOjAuMjIyNjU2MjU6MC4zMzA3MjkxNjY2NjY2NjY3OjAuMjUzOTA2MjU6MC4zNDUwNTIwODMzMzMzMzMzOjAuMjc2MzY3MTg3NTowLjM3NjMwMjA4MzMzMzMzMzM6MC4yOTAwMzkwNjI1OjAuNDMyMjkxNjY2NjY2NjY2NzowLjI5MTk5MjE4NzU6MC40OTM0ODk1ODMzMzMzMzMzOjAuMjg5MDYyNTowLjUzNTE1NjI1IiBsPSJwZXRhbG8gb21icmVnZ2lhdG8iIGM9ImFyZWEgNCIvPg0KICA8L3htbD4NCiAgPGltZz4NCiAgICA8YSBzPSJpbWc6Ly9hZmQvbWFybWlfcDFfMDguanBnIiB1PSJodHRwOi8vYXV0by5ibG9nLm5sL2ZpbGVzLzIwMDgvMTEvemFzdGF2YS15dWdvLTQ1LmpwZyIgbD0iQW5hc3NpbWFuZHJvIi8+DQogIDwvaW1nPg0KPC9kY3RsX2V4dF9pbml0Pg=="/>
 
         <span><ht key='firb_image.original_name'>Original name</ht>:  something</span>
         <span><a href="#"><img src="/images/icons/vector_add.png" /> <ht key='firb_image.draw_in_editor'>Draw the zones in the Editor</ht></a></span>
@@ -30,7 +31,7 @@
         <h4><%= this.zone_count %> <ht key='firb_image.zones'>zones</ht>:</h4> 
         <ul>
             <li repeat="&this.zones">
-                <firbimagezone />
+                <firbimagezone parentfirbimageid="firb_image_#{@imageid}"/>
             </li>
         </ul>
     </div>
@@ -39,11 +40,12 @@
 </def>
 
 <!-- Shows an image zone, if there's children, shows them as well -->
-<def tag="firbimagezone">
-    <span class="single-zone"><editor:name />: <link-add-to-zone /> <link-del-zone /></span>
+<def tag="firbimagezone" attrs="parentfirbimageid">
+    <span onmouseover="getFlashObject('<%= parentfirbimageid %>').setPolygonHighlighted(true, 'firb_image_zone_<%= this.id.to_s %>');"
+        onmouseout="getFlashObject('<%= parentfirbimageid %>').setPolygonHighlighted(false, 'firb_image_zone_<%= this.id.to_s %>');" id="firb_image_zone_#{this.id}" class="single-zone"><editor:name />: <link-add-to-zone /> <link-del-zone /></span>
     <% if this.zone_count > 0 %>
         <ul>
-            <li repeat="&this.zones"> <firbimagezone /> </li>
+            <li repeat="&this.zones"> <firbimagezone parentfirbimageid="#{parentfirbimageid}"/> </li>
         </ul>
     <% end %>
 </def>

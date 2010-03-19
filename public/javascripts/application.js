@@ -24,11 +24,19 @@ function getFlashObject(movieName) {
 	}
 }
 
+$('span.image-keyword').live("mouseout", function() {
+	var fid = $(this).parents('div.box').find('object.IMTViewer').attr('id');
+	var kid = $(this).attr('title');
+	getFlashObject(fid).setPolygonHighlighted(false, kid);
+	return false;
+});
+
+
 function jsapi_mouseOver(fid, ki) {	
-	$("span.image-keyword[title='"+ki+"']").addClass('highlight');
+    $$("span#"+ki)[0].toggleClassName('highlighted');
 }
 function jsapi_mouseOut(fid, ki) {
-	$("span.image-keyword[title='"+ki+"']").removeClass('highlight');
+    $$("span#"+ki)[0].toggleClassName('highlighted');
 }
 function jsapi_mouseClick(fid, ki) {
 	return true;
