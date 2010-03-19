@@ -54,7 +54,7 @@ class FirbImageElement < TaliaCore::Source
     xml = Builder::XmlMarkup.new(:indent => 2)
     xml.dctl_ext_init{
       xml.img{
-        xml.a(:s => self.uri.to_s, :l => self.name, :u => '') #TODO FILL "u" WITH THE IMAGE FILE URI)
+        xml.a(:r => self.uri.to_s, :s => self.uri.to_s, :l => self.name, :u => '') #TODO FILL "u" WITH THE IMAGE FILE URI)
       }
       xml.xml{
         self.zones.each do |z|
@@ -66,8 +66,7 @@ class FirbImageElement < TaliaCore::Source
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
-    # r attribute doesn't seem to be useful for us
-    xml.a(:r => 'foo', :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
+    xml.a(:r => zone.uri.to_s, :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
       zone.zones.each do |z|
         add_zone_to_xml(z, xml, image_uri)
       end
