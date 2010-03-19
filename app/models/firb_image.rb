@@ -33,11 +33,12 @@ class FirbImage < FirbImageElement
   # a background task. #file_attached? can be used to check if the file has
   # already been loaded.
   def attach_file(up_file)
+    save! if(self.new_record?)
     staged_file = File.join(self.class.file_staging_dir, Digest::MD5.hexdigest(uri.to_s))
     if(up_file.is_a?(File))
       File.open(staged_file, 'w') { |f| f << up_file.read }
     else
-      FileUtils.move(up_file, staged_file)
+      FileUtils.copy(up_file, staged_file)
     end
     FirbImageWorker.async_create_image(:image_uri => self.uri, :image_file => staged_file)
   end
