@@ -19,6 +19,12 @@ class FirbImage < FirbImageElement
   declare_attr_type :name, :string
   
   
+  # Removes the image with all of its zones
+  def remove
+    zones.each{ |z| z.remove }
+    self.destroy
+  end
+  
   # Creates an Image object from the given file, using the given name
   def self.create_with_file(name, file)
     new_url = N::LOCAL + 'images/' + random_id
