@@ -10,15 +10,22 @@
 
 <def tag="app-name">Talia Admin Panel</def>
 
-
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
     <h4 param="heading"><editor:name /> <span><link-del-image /><link-add-to-image /></span></h4> 
+
     <div class="firb-image-picture">
+
+        <!-- 
         <img class="firb-picture" src="http://auto.blog.nl/files/2008/11/zastava-yugo-45.jpg" />
+        -->
+        <imt-viewer id="firb_image_#{this.id}" b64="PGRjdGxfZXh0X2luaXQ+DQogIDx4bWw+DQogICAgICA8YSByPSJyZWYtaWQtMDIiIHM9InhtbDovL2FmZC9tYXJtaV9pbWcvcDAwNGtpMDAycDAwMSIgdD0iaW1nOi8vYWZkL21hcm1pX3AxXzA4LmpwZ0AwLjMxNzM4MjgxMjU6MC4yOTY4NzU6MC4zMTU0Mjk2ODc1OjAuMjM5NTgzMzMzMzMzMzMzMzQ6MC4zNDI3NzM0Mzc1OjAuMjE2MTQ1ODMzMzMzMzMzMzQ6MC4zODA4NTkzNzU6MC4yMDMxMjU6MC40MDcyMjY1NjI1OjAuMjA3MDMxMjU6MC40MzI2MTcxODc1OjAuMjUxMzAyMDgzMzMzMzMzMzowLjQ2MTkxNDA2MjU6MC4zMDk4OTU4MzMzMzMzMzMzOjAuNDY5NzI2NTYyNTowLjM5MzIyOTE2NjY2NjY2Njc6MC40OTQxNDA2MjU6MC40NDE0MDYyNTowLjUwNDg4MjgxMjU6MC40NjM1NDE2NjY2NjY2NjY3OjAuNDk2MDkzNzU6MC40Nzc4NjQ1ODMzMzMzMzMzOjAuNDY1ODIwMzEyNTowLjQ4MTc3MDgzMzMzMzMzMzM6MC40Mzk0NTMxMjU6MC40NzI2NTYyNTowLjQxNTAzOTA2MjU6MC40NDc5MTY2NjY2NjY2NjY3OjAuMzgzNzg5MDYyNTowLjQyMzE3NzA4MzMzMzMzMzM6MC4zNDc2NTYyNTowLjM3NzYwNDE2NjY2NjY2Njc6MC4zMjEyODkwNjI1OjAuMzI2ODIyOTE2NjY2NjY2NyIgbD0icGV0YWxvIGdpZ2FudGUgOikiIGM9ImFyZWEgMiIvPg0KICAgICAgPGEgcj0icmVmLWlkLTAzIiBzPSJ4bWw6Ly9hZmQvbWFybWlfaW1nL3AwMDRraTAwMnAwMDEiIHQ9ImltZzovL2FmZC9tYXJtaV9wMV8wOC5qcGdAMC4zODM3ODkwNjI1OjAuNTU5ODk1ODMzMzMzMzMzNDowLjQwOTE3OTY4NzU6MC41MzEyNTowLjQxNDA2MjU6MC41MjA4MzMzMzMzMzMzMzM0OjAuNDM2NTIzNDM3NTowLjUzNzc2MDQxNjY2NjY2NjY6MC40Mzc1OjAuNTU3MjkxNjY2NjY2NjY2NjowLjQ2Mzg2NzE4NzU6MC41NzE2MTQ1ODMzMzMzMzM0OjAuNDQ5MjE4NzU6MC41NzgxMjU6MC40NDA0Mjk2ODc1OjAuNTY2NDA2MjU6MC40MzA2NjQwNjI1OjAuNTYzODAyMDgzMzMzMzMzNDowLjQwNDI5Njg3NTowLjU3MjkxNjY2NjY2NjY2NjY6MC4zOTU1MDc4MTI1OjAuNTcyOTE2NjY2NjY2NjY2NjowLjM4MTgzNTkzNzU6MC41NjkwMTA0MTY2NjY2NjY2IiBsPSJwaWNjb2xhIHNlemlvbmUgZGkgY2llbG8iIGM9ImFyZWEgMyIvPg0KICAgICAgPGEgcj0icmVmLWlkLTA0IiBzPSJ4bWw6Ly9hZmQvbWFybWlfaW1nL3AwMDRraTAwMnAwMDEiIHQ9ImltZzovL2FmZC9tYXJtaV9wMV8wOC5qcGdAMC4yNjg1NTQ2ODc1OjAuNTUzMzg1NDE2NjY2NjY2NjowLjIwMDE5NTMxMjU6MC41MTY5MjcwODMzMzMzMzM0OjAuMTU0Mjk2ODc1OjAuNDQ1MzEyNTowLjE1MDM5MDYyNTowLjM5ODQzNzU6MC4xNzM4MjgxMjU6MC4zNTI4NjQ1ODMzMzMzMzMzOjAuMTkxNDA2MjU6MC4zMzcyMzk1ODMzMzMzMzMzOjAuMjIyNjU2MjU6MC4zMzA3MjkxNjY2NjY2NjY3OjAuMjUzOTA2MjU6MC4zNDUwNTIwODMzMzMzMzMzOjAuMjc2MzY3MTg3NTowLjM3NjMwMjA4MzMzMzMzMzM6MC4yOTAwMzkwNjI1OjAuNDMyMjkxNjY2NjY2NjY2NzowLjI5MTk5MjE4NzU6MC40OTM0ODk1ODMzMzMzMzMzOjAuMjg5MDYyNTowLjUzNTE1NjI1IiBsPSJwZXRhbG8gb21icmVnZ2lhdG8iIGM9ImFyZWEgNCIvPg0KICA8L3htbD4NCiAgPGltZz4NCiAgICA8YSBzPSJpbWc6Ly9hZmQvbWFybWlfcDFfMDguanBnIiB1PSJodHRwOi8vYXV0by5ibG9nLm5sL2ZpbGVzLzIwMDgvMTEvemFzdGF2YS15dWdvLTQ1LmpwZyIgbD0iQW5hc3NpbWFuZHJvIi8+DQogIDwvaW1nPg0KPC9kY3RsX2V4dF9pbml0Pg=="/>
+
         <span><ht key='firb_image.original_name'>Original name</ht>:  something</span>
         <span><a href="#"><img src="/images/icons/vector_add.png" /> <ht key='firb_image.draw_in_editor'>Draw the zones in the Editor</ht></a></span>
+
     </div>
+
     <div class="firb-image-zones">
         <h4><%= this.zone_count %> <ht key='firb_image.zones'>zones</ht>:</h4> 
         <ul>
@@ -27,6 +34,7 @@
             </li>
         </ul>
     </div>
+
   </card>
 </def>
 
@@ -38,6 +46,23 @@
             <li repeat="&this.zones"> <firbimagezone /> </li>
         </ul>
     <% end %>
+</def>
+
+
+<!-- 
+    IMT Viewer tag, with parameters:
+    - id: used for the id tag and for the embed.name attribute
+ -->
+<def tag="imt-viewer" attrs="id, b64">
+    <div class="imt-viewer">
+        <object class="IMTViewer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="#{id}" width="200" height="200" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+            <param name="movie" value="/ImageMapperViewer.swf?js_prefix=jsapi_" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#ffffff" />
+            <param name="allowScriptAccess" value="always" />
+            <embed src="/ImageMapperViewer.swf?js_prefix=jsapi_" quality="high" bgcolor="#ffffff" width="100%" height="100%" name="#{id}" align="middle" play="true" loop="false" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" b64="#{b64}"></embed>
+        </object>
+    </div>
 </def>
 
 
