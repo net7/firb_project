@@ -2,7 +2,15 @@ class Admin::FirbImagesController < Admin::AdminSiteController
 
   hobo_model_controller
 
-  auto_actions :all, :except => :remove_zone
+  auto_actions :all
+
+  # Overriden default hobo edit action, to include IMT editor
+  def edit
+    @firb_image = FirbImage.find(params[:id])
+    # TODO: Replace me!
+    # @base64 = @firb_image.zones_xml(original_image_url(@firb_image))
+    @base64 = @firb_image.zones_xml('http://192.168.7.5:3000/stub.jpg')
+  end
 
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
@@ -47,6 +55,5 @@ class Admin::FirbImagesController < Admin::AdminSiteController
     end
     redirect_to :controller => :firb_images, :action => :index
   end
-
-
+  
 end

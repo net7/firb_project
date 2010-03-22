@@ -1,0 +1,26 @@
+<edit-page>
+    <content-body: replace>
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+    				codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" name="ImageMapper" width="100%" height="650"
+    				id="ImageMapper"> 
+    		      <param name="movie" value="/ImageMapperEditor.swf?&js_prefix=jsapi_" /> 
+    		      <param name="quality" value="high" /> 
+    		      <param name="bgcolor" value="#323232" /> 
+    		      <param name="allowScriptAccess" value="sameDomain" /> 
+    		      <param name="allowFullScreen" value="true" /> 
+    		      <embed src="/ImageMapperEditor.swf?&js_prefix=jsapi_" quality="high" bgcolor="#323232"
+    					width="100%" height="650" name="ImageMapper" align="middle"
+    					play="true"	loop="false" allowscriptaccess="sameDomain" allowfullscreen="true"
+    					type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer"> 
+    			  </embed> 
+    		    </object>
+    
+    <script>
+        function jsapi_initializeIMT(id) {
+        	var new_b64 = "<%= @base64 %>";
+        	getFlashObject(id).initialize(new_b64);
+        }
+    </script>
+    
+    </content-body:>
+</edit-page>

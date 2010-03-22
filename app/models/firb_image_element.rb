@@ -62,7 +62,9 @@ class FirbImageElement < TaliaCore::Source
         end
       }
     }
-    Base64.encode64(xml.target!)
+    @b = Base64.encode64(xml.target!)
+    # By default it splits up the base64 with \n, strip them!
+    @b.gsub(/\s/, '')
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
