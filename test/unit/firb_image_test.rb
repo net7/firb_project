@@ -5,7 +5,7 @@ class FirbImageTest < ActiveSupport::TestCase
   def setup
     flush_rdf
     @my_image = FirbImage.new("http://default-firb.com/image")
-    @test_file_name = File.join(TALIA_CODE_ROOT, 'test', 'fixtures', 'tiny.jpg')
+    @test_file_name = '/Users/daniel/Pictures/bloom-steve-giraffe-8300182.jpg' # File.join(TALIA_CODE_ROOT, 'test', 'fixtures', 'tiny.jpg')
   end
   
   def test_name
@@ -25,6 +25,10 @@ class FirbImageTest < ActiveSupport::TestCase
     assert_equal(['test2', 'test'], image.zones.collect { |z| z.name })
   end
 
+  def test_file_status
+    assert_equal(nil, @my_image.file_status)
+  end
+
   def test_attach_file
     image = FirbImage.new("http://firbimage/addzone")
     image.attach_file(@test_file_name)
@@ -32,6 +36,7 @@ class FirbImageTest < ActiveSupport::TestCase
     wait_for_attach(image)
     recs = image.data_records.reject { |r| r.kind_of?(TaliaCore::DataTypes::ImageData) }
     assert_equal(1, recs.size)
+    assert_equal("OK", image.file_status)
   end
   
   def test_attach_tempfile
@@ -43,6 +48,7 @@ class FirbImageTest < ActiveSupport::TestCase
       wait_for_attach(image)
       recs = image.data_records.reject { |r| r.kind_of?(TaliaCore::DataTypes::ImageData) }
       assert_equal(1, recs.size)
+      assert_equal("OK", image.file_status)
     end
   end
   
@@ -51,7 +57,6 @@ class FirbImageTest < ActiveSupport::TestCase
   def wait_for_attach(image)
     start_time = Time.now
     while(image.data_records.empty?)
-      sleep 0.5
       if((Time.now - start_time) > 10)
         flunk("Timeout waiting for image to attach")
         break

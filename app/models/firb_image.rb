@@ -4,6 +4,12 @@ require 'digest/md5'
 class FirbImage < FirbImageElement
   hobo_model # Don't put anything above this
 
+
+  # The file status will be originally empty (no file attach) and will be
+  # set by the worker process, either to "OK" (successfully attached the file)
+  # or to an error message. 
+  singular_property :file_status, N::TALIA.file_status
+
   def self.file_staging_dir
     @file_staging_dir ||=  begin
       staging_dir = File.join(TaliaCore::CONFIG['data_directory_location'], 'staged_images')
@@ -47,12 +53,6 @@ class FirbImage < FirbImageElement
       FileUtils.copy(up_file, staged_file)
     end
     FirbImageWorker.async_create_image(:image_uri => self.uri, :image_file => staged_file)
-  end
-  
-  # Checks if a file is attached to the image. This can also be used to see
-  # if the file has already been attached by a background task
-  def file_attached?
-    !(self.data(TaliaCore::DataTypes::ImageData).empty?)
   end
   
   def create_permitted?
