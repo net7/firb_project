@@ -56,4 +56,13 @@ div.card.firb-image div.firb-image-picture div.imt-viewer {
     height: 200px;
 }
 
+div.card.firb-image div.firb-image-picture div.img-not-ready {
+    border: 1px dashed #666;
+    margin: 5px 0 5px 0;
+    padding: 20px 2px;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+}
+
 

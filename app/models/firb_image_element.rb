@@ -50,11 +50,11 @@ class FirbImageElement < TaliaCore::Source
 
   # Returns the XML (as a base64-encoded text) for the "Zones" polygons. This returns an XML which can be
   # passed to the Image Mapper Tool
-  def zones_xml
+  def zones_xml(image_url)
     xml = Builder::XmlMarkup.new(:indent => 2)
     xml.dctl_ext_init{
       xml.img{
-        xml.a(:r => self.uri.to_s, :s => self.uri.to_s, :l => self.name, :u => '') #TODO FILL "u" WITH THE IMAGE FILE URI)
+        xml.a(:r => self.uri.to_s, :s => self.uri.to_s, :l => self.name, :u => image_url)
       }
       xml.xml{
         self.zones.each do |z|
@@ -62,7 +62,9 @@ class FirbImageElement < TaliaCore::Source
         end
       }
     }
-    Base64.encode64(xml.target!)
+    @b = Base64.encode64(xml.target!)
+    # By default it splits up the base64 with \n, strip them!
+    @b.gsub(/\s/, '')
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
