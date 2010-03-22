@@ -29,4 +29,21 @@ module AdminHelper
     %w(users background sources) # translations not working at the moment, templates not ready for generic use
   end
   
+  def original_image_url(image)
+    url_for_data_record(image.original_image)
+  end
+  
+  def thumb_url(image)
+    url_for_data_record(image.thumbnail)
+  end
+
+  def url_for_data_record(record)
+    if(record)
+      url_for :controller => 'source_data_controller', :action => 'show', :id => record.id
+    else
+      ''
+    end
+  end
+  
 end
+

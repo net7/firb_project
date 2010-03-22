@@ -5,7 +5,7 @@ class FirbImageTest < ActiveSupport::TestCase
   def setup
     flush_rdf
     @my_image = FirbImage.new("http://default-firb.com/image")
-    @test_file_name = '/Users/daniel/Pictures/bloom-steve-giraffe-8300182.jpg' # File.join(TALIA_CODE_ROOT, 'test', 'fixtures', 'tiny.jpg')
+    @test_file_name = File.join(TALIA_CODE_ROOT, 'test', 'fixtures', 'tiny.jpg')
   end
   
   def test_name

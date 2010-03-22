@@ -25,6 +25,22 @@ class FirbImage < FirbImageElement
   declare_attr_type :name, :string
   
   
+  # Returns the thumbnail data record
+  def thumbnail
+    data_records(TaliaCore::DataTypes::ImageData).first
+  end
+  
+  # Returns the IIP record
+  def iip
+    data_records(TaliaCore::DataTypes::IipData).first
+  end
+  
+  # Returns the Original image record
+  # FIXME: Not correct yet!
+  def original_image
+    data_records(TaliaCore::DataTypes::ImageData).first
+  end
+  
   # Removes the image with all of its zones
   def remove
     zones.each{ |z| z.remove }
@@ -46,7 +62,7 @@ class FirbImage < FirbImageElement
   # already been loaded.
   def attach_file(up_file)
     save! if(self.new_record?)
-    staged_file = File.join(self.class.file_staging_dir, Digest::MD5.hexdigest(uri.to_s))
+    staged_file = File.join(self.class.file_staging_dir, Digest::MD5.hexdigest(uri.to_s) + '.jpg')
     if(up_file.is_a?(File))
       File.open(staged_file, 'w') { |f| f << up_file.read }
     else
