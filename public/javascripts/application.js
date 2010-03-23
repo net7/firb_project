@@ -24,12 +24,14 @@ function getFlashObject(movieName) {
 	}
 }
 
+/*
 $('span.image-keyword').live("mouseout", function() {
 	var fid = $(this).parents('div.box').find('object.IMTViewer').attr('id');
 	var kid = $(this).attr('title');
 	getFlashObject(fid).setPolygonHighlighted(false, kid);
 	return false;
 });
+*/
 
 
 function jsapi_mouseOver(fid, ki) {	
