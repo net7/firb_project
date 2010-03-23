@@ -36,14 +36,24 @@ module AdminHelper
   def thumb_url(image)
     url_for_data_record(image.iip_record)
   end
+  
+  def thumb_xml(image)
+    image.zones_xml(thumb_url(image))
+  end
+  
+  def image_xml(image)
+    image.zones_xml(original_image_url(image))
+  end
 
   def url_for_data_record(record)
     if(record)
-      url_for :controller => 'source_data_controller', :action => 'show', :id => record.id
+      url_for :controller => '/source_data', :action => 'show', :id => record.id
     else
       ''
     end
   end
+  
+  
   
 end
 

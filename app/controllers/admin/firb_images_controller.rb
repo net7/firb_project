@@ -4,14 +4,6 @@ class Admin::FirbImagesController < Admin::AdminSiteController
 
   auto_actions :all
 
-  # Overriden default hobo edit action, to include IMT editor
-  def edit
-    @firb_image = FirbImage.find(params[:id])
-    # TODO: Replace me!
-    # @base64 = @firb_image.zones_xml(original_image_url(@firb_image))
-    @base64 = @firb_image.zones_xml('http://192.168.7.5:3000/stub.jpg')
-  end
-
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
     img = FirbImage.create_with_file(params[:firb_image][:name], params[:firb_image][:file])
