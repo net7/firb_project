@@ -6,6 +6,12 @@ class FirbImageTest < ActiveSupport::TestCase
     flush_rdf
     @my_image = FirbImage.new("http://default-firb.com/image")
     @test_file_name = File.join(TALIA_CODE_ROOT, 'test', 'fixtures', 'tiny.jpg')
+    TaliaCore::CONFIG['iip_root_directory_location'] = File.join(TALIA_CODE_ROOT, 'test', 'tmp_iip_root')
+    FileUtils.rm_rf(TaliaCore::CONFIG['iip_root_directory_location'])
+  end
+  
+  def teardown
+    FileUtils.rm_rf(TaliaCore::CONFIG['iip_root_directory_location'])
   end
   
   def test_name
@@ -54,6 +60,15 @@ class FirbImageTest < ActiveSupport::TestCase
       assert_equal(1, recs.size)
       assert_equal("OK", image.file_status)
     end
+  end
+  
+  def test_thumb_and_orig
+    image = FirbImage.new("http://firbimage/thumb_and_orig")
+    image.attach_file(@test_file_name)
+    image.save!
+    wait_for_attach(image)
+    assert_kind_of(TaliaCore::DataTypes::IipData, image.iip_record)
+    assert_kind_of(TaliaCore::DataTypes::ImageData, image.original_image)
   end
   
   private
