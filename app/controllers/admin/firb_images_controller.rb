@@ -14,8 +14,6 @@ class Admin::FirbImagesController < Admin::AdminSiteController
 
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
-    puts params[:firb_image][:file].class.inspect
-    logger.info "@@@@ Arrivati #{params[:firb_image][:file]} con nome #{params[:firb_image][:name]}"
     img = FirbImage.create_with_file(params[:firb_image][:name], params[:firb_image][:file])
     %w{auto_img_1 auto_img_2 auto_text_1 auto_text_2 auto_capo}.each do |f|
       logger.info "@@@ Param #{f} is #{params[f]}"
