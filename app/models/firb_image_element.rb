@@ -3,7 +3,7 @@ require "base64"
 class FirbImageElement < TaliaCore::Source
 
   singular_property :name, N::TALIA.name
- 
+
   # Creates a random id string
   def self.random_id
     rand Time.now.to_i
@@ -15,10 +15,10 @@ class FirbImageElement < TaliaCore::Source
 
   # Returns the number of zones directly linked to this object
   def zone_count
-    @zones=zones
-    @count = @zones.count
-    @zones.each{ |z| @count += z.zone_count }
-    @count
+    zo=zones
+    co = zo.count
+    zo.each{ |z| co += z.zone_count }
+    co
   end
 
   # Returns the FirbImageZone sources which is part of this object
@@ -60,6 +60,7 @@ class FirbImageElement < TaliaCore::Source
           add_zone_to_xml(z, xml, self.uri.to_s)
         end
       }
+      xml.cb(:u => "/admin/firb_images/save_xml/", :p => "base64xml")
     }
     @b = Base64.encode64(xml.target!)
     # By default it splits up the base64 with \n, strip them!
