@@ -60,7 +60,7 @@ class FirbImageElement < TaliaCore::Source
           add_zone_to_xml(z, xml, self.uri.to_s)
         end
       }
-      xml.cb(:u => "/admin/firb_images/save_xml/", :p => "base64xml")
+      xml.cb(:u => "/admin/firb_images/update/", :p => "base64xml")
     }
     @b = Base64.encode64(xml.target!)
     # By default it splits up the base64 with \n, strip them!

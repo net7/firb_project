@@ -5,6 +5,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   hobo_model_controller
 
   auto_actions :all
+  protect_from_forgery :only => [:create, :edit, :destroy]
 
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
@@ -45,6 +46,14 @@ class Admin::FirbImagesController < Admin::AdminSiteController
       flash[:notice] = "Error in adding zone to the image #{img.name}"
     end
     redirect_to :controller => :firb_images, :action => :index
+  end
+  
+  # Will get some base64-ed xml and save the related image
+  def update
+    logger.info "@@@@@@ Received xml for save xml!"
+    b64 = params[:base64xml]
+    FirbImageElement.save_from_xml(b64)
+    render :text => "OK"
   end
   
 end
