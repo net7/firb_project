@@ -26,13 +26,13 @@ class FirbImage < FirbImageElement
   
   # Returns the IIP record
   def iip_record
-    data_records(TaliaCore::DataTypes::IipData).first
+    data_records.find(:first, :conditions => { :type => "TaliaCore::DataTypes::IipData" })
   end
   
   # Returns the Original image record
   # FIXME: Not correct yet!
   def original_image
-    data_records(TaliaCore::DataTypes::ImageData).first
+     data_records.find(:first, :conditions => { :type => "TaliaCore::DataTypes::ImageData" })
   end
   
   # Removes the image with all of its zones
