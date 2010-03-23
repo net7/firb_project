@@ -1,3 +1,5 @@
+require('hpricot')
+
 class Admin::FirbImagesController < Admin::AdminSiteController
 
   hobo_model_controller
