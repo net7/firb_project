@@ -77,14 +77,14 @@ class FirbImageElement < TaliaCore::Source
 
   # Updates all zones from the given XML file (from the Image Mapper Tool)
   # input XML is base64-encoded
-  def save_from_xml(xml)
+  def self.save_from_xml(xml)
     doc = Hpricot.XML(Base64.decode64(xml))
     doc.search('//dctl_ext_init/xml/a').each do |zone|
       save_zone_data(zone)
     end
   end
 
-  def save_zone_data(zone_xml)
+  def self.save_zone_data(zone_xml)
     zone_uri = zone_xml[:s]
     zone_coordinates = zone_xml[:t].split('@').last
     zone_name = zone_xml[:l]
