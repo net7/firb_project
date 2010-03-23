@@ -50,7 +50,6 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   
   # Will get some base64-ed xml and save the related image
   def update
-    logger.info "@@@@@@ Received xml for save xml!"
     b64 = params[:base64xml]
     FirbImageElement.save_from_xml(b64)
     render :text => "OK"
