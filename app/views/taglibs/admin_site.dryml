@@ -21,7 +21,7 @@
         <img class="firb-picture" src="http://auto.blog.nl/files/2008/11/zastava-yugo-45.jpg" />
         -->
         <if test="&this.file_status == 'OK'">
-        <imt-viewer id="firb_image_#{@imageid}" b64="&this.zones_xml(original_image_url(this))" />
+        <imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
         </if>
         <unless test="&this.file_status == 'OK'">
             <img-not-ready />
