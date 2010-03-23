@@ -3,7 +3,7 @@ require "base64"
 class FirbImageElement < TaliaCore::Source
 
   singular_property :name, N::TALIA.name
- 
+
   # Creates a random id string
   def self.random_id
     rand Time.now.to_i
@@ -52,13 +52,14 @@ class FirbImageElement < TaliaCore::Source
     xml = Builder::XmlMarkup.new(:indent => 2)
     xml.dctl_ext_init{
       xml.img{
-        xml.a(:r => self.uri.to_s, :s => self.uri.to_s, :l => self.name, :u => image_url)
+        xml.a(:r => self.id.to_s, :s => self.uri.to_s, :l => self.name, :u => image_url)
       }
       xml.xml{
         self.zones.each do |z|
           add_zone_to_xml(z, xml, self.uri.to_s)
         end
       }
+      xml.cb(:u => "/admin/firb_images/update/", :p => "base64xml")
     }
     base64 = Base64.encode64(xml.target!)
     # By default it splits up the base64 with \n, strip them!
@@ -66,7 +67,7 @@ class FirbImageElement < TaliaCore::Source
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
-    xml.a(:r => zone.uri.to_s, :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
+    xml.a(:r => zone.id.to_s, :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
       zone.zones.each do |z|
         add_zone_to_xml(z, xml, image_uri)
       end
@@ -75,14 +76,14 @@ class FirbImageElement < TaliaCore::Source
 
   # Updates all zones from the given XML file (from the Image Mapper Tool)
   # input XML is base64-encoded
-  def save_from_xml(xml)
+  def self.save_from_xml(xml)
     doc = Hpricot.XML(Base64.decode64(xml))
-    doc.search('//dctl_ext_init/xml/a').each do |zone|
+    doc.search('//dctl_ext_back/xml/a').each do |zone|
       save_zone_data(zone)
     end
   end
 
-  def save_zone_data(zone_xml)
+  def self.save_zone_data(zone_xml)
     zone_uri = zone_xml[:s]
     zone_coordinates = zone_xml[:t].split('@').last
     zone_name = zone_xml[:l]

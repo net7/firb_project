@@ -5,6 +5,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   hobo_model_controller
 
   auto_actions :all
+  protect_from_forgery :only => [:create, :edit, :destroy]
 
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
@@ -37,7 +38,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   # Will add a zone to the FirbImage with the given id
   def add_zone
     img = FirbImage.find(params[:id])
-    name = "auto_zone_#{Digest::SHA1.hexdigest Time.now.to_s}"
+    name = "auto_zone_#{rand Time.now.to_i}"
     img.add_zone!(name)
     if(img.save)
       flash[:notice] = "Added zone #{name} to image #{img.name}"
@@ -45,6 +46,13 @@ class Admin::FirbImagesController < Admin::AdminSiteController
       flash[:notice] = "Error in adding zone to the image #{img.name}"
     end
     redirect_to :controller => :firb_images, :action => :index
+  end
+  
+  # Will get some base64-ed xml and save the related image
+  def update
+    b64 = params[:base64xml]
+    FirbImageElement.save_from_xml(b64)
+    render :text => "OK"
   end
   
 end

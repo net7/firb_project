@@ -24,19 +24,22 @@ function getFlashObject(movieName) {
 	}
 }
 
+/*
 $('span.image-keyword').live("mouseout", function() {
 	var fid = $(this).parents('div.box').find('object.IMTViewer').attr('id');
 	var kid = $(this).attr('title');
 	getFlashObject(fid).setPolygonHighlighted(false, kid);
 	return false;
 });
+*/
 
 
 function jsapi_mouseOver(fid, ki) {	
-    $$("span#"+ki)[0].toggleClassName('highlighted');
+    console.log("Over on "+ki);
+    $$("span#firb_image_zone_"+ki)[0].toggleClassName('highlighted');
 }
 function jsapi_mouseOut(fid, ki) {
-    $$("span#"+ki)[0].toggleClassName('highlighted');
+    $$("span#firb_image_zone_"+ki)[0].toggleClassName('highlighted');
 }
 function jsapi_mouseClick(fid, ki) {
 	return true;
