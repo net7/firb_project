@@ -8,8 +8,8 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   def edit
     @firb_image = FirbImage.find(params[:id])
     # TODO: Replace me!
-    # @base64 = @firb_image.zones_xml(original_image_url(@firb_image))
-    @base64 = @firb_image.zones_xml('http://192.168.7.5:3000/stub.jpg')
+    #@base64 = @firb_image.zones_xml('http://192.168.7.5:3000/stub.jpg')
+    #@base64 = @firb_image.zones_xml(original_image_url(@firb_image))
   end
 
   # Will create a new FirbImage, with some automatic zones automagically added

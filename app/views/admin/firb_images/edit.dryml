@@ -17,7 +17,8 @@
     
     <script>
         function jsapi_initializeIMT(id) {
-        	var new_b64 = "<%= @base64 %>";
+        	// var new_b64 = "<%= @firb_image.zones_xml(original_image_url(@firb_image)) %>";
+        	var new_b64 = "<%= @firb_image.zones_xml('http://192.168.7.5:3000/stub.jpg') %>";
         	getFlashObject(id).initialize(new_b64);
         }
     </script>
