@@ -53,7 +53,7 @@ class FirbImageElement < TaliaCore::Source
     xml = Builder::XmlMarkup.new(:indent => 2)
     xml.dctl_ext_init{
       xml.img{
-        xml.a(:r => self.uri.to_s, :s => self.uri.to_s, :l => self.name, :u => image_url)
+        xml.a(:r => self.id.to_s, :s => self.uri.to_s, :l => self.name, :u => image_url)
       }
       xml.xml{
         self.zones.each do |z|
@@ -68,7 +68,7 @@ class FirbImageElement < TaliaCore::Source
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
-    xml.a(:r => zone.uri.to_s, :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
+    xml.a(:r => zone.id.to_s, :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
       zone.zones.each do |z|
         add_zone_to_xml(z, xml, image_uri)
       end
