@@ -26,7 +26,6 @@
         <unless test="&this.file_status == 'OK'">
             <img-not-ready />
         </unless>
-        <span><ht key='firb_image.original_name'>Original name</ht>:  something</span>
         <span><link-imt-edit /></span>
 
     </div>
