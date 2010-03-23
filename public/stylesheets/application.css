@@ -44,8 +44,8 @@ div.card.firb-image div.firb-image-zones span.single-zone:hover {
 }
 
 div.card.firb-image div.firb-image-zones span.single-zone.highlighted {
-    background: #fc0;
-    border: 1px solid red;
+    background: #bbb;
+    border-bottom: 1px dashed #666;
 }
 
 div.card.firb-image div.firb-image-picture div.imt-viewer {

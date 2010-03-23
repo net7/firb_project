@@ -45,8 +45,8 @@
 
 <!-- Shows an image zone, if there's children, shows them as well -->
 <def tag="firbimagezone" attrs="parentfirbimageid">
-    <span onmouseover="getFlashObject('<%= parentfirbimageid %>').setPolygonHighlighted(true, 'firb_image_zone_<%= this.id.to_s %>');"
-        onmouseout="getFlashObject('<%= parentfirbimageid %>').setPolygonHighlighted(false, 'firb_image_zone_<%= this.id.to_s %>');" id="firb_image_zone_#{this.id}" class="single-zone"><editor:name />: <link-add-to-zone /> <link-del-zone /></span>
+    <span onmouseover="getFlashObject('<%= parentfirbimageid %>').setPolygonHighlighted(true, '<%= this.id.to_s %>');"
+        onmouseout="getFlashObject('<%= parentfirbimageid %>').setPolygonHighlighted(false, '<%= this.id.to_s %>');" id="firb_image_zone_#{this.id}" class="single-zone"><editor:name /></span>: <link-add-to-zone /> <link-del-zone />
     <% if this.zone_count > 0 %>
         <ul>
             <li repeat="&this.zones"> <firbimagezone parentfirbimageid="#{parentfirbimageid}"/> </li>
