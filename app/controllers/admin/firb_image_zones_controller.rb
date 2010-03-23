@@ -16,9 +16,8 @@ class Admin::FirbImageZonesController < Admin::AdminSiteController
 
 
   def add_zone
-    logger.info "@@@@ Aggiungo una zona alla zona #{params[:id]}"
     zone = FirbImageZone.find(params[:id])
-    name = "auto_zone_#{Digest::SHA1.hexdigest Time.now.to_s}"
+    name = "auto_zone_#{rand Time.now.to_i}"
     zone.add_zone!(name)
     if(zone.save)
       flash[:notice] = "Added zone #{name} to zone #{zone.name}"

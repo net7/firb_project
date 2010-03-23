@@ -43,7 +43,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   # Will add a zone to the FirbImage with the given id
   def add_zone
     img = FirbImage.find(params[:id])
-    name = "auto_zone_#{Digest::SHA1.hexdigest Time.now.to_s}"
+    name = "auto_zone_#{rand Time.now.to_i}"
     img.add_zone!(name)
     if(img.save)
       flash[:notice] = "Added zone #{name} to image #{img.name}"
