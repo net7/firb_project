@@ -15,10 +15,10 @@ class FirbImageElement < TaliaCore::Source
 
   # Returns the number of zones directly linked to this object
   def zone_count
-    zo=zones
-    co = zo.count
-    zo.each{ |z| co += z.zone_count }
-    co
+    da_zones=zones
+    count = da_zones.count
+    da_zones.each{ |z| count += z.zone_count }
+    count
   end
 
   # Returns the FirbImageZone sources which is part of this object
@@ -46,7 +46,6 @@ class FirbImageElement < TaliaCore::Source
     zone
   end
   
-
   # Returns the XML (as a base64-encoded text) for the "Zones" polygons. This returns an XML which can be
   # passed to the Image Mapper Tool
   def zones_xml(image_url)
@@ -62,9 +61,9 @@ class FirbImageElement < TaliaCore::Source
       }
       xml.cb(:u => "/admin/firb_images/update/", :p => "base64xml")
     }
-    @b = Base64.encode64(xml.target!)
+    base64 = Base64.encode64(xml.target!)
     # By default it splits up the base64 with \n, strip them!
-    @b.gsub(/\s/, '')
+    base64.gsub(/\s/, '')
   end
 
   def add_zone_to_xml(zone, xml, image_uri)
