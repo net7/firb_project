@@ -34,7 +34,7 @@ module AdminHelper
   end
   
   def thumb_url(image)
-    url_for_data_record(image.thumbnail)
+    url_for_data_record(image.iip_record)
   end
 
   def url_for_data_record(record)

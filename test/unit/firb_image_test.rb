@@ -41,8 +41,12 @@ class FirbImageTest < ActiveSupport::TestCase
   
   def test_attach_tempfile
     image = FirbImage.new("http://firbimage/addzone_temp")
-    tmpfile = Tempfile.open((rand Time.now.to_i).to_s) do |tf|
+    tmpfile = 'nil'
+    Tempfile.open((rand Time.now.to_i).to_s) do |tf|
       File.open(@test_file_name) { |test| tf << test.read }
+      tmpfile = tf.path
+    end
+    File.open(tmpfile) do |tf|
       image.attach_file(tf)
       image.save!
       wait_for_attach(image)

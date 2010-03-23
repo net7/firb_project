@@ -24,14 +24,8 @@ class FirbImage < FirbImageElement
   
   declare_attr_type :name, :string
   
-  
-  # Returns the thumbnail data record
-  def thumbnail
-    data_records(TaliaCore::DataTypes::ImageData).first
-  end
-  
   # Returns the IIP record
-  def iip
+  def iip_record
     data_records(TaliaCore::DataTypes::IipData).first
   end
   
