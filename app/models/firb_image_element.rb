@@ -79,7 +79,7 @@ class FirbImageElement < TaliaCore::Source
   # input XML is base64-encoded
   def self.save_from_xml(xml)
     doc = Hpricot.XML(Base64.decode64(xml))
-    doc.search('//dctl_ext_init/xml/a').each do |zone|
+    doc.search('//dctl_ext_back/xml/a').each do |zone|
       save_zone_data(zone)
     end
   end
