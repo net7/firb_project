@@ -5,11 +5,9 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&CustomTemplate"><ht key="custom_templates.nav_item">Templates</ht></nav-item>
-    <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Firb Images</ht></nav-item>
-    <nav-item with="&FirbImageZone"><ht key="firb_image_zones.nav_item">Firb Image Zones</ht></nav-item>
-    <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Collections</ht></nav-item>
-    <nav-item with="&TaliaSource"><ht key="talia_sources.nav_item">Sources</ht></nav-item>
+    <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
+    <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
+    <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
 </def>
 
@@ -38,9 +36,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="custom_templates.actions.new">New Template</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -92,12 +87,6 @@
             </h2>
 
             <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="custom_templates.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Template
-              </ht>
-            </a>
           </header>
 
           <section param="content-body">
@@ -159,9 +148,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="firb_image_zones.actions.new">New Firb Image Zone</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -213,12 +199,6 @@
             </h2>
 
             <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_image_zones.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Firb Image Zone
-              </ht>
-            </a>
           </header>
 
           <section param="content-body">
@@ -260,14 +240,14 @@
 <!-- ====== FirbImage Pages ====== -->
 
 <def tag="index-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.index.title', :default=>['Firb Images'] }">
+  <page merge title="#{ht 'firb_images.index.title', :default=>['Images'] }">
     <body: class="index-page firb-image" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="firb_images.index.heading">
-            Firb Images
+            Images
           </ht>
         </h2>
 
@@ -280,7 +260,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_images.actions.new">New Firb Image</ht>
+          <ht key="firb_images.actions.new">New Image</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -297,21 +277,21 @@
 
 
 <def tag="new-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.new.title', :default=>[' New Firb Image'] }">
+  <page merge title="#{ht 'firb_images.new.title', :default=>[' New Image'] }">
     <body: class="new-page firb-image" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="firb_images.new.heading">
-            New Firb Image
+            New Image
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_images.actions.create', :default=>['Create Firb Image']}"/>
+          <submit: label="#{ht 'firb_images.actions.create', :default=>['Create Image']}"/>
         </form>
       </section>
     </content:>
@@ -320,7 +300,7 @@
 
 
 <def tag="show-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.show.title', :default=>['Firb Image'] }">
+  <page merge title="#{ht 'firb_images.show.title', :default=>['Image'] }">
 
     <body: class="show-page firb-image" param/>
 
@@ -336,7 +316,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="firb_images.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Firb Image
+                Edit Image
               </ht>
             </a>
           </header>
@@ -351,7 +331,7 @@
 
 
 <def tag="edit-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.edit.title', :default=>['Edit Firb Image'] }">
+  <page merge title="#{ht 'firb_images.edit.title', :default=>['Edit Image'] }">
 
     <body: class="edit-page firb-image" param/>
 
@@ -362,7 +342,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_images.actions.delete', :default=>['Remove This Firb Image']}" param/>
+        <delete-button label="#{ht 'firb_images.actions.delete', :default=>['Remove This Image']}" param/>
       </section>
 
       <section param="content-body">
@@ -380,14 +360,14 @@
 <!-- ====== TaliaCollection Pages ====== -->
 
 <def tag="index-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.index.title', :default=>['Collections'] }">
+  <page merge title="#{ht 'talia_collections.index.title', :default=>['Books'] }">
     <body: class="index-page talia-collection" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="talia_collections.index.heading">
-            Collections
+            Books
           </ht>
         </h2>
 
@@ -400,7 +380,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="talia_collections.actions.new">New Collection</ht>
+          <ht key="talia_collections.actions.new">New Book</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -417,21 +397,21 @@
 
 
 <def tag="new-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.new.title', :default=>[' New Collection'] }">
+  <page merge title="#{ht 'talia_collections.new.title', :default=>[' New Book'] }">
     <body: class="new-page talia-collection" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="talia_collections.new.heading">
-            New Collection
+            New Book
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'talia_collections.actions.create', :default=>['Create Collection']}"/>
+          <submit: label="#{ht 'talia_collections.actions.create', :default=>['Create Book']}"/>
         </form>
       </section>
     </content:>
@@ -440,7 +420,7 @@
 
 
 <def tag="show-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.show.title', :default=>['Collection'] }">
+  <page merge title="#{ht 'talia_collections.show.title', :default=>['Book'] }">
 
     <body: class="show-page talia-collection" param/>
 
@@ -456,7 +436,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="talia_collections.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Collection
+                Edit Book
               </ht>
             </a>
           </header>
@@ -471,7 +451,7 @@
 
 
 <def tag="edit-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.edit.title', :default=>['Edit Collection'] }">
+  <page merge title="#{ht 'talia_collections.edit.title', :default=>['Edit Book'] }">
 
     <body: class="edit-page talia-collection" param/>
 
@@ -482,7 +462,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'talia_collections.actions.delete', :default=>['Remove This Collection']}" param/>
+        <delete-button label="#{ht 'talia_collections.actions.delete', :default=>['Remove This Book']}" param/>
       </section>
 
       <section param="content-body">
