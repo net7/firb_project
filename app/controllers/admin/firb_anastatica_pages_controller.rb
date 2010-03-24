@@ -1,4 +1,4 @@
-class Admin::FirbImagesController < Admin::AdminSiteController
+class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
 
   hobo_model_controller
 

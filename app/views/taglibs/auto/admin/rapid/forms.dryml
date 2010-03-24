@@ -12,6 +12,18 @@
 
 
 
+<def tag="form" for="FirbAnastaticaPage">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_anastatica_pages.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="FirbImageZone">
   <form merge param="default">
     <error-messages param/>
@@ -30,6 +42,18 @@
     <field-list fields="uri" param/>
     <div param="actions">
       <submit label="#{ht 'firb_images.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbTextPage">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_text_pages.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

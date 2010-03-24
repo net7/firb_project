@@ -5,7 +5,9 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Firb Anastatica Pages</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
+    <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Firb Text Pages</ht></nav-item>
     <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
     <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
@@ -112,6 +114,125 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'custom_templates.actions.delete', :default=>['Remove This Template']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== FirbAnastaticaPage Pages ====== -->
+
+<def tag="index-page" for="FirbAnastaticaPage">
+  <page merge title="#{ht 'firb_anastatica_pages.index.title', :default=>['Firb Anastatica Pages'] }">
+    <body: class="index-page firb-anastatica-page" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="firb_anastatica_pages.index.heading">
+            Firb Anastatica Pages
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="firb_anastatica_pages.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="firb_anastatica_pages.actions.new">New Firb Anastatica Page</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="FirbAnastaticaPage">
+  <page merge title="#{ht 'firb_anastatica_pages.new.title', :default=>[' New Firb Anastatica Page'] }">
+    <body: class="new-page firb-anastatica-page" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="firb_anastatica_pages.new.heading">
+            New Firb Anastatica Page
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'firb_anastatica_pages.actions.create', :default=>['Create Firb Anastatica Page']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="FirbAnastaticaPage">
+  <page merge title="#{ht 'firb_anastatica_pages.show.title', :default=>['Firb Anastatica Page'] }">
+
+    <body: class="show-page firb-anastatica-page" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="firb_anastatica_pages.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="firb_anastatica_pages.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Firb Anastatica Page
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="FirbAnastaticaPage">
+  <page merge title="#{ht 'firb_anastatica_pages.edit.title', :default=>['Edit Firb Anastatica Page'] }">
+
+    <body: class="edit-page firb-anastatica-page" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="firb_anastatica_pages.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'firb_anastatica_pages.actions.delete', :default=>['Remove This Firb Anastatica Page']}" param/>
       </section>
 
       <section param="content-body">
@@ -343,6 +464,126 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'firb_images.actions.delete', :default=>['Remove This Image']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== FirbTextPage Pages ====== -->
+
+<def tag="index-page" for="FirbTextPage">
+  <page merge title="#{ht 'firb_text_pages.index.title', :default=>['Firb Text Pages'] }">
+    <body: class="index-page firb-text-page" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="firb_text_pages.index.heading">
+            Firb Text Pages
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="firb_text_pages.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="firb_text_pages.actions.new">New Firb Text Page</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="FirbTextPage">
+  <page merge title="#{ht 'firb_text_pages.new.title', :default=>[' New Firb Text Page'] }">
+    <body: class="new-page firb-text-page" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="firb_text_pages.new.heading">
+            New Firb Text Page
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'firb_text_pages.actions.create', :default=>['Create Firb Text Page']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="FirbTextPage">
+  <page merge title="#{ht 'firb_text_pages.show.title', :default=>['Firb Text Page'] }">
+
+    <body: class="show-page firb-text-page" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="firb_text_pages.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="firb_text_pages.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Firb Text Page
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="uri" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="FirbTextPage">
+  <page merge title="#{ht 'firb_text_pages.edit.title', :default=>['Edit Firb Text Page'] }">
+
+    <body: class="edit-page firb-text-page" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="firb_text_pages.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'firb_text_pages.actions.delete', :default=>['Remove This Firb Text Page']}" param/>
       </section>
 
       <section param="content-body">

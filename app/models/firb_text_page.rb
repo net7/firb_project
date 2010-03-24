@@ -10,8 +10,9 @@ class FirbTextPage < TaliaCore::Source
   # forms to decide the input type.
   fields do
     uri :string
-    title :string
   end
+
+  declare_attr_type :title, :string
   
   # Multi-value stuff:
   # - No direct support through hobo as a field 

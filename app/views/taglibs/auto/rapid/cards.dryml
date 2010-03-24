@@ -11,6 +11,14 @@
   </card>
 </def>
 
+<def tag="card" for="FirbAnastaticaPage">
+  <card class="firb-anastatica-page" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
     <header: param>
@@ -21,6 +29,14 @@
 
 <def tag="card" for="FirbImageZone">
   <card class="firb-image-zone" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbTextPage">
+  <card class="firb-text-page" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>

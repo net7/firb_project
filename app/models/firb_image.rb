@@ -4,7 +4,6 @@ require 'digest/md5'
 class FirbImage < FirbImageElement
   hobo_model # Don't put anything above this
 
-
   # The file status will be originally empty (no file attach) and will be
   # set by the worker process, either to "OK" (successfully attached the file)
   # or to an error message. 
@@ -21,9 +20,7 @@ class FirbImage < FirbImageElement
   fields do
     uri :string
   end
-  
-  declare_attr_type :name, :string
-  
+
   # Returns the IIP record
   def iip_record
     data_records.find(:first, :conditions => { :type => "TaliaCore::DataTypes::IipData" })
