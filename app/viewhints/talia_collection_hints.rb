@@ -1,3 +1,3 @@
 class TaliaCollectionHints < Hobo::ViewHints
-  model_name 'Collection'
+  model_name 'Book'
 end
