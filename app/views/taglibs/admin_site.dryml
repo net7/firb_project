@@ -82,7 +82,7 @@
 
 
 <def tag="link-imt-edit">
-    <%= link_to "<img src='/images/icons/vector_add.png'> <ht key='firb_image.draw_in_editor'>Draw the zones in the Editor</ht>", {:action => :edit, :controller => :firb_images, :id => this.id}, :title => I18n.t("firb_image.draw_in_editor") %>
+    <%= link_to "<img src='/images/icons/vector_add.png'> #{I18n.t("firb_image.draw_in_editor")}", {:action => :edit, :controller => :firb_images, :id => this.id}, :title => I18n.t("firb_image.draw_in_editor") %>
 </def>
 
 <def tag="link-add-to-image">
