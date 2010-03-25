@@ -9,6 +9,8 @@ class FirbImageZone < FirbImageElement
   fields do
     uri :string
   end
+
+  declare_attr_type :name, :string
   
   # Creates a new zone. You must pass in the image object to which this zone will 
   # be connected. Optionally, you may also pass in a parent zone

@@ -12,6 +12,8 @@ class FirbImage < FirbImageElement
   singular_property :file_status, N::TALIA.file_status
   
 
+  declare_attr_type :name, :string
+
   def self.file_staging_dir
     @file_staging_dir ||=  begin
       staging_dir = File.join(TaliaCore::CONFIG['data_directory_location'], 'staged_images')

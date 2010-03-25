@@ -1,0 +1,11 @@
+<new-page> 
+    <form: for="FirbTextPage">
+        <input:parafrasi />
+        <label for='firb_text_page[parafrasi]'><ht key='new_firb_text_page.parafrasi'>Parafrasi</ht></label><br />
+
+        <br/><br/>
+        <ht key="new_firb_image.connect_automatically">Add automatically the following zones:</ht>
+
+        <submit label="Save" />
+    </form>
+</new-page>
