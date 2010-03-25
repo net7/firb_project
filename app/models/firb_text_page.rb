@@ -1,6 +1,8 @@
 class FirbTextPage < TaliaCore::Source
   hobo_model # Don't put anything above this
   
+  include StandardPermissions
+  
   # These are single-value properties, the system will make sure
   # that there is only one value at a time
   singular_property :title, N::DCNS.title

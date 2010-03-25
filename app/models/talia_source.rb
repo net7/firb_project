@@ -1,6 +1,8 @@
 class TaliaSource < ActiveRecord::Base
   hobo_model # Don't put anything above this
   
+  include StandardPermissions
+  
   self.inheritance_column = 'foo'
   
   fields do
@@ -10,18 +12,6 @@ class TaliaSource < ActiveRecord::Base
   
   set_table_name "active_sources"
   
-  def create_permitted?
-    acting_user.administrator?
-  end
-  
-  def update_permitted?
-    acting_user.administrator?
-  end
-  
-  def view_permitted?(field)
-    acting_user.signed_up?
-  end
-
   def name
     real_source.respond_to?(:label) ? real_source.label : to_uri.to_name_s
   end

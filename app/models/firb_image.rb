@@ -3,11 +3,14 @@ require 'digest/md5'
 
 class FirbImage < FirbImageElement
   hobo_model # Don't put anything above this
+  
+  include StandardPermissions
 
   # The file status will be originally empty (no file attach) and will be
   # set by the worker process, either to "OK" (successfully attached the file)
   # or to an error message. 
   singular_property :file_status, N::TALIA.file_status
+  
 
   def self.file_staging_dir
     @file_staging_dir ||=  begin
@@ -20,6 +23,8 @@ class FirbImage < FirbImageElement
   fields do
     uri :string
   end
+  
+  declare_attr_type :name, :string
 
   # Returns the IIP record
   def iip_record
@@ -60,18 +65,6 @@ class FirbImage < FirbImageElement
       FileUtils.copy(up_file, staged_file)
     end
     FirbImageWorker.async_create_image(:image_uri => self.uri, :image_file => staged_file)
-  end
-  
-  def create_permitted?
-    acting_user.administrator?
-  end
-  
-  def update_permitted?
-    acting_user.administrator?
-  end
-  
-  def view_permitted?(field)
-    acting_user.signed_up?
   end
 
 end

@@ -1,6 +1,8 @@
 class TaliaCollection < ActiveRecord::Base
   hobo_model # Don't put anything above this
   
+  include StandardPermissions
+  
   self.inheritance_column = 'foo'
   
   fields do
@@ -18,18 +20,6 @@ class TaliaCollection < ActiveRecord::Base
   
   def name
     self.uri.nil? ? nil : self.uri.to_uri.local_name
-  end
-  
-  def create_permitted?
-    acting_user.administrator?
-  end
-  
-  def update_permitted?
-    acting_user.administrator?
-  end
-  
-  def view_permitted?(field)
-    acting_user.signed_up?
   end
   
   def self.new(*args)

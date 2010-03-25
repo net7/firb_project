@@ -1,5 +1,6 @@
 class FirbImageZone < FirbImageElement
   hobo_model # Don't put anything above this
+  include StandardPermissions
   
   attr_accessor :image
 
@@ -55,18 +56,6 @@ class FirbImageZone < FirbImageElement
   
   # Set the polygon XML for this zone
   def polygon=(xml)
-  end
-  
-  def create_permitted?
-    acting_user.administrator?
-  end
-  
-  def update_permitted?
-    acting_user.administrator?
-  end
-  
-  def view_permitted?(field)
-    acting_user.signed_up?
   end
   
 end
