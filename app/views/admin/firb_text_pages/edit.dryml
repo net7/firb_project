@@ -1,0 +1,23 @@
+<edit-page> 
+    <form: for="FirbTextPage">
+
+        <if test="&this.has_anastatica_page?">
+            <select-input:anastatica 
+                options="&FirbTextPage.anastatiche_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"
+                selected="&this.anastatica_page.id"/>
+        </if>
+        <unless test="&this.has_anastatica_page?">
+            <select-input:anastatica 
+                options="&FirbTextPage.anastatiche_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"/>
+        </unless>
+
+        <label for='firb_text_page[anastatica]'><%= I18n.t("firb.anastatica") %> </label><br />
+
+        <input:parafrasi for='text' value='&this.parafrasi' />
+        <label for='firb_text_page[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
+
+        <submit label="Save" />
+    </form>
+</edit-page>

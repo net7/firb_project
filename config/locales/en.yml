@@ -1,5 +1,5 @@
 en:
-    # Used in new.dryml
+    # Used in views/admin/firb_images/new.dryml
     new_firb_image:
         text: "Text portion"
         other_text: "Yet another text portion"
@@ -15,3 +15,16 @@ en:
         zone_del: "Remove this zone"
         image_del: "Remove this image"
         draw_in_editor: "Open in the editor"
+        
+    # Used in views/admin/firb_text_pages/new.dryml
+    firb_text_page:
+        parafrasi: "Paraphrase"
+        select_one: "Please select one.."
+        no_anastatica_associated: "No Anastatica page associated to this Text Page"
+        edit: "Edit this text page"
+        remove: "Remove this text page"
+        
+    # Used all over 
+    firb:
+        anastatica: "Fac simile copy"
+        parafrasi: "Paraphrase"
