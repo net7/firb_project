@@ -1,0 +1,7 @@
+<new-page>
+	<form: for="FirbAnastaticaPage">
+		<field-list: replace>
+			<field-list: fields="page_position, title" />
+		</field-list>
+	</form>
+</new-page>

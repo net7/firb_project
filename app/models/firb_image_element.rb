@@ -3,15 +3,8 @@ require "base64"
 class FirbImageElement < TaliaCore::Source
 
   singular_property :name, N::TALIA.name
-
-  # Creates a random id string
-  def self.random_id
-    rand Time.now.to_i
-  end
   
-  def random_id
-    self.class.random_id
-  end
+  extend RandomId
 
   # Returns the number of zones directly linked to this object
   def zone_count
