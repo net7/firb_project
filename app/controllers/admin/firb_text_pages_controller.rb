@@ -20,7 +20,28 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
     if (p.remove)
       flash[:notice] = "Text page removed"
     else
-      flash[:noteice] = "Error removing the text page"
+      flash[:notice] = "Error removing the text page"
+    end
+    redirect_to :controller => :firb_text_pages, :action => :index
+  end
+
+  def update
+    p = FirbTextPage.find(params[:id])
+    old_anastatica = p.anastatica_page
+    new_anastatica = FirbAnastaticaPage.find(params[:firb_text_page][:anastatica])
+
+    p[N::TALIA.isPartOf].remove(old_anastatica)
+
+    if (!p.save!)
+      flash[:notice] = "Error updating the text page"
+      redirect_to :controller => :firb_text_pages, :action => :index
+    end
+
+    p[N::DCT.isPartOf] << new_anastatica
+    if (p.save!)
+      flash[:notice] = "Text page updated"
+    else
+      flash[:notice] = "Error updating the text page"
     end
     redirect_to :controller => :firb_text_pages, :action => :index
   end

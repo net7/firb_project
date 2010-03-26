@@ -7,7 +7,7 @@ module Admin::FirbTextPageHelper
 
   # Produces a title to be displayed, with page number and other infos
   def anastatica_pretty_title(ana)
-    "#{ana.title}: with id #{ana.id}"
+    "#{ana.to_s}: with id #{ana.id}"
   end
 
 end
