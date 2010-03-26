@@ -5,14 +5,14 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
   auto_actions :all
 
   def create
-    txt = create_page(params[:firb_text_page][:parafrasi])
+    txt = FirbTextPage.create_page(params[:firb_text_page][:parafrasi], params[:firb_text_page][:anastatica])
 
     if(txt.save)
       flash[:notice] = "Text page succesfully created"
     else
       flash[:notice] = "Error creating the page"
     end
-    redirect_to :controller => :firb_text_page, :action => :index
+    redirect_to :controller => :firb_text_pages, :action => :index
   end
   
 end

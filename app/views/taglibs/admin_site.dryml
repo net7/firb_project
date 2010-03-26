@@ -13,7 +13,15 @@
 <def tag="card" for="FirbTextPage">
     <card class="firb-text-page" param="default" merge>
         <h4 param="heading"> </h4>
-        <div class='firb-text-page-anastatica'><h4><%= I18n.t("firb.anastatica") %>:</h4><span><%= this.parafrasi %></span></div>
+        <div class='firb-text-page-anastatica'><h4><%= I18n.t("firb.anastatica") %>:</h4>
+            <if test="&this.has_anastatica_page?">
+                <span>Titolo: <%= this.anastatica_page.to_s %></span>
+            </if>
+            <unless test="&this.has_anastatica_page?">
+                <span><%= I18n.t("firb_text_page.no_anastatica_associated") %></span>
+            </unless>
+
+        </div>
         <div class='firb-text-page-parafrasi'><h5><%= I18n.t("firb.parafrasi") %>:</h5><span><%= this.parafrasi %></span></div>
     </card>
 </def>

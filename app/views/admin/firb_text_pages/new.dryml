@@ -1,7 +1,11 @@
 <new-page> 
     <form: for="FirbTextPage">
 
-        <select-input options="&FirbTextPage.foo_anastatiche" first-option="Please select one .. "/>
+        <select-input:anastatica 
+            options="&FirbTextPage.anastatiche_select" 
+            first-option="&I18n.t('firb_text_page.select_one')"
+             />
+        <!-- selected="&this.anastatica_page" -->
         
 
         <input:parafrasi />

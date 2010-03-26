@@ -23,21 +23,21 @@ class FirbTextPage < TaliaCore::Source
   # - No direct support through hobo as a field 
   # - you can use the page.namespace:name notation
 
-  def self.create_page(parafrasi, anastatica)
+  def self.create_page(parafrasi, ana_id)
     p = FirbTextPage.new(N::LOCAL + 'firbtextpage/' + FirbImageElement.random_id)
-    txt.parafrasi = parafrasi
-    if (!anastatica.blank?)
-      self[N::DCT.isPartOf] << anastatica
-      zone
+    p.parafrasi = parafrasi
+    if (!ana_id.blank?)
+      anastatica = FirbAnastaticaPage.find(ana_id)
+      p[N::DCT.isPartOf] << anastatica
     end
-    txt
+    p
   end
 
   def has_anastatica_page?
-    anastatica_page.blank?
+    !anastatica_page.blank?
   end
   
-  def self.foo_anastatiche
+  def self.anastatiche_select
     FirbAnastaticaPage.all.collect{|a| ["#{a.title}: #{a.id}", a.id]}
   end
   
