@@ -24,7 +24,11 @@ en:
         edit: "Edit this text page"
         remove: "Remove this text page"
         
-    # Used all over 
+    # Used all over: general terms
+    general:
+        cancel: "Cancel"
+        
+    # Used all over: technical terms 
     firb:
         anastatica: "Fac simile copy"
         parafrasi: "Paraphrase"

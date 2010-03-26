@@ -27,17 +27,8 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
 
   def update
     p = FirbTextPage.find(params[:id])
-    old_anastatica = p.anastatica_page
-    new_anastatica = FirbAnastaticaPage.find(params[:firb_text_page][:anastatica])
+    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_page][:anastatica])
 
-    p[N::TALIA.isPartOf].remove(old_anastatica)
-
-    if (!p.save!)
-      flash[:notice] = "Error updating the text page"
-      redirect_to :controller => :firb_text_pages, :action => :index
-    end
-
-    p[N::DCT.isPartOf] << new_anastatica
     if (p.save!)
       flash[:notice] = "Text page updated"
     else

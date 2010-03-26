@@ -11,5 +11,9 @@
         <label for='firb_text_page[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
 
         <submit label="Save" />
+        or 
+        <%= link_to "#{I18n.t('general.cancel')}", {:action => "index", :controller => :firb_text_pages}, :title => I18n.t("general.cancel") %>
+        
+        
     </form>
 </new-page>
