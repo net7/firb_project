@@ -10,6 +10,14 @@
 
 <def tag="app-name">Talia Admin Panel</def>
 
+<def tag="card" for="FirbTextPage">
+    <card class="firb-text-page" param="default" merge>
+        <h4 param="heading"> </h4>
+        <div class='firb-text-page-anastatica'><h4><%= I18n.t("firb.anastatica") %>:</h4><span><%= this.parafrasi %></span></div>
+        <div class='firb-text-page-parafrasi'><h5><%= I18n.t("firb.parafrasi") %>:</h5><span><%= this.parafrasi %></span></div>
+    </card>
+</def>
+
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
     <h4 param="heading"><editor:name /> <span><link-del-image /><link-add-to-image /></span></h4> 
