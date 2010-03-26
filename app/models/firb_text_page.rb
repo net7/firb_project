@@ -23,6 +23,7 @@ class FirbTextPage < TaliaCore::Source
   # - No direct support through hobo as a field 
   # - you can use the page.namespace:name notation
 
+  # Creates a page initialazing it with a paraphrase and anastatica_page id
   def self.create_page(parafrasi, ana_id)
     p = FirbTextPage.new(N::LOCAL + 'firbtextpage/' + FirbImageElement.random_id)
     p.parafrasi = parafrasi
@@ -31,6 +32,11 @@ class FirbTextPage < TaliaCore::Source
       p[N::DCT.isPartOf] << anastatica
     end
     p
+  end
+
+  # Removes a text_page
+  def remove
+    self.destroy
   end
 
   def has_anastatica_page?

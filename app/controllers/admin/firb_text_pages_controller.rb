@@ -15,6 +15,14 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
     redirect_to :controller => :firb_text_pages, :action => :index
   end
 
-
+  def remove_page
+    p = FirbTextPage.find(params[:id])
+    if (p.remove)
+      flash[:notice] = "Text page removed"
+    else
+      flash[:noteice] = "Error removing the text page"
+    end
+    redirect_to :controller => :firb_text_pages, :action => :index
+  end
 
 end
