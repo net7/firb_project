@@ -14,5 +14,7 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
     end
     redirect_to :controller => :firb_text_pages, :action => :index
   end
-  
+
+
+
 end

@@ -15,7 +15,7 @@
         <h4 param="heading"> </h4>
         <div class='firb-text-page-anastatica'><h4><%= I18n.t("firb.anastatica") %>:</h4>
             <if test="&this.has_anastatica_page?">
-                <span>Titolo: <%= this.anastatica_page.to_s %></span>
+                <span><%= anastatica_pretty_title(this.anastatica_page) %></span>
             </if>
             <unless test="&this.has_anastatica_page?">
                 <span><%= I18n.t("firb_text_page.no_anastatica_associated") %></span>
@@ -23,6 +23,11 @@
 
         </div>
         <div class='firb-text-page-parafrasi'><h5><%= I18n.t("firb.parafrasi") %>:</h5><span><%= this.parafrasi %></span></div>
+        <%= link_to "<img src='/images/icons/text_signature.png'> #{I18n.t('firb_text_page.edit')}", {:action => "edit",  :controller => :firb_text_pages, :id => this.id}, :class => "link-edit", :title => I18n.t("firb_text_page.edit") %>
+
+        <%= link_to "<img src='/images/icons/cross.png'> #{I18n.t('firb_text_page.remove')}", {:action => "remove_text_page", :controller => :firb_text_pages, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_text_page.remove") %>
+
+
     </card>
 </def>
 

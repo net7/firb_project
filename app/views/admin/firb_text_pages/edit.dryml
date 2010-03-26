@@ -1,15 +1,16 @@
-<new-page> 
+<edit-page> 
     <form: for="FirbTextPage">
 
-    <!-- selected="&this.anastatica_page" -->
         <select-input:anastatica 
             options="&FirbTextPage.anastatiche_select" 
-            first-option="&I18n.t('firb_text_page.select_one')"/>
+            first-option="&I18n.t('firb_text_page.select_one')"
+            selected="&this.anastatica_page.id" 
+            />
         <label for='firb_text_page[anastatica]'><%= I18n.t("firb.anastatica") %> </label><br />
 
-        <input:parafrasi />
+        <input:parafrasi for='text'/>
         <label for='firb_text_page[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
 
         <submit label="Save" />
     </form>
-</new-page>
+</edit-page>

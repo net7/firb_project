@@ -21,6 +21,8 @@ en:
         parafrasi: "Paraphrase"
         select_one: "Please select one.."
         no_anastatica_associated: "No Anastatica page associated to this Text Page"
+        edit: "Edit this text page"
+        remove: "Remove this text page"
         
     # Used all over 
     firb:
