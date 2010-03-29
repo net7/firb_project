@@ -1,5 +1,8 @@
 <show-page>
 	<content-body: >
 		<field-list fields="name" />
+		<collection with="&this.real_source.elements">
+			<empty-message:>This collection is empty</empty-message:>
+		</collection>
 	</content-body>
 </show-page>

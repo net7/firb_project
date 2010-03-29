@@ -166,7 +166,7 @@
       <h4 param="heading"><a><name/></a></h4>
     </header:>
 	<body:>
-		Contains <%= this.real_collection.elements.size %> Sources
+		Contains <%= this.real_source.elements.size %> Sources
 	</body:>
   </card>
 </def>
