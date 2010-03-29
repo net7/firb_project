@@ -15,6 +15,22 @@
 
         <label for='firb_text_page[anastatica]'><%= I18n.t("firb.anastatica") %> </label><br />
 
+
+        <if test="&this.image_zone != nil">
+            <select-input:image_zone
+                options="&image_zone_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"
+                selected="&this.image_zone.id"/>
+        </if>
+        <unless test="&this.image_zone != nil">
+            <select-input:image_zone
+                options="&image_zone_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"/>
+        </unless>
+
+        <label for='firb_text_page[image_zone]'><%= I18n.t("firb.image_zone") %> </label><br />
+
+
         <input:parafrasi for='text' value='&this.parafrasi' />
         <label for='firb_text_page[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
 

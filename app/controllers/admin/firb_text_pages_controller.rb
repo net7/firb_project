@@ -28,6 +28,7 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
   def update
     p = FirbTextPage.find(params[:id])
     p.anastatica = FirbAnastaticaPage.find(params[:firb_text_page][:anastatica])
+    p.image_zone = FirbImageZone.find(params[:firb_text_page][:image_zone])
 
     if (p.save!)
       flash[:notice] = "Text page updated"
