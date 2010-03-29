@@ -19,7 +19,7 @@ module Admin::FirbTextPageHelper
       parent = a.get_parent
       breadcrumbs = ""
       loop do
-        breadcrumbs = parent.name + " :: " + breadcrumbs 
+        breadcrumbs = parent.name + " > " + breadcrumbs 
         if (parent.class.to_s == "FirbImage")
           break
         else
@@ -28,7 +28,7 @@ module Admin::FirbTextPageHelper
       end
       breadcrumbs += a.name
       
-      ["#{breadcrumbs} -- #{a.id}", a.id]
+      ["#{breadcrumbs}: #{a.id}", a.id]
     }
   end
   
