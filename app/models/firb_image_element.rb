@@ -21,7 +21,7 @@ class FirbImageElement < TaliaCore::Source
     qry.execute
   end
 
-  def has_zones
+  def has_zones?
     zone_count > 0
   end
 
@@ -41,7 +41,7 @@ class FirbImageElement < TaliaCore::Source
   
   # Returns the XML (as a base64-encoded text) for the "Zones" polygons. This returns an XML which can be
   # passed to the Image Mapper Tool
-  def zones_xml(image_url)
+  def zones_xml(image_url, zone_list=nil)
     xml = Builder::XmlMarkup.new(:indent => 2)
     xml.dctl_ext_init{
       xml.img{
@@ -49,7 +49,7 @@ class FirbImageElement < TaliaCore::Source
       }
       xml.xml{
         self.zones.each do |z|
-          add_zone_to_xml(z, xml, self.uri.to_s)
+          add_zone_to_xml(z, xml, self.uri.to_s, zone_list)
         end
       }
       xml.cb(:u => "/admin/firb_images/update/", :p => "base64xml")
@@ -59,10 +59,18 @@ class FirbImageElement < TaliaCore::Source
     base64.gsub(/\s/, '')
   end
 
-  def add_zone_to_xml(zone, xml, image_uri)
+  def add_zone_to_xml(zone, xml, image_uri, zone_list=nil)
+    # If we provided a zone_list, and the current zone isn't include in said list
+    # we want to move on processing the sub-zones, not including the current one in the xml
+    if !zone_list.nil? && !zone_list.include?(zone.uri.to_s)
+      zone.zones.each do |z|
+        add_zone_to_xml(z, xml, image_uri, zone_list)
+      end unless !zone.has_zones?
+      return
+    end
     xml.a(:r => zone.id.to_s, :s => zone.uri.to_s, :l=> zone.name, :t => "#{image_uri}@#{zone.coordinates}") {
       zone.zones.each do |z|
-        add_zone_to_xml(z, xml, image_uri)
+        add_zone_to_xml(z, xml, image_uri, zone_list)
       end
     }
   end
