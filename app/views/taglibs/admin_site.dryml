@@ -24,7 +24,6 @@
                 parent_name = "No image associated"
                 image_zone_name = "No zone associated"
             end
-            
         %>
         
         <h4 param="heading"> <%= "#{parent_name} : #{image_zone_name}" %> </h4>
@@ -32,7 +31,7 @@
         <div class="firb-image-picture" id="firb_image_container_#{this.id}">
         
         <unless test="&image_zone.nil?">
-            <imt-viewer id="firb_image_#{this.id}" b64="#{thumb_xml(parent)}"/>
+            <imt-viewer id="firb_image_#{this.id}" b64="#{thumb_xml(parent, [image_zone.uri.to_s])}"/>
         </unless>
         <if test="&image_zone.nil?">
             <img-not-ready />

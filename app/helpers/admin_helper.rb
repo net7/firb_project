@@ -37,8 +37,8 @@ module AdminHelper
     url_for_data_record(image.iip_record)
   end
   
-  def thumb_xml(image)
-    image.zones_xml(thumb_url(image))
+  def thumb_xml(image, zone_list=nil)
+    image.zones_xml(thumb_url(image), zone_list)
   end
   
   def image_xml(image)
