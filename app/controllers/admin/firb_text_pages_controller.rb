@@ -7,13 +7,11 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
   def create
     txt = FirbTextPage.create_page(params[:firb_text_page][:parafrasi], params[:firb_text_page][:anastatica], params[:firb_text_page][:image_zone])
 
-    logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Creata? "
     if(txt.save)
       flash[:notice] = "Text page succesfully created"
     else
       flash[:notice] = "Error creating the page"
     end
-    logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Redirigo? "
     redirect_to :controller => :firb_text_pages
   end
 

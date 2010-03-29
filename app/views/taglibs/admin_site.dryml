@@ -12,7 +12,38 @@
 
 <def tag="card" for="FirbTextPage">
     <card class="firb-text-page" param="default" merge>
-        <h4 param="heading"> </h4>
+        
+        <% 
+            if !this.image_zone.nil?
+                parent = this.image_zone.get_firb_image_parent
+                parent_name = parent.name
+                image_zone = this.image_zone
+                image_zone_name = image_zone.name
+            else
+                image_zone = nil
+                parent_name = "No image associated"
+                image_zone_name = "No zone associated"
+            end
+            
+        %>
+        
+        <h4 param="heading"> <%= "#{parent_name} : #{image_zone_name}" %> </h4>
+
+        <div class="firb-image-picture" id="firb_image_container_#{this.id}">
+        
+        <unless test="&image_zone.nil?">
+            <imt-viewer id="firb_image_#{this.id}" b64="#{thumb_xml(parent)}"/>
+        </unless>
+        <if test="&image_zone.nil?">
+            <img-not-ready />
+        </if>
+
+        <span><%= link_to "<img src='/images/icons/text_signature.png'> #{I18n.t('firb_text_page.edit')}", {:action => "edit",  :controller => :firb_text_pages, :id => this.id}, :class => "link-edit", :title => I18n.t("firb_text_page.edit") %></span>
+
+        <span><%= link_to "<img src='/images/icons/cross.png'> #{I18n.t('firb_text_page.remove')}", {:action => "remove_page", :controller => :firb_text_pages, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_text_page.remove") %></span>
+
+        </div>
+        <div class="firb-image-zones">
         <div class='firb-text-page-anastatica'><h4><%= I18n.t("firb.anastatica") %>:</h4>
             <if test="&this.has_anastatica_page?">
                 <span><%= anastatica_pretty_title(this.anastatica) %></span>
@@ -23,10 +54,8 @@
 
         </div>
         <div class='firb-text-page-parafrasi'><h5><%= I18n.t("firb.parafrasi") %>:</h5><span><%= this.parafrasi %></span></div>
-        <%= link_to "<img src='/images/icons/text_signature.png'> #{I18n.t('firb_text_page.edit')}", {:action => "edit",  :controller => :firb_text_pages, :id => this.id}, :class => "link-edit", :title => I18n.t("firb_text_page.edit") %>
 
-        <%= link_to "<img src='/images/icons/cross.png'> #{I18n.t('firb_text_page.remove')}", {:action => "remove_page", :controller => :firb_text_pages, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_text_page.remove") %>
-
+        </div>
 
     </card>
 </def>
@@ -78,9 +107,6 @@
     <% @imageid = this.id %>
     <div class="firb-image-picture" id="firb_image_container_#{this.id}">
 
-        <!-- 
-        <img class="firb-picture" src="http://auto.blog.nl/files/2008/11/zastava-yugo-45.jpg" />
-        -->
         <if test="&this.file_status == 'OK'">
         <imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
         </if>
@@ -135,9 +161,6 @@
 <def tag="img-not-ready">
     <div class="img-not-ready">
         <img src='/images/icons/hourglass.png' /> <ht key='firb_image.image_not_ready'>Image not ready yet</ht>
-        <if test="&this.file_status">
-            <br />Status: <%= this.file_status %>
-        </if>
     </div>
 </def>
 

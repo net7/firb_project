@@ -22,21 +22,17 @@ div.card.firb-image a.link-del img {
     border: 0px; padding: 0px; margin: 0px;
 }
 
-div.card.firb-image div.firb-image-picture {
-    display: inline; border: 0px;
-    float: left;
-}
-div.card.firb-image div.firb-image-picture img.firb-picture {
+div.card div.firb-image-picture img.firb-picture {
     padding: 2px; margin: 5px 0 5px 0;
     border: 1px dashed #666;
     width: 200px;
     display: block;
 }
-div.card.firb-image div.firb-image-zones {
+div.card div.firb-image-zones {
     display: inline; float: left;
     border: 0px; padding: 2px; margin: 5px;
 }
-div.card.firb-image div.firb-image-picture span {
+div.card div.firb-image-picture span {
     display: block; text-align: center;
 }
 div.card.firb-image div.firb-image-zones span.single-zone:hover {
@@ -48,7 +44,12 @@ div.card.firb-image div.firb-image-zones span.single-zone.highlighted {
     border-bottom: 1px dashed #666;
 }
 
-div.card.firb-image div.firb-image-picture div.imt-viewer {
+div.card div.firb-image-picture {
+    display: inline; border: 0px;
+    float: left;
+}
+
+div.card div.firb-image-picture div.imt-viewer {
     border: 1px dashed #666;
     margin: 5px 0 5px 0;
     padding: 2px;
@@ -56,7 +57,7 @@ div.card.firb-image div.firb-image-picture div.imt-viewer {
     height: 200px;
 }
 
-div.card.firb-image div.firb-image-picture div.img-not-ready {
+div.card div.firb-image-picture div.img-not-ready {
     border: 1px dashed #666;
     margin: 5px 0 5px 0;
     padding: 20px 2px;
@@ -64,5 +65,3 @@ div.card.firb-image div.firb-image-picture div.img-not-ready {
     height: 100px;
     text-align: center;
 }
-
-

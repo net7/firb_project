@@ -53,6 +53,17 @@ class FirbImageZone < FirbImageElement
     parent.first
   end
   
+  # Will recurse on its parents to get the FirbImage
+  def get_firb_image_parent
+    parent = self.get_parent
+    loop do
+      break if (parent.class.to_s == "FirbImage")
+      parent = parent.get_parent
+    end
+    parent
+  end
+  
+  
   def self.find_by_name(name)
     ActiveRDF::Query.new(FirbImageZone).select(:zone).where(:zone).where(:zone, N::TALIA.name, name).execute.first
   end
