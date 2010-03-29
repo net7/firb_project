@@ -3,7 +3,8 @@ module Admin::FirbTextPageHelper
   # Produces an hash to be passed to an input (select_for format)
   # with all of our FirbAnastaticaPages
   def anastatiche_select
-    FirbAnastaticaPage.all.collect{|a| ["#{a.title}: #{a.id}", a.id]}
+    foo = FirbAnastaticaPage.all.collect{|a| ["#{a.title}: #{a.id}", a.id]}
+    foo.sort
   end
 
   # Produces a title to be displayed, with page number and other infos
@@ -14,7 +15,7 @@ module Admin::FirbTextPageHelper
   # Produces an hash to be passed to an input (select_for) format
   # with all of our FirbImageZones
   def image_zone_select
-    FirbImageZone.all.collect{ |a|
+    foo = FirbImageZone.all.collect{ |a|
       
       parent = a.get_parent
       breadcrumbs = ""
@@ -30,6 +31,7 @@ module Admin::FirbTextPageHelper
       
       ["#{breadcrumbs}: #{a.id}", a.id]
     }
+    foo.sort
   end
   
 
