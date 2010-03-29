@@ -33,3 +33,11 @@ function jsapi_mouseOut(fid, ki) {
 function jsapi_mouseClick(fid, ki) {
 	return true;
 }
+
+// Adds dynamically a note to the bottom of the #firb-notes div, 
+// uses the same markup as in views/admin/firb_text_pages/new.dryml
+// Used in that same dryml template
+function textPageAddNote() {
+    var markup = "<span class='firb-note'><a href='#'>Elimina nota</a><textarea rows='4' cols='50' name='firb_text_page[note][]'></textarea></span>";
+    $$('#firb-notes')[0].insert({bottom: markup})
+}
