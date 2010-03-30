@@ -37,9 +37,9 @@
 
 <def tag="card" for="FirbNote">
   <card class="firb-note" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
+    <body: param>
+      <view:content param="description"/>
+    </body:>
   </card>
 </def>
 

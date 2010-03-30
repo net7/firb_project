@@ -2,14 +2,19 @@ class FirbNote < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
 
+  attr_accessor :content
+
   singular_property :text_page, N::DCT.isPartOf
 
   fields do
     uri :string
   end
 
-  def self.create_note(notes, text_page)
+  declare_attr_type :content, :text
+
+  def self.create_note(content, text_page)
     n = FirbNote.new(N::LOCAL + 'firbnote/' + FirbImageElement.random_id)
+    n.content = content
     p = FirbTextPage.find(text_page)
     n.text_page = p
     n

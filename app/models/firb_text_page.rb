@@ -38,10 +38,17 @@ class FirbTextPage < TaliaCore::Source
   # Removes a text_page
   def remove
     self.destroy
+    # TODO: add notes deletion as well .. 
   end
 
   def has_anastatica_page?
     !self.anastatica.blank?
+  end
+
+  def notes
+    qry = ActiveRDF::Query.new(FirbNote).select(:note).distinct
+    qry.where(:note, N::DCT.isPartOf, self)
+    qry.execute
   end
   
 end

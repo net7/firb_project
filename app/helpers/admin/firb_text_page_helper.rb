@@ -33,6 +33,5 @@ module Admin::FirbTextPageHelper
     }
     foo.sort
   end
-  
 
 end
