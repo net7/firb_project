@@ -38,6 +38,12 @@ function jsapi_mouseClick(fid, ki) {
 // uses the same markup as in views/admin/firb_text_pages/new.dryml
 // Used in that same dryml template
 function textPageAddNote() {
-    var markup = "<span class='firb-note'><a href='#'>Elimina nota</a><textarea rows='4' cols='50' name='firb_text_page[note][]'></textarea></span>";
-    $$('#firb-notes')[0].insert({bottom: markup})
+    var markup = "<span class='firb-note'><a href='#' class='firb-remove-note'>Elimina nota</a><textarea rows='4' cols='50' name='firb_text_page[note][]'></textarea></span>";
+    $$('#firb-notes')[0].insert({bottom: markup});
 }
+
+document.observe('click', function(e) {
+    if (e.element().match('.firb-remove-note')) {
+        e.findElement('.firb-note').remove();
+    }
+});
