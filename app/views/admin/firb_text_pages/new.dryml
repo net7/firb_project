@@ -14,18 +14,18 @@
         <input:parafrasi />
         <label for='firb_text_page[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
 
+        <div id="firb-notes">
+            <div class='firb-note'>
+                <textarea rows="4" cols="50" name='firb_text_page[note][]'></textarea>
+                <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
+            </div>
+        </div>
+        
+        <span id="firb-add-note" onclick="textPageAddNote()">Add a note</span>
+
         <submit label="Save" />
         or 
         <%= link_to "#{I18n.t('general.cancel')}", {:action => "index", :controller => :firb_text_pages}, :title => I18n.t("general.cancel") %>
-
-
-        <div id="firb-notes">
-            <span class='firb-note'>
-                <a href="#" class='firb-remove-note'>Elimina nota</a>
-                <textarea rows="4" cols="50" name='firb_text_page[note][]'></textarea>
-            </span>
-        </div>
-        <span id="add-note" onclick="textPageAddNote()">Add a note</span>
         
     </form>
 </new-page>

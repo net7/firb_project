@@ -23,6 +23,7 @@ en:
         no_anastatica_associated: "No Anastatica page associated to this Text Page"
         edit: "Edit this text page"
         remove: "Remove this text page"
+        remove_note: "Remove this note"
         
     # Used all over: general terms
     general:

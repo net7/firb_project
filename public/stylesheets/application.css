@@ -65,3 +65,23 @@ div.card div.firb-image-picture div.img-not-ready {
     height: 100px;
     text-align: center;
 }
+
+div#firb-notes {
+    padding: 2px;
+}
+
+div#firb-notes textarea {
+    height: 80px;
+}
+
+div#firb-notes div.firb-note {
+    padding: 2px;
+    margin: 2px;
+    background: #ddd;
+}
+
+#firb-add-note, .firb-remove-note {
+    margin: 2px;
+    display: block;
+    cursor: pointer;
+}
