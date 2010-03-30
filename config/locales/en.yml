@@ -15,6 +15,8 @@ en:
         zone_del: "Remove this zone"
         image_del: "Remove this image"
         draw_in_editor: "Open in the editor"
+        confirm_zone_del: "Do you really want to delete this zone along with its subzones?"
+        confirm_image_del: "Do you really want to delete this image and all of its zones?"
         
     # Used in views/admin/firb_text_pages/new.dryml
     firb_text_page:

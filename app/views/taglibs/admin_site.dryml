@@ -175,10 +175,10 @@
     <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone",  :controller => :firb_image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("firb_image.zone_add") %>
 </def>
 <def tag="link-del-zone">
-    <%= link_to "<img src='/images/icons/cross.png'>", {:action => "remove_zone", :controller => :firb_image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.zone_del") %>
+    <%= link_to "<img src='/images/icons/cross.png'>", {:action => "remove_zone", :controller => :firb_image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.zone_del"), :confirm => I18n.t("firb_image.confirm_zone_del")  %>
 </def>
 <def tag="link-del-image">
-    <%= link_to "<img src='/images/icons/cross.png'>", {:action => "remove_image", :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.image_del") %>
+    <%= link_to "<img src='/images/icons/cross.png'>", {:action => "remove_image", :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.image_del"), :confirm => I18n.t("firb_image.confirm_image_del")  %>
 </def>
 
 
