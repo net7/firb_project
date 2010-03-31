@@ -3,10 +3,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.site_search  'search', :controller => 'admin/front', :action => 'search'
 
+  Hobo.add_routes(map)
   map.admin '/admin', :controller => 'admin/front', :action => 'index'
   map.connect '/admin/import/:action', :controller => 'admin/import'
   map.connect '/admin/talia_sources/:action/:id', :controller => 'admin/talia_sources'
-  Hobo.add_routes(map)
+  map.connect '/admin/talia_collections/:action/:id', :controller => 'admin/talia_collections'
+  
 
   map.connect '/test/:action/:id', :controller => 'test'
   map.connect '/admin/firb_images/:action/:id', :controller => 'admin/firb_images'
