@@ -43,6 +43,9 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
     collection = TaliaCore::Collection.find(collection_uri)
     @source_id = params[:source]
     @source = TaliaSource.find(source.id)
+    if(real= @source.real_source.class.include?(Hobo::Model))
+      @source = @source.real_source
+    end
     @source.acting_user = current_user
     [ source, collection ]
   end
