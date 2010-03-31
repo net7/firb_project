@@ -28,4 +28,19 @@ class FirbAnastaticaPage < TaliaCore::Source
     title = value
   end
   
+  def parts
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::DCT.isPartOf, self).execute
+  end
+  
+  # Parts grouped by class
+  def parts_by_class
+    part_hash = {}
+    my_parts = parts
+    my_parts.each do |part|
+      part_hash[part.class.name] ||= []
+      part_hash[part.class.name] << part
+    end
+    part_hash
+  end
+  
 end
