@@ -10,3 +10,5 @@ admin:
   state: active
   email_address: admin@admin.com
   administrator: true
+  remember_token: <%= rand Time.now.to_i %>
+  remember_token_expires_at: <%= 5.days.from_now.to_s :db %>

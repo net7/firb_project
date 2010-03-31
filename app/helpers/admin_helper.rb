@@ -17,6 +17,12 @@ module AdminHelper
     @page_title || TaliaCore::SITE_NAME
   end
   
+  def collection_options
+    options = {}
+    @collections.each do |col|
+    end
+  end
+  
   # Show each <tt>flash</tt> status (<tt>:notice</tt>, <tt>:error</tt>) only if it's present.
   def show_flash
     [:notice, :error].collect do |status|
