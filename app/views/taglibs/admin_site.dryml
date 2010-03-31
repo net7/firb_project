@@ -61,7 +61,7 @@
             <div class='firb-text-page-notes-container'>
                 <h5> Notes : </h5>
                 <repeat with="&this.notes">
-                    <div class='firb-text-page-note'> <%= "#{this.uri} -- #{this.text_page}" %> </div>
+                    <div class='firb-text-page-note'> <%= "#{this.content} -- #{this.text_page}" %> </div>
                 </repeat>
             </div>
             

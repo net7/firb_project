@@ -2,9 +2,8 @@ class FirbNote < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
 
-  attr_accessor :content
-
   singular_property :text_page, N::DCT.isPartOf
+  singular_property :content, N::TALIA.content
 
   fields do
     uri :string
