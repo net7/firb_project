@@ -63,9 +63,11 @@
 
                 <if test="&this.has_notes?">
                     <h5><%= this.notes_count %> <%= I18n.t("firb.notes") %> : </h5>
+                    <ul>
                     <repeat with="&this.notes">
-                        <div class='firb-text-page-note'> <%= "#{this.uri} #{this.content}" %> </div>
+                        <li><div class='firb-text-page-note'> <%= "#{this.content}" %> </div></li>
                     </repeat>
+                    </ul>
                 </if>
                 <unless test="&this.has_notes?">
                     <h5><%= I18n.t("firb_text_page.no_notes_associated") %></h5>

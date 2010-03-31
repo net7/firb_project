@@ -27,8 +27,20 @@ class FirbNote < TaliaCore::Source
   end
 
   def self.replace_notes(new_notes, text_page)
-    FirbNote.delete_all_notes(text_page)
-    FirbNote.create_notes(new_notes, text_page)
+    new_notes.each { |key, value|
+        if (key.match("new."))
+          new_note = FirbNote.create_note(value, text_page)
+          new_note.save!
+        else
+          FirbNote.update_note(key, value)
+        end
+    }
+  end
+
+  def self.update_note(uri, content)
+    n = FirbNote.find(uri)
+    n.content = content
+    n.save!
   end
 
   def self.delete_all_notes(text_page)
