@@ -15,3 +15,26 @@ it:
         zone_del: "Cancella questa zona"
         image_del: "Cancella questa illustrazione"
         draw_in_editor: "Apri nell'editor"
+        confirm_zone_del: "Vuoi davvero cancellare questa zona e tutte le sue sottozone?"
+        confirm_image_del: "Vuoi davvero cancellare questa immagine e tutte le sue zone?"
+
+    # Used in views/admin/firb_text_pages/new.dryml
+    firb_text_page:
+        parafrasi: "Parafrasi"
+        select_one: "Scegline uno..."
+        no_anastatica_associated: "Nessuna anastatica associata a questa pagina di testo"
+        edit: "Modifica questa pagina di testo"
+        remove: "Elimina questa pagina di testo"
+        remove_note: "Elimina questa nota"
+        no_notes_associated: "Nessuna nota associata a questa pagina di testo"
+
+    # Used all over: general terms
+    general:
+        cancel: "Annulla"
+
+    # Used all over: technical terms 
+    firb:
+        anastatica: "Pagina Anastatica"
+        image_zone: "Zona di immagine"
+        parafrasi: "Parafrasi"
+        notes: "Note"
