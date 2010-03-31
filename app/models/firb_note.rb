@@ -21,8 +21,23 @@ class FirbNote < TaliaCore::Source
 
   def self.create_notes(notes, text_page)
     notes.each{ |n| 
-      new_note = self.create_note(n, text_page)
-      new_note.save
+      new_note = FirbNote.create_note(n, text_page)
+      new_note.save!
+    }
+  end
+
+  def self.replace_notes(new_notes, text_page)
+    FirbNote.delete_all_notes(text_page)
+    FirbNote.create_notes(new_notes, text_page)
+  end
+
+  def self.delete_all_notes(text_page)
+    qry = ActiveRDF::Query.new(FirbNote).select(:note).distinct
+    qry.where(:note, N::DCT.isPartOf, text_page)
+    old_notes = qry.execute
+    old_notes.each { |n| 
+        n[N::DCT.isPartOf].remove(text_page)
+        n.destroy
     }
   end
 

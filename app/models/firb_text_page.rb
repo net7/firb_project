@@ -37,6 +37,7 @@ class FirbTextPage < TaliaCore::Source
 
   # Removes a text_page
   def remove
+    FirbNote.delete_all_notes(self)
     self.destroy
     # TODO: add notes deletion as well .. 
   end
@@ -50,5 +51,14 @@ class FirbTextPage < TaliaCore::Source
     qry.where(:note, N::DCT.isPartOf, self)
     qry.execute
   end
+
+  def notes_count
+    notes.count
+  end
+  
+  def has_notes?
+    notes.count > 0
+  end
+  
   
 end

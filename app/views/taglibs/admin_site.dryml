@@ -43,12 +43,13 @@
 
         </div>
         <div class="firb-image-zones">
-            <div class='firb-text-page-anastatica'><h4><%= I18n.t("firb.anastatica") %>:</h4>
+            <div class='firb-text-page-anastatica'>
                 <if test="&this.has_anastatica_page?">
+                    <h5><%= I18n.t("firb.anastatica") %>:</h5>
                     <span><%= anastatica_pretty_title(this.anastatica) %></span>
                 </if>
                 <unless test="&this.has_anastatica_page?">
-                    <span><%= I18n.t("firb_text_page.no_anastatica_associated") %></span>
+                    <h5><%= I18n.t("firb_text_page.no_anastatica_associated") %></h5>
                 </unless>
 
             </div>
@@ -59,10 +60,16 @@
             </div>
 
             <div class='firb-text-page-notes-container'>
-                <h5> Notes : </h5>
-                <repeat with="&this.notes">
-                    <div class='firb-text-page-note'> <%= "#{this.content} -- #{this.text_page}" %> </div>
-                </repeat>
+
+                <if test="&this.has_notes?">
+                    <h5><%= this.notes_count %> <%= I18n.t("firb.notes") %> : </h5>
+                    <repeat with="&this.notes">
+                        <div class='firb-text-page-note'> <%= "#{this.uri} #{this.content}" %> </div>
+                    </repeat>
+                </if>
+                <unless test="&this.has_notes?">
+                    <h5><%= I18n.t("firb_text_page.no_notes_associated") %></h5>
+                </unless>
             </div>
             
         </div>

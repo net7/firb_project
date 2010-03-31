@@ -26,6 +26,7 @@ en:
         edit: "Edit this text page"
         remove: "Remove this text page"
         remove_note: "Remove this note"
+        no_notes_associated: "No note associated to this Text Page"
         
     # Used all over: general terms
     general:
@@ -36,3 +37,4 @@ en:
         anastatica: "Anastatica Page"
         image_zone: "Image zone"
         parafrasi: "Paraphrase"
+        notes: "Notes"
