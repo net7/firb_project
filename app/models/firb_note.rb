@@ -27,6 +27,16 @@ class FirbNote < TaliaCore::Source
   end
 
   def self.replace_notes(new_notes, text_page)
+
+    old_notes_uris = text_page.notes.collect { |o| o.uri.to_s }
+    new_notes_uris = new_notes.collect { |uri, v| uri }
+    old_notes_uris.each { |old| 
+      if (!new_notes_uris.include?(old))
+        old[N::DCT.isPartOf].remove(text_page)
+        old.destroy
+      end
+    }
+
     new_notes.each { |key, value|
         if (key.match("new."))
           new_note = FirbNote.create_note(value, text_page)
