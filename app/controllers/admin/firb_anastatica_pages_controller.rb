@@ -14,5 +14,4 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
     redirect_to :controller => :firb_anastatica_pages, :action => :index
   end
   
-  
 end

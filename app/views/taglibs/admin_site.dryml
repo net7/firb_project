@@ -5,97 +5,12 @@
 <include src="taglibs/auto/admin/rapid/cards"/>
 <include src="taglibs/auto/admin/rapid/pages"/>
 <include src="taglibs/auto/admin/rapid/forms"/>
+<include src="taglibs/cards"/>
 
 <set-theme name="clean"/>
 
 <def tag="app-name">Talia Admin Panel</def>
 
-<def tag="card" for="FirbTextPage">
-    <card class="firb-text-page" param="default" merge>
-        
-        <% 
-            if !this.image_zone.nil?
-                parent = this.image_zone.get_firb_image_parent
-                parent_name = parent.name
-                image_zone = this.image_zone
-                image_zone_name = image_zone.name
-            else
-                image_zone = nil
-                parent_name = "No image associated"
-                image_zone_name = "No zone associated"
-            end
-        %>
-        
-        <h4 param="heading"> <%= "#{parent_name} : #{image_zone_name}" %> </h4>
-
-        <div class="firb-image-picture" id="firb_image_container_#{this.id}">
-        
-        <unless test="&image_zone.nil?">
-            <imt-viewer id="firb_image_#{this.id}" b64="#{thumb_xml(parent, [image_zone.uri.to_s])}"/>
-        </unless>
-        <if test="&image_zone.nil?">
-            <img-not-ready />
-        </if>
-
-        <span><%= link_to "<img src='/images/icons/text_signature.png'> #{I18n.t('firb_text_page.edit')}", {:action => "edit",  :controller => :firb_text_pages, :id => this.id}, :class => "link-edit", :title => I18n.t("firb_text_page.edit") %></span>
-
-        <span><%= link_to "<img src='/images/icons/cross.png'> #{I18n.t('firb_text_page.remove')}", {:action => "remove_page", :controller => :firb_text_pages, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_text_page.remove") %></span>
-
-        </div>
-        <div class="firb-image-zones">
-            <div class='firb-text-page-anastatica'>
-                <if test="&this.has_anastatica_page?">
-                    <h5><%= I18n.t("firb.anastatica") %>:</h5>
-                    <span><%= anastatica_pretty_title(this.anastatica) %></span>
-                </if>
-                <unless test="&this.has_anastatica_page?">
-                    <h5><%= I18n.t("firb_text_page.no_anastatica_associated") %></h5>
-                </unless>
-
-            </div>
-
-            <div class='firb-text-page-parafrasi'>
-                <h5><%= I18n.t("firb.parafrasi") %>:</h5>
-                <span><%= this.parafrasi %></span>
-            </div>
-
-            <div class='firb-text-page-notes-container'>
-
-                <if test="&this.has_notes?">
-                    <h5><%= this.notes_count %> <%= I18n.t("firb.notes") %> : </h5>
-                    <ul>
-                    <repeat with="&this.notes">
-                        <li><div class='firb-text-page-note'> <%= "#{this.content}" %> </div></li>
-                    </repeat>
-                    </ul>
-                </if>
-                <unless test="&this.has_notes?">
-                    <h5><%= I18n.t("firb_text_page.no_notes_associated") %></h5>
-                </unless>
-            </div>
-            
-        </div>
-
-    </card>
-</def>
-
-<def tag="card-with-drag-handle">
-	<% drag_id = this.to_uri.safe_encoded %>
-	<div id="#{drag_id}">
-		<card>
-			<before-heading:>
-				<if test="&this.with_acting_user(current_user) { this.update_permitted? }"><div class="drag_handle">&nbsp;</div></if>
-			</before-heading:>
-		</card>
-	</div>
-	<if test="&this.with_acting_user(current_user) { this.update_permitted? }">
-	<%= draggable_element(drag_id, 
-	    :handle => "'drag_handle'", 
-	    :revert => true, 
-	    :ghosting => true,
-	    :scroll => 'window' ) %>
-	</if>
-</def>
 
 <def tag="collection-sidebar">
 	<h2>Collections</h2>
@@ -116,36 +31,6 @@
 		</after-item:>
 		<empty-message:>No collections found</empty-message>
 	</collection>
-</def>
-
-
-<def tag="card" for="FirbImage">
-  <card class="firb-image" param="default" merge>
-    <h4 param="heading"><editor:name /> <span><link-del-image /><link-add-to-image /></span></h4> 
-
-    <% @imageid = this.id %>
-    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
-
-        <if test="&this.file_status == 'OK'">
-        <imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
-        </if>
-        <unless test="&this.file_status == 'OK'">
-            <img-not-ready />
-        </unless>
-        <span><link-imt-edit /></span>
-
-    </div>
-
-    <div class="firb-image-zones">
-        <h4><%= this.zone_count %> <ht key='firb_image.zones'>zones</ht>:</h4> 
-        <ul>
-            <li repeat="&this.zones">
-                <firbimagezone parentfirbimageid="firb_image_#{@imageid}"/>
-            </li>
-        </ul>
-    </div>
-
-  </card>
 </def>
 
 <!-- Shows an image zone, if there's children, shows them as well -->
@@ -199,44 +84,6 @@
 </def>
 <def tag="link-del-image">
     <%= link_to "<img src='/images/icons/cross.png'>", {:action => "remove_image", :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.image_del"), :confirm => I18n.t("firb_image.confirm_image_del")  %>
-</def>
-
-
-<def tag="card" for="TaliaCollection">
-  <card class="talia-collection" param="default" merge>
-    <header: param>
-      <h4 param="heading"><a><name/></a></h4>
-    </header:>
-	<body:>
-		Contains <%= this.real_source.elements.size %> Sources
-	</body:>
-  </card>
-</def>
-
-<def tag="card" for="TaliaSource">
-  <card class="talia-source" param="default" merge>
-    <header: param>
-      <h4 param="heading"><a><name/></a></h4>
-    </header:>
-	<body:>
-		<div><%= this.uri %> | <%= this.short_type %></div>
-		<div>
-			<% source_uri = this.to_uri.safe_encoded %>
-			<% can_update = this.with_acting_user(current_user) { this.update_permitted? } %>
-			<repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
-				<%= this.to_uri.local_name %> 
-				<if test="&can_update">
-				<remote-method-button method="disjoin_collection" label="x" 
-					params="&{:collection => this.to_uri.safe_encoded, :source => source_uri }" 
-					url="#{url_for(:controller => 'admin/talia_sources', :action => 'remove_collection')}"
-					spinner-next-to="#{source_uri}"
-					message="Deleting..."
-					/>
-				</if>
-			</repeat>
-		</div>
-	</body:>
-  </card>
 </def>
 
 <def tag="prop-language">

@@ -9,7 +9,7 @@
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
     <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Firb Text Pages</ht></nav-item>
     <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
-    <nav-item with="&TaliaSource"><ht key="talia_sources.nav_item">Sources</ht></nav-item>
+    <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
 </def>
 

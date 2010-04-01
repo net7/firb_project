@@ -1,4 +1,4 @@
-<card with="&source">
+<card with="&source" for="&source.class.name">
 	<before-heading:>
 		<div class="drag_handle">&nbsp;</div>
 	</before-heading:>
