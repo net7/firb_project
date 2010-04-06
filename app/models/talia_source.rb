@@ -5,6 +5,8 @@ class TaliaSource < ActiveRecord::Base
   include FakeSource
   extend FakeSource::ClassMethods
   
+  after_save :save_real_source
+  
   self.inheritance_column = 'foo'
   
   fields do

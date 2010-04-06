@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'fileutils'
+
 class FirbImageTest < ActiveSupport::TestCase
   
   def setup

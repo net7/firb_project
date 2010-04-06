@@ -1,0 +1,15 @@
+<def tag="form" for="FirbAnastaticaPage">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="page_position, title" param/>
+	<label for="select_list"><ht key="firb_anastatica_pages.page_to_book">Attach to book</ht></label>
+	<removeable-books />
+	<select-menu options="&{'bla' => 'false', 'foo' => 'bar'}" />
+    <div param="actions">
+      <submit label="#{ht 'firb_anastatica_pages.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="removable-books">
+</def>

@@ -14,7 +14,8 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
     end
   end
   
-  # TODO: Permisions?
+  # Connect the current source to the collection passed by the
+  # request
   def assign_collection
     source, collection = get_source_and_collection
     if(@source.update_permitted?)
@@ -23,7 +24,8 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
     end
   end
   
-  # TODO: Permissions?
+  # Remove the current source from the collection given by the
+  # request
   def remove_collection
     source, collection = get_source_and_collection
     if(@source.update_permitted?)

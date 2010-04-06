@@ -28,6 +28,18 @@ class FirbAnastaticaPage < TaliaCore::Source
     title = value
   end
   
+  def attached_to_books
+    attached_query = ActiveRDF::Query.new(TaliaCore::Collection).select(:collection)
+    attached_query.where(:collection, N::DCT.hasPart, self).where(:collection, N::RDF.type, N::DCNS.Collection)
+    attached_query.execute.collect { |col| TaliaCollection.from_real_source(col) }
+  end
+  
+  def unattached_books
+    collections = TaliaCollection.all
+    attached = attached_to_books
+    collections.reject { |col| attached.include?(col) }
+  end
+  
   def parts
     ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::DCT.isPartOf, self).execute
   end
