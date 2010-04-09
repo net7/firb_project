@@ -13,7 +13,9 @@ class Admin::FirbTextPagesController < Admin::AdminSiteController
       flash[:notice] = "Error creating the page"
     end
 
-    FirbNote.create_notes(params[:firb_text_page][:note], txt)
+    if (params[:firb_text_page][:note])
+      FirbNote.create_notes(params[:firb_text_page][:note], txt)
+    end
     redirect_to :controller => :firb_text_pages
   end
 

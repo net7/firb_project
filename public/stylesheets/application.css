@@ -32,23 +32,24 @@ div.card div.firb-image-zones {
     display: inline; float: left;
     border: 0px; padding: 2px; margin: 5px;
 }
+div.card div.firb-text-page-content {
+    border: 0px; float: left;
+    margin: 5px; padding: 2px;
+}
 div.card div.firb-image-picture span {
     display: block; text-align: center;
 }
 div.card.firb-image div.firb-image-zones span.single-zone:hover {
    border-bottom: 1px dashed #666;
 }
-
 div.card.firb-image div.firb-image-zones span.single-zone.highlighted {
     background: #bbb;
     border-bottom: 1px dashed #666;
 }
-
 div.card div.firb-image-picture {
     display: inline; border: 0px;
     float: left;
 }
-
 div.card div.firb-image-picture div.imt-viewer {
     border: 1px dashed #666;
     margin: 5px 0 5px 0;
