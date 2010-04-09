@@ -19,6 +19,14 @@
   </card>
 </def>
 
+<def tag="card" for="FirbIllustratedMemoryDepiction">
+  <card class="firb-illustrated-memory-depiction" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="FirbImage">
   <card class="firb-image" param="default" merge>
     <header: param>
