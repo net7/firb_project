@@ -1,4 +1,13 @@
 it:
+    # Model names
+    firb_text_pages: 
+        model_name: "Scheda di testo"
+        model_name_plural: "Schede di testo"    
+
+    talia_collections:
+        model_name: "Libro"
+        model_name_plural: "Libri"
+    
     # Used in new.dryml
     new_firb_image:
         text: "Porzione di testo"

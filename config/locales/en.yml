@@ -1,4 +1,13 @@
 en:
+    # Model names
+    firb_text_pages: 
+        model_name: "Text Page zz1"
+        model_name_plural: "Text Pages zz2"    
+
+    talia_collections:
+        model_name: "Book"
+        model_name_plural: "Books"
+        
     # Used in views/admin/firb_images/new.dryml
     new_firb_image:
         text: "Text portion"
