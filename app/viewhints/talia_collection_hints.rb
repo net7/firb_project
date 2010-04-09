@@ -1,3 +1,3 @@
 class TaliaCollectionHints < Hobo::ViewHints
-  model_name 'Book'
+  model_name I18n.t('firb.book')
 end

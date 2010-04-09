@@ -27,6 +27,7 @@ en:
         remove: "Remove this text page"
         remove_note: "Remove this note"
         no_notes_associated: "No note associated to this Text Page"
+        text_page: "Text Page"
         
     # Used all over: general terms
     general:
@@ -34,7 +35,20 @@ en:
         
     # Used all over: technical terms 
     firb:
+        image: "Image"
+        book: "Book"
+        source: "Source"
         anastatica: "Anastatica Page"
         image_zone: "Image zone"
         parafrasi: "Paraphrase"
         notes: "Notes"
+        illustrated_memory_depiction: "Illustrated Memory Depiction"
+        code: "Code"
+        collocation: "Collocation"
+        tecnique: "Tecnique"
+        measure: "Measure"
+        position: "Position"
+        descriptive_notes: "Descriptive Notes"
+        study_notes: "Study Notes"
+        description: "Description"
+        completed: "Is the depiction complete?"

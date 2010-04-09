@@ -27,6 +27,7 @@ it:
         remove: "Elimina questa pagina di testo"
         remove_note: "Elimina questa nota"
         no_notes_associated: "Nessuna nota associata a questa pagina di testo"
+        text_page: "Scheda testo"
 
     # Used all over: general terms
     general:
@@ -34,7 +35,20 @@ it:
 
     # Used all over: technical terms 
     firb:
+        image: "Illustrazione"
+        book: "Libro"
+        source: "Source"
         anastatica: "Pagina Anastatica"
         image_zone: "Zona di immagine"
         parafrasi: "Parafrasi"
         notes: "Note"
+        illustrated_memory_depiction: "Immagine di memoria illustrata"
+        code: "Codice"
+        collocation: "Collocazione"
+        tecnique: "Tecnica"
+        measure: "Misure"
+        position: "Posizione"
+        descriptive_notes: "Note descrittive"
+        study_notes: "Note di studio"
+        description: "Descrizione"
+        completed: "L'illustrazione è completa?"
