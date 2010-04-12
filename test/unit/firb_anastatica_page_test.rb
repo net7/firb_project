@@ -31,9 +31,10 @@ class FirbAnastaticaPageTest < ActiveSupport::TestCase
     setup_once(:collection_two) do
       collection_two = TaliaCollection.new
       collection_two.uri = 'http://firb_anastatica_test/collection2'
+      collection_two.save!
       collection_two.real_source << @page2
       collection_two.real_source
-      collection_two.save!
+      collection_two.real_source.save!
       collection_two
     end
     

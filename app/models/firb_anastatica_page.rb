@@ -29,6 +29,7 @@ class FirbAnastaticaPage < TaliaCore::Source
   end
   
   def attached_to_books
+    return [] if(new_record?)
     attached_query = ActiveRDF::Query.new(TaliaCore::Collection).select(:collection)
     attached_query.where(:collection, N::DCT.hasPart, self).where(:collection, N::RDF.type, N::DCNS.Collection)
     attached_query.execute.collect { |col| TaliaCollection.from_real_source(col) }
@@ -36,6 +37,7 @@ class FirbAnastaticaPage < TaliaCore::Source
   
   def unattached_books
     collections = TaliaCollection.all
+    return collections if(new_record?)
     attached = attached_to_books
     collections.reject { |col| attached.include?(col) }
   end

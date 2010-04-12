@@ -10,9 +10,6 @@ class FirbImage < FirbImageElement
   # set by the worker process, either to "OK" (successfully attached the file)
   # or to an error message. 
   singular_property :file_status, N::TALIA.file_status
-  
-
-  declare_attr_type :name, :string
 
   def self.file_staging_dir
     @file_staging_dir ||=  begin

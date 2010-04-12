@@ -39,5 +39,9 @@ class ActiveSupport::TestCase
     ActiveRDF::ConnectionPool.write_adapter.clear
   end
 
+  def login_for(user)
+    @request.cookies['auth_token'] =  "#{users(user).remember_token} #{users(user).class.name}"
+  end
+
   # Add more helper methods to be used by all tests here...
 end

@@ -44,12 +44,35 @@ class Admin::TaliaCollectionsControllerTest < ActionController::TestCase
     collection = TaliaCore::Collection.find(collection.uri)
     assert_equal(collection.elements.collect { |el| el.id.to_s }, element_ids)
   end
+  
+  def test_new
+    login_for(:admin)
+    get(:new)
+    assert_response(:success)
+    assert_select 'th.title-label'
+    assert_select 'input.submit-button'
+  end
+  
+  def test_create
+    login_for(:admin)
+    assert_difference('TaliaCollection.count', 1) do
+      post(:create, :talia_collection => { :title => 'Meee new title'})
+      assert_redirected_to(:action => 'index')
+    end
+    new_collection = TaliaCollection.last
+    assert_equal('Meee new title', new_collection.title)
+  end
+  
+  def test_update
+    login_for(:admin)
+    collection = test_collection
+    post(:update, :id => collection.id, :talia_collection => { :title => 'Me too new' })
+    assert_response(302)
+    mod_collection = TaliaCollection.find(collection.id)
+    assert_equal('Me too new', mod_collection.title)
+  end
 
   private
-
-  def login_for(user)
-    @request.cookies['auth_token'] =  "#{users(user).remember_token} #{users(user).class.name}"
-  end
 
   def test_collection
     collection = TaliaCore::Collection.new('http://collection_functional/test')

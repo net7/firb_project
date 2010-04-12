@@ -1,6 +1,6 @@
 <show-page>
 	<content-body:>
-		<div>
+		<div class='page-position'>
 			<ht key="FirbAnastaticaPage:page_postion">Page position:</ht> <%= this.page_position %>
 		</div>
 		<h3>Parts of this source</h3>

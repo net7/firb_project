@@ -1,7 +1,7 @@
 <% can_edit_stuff = @talia_collection.with_acting_user(current_user){ @talia_collection.update_permitted? } %>
 <show-page>
 	<content-body: >
-		<field-list fields="name" />	
+		<field-list fields="title" />	
 		<collection with="&this.real_source.elements" id="collection_order">
 			<item: id="item_#{this.id}">
 		      <div class="ordering-handle" if="&can_edit_stuff">&uarr;<br/>&darr;</div>

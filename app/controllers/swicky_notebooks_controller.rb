@@ -1,3 +1,55 @@
+#  =Swicky Notebooks API
+# 
+#  == Get the list of notebooks for a user
+#  * '''URI:''' http://host/<user_name>/swicky_notebooks/
+#  * '''HTTP:''' GET
+#  * '''ACTION:''' index
+#  * '''Formats:''' XML (<notebooks><notebook></notebook>...</notebooks>) and HTML
+#
+#  == Show a notebook
+#  * '''URI:''' http://host/<user_name>/swicky_notebooks/<notebook_name>
+#  * '''HTTP:''' GET
+#  * '''ACTION:''' show
+#  * '''Formats:''' XML, RDF(/XML) and HTML
+#
+#  == Upload a notebook
+#  * '''URI:''' http://host/<user_name>/swicky_notebooks/<notebook_name>
+#  * '''HTTP:''' POST
+#  * '''ACTION:''' create
+#  * '''Params:''' contentfile (file upload), containing the RDF/XML of the notebook
+#
+#  == Update a notebook
+#  * '''URI:''' http://host/<user_name>/swicky_notebooks/<notebook_name>
+#  * '''HTTP:''' PUT 
+#  * '''ACTION:''' update
+#  * '''Params:''' contentfile (file upload), containing the RDF/XML of the notebook
+#
+#  == Delete a notebook
+#  * '''URI:''' http://host/<user_name>/swicky_notebooks/<notebook_name>
+#  * '''HTTP:''' DELETE
+#  * '''ACTION:''' destroy
+# 
+#  == Annotations for URI
+#  * '''URI:''' http://host/swicky_notebooks/context/annotated_fragments/<encoded_uri>
+#  * '''HTTP:''' GET
+#  * '''ACTION:''' annotated_fragments
+#  * '''Formats:''' Json
+#  * '''Returns:''' List of XPath elements that refer to annotations on the given URL
+#
+#  == Get annotation triples
+#  * '''URI:''' http://host/swicky_notebooks/context/annotations/
+#  * '''HTTP:''' GET
+#  * '''ACTION:''' create
+#  * ''Formats:''' Json, HTML, XML/XML-RDF
+#  * '''Params:''' "uri" or "xpointer", depending on the element for which to get
+#     the annotations
+#  * '''Returns:''': A Json/XML/Description of all triples that have to do with the
+#     note which refers to the given parameter
+#
+#  == Authentication
+# 
+#  In general, all calls except the "GET" things require HTTP BASIC authentication with
+#  the user's email address and password
 class SwickyNotebooksController < ApplicationController
   
   before_filter :get_user, :except => [:annotated_fragments, :annotations]

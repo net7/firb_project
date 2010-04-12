@@ -4,6 +4,19 @@ class Admin::TaliaCollectionsController < Admin::AdminSiteController
   
   auto_actions :all
   
+
+  
+  # Will create a new FirbImage, with some automatic zones automagically added
+  def create
+    @talia_collection = TaliaCollection.create_collection(params[:talia_collection])
+    if(@talia_collection.save)
+      flash[:notice] = "Collection #{@talia_collection.name} succesfully created"
+    else
+      flash[:notice] = "Error creating the collection"
+    end
+    redirect_to :controller => :talia_collections, :action => :index
+  end
+  
   def reorder
     @talia_collection = TaliaCollection.find(N::URI.from_encoded(params[:id]))
     if(@talia_collection.with_acting_user(current_user) { @talia_collection.update_permitted? })
