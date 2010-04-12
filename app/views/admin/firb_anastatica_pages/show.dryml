@@ -3,6 +3,11 @@
 		<div class='page-position'>
 			<ht key="FirbAnastaticaPage:page_postion">Page position:</ht> <%= this.page_position %>
 		</div>
+		<h3>Collections</h3>
+		<% source_uri = this.to_uri.safe_encoded %>
+		<repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
+			<%= this.title || this.to_uri.local_name %> 
+		</repeat>
 		<h3>Parts of this source</h3>
 		<% parts = this.parts_by_class %>
 		<% part_list = parts.keys.sort %>
