@@ -1,8 +1,8 @@
 en:
     # Model names
     firb_text_pages: 
-        model_name: "Text Page zz1"
-        model_name_plural: "Text Pages zz2"    
+        model_name: "Text Page"
+        model_name_plural: "Text Pages"    
 
     talia_collections:
         model_name: "Book"
