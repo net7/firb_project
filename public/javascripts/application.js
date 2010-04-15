@@ -43,6 +43,12 @@ function textPageAddNote() {
     $$('#firb-notes')[0].insert({bottom: markup});
 }
 
+// Adds dynamically an iconclass term to the bottom of the #firb-iconclass-terms
+// div, uses same markup as in views/admin/firb_illustrated_memory_depiction_pages/new.dryml
+function addIconclassTerm() {
+    
+}
+
 document.observe('click', function(e) {
 
     // Remove note: in text_page new and edit actions

@@ -6,7 +6,7 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatica Pages</ht></nav-item>
-    <nav-item with="&FirbIllustratedMemoryDepictionPage"><ht key="firb_illustrated_memory_depiction_pages.nav_item">Illustrated Memory Depictions</ht></nav-item>
+    <nav-item with="&FirbIllustratedMemoryDepictionPage"><ht key="firb_illustrated_memory_depiction_pages.nav_item">Illustrated Memory Depiction Pages</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
     <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages</ht></nav-item>
     <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
@@ -250,14 +250,14 @@
 <!-- ====== FirbIllustratedMemoryDepictionPage Pages ====== -->
 
 <def tag="index-page" for="FirbIllustratedMemoryDepictionPage">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.index.title', :default=>['Illustrated Memory Depictions'] }">
+  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.index.title', :default=>['Illustrated Memory Depiction Pages'] }">
     <body: class="index-page firb-illustrated-memory-depiction-page" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="firb_illustrated_memory_depiction_pages.index.heading">
-            Illustrated Memory Depictions
+            Illustrated Memory Depiction Pages
           </ht>
         </h2>
 
@@ -270,7 +270,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_illustrated_memory_depiction_pages.actions.new">New Illustrated Memory Depiction</ht>
+          <ht key="firb_illustrated_memory_depiction_pages.actions.new">New Illustrated Memory Depiction Page</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -287,21 +287,21 @@
 
 
 <def tag="new-page" for="FirbIllustratedMemoryDepictionPage">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.new.title', :default=>[' New Illustrated Memory Depiction'] }">
+  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.new.title', :default=>[' New Illustrated Memory Depiction Page'] }">
     <body: class="new-page firb-illustrated-memory-depiction-page" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="firb_illustrated_memory_depiction_pages.new.heading">
-            New Illustrated Memory Depiction
+            New Illustrated Memory Depiction Page
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_illustrated_memory_depiction_pages.actions.create', :default=>['Create Illustrated Memory Depiction']}"/>
+          <submit: label="#{ht 'firb_illustrated_memory_depiction_pages.actions.create', :default=>['Create Illustrated Memory Depiction Page']}"/>
         </form>
       </section>
     </content:>
@@ -310,7 +310,7 @@
 
 
 <def tag="show-page" for="FirbIllustratedMemoryDepictionPage">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.show.title', :default=>['Illustrated Memory Depiction'] }">
+  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.show.title', :default=>['Illustrated Memory Depiction Page'] }">
 
     <body: class="show-page firb-illustrated-memory-depiction-page" param/>
 
@@ -326,7 +326,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="firb_illustrated_memory_depiction_pages.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Illustrated Memory Depiction
+                Edit Illustrated Memory Depiction Page
               </ht>
             </a>
           </header>
@@ -342,7 +342,7 @@
 
 
 <def tag="edit-page" for="FirbIllustratedMemoryDepictionPage">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.edit.title', :default=>['Edit Illustrated Memory Depiction'] }">
+  <page merge title="#{ht 'firb_illustrated_memory_depiction_pages.edit.title', :default=>['Edit Illustrated Memory Depiction Page'] }">
 
     <body: class="edit-page firb-illustrated-memory-depiction-page" param/>
 
@@ -353,7 +353,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_illustrated_memory_depiction_pages.actions.delete', :default=>['Remove This Illustrated Memory Depiction']}" param/>
+        <delete-button label="#{ht 'firb_illustrated_memory_depiction_pages.actions.delete', :default=>['Remove This Illustrated Memory Depiction Page']}" param/>
       </section>
 
       <section param="content-body">

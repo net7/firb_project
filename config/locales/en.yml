@@ -41,6 +41,7 @@ en:
     # Used all over: general terms
     general:
         cancel: "Cancel"
+        add: "Add"
         
     # Used all over: technical terms 
     firb:
@@ -52,6 +53,7 @@ en:
         parafrasi: "Paraphrase"
         notes: "Notes"
         illustrated_memory_depiction: "Illustrated Memory Depiction"
+        illustrated_memory_depiction_page: "Illustrated Memory Depiction Page"
         code: "Code"
         collocation: "Collocation"
         tecnique: "Tecnique"
@@ -61,3 +63,4 @@ en:
         study_notes: "Study Notes"
         description: "Description"
         completed: "Is the depiction complete?"
+        iconclass_terms: "Iconclass terms"
