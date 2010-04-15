@@ -41,4 +41,12 @@ class IconclassTermTest < ActiveSupport::TestCase
     assert_equal('Cool', @term.note)
   end
   
+  def test_term
+    assert_equal('61E(+0)', @term.term)
+  end
+  
+  def test_name
+    assert_equal(@term.term, @term.name)
+  end
+  
 end

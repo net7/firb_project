@@ -8,8 +8,8 @@
     <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatica Pages</ht></nav-item>
     <nav-item with="&FirbIllustratedMemoryDepiction"><ht key="firb_illustrated_memory_depictions.nav_item">Illustrated Memory Depictions</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
-    <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages zz2</ht></nav-item>
-    <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
+    <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages</ht></nav-item>
+    <nav-item with="&IconclassTerm"><ht key="iconclass_terms.nav_item">Iconclass Terms</ht></nav-item>
   </navigation>
 </def>
 
@@ -602,14 +602,14 @@
 <!-- ====== FirbTextPage Pages ====== -->
 
 <def tag="index-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.index.title', :default=>['Text Pages zz2'] }">
+  <page merge title="#{ht 'firb_text_pages.index.title', :default=>['Text Pages'] }">
     <body: class="index-page firb-text-page" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="firb_text_pages.index.heading">
-            Text Pages zz2
+            Text Pages
           </ht>
         </h2>
 
@@ -622,7 +622,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_text_pages.actions.new">New Text Page zz1</ht>
+          <ht key="firb_text_pages.actions.new">New Text Page</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -639,21 +639,21 @@
 
 
 <def tag="new-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.new.title', :default=>[' New Text Page zz1'] }">
+  <page merge title="#{ht 'firb_text_pages.new.title', :default=>[' New Text Page'] }">
     <body: class="new-page firb-text-page" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="firb_text_pages.new.heading">
-            New Text Page zz1
+            New Text Page
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_text_pages.actions.create', :default=>['Create Text Page zz1']}"/>
+          <submit: label="#{ht 'firb_text_pages.actions.create', :default=>['Create Text Page']}"/>
         </form>
       </section>
     </content:>
@@ -662,7 +662,7 @@
 
 
 <def tag="show-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.show.title', :default=>['Text Page zz1'] }">
+  <page merge title="#{ht 'firb_text_pages.show.title', :default=>['Text Page'] }">
 
     <body: class="show-page firb-text-page" param/>
 
@@ -678,7 +678,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="firb_text_pages.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Text Page zz1
+                Edit Text Page
               </ht>
             </a>
           </header>
@@ -693,7 +693,7 @@
 
 
 <def tag="edit-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.edit.title', :default=>['Edit Text Page zz1'] }">
+  <page merge title="#{ht 'firb_text_pages.edit.title', :default=>['Edit Text Page'] }">
 
     <body: class="edit-page firb-text-page" param/>
 
@@ -704,7 +704,126 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_text_pages.actions.delete', :default=>['Remove This Text Page zz1']}" param/>
+        <delete-button label="#{ht 'firb_text_pages.actions.delete', :default=>['Remove This Text Page']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== IconclassTerm Pages ====== -->
+
+<def tag="index-page" for="IconclassTerm">
+  <page merge title="#{ht 'iconclass_terms.index.title', :default=>['Iconclass Terms'] }">
+    <body: class="index-page iconclass-term" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="iconclass_terms.index.heading">
+            Iconclass Terms
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="iconclass_terms.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="iconclass_terms.actions.new">New Iconclass Term</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="IconclassTerm">
+  <page merge title="#{ht 'iconclass_terms.new.title', :default=>[' New Iconclass Term'] }">
+    <body: class="new-page iconclass-term" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="iconclass_terms.new.heading">
+            New Iconclass Term
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'iconclass_terms.actions.create', :default=>['Create Iconclass Term']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="IconclassTerm">
+  <page merge title="#{ht 'iconclass_terms.show.title', :default=>['Iconclass Term'] }">
+
+    <body: class="show-page iconclass-term" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="iconclass_terms.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="iconclass_terms.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Iconclass Term
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="IconclassTerm">
+  <page merge title="#{ht 'iconclass_terms.edit.title', :default=>['Edit Iconclass Term'] }">
+
+    <body: class="edit-page iconclass-term" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="iconclass_terms.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'iconclass_terms.actions.delete', :default=>['Remove This Iconclass Term']}" param/>
       </section>
 
       <section param="content-body">

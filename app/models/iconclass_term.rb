@@ -12,6 +12,8 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   singular_property :soundex, N::TALIA.soundex
   declare_attr_type :soundex, :string
   singular_property :note, N::SKOS.editorialNote
+  declare_attr_type :note, :text
+  declare_attr_type :term, :string
   
   def self.create_term(options = {})
     options.to_options!
@@ -23,11 +25,20 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   end
   
   def name
-    prefLabel || uri.local_name
+    term || uri.local_name
   end
   
   def name=(value)
-    prefLabel = value
+    term = value
+  end
+  
+  def term
+    # Term is the local name of the uri. Trailing slash needs to be slashed.
+    self.uri.to_s.blank? ? '' : CGI.unescape(self.uri.to_s[0..-2].to_uri.local_name)
+  end
+  
+  def term=(value)
+    self.uri = self.class.make_uri(value)
   end
   
   private
