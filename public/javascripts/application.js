@@ -44,6 +44,8 @@ function textPageAddNote() {
 }
 
 document.observe('click', function(e) {
+
+    // Remove note: in text_page new and edit actions
     if (e.element().match('.firb-remove-note')) {
         e.findElement('.firb-note').remove();
         e.stop();

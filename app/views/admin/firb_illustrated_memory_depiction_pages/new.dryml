@@ -20,6 +20,20 @@
         <input:tecnique />
         <label for='firb_illustrated_image_depiction[tecnique]'><%= I18n.t("firb.tecnique") %></label><br />
 
+
+        <input type='text' id='firb-iconclass-term' />
+        <span id='firb-add-iconclass-term' onclick='textPageAddIconclass()'>Add</span>
+        <div id='firb-iconclass-autocomplete-terms' class="autocomplete">
+            autocompleted terms?
+        </div>
+
+        <script>
+            new Ajax.Autocompleter("firb-iconclass-term", "firb-iconclass-autocomplete-terms", "<%= url_for(:controller => 'admin/iconclass_term', :action => 'autocomplete') %>", {
+              paramName: "value", 
+              minChars: 2
+            });
+        </script>
+
         <input:measure />
         <label for='firb_illustrated_image_depiction[measure]'><%= I18n.t("firb.measure") %></label><br />
 

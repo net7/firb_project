@@ -66,5 +66,18 @@ class FirbIllustrationPage < TaliaCore::Source
     uri :string
   end
 
+  def iconterms
+    qry = ActiveRDF::Query.new(IconclassTerm).select(:it).distinct
+    qry.where(:it, N::DCT.isPartOf, self)
+    qry.execute
+  end
+
+  def iconterms_count
+    notes.count
+  end
+  
+  def has_iconterms?
+    notes.count > 0
+  end
 
 end
