@@ -8,7 +8,6 @@ class FirbIllustratedMemoryDepictionPage < FirbIllustrationPage
   # Still missing:
   # textual source: link to a text page
   # links to component depictions pages
-
   
   fields do
     uri :string
@@ -24,6 +23,5 @@ class FirbIllustratedMemoryDepictionPage < FirbIllustrationPage
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(real_options)
   end
-  
   
 end

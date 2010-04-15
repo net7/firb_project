@@ -1,17 +1,44 @@
+<def tag="card" for="FirbIllustratedMemoryDepictionPage">
+	<card class="firb-illustrated-memory-depiction-page" param="default" merge>
+		<% 
+    		if !this.image_zone.nil?
+        		parent = this.image_zone.get_firb_image_parent
+        		parent_name = parent.name
+        		image_zone = this.image_zone
+        		image_zone_name = image_zone.name
+    		else
+        		image_zone = nil
+        		parent_name = "No image associated"
+        		image_zone_name = "No zone associated"
+    		end
+		%>
+		<h4 param="heading"> <%= "#{parent_name} : #{image_zone_name}" %> </h4>
+        <position v="&this.position"/>
+    </card>
+</def>
+
+<def tag="position" attrs="v">
+    <h5>Position: </h5>
+    <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?">No content</unless>
+    </span>
+</def>
+
 <def tag="card" for="FirbTextPage">
 	<card class="firb-text-page" param="default" merge>
 
 		<% 
-		if !this.image_zone.nil?
-		parent = this.image_zone.get_firb_image_parent
-		parent_name = parent.name
-		image_zone = this.image_zone
-		image_zone_name = image_zone.name
-		else
-		image_zone = nil
-		parent_name = "No image associated"
-		image_zone_name = "No zone associated"
-		end
+    		if !this.image_zone.nil?
+        		parent = this.image_zone.get_firb_image_parent
+        		parent_name = parent.name
+        		image_zone = this.image_zone
+        		image_zone_name = image_zone.name
+    		else
+        		image_zone = nil
+        		parent_name = "No image associated"
+        		image_zone_name = "No zone associated"
+    		end
 		%>
 
 		<h4 param="heading"> <%= "#{parent_name} : #{image_zone_name}" %> </h4>
