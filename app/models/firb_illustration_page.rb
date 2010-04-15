@@ -1,5 +1,6 @@
 class FirbIllustrationPage < TaliaCore::Source
   hobo_model # Don't put anything above this
+  include StandardPermissions
 
   singular_property :name, N::TALIA.name
 
@@ -68,7 +69,7 @@ class FirbIllustrationPage < TaliaCore::Source
 
   def iconterms
     qry = ActiveRDF::Query.new(IconclassTerm).select(:it).distinct
-    qry.where(:it, N::DCT.isPartOf, self)
+    qry.where(:it, N::DCT.subject, self)
     qry.execute
   end
 
