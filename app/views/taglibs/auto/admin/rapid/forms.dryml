@@ -24,12 +24,12 @@
 
 
 
-<def tag="form" for="FirbIllustratedMemoryDepiction">
+<def tag="form" for="FirbIllustratedMemoryDepictionPage">
   <form merge param="default">
     <error-messages param/>
     <field-list fields="uri" param/>
     <div param="actions">
-      <submit label="#{ht 'firb_illustrated_memory_depictions.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'firb_illustrated_memory_depiction_pages.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
