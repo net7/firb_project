@@ -20,7 +20,7 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
     term = options.delete(:term)
     raise(ArgumentError, 'No term') unless(term)
     options[:uri] = make_uri(term)
-    raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(options[:uri]))
+    raise(ArgumentError, "Record already exists #{options[:uri]}") if(TaliaCore::ActiveSource.exists?(options[:uri]))
     self.new(options)
   end
   
