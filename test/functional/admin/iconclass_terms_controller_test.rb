@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
-class Admin::IconclassTermController < ActionController::TestCase
+class Admin::IconclassTermsControllerTest < ActionController::TestCase
 
   include TaliaUtil::TestHelpers
 
@@ -19,7 +19,7 @@ class Admin::IconclassTermController < ActionController::TestCase
   end
 
   def test_index
-    test_terms
+    testing_terms
     login_for(:admin)
     get(:index)
     assert_response(:success)
@@ -27,12 +27,12 @@ class Admin::IconclassTermController < ActionController::TestCase
   end
 
   def test_show
-    test_terms
+    testing_terms
     login_for(:admin)
-    term = IconclassTerms.first
+    term = IconclassTerm.first
     get(:show, :id => term.id)
     assert_response(:success)
-    assert_select('h2.heading', term.pref_label)
+    assert_select('h2.heading', term.term)
   end
   
   
@@ -44,7 +44,7 @@ class Admin::IconclassTermController < ActionController::TestCase
     assert_select 'input#iconclass_term_pref_label'
     assert_select 'input#iconclass_term_alt_label'
     assert_select 'input#iconclass_term_soundex'
-    assert_select 'input#iconclass_term_note'
+    assert_select 'textarea#iconclass_term_note'
     assert_select 'input.submit-button'
   end
   
@@ -64,18 +64,50 @@ class Admin::IconclassTermController < ActionController::TestCase
   
   def test_update
     login_for(:admin)
-    test_terms
+    testing_terms
     term = IconclassTerm.last
-    post(:update, :id => collection.id, :iconclass_term => { :term => '78B', :pref_label => 'Naboo' })
+    post(:update, :id => term.id, :iconclass_term => { :term => '78B', :pref_label => 'Naboo' })
     assert_response(:redirect)
-    term = IconclassTerm.find(collection.id)
+    term = IconclassTerm.find(term.id)
     assert_equal('78B', term.term)
     assert_equal('Naboo', term.pref_label)
   end
+  
+  def test_autocomplete_nonspecific
+    check_autocomplete('2', '2', '21', '21E')
+  end
+  
+  def test_autocomplete_more_specific
+    check_autocomplete('21', '21', '21E')
+  end
+  
+  def test_autocomplete_most_specific
+    check_autocomplete('21E', '21E')
+  end
+
+  def test_autocomplete_pref_label_specific
+    check_autocomplete('the four elements, and ether, the fifth element', '21')
+  end
+  
+  def test_autocomplete_pref_label_nonspecific
+    check_autocomplete('ether', '21E', '21')
+  end
+  
+  def test_autocomplete_alt_label_nonspecific
+    check_autocomplete('child', '32B(+5)', '61E(+0)')
+  end
 
   private
+  
+  def check_autocomplete(term, *expected)
+    login_for(:admin)
+    testing_terms
+    post(:autocomplete, :value => term)
+    assert_response(:success)
+    expected.each { |ex| assert_select('li', /#{Regexp.escape(ex)}/) }
+  end
 
-  def test_terms
+  def testing_terms
     @term_definitions = [
       {
         :term => '2', 
