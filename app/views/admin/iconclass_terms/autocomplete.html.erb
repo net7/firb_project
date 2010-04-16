@@ -1,0 +1,5 @@
+<ul>
+	<% @completions.each do |term, alt_label, pref_label| %>
+		<li><%= term.term %><span class="informal"><%= pref_label %></span></li>
+	<% end %>
+</ul>

@@ -49,4 +49,15 @@ class IconclassTermTest < ActiveSupport::TestCase
     assert_equal(@term.term, @term.name)
   end
   
+  def test_create_blank
+    no_note = IconclassTerm.create_term(:term => '61 E (+0)', 
+      :pref_label => 'foo', 
+      :alt_label => 'bar',
+      :soundex => 'meep',
+      :note => ''
+      )
+    no_note.save!
+    assert_equal(nil, no_note.note)
+  end
+  
 end
