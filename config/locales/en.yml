@@ -37,7 +37,11 @@ en:
         remove_note: "Remove this note"
         no_notes_associated: "No note associated to this Text Page"
         text_page: "Text Page"
-        
+
+    firb_illustrated_memory_depiction_page:
+        edit: "Edit this this memory depiction page"
+        remove: "Remove this memory depiction page"
+
     # Used all over: general terms
     general:
         cancel: "Cancel"

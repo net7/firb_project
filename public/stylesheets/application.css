@@ -32,7 +32,7 @@ div.card div.firb-image-zones {
     display: inline; float: left;
     border: 0px; padding: 2px; margin: 5px;
 }
-div.card div.firb-text-page-content {
+div.card div.firb-text-page-content, div.card div.firb-illustrated-memory-depiction-page-content {
     border: 0px; float: left;
     margin: 5px; padding: 2px;
 }
