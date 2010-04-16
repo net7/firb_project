@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/firb_images/:action/:id', :controller => 'admin/firb_images'
   map.connect '/admin/firb_image_zones/:action/:id', :controller => 'admin/firb_image_zones'
   map.connect '/admin/firb_text_pages/:action/:id', :controller => 'admin/firb_text_pages'
+  map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms'
   
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'
   map.resources :swicky_notebooks, :path_prefix => 'users/:user_name'

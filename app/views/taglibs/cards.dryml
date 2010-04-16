@@ -121,6 +121,22 @@
 	</if>
 </def>
 
+<def tag="card" for="IconclassTerm">
+  <card class="iconclass-term" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a> - <%= this.pref_label %></h4>
+    </header:>
+	<body: param>
+		<p>
+			<b><ht key="iconclass_term_alt_label">Alt label:</ht></b> <%= this.alt_label %> |
+			<b><ht key="iconclass_term_soundex">Soundex:</ht></b> <%= this.soundex %>
+		</p>
+		<p>
+			<b><ht key="iconclass_term_not">Note:</ht></b> <%= this.note %>
+		</p>
+	</body>
+  </card>
+</def>
 
 <def tag="card" for="FirbImage">
 	<card class="firb-image" param="default" merge>

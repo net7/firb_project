@@ -19,17 +19,6 @@
   </card>
 </def>
 
-<def tag="card" for="FirbIllustratedMemoryDepictionPage">
-  <card class="firb-illustrated-memory-depiction-page" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-    <body: param>
-      <view:description param="description"/>
-    </body:>
-  </card>
-</def>
-
 <def tag="card" for="FirbIllustrationPage">
   <card class="firb-illustration-page" param="default" merge>
     <header: param>
@@ -54,6 +43,17 @@
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbLetterIllustrationPage">
+  <card class="firb-letter-illustration-page" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
   </card>
 </def>
 
