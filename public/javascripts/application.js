@@ -38,14 +38,15 @@ function jsapi_mouseClick(fid, ki) {
 // uses the same markup as in views/admin/firb_text_pages/new.dryml
 // Used in that same dryml template
 function textPageAddNote() {
-    var rand = Math.floor(Math.random()*9999)
+    var rand = Math.floor(Math.random()*9999),
         markup = "<div class='firb-note'><textarea rows='4' cols='50' name='firb_text_page[note][new_"+rand+"]'></textarea><span class='firb-remove-note'>Elimina nota</span></div>";
     $$('#firb-notes')[0].insert({bottom: markup});
 }
 
-// Adds dynamically an iconclass term to the bottom of the #firb-iconclass-terms
-// div, uses same markup as in views/admin/firb_illustrated_memory_depiction_pages/new.dryml
 function addIconclassTerm() {
+    var rand = Math.floor(Math.random()*9999);
+    var markup = "<div class='firb-iconclass-term'>"+currentIconterm.content+"<input type='hidden' name='firb_illustrated_memory_depiction_page[iconclass_term][new_"+rand+"]' value='"+currentIconterm.val+"' /><span class='firb-remove-note'>Elimina iconterm</span></div>";
+    $$('#firb-iconclass-terms')[0].insert({bottom: markup});
     
 }
 

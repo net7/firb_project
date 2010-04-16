@@ -21,19 +21,29 @@
         <label for='firb_illustrated_memory_depiction_page[tecnique]'><%= I18n.t("firb.tecnique") %></label><br />
 
 
-        <div id='firb-iconclass-terms' name='firb_illustrated_memory_depiction_page[iconclass_terms]'>
         <label for='firb_illustrated_memory_depiction_page[iconclass_terms]'><%= I18n.t("firb.iconclass_terms") %></label><br />
-            
+        <div id='firb-iconclass-terms' name='firb_illustrated_memory_depiction_page[iconclass_terms]'>
         </div>
-        <input type='text' id='firb-iconclass-term-input' /><span id='firb-add-iconclass-term' onclick='textPageAddIconclass()'><%= I18n.t("general.add") %></span>
-        <div id='firb-iconclass-autocompleted-terms' class="autocomplete">
-            autocompleted terms?
-        </div>
+
+        <input type='text' size='50' id='firb-iconclass-term-input' />
+        <span id="iconclass-indicator" style="display: none">
+          <img src="/images/icons/ajax-loader.gif" alt="Working..." />
+        </span>
+        <span id='firb-add-iconclass-term' onclick='addIconclassTerm()'><%= I18n.t("general.add") %></span>
+        <div id='firb-iconclass-autocompleted-terms' class="autocomplete"></div>
 
         <script>
             new Ajax.Autocompleter("firb-iconclass-term-input", "firb-iconclass-autocompleted-terms", "<%= url_for(:controller => 'admin/iconclass_terms', :action => 'autocomplete') %>", {
-              paramName: "value"
+              paramName: "value",
+              indicator: "iconclass-indicator",
+              afterUpdateElement : doSomething
             });
+            var currentIconterm = {};
+            function doSomething(text, li) {
+                currentIconterm['content'] = li.innerHTML;
+                currentIconterm['val'] = text.value;
+            }
+            
         </script>
 
         <input:measure />
