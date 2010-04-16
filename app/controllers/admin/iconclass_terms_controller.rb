@@ -23,9 +23,9 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
     @completions = query.execute
     @completions.reject! do |term, alt_label, pref_label|
       !(
-        term.term =~ /#{value}/ ||
-        alt_label =~ /#{value}/ ||
-        pref_label =~ /#{value}/
+        term.term =~ /#{value}/i ||
+        alt_label =~ /#{value}/i ||
+        pref_label =~ /#{value}/i
       )
     end
   end

@@ -97,6 +97,10 @@ class Admin::IconclassTermsControllerTest < ActionController::TestCase
     check_autocomplete('child', '32B(+5)', '61E(+0)')
   end
 
+  def test_autocomplete_alt_label_nonspecific_case_insensitive
+    check_autocomplete('CHILD', '32B(+5)', '61E(+0)')
+  end
+
   private
   
   def check_autocomplete(term, *expected)
