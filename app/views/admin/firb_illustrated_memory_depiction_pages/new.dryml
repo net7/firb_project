@@ -32,8 +32,7 @@
 
         <script>
             new Ajax.Autocompleter("firb-iconclass-term-input", "firb-iconclass-autocompleted-terms", "<%= url_for(:controller => 'admin/iconclass_terms', :action => 'autocomplete') %>", {
-              paramName: "value", 
-              minChars: 2
+              paramName: "value"
             });
         </script>
 
