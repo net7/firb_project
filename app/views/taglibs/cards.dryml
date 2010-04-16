@@ -22,6 +22,13 @@
 		<div class="firb-illustrated-memory-depiction-page-content">
             <fposition v="&this.position"/>
             <fcode v="&this.code" />
+            <fcollocation v="&this.collocation" />
+            <ftecnique v="&this.tecnique" />
+            <fmeasure v="&this.measure" />
+            <fposition v="&this.position" />
+            <fdescriptivenotes v="&this.descriptive_notes" />
+            <fstudynotes v="&this.study_notes" />
+            <fdescription v="&this.description" />
         </div>
     </card>
 </def>
@@ -42,6 +49,63 @@
         <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
     </span>
 </def>
+
+<def tag="fcollocation" attrs="v">
+    <h5><%= I18n.t("firb.collocation") %>:</h5>
+    <span>
+        <if test="!v.nil?"><%= v %></if>
+        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+    </span>
+</def>
+
+<def tag="ftecnique" attrs="v">
+    <h5><%= I18n.t("firb.tecnique") %>:</h5>
+    <span>
+        <if test="!v.nil?"><%= v %></if>
+        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+    </span>
+</def>
+
+<def tag="fmeasure" attrs="v">
+    <h5><%= I18n.t("firb.measure") %>:</h5>
+    <span>
+        <if test="!v.nil?"><%= v %></if>
+        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+    </span>
+</def>
+
+<def tag="fposition" attrs="v">
+    <h5><%= I18n.t("firb.position") %>:</h5>
+    <span>
+        <if test="!v.nil?"><%= v %></if>
+        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+    </span>
+</def>
+
+<def tag="fdescriptivenotes" attrs="v">
+    <h5><%= I18n.t("firb.descriptive_notes") %>:</h5>
+    <span>
+        <if test="!v.nil?"><%= v %></if>
+        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+    </span>
+</def>
+
+<def tag="fstudynotes" attrs="v">
+    <h5><%= I18n.t("firb.study_notes") %>:</h5>
+    <span>
+        <if test="!v.nil?"><%= v %></if>
+        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+    </span>
+</def>
+
+<def tag="fdescription" attrs="v">
+    <h5><%= I18n.t("firb.description") %>:</h5>
+    <span>
+        <if test="!v.nil?"><%= v %></if>
+        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+    </span>
+</def>
+
 
 <def tag="card" for="FirbTextPage">
 	<card class="firb-text-page" param="default" merge>

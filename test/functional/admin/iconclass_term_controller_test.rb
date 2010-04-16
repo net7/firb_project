@@ -1,0 +1,126 @@
+require File.dirname(__FILE__) + '/../../test_helper'
+
+class Admin::IconclassTermController < ActionController::TestCase
+
+  include TaliaUtil::TestHelpers
+
+  def setup
+    TaliaUtil::Util.flush_rdf
+  end
+  
+  def teardown
+    TaliaUtil::Util.flush_db
+  end
+
+  def test_index_login
+    login_for(:admin)
+    get(:index)
+    assert_equal(@controller.send(:current_user), users(:admin))
+  end
+
+  def test_index
+    test_terms
+    login_for(:admin)
+    get(:index)
+    assert_response(:success)
+    assert_select('ul.collection') { assert_select('li.item', 6) }
+  end
+
+  def test_show
+    test_terms
+    login_for(:admin)
+    term = IconclassTerms.first
+    get(:show, :id => term.id)
+    assert_response(:success)
+    assert_select('h2.heading', term.pref_label)
+  end
+  
+  
+  def test_new
+    login_for(:admin)
+    get(:new)
+    assert_response(:success)
+    assert_select 'input#iconclass_term_term'
+    assert_select 'input#iconclass_term_pref_label'
+    assert_select 'input#iconclass_term_alt_label'
+    assert_select 'input#iconclass_term_soundex'
+    assert_select 'input#iconclass_term_note'
+    assert_select 'input.submit-button'
+  end
+  
+  def test_create
+    login_for(:admin)
+    assert_difference('IconclassTerm.count', 1) do
+      post(:create, :iconclass_term => { :term => '99', :pref_label => 'Nuffink', :alt_label => 'Boink', :soundex => '12345', :note => 'Noo'})
+      assert_redirected_to(:action => 'index')
+    end
+    term = IconclassTerm.last
+    assert_equal('99', term.term)
+    assert_equal('Nuffink', term.pref_label)
+    assert_equal('Boink', term.alt_label)
+    assert_equal('12345', term.soundex)
+    assert_equal('Noo', term.note)
+  end
+  
+  def test_update
+    login_for(:admin)
+    test_terms
+    term = IconclassTerm.last
+    post(:update, :id => collection.id, :iconclass_term => { :term => '78B', :pref_label => 'Naboo' })
+    assert_response(:redirect)
+    term = IconclassTerm.find(collection.id)
+    assert_equal('78B', term.term)
+    assert_equal('Naboo', term.pref_label)
+  end
+
+  private
+
+  def test_terms
+    @term_definitions = [
+      {
+        :term => '2', 
+        :pref_label => 'Nature', 
+        :alt_label => 'nature',
+        :soundex => '12345',
+        :note => ''
+      },
+      {
+        :term => '21', 
+        :pref_label => 'the four elements, and ether, the fifth element', 
+        :alt_label => "elements · five · four · nature",
+        :soundex => '12345',
+        :note => 'Cool'
+      },
+      {
+        :term => '21E', 
+        :pref_label => "ether as 'quinta essentia", 
+        :alt_label => 'elements · essentia · ether · five · four · nature · quinta essentia',
+        :soundex => '12345',
+        :note => ''
+      },
+      {
+        :term => '5(+3)', 
+        :pref_label => 'Abstract Ideas and Concepts (+ symbolical representation of concept)',
+        :alt_label => 'abstract idea · allegory · idea · personification · symbol', 
+        :soundex => 'meep',
+        :note => 'Cool'
+      },
+      {
+        :term => '32B(+5)', 
+        :pref_label => 'human races; peoples; nationalities (+ babies and children)',
+        :alt_label => 'age · baby · child · human being · nationality · race (human) · sex · young', 
+        :soundex => '54321',
+        :note => ''
+      },
+      {
+        :term => '61 E (+0)', 
+        :pref_label => 'correction of naughty children',
+        :alt_label => 'child · civilization · correction · culture · family · naughtiness · offspring · parents · punishment · society',
+        :soundex => 'm',
+        :note => 'Cool'
+      }
+    ]
+    @term_definitions.each { |term| IconclassTerm.create_term(term).save! }
+  end
+
+end

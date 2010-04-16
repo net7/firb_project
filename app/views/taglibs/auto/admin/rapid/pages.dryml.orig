@@ -6,11 +6,13 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatica Pages</ht></nav-item>
-    <nav-item with="&FirbIllustratedMemoryDepiction"><ht key="firb_illustrated_memory_depictions.nav_item">Illustrated Memory Depictions</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
     <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages</ht></nav-item>
     <nav-item with="&IconclassTerm"><ht key="iconclass_terms.nav_item">Iconclass Terms</ht></nav-item>
+<<<<<<< HEAD:app/views/taglibs/auto/admin/rapid/pages.dryml
     <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
+=======
+>>>>>>> 9238288c44d54cd5d9b6b57abc272085493e7e5f:app/views/taglibs/auto/admin/rapid/pages.dryml
   </navigation>
 </def>
 
