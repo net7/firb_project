@@ -31,5 +31,11 @@ class FirbIllustratedMemoryDepictionPage < FirbIllustrationPage
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(real_options)
   end
+
+  # Remove action, no special linked items to remove
+  def remove
+    self.destroy
+  end
+  
   
 end

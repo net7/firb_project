@@ -7,7 +7,7 @@ class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteCon
   def create
     @firb_illustrated_memory_depiction_page = FirbIllustratedMemoryDepictionPage.create_page(params[:firb_illustrated_memory_depiction_page])
     if(@firb_illustrated_memory_depiction_page.save)
-      flash[:notice] = "Illustrated image depiction succesfully created"
+      flash[:notice] = "Illustrated memory depiction succesfully created"
     else
       flash[:notice] = "Error creating the page"
     end
@@ -26,6 +26,14 @@ class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteCon
     redirect_to :controller => :firb_illustrated_memory_depiction_pages, :action => :index
   end
 
-
+  def remove_page
+    p = FirbIllustratedMemoryDepictionPage.find(params[:id])
+    if (p.remove)
+      flash[:notice] = "Illustrated memory depiction succesfully removed"
+    else
+      flash[:notice] = "Error removing the illustrated memory depiction page"
+    end
+    redirect_to :controller => :firb_illustrated_memory_depiction_pages
+  end
 
 end
