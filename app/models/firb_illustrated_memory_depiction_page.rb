@@ -28,6 +28,7 @@ class FirbIllustratedMemoryDepictionPage < FirbIllustrationPage
     real_options['descriptive_notes'] = options[:descriptive_notes] if(options[:descriptive_notes])
     real_options['study_notes'] = options[:study_notes] if(options[:study_notes])
     real_options['description'] = options[:description] if(options[:description])
+    real_options['completed'] = options[:completed] if(options[:completed])
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(real_options)
   end

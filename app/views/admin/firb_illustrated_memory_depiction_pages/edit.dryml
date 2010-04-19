@@ -46,7 +46,8 @@
                 <repeat with="&this.iconclass_terms">
                     <div class='firb-iconclass-term'>
                         <%= this.term %> <span class='informal'><%= this.pref_label %></span>
-                        <input type='hidden' name='firb_illustrated_memory_depiction_page[iconclass_term][&this.id]' value='&this.term' />
+                        <% name="firb_illustrated_memory_depiction_page[iconclass_term]["+this.id.to_s+"]" %>
+                        <input type='hidden' name='&name' value='&this.term' />
                         <span class='firb-remove-iconclass-term'>Elimina iconterm</span>
                     </div>
                 </repeat>
@@ -90,7 +91,7 @@
         <input:description />
         <label for='firb_illustrated_memory_depiction_page[description]'><%= I18n.t("firb.description") %></label><br />
 
-        <input:completed />
+        <input:completed for='boolean' />
         <label for='firb_illustrated_memory_depiction_page[completed]'><%= I18n.t("firb.completed") %></label><br />
 
         <submit label="Save" />

@@ -44,6 +44,7 @@ class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteCon
     p.descriptive_notes = params[:firb_illustrated_memory_depiction_page][:descriptive_notes]
     p.study_notes = params[:firb_illustrated_memory_depiction_page][:study_notes]
     p.description = params[:firb_illustrated_memory_depiction_page][:description]
+    p.completed = params[:firb_illustrated_memory_depiction_page][:completed]
     
     if (params[:firb_illustrated_memory_depiction_page][:iconclass_term]) 
       FirbIllustrationPage.replace_iconclass_terms(params[:firb_illustrated_memory_depiction_page][:iconclass_term], p)
