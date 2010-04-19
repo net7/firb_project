@@ -49,6 +49,17 @@ class IconclassTermTest < ActiveSupport::TestCase
     assert_equal(@term.term, @term.name)
   end
   
+  def test_find_by_term
+    termy = IconclassTerm.create_term(:term => '61 E (+1)', 
+      :pref_label => 'foo', 
+      :alt_label => 'bar',
+      :soundex => 'meep',
+      :note => 'ping'
+      )
+    termy.save!
+    assert_equal(termy, IconclassTerm.find_by_term('61E(+1)'))
+  end
+  
   def test_create_blank
     no_note = IconclassTerm.create_term(:term => '61 E (+0)', 
       :pref_label => 'foo', 
