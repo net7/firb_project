@@ -41,6 +41,10 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
     self.uri = self.class.make_uri(value)
   end
   
+  def self.find_by_term(term)
+    find(make_uri(term))
+  end
+  
   private
   
   # Creates the uri for the given term
