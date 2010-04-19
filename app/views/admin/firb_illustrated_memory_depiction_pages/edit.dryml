@@ -1,0 +1,101 @@
+<edit-page> 
+    <form: for="FirbIllustratedMemoryDepictionPage">
+
+        <if test="&this.has_anastatica_page?">
+            <select-input:anastatica 
+                options="&anastatiche_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"
+                selected="&this.anastatica.id"/>
+        </if>
+        <unless test="&this.has_anastatica_page?">
+            <select-input:anastatica 
+                options="&anastatiche_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"/>
+        </unless>
+            
+        <label for='firb_illustrated_memory_depiction_page[anastatica]'><%= I18n.t("firb.anastatica") %> </label><br />
+
+        <if test="&this.image_zone != nil">
+            <select-input:image_zone
+                options="&image_zone_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"
+                selected="&this.image_zone.id"/>
+        </if>
+        <unless test="&this.image_zone != nil">
+            <select-input:image_zone
+                options="&image_zone_select" 
+                first-option="&I18n.t('firb_text_page.select_one')"/>
+        </unless>
+
+        <label for='firb_illustrated_memory_depiction_page[image_zone]'><%= I18n.t("firb.image_zone") %> </label><br />
+
+
+        <input:code />
+        <label for='firb_illustrated_memory_depiction_page[code]'><%= I18n.t("firb.code") %></label><br />
+
+        <input:collocation for='text' />
+        <label for='firb_illustrated_memory_depiction_page[collocation]'><%= I18n.t("firb.collocation") %></label><br />
+
+        <input:tecnique for='text' />
+        <label for='firb_illustrated_memory_depiction_page[tecnique]'><%= I18n.t("firb.tecnique") %></label><br />
+
+
+        <label for='firb_illustrated_memory_depiction_page[iconclass_terms]'><%= I18n.t("firb.iconclass_terms") %></label><br />
+        <div id='firb-iconclass-terms' name='firb_illustrated_memory_depiction_page[iconclass_terms]'>
+            <if test="&this.has_iconclass_terms?">
+                <repeat with="&this.iconclass_terms">
+                    <div class='firb-iconclass-term'>
+                        <%= this.term %> <span class='informal'><%= this.pref_label %></span>
+                        <input type='hidden' name='firb_illustrated_memory_depiction_page[iconclass_term][&this.id]' value='&this.term' />
+                        <span class='firb-remove-iconclass-term'>Elimina iconterm</span>
+                    </div>
+                </repeat>
+            </if>
+            
+        </div>
+
+        <input type='text' size='50' id='firb-iconclass-term-input' />
+        <span id="iconclass-indicator" style="display: none">
+          <img src="/images/icons/ajax-loader.gif" alt="Working..." />
+        </span>
+        <span id='firb-add-iconclass-term' onclick='addIconclassTerm()'><%= I18n.t("general.add") %></span>
+        <div id='firb-iconclass-autocompleted-terms' class="autocomplete"></div>
+
+        <script>
+            new Ajax.Autocompleter("firb-iconclass-term-input", "firb-iconclass-autocompleted-terms", "<%= url_for(:controller => 'admin/iconclass_terms', :action => 'autocomplete') %>", {
+              paramName: "value",
+              indicator: "iconclass-indicator",
+              afterUpdateElement : doSomething
+            });
+            var currentIconterm = {};
+            function doSomething(text, li) {
+                currentIconterm['content'] = li.innerHTML;
+                currentIconterm['val'] = text.value;
+            }
+            
+        </script>
+
+        <input:measure />
+        <label for='firb_illustrated_memory_depiction_page[measure]'><%= I18n.t("firb.measure") %></label><br />
+
+        <input:position />
+        <label for='firb_illustrated_memory_depiction_page[position]'><%= I18n.t("firb.position") %></label><br />
+
+        <input:descriptive_notes />
+        <label for='firb_illustrated_memory_depiction_page[descriptive_notes]'><%= I18n.t("firb.descriptive_notes") %></label><br />
+
+        <input:study_notes />
+        <label for='firb_illustrated_memory_depiction_page[study_notes]'><%= I18n.t("firb.study_notes") %></label><br />
+
+        <input:description />
+        <label for='firb_illustrated_memory_depiction_page[description]'><%= I18n.t("firb.description") %></label><br />
+
+        <input:completed />
+        <label for='firb_illustrated_memory_depiction_page[completed]'><%= I18n.t("firb.completed") %></label><br />
+
+        <submit label="Save" />
+        or 
+        <%= link_to "#{I18n.t('general.cancel')}", {:action => "index", :controller => :firb_illustrated_memory_depiction_page}, :title => I18n.t("general.cancel") %>
+        
+    </form>
+</edit-page>

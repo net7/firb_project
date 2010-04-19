@@ -36,6 +36,9 @@ class FirbIllustratedMemoryDepictionPage < FirbIllustrationPage
   def remove
     self.destroy
   end
-  
+
+  def has_anastatica_page?
+    !self.anastatica.blank?
+  end
   
 end

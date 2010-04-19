@@ -35,5 +35,23 @@ class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteCon
     end
     redirect_to :controller => :firb_illustrated_memory_depiction_pages
   end
+  
+  def update
+    p = FirbTextPage.find(params[:id])
+    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_page][:anastatica])
+    p.image_zone = FirbImageZone.find(params[:firb_text_page][:image_zone])
+    
+    if (params[:firb_text_page][:note]) 
+      FirbNote.replace_notes(params[:firb_text_page][:note], p)
+    end
+
+    if (p.save!)
+      flash[:notice] = "Text page updated"
+    else
+      flash[:notice] = "Error updating the text page"
+    end
+    redirect_to :controller => :firb_text_pages
+  end
+  
 
 end

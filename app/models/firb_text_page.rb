@@ -39,7 +39,6 @@ class FirbTextPage < TaliaCore::Source
   def remove
     FirbNote.delete_all_notes(self)
     self.destroy
-    # TODO: add notes deletion as well .. 
   end
 
   def has_anastatica_page?
