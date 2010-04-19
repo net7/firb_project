@@ -7,18 +7,13 @@ class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteCon
   def create
     @firb_illustrated_memory_depiction_page = FirbIllustratedMemoryDepictionPage.create_page(params[:firb_illustrated_memory_depiction_page])
     if(@firb_illustrated_memory_depiction_page.save)
-      flash[:notice] = "Illustrated memory depiction succesfully created"
+      flash[:notice] = "Illustrated memory depiction page succesfully created"
     else
       flash[:notice] = "Error creating the page"
     end
 
     if (params[:firb_illustrated_memory_depiction_page][:iconclass_term])
-      params[:firb_illustrated_memory_depiction_page][:iconclass_term].each do |key, value|
-        iconclass_term = IconclassTerm.find(IconclassTerm.make_uri(value))
-        if (!iconclass_term.nil?)
-          @firb_illustrated_memory_depiction_page.dct::subject << iconclass_term
-        end
-      end
+      FirbIllustrationPage.add_iconclass_terms(params[:firb_illustrated_memory_depiction_page][:iconclass_term], @firb_illustrated_memory_depiction_page)
     end
     
     @firb_illustrated_memory_depiction_page.save
@@ -29,7 +24,7 @@ class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteCon
   def remove_page
     p = FirbIllustratedMemoryDepictionPage.find(params[:id])
     if (p.remove)
-      flash[:notice] = "Illustrated memory depiction succesfully removed"
+      flash[:notice] = "Illustrated memory depiction page succesfully removed"
     else
       flash[:notice] = "Error removing the illustrated memory depiction page"
     end
@@ -37,20 +32,29 @@ class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteCon
   end
   
   def update
-    p = FirbTextPage.find(params[:id])
-    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_page][:anastatica])
-    p.image_zone = FirbImageZone.find(params[:firb_text_page][:image_zone])
+    p = FirbIllustratedMemoryDepictionPage.find(params[:id])
+    p.anastatica = FirbAnastaticaPage.find(params[:firb_illustrated_memory_depiction_page][:anastatica])
+    p.image_zone = FirbImageZone.find(params[:firb_illustrated_memory_depiction_page][:image_zone])
     
-    if (params[:firb_text_page][:note]) 
-      FirbNote.replace_notes(params[:firb_text_page][:note], p)
+    p.code = params[:firb_illustrated_memory_depiction_page][:code]
+    p.collocation = params[:firb_illustrated_memory_depiction_page][:collocation]
+    p.tecnique = params[:firb_illustrated_memory_depiction_page][:tecnique]
+    p.measure = params[:firb_illustrated_memory_depiction_page][:measure]
+    p.position = params[:firb_illustrated_memory_depiction_page][:position]
+    p.descriptive_notes = params[:firb_illustrated_memory_depiction_page][:descriptive_notes]
+    p.study_notes = params[:firb_illustrated_memory_depiction_page][:study_notes]
+    p.description = params[:firb_illustrated_memory_depiction_page][:description]
+    
+    if (params[:firb_illustrated_memory_depiction_page][:iconclass_term]) 
+      FirbIllustrationPage.replace_iconclass_terms(params[:firb_illustrated_memory_depiction_page][:iconclass_term], p)
     end
 
     if (p.save!)
-      flash[:notice] = "Text page updated"
+      flash[:notice] = "Illustrated memory depiction page updated"
     else
-      flash[:notice] = "Error updating the text page"
+      flash[:notice] = "Error updating the illustrated memory depiction page"
     end
-    redirect_to :controller => :firb_text_pages
+    redirect_to :controller => :firb_illustrated_memory_depiction_pages
   end
   
 
