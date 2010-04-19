@@ -9,6 +9,7 @@
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
     <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages</ht></nav-item>
     <nav-item with="&IconclassTerm"><ht key="iconclass_terms.nav_item">Iconclass Terms</ht></nav-item>
+    <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
   </navigation>
 </def>
 
@@ -353,127 +354,6 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'firb_illustrated_memory_depiction_pages.actions.delete', :default=>['Remove This Illustrated Memory Depiction Page']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
-<!-- ====== FirbIllustratedMemoryDepiction Pages ====== -->
-
-<def tag="index-page" for="FirbIllustratedMemoryDepiction">
-  <page merge title="#{ht 'firb_illustrated_memory_depictions.index.title', :default=>['Illustrated Memory Depictions'] }">
-    <body: class="index-page firb-illustrated-memory-depiction" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="firb_illustrated_memory_depictions.index.heading">
-            Illustrated Memory Depictions
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="firb_illustrated_memory_depictions.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="firb_illustrated_memory_depictions.actions.new">New Illustrated Memory Depiction</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="FirbIllustratedMemoryDepiction">
-  <page merge title="#{ht 'firb_illustrated_memory_depictions.new.title', :default=>[' New Illustrated Memory Depiction'] }">
-    <body: class="new-page firb-illustrated-memory-depiction" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_illustrated_memory_depictions.new.heading">
-            New Illustrated Memory Depiction
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'firb_illustrated_memory_depictions.actions.create', :default=>['Create Illustrated Memory Depiction']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="FirbIllustratedMemoryDepiction">
-  <page merge title="#{ht 'firb_illustrated_memory_depictions.show.title', :default=>['Illustrated Memory Depiction'] }">
-
-    <body: class="show-page firb-illustrated-memory-depiction" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="firb_illustrated_memory_depictions.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_illustrated_memory_depictions.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Illustrated Memory Depiction
-              </ht>
-            </a>
-          </header>
-
-          <section param="content-body">
-            <view:description param="description"/>
-            <field-list fields="uri" param/>
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="FirbIllustratedMemoryDepiction">
-  <page merge title="#{ht 'firb_illustrated_memory_depictions.edit.title', :default=>['Edit Illustrated Memory Depiction'] }">
-
-    <body: class="edit-page firb-illustrated-memory-depiction" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_illustrated_memory_depictions.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'firb_illustrated_memory_depictions.actions.delete', :default=>['Remove This Illustrated Memory Depiction']}" param/>
       </section>
 
       <section param="content-body">

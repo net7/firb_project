@@ -45,12 +45,18 @@ function textPageAddNote() {
 
 function addIconclassTerm() {
     var rand = Math.floor(Math.random()*9999);
-    var markup = "<div class='firb-iconclass-term'>"+currentIconterm.content+"<input type='hidden' name='firb_illustrated_memory_depiction_page[iconclass_term][new_"+rand+"]' value='"+currentIconterm.val+"' /><span class='firb-remove-note'>Elimina iconterm</span></div>";
+    var markup = "<div class='firb-iconclass-term'>"+currentIconterm.content+"<input type='hidden' name='firb_illustrated_memory_depiction_page[iconclass_term][new_"+rand+"]' value='"+currentIconterm.val+"' /><span class='firb-remove-iconclass-term'>Elimina iconterm</span></div>";
     $$('#firb-iconclass-terms')[0].insert({bottom: markup});
     
 }
 
 document.observe('click', function(e) {
+
+    // Remove iconterm
+    if (e.element().match('.firb-remove-iconclass-term')) {
+        e.findElement('.firb-iconclass-term').remove();
+        e.stop();
+    }
 
     // Remove note: in text_page new and edit actions
     if (e.element().match('.firb-remove-note')) {

@@ -111,3 +111,17 @@ div.autocomplete ul li {
   cursor:pointer;
 }
 
+
+/* iconclass term */
+div#firb-iconclass-terms div.firb-iconclass-term {
+    border: 0px;
+}
+div#firb-iconclass-terms div.firb-iconclass-term span {
+    padding: 2px;
+    margin: 5px; 
+}
+div#firb-iconclass-terms div.firb-iconclass-term span.firb-remove-iconclass-term {
+    cursor: pointer;
+    margin: 5px; border: 0px;
+    background: #666; color: #fc0;
+}
