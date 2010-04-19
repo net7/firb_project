@@ -29,10 +29,29 @@
             <fdescriptivenotes v="&this.descriptive_notes" />
             <fstudynotes v="&this.study_notes" />
             <fdescription v="&this.description" />
+
+            <if test="&this.has_iconclass_terms?">
+                <h5><%= this.iconclass_terms_count %> <%= I18n.t("firb.iconclass_terms") %></h5>
+    			<repeat with="&this.iconclass_terms">
+                        <iconclassterm with="&this" />
+    			</repeat>
+            </if>
+            <unless test="&this.has_iconclass_terms?">
+                <h5>No iconclass terms</h5>
+            </unless>
+
         </div>
     </card>
 </def>
 
+<def tag="iconclassterm">
+	<div class='firb-iconclass-term'>
+		<span class='iconclass-term-term'><%= this.term %></span>
+		<span class='iconclass-term-soundex'>(<%= this.soundex %>)</span>: 
+		<span class='iconclass-term-label'><%= this.pref_label %></span>
+		<span class='iconclass-term-alt-label'>(<%= this.alt_label %>)</span>
+	</div>
+</def>
 
 <def tag="fposition" attrs="v">
     <h5><%= I18n.t("firb.position") %>: </h5>
