@@ -1,5 +1,16 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="card" for="BibliographyItem">
+  <card class="bibliography-item" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="CustomTemplate">
   <card class="custom-template" param="default" merge>
     <header: param>
@@ -19,8 +30,8 @@
   </card>
 </def>
 
-<def tag="card" for="FirbIllustrationPage">
-  <card class="firb-illustration-page" param="default" merge>
+<def tag="card" for="FirbIllustratedMemoryDepictionPage">
+  <card class="firb-illustrated-memory-depiction-page" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>

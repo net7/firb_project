@@ -6,10 +6,10 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatica Pages</ht></nav-item>
+    <nav-item with="&FirbIllustratedMemoryDepictionPage"><ht key="firb_illustrated_memory_depiction_pages.nav_item">Illustrated Memory Depiction Pages</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
     <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages</ht></nav-item>
     <nav-item with="&IconclassTerm"><ht key="iconclass_terms.nav_item">Iconclass Terms</ht></nav-item>
-    <nav-item with="&TaliaCollection"><ht key="talia_collections.nav_item">Books</ht></nav-item>
   </navigation>
 </def>
 

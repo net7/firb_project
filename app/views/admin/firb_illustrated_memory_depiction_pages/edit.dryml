@@ -1,6 +1,5 @@
 <edit-page> 
     <form: for="FirbIllustratedMemoryDepictionPage">
-
         <if test="&this.has_anastatica_page?">
             <select-input:anastatica 
                 options="&anastatiche_select" 
