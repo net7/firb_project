@@ -1,18 +1,15 @@
 class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   hobo_model # Don't put anything above this
   include StandardPermissions
-  extend RandomId
+  extend RdfProperties
   
   # Already declared on base class
   declare_attr_type :pref_label, :string
   declare_attr_type :name, :string
   # We have a single alt label at the moment (!)
-  singular_property :alt_label, N::SKOS.altLabel
-  declare_attr_type :alt_label, :string
-  singular_property :soundex, N::TALIA.soundex
-  declare_attr_type :soundex, :string
-  singular_property :note, N::SKOS.editorialNote
-  declare_attr_type :note, :text
+  rdf_property :alt_label, N::SKOS.altLabel
+  rdf_property :soundex, N::TALIA.soundex
+  rdf_property :note, N::SKOS.editorialNote, :text
   declare_attr_type :term, :string
   
   def self.create_term(options = {})
