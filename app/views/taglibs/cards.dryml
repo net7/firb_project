@@ -227,6 +227,34 @@
   </card>
 </def>
 
+<def tag="card" for="BibliographyItem">
+  <card class="bibliography-item" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a> - <%= this.author %></h4>
+    </header:>
+	<body: param>
+		<p>
+			<b><ht key="bibliography_item_date">Date:</ht></b> <%= this.date %>
+		</p>
+		<p>
+			<b><ht key="bibliography_item_pages">Pages:</ht></b> <%= this.pages %>
+		</p>
+		<p>
+			<b><ht key="bibliography_item_publisher">Published by:</ht></b> <%= this.publisher %> |
+			<b><ht key="bibliography_item_published_in">Published in:</ht></b> <%= this.published_in %>
+		</p>
+		<p>
+			<b><ht key="bibliography_item_external_url">External URL:</ht></b> <%= this.external_url %>
+		</p>
+		<p>
+			<b><ht key="bibliography_item_doi">DOI:</ht></b> <%= this.doi %> |
+			<b><ht key="bibliography_item_isbn">ISBN:</ht></b> <%= this.isbn %> |
+			<b><ht key="bibliography_item_issn">ISSN:</ht></b> <%= this.issn %>
+		</p>
+	</body>
+  </card>
+</def>
+
 <def tag="card" for="FirbImage">
 	<card class="firb-image" param="default" merge>
 		<h4 param="heading"><editor:name /> <span><link-del-image /><link-add-to-image /></span></h4> 

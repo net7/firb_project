@@ -5,13 +5,132 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&BibliographyItem"><ht key="bibliography_items.nav_item">Bibliography Items</ht></nav-item>
     <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatica Pages</ht></nav-item>
     <nav-item with="&FirbIllustratedMemoryDepictionPage"><ht key="firb_illustrated_memory_depiction_pages.nav_item">Illustrated Memory Depiction Pages</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
     <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages</ht></nav-item>
-    <nav-item with="&IconclassTerm"><ht key="iconclass_terms.nav_item">Iconclass Terms</ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== BibliographyItem Pages ====== -->
+
+<def tag="index-page" for="BibliographyItem">
+  <page merge title="#{ht 'bibliography_items.index.title', :default=>['Bibliography Items'] }">
+    <body: class="index-page bibliography-item" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="bibliography_items.index.heading">
+            Bibliography Items
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="bibliography_items.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="bibliography_items.actions.new">New Bibliography Item</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="BibliographyItem">
+  <page merge title="#{ht 'bibliography_items.new.title', :default=>[' New Bibliography Item'] }">
+    <body: class="new-page bibliography-item" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bibliography_items.new.heading">
+            New Bibliography Item
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'bibliography_items.actions.create', :default=>['Create Bibliography Item']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="BibliographyItem">
+  <page merge title="#{ht 'bibliography_items.show.title', :default=>['Bibliography Item'] }">
+
+    <body: class="show-page bibliography-item" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="bibliography_items.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="bibliography_items.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Bibliography Item
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="BibliographyItem">
+  <page merge title="#{ht 'bibliography_items.edit.title', :default=>['Edit Bibliography Item'] }">
+
+    <body: class="edit-page bibliography-item" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bibliography_items.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'bibliography_items.actions.delete', :default=>['Remove This Bibliography Item']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 
