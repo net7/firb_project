@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns="http://www.muruca.org/ontologies/firb#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.muruca.org/ontologies/firb">
+  <owl:Ontology rdf:about=""/>
+  <rdfs:Class rdf:ID="Espressioni_idiomatiche">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="Fenomeni_dell_oralita"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="it">Espressioni idiomatiche</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Nomi">
+    <rdfs:label xml:lang="it">Nomi</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Autocitazioni">
+    <rdfs:label xml:lang="it">Autocitazioni</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="Fenomeni_dell_intertestualita"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Lirica">
+    <rdfs:label xml:lang="it">Lirica</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="Generi"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Wellerismi">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Fenomeni_dell_oralita"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="it">Wellerismi</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Favola">
+    <rdfs:label xml:lang="it">Favola</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Generi"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Opere_letterarie">
+    <rdfs:label xml:lang="it">Opere letterarie</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="Opere"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Opere_d_arte">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Opere"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="it">Opere d'arte</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Riferimenti_iconografici">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="Immagini_verbali"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="it">Riferimenti iconografici</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Altri">
+    <rdfs:label xml:lang="it">Altri</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Nomi"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="#Fenomeni_dell_oralita">
+    <rdfs:label xml:lang="it">Fenomeni dell'oralità</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="#Opere">
+    <rdfs:label xml:lang="it">Opere</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Descrizione_di_luoghi">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Immagini_verbali"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="it">Descrizione di luoghi</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="#Fenomeni_dell_intertestualita">
+    <rdfs:label xml:lang="it">Fenomeni dell'intertestualità</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Proverbi">
+    <rdfs:label xml:lang="it">Proverbi</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Fenomeni_dell_oralita"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Descrizione_di_personaggi">
+    <rdfs:label xml:lang="it">Descrizione di personaggi</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Immagini_verbali"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Riscritture">
+    <rdfs:label xml:lang="it">Riscritture</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Fenomeni_dell_intertestualita"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Citazioni">
+    <rdfs:subClassOf rdf:resource="#Fenomeni_dell_intertestualita"/>
+    <rdfs:label xml:lang="it">Citazioni</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Personaggi">
+    <rdfs:label xml:lang="it">Personaggi</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Nomi"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="#Immagini_verbali">
+    <rdfs:label xml:lang="it">Immagini verbali</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Plagi">
+    <rdfs:subClassOf rdf:resource="#Fenomeni_dell_intertestualita"/>
+    <rdfs:label xml:lang="it">Plagi</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Lettera">
+    <rdfs:label xml:lang="it">Lettera</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Generi"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Luoghi">
+    <rdfs:subClassOf rdf:resource="#Nomi"/>
+    <rdfs:label xml:lang="it">Luoghi</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Allusioni">
+    <rdfs:label xml:lang="it">Allusioni</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Fenomeni_dell_intertestualita"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Facezia">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Generi"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:label xml:lang="it">Facezia</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Fonti">
+    <rdfs:subClassOf rdf:resource="#Nomi"/>
+    <rdfs:label xml:lang="it">Fonti</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="#Generi">
+    <rdfs:label xml:lang="it">Generi</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Novella">
+    <rdfs:subClassOf rdf:resource="#Generi"/>
+    <rdfs:label xml:lang="it">Novella</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Ecphrasis">
+    <rdfs:subClassOf rdf:resource="#Immagini_verbali"/>
+    <rdfs:label xml:lang="it">Ecphrasis</rdfs:label>
+  </rdfs:Class>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.1, Build 536)  http://protege.stanford.edu -->
