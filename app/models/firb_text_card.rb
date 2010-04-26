@@ -1,4 +1,4 @@
-class FirbTextPage < TaliaCore::Source
+class FirbTextCard < TaliaCore::Source
   hobo_model # Don't put anything above this
   
   include StandardPermissions

@@ -9,7 +9,7 @@
     <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatica Pages</ht></nav-item>
     <nav-item with="&FirbIllustratedMemoryDepictionPage"><ht key="firb_illustrated_memory_depiction_pages.nav_item">Illustrated Memory Depiction Pages</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
-    <nav-item with="&FirbTextPage"><ht key="firb_text_pages.nav_item">Text Pages</ht></nav-item>
+    <nav-item with="&FirbTextCard"><ht key="firb_text_cards.nav_item">Firb Text Cards</ht></nav-item>
   </navigation>
 </def>
 
@@ -718,22 +718,22 @@
 
 
 
-<!-- ====== FirbTextPage Pages ====== -->
+<!-- ====== FirbTextCard Pages ====== -->
 
-<def tag="index-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.index.title', :default=>['Text Pages'] }">
-    <body: class="index-page firb-text-page" param/>
+<def tag="index-page" for="FirbTextCard">
+  <page merge title="#{ht 'firb_text_cards.index.title', :default=>['Firb Text Cards'] }">
+    <body: class="index-page firb-text-card" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
-          <ht key="firb_text_pages.index.heading">
-            Text Pages
+          <ht key="firb_text_cards.index.heading">
+            Firb Text Cards
           </ht>
         </h2>
 
         <p param="count" if>
-          <ht key="firb_text_pages.collection.count" count="&this.size">
+          <ht key="firb_text_cards.collection.count" count="&this.size">
             There <count prefix="are"/>
           </ht>
         </p>
@@ -741,7 +741,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_text_pages.actions.new">New Text Page</ht>
+          <ht key="firb_text_cards.actions.new">New Firb Text Card</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -757,22 +757,22 @@
 </def>
 
 
-<def tag="new-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.new.title', :default=>[' New Text Page'] }">
-    <body: class="new-page firb-text-page" param/>
+<def tag="new-page" for="FirbTextCard">
+  <page merge title="#{ht 'firb_text_cards.new.title', :default=>[' New Firb Text Card'] }">
+    <body: class="new-page firb-text-card" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="firb_text_pages.new.heading">
-            New Text Page
+          <ht key="firb_text_cards.new.heading">
+            New Firb Text Card
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_text_pages.actions.create', :default=>['Create Text Page']}"/>
+          <submit: label="#{ht 'firb_text_cards.actions.create', :default=>['Create Firb Text Card']}"/>
         </form>
       </section>
     </content:>
@@ -780,15 +780,15 @@
 </def>
 
 
-<def tag="show-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.show.title', :default=>['Text Page'] }">
+<def tag="show-page" for="FirbTextCard">
+  <page merge title="#{ht 'firb_text_cards.show.title', :default=>['Firb Text Card'] }">
 
-    <body: class="show-page firb-text-page" param/>
+    <body: class="show-page firb-text-card" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="firb_text_pages.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="firb_text_cards.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
               </ht>
             </h2>
@@ -796,8 +796,8 @@
             <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_text_pages.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Text Page
+              <ht key="firb_text_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Firb Text Card
               </ht>
             </a>
           </header>
@@ -811,19 +811,19 @@
 </def>
 
 
-<def tag="edit-page" for="FirbTextPage">
-  <page merge title="#{ht 'firb_text_pages.edit.title', :default=>['Edit Text Page'] }">
+<def tag="edit-page" for="FirbTextCard">
+  <page merge title="#{ht 'firb_text_cards.edit.title', :default=>['Edit Firb Text Card'] }">
 
-    <body: class="edit-page firb-text-page" param/>
+    <body: class="edit-page firb-text-card" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="firb_text_pages.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="firb_text_cards.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_text_pages.actions.delete', :default=>['Remove This Text Page']}" param/>
+        <delete-button label="#{ht 'firb_text_cards.actions.delete', :default=>['Remove This Firb Text Card']}" param/>
       </section>
 
       <section param="content-body">
