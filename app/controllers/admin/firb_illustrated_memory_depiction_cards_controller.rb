@@ -1,4 +1,4 @@
-class Admin::FirbIllustratedMemoryDepictionPagesController < Admin::AdminSiteController
+class Admin::FirbIllustratedMemoryDepictionCardsController < Admin::AdminSiteController
 
   hobo_model_controller
 

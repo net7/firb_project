@@ -1,0 +1,105 @@
+<!-- All the forms -->
+<def tag="form" for="FirbCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
+    <input type="hidden" name="type" value="&@card_type" />
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="FirbLetterIllustrationCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
+    <input type="hidden" name="type" value="&@card_type" />
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="FirbIllustratedMemoryDepictionCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
+    <input type="hidden" name="type" value="&@card_type" />
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="FirbNonIllustratedMemoryDepictionCard">
+  <form merge param="default" action="/admin/firb_cards">
+    <card-form-common />
+  </form>
+</def>
+
+<def tag="form" for="FirbParentIllustrationCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
+    <input type="hidden" name="type" value="&@card_type" />
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<!-- All the cards -->
+
+<def tag="card" for="FirbNonIllustratedMemoryDepictionCard">
+  <card class="firb-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><%= link_to((this.code || this.url.local_name), :action => :show, :id => this.id) %></h4>
+    </header:>
+  </card>
+</def>
+
+<!-- General tags -->
+
+<def tag="card-type-selector">
+  <ul id="card-selector">
+    <% %w(non_illustrated_memory_depiction illustrated_memory_depiction letter_illustration parent_illustration).each do |type| %>
+       <% if(@card_type_name == type) %>
+         <li class="selected"><ht key="firb_cards.#{type}_link" /></li>
+       <% else %>
+         <li><%= link_to I18n.t("firb_cards.#{type}_link"), url_for(:action => :index, :type => type) %></li>
+       <% end %>
+    <% end %>
+  </ul>
+</def>
+
+<def tag='or-cancel-link'>
+  <if test='&this.new_record?'><ht key='hobo.support.or'>or</ht> <%= link_to(I18n.t('hobo.actions.cancel'), :action => :index) %></if>
+  <else>
+    <ht key='hobo.support.or'>or</ht> <%= link_to(I18n.t('hobo.actions.cancel'), :action => :show, :id => this.id) %>
+  </else>
+</def>
+
+<def tag="card-form-common">
+    <error-messages param/>
+    <anastatica-connection />
+    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
+    <input type="hidden" name="type" value="&@card_type" />
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
+    </div>
+</def>
+
+<def tag="anastatica-connection">
+    <if test="&this.has_anastatica_page?">
+        <select-input:anastatica 
+            options="&anastatiche_select" 
+            first-option="&I18n.t('firb_text_page.select_one')"
+            selected="&this.anastatica.id"/>
+    </if>
+    <else>
+        <select-input:anastatica 
+            options="&anastatiche_select" 
+            first-option="&I18n.t('firb_text_page.select_one')"/>
+    </else>
+</def>

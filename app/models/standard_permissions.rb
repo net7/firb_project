@@ -2,6 +2,7 @@
 module StandardPermissions
   
   def create_permitted?
+    puts "CHECKING CREATE #{acting_user.inspect}"
     acting_user.administrator?
   end
   

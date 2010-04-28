@@ -1,4 +1,4 @@
-class FirbIllustratedMemoryDepictionPage < FirbIllustrationPage
+class FirbParentIllustrationCard < FirbIllustrationCard
   hobo_model # Don't put anything above this
   
   include StandardPermissions

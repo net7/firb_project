@@ -1,0 +1,9 @@
+<show-page>
+	<edit-link: replace>
+		<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
+			<ht key="firb_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+				Edit Firb Card
+			</ht>
+		</a>
+	</edit-link:>
+</show-page>

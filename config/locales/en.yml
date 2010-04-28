@@ -1,4 +1,7 @@
 en:
+    hobo:
+      actions:
+          cancel: "Cancel"
     # Model names
     firb_text_pages: 
         model_name: "Text Page"
@@ -68,3 +71,10 @@ en:
         description: "Description"
         completed: "Is the depiction complete?"
         iconclass_terms: "Iconclass terms"
+        
+    firb_cards:
+        new_link: "New Card"
+        non_illustrated_memory_depiction_link: "Non Illustrated Memory Depiction" 
+        illustrated_memory_depiction_link: "Illustrated Memory Depiction" 
+        letter_illustration_link: "Letter Illustration" 
+        parent_illustration_link: "Parent Illustration"

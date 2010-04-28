@@ -1,0 +1,8 @@
+<index-page>
+
+	<before-content-header:>
+		<card-type-selector />
+	</before-content-header:>
+	<new-link: replace><%= link_to I18n.t('firb_cards.new_link'), url_for(:action => :new) %></new-link:>
+
+</index-page>
