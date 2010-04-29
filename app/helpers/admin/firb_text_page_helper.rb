@@ -3,7 +3,7 @@ module Admin::FirbTextPageHelper
   # Produces an hash to be passed to an input (select_for format)
   # with all of our FirbAnastaticaPages
   def anastatiche_select
-    foo = FirbAnastaticaPage.all.collect{|a| ["#{a.title}: #{a.id}", a.id]}
+    foo = FirbAnastaticaPage.all.collect{|a| ["#{a.title}: #{a.uri.to_name_s}", a.uri.to_s]}
     foo.sort
   end
 

@@ -11,6 +11,13 @@ class FirbCardTest < ActiveSupport::TestCase
       TaliaUtil::Util.flush_rdf
       true
     end
+    
+    setup_once(:page) do 
+      page = FirbAnastaticaPage.create_page(:title => "meep", :page_positon => "1", :name => "first page")
+      page.save!
+      page
+    end
+    
     setup_once(:card) do
       source = FirbCard.create_card(
       :name => "evil guy",
@@ -22,7 +29,8 @@ class FirbCardTest < ActiveSupport::TestCase
       :descriptive_notes => 'An evil guy killing the dragon',
       :study_notes => 'What a pain',
       :description => 'Endangered species',
-      :completed => 'true'
+      :completed => 'true',
+      :anastatica => @page.uri
       )
       
       source.save!
@@ -30,6 +38,7 @@ class FirbCardTest < ActiveSupport::TestCase
     end
     
     assert_not_nil(@card)
+    assert_not_nil(@page)
   end
   
   ############ TODO
@@ -39,7 +48,10 @@ class FirbCardTest < ActiveSupport::TestCase
   # Image zone this illustration is in
   # singular_property :image_zone, N::DCT.isFormatOf
 
-  
+  def test_anastatica
+    assert_kind_of(FirbAnastaticaPage, @card.anastatica)
+    assert_equal(@card.anastatica.uri, @page.uri)
+  end
   
   def test_create
     card = FirbCard.create_card

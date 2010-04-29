@@ -4,7 +4,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
 
   auto_actions :all
 
-  before_filter :set_card_type
+  before_filter :set_card_type, :uri_params
   
   def index
     @firb_cards = @card_type.paginate(:page => params[:page])
@@ -17,8 +17,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def create
-    puts "CREATING FOR #{@card_type} - #{params.inspect}"
-    @firb_card = @card_type.create_card(params[:"firb_#{@card_type_name}_card"])
+    @firb_card = @card_type.create_card(card_params)
     if(@firb_card.save)
       flash[:notice] = "Card succesfully created"
     else
@@ -40,13 +39,8 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   
   def update
     @firb_card = FirbCard.find(params[:id])
-    @firb_card.update_attributes!(params[:firb_card])
+    @firb_card.update_attributes!(card_params)
 
-    if (p.save!)
-      flash[:notice] = "Card updated"
-    else
-      flash[:notice] = "Error updating the card"
-    end
     redirect_to :action => :index
   end
   
@@ -57,6 +51,10 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
   
   private
+  
+  def card_params
+    params[:"firb_#{@card_type_name}_card"]
+  end
   
   def default_type
     'non_illustrated_memory_depiction'
@@ -69,6 +67,12 @@ class Admin::FirbCardsController < Admin::AdminSiteController
     @card_type = @full_type_name.classify.constantize
     raise(ArgumentError, "No valid card type") unless(@card_type <= FirbCard)
     @card_type
+  end
+  
+  # changes some of the params to URI objects
+  def uri_params
+    return unless(card_params)
+    card_params[:anastatica] = card_params[:anastatica].to_uri if(card_params[:anastatica].is_a?(String))
   end
 
 end

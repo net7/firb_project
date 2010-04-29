@@ -54,7 +54,7 @@
 <def tag="card" for="FirbNonIllustratedMemoryDepictionCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><%= link_to((this.code || this.url.local_name), :action => :show, :id => this.id) %></h4>
+      <h4 param="heading"><%= link_to((this.code || this.uri.local_name), :action => :show, :id => this.id) %></h4>
     </header:>
   </card>
 </def>
@@ -84,7 +84,7 @@
     <error-messages param/>
     <anastatica-connection />
     <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
-    <input type="hidden" name="type" value="&@card_type" />
+    <input type="hidden" name="type" value="&@card_type_name" />
     <div param="actions">
       <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
     </div>
