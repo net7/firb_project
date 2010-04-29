@@ -21,6 +21,7 @@ namespaces:
   swicky: http://discovery-project.eu/ontologies/philoSpace/
   discovery: http://discovery-project.eu/ontologies/scholar/0.1/
   marcont: http://www.marcont.org/ontology/2.1/
+  demo: http://ontologies.muruca.org/demo3/
 thumb_options: 
   height: "200"
   width: "200"

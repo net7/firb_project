@@ -59,6 +59,16 @@ module AdminHelper
     end
   end
 
+
+  # Selects the action for the firb_card forms (since hobo won't do it on the subclasses)
+  def firb_card_action
+    if(@firb_card.new_record?)
+      url_for(:action => :create, :type => 'false')
+    else
+      url_for(:action => :update, :id => @firb_card.id, :type => 'false')
+    end
+  end
+
   # Works on sources which have an associated image_zone (text_page, illustrated memory
   # depictions, ..). Will return its parent image_zone along with its name and the
   # associated image_zone and it's name, if there's any. 

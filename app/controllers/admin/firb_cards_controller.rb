@@ -16,6 +16,10 @@ class Admin::FirbCardsController < Admin::AdminSiteController
     @card_type = params[:type] || default_type
   end
 
+  def edit
+    @firb_card = FirbCard.find(params[:id])
+  end
+
   def create
     @firb_card = @card_type.create_card(card_params)
     if(@firb_card.save)
@@ -40,13 +44,16 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   def update
     @firb_card = FirbCard.find(params[:id])
     @firb_card.update_attributes!(card_params)
-
-    redirect_to :action => :index
+    redirect_to :action => :show, :id => params[:id]
   end
   
   # Add the current card type to all links
   def default_url_options(options={})
-    options[:type] ||= @card_type_name
+    if(options[:type] == 'false')
+      options[:type] = nil
+    else
+      options[:type] ||= @card_type_name
+    end
     options
   end
   
@@ -72,7 +79,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   # changes some of the params to URI objects
   def uri_params
     return unless(card_params)
-    card_params[:anastatica] = card_params[:anastatica].to_uri if(card_params[:anastatica].is_a?(String))
+    card_params[:anastatica] = card_params[:anastatica].to_uri if(card_params[:anastatica].is_a?(String) && !card_params[:anastatica].blank?)
   end
 
 end
