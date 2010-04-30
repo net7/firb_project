@@ -66,16 +66,35 @@ class FirbCard < TaliaCore::Source
     uri :string
   end
 
+  def bibliography_items
+    self[N::TALIA.hasBibliography]
+  end
+
   def has_anastatica_page?
     !self.anastatica.blank?
   end
 
+  def rewrite_attributes!(options = {})
+    setup_options!(options)
+    super(options)
+  end
+
   def self.create_card(options = {})
-    options.to_options!
+    setup_options!(options)
     new_url =  (N::LOCAL + 'firb_card/' + random_id).to_s
     options[:uri] = new_url
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(options) # Check if it attaches :image_zone and :anastatica
+  end
+
+  def setup_options!(options)
+    self.class.setup_options!(options)
+  end
+
+  def self.setup_options!(options)
+    options.to_options!
+    options[N::TALIA.hasBibliography.to_s] = options.delete(:bibliography).to_a.collect { |bib| BibliographyItem.find(bib) }
+    options
   end
 
 end

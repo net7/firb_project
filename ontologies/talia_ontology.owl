@@ -7,50 +7,53 @@
     xmlns:p2="http://purl.org/dc/dcmitype/#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:j.0="http://purl.org/dc/dcam/"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns="http://www.muruca.org/ontologies/talia#"
   xml:base="http://www.muruca.org/ontologies/talia">
   <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://purl.org/dc/terms/"/>
+    <owl:imports rdf:resource="http://purl.org/dc/dcmitype/"/>
     <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
     <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
-    <owl:imports rdf:resource="http://purl.org/dc/dcmitype/"/>
-    <owl:imports rdf:resource="http://purl.org/dc/terms/"/>
   </owl:Ontology>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/relation"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/description"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/language"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/subject"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/coverage"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/format"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/rights"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/type"/>
-  <rdf:Property rdf:about="file_status">
-    <rdfs:comment xml:lang="en">Describes the "status" of the file(s) that is/are attached to a Source. E.g., this may be used to indicate if processing of the files has already finished.</rdfs:comment>
-  </rdf:Property>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/creator"/>
-  <rdf:Property rdf:about="name">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/title"/>
-    <rdfs:comment xml:lang="en">The canonical name of the element within Talia</rdfs:comment>
-  </rdf:Property>
-  <rdf:Property rdf:about="hasSwickyNotebook">
+  <rdf:Property rdf:ID="hasSwickyNotebook">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/references"/>
     <rdfs:comment xml:lang="en">References a Swicky notebook context of a user.</rdfs:comment>
   </rdf:Property>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/description"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/language"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
+  <rdf:Property rdf:ID="hasBibliography">
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/references"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/subject"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/coverage"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/format"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/rights"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/type"/>
+  <rdf:Property rdf:about="http://www.muruca.org/ontologies/file_status">
+    <rdfs:comment xml:lang="en">Describes the "status" of the file(s) that is/are attached to a Source. E.g., this may be used to indicate if processing of the files has already finished.</rdfs:comment>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+  <rdf:Property rdf:about="http://www.muruca.org/ontologies/name">
+    <rdfs:comment xml:lang="en">The canonical name of the element within Talia</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/title"/>
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.muruca.org/ontologies/position">
+    <rdfs:comment xml:lang="en">The position of the element within a collection. This is a free-form field and does not need to be a numeric value.</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+  </rdf:Property>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/date"/>
-  <rdf:Property rdf:about="hasSubZone">
+  <rdf:Property rdf:about="http://www.muruca.org/ontologies/hasSubZone">
     <rdfs:comment xml:lang="en">The related element describes a sub-zone of the original.</rdfs:comment>
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/hasPart"/>
   </rdf:Property>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/publisher"/>
-  <rdf:Property rdf:about="position">
-    <rdfs:comment xml:lang="en">The position of the element within a collection. This is a free-form field and does not need to be a numeric value.</rdfs:comment>
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
-  </rdf:Property>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/source"/>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/title"/>
   <j.0:VocabularyEncodingScheme rdf:about="http://purl.org/dc/terms/DCMIType"/>

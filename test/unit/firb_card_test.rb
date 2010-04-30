@@ -18,6 +18,18 @@ class FirbCardTest < ActiveSupport::TestCase
       page
     end
     
+    setup_once(:bibliographies) do
+      bibliographies = []
+      (0..2).each do |idx|
+        bibliography = BibliographyItem.create_item(:title => "bib_#{idx}")
+        bibliography.save!
+        bibliographies << bibliography
+      end
+      bibliographies
+    end
+    
+    assert_equal(3, @bibliographies.size)
+    
     setup_once(:card) do
       source = FirbCard.create_card(
       :name => "evil guy",
@@ -30,7 +42,8 @@ class FirbCardTest < ActiveSupport::TestCase
       :study_notes => 'What a pain',
       :description => 'Endangered species',
       :completed => 'true',
-      :anastatica => @page.uri
+      :anastatica => @page.uri,
+      :bibliography => @bibliographies.collect { |bib| bib.uri.to_s }
       )
       
       source.save!
@@ -58,6 +71,10 @@ class FirbCardTest < ActiveSupport::TestCase
     assert_kind_of(FirbCard, card)
     assert_not_nil(card.uri)
     assert_match(/[^\s]+/, card.uri.to_s)
+  end
+
+  def test_bibliographies
+    assert_property(@card.bibliography_items, *@bibliographies)
   end
   
   def test_create_with_save
@@ -108,6 +125,21 @@ class FirbCardTest < ActiveSupport::TestCase
   
   def test_completed
     assert_equal(@card.completed, 'true')
+  end
+  
+  def test_rewrite_attributes
+    source = FirbCard.create_card(
+    :name => "evil guy"
+    )
+    source.save!
+    new_find = FirbCard.find(source.id)
+    new_find.rewrite_attributes!(:name => "barf",
+    :anastatica => @page.uri,
+    :bibliography => @bibliographies.collect { |bib| bib.uri.to_s })
+    new_card = FirbCard.find(source.id)
+    assert_equal('barf', new_card.name)
+    assert_equal(new_card.anastatica.uri, @page.uri)
+    assert_equal(3, new_card.bibliography_items.size)
   end
   
 end

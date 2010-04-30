@@ -1,0 +1,38 @@
+<ul id="<%= param_name %>-list">
+    <% existing.each do |option, value| %>
+        <li>
+            <%= option %>
+            <input type="hidden" value="<%= value %>" name="<%= main_name %>[<%= param_name %>][<%= value.hash %>]" />
+            <input type="button" value="remove" name="delete_<%= value.hash %>" />
+        </li>
+    <% end %>
+</ul>
+<select name="<%= param_name %>-selector" id="<%= param_name %>-selector">
+    <%= options_for_select(options) %>
+</select>
+<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" value="add" />
+
+<script type="text/javascript">
+selector = $('<%= param_name %>-selector')
+button = $('<%= param_name %>-add')
+button.observe('click', <%= param_name %>Selected);
+$('<%= param_name %>-list').observe('click', delete<%= param_name.capitalize %>Item)
+
+function <%= param_name %>Selected(event) {
+	option = selector.options[selector.selectedIndex];
+	add<%= param_name.capitalize %>Item(option);
+}
+
+function add<%= param_name.capitalize %>Item(option) {
+	var rand = Math.floor(Math.random()*9999);
+	var markup = "<li>"+option.text+"<input type='hidden' name='<%= main_name %>[<%= param_name %>][new_"+rand+"]' value='"+option.value+"' /><input type='button' value='remove' onClick='delete<%= param_name.capitalize %>Item();' /></li>";
+	$('<%= param_name %>-list').insert({bottom: markup});
+
+}
+
+function delete<%= param_name.capitalize %>Item(event) {
+    if(event.element().type == 'button') {
+        event.element().up().remove();
+    }
+}
+</script>

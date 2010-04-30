@@ -21,6 +21,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def create
+    set_link_options!
     @firb_card = @card_type.create_card(card_params)
     if(@firb_card.save)
       flash[:notice] = "Card succesfully created"
@@ -42,8 +43,9 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
   
   def update
+    set_link_options!
     @firb_card = FirbCard.find(params[:id])
-    @firb_card.update_attributes!(card_params)
+    @firb_card.rewrite_attributes!(card_params)
     redirect_to :action => :show, :id => params[:id]
   end
   
@@ -80,6 +82,10 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   def uri_params
     return unless(card_params)
     card_params[:anastatica] = card_params[:anastatica].to_uri if(card_params[:anastatica].is_a?(String) && !card_params[:anastatica].blank?)
+  end
+  
+  def set_link_options!
+    card_params[:bibliography] = card_params[:bibliography].values if(card_params[:bibliography].is_a?(Hash))
   end
 
 end

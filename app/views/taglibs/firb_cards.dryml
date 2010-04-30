@@ -126,6 +126,8 @@
 </def>
 
 <def tag="bibliography-items-edit">
-    <select-input:bibliography options="&bibliography_select" first-option="&I18n.t('firb_text_page.select_one')" />
-     <label for="#{@full_type_name}[bibliography]"><%= I18n.t("firb.bibliography") %> </label><br />
+    <%= render :partial => 'shared/multi_selector', 
+               :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select, 
+                            :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
+    %>
 </def>
