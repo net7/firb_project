@@ -19,19 +19,19 @@ module Admin::FirbTextPageHelper
       
       parent = a.get_parent
       breadcrumbs = ""
-      loop do
+      while(parent.class.to_s != "FirbImage")
         breadcrumbs = parent.name + " > " + breadcrumbs 
-        if (parent.class.to_s == "FirbImage")
-          break
-        else
-          parent = parent.get_parent
-        end
+        parent = parent.get_parent
       end
       breadcrumbs += a.name
       
       ["#{breadcrumbs}: #{a.id}", a.id]
     }
     foo.sort
+  end
+  
+  def bibliography_select
+    BibliographyItem.all.collect { |b| [ "#{b.title}", b.uri.to_s ] }.sort
   end
 
 end
