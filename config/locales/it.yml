@@ -1,13 +1,127 @@
 it:
+    # Hobo all around translations
+    hobo:
+        support:
+            or: "oppure"
+        actions:
+            cancel: "Annulla"
+        collections: "collezioni"
+    
     # Model names
-    firb_text_pages: 
-        model_name: "Scheda di testo"
-        model_name_plural: "Schede di testo"    
-
     talia_collections:
         model_name: "Libro"
         model_name_plural: "Libri"
-    
+        actions:
+            new: "Crea un nuovo libro"
+            create: "Salva questo libro"
+        new:
+            heading: "Crea un nuovo libro"
+        title: "Titolo"
+
+    firb_anastatica_pages:
+        model_name: "Anastatica"
+        model_name_plural: "Anastatiche" 
+        actions:
+            new: "Crea una nuova pagina anastatica"
+            create: "Salva questa pagina anastatica"
+            cancel: "Annulla"
+            save: "Salva"
+        new:
+            heading: "Nuova pagina anastatica"
+            title: "Nuova pagina anastatica"
+        edit:
+            heading: "Modifica pagina anastatica"
+        index:
+            title: "Pagine anastatiche"
+        page_to_book: "Inserisci nel libro"
+        page_position: "Carta"
+        title: "Titolo"
+
+    firb_images:
+        model_name: "Illustrazione"
+        model_name_plural: "Illustrazioni"
+        actions:
+            new: "Crea una nuova illustrazione"
+        new: 
+            heading: "Nuova illustrazione"
+        edit:
+            heading: "Modifica l'illustrazione e le sue zone"
+
+    users:
+        model_name: "Utente"
+        model_name_plural: "Utenti"
+
+    iconclass_terms:
+        model_name: "IconTerm"
+        model_name_plural: "IconTerms"
+        actions:
+            new: "Crea un nuovo termine iconclass"
+            create: "Crea il termine"
+            edit: "Modifica questo termine"
+        new:
+            heading: "Nuovo termine iconclass"
+        term: "Codice iconclass"
+        pref_label: "Descrizione primaria"
+        alt_label: "Descrizione secondaria"
+        soundex: "Codice SOUNDEX"
+        note: "Note"
+        iconclass_link: "Vedi questo termine su www.iconclass.org"
+
+    firb_text_cards:
+        model_name: "Scheda di testo"
+        model_name_plural: "Schede di testo"    
+        actions:
+            new: "Crea una nuova scheda di testo"
+
+    bibliography_items:
+        model_name: "Elemento Bibliografico"
+        model_name_plural: "Elementi Bibliografici"
+        actions:
+            new: "Crea un nuovo elemento bibliografico"
+            create: "Salva questo elemento bibliografico"
+            cancel: "Annulla"
+            edit: "Modifica questo elemento bibliografico"
+        new:
+            heading: "Nuovo elemento bibliografico"
+        title: "Titolo"
+        abstract: "Abstract"
+        publisher: "Casa editrice"
+        author: "Autore"
+        date: "Data"
+        doi: "Codice DOI"
+        isbn: "Codice ISBN"
+        issn: "Codice ISSN"
+        pages: "Pagine"
+        published_in: "Pubblicato in"
+        external_url: "URL alla risorsa"
+
+    firb_illustrated_memory_depiction_cards:
+        model_name: "Scheda di immagine di memoria illustrata"
+        model_name_plural: "Schede di immagini di memoria illustrate"
+        actions:
+            create: "Salva questa scheda di immagine di memoria"
+        new:
+            heading: "Nuova scheda di immagine di memoria illustrata"
+        code: "Codice"
+        collocation: "Collocazione"
+        tecnique: "Tecnica"
+        measure: "Misure"
+        position: "Posizione"
+        description: "Descrizione"
+        descriptive_notes: "Note descrittive"
+        study_notes: "Note di studio"
+        completed: "L'illustrazione è completa?"
+        
+    # Firb cards
+    firb_cards:
+        model_name: "Scheda"
+        model_name_plural: "Schede"
+        non_illustrated_memory_depiction_link: "Scheda di immagine di memoria non illustrata"
+        illustrated_memory_depiction_link: "Scheda di immagine di memoria illustrata"
+        letter_illustration_link: "Scheda capolettera"
+        parent_illustration_link: "Scheda illustrazione"
+        new_link: "Crea"
+
     # Used in new.dryml
     new_firb_image:
         text: "Porzione di testo"
@@ -15,6 +129,9 @@ it:
         picture: "Illustrazione"
         other_picture: "Altra illustrazione"
         headletter: "Capolettera"
+        connect_automatically: "Aggiungi automaticamente le seguenti sotto-zone"
+        nome: "Nome dell'illustrazione"
+        upload_image: "Carica e salva l'illustrazione"
       
     # Used in admin_site.dryml
     firb_image:

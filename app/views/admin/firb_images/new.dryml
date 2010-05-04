@@ -21,7 +21,7 @@
                 <label for='auto_capo'><ht key="new_firb_image.headletter">Letter</ht> </label></li>
         </ul>
 
-        <submit label="Upload image" />
+        <submit label="&I18n.t('new_firb_image.upload_image')" />
 
 	</form>
 </new-page>
