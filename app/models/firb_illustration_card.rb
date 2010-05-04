@@ -1,6 +1,6 @@
 class FirbIllustrationCard < FirbCard
 
-  singular_property N::TALIA.hasMainImage, :image_zone
+  singular_property  :image_zone, N::DCT.isFormatOf
 
   def iconclass_terms
     qry = ActiveRDF::Query.new(IconclassTerm).select(:it).distinct

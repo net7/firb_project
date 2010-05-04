@@ -35,11 +35,11 @@ function jsapi_mouseClick(fid, ki) {
 }
 
 // Adds dynamically a note to the bottom of the #firb-notes div, 
-// uses the same markup as in views/admin/firb_text_pages/new.dryml
+// uses the same markup as in views/admin/firb_text_cards/new.dryml
 // Used in that same dryml template
 function textPageAddNote() {
     var rand = Math.floor(Math.random()*9999),
-        markup = "<div class='firb-note'><textarea rows='4' cols='50' name='firb_text_page[note][new_"+rand+"]'></textarea><span class='firb-remove-note'>Elimina nota</span></div>";
+        markup = "<div class='firb-note'><textarea rows='4' cols='50' name='firb_text_card[note][new_"+rand+"]'></textarea><span class='firb-remove-note'>Elimina nota</span></div>";
     $$('#firb-notes')[0].insert({bottom: markup});
 }
 
@@ -58,7 +58,7 @@ document.observe('click', function(e) {
         e.stop();
     }
 
-    // Remove note: in text_page new and edit actions
+    // Remove note: in text_card new and edit actions
     if (e.element().match('.firb-remove-note')) {
         e.findElement('.firb-note').remove();
         e.stop();

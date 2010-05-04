@@ -1,6 +1,7 @@
 <def tag="form" for="FirbAnastaticaPage">
   <form merge param="default">
     <error-messages param/>
+    <single-connection attribute="image_zone" typename="firb_anastatica_page" type="FirbImageZone" options="&image_zone_select_uri" />
     <field-list fields="page_position, title" param/>
 	<label for="select_list"><ht key="firb_anastatica_pages.page_to_book">Attach to book</ht></label>
 	<removeable-books />

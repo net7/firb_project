@@ -33,12 +33,7 @@
 
 <def tag="form" for="FirbNonIllustratedMemoryDepictionCard">
     <form merge param="default" action="&firb_card_action">
-        <card-form-common>
-            <first-items:>
-                <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
-                <single-connection attribute="parent_card" type="FirbParentIllustrationCard" />
-            </first-items:>
-        </card-form-common>
+        <card-form-common />
     </form>
 </def>
 
@@ -176,22 +171,6 @@
     <label for="#{@full_type_name}[anastatica]"><%= I18n.t("firb.anastatica") %> </label><br />
 </def>
 -->
-
-<def tag="single-connection" attrs="attribute, type, options">
-    <% options ||= type.constantize.all.collect { |el| [ "#{el.name}", el.uri.to_s ] }.sort %>
-    <% attribute_el = this.send(attribute.to_sym) %>
-    <if test="&attribute_el.blank?">
-        <select-menu name="#{@full_type_name}[#{attribute}]"
-            options="&options" 
-            first-option="&I18n.t('firb_text_page.select_one')" />
-    </if>
-    <else>
-        <select-menu name="#{@full_type_name}[#{attribute}]"
-            options="&options" 
-            selected="&attribute_el.uri.to_s" />
-    </else>
-    <label for="#{@full_type_name}[#{attribute}]"><%= I18n.t("firb.#{attribute}") %> </label><br />
-</def>
 
 
 <def tag="bibliography-items-edit">

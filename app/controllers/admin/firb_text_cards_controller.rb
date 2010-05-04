@@ -14,7 +14,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     end
 
     if (params[:firb_text_card][:note])
-      FirbNote.create_notes(params[:firb_text_card][:note], txt)
+      FirbNote.create_notes(params[:firb_text_card][:note].values, txt)
     end
     redirect_to :controller => :firb_text_cards
   end
@@ -33,6 +33,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     p = FirbTextCard.find(params[:id])
     p.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica])
     p.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone])
+    p.parafrasi = params[:firb_text_card][:parafrasi]
     
     if (params[:firb_text_card][:note]) 
       FirbNote.replace_notes(params[:firb_text_card][:note], p)

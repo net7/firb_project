@@ -4,6 +4,8 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
 
   auto_actions :all
   
+  before_filter :create_zone
+  
   def create
     @firb_anastatica_page = FirbAnastaticaPage.create_page(params[:firb_anastatica_page])
     if(@firb_anastatica_page.save!)
@@ -44,6 +46,10 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
         book.save!
       end
     end
+  end
+  
+  def create_zone
+    params[:firb_anastatica_page][:image_zone] = params[:firb_anastatica_page][:image_zone].to_uri unless(params[:firb_anastatica_page].blank? || params[:firb_anastatica_page][:image_zone].blank?)
   end
   
 end
