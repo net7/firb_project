@@ -13,16 +13,32 @@
 <def tag="form" for="FirbIllustratedMemoryDepictionCard">
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
-            <additional-items:>
+            <std-fields: replace>
+                <single-connection attribute="parent_card" type="FirbParentIllustrationCard"  />
+                <field-list fields="name" />
+                <p><b><ht key="firb_cards.code">Codice</ht></b><%= this.parent_card.blank? ? '' : this.parent_card.code %></p>
+                <p><b><ht key="firb_cards.collocation">Collozione</ht></b><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></p>
+                <field-list fields="tecnique, measure, position, descriptive_notes, completed" />
+                <single-connection attribute="textual_source" type="FirbTextCard"  />
+                <field-list fields="transcription_text, description, short_description" />
+                <component-items-edit />
                 <iconclass-terms-edit />
-            </additional-items:>
+            </std-fields:>
+            <study-fields: replace>
+                <field-list fields="study_notes" />
+            </study-fields:>
         </card-form-common>
     </form>
 </def>
 
 <def tag="form" for="FirbNonIllustratedMemoryDepictionCard">
     <form merge param="default" action="&firb_card_action">
-        <card-form-common />
+        <card-form-common>
+            <first-items:>
+                <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection attribute="parent_card" type="FirbParentIllustrationCard" />
+            </first-items:>
+        </card-form-common>
     </form>
 </def>
 
@@ -44,8 +60,10 @@
                     </repeat>
                 </p>
                 <% end %>
-                <b><ht key="firb_card.inherited_iconclass">Iconclass delle figlie:</ht></b> 
-                <repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat>
+                <p>
+                    <b><ht key="firb_card.inherited_iconclass">Iconclass delle figlie:</ht></b> 
+                    <repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat>
+                </p>
                 <iconclass-terms-edit />
             </last-items:>
         </card-form-common>
@@ -181,6 +199,14 @@
     <%= render :partial => 'shared/multi_selector', 
                :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select, :autocomplete_url => '',
                             :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
+    %>
+</def>
+
+<def tag="component-items-edit">
+    <label for="bibliography-select"><ht key="firb_cards.components">Componenti</ht></label><br/>
+    <%= render :partial => 'shared/multi_selector', 
+               :locals => { :main_name => @full_type_name, :param_name => 'image_component', :options => image_zone_select_uri, :autocomplete_url => '',
+                            :existing => this.image_components.collect {|comp| [ comp.name, comp.uri.to_s ] } } 
     %>
 </def>
 
