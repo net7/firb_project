@@ -57,6 +57,27 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     # assert_select 'th.page-position-label'
   end 
 
+  def test_new_illustrated
+    login_for(:admin)
+    get(:new, :type => 'illustrated_memory_depiction')
+    assert_response(:success)
+    # assert_select 'th.page-position-label'
+  end
+  
+  def test_new_letter
+    login_for(:admin)
+    get(:new, :type => 'letter_illustration')
+    assert_response(:success)
+    # assert_select 'th.page-position-label'
+  end
+
+  def test_new_parent
+    login_for(:admin)
+    get(:new, :type => 'parent_illustration')
+    assert_response(:success)
+    # assert_select 'th.page-position-label'
+  end
+
   def test_create_non_illustrated_with_page
     setup_page
     assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 1) do

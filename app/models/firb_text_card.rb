@@ -12,6 +12,10 @@ class FirbTextCard < TaliaCore::Source
   fields do
     uri :string
   end
+  
+  def name
+    "text card #{self.id}"
+  end
 
   # Declare methods (getter/setter pairs) that should be used as
   # fields by hobo. The type will be used by the automatic 

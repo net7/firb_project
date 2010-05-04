@@ -80,7 +80,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   # changes some of the params to URI objects
   def uri_params
     return unless(card_params)
-    %w(anastatica image_zone).each do |param|
+    %w(anastatica image_zone textual_source).each do |param|
       card_params[param] = card_params[param].to_uri if(card_params[param].is_a?(String) && !card_params[param].blank?)
     end
   end

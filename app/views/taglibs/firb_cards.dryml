@@ -104,7 +104,7 @@
     <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
     <section param="additional-items" />
     <field-list fields="name, code, collocation, tecnique, measure, position, descriptive_notes, completed" param="std-fields" />
-    <field-list fields="study_notes" param="study-fields" />
+    <field-list fields="description, study_notes" param="study-fields" />
     <bibliography-items-edit />
     <section param="last-items" />
     <input type="hidden" name="type" value="&@card_type_name" />
