@@ -36,6 +36,16 @@
                 <single-connection attribute="textual_source" type="FirbTextCard"  />
             </after-std-fields:>
             <last-items:>
+                <% if (children = this.child_cards).size > 0 %>
+                <p>
+                    <b><ht key="firb_card.children">Figlie:</ht></b> 
+                    <repeat with="&children" join=", " >
+                        <%= this.name %> (<repeat with="&this.image_components" join=","><%= this.name %></repeat>)
+                    </repeat>
+                </p>
+                <% end %>
+                <b><ht key="firb_card.inherited_iconclass">Iconclass delle figlie:</ht></b> 
+                <repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat>
                 <iconclass-terms-edit />
             </last-items:>
         </card-form-common>
