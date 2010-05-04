@@ -188,6 +188,15 @@
 			</div>
 
 		</div>
+		
+		<div class="firb-text-page-file">
+		    <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
+		        <ht key="firb_text_page.no_file">Nessun file</ht>
+	        </if>
+	        <else>
+	            <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records('TaliaCore::DataTypes::XmlData').first.id)"><ht key="text_cards.show_file">Mostra file</ht></a>
+            </else>
+	    </div>
 
 	</card>
 </def>

@@ -19,10 +19,13 @@
 
 
 <def tag="form" for="FirbTextCard">
-    <form merge param="default">
+    <form merge param="default" multipart="true">
         <error-messages param/>
-        <single-connection attribute="anastatica" typename="firb_text_card" type="FirbAnastaticaPage" options="&anastatiche_select" />
-        <single-connection attribute="image_zone" typename="firb_text_card" type="FirbImageZone" options="&image_zone_select_uri" />
+        
+         <input type="file" name="firb_text_card[file]"/><br />
+        
+        <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
+        <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
 
         <div id="firb-notes">
 

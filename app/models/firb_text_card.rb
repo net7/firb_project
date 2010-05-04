@@ -29,7 +29,7 @@ class FirbTextCard < TaliaCore::Source
   # Creates a page initialazing it with a paraphrase and anastatica_page id
   def self.create_card(parafrasi, ana_id, image_zone_id)
     p = FirbTextCard.new(N::LOCAL + 'FirbTextCard/' + FirbImageElement.random_id)
-    p.parafrasi = parafrasi
+    p.parafrasi = parafrasi unless(parafrasi.blank?)
     if (!ana_id.blank?)
       p.anastatica = FirbAnastaticaPage.find(ana_id)
     end
