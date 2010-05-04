@@ -1,3 +1,4 @@
+<div class="multi-selector">
 <ul id="<%= param_name %>-list">
     <% existing.each do |option, value| %>
         <li>
@@ -37,21 +38,6 @@
     	option.value = current<%= param_name.capitalize %>['val']
     	add<%= param_name.capitalize %>Item(option);
     }
-
-    function add<%= param_name.capitalize %>Item(option) {
-    	var rand = Math.floor(Math.random()*9999);
-    	var markup = "<li>"+option.text+"<input type='hidden' name='<%= main_name %>[<%= param_name %>][new_"+rand+"]' value='"+option.value+"' /><input type='button' value='remove' onClick='delete<%= param_name.capitalize %>Item();' /></li>";
-    	$('<%= param_name %>-list').insert({bottom: markup});
-
-    }
-
-    function delete<%= param_name.capitalize %>Item(event) {
-        if(event.element().type == 'button') {
-            event.element().up().remove();
-        }
-    }
-    
-</script>
 <% else %>
 <select name="<%= param_name %>-selector" id="<%= param_name %>-selector">
     <%= options_for_select(options) %>
@@ -67,7 +53,9 @@ function <%= param_name %>Selected(event) {
 	option = <%= param_name %>_selector.options[<%= param_name %>_selector.selectedIndex];
 	add<%= param_name.capitalize %>Item(option);
 }
+<% end %>
 
+// Common script functions
 function add<%= param_name.capitalize %>Item(option) {
 	var rand = Math.floor(Math.random()*9999);
 	var markup = "<li>"+option.text+"<input type='hidden' name='<%= main_name %>[<%= param_name %>][new_"+rand+"]' value='"+option.value+"' /><input type='button' value='remove' onClick='delete<%= param_name.capitalize %>Item();' /></li>";
@@ -81,4 +69,5 @@ function delete<%= param_name.capitalize %>Item(event) {
     }
 }
 </script>
-<% end %>
+
+</div>

@@ -5,8 +5,15 @@
 
 <def tag="form" for="FirbLetterIllustrationCard">
     <form merge param="default" action="&firb_card_action">
-        <card-form-common />
-        <iconclass-terms-edit />
+        <card-form-common>
+            <first-items:>
+                <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+            </first-items:>
+            <last-items:>
+                <iconclass-terms-edit />
+                <component-items-edit />
+            </last-items:>
+        </card-form-common>
     </form>
 </def>
 
@@ -15,6 +22,7 @@
         <card-form-common>
             <std-fields: replace>
                 <single-connection attribute="parent_card" type="FirbParentIllustrationCard"  />
+                <single-connection attribute="image_zone" type="FirbImageZone"  />
                 <field-list fields="name" />
                 <p><b><ht key="firb_cards.code">Codice</ht></b><%= this.parent_card.blank? ? '' : this.parent_card.code %></p>
                 <p><b><ht key="firb_cards.collocation">Collozione</ht></b><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></p>
@@ -70,7 +78,9 @@
 <def tag="card" for="FirbNonIllustratedMemoryDepictionCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+      <h4 param="heading"><card-link /></h4>
+      <anastatica-link />
+      
     </header:>
   </card>
 </def>
@@ -78,7 +88,15 @@
 <def tag="card" for="FirbIllustratedMemoryDepictionCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+      <h4 param="heading"><card-link /></h4>
+      <anastatica-link /> |
+      <image-zone-link /> |
+      <if test="&this.parent_card.blank?">
+          <ht key="firb_cards.no_parent">Nessuna Scheda Madre</ht>
+      </if>
+      <else>
+          <a href="&url_for(:controller => :firb_cards, :action => :show, :id => this.parent_card, :type => 'parent_illustration')"><ht key="firb_parent_illustration_page.model_name">Scheda Madre</ht>: <%= this.parent_card.name %></a>
+      </else>
     </header:>
   </card>
 </def>
@@ -86,7 +104,9 @@
 <def tag="card" for="FirbLetterIllustrationCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+      <h4 param="heading"><card-link /></h4>
+      <anastatica-link /> |
+      <image-zone-link />
     </header:>
   </card>
 </def>
@@ -94,7 +114,22 @@
 <def tag="card" for="FirbParentIllustrationCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+      <h4 param="heading"><card-link /></h4>
+      <anastatica-link /> |
+      <image-zone-link />
+      <div>
+          <ht key="firb_cards.children">Figlie</ht>:
+          <if test="&this.child_cards.blank?">
+              <ht key="firb_cards.no_child">Nessuna Figlia</ht>
+          </if>
+          <else>
+               <ul>
+                    <repeat with="&this.child_cards" join=", ">
+                        <li><a href="&url_for(:controller => :firb_cards, :action => :show, :id => this, :type => 'illustrated_memory_depiction')"><%= this.name %></a></li>
+                    </repeat>
+                </ul>
+          </else>
+      </div>
     </header:>
   </card>
 </def>
@@ -137,6 +172,28 @@
     <div param="actions">
       <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
     </div>
+</def>
+
+<def tag="card-link">
+    <%= link_to((this.name || this.uri.local_name), :controller => :firb_cards, :action => :show, :id => this.id) %>
+</def>
+
+<def tag="anastatica-link">
+    <if test="&this.anastatica.blank?">
+        <ht key="firb_cards.no_anastatica">Nessuna Anastatica collegata</ht>
+    </if>
+    <else>
+        <a with="&this.anastatica"><ht key="anastatica_page.model_name">Anastatica</ht>: <%= this.name %></a>
+    </else>
+</def>
+
+<def tag="image-zone-link">
+    <if test="&this.image_zone.blank?">
+        <ht key="firb_cards.no_image_zone">Nessuna Zona/Illustrazione collegata</ht>
+    </if>
+    <else>
+        <a with="&this.image_zone.get_firb_image_parent"><ht key="firb_image.model_name">Illustrazione</ht>: <%= this.name %></a>
+    </else>
 </def>
 
 <!--
