@@ -301,7 +301,7 @@
 			<h4 param="heading"><a><name/></a></h4>
 		</header:>
 		<body:>
-			<div>Position: <%= this.page_position %></div>
+			<div><ht key="firb_anastatica_pages.page_position">Position</ht>: <%= this.page_position %></div>
 			<source-collections />
 		</body:>
 	</card>

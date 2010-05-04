@@ -25,7 +25,7 @@
                 <single-connection attribute="image_zone" type="FirbImageZone"  />
                 <field-list fields="name" />
                 <p><b><ht key="firb_cards.code">Codice</ht></b><%= this.parent_card.blank? ? '' : this.parent_card.code %></p>
-                <p><b><ht key="firb_cards.collocation">Collozione</ht></b><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></p>
+                <p><b><ht key="firb_cards.collocation">Collocazione</ht></b><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></p>
                 <field-list fields="tecnique, measure, position, descriptive_notes, completed" />
                 <single-connection attribute="textual_source" type="FirbTextCard"  />
                 <field-list fields="transcription_text, description, short_description" />
