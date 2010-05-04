@@ -50,14 +50,12 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   #   assert_select 'span.firb-anastatica-page-name', @page.name
   # end
   # 
-  # def test_new
-  #   login_for(:admin)
-  #   get(:new)
-  #   assert_response(:success)
-  #   assert_select 'th.page-position-label'
-  #   assert_select 'th.title-label'
-  #   assert_select 'input.submit-button'
-  # end 
+  def test_new_non_illustrated
+    login_for(:admin)
+    get(:new, :type => 'non_illustrated_memory_depiction')
+    assert_response(:success)
+    # assert_select 'th.page-position-label'
+  end 
 
   def test_create_non_illustrated_with_page
     setup_page
@@ -86,6 +84,41 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     assert_equal('last_and_first', new_card.position)
     assert_equal(3, new_card.bibliography_items.size)
   end
+
+  def test_create_letter_with_zone_and_iconclass
+    setup_page
+    setup_iconclass
+    setup_image_zone
+    assert_difference('FirbLetterIllustrationCard.count', 1) do
+      post(:create, 
+        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography => '', :image_zone => @image_zone.uri.to_s, :iconclass => @iconclass_hash }, 
+        :type => 'letter_illustration' )
+      assert_redirected_to(:controller => :firb_cards, :action => :index)
+    end
+    new_card = FirbLetterIllustrationCard.last
+    assert_equal('Letter', new_card.name)
+    assert_equal('last_and_first', new_card.position)
+    assert_equal(2, new_card.iconclass_terms.size)
+    assert_equal(new_card.image_zone.uri, @image_zone.uri)
+  end
+  
+  def test_create_letter_with_zone_and_iconclass_codes
+    setup_page
+    setup_iconclass
+    setup_image_zone
+    assert_difference('FirbLetterIllustrationCard.count', 1) do
+      post(:create, 
+        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography => '', :image_zone => @image_zone.uri.to_s, :iconclass => @iconclass_term_hash }, 
+        :type => 'letter_illustration' )
+      assert_redirected_to(:controller => :firb_cards, :action => :index)
+    end
+    new_card = FirbLetterIllustrationCard.last
+    assert_equal('Letter', new_card.name)
+    assert_equal('last_and_first', new_card.position)
+    assert_equal(2, new_card.iconclass_terms.size)
+    assert_equal(new_card.image_zone.uri, @image_zone.uri)
+  end
+  
 
   # def test_edit
   #   login_for(:admin)
@@ -131,6 +164,28 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     @illustrated_one.save!
     @illustrated_two = FirbIllustratedMemoryDepictionCard.create_card(:name => 'super_illu', :position => 'you guess')
     @illustrated_two.save!
+  end
+
+  def setup_iconclass
+    @iconclasses = []
+    @iconclass_hash = {}
+    @iconclass_term_hash = {}
+    (0..1).each do |idx|
+      iconclass = IconclassTerm.create_term(:term => "61 E (+#{idx})", 
+        :pref_label => 'foo', 
+        :alt_label => 'bar',
+        :soundex => 'meep',
+        :note => 'Cool' )
+      iconclass.save!
+      @iconclasses << iconclass
+      @iconclass_hash["bar_#{iconclass.uri.to_s.hash}"] = iconclass.uri.to_s
+      @iconclass_term_hash["bar_#{iconclass.uri.to_s.hash}"] = iconclass.term
+    end
+  end
+  
+  def setup_image_zone
+    @image_zone = FirbImageZone.create_with_name('hello')
+    @image_zone.save!
   end
 
   def setup_bibliographies

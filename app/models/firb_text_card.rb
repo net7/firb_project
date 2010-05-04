@@ -23,8 +23,8 @@ class FirbTextCard < TaliaCore::Source
   # - you can use the page.namespace:name notation
 
   # Creates a page initialazing it with a paraphrase and anastatica_page id
-  def self.create_page(parafrasi, ana_id, image_zone_id)
-    p = FirbTextPage.new(N::LOCAL + 'firbtextpage/' + FirbImageElement.random_id)
+  def self.create_card(parafrasi, ana_id, image_zone_id)
+    p = FirbTextCard.new(N::LOCAL + 'FirbTextCard/' + FirbImageElement.random_id)
     p.parafrasi = parafrasi
     if (!ana_id.blank?)
       p.anastatica = FirbAnastaticaPage.find(ana_id)

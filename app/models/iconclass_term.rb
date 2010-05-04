@@ -42,8 +42,6 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
     find(make_uri(term))
   end
   
-  private
-  
   # Creates the uri for the given term
   def self.make_uri(term)
     'http://www.iconclass.org/rkd/' << CGI.escape(term.gsub(' ', '')) << '/'

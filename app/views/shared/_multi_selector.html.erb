@@ -7,19 +7,64 @@
         </li>
     <% end %>
 </ul>
+<% if !autocomplete_url.blank? %>
+<input type='text' size='50' id='<%= param_name %>-autocomplete-input' />
+<span id="<%= param_name %>-indicator" style="display: none">
+  <img src="/images/icons/ajax-loader.gif" alt="Working..." />
+</span>
+<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" value="add" />
+<div id='<%= param_name %>-autocomplete-values' class="autocomplete"></div>
+
+<script>
+    new Ajax.Autocompleter("<%= param_name %>-autocomplete-input", "<%= param_name %>-autocomplete-values", "<%= autocomplete_url %>", {
+      paramName: "value",
+      indicator: "<%= param_name %>-indicator",
+      afterUpdateElement : <%= param_name %>updateCompleter
+    });
+    var current<%= param_name.capitalize %> = {};
+    function <%= param_name %>updateCompleter(text, li) {
+        current<%= param_name.capitalize %>['content'] = li.innerHTML;
+        current<%= param_name.capitalize %>['val'] = text.value;
+    }
+    
+    <%= param_name %>_button = $('<%= param_name %>-add')
+    <%= param_name %>_button.observe('click', <%= param_name %>Selected);
+    $('<%= param_name %>-list').observe('click', delete<%= param_name.capitalize %>Item)
+
+    function <%= param_name %>Selected(event) {
+    	option = {}
+    	option.text = current<%= param_name.capitalize %>['content']
+    	option.value = current<%= param_name.capitalize %>['val']
+    	add<%= param_name.capitalize %>Item(option);
+    }
+
+    function add<%= param_name.capitalize %>Item(option) {
+    	var rand = Math.floor(Math.random()*9999);
+    	var markup = "<li>"+option.text+"<input type='hidden' name='<%= main_name %>[<%= param_name %>][new_"+rand+"]' value='"+option.value+"' /><input type='button' value='remove' onClick='delete<%= param_name.capitalize %>Item();' /></li>";
+    	$('<%= param_name %>-list').insert({bottom: markup});
+
+    }
+
+    function delete<%= param_name.capitalize %>Item(event) {
+        if(event.element().type == 'button') {
+            event.element().up().remove();
+        }
+    }
+    
+</script>
+<% else %>
 <select name="<%= param_name %>-selector" id="<%= param_name %>-selector">
     <%= options_for_select(options) %>
 </select>
 <input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" value="add" />
-
 <script type="text/javascript">
-selector = $('<%= param_name %>-selector')
-button = $('<%= param_name %>-add')
-button.observe('click', <%= param_name %>Selected);
+<%= param_name %>_selector = $('<%= param_name %>-selector')
+<%= param_name %>_button = $('<%= param_name %>-add')
+<%= param_name %>_button.observe('click', <%= param_name %>Selected);
 $('<%= param_name %>-list').observe('click', delete<%= param_name.capitalize %>Item)
 
 function <%= param_name %>Selected(event) {
-	option = selector.options[selector.selectedIndex];
+	option = <%= param_name %>_selector.options[<%= param_name %>_selector.selectedIndex];
 	add<%= param_name.capitalize %>Item(option);
 }
 
@@ -36,3 +81,4 @@ function delete<%= param_name.capitalize %>Item(event) {
     }
 }
 </script>
+<% end %>

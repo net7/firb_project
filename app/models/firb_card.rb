@@ -4,6 +4,7 @@ class FirbCard < TaliaCore::Source
   include StandardPermissions
   
   singular_property :name, N::TALIA.name
+  declare_attr_type :name, :string
   
   extend RandomId
 
@@ -31,7 +32,7 @@ class FirbCard < TaliaCore::Source
   # Measure: describes the phisical dimensions of the depiction
   # usually in centimeters
   singular_property :measure, N::TALIA.measure
-  declare_attr_type :measure, :text
+  declare_attr_type :measure, :string
   
   # Position: describes the position of the depiction inside the
   # "big picture", say "upper left corner" or "bottom part"
@@ -65,7 +66,7 @@ class FirbCard < TaliaCore::Source
   fields do
     uri :string
   end
-
+  
   def bibliography_items
     self[N::TALIA.hasBibliography]
   end

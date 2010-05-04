@@ -1,52 +1,45 @@
 <!-- All the forms -->
 <def tag="form" for="FirbCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
-    <input type="hidden" name="type" value="&@card_type" />
-    <div param="actions">
-      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
-    </div>
-  </form>
+    <h2>You shouldn't see this</h2>
 </def>
 
 <def tag="form" for="FirbLetterIllustrationCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
-    <input type="hidden" name="type" value="&@card_type" />
-    <div param="actions">
-      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
-    </div>
-  </form>
+    <form merge param="default" action="&firb_card_action">
+        <card-form-common />
+        <iconclass-terms-edit />
+    </form>
 </def>
 
 <def tag="form" for="FirbIllustratedMemoryDepictionCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
-    <input type="hidden" name="type" value="&@card_type" />
-    <div param="actions">
-      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
-    </div>
-  </form>
+    <form merge param="default" action="&firb_card_action">
+        <card-form-common>
+            <additional-items:>
+                <iconclass-terms-edit />
+            </additional-items:>
+        </card-form-common>
+    </form>
 </def>
 
 <def tag="form" for="FirbNonIllustratedMemoryDepictionCard">
-  <form merge param="default" action="&firb_card_action">
-    <card-form-common />
-  </form>
+    <form merge param="default" action="&firb_card_action">
+        <card-form-common />
+    </form>
 </def>
 
 <def tag="form" for="FirbParentIllustrationCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
-    <input type="hidden" name="type" value="&@card_type" />
-    <div param="actions">
-      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
-    </div>
-  </form>
+    <form merge param="default" action="&firb_card_action">
+        <card-form-common>
+            <first-items:>
+                <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+            </first-items:>
+            <after-std-fields:>
+                <single-connection attribute="textual_source" type="FirbTextCard"  />
+            </after-std-fields:>
+            <last-items:>
+                <iconclass-terms-edit />
+            </last-items:>
+        </card-form-common>
+    </form>
 </def>
 
 <!-- All the cards -->
@@ -54,7 +47,31 @@
 <def tag="card" for="FirbNonIllustratedMemoryDepictionCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><%= link_to((this.code || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbIllustratedMemoryDepictionCard">
+  <card class="firb-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbLetterIllustrationCard">
+  <card class="firb-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbParentIllustrationCard">
+  <card class="firb-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><%= link_to((this.name || this.uri.local_name), :action => :show, :id => this.id) %></h4>
     </header:>
   </card>
 </def>
@@ -63,7 +80,8 @@
 
 <def tag="card-type-selector">
   <ul id="card-selector">
-    <% %w(non_illustrated_memory_depiction illustrated_memory_depiction letter_illustration parent_illustration).each do |type| %>
+    <% # Non illustrated are created from text cards %>
+    <% %w(illustrated_memory_depiction letter_illustration parent_illustration).each do |type| %>
        <% if(@card_type_name == type) %>
          <li class="selected"><ht key="firb_cards.#{type}_link" /></li>
        <% else %>
@@ -82,9 +100,13 @@
 
 <def tag="card-form-common">
     <error-messages param/>
-    <anastatica-connection />
+    <section param="first-items" />
+    <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
+    <section param="additional-items" />
+    <field-list fields="name, code, collocation, tecnique, measure, position, descriptive_notes, completed" param="std-fields" />
+    <field-list fields="study_notes" param="study-fields" />
     <bibliography-items-edit />
-    <field-list fields="code, collocation, tecnique, measure, position, description, descriptive_notes, study_notes, completed" param/>
+    <section param="last-items" />
     <input type="hidden" name="type" value="&@card_type_name" />
     <unless test="&this.new_record?">
         <input type="hidden" name="_method" value="PUT" />
@@ -94,6 +116,7 @@
     </div>
 </def>
 
+<!--
 <def tag="default-image-zone">
     <if test="&this.image_zone != nil">
         <select-input:image_zone
@@ -124,10 +147,37 @@
     </else>
     <label for="#{@full_type_name}[anastatica]"><%= I18n.t("firb.anastatica") %> </label><br />
 </def>
+-->
+
+<def tag="single-connection" attrs="attribute, type, options">
+    <% options ||= type.constantize.all.collect { |el| [ "#{el.name}", el.uri.to_s ] }.sort %>
+    <% attribute_el = this.send(attribute.to_sym) %>
+    <if test="&attribute_el.blank?">
+        <select-menu name="#{@full_type_name}[#{attribute}]"
+            options="&options" 
+            first-option="&I18n.t('firb_text_page.select_one')" />
+    </if>
+    <else>
+        <select-menu name="#{@full_type_name}[#{attribute}]"
+            options="&options" 
+            selected="&attribute_el.uri.to_s" />
+    </else>
+    <label for="#{@full_type_name}[#{attribute}]"><%= I18n.t("firb.#{attribute}") %> </label><br />
+</def>
+
 
 <def tag="bibliography-items-edit">
+    <label for="bibliography-select"><ht key="firb_cards.bibliography">Bibliography Items</ht></label><br/>
     <%= render :partial => 'shared/multi_selector', 
-               :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select, 
+               :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select, :autocomplete_url => '',
                             :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
+    %>
+</def>
+
+<def tag="iconclass-terms-edit">
+    <label for="iconclass-select"><ht key="firb_cards.iconclass">Iconclass</ht></label><br/>
+    <%= render :partial => 'shared/multi_selector',
+             :locals => { :main_name => @full_type_name, :param_name => 'iconclass', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
+                             :existing => this.iconclass_terms.collect {|ic| [ ic.term, ic.uri.to_s ] } }
     %>
 </def>

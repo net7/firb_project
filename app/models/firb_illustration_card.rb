@@ -1,6 +1,6 @@
 class FirbIllustrationCard < FirbCard
 
-  attr_accessor :image
+  singular_property N::TALIA.hasMainImage, :image_zone
 
   def iconclass_terms
     qry = ActiveRDF::Query.new(IconclassTerm).select(:it).distinct
@@ -41,6 +41,12 @@ class FirbIllustrationCard < FirbCard
     FirbIllustrationPage.remove_iconclass_terms(page)
     FirbIllustrationPage.add_iconclass_terms(new_terms, page)
     page.save
+  end
+  
+  def self.setup_options!(options)
+    options.to_options!
+    options[N::DCT.subject.to_s] = options.delete(:iconclass).to_a.collect { |ic| IconclassTerm.find(ic) }
+    super(options)
   end
 
 end

@@ -55,6 +55,19 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
     assert_equal('Noo titeel', new_page.title)
     assert_equal('xvrzf', new_page.page_position)
   end
+  
+  def test_create_different
+    assert_difference('FirbAnastaticaPage.count', 1) do
+      post(:create, "firb_anastatica_page"=> { "uri"=>"http://localhost:5000/",
+       "page_position"=>"poh",
+       "title"=>"doh" })
+      assert_response(302)
+    end
+    new_page = FirbAnastaticaPage.last
+    assert_equal('doh', new_page.title)
+    assert_equal('poh', new_page.page_position)
+    assert_not_equal('http://localhost:5000/', new_page.uri.to_s)
+  end
 
   def test_edit
     login_for(:admin)

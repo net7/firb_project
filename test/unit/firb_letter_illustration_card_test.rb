@@ -36,8 +36,8 @@ class FirbLetterIllustrationCardTest < ActiveSupport::TestCase
   end
   
   def test_create_with_options
-    card = FirbLetterIllustrationCard.create_card(:name => "tito", :position => "ups")
-    assert_equal("ups", card.position)
+    card = FirbLetterIllustrationCard.create_card(:name => "tito", :code => "ups")
+    assert_equal("ups", card.code)
     assert_equal("tito", card.name)
   end
   

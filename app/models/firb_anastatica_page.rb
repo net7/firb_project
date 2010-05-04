@@ -12,7 +12,7 @@ class FirbAnastaticaPage < TaliaCore::Source
   def self.create_page(options = {})
     options.to_options!
     new_url =  (N::LOCAL + 'anastatica/' + random_id).to_s
-    options[:uri] ||= new_url
+    options[:uri] = new_url
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(options)
   end

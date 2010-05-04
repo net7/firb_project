@@ -6,9 +6,9 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&BibliographyItem"><ht key="bibliography_items.nav_item">Bibliography Items</ht></nav-item>
-    <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatica Pages</ht></nav-item>
+    <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Pagina Anastaticas</ht></nav-item>
     <nav-item with="&FirbCard"><ht key="firb_cards.nav_item">Firb Cards</ht></nav-item>
-    <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Images</ht></nav-item>
+    <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Illustraziones</ht></nav-item>
     <nav-item with="&FirbTextCard"><ht key="firb_text_cards.nav_item">Firb Text Cards</ht></nav-item>
   </navigation>
 </def>
@@ -250,14 +250,14 @@
 <!-- ====== FirbAnastaticaPage Pages ====== -->
 
 <def tag="index-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.index.title', :default=>['Anastatica Pages'] }">
+  <page merge title="#{ht 'firb_anastatica_pages.index.title', :default=>['Pagina Anastaticas'] }">
     <body: class="index-page firb-anastatica-page" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="firb_anastatica_pages.index.heading">
-            Anastatica Pages
+            Pagina Anastaticas
           </ht>
         </h2>
 
@@ -270,7 +270,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_anastatica_pages.actions.new">New Anastatica Page</ht>
+          <ht key="firb_anastatica_pages.actions.new">New Pagina Anastatica</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -287,21 +287,21 @@
 
 
 <def tag="new-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.new.title', :default=>[' New Anastatica Page'] }">
+  <page merge title="#{ht 'firb_anastatica_pages.new.title', :default=>[' New Pagina Anastatica'] }">
     <body: class="new-page firb-anastatica-page" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="firb_anastatica_pages.new.heading">
-            New Anastatica Page
+            New Pagina Anastatica
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_anastatica_pages.actions.create', :default=>['Create Anastatica Page']}"/>
+          <submit: label="#{ht 'firb_anastatica_pages.actions.create', :default=>['Create Pagina Anastatica']}"/>
         </form>
       </section>
     </content:>
@@ -310,7 +310,7 @@
 
 
 <def tag="show-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.show.title', :default=>['Anastatica Page'] }">
+  <page merge title="#{ht 'firb_anastatica_pages.show.title', :default=>['Pagina Anastatica'] }">
 
     <body: class="show-page firb-anastatica-page" param/>
 
@@ -326,7 +326,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="firb_anastatica_pages.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Anastatica Page
+                Edit Pagina Anastatica
               </ht>
             </a>
           </header>
@@ -340,7 +340,7 @@
 
 
 <def tag="edit-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.edit.title', :default=>['Edit Anastatica Page'] }">
+  <page merge title="#{ht 'firb_anastatica_pages.edit.title', :default=>['Edit Pagina Anastatica'] }">
 
     <body: class="edit-page firb-anastatica-page" param/>
 
@@ -351,7 +351,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_anastatica_pages.actions.delete', :default=>['Remove This Anastatica Page']}" param/>
+        <delete-button label="#{ht 'firb_anastatica_pages.actions.delete', :default=>['Remove This Pagina Anastatica']}" param/>
       </section>
 
       <section param="content-body">
@@ -487,127 +487,6 @@
 
 
 
-<!-- ====== FirbIllustratedMemoryDepictionCard Pages ====== -->
-
-<def tag="index-page" for="FirbIllustratedMemoryDepictionCard">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_cards.index.title', :default=>['Firb Illustrated Memory Depiction Cards'] }">
-    <body: class="index-page firb-illustrated-memory-depiction-card" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="firb_illustrated_memory_depiction_cards.index.heading">
-            Firb Illustrated Memory Depiction Cards
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="firb_illustrated_memory_depiction_cards.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="firb_illustrated_memory_depiction_cards.actions.new">New Firb Illustrated Memory Depiction Card</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="FirbIllustratedMemoryDepictionCard">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_cards.new.title', :default=>[' New Firb Illustrated Memory Depiction Card'] }">
-    <body: class="new-page firb-illustrated-memory-depiction-card" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_illustrated_memory_depiction_cards.new.heading">
-            New Firb Illustrated Memory Depiction Card
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'firb_illustrated_memory_depiction_cards.actions.create', :default=>['Create Firb Illustrated Memory Depiction Card']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="FirbIllustratedMemoryDepictionCard">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_cards.show.title', :default=>['Firb Illustrated Memory Depiction Card'] }">
-
-    <body: class="show-page firb-illustrated-memory-depiction-card" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="firb_illustrated_memory_depiction_cards.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_illustrated_memory_depiction_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Firb Illustrated Memory Depiction Card
-              </ht>
-            </a>
-          </header>
-
-          <section param="content-body">
-            <view:description param="description"/>
-            <field-list fields="uri" param/>
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="FirbIllustratedMemoryDepictionCard">
-  <page merge title="#{ht 'firb_illustrated_memory_depiction_cards.edit.title', :default=>['Edit Firb Illustrated Memory Depiction Card'] }">
-
-    <body: class="edit-page firb-illustrated-memory-depiction-card" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_illustrated_memory_depiction_cards.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'firb_illustrated_memory_depiction_cards.actions.delete', :default=>['Remove This Firb Illustrated Memory Depiction Card']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
 <!-- ====== FirbImageZone Pages ====== -->
 
 <def tag="index-page" for="FirbImageZone">
@@ -722,14 +601,14 @@
 <!-- ====== FirbImage Pages ====== -->
 
 <def tag="index-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.index.title', :default=>['Images'] }">
+  <page merge title="#{ht 'firb_images.index.title', :default=>['Illustraziones'] }">
     <body: class="index-page firb-image" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="firb_images.index.heading">
-            Images
+            Illustraziones
           </ht>
         </h2>
 
@@ -742,7 +621,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_images.actions.new">New Image</ht>
+          <ht key="firb_images.actions.new">New Illustrazione</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -759,21 +638,21 @@
 
 
 <def tag="new-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.new.title', :default=>[' New Image'] }">
+  <page merge title="#{ht 'firb_images.new.title', :default=>[' New Illustrazione'] }">
     <body: class="new-page firb-image" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="firb_images.new.heading">
-            New Image
+            New Illustrazione
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_images.actions.create', :default=>['Create Image']}"/>
+          <submit: label="#{ht 'firb_images.actions.create', :default=>['Create Illustrazione']}"/>
         </form>
       </section>
     </content:>
@@ -782,7 +661,7 @@
 
 
 <def tag="show-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.show.title', :default=>['Image'] }">
+  <page merge title="#{ht 'firb_images.show.title', :default=>['Illustrazione'] }">
 
     <body: class="show-page firb-image" param/>
 
@@ -798,7 +677,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="firb_images.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Image
+                Edit Illustrazione
               </ht>
             </a>
           </header>
@@ -813,7 +692,7 @@
 
 
 <def tag="edit-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.edit.title', :default=>['Edit Image'] }">
+  <page merge title="#{ht 'firb_images.edit.title', :default=>['Edit Illustrazione'] }">
 
     <body: class="edit-page firb-image" param/>
 
@@ -824,7 +703,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_images.actions.delete', :default=>['Remove This Image']}" param/>
+        <delete-button label="#{ht 'firb_images.actions.delete', :default=>['Remove This Illustrazione']}" param/>
       </section>
 
       <section param="content-body">
@@ -1081,14 +960,14 @@
 <!-- ====== TaliaCollection Pages ====== -->
 
 <def tag="index-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.index.title', :default=>['Books'] }">
+  <page merge title="#{ht 'talia_collections.index.title', :default=>['Libri'] }">
     <body: class="index-page talia-collection" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="talia_collections.index.heading">
-            Books
+            Libri
           </ht>
         </h2>
 
@@ -1101,7 +980,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="talia_collections.actions.new">New Book</ht>
+          <ht key="talia_collections.actions.new">New Libro</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -1118,21 +997,21 @@
 
 
 <def tag="new-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.new.title', :default=>[' New Book'] }">
+  <page merge title="#{ht 'talia_collections.new.title', :default=>[' New Libro'] }">
     <body: class="new-page talia-collection" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="talia_collections.new.heading">
-            New Book
+            New Libro
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'talia_collections.actions.create', :default=>['Create Book']}"/>
+          <submit: label="#{ht 'talia_collections.actions.create', :default=>['Create Libro']}"/>
         </form>
       </section>
     </content:>
@@ -1141,7 +1020,7 @@
 
 
 <def tag="show-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.show.title', :default=>['Book'] }">
+  <page merge title="#{ht 'talia_collections.show.title', :default=>['Libro'] }">
 
     <body: class="show-page talia-collection" param/>
 
@@ -1157,7 +1036,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="talia_collections.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Book
+                Edit Libro
               </ht>
             </a>
           </header>
@@ -1172,7 +1051,7 @@
 
 
 <def tag="edit-page" for="TaliaCollection">
-  <page merge title="#{ht 'talia_collections.edit.title', :default=>['Edit Book'] }">
+  <page merge title="#{ht 'talia_collections.edit.title', :default=>['Edit Libro'] }">
 
     <body: class="edit-page talia-collection" param/>
 
@@ -1183,7 +1062,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'talia_collections.actions.delete', :default=>['Remove This Book']}" param/>
+        <delete-button label="#{ht 'talia_collections.actions.delete', :default=>['Remove This Libro']}" param/>
       </section>
 
       <section param="content-body">

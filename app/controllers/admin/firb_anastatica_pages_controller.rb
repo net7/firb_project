@@ -6,7 +6,7 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
   
   def create
     @firb_anastatica_page = FirbAnastaticaPage.create_page(params[:firb_anastatica_page])
-    if(@firb_anastatica_page.save)
+    if(@firb_anastatica_page.save!)
       flash[:notice] = "Image #{@firb_anastatica_page.name} succesfully created"
     else
       flash[:notice] = "Error creating the page"

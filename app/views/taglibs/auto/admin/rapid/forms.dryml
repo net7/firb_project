@@ -48,18 +48,6 @@
 
 
 
-<def tag="form" for="FirbIllustratedMemoryDepictionCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'firb_illustrated_memory_depiction_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
 <def tag="form" for="FirbImageZone">
   <form merge param="default">
     <error-messages param/>

@@ -5,7 +5,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   auto_actions :all
 
   def create
-    txt = FirbTextPage.create_page(params[:firb_text_page][:parafrasi], params[:firb_text_page][:anastatica], params[:firb_text_page][:image_zone])
+    txt = FirbTextCard.create_card(params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone])
     
     if(txt.save)
       flash[:notice] = "Text page succesfully created"
@@ -13,29 +13,29 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
       flash[:notice] = "Error creating the page"
     end
 
-    if (params[:firb_text_page][:note])
-      FirbNote.create_notes(params[:firb_text_page][:note], txt)
+    if (params[:firb_text_card][:note])
+      FirbNote.create_notes(params[:firb_text_card][:note], txt)
     end
-    redirect_to :controller => :firb_text_pages
+    redirect_to :controller => :firb_text_cards
   end
 
   def remove_page
-    p = FirbTextPage.find(params[:id])
+    p = FirbTextCard.find(params[:id])
     if (p.remove)
       flash[:notice] = "Text page removed"
     else
       flash[:notice] = "Error removing the text page"
     end
-    redirect_to :controller => :firb_text_pages
+    redirect_to :controller => :firb_text_cards
   end
 
   def update
-    p = FirbTextPage.find(params[:id])
-    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_page][:anastatica])
-    p.image_zone = FirbImageZone.find(params[:firb_text_page][:image_zone])
+    p = FirbTextCard.find(params[:id])
+    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica])
+    p.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone])
     
-    if (params[:firb_text_page][:note]) 
-      FirbNote.replace_notes(params[:firb_text_page][:note], p)
+    if (params[:firb_text_card][:note]) 
+      FirbNote.replace_notes(params[:firb_text_card][:note], p)
     end
 
     if (p.save!)
@@ -43,7 +43,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     else
       flash[:notice] = "Error updating the text page"
     end
-    redirect_to :controller => :firb_text_pages
+    redirect_to :controller => :firb_text_cards
   end
 
 end

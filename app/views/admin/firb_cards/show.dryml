@@ -1,4 +1,7 @@
 <show-page>
+    <prepend-content-header:>
+        <p><a href="&url_for(:action => :index)"><ht key="firb_cards.index">Index</ht></a></p>
+    </prepend-content-header:>
 	<edit-link: replace>
 		<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
 			<ht key="firb_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
@@ -6,4 +9,23 @@
 			</ht>
 		</a>
 	</edit-link:>
+	<content-body:>
+	    <firb-card-content />
+    </content-body>
 </show-page>
+
+<def tag="firb-card-content" polymorphic>
+    <view:description param="description"/>
+    <unless test="&this.anastatica.blank?">
+    <p><b><ht key="firb_anastatica_pages.model_name">Anastatica Page</ht>:</b> <a with="&this.anastatica" action="show"><%= this.name %></a></p>
+    </unless>
+    <unless test="&this.bibliography_items.blank?">
+        <p>
+            <b><ht key="bibliography_items.model_name">Bibliography Items</ht>:</b>
+            <repeat with="&this.bibliography_items" join=", ">
+                <a with="&this" action="show"><%= this.name %></a>
+            </repeat>
+        </p>
+    </unless>
+    <field-list fields="code, collocation, tecnique, measure, position, descriptive_notes, study_notes, description, completed" param/>
+</def>

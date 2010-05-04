@@ -28,7 +28,6 @@ class Admin::FirbCardsController < Admin::AdminSiteController
     else
       flash[:notice] = "Error creating card"
     end
-    
     redirect_to :action => :index
   end
 
@@ -66,7 +65,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
   
   def default_type
-    'non_illustrated_memory_depiction'
+    'illustrated_memory_depiction'
   end
   
   # Creates the type class from the param passed to the action
@@ -81,11 +80,23 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   # changes some of the params to URI objects
   def uri_params
     return unless(card_params)
-    card_params[:anastatica] = card_params[:anastatica].to_uri if(card_params[:anastatica].is_a?(String) && !card_params[:anastatica].blank?)
+    %w(anastatica image_zone).each do |param|
+      card_params[param] = card_params[param].to_uri if(card_params[param].is_a?(String) && !card_params[param].blank?)
+    end
   end
   
   def set_link_options!
     card_params[:bibliography] = card_params[:bibliography].values if(card_params[:bibliography].is_a?(Hash))
+    card_params[:iconclass] = card_params[:iconclass].values if(card_params[:iconclass].is_a?(Hash))
+    if(card_params[:iconclass])
+      card_params[:iconclass] = card_params[:iconclass].collect do |ic|
+        if(ic =~ /http:\/\//)
+          ic
+        else
+          IconclassTerm.make_uri(ic.strip)
+        end
+      end
+    end
   end
 
 end
