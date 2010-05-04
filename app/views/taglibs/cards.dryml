@@ -217,11 +217,11 @@
     </header:>
 	<body: param>
 		<p>
-			<b><ht key="iconclass_term_alt_label">Alt label:</ht></b> <%= this.alt_label %> |
-			<b><ht key="iconclass_term_soundex">Soundex:</ht></b> <%= this.soundex %>
+			<b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %> |
+			<b><ht key="iconclass_terms.soundex">Soundex</ht>:</b> <%= this.soundex %>
 		</p>
 		<p>
-			<b><ht key="iconclass_term_not">Note:</ht></b> <%= this.note %>
+			<b><ht key="iconclass_terms.note">Note</ht>:</b> <%= this.note %>
 		</p>
 	</body>
   </card>
@@ -234,22 +234,22 @@
     </header:>
 	<body: param>
 		<p>
-			<b><ht key="bibliography_item_date">Date:</ht></b> <%= this.date %>
+			<b><ht key="bibliography_items.date">Date:</ht></b> <%= this.date %>
 		</p>
 		<p>
-			<b><ht key="bibliography_item_pages">Pages:</ht></b> <%= this.pages %>
+			<b><ht key="bibliography_items.pages">Pages:</ht></b> <%= this.pages %>
 		</p>
 		<p>
-			<b><ht key="bibliography_item_publisher">Published by:</ht></b> <%= this.publisher %> |
-			<b><ht key="bibliography_item_published_in">Published in:</ht></b> <%= this.published_in %>
+			<b><ht key="bibliography_items.publisher">Published by:</ht></b> <%= this.publisher %> |
+			<b><ht key="bibliography_items.published_in">Published in:</ht></b> <%= this.published_in %>
 		</p>
 		<p>
-			<b><ht key="bibliography_item_external_url">External URL:</ht></b> <%= this.external_url %>
+			<b><ht key="bibliography_items.external_url">External URL:</ht></b> <%= this.external_url %>
 		</p>
 		<p>
-			<b><ht key="bibliography_item_doi">DOI:</ht></b> <%= this.doi %> |
-			<b><ht key="bibliography_item_isbn">ISBN:</ht></b> <%= this.isbn %> |
-			<b><ht key="bibliography_item_issn">ISSN:</ht></b> <%= this.issn %>
+			<b><ht key="bibliography_items.doi">DOI:</ht></b> <%= this.doi %> |
+			<b><ht key="bibliography_items.isbn">ISBN:</ht></b> <%= this.isbn %> |
+			<b><ht key="bibliography_items.issn">ISSN:</ht></b> <%= this.issn %>
 		</p>
 	</body>
   </card>

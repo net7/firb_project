@@ -1,19 +1,19 @@
 <show-page>
 	<content-body:>
 		<p>
-			<b><ht key="iconclass_term_pref_label">Pref label:</ht></b> <%= this.pref_label %>
+			<b><ht key="iconclass_terms.pref_label">Pref label:</ht></b> <%= this.pref_label %>
 		</p>
 		<p>
-			<b><ht key="iconclass_term_alt_label">Alt label:</ht></b> <%= this.alt_label %>
+			<b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %>
 		</p>
 		<p>
-			<b><ht key="iconclass_term_soundex">Soundex:</ht></b> <%= this.soundex %>
+			<b><ht key="iconclass_terms.soundex">Soundex:</ht></b> <%= this.soundex %>
 		</p>
 		<p>
-			<b><ht key="iconclass_term_not">Note:</ht></b> <%= this.note %>
+			<b><ht key="iconclass_terms.note">Note:</ht></b> <%= this.note %>
 		</p>
 		<p>
-			<a href="&this.uri.to_s"><ht key="iconclass_term_iconclass_lik">Go to iconclass</ht></a>
+			<a href="&this.uri.to_s"><ht key="iconclass_terms.iconclass_link">Go to iconclass</ht></a>
 		</p>
 	</content-body>
 </show-page>

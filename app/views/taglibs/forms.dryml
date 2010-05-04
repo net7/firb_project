@@ -6,7 +6,7 @@
 	<removeable-books />
 	<% book_hash = {} ; this.unattached_books.each { |b| book_hash[b.name] = b.to_uri.safe_encoded } %>
 	<unless test="&book_hash.empty?">
-		<h3>Select a book to attach this page to</h3>
+
 		<% book_hash["Don't attach"] = '' %>
 		<select-menu options="&book_hash" id="anastatica_page_attach" name="attach_book" />
 	</unless>

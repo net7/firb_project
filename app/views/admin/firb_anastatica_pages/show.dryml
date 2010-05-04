@@ -1,9 +1,9 @@
 <show-page>
 	<content-body:>
 		<div class='page-position'>
-			<ht key="FirbAnastaticaPage:page_postion">Page position:</ht> <%= this.page_position %>
+			<ht key="firb_anastatica_pages.page_position">Page position:</ht> <%= this.page_position %>
 		</div>
-		<h3>Collections</h3>
+		<h3><ht key="talia_collections.model_name_plural">Collections:</ht></h3>
 		<% source_uri = this.to_uri.safe_encoded %>
 		<repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
 			<%= this.title || this.to_uri.local_name %> 

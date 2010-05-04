@@ -14,14 +14,14 @@
 <!-- ====== User Pages ====== -->
 
 <def tag="index-page" for="User">
-  <page merge title="#{ht 'users.index.title', :default=>['Users'] }">
+  <page merge title="#{ht 'users.index.title', :default=>['Utenti'] }">
     <body: class="index-page user" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="users.index.heading">
-            Users
+            Utenti
           </ht>
         </h2>
 
@@ -48,21 +48,21 @@
 
 
 <def tag="new-page" for="User">
-  <page merge title="#{ht 'users.new.title', :default=>[' New User'] }">
+  <page merge title="#{ht 'users.new.title', :default=>[' New Utente'] }">
     <body: class="new-page user" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="users.new.heading">
-            New User
+            New Utente
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'users.actions.create', :default=>['Create User']}"/>
+          <submit: label="#{ht 'users.actions.create', :default=>['Create Utente']}"/>
         </form>
       </section>
     </content:>
@@ -71,7 +71,7 @@
 
 
 <def tag="show-page" for="User">
-  <page merge title="#{ht 'users.show.title', :default=>['User'] }">
+  <page merge title="#{ht 'users.show.title', :default=>['Utente'] }">
 
     <body: class="show-page user" param/>
 
@@ -87,7 +87,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="users.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit User
+                Edit Utente
               </ht>
             </a>
           </header>
@@ -102,7 +102,7 @@
 
 
 <def tag="edit-page" for="User">
-  <page merge title="#{ht 'users.edit.title', :default=>['Edit User'] }">
+  <page merge title="#{ht 'users.edit.title', :default=>['Edit Utente'] }">
 
     <body: class="edit-page user" param/>
 
@@ -113,7 +113,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'users.actions.delete', :default=>['Remove This User']}" param/>
+        <delete-button label="#{ht 'users.actions.delete', :default=>['Remove This Utente']}" param/>
       </section>
 
       <section param="content-body">
