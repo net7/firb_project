@@ -19,7 +19,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     redirect_to :controller => :firb_text_cards
   end
 
-  def remove_page
+  def remove_card
     p = FirbTextCard.find(params[:id])
     if (p.remove)
       flash[:notice] = "Text page removed"

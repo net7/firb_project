@@ -60,7 +60,7 @@ class FirbTextCard < TaliaCore::Source
   end
   
   def has_notes?
-    notes.count > 0
+    !new_record? && (notes.count > 0)
   end
   
   
