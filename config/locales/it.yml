@@ -15,6 +15,7 @@ it:
         actions:
             new: "Crea un nuovo libro"
             create: "Salva questo libro"
+            save: "Salva"
         new:
             heading: "Crea un nuovo libro"
         title: "Titolo"
@@ -103,8 +104,8 @@ it:
             create: "Salva questa scheda di immagine di memoria"
         new:
             heading: "Nuova scheda di immagine di memoria illustrata"
-        name: "Nome"
         code: "Codice"
+        name: "Nome"
         collocation: "Collocazione"
         tecnique: "Tecnica"
         measure: "Misure"
@@ -113,16 +114,38 @@ it:
         descriptive_notes: "Note descrittive"
         study_notes: "Note di studio"
         completed: "L'illustrazione è completa?"
+        transcription_text: "Trascrizione"
+        short_description: "Descrizione breve"
+        
+    firb_letter_illustration_cards:
+        model_name: "Scheda di capolettera"
+        model_name_plural: "Schede di capolettera"
+        actions:
+            create: "Salva questo capolettera"
+        new:
+            heading: "Nuova scheda di capolettera"
+        code: "Codice"
+        name: "Nome"
+        collocation: "Collocazione"
+        tecnique: "Tecnica"
+        measure: "Misure"
+        position: "Posizione"
+        description: "Descrizione"
+        descriptive_notes: "Note descrittive"
+        study_notes: "Note di studio"
+        completed: "L'illustrazione è completa?"
+        bibliography_element: "Bibliografia"
+        transcription_text: "Trascrizione"
 
     firb_parent_illustration_cards:
-        model_name: "Scheda illustrazione"
-        model_name_plural: "Schede illustrazione"
+        model_name: "Scheda di immagine madre"
+        model_name_plural: "Schede di immagini madre"
         actions:
-            create: "Salva questa scheda illustrazione"
+            create: "Salva questa scheda di immagine madre"
         new:
-            heading: "Nuova scheda illustrazione"
-        name: "Nome"
+            heading: "Nuova scheda di immagine madre"
         code: "Codice"
+        name: "Nome"
         collocation: "Collocazione"
         tecnique: "Tecnica"
         measure: "Misure"
@@ -131,22 +154,29 @@ it:
         descriptive_notes: "Note descrittive"
         study_notes: "Note di studio"
         completed: "L'illustrazione è completa?"
-        
+        bibliography_element: "Bibliografia"
+        transcription_text: "Trascrizione"
+
+
     # Firb cards
     firb_cards:
         model_name: "Scheda"
         model_name_plural: "Schede"
+        collocation: "Collocazione"
         non_illustrated_memory_depiction_link: "Scheda di immagine di memoria non illustrata"
         illustrated_memory_depiction_link: "Scheda di immagine di memoria illustrata"
         letter_illustration_link: "Scheda capolettera"
         parent_illustration_link: "Scheda illustrazione"
         new_link: "Crea"
-        new:
-            heading: "Nuova scheda"
-        actions:
-            create: "Salva"
-            
-
+        position: "Carta"
+        name: "Nome"
+        code: "Codice"
+        collocation: "Collocazione"
+        bibliography: "Bibliografia"
+        transcription_text: "Trascrizione"
+        descriptive_notes: "Note descrittive"
+        description: "Descrizione"
+        
     # Used in new.dryml
     new_firb_image:
         text: "Porzione di testo"
@@ -204,3 +234,5 @@ it:
         study_notes: "Note di studio"
         description: "Descrizione"
         completed: "L'illustrazione è completa?"
+        parent_card: "Immagine madre"
+        textual_source: "Testo correlato"

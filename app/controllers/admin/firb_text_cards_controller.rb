@@ -12,14 +12,17 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     else
       flash[:notice] = "Error creating the page"
     end
+    
+    attach_file_to(txt)
 
     if (params[:firb_text_card][:note])
-      FirbNote.create_notes(params[:firb_text_card][:note], txt)
+      FirbNote.create_notes(params[:firb_text_card][:note].values, txt)
     end
+    
     redirect_to :controller => :firb_text_cards
   end
 
-  def remove_page
+  def remove_card
     p = FirbTextCard.find(params[:id])
     if (p.remove)
       flash[:notice] = "Text page removed"
@@ -31,8 +34,9 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
 
   def update
     p = FirbTextCard.find(params[:id])
-    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica])
-    p.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone])
+    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
+    p.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
+    p.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
     
     if (params[:firb_text_card][:note]) 
       FirbNote.replace_notes(params[:firb_text_card][:note], p)
@@ -43,7 +47,22 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     else
       flash[:notice] = "Error updating the text page"
     end
+    
+    attach_file_to(p)
     redirect_to :controller => :firb_text_cards
+  end
+  
+  private
+  
+  def attach_file_to(text_card)
+    if(params[:firb_text_card][:file])
+      puts "GOING TO ATTACH"
+      xml_data = TaliaCore::DataTypes::XmlData.new
+      xml_data.create_from_data('data.xml', params[:firb_text_card][:file], :options => { :mime_type => 'text/xml' })
+      text_card.data_records.destroy_all
+      text_card.data_records << xml_data
+      text_card.save!
+    end
   end
 
 end

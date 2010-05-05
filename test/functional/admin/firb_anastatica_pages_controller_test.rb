@@ -33,7 +33,7 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
     login_for(:admin)
     get(:show, :id => @page.id)
     assert_response(:success)
-    assert_select 'div.page-position', "Page position: #{@page.page_position}"
+    assert_select 'div.page-position', "#{I18n.t(:'firb_anastatica_pages.page_position')} #{@page.page_position}"
     assert_select 'span.firb-anastatica-page-name', @page.name
   end
 
@@ -67,6 +67,23 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
     assert_equal('doh', new_page.title)
     assert_equal('poh', new_page.page_position)
     assert_not_equal('http://localhost:5000/', new_page.uri.to_s)
+  end
+  
+  def test_create_with_image_zone
+    image_zone = FirbImageZone.create_with_name('foo')
+    image_zone.save!
+    assert_difference('FirbAnastaticaPage.count', 1) do
+      post(:create, "firb_anastatica_page"=> { "uri"=>"http://localhost:5000/",
+       "page_position"=>"poh",
+       "title"=>"doh",
+       "image_zone" => image_zone.uri.to_s
+        })
+      assert_response(302)
+    end
+    new_page = FirbAnastaticaPage.last
+    assert_equal('doh', new_page.title)
+    assert_equal('poh', new_page.page_position)
+    assert_equal(image_zone.uri, new_page.image_zone.uri)
   end
 
   def test_edit

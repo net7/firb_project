@@ -68,4 +68,14 @@ class FirbAnastaticaPageTest < ActiveSupport::TestCase
     assert_equal([@collection_two], @page.unattached_books)
   end
   
+  def test_image_zone
+    image_zone = FirbImageZone.create_with_name('foo')
+    image_zone.save!
+    
+    page = FirbAnastaticaPage.create_page(:title => "tito", :page_position => "ups", :image_zone => image_zone)
+    page.save!
+    
+    assert_equal(image_zone.uri, FirbAnastaticaPage.find(page.id).image_zone.uri)
+  end
+  
 end

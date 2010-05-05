@@ -11,9 +11,6 @@ class FirbCard < TaliaCore::Source
   # Anastatica page it links to
   singular_property :anastatica, N::DCT.isPartOf
 
-  # Image zone this illustration is in
-  singular_property :image_zone, N::DCT.isFormatOf
-
   # Code: internal identifier used by the owner of the original source
   # to archive it
   singular_property :code, N::TALIA.identifier
