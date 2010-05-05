@@ -19,7 +19,7 @@ module Admin::FirbTextPageHelper
       
       parent = a.get_parent
       breadcrumbs = ""
-      while(parent.class.to_s != "FirbImage")
+      while(parent.class.to_s != "FirbImage" && !parent.nil?)
         breadcrumbs = parent.name + " > " + breadcrumbs 
         parent = parent.get_parent
       end
@@ -37,7 +37,7 @@ module Admin::FirbTextPageHelper
       
       parent = a.get_parent
       breadcrumbs = ""
-      while(parent.class.to_s != "FirbImage")
+      while(parent.class.to_s != "FirbImage" && !parent.nil?)
         breadcrumbs = parent.name + " > " + breadcrumbs 
         parent = parent.get_parent
       end
