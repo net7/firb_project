@@ -23,9 +23,10 @@ module Admin::FirbTextPageHelper
         breadcrumbs = parent.name + " > " + breadcrumbs 
         parent = parent.get_parent
       end
-      breadcrumbs += a.name
-      
-      ["#{breadcrumbs}: #{a.id}", a.id]
+      unless a.nil?
+        breadcrumbs = "#{breadcrumbs} > #{a.name}"
+        ["#{breadcrumbs}: #{a.id}", a.id]
+      end
     }
     foo.sort
   end
@@ -41,9 +42,10 @@ module Admin::FirbTextPageHelper
         breadcrumbs = parent.name + " > " + breadcrumbs 
         parent = parent.get_parent
       end
-      breadcrumbs += a.name
-      
-      ["#{breadcrumbs}: #{a.id}", a.uri.to_s]
+      unless a.nil?
+        breadcrumbs = "#{breadcrumbs} > #{a.name}"
+        ["#{breadcrumbs}: #{a.id}", a.uri.to_s]
+      end
     }
     foo.sort
   end
