@@ -5,6 +5,7 @@ it:
             or: "oppure"
         actions:
             cancel: "Annulla"
+            save: "Salva"
         collections: "collezioni"
     
     # Model names
@@ -102,6 +103,25 @@ it:
             create: "Salva questa scheda di immagine di memoria"
         new:
             heading: "Nuova scheda di immagine di memoria illustrata"
+        name: "Nome"
+        code: "Codice"
+        collocation: "Collocazione"
+        tecnique: "Tecnica"
+        measure: "Misure"
+        position: "Posizione"
+        description: "Descrizione"
+        descriptive_notes: "Note descrittive"
+        study_notes: "Note di studio"
+        completed: "L'illustrazione è completa?"
+
+    firb_parent_illustration_cards:
+        model_name: "Scheda illustrazione"
+        model_name_plural: "Schede illustrazione"
+        actions:
+            create: "Salva questa scheda illustrazione"
+        new:
+            heading: "Nuova scheda illustrazione"
+        name: "Nome"
         code: "Codice"
         collocation: "Collocazione"
         tecnique: "Tecnica"
@@ -121,6 +141,11 @@ it:
         letter_illustration_link: "Scheda capolettera"
         parent_illustration_link: "Scheda illustrazione"
         new_link: "Crea"
+        new:
+            heading: "Nuova scheda"
+        actions:
+            create: "Salva"
+            
 
     # Used in new.dryml
     new_firb_image:
@@ -164,6 +189,7 @@ it:
         image: "Illustrazione"
         book: "Libro"
         source: "Source"
+        textual_source: "Fonte testuale"
         anastatica: "Pagina Anastatica"
         image_zone: "Zona di immagine"
         parafrasi: "Parafrasi"
