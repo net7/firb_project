@@ -7,9 +7,9 @@ class Admin::BibliographyItemsController < Admin::AdminSiteController
   def create
     @bibliography_item = BibliographyItem.create_item(params[:bibliography_item])
     if(@bibliography_item.save)
-      flash[:notice] = "Bibliography item successefully created"
+      flash[:notice] = I18n.t("bibliography_items.succesfully_created")
     else
-      flash[:notice] = "Error creating item"
+      flash[:notice] = I18n.t("bibliography_items.error_creating")
     end
     redirect_to :action => 'index'
   end

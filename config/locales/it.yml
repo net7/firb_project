@@ -12,6 +12,9 @@ it:
     talia_collections:
         model_name: "Libro"
         model_name_plural: "Libri"
+        empty_message: "Nessun libro da visualizzare"
+        side_collection:
+            count: "Contiene {{count}} elementi"
         actions:
             new: "Crea un nuovo libro"
             create: "Salva questo libro"
@@ -23,11 +26,15 @@ it:
     firb_anastatica_pages:
         model_name: "Anastatica"
         model_name_plural: "Anastatiche" 
+        collection:
+            count: "Ci sono {{count}} pagine anastatiche"
+            empty_message: "Nessuna pagina anastatica da visualizzare"
         actions:
             new: "Crea una nuova pagina anastatica"
             create: "Salva questa pagina anastatica"
             cancel: "Annulla"
             save: "Salva"
+            edit: "Modifica questa pagina anastatica"
         new:
             heading: "Nuova pagina anastatica"
             title: "Nuova pagina anastatica"
@@ -35,6 +42,8 @@ it:
             heading: "Modifica pagina anastatica"
         index:
             title: "Pagine anastatiche"
+            heading: "Pagine anastatiche"
+        parts_of_this_source: "Elementi collegati a questa pagina anastatica"
         page_to_book: "Inserisci nel libro"
         page_position: "Carta"
         title: "Titolo"
@@ -78,6 +87,9 @@ it:
     bibliography_items:
         model_name: "Elemento Bibliografico"
         model_name_plural: "Elementi Bibliografici"
+        collection:
+            count: "Ci sono {{count}} elementi bibliografici"
+            empty_message: "Nessun elemento bibliografico da visualizzare"
         actions:
             new: "Crea un nuovo elemento bibliografico"
             create: "Salva questo elemento bibliografico"
@@ -85,6 +97,8 @@ it:
             edit: "Modifica questo elemento bibliografico"
         new:
             heading: "Nuovo elemento bibliografico"
+        succesfully_created: "L'elemento bibliografico è stato creato con successo"
+        error_creating: "ERRORE: ci sono stati dei problemi e l'elemento bibliografico non è stato creato"
         title: "Titolo"
         abstract: "Abstract"
         publisher: "Casa editrice"
