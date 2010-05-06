@@ -841,14 +841,14 @@
 <!-- ====== IconclassTerm Pages ====== -->
 
 <def tag="index-page" for="IconclassTerm">
-  <page merge title="#{ht 'iconclass_terms.index.title', :default=>['IconTerms'] }">
+  <page merge title="#{ht 'iconclass_terms.index.title', :default=>['Termini iconclass'] }">
     <body: class="index-page iconclass-term" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="iconclass_terms.index.heading">
-            IconTerms
+            Termini iconclass
           </ht>
         </h2>
 
@@ -861,7 +861,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="iconclass_terms.actions.new">New IconTerm</ht>
+          <ht key="iconclass_terms.actions.new">New Termine iconclass</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -878,21 +878,21 @@
 
 
 <def tag="new-page" for="IconclassTerm">
-  <page merge title="#{ht 'iconclass_terms.new.title', :default=>[' New IconTerm'] }">
+  <page merge title="#{ht 'iconclass_terms.new.title', :default=>[' New Termine iconclass'] }">
     <body: class="new-page iconclass-term" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="iconclass_terms.new.heading">
-            New IconTerm
+            New Termine iconclass
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'iconclass_terms.actions.create', :default=>['Create IconTerm']}"/>
+          <submit: label="#{ht 'iconclass_terms.actions.create', :default=>['Create Termine iconclass']}"/>
         </form>
       </section>
     </content:>
@@ -901,7 +901,7 @@
 
 
 <def tag="show-page" for="IconclassTerm">
-  <page merge title="#{ht 'iconclass_terms.show.title', :default=>['IconTerm'] }">
+  <page merge title="#{ht 'iconclass_terms.show.title', :default=>['Termine iconclass'] }">
 
     <body: class="show-page iconclass-term" param/>
 
@@ -917,7 +917,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="iconclass_terms.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit IconTerm
+                Edit Termine iconclass
               </ht>
             </a>
           </header>
@@ -931,7 +931,7 @@
 
 
 <def tag="edit-page" for="IconclassTerm">
-  <page merge title="#{ht 'iconclass_terms.edit.title', :default=>['Edit IconTerm'] }">
+  <page merge title="#{ht 'iconclass_terms.edit.title', :default=>['Edit Termine iconclass'] }">
 
     <body: class="edit-page iconclass-term" param/>
 
@@ -942,7 +942,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'iconclass_terms.actions.delete', :default=>['Remove This IconTerm']}" param/>
+        <delete-button label="#{ht 'iconclass_terms.actions.delete', :default=>['Remove This Termine iconclass']}" param/>
       </section>
 
       <section param="content-body">

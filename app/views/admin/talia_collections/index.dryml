@@ -1,3 +1,10 @@
 <index-page>
-	<collection />
+    <collection: replace>
+        <collection />
+    </collection:>
+    <count:>
+        <ht key="talia_collections.collection.count" count="&this.total_entries">
+          There <count prefix="are"/>
+        </ht>
+    </count:>
 </index-page>

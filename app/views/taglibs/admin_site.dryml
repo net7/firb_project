@@ -38,7 +38,7 @@
 </def>
 
 <def tag="collection-sidebar">
-	<h2>Collections</h2>
+	<h2><ht key="talia_collections.model_name_plural">Collections</ht></h2>
 	<collection>
 		<item:>
 			<div id="#{this.to_uri.safe_encoded}">
@@ -54,7 +54,7 @@
 				) %>
 			</if>
 		</after-item:>
-		<empty-message:>No collections found</empty-message>
+		<empty-message:><ht key="talia_collections.empty_message">No collections found</ht></empty-message>
 	</collection>
 </def>
 
@@ -163,13 +163,13 @@
 		<section param="main-content">
 			<header param="content-header">
 				<h2 param="heading">
-         				<ht key="talia_sources.index.heading">
+         				<ht key="#{model.name.tableize}.index.heading">
 						<%= model.name.titleize.pluralize %>
          				</ht>
        			</h2>
 
 				<p param="count" if>
-					<ht key="talia_sources.collection.count" count="&this.size">
+					<ht key="#{model.name.tableize}.collection.count" count="&this.size">
 						There <count prefix="are"/>
 					</ht>
 				</p>
@@ -177,7 +177,7 @@
 
 			<section param="content-body">
 				<a action="new" to="&model" param="new-link">
-					<ht key="talia_sources.actions.new">New <%= model.name.titleize %></ht>
+					<ht key="#{model.name.tableize}.actions.new">New <%= model.name.titleize %></ht>
 				</a>
 
 				<page-nav param="top-page-nav"/>
