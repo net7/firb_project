@@ -134,8 +134,11 @@ it:
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
             create: "Salva questa scheda di immagine di memoria"
+            new: "Crea una nuova scheda di immagine di memoria"
         new:
             heading: "Nuova scheda di immagine di memoria illustrata"
+        index:
+            heading: "Schede di immagini di memoria illustrate"
         code: "Codice"
         name: "Nome"
         collocation: "Collocazione"
@@ -157,6 +160,7 @@ it:
             empty_message: "Nessuna scheda capolettera da visualizzare"
         actions:
             create: "Salva questo capolettera"
+            new: "Crea una nuova scheda capolettera"
         new:
             heading: "Nuova scheda di capolettera"
         index:
@@ -185,6 +189,8 @@ it:
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         new:
             heading: "Nuova scheda illustrazione"
+        index:
+            heading: "Schede illustrazione"
         code: "Codice"
         name: "Nome"
         collocation: "Collocazione"
