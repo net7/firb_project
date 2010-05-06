@@ -13,6 +13,9 @@ it:
         model_name: "Libro"
         model_name_plural: "Libri"
         empty_message: "Nessun libro da visualizzare"
+        collection:
+            count: "Ci sono {{count}} libri"
+            empty_message: "Nessun libro da visualizzare"
         side_collection:
             count: "Contiene {{count}} elementi"
         actions:
@@ -51,6 +54,9 @@ it:
     firb_images:
         model_name: "Illustrazione"
         model_name_plural: "Illustrazioni"
+        collection:
+            count: "Ci sono {{count}} illustrazioni"
+            empty_message: "Nessuna illustrazione da visualizzare"
         actions:
             new: "Crea una nuova illustrazione"
         new: 
@@ -63,8 +69,11 @@ it:
         model_name_plural: "Utenti"
 
     iconclass_terms:
-        model_name: "IconTerm"
-        model_name_plural: "IconTerms"
+        model_name: "Termine iconclass"
+        model_name_plural: "Termini iconclass"
+        collection:
+            count: "Ci sono {{count}} termini iconclass"
+            empty_message: "Nessun termine iconclass da visualizzare"
         actions:
             new: "Crea un nuovo termine iconclass"
             create: "Crea il termine"
@@ -81,6 +90,11 @@ it:
     firb_text_cards:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"    
+        new: 
+            heading: "Nuova scheda di testo"
+        collection:
+            count: "Ci sono {{count}} schede di testo"
+            empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
 
@@ -114,6 +128,9 @@ it:
     firb_illustrated_memory_depiction_cards:
         model_name: "Scheda di immagine di memoria illustrata"
         model_name_plural: "Schede di immagini di memoria illustrate"
+        collection:
+            count: "Ci sono {{count}} schede immagine di memoria"
+            empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
             create: "Salva questa scheda di immagine di memoria"
         new:
@@ -134,6 +151,9 @@ it:
     firb_letter_illustration_cards:
         model_name: "Scheda di capolettera"
         model_name_plural: "Schede di capolettera"
+        collection:
+            count: "Ci sono {{count}} schede capolettera"
+            empty_message: "Nessuna scheda capolettera da visualizzare"
         actions:
             create: "Salva questo capolettera"
         new:
@@ -152,12 +172,15 @@ it:
         transcription_text: "Trascrizione"
 
     firb_parent_illustration_cards:
-        model_name: "Scheda di immagine madre"
-        model_name_plural: "Schede di immagini madre"
+        model_name: "Scheda illustrazione"
+        model_name_plural: "Schede illustrazione"
         actions:
-            create: "Salva questa scheda di immagine madre"
+            create: "Salva questa scheda illustrazione"
+        collection:
+            count: "Ci sono {{count}} schede illustrazione"
+            empty_message: "Nessuna scheda illustrazione da visualizzare"
         new:
-            heading: "Nuova scheda di immagine madre"
+            heading: "Nuova scheda illustrazione"
         code: "Codice"
         name: "Nome"
         collocation: "Collocazione"
@@ -176,6 +199,13 @@ it:
     firb_cards:
         model_name: "Scheda"
         model_name_plural: "Schede"
+        new:
+            heading: "Crea una nuova scheda"
+        actions:
+            new: "Crea nuova scheda"
+        collection:
+            count: "Ci sono {{count}} schede di questa tipologia"
+            empty_message: "Nessuna scheda di questa tipologia da visualizzare"
         collocation: "Collocazione"
         non_illustrated_memory_depiction_link: "Scheda di immagine di memoria non illustrata"
         illustrated_memory_depiction_link: "Scheda di immagine di memoria illustrata"
