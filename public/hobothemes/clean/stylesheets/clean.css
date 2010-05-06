@@ -154,12 +154,16 @@ form .actions input { margin: 0; }
 #search-results-panel .card.linkable a {color: black;}
 #search-spinner {background:black;border:1px solid #666666;opacity:0.6;padding:2px;position:absolute;right:4px;top:6px;}
 
-.main-nav {padding: 0 30px;}
-.main-nav li {margin-right: 10px;}
+.main-nav {padding: 0 10px;}
+.main-nav li {margin-right: 5px;}
 .page-header .main-nav a {
 	display: block;
-	padding: 5px 15px 7px;
+	padding: 5px 5px 7px;
 	font-size: 13px; font-weight: bold;
+}
+.page-header .main-nav a:hover {
+    text-decoration: underline;
+    color: #fc0;
 }
 
 .account-nav {
