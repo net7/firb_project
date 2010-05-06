@@ -23,6 +23,7 @@ it:
             create: "Salva questo libro"
             save: "Salva"
             edit: "Modifica questo libro"
+            delete: "Cancella questo libro"
         new:
             heading: "Crea un nuovo libro"
         title: "Titolo"
@@ -39,6 +40,7 @@ it:
             cancel: "Annulla"
             save: "Salva"
             edit: "Modifica questa pagina anastatica"
+            delete: "Cancella questa pagina anastatica"
         new:
             heading: "Nuova pagina anastatica"
             title: "Nuova pagina anastatica"
@@ -60,6 +62,7 @@ it:
             empty_message: "Nessuna illustrazione da visualizzare"
         actions:
             new: "Crea una nuova illustrazione"
+            delete: "Cancella questa illustrazione"
         new: 
             heading: "Nuova illustrazione"
         edit:
@@ -79,6 +82,7 @@ it:
             new: "Crea un nuovo termine iconclass"
             create: "Crea il termine"
             edit: "Modifica questo termine"
+            delete: "Cancella questo termine"
         new:
             heading: "Nuovo termine iconclass"
         term: "Codice iconclass"
@@ -98,6 +102,7 @@ it:
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
+            delete: "Cancella questa scheda di testo"
 
     bibliography_items:
         model_name: "Elemento Bibliografico"
@@ -110,6 +115,7 @@ it:
             create: "Salva questo elemento bibliografico"
             cancel: "Annulla"
             edit: "Modifica questo elemento bibliografico"
+            delete: "Cancella questo elemento bibliografico"
         new:
             heading: "Nuovo elemento bibliografico"
         succesfully_created: "L'elemento bibliografico è stato creato con successo"
@@ -137,6 +143,7 @@ it:
         actions:
             create: "Salva questa scheda di immagine di memoria"
             new: "Crea una nuova scheda di immagine di memoria"
+            delete: "Cancella questa scheda di immagine di memoria"
         new:
             heading: "Nuova scheda di immagine di memoria illustrata"
         index:
@@ -159,12 +166,13 @@ it:
         model_name_plural: "Schede capolettera"
         collection:
             count: "Ci sono {{count}} schede capolettera"
-            empty_message: "Nessuna scheda capolettera da visualizzare"
+            empty_message: "Nessuna capolettera da visualizzare"
         actions:
-            create: "Salva questo capolettera"
+            create: "Salva questa capolettera"
             new: "Crea una nuova scheda capolettera"
+            delete: "Cancella questa capolettera"
         new:
-            heading: "Nuova scheda di capolettera"
+            heading: "Nuova capolettera"
         index:
             heading: "Schede capolettera"
         code: "Codice"
@@ -186,6 +194,7 @@ it:
         actions:
             create: "Salva questa scheda illustrazione"
             new: "Crea una nuova scheda illustrazione"
+            delete: "Cancella questa scheda illustrazione"
         collection:
             count: "Ci sono {{count}} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
@@ -215,6 +224,7 @@ it:
             heading: "Crea una nuova scheda"
         actions:
             new: "Crea nuova scheda"
+            delete: "Cancella scheda"
         collection:
             count: "Ci sono {{count}} schede di questa tipologia"
             empty_message: "Nessuna scheda di questa tipologia da visualizzare"
@@ -262,6 +272,8 @@ it:
             auto_capo: "Capolettera"
             auto_img_2: "Illustrazione 2"
             auto_text_2: "Testo 2"
+        actions:
+            delete: "Cancella qusto libro"
 
     # Used in views/admin/firb_text_pages/new.dryml
     firb_text_page:
@@ -273,6 +285,8 @@ it:
         remove_note: "Elimina questa nota"
         no_notes_associated: "Nessuna nota associata a questa pagina di testo"
         text_page: "Scheda testo"
+        actions:
+          delete: "Cancella questa scheda testo"
 
     # Used all over: general terms
     general:
@@ -299,4 +313,5 @@ it:
         description: "Descrizione"
         completed: "L'illustrazione è completa?"
         parent_card: "Immagine madre"
-        textual_source: "Testo correlato"
+        textual_source: "Testo correlato"    
+    
