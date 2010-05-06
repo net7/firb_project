@@ -9,6 +9,8 @@
         <br/><br/>
         <ht key="new_firb_image.connect_automatically">Add automatically the following zones:</ht>
         <ul>
+            <li><input type='checkbox' id='auto_ana' name='auto_ana' CHECKED />
+                <label for='auto_text_1'><ht key='new_firb_image.anastatica'>Anastatica page</ht></label></li>
             <li><input type='checkbox' id='auto_text_1' name='auto_text_1' CHECKED />
                 <label for='auto_text_1'><ht key='new_firb_image.text'>Text portion</ht></label></li>
             <li><input type='checkbox' id='auto_text_2' name='auto_text_2' />

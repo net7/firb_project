@@ -235,6 +235,7 @@ it:
         
     # Used in new.dryml
     new_firb_image:
+        anastatica: "Anastatica"
         text: "Porzione di testo"
         other_text: "Altra porzione di testo"
         picture: "Illustrazione"
@@ -254,6 +255,13 @@ it:
         draw_in_editor: "Apri nell'editor"
         confirm_zone_del: "Vuoi davvero cancellare questa zona e tutte le sue sottozone?"
         confirm_image_del: "Vuoi davvero cancellare questa immagine e tutte le sue zone?"
+        auto_zone_names:
+            auto_ana: "Anastatica"
+            auto_img_1: "Illustrazione"
+            auto_text_1: "Testo"
+            auto_capo: "Capolettera"
+            auto_img_2: "Illustrazione 2"
+            auto_text_2: "Testo 2"
 
     # Used in views/admin/firb_text_pages/new.dryml
     firb_text_page:
