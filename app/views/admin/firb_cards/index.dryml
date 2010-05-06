@@ -1,9 +1,20 @@
 <index-page>
 
+    <heading: >
+        <ht key="#{@full_type_name.pluralize}.index.heading">
+          Schede
+        </ht>
+    </heading:>
+
 	<before-content-header:>
 		<card-type-selector />
 	</before-content-header:>
 	
-	<new-link: replace><%= link_to I18n.t('firb_cards.actions.new'), url_for(:action => :new) %></new-link:>
+	<new-link: replace><%= link_to I18n.t("#{@full_type_name.pluralize}.actions.new"), url_for(:action => :new) %></new-link:>
 
+    <count:>
+        <ht key="#{@full_type_name.pluralize}.collection.count" count="&this.total_entries">
+          There <count prefix="are"/>
+        </ht>
+    </count:>
 </index-page>

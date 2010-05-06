@@ -22,6 +22,7 @@ it:
             new: "Crea un nuovo libro"
             create: "Salva questo libro"
             save: "Salva"
+            edit: "Modifica questo libro"
         new:
             heading: "Crea un nuovo libro"
         title: "Titolo"
@@ -149,8 +150,8 @@ it:
         short_description: "Descrizione breve"
         
     firb_letter_illustration_cards:
-        model_name: "Scheda di capolettera"
-        model_name_plural: "Schede di capolettera"
+        model_name: "Scheda capolettera"
+        model_name_plural: "Schede capolettera"
         collection:
             count: "Ci sono {{count}} schede capolettera"
             empty_message: "Nessuna scheda capolettera da visualizzare"
@@ -158,6 +159,8 @@ it:
             create: "Salva questo capolettera"
         new:
             heading: "Nuova scheda di capolettera"
+        index:
+            heading: "Schede capolettera"
         code: "Codice"
         name: "Nome"
         collocation: "Collocazione"
@@ -176,6 +179,7 @@ it:
         model_name_plural: "Schede illustrazione"
         actions:
             create: "Salva questa scheda illustrazione"
+            new: "Crea una nuova scheda illustrazione"
         collection:
             count: "Ci sono {{count}} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
