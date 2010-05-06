@@ -33,6 +33,9 @@
     </div>
 </def>
 
+<def tag="image-zone-select">
+    <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" merge />
+</def>
 
 <def tag="collection-sidebar">
 	<h2>Collections</h2>

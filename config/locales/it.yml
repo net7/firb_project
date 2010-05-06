@@ -95,6 +95,8 @@ it:
         pages: "Pagine"
         published_in: "Pubblicato in"
         external_url: "URL alla risorsa"
+        collection:
+          count: "Ci sono {{count}} elementi bibliografici"
 
     firb_illustrated_memory_depiction_cards:
         model_name: "Scheda di immagine di memoria illustrata"

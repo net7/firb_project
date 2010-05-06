@@ -14,37 +14,19 @@ module Admin::FirbTextPageHelper
   
   # Produces an hash to be passed to an input (select_for) format
   # with all of our FirbImageZones
-  def image_zone_select
-    foo = FirbImageZone.all.collect{ |a|
-      
-      parent = a.get_parent
-      breadcrumbs = ""
-      while(parent.class.to_s != "FirbImage" && !parent.nil?)
-        breadcrumbs = parent.name + " > " + breadcrumbs 
-        parent = parent.get_parent
-      end
-      breadcrumbs += a.name
-      
-      ["#{breadcrumbs}: #{a.id}", a.id]
-    }
-    foo.sort
-  end
-  
-  # Produces an hash to be passed to an input (select_for) format
-  # with all of our FirbImageZones
   def image_zone_select_uri
-    foo = FirbImageZone.all.collect{ |a|
-      
+    foo = FirbImageZone.all.collect do |a|
       parent = a.get_parent
       breadcrumbs = ""
       while(parent.class.to_s != "FirbImage" && !parent.nil?)
         breadcrumbs = parent.name + " > " + breadcrumbs 
         parent = parent.get_parent
       end
+      breadcrumbs = parent.name + " > " + breadcrumbs unless(parent.nil?)
       breadcrumbs += a.name
       
-      ["#{breadcrumbs}: #{a.id}", a.uri.to_s]
-    }
+      [breadcrumbs, a.uri.to_s]
+    end
     foo.sort
   end
   

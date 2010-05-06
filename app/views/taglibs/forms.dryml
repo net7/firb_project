@@ -1,7 +1,7 @@
 <def tag="form" for="FirbAnastaticaPage">
   <form merge param="default">
     <error-messages param/>
-    <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+    <image-zone-select />
     <field-list fields="page_position, title" param/>
 	<label for="select_list"><ht key="firb_anastatica_pages.page_to_book">Attach to book</ht></label>
 	<removeable-books />
@@ -25,7 +25,7 @@
          <input type="file" name="firb_text_card[file]"/><br />
         
         <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
-        <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+        <image-zone-select />
 
         <div id="firb-notes">
 

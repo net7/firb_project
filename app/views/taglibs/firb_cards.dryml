@@ -7,7 +7,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
             <first-items:>
-                <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <image-zone-select />
             </first-items:>
             <last-items:>
                 <iconclass-terms-edit />
@@ -22,7 +22,7 @@
         <card-form-common>
             <std-fields: replace>
                 <single-connection attribute="parent_card" type="FirbParentIllustrationCard"  />
-                <single-connection attribute="image_zone" type="FirbImageZone"  />
+                <image-zone-select />
                 <field-list fields="name" />
                 <p><b><ht key="firb_cards.code">Codice</ht></b><%= this.parent_card.blank? ? '' : this.parent_card.code %></p>
                 <p><b><ht key="firb_cards.collocation">Collocazione</ht></b><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></p>
@@ -49,7 +49,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
             <first-items:>
-                <single-connection attribute="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <image-zone-select />
             </first-items:>
             <after-std-fields:>
                 <single-connection attribute="textual_source" type="FirbTextCard"  />

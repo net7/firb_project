@@ -82,7 +82,16 @@ class Admin::BibliographyItemsControllerTest < ActionController::TestCase
     assert_equal('Naboo', item.isbn)
   end
   
-
+  def test_update_more
+    login_for(:admin)
+    testing_items
+    item = BibliographyItem.last
+    post(:update, "page_path"=>"admin/bibliography_items/edit", "bibliography_item"=>{"title"=>"Tit", "abstract"=>"Abstract", "publisher"=>"Foo", "author"=>"Bard", "date"=>"", "doi"=>"", "isbn"=>"", "issn"=>"", "pages"=>"", "published_in"=>"", "external_url"=>""}, "id"=>item.id)
+    assert_response(:redirect)
+    item = BibliographyItem.find(item.id)
+    assert_equal('Tit', item.title)
+    assert_equal('abstract', item.abstract)
+  end
 
   private
 
