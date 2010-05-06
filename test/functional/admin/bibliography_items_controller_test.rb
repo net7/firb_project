@@ -76,7 +76,7 @@ class Admin::BibliographyItemsControllerTest < ActionController::TestCase
     testing_items
     item = BibliographyItem.last
     post(:update, :id => item.id, :bibliography_item => { :title => 'the new bongo', :isbn => 'Naboo' })
-    assert_response(:redirect)
+    assert_redirected_to(:action => 'index')
     item = BibliographyItem.find(item.id)
     assert_equal('the new bongo', item.title)
     assert_equal('Naboo', item.isbn)
@@ -90,7 +90,7 @@ class Admin::BibliographyItemsControllerTest < ActionController::TestCase
     assert_response(:redirect)
     item = BibliographyItem.find(item.id)
     assert_equal('Tit', item.title)
-    assert_equal('abstract', item.abstract)
+    assert_equal('Abstract', item.abstract)
   end
 
   private

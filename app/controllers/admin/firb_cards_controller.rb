@@ -7,7 +7,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   before_filter :set_card_type, :uri_params
   
   def index
-    @firb_cards = @card_type.paginate(:page => params[:page])
+    @firb_cards = @card_type.paginate(:page => params[:page], :prefetch_relations => true)
   end
 
   def new
@@ -17,7 +17,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def edit
-    @firb_card = FirbCard.find(params[:id])
+    @firb_card = FirbCard.find(params[:id], :prefetch_relations => true)
   end
 
   def create
@@ -27,16 +27,6 @@ class Admin::FirbCardsController < Admin::AdminSiteController
       flash[:notice] = "Card succesfully created"
     else
       flash[:notice] = "Error creating card"
-    end
-    redirect_to :action => :index
-  end
-
-  def remove_page
-    card = FirbCard.find(params[:id])
-    if (card.remove)
-      flash[:notice] = "Card succesfully removed"
-    else
-      flash[:notice] = "Error removing the card"
     end
     redirect_to :action => :index
   end

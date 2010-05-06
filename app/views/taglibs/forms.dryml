@@ -44,7 +44,7 @@
         <input:parafrasi for='text' value='&this.parafrasi' />
         <label for='firb_text_card[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
 
-        <submit label="Save" /><or-cancel />
+        <submit label="Save" /><or-cancel with="&FirbTextCard" />
     </form>
 </def>
 
@@ -75,7 +75,7 @@
     <error-messages param/>
     <field-list fields="term, pref_label, alt_label, soundex, note" param/>
     <div param="actions">
-      <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel with="&IconclassTerm" id="" param="cancel"/>
     </div>
   </form>
 </def>
@@ -85,7 +85,7 @@
     <error-messages param/>
     <field-list fields="title, abstract, publisher, author, date, doi, isbn, issn, pages, published_in, external_url" param/>
     <div param="actions">
-      <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel with="&BibliographyItem" param="cancel"/>
     </div>
   </form>
 </def>

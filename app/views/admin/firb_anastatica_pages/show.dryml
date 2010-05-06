@@ -1,9 +1,9 @@
 <show-page>
 	<content-body:>
 		<div class='page-position'>
-			<ht key="firb_anastatica_pages.page_position">Page position:</ht> <%= this.page_position %>
+			<h3><ht key="firb_anastatica_pages.page_position">Page position</ht>: <%= this.page_position %></h3>
 		</div>
-		<h3><ht key="talia_collections.model_name_plural">Collections:</ht></h3>
+		<h3><ht key="talia_collections.model_name_plural">Collections</ht>:</h3>
 		<% source_uri = this.to_uri.safe_encoded %>
 		<repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
 			<%= this.title || this.to_uri.local_name %> 
@@ -11,11 +11,11 @@
 		<h3><ht key="firb_anastatica_pages.parts_of_this_source">Parts of this source</ht></h3>
 		<% parts = this.parts_by_class %>
 		<% part_list = parts.keys.sort %>
-		<% for current_class in part_list %>
-			<h4><%= current_class.titleize.pluralize %></h4>
-			<collection with="&parts[current_class]">
-				<empty-message:>None found (but there should be)</empty-message:>
-			</collection>
-		<% end %>
-	</content-body>
+		<repeat with="&part_list">
+			<h4><%= this.titleize.pluralize %></h4>
+			<ul>
+			<repeat with="&parts[this]"><li><a with="&this"><%= this.try.name || this.try.to_uri.local_name || this.to_s %></a></li></repeat>
+			</ul>
+		</repeat>
+	</content-body:>
 </show-page>

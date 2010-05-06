@@ -6,6 +6,14 @@ class Admin::FirbImagesController < Admin::AdminSiteController
 
   auto_actions :all
   protect_from_forgery :only => [:create, :edit, :destroy]
+  
+  def index
+    @firb_images = FirbImage.paginate(:page => params[:page], :prefetch_relations => true)
+  end
+
+  def show
+    @firb_image = FirbImage.find(params[:id], :prefetch_relations => true)
+  end
 
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
@@ -24,13 +32,13 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   end
 
   # Will remove an image from the db, with all of its zones
-  def remove_image
+  def destroy
     img = FirbImage.find(params[:id])
     name = img.name
     if (img.remove)
       flash[:notice] = "Image #{name} removed with all of its zones"
     else
-      flash[:noteice] = "Error removing the image"
+      flash[:notice] = "Error removing the image"
     end
     redirect_to :controller => :firb_images, :action => :index
   end

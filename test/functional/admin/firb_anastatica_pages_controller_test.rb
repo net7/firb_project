@@ -33,7 +33,7 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
     login_for(:admin)
     get(:show, :id => @page.id)
     assert_response(:success)
-    assert_select 'div.page-position', "#{I18n.t(:'firb_anastatica_pages.page_position')} #{@page.page_position}"
+    assert_select 'div.page-position', "#{I18n.t(:'firb_anastatica_pages.page_position')}: #{@page.page_position}"
     assert_select 'span.firb-anastatica-page-name', @page.name
   end
 

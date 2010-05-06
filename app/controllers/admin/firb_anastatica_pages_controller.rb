@@ -6,6 +6,14 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
   
   before_filter :create_zone
   
+  def index
+    @firb_anastatica_pages = FirbAnastaticaPage.paginate(:page => params[:page], :prefetch_relations => true)
+  end
+  
+  def edit
+    @firb_anastatica_page = FirbAnastaticaPage.find(params[:id], :prefetch_relations => true)
+  end
+  
   def create
     @firb_anastatica_page = FirbAnastaticaPage.create_page(params[:firb_anastatica_page])
     if(@firb_anastatica_page.save!)
@@ -20,7 +28,7 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
   
   
   def update
-    @firb_anastatica_page = FirbAnastaticaPage.find(params[:id])
+    @firb_anastatica_page = FirbAnastaticaPage.find(params[:id], :prefetch_relations => true)
     @firb_anastatica_page.update_attributes!(params[:firb_anastatica_page])
     assign_book_from_params
     delete_books_from_params

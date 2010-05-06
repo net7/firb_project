@@ -1,4 +1,4 @@
-module Admin::FirbTextPageHelper
+module Admin::FirbTextCardHelper
   
   # Produces an hash to be passed to an input (select_for format)
   # with all of our FirbAnastaticaPages

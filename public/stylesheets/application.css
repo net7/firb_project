@@ -4,6 +4,16 @@
 	width: 16px;
 	height: 16px;
 	cursor: move;
+	margin-left: 10px;
+}
+
+.delete-button {
+	float: right;
+	margin-left: 10px;
+}
+
+.link-add-top {
+	float: right;
 }
 
 .drop_ready div.card {

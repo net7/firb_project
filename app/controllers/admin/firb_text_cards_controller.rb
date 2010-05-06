@@ -4,6 +4,14 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
 
   auto_actions :all
 
+  def index
+    @firb_text_cards = FirbTextCard.paginate(:page => params[:page], :prefetch_relations => true)
+  end
+  
+  def show
+    @firb_text_card = FirbTextCard.find(params[:id], :prefetch_relations => true)
+  end
+
   def create
     txt = FirbTextCard.create_card(params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone])
     
@@ -19,17 +27,17 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
       FirbNote.create_notes(params[:firb_text_card][:note].values, txt)
     end
     
-    redirect_to :controller => :firb_text_cards
+    redirect_to :controller => :firb_text_cards, :action => :index
   end
 
-  def remove_card
+  def destroy
     p = FirbTextCard.find(params[:id])
     if (p.remove)
       flash[:notice] = "Text page removed"
     else
       flash[:notice] = "Error removing the text page"
     end
-    redirect_to :controller => :firb_text_cards
+    redirect_to :controller => :firb_text_cards, :action => :index
   end
 
   def update
@@ -49,7 +57,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     end
     
     attach_file_to(p)
-    redirect_to :controller => :firb_text_cards
+    redirect_to :controller => :firb_text_cards, :action => :index
   end
   
   private
