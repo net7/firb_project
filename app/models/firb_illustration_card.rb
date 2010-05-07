@@ -15,12 +15,6 @@ class FirbIllustrationCard < FirbCard
   def has_iconclass_terms?
     iconclass_terms.count > 0
   end
-  
-  # Remove action, no special linked items to remove
-  def destroy
-    self.remove_iconclass_terms
-    super
-  end
 
   def self.remove_iconclass_terms(page)
     page.iconclass_terms.each do |t|

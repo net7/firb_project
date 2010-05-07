@@ -71,6 +71,16 @@ class Admin::BibliographyItemsControllerTest < ActionController::TestCase
     assert_equal(nil, item.isbn)
   end
   
+  def test_create_non_authorized
+    assert_difference('BibliographyItem.count', 0) do
+      post(:create, :bibliography_item => { :title => 'da noob', :abstract => 'all about noobsys',
+        :author => 'the bingobongo',
+        :date => '01-10-1991',
+        :doi => '123456'})
+      assert_response(403)
+    end
+  end
+  
   def test_update
     login_for(:admin)
     testing_items
@@ -82,6 +92,15 @@ class Admin::BibliographyItemsControllerTest < ActionController::TestCase
     assert_equal('Naboo', item.isbn)
   end
   
+  def test_update_non_authorized
+    testing_items
+    old_title = BibliographyItem.last.title
+    item = BibliographyItem.last
+    post(:update, :id => item.id, :bibliography_item => { :title => 'the new bongo', :isbn => 'Naboo' })
+    assert_response(403)
+    assert_equal(BibliographyItem.last.title, old_title)
+  end
+  
   def test_update_more
     login_for(:admin)
     testing_items
@@ -91,6 +110,23 @@ class Admin::BibliographyItemsControllerTest < ActionController::TestCase
     item = BibliographyItem.find(item.id)
     assert_equal('Tit', item.title)
     assert_equal('Abstract', item.abstract)
+  end
+  
+  def test_destroy
+    login_for(:admin)
+    testing_items
+    assert_difference("BibliographyItem.count", -1) do
+      post(:destroy, :id => BibliographyItem.last.id)
+      assert_redirected_to(:action => :index)
+    end
+  end
+  
+  def test_destroy_non_authorized
+    testing_items
+    assert_difference("BibliographyItem.count", 0) do
+      post(:destroy, :id => BibliographyItem.last.id)
+      assert_response(403)
+    end
   end
 
   private

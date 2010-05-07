@@ -1,6 +1,7 @@
 class Admin::IconclassTermsController < Admin::AdminSiteController
 
   hobo_model_controller
+  
 
   auto_actions :all
   
@@ -14,7 +15,7 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
   
   def create
     @iconclass_term = IconclassTerm.create_term(params[:iconclass_term])
-    if(@iconclass_term.save)
+    if(save_created!(@iconclass_term))
       flash[:notice] = "Iconclass term successfully created"
     else
       flash[:notice] = "Error creating term"
@@ -23,13 +24,7 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
   end
   
   def update
-    @iconclass_term = IconclassTerm.find(params[:id], :prefetch_relations => true)
-    if(@iconclass_term.update_attributes(params[:iconclass_term]))
-      flash[:notice] = I18n.t("iconclass_term.successfully_update")
-    else
-      flash[:notice] = I18n.t("iconclass_term.error_updating")
-    end
-    redirect_to :action => 'index'
+    hobo_source_update(:find_options => { :prefetch_relations => true }) { redirect_to :action => :index }
   end
   
   def autocomplete

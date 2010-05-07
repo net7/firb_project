@@ -1,6 +1,7 @@
 class Admin::FirbTextCardsController < Admin::AdminSiteController
 
   hobo_model_controller
+  
 
   auto_actions :all
 
@@ -15,7 +16,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   def create
     txt = FirbTextCard.create_card(params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone])
     
-    if(txt.save)
+    if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
     else
       flash[:notice] = "Error creating the page"
@@ -31,32 +32,29 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def destroy
-    p = FirbTextCard.find(params[:id])
-    if (p.remove)
-      flash[:notice] = "Text page removed"
-    else
-      flash[:notice] = "Error removing the text page"
-    end
-    redirect_to :controller => :firb_text_cards, :action => :index
+    hobo_destroy { redirect_to :controller => :firb_text_cards, :action => :index }
   end
 
   def update
-    p = FirbTextCard.find(params[:id])
-    p.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
-    p.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
-    p.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
+    text_card = FirbTextCard.find(params[:id])
+    
+    text_card.updateable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
+    
+    text_card.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
+    text_card.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
+    text_card.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
     
     if (params[:firb_text_card][:note]) 
       FirbNote.replace_notes(params[:firb_text_card][:note], p)
     end
 
-    if (p.save!)
+    if (text_card.save)
+      attach_file_to(p)
       flash[:notice] = "Text page updated"
     else
       flash[:notice] = "Error updating the text page"
     end
     
-    attach_file_to(p)
     redirect_to :controller => :firb_text_cards, :action => :index
   end
   

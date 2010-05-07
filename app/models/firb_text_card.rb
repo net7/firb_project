@@ -39,12 +39,6 @@ class FirbTextCard < TaliaCore::Source
     p
   end
 
-  # Removes a text_page
-  def remove
-    FirbNote.delete_all_notes(self)
-    self.destroy
-  end
-
   def has_anastatica_page?
     !self.anastatica.blank?
   end

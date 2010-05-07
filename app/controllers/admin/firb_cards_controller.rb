@@ -1,6 +1,8 @@
 class Admin::FirbCardsController < Admin::AdminSiteController
 
   hobo_model_controller
+  
+  
 
   auto_actions :all
 
@@ -19,11 +21,15 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   def edit
     @firb_card = FirbCard.find(params[:id], :prefetch_relations => true)
   end
+  
+  def destroy
+    hobo_destroy { redirect_to :controller => :firb_cards, :action => :index }
+  end
 
   def create
     set_link_options!
     @firb_card = @card_type.create_card(card_params)
-    if(@firb_card.save)
+    if(save_created!(@firb_card))
       flash[:notice] = "Card succesfully created"
     else
       flash[:notice] = "Error creating card"
@@ -33,9 +39,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   
   def update
     set_link_options!
-    @firb_card = FirbCard.find(params[:id])
-    @firb_card.rewrite_attributes!(card_params)
-    redirect_to :action => :show, :id => params[:id]
+    hobo_source_update(:params => card_params)
   end
   
   # Add the current card type to all links

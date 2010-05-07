@@ -1,7 +1,7 @@
 class Admin::TaliaSourcesController < Admin::AdminSiteController
   
   hobo_model_controller
-  
+
   auto_actions :all, :except => :index
   
   def show
@@ -18,20 +18,18 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
   # request
   def assign_collection
     source, collection = get_source_and_collection
-    if(@source.update_permitted?)
-      collection << source
-      collection.save!
-    end
+    collection.updatable_by?(current_user) || raise(Hobo::PermissionDeniedError, "#{self.class.name}#assign_collection")
+    collection << source
+    collection.save!
   end
   
   # Remove the current source from the collection given by the
   # request
   def remove_collection
     source, collection = get_source_and_collection
-    if(@source.update_permitted?)
-      collection.delete(source)
-      collection.save!
-    end
+    collection.updatable_by?(current_user) || raise(Hobo::PermissionDeniedError, "#{self.class.name}#assign_collection")
+    collection.delete(source)
+    collection.save!
   end
   
   private
@@ -48,7 +46,6 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
     if(real= @source.real_source.class.include?(Hobo::Model))
       @source = @source.real_source
     end
-    @source.acting_user = current_user
     [ source, collection ]
   end
   

@@ -84,6 +84,10 @@ class FirbCard < TaliaCore::Source
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(options) # Check if it attaches :image_zone and :anastatica
   end
+  
+  def self.create_card_with_permission_check(options = {})
+    card = create_card(options).create_permission_check!
+  end
 
   def setup_options!(options)
     self.class.setup_options!(options)

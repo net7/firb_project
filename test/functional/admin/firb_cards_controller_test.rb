@@ -78,11 +78,19 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     # assert_select 'th.page-position-label'
   end
 
+  def test_create_non_illustrated_non_authorized
+    assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 0) do
+      post(:create, :firb_non_illustrated_memory_depiction_card => { :name => 'New one', :position => 'last_and_first', :anastatica => '' }, :type => 'non_illustrated_memory_depiction')
+      assert_response(403)
+    end
+  end
+
   def test_create_non_illustrated_with_page
     setup_page
+    login_for(:admin)
     assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 1) do
       post(:create, :firb_non_illustrated_memory_depiction_card => { :name => 'New one', :position => 'last_and_first', :anastatica => @page.uri.to_s }, :type => 'non_illustrated_memory_depiction')
-      assert_response(302)
+      assert_redirected_to(:controller => :firb_cards, :action => :index)
     end
     new_card = FirbNonIllustratedMemoryDepictionCard.last
     assert_equal('New one', new_card.name)
@@ -94,6 +102,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   def test_create_illustrated_with_bibliography
     setup_page
     setup_bibliographies
+    login_for(:admin)
     assert_difference('FirbIllustratedMemoryDepictionCard.count', 1) do
       post(:create, 
         :firb_illustrated_memory_depiction_card => { :name => 'New illu', :position => 'last_and_first', :anastatica => '', :bibliography => @bibliography_hash }, 
@@ -110,6 +119,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     setup_page
     setup_iconclass
     setup_image_zone
+    login_for(:admin)
     assert_difference('FirbLetterIllustrationCard.count', 1) do
       post(:create, 
         :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography => '', :image_zone => @image_zone.uri.to_s, :iconclass => @iconclass_hash }, 
@@ -127,6 +137,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     setup_page
     setup_iconclass
     setup_image_zone
+    login_for(:admin)
     assert_difference('FirbLetterIllustrationCard.count', 1) do
       post(:create, 
         :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography => '', :image_zone => @image_zone.uri.to_s, :iconclass => @iconclass_term_hash }, 
@@ -140,6 +151,23 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     assert_equal(new_card.image_zone.uri, @image_zone.uri)
   end
   
+  def test_destroy
+    setup_card
+    login_for(:admin)
+    assert_difference('FirbNonIllustratedMemoryDepictionCard.count', -1) do
+      post(:destroy, :id => @non_illustrated.id)
+      assert_response(302)
+    end
+    assert(!FirbNonIllustratedMemoryDepictionCard.exists?(@non_illustrated.id))
+  end
+
+  def test_destroy_non_authorized
+    setup_card
+    assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 0) do
+      post(:destroy, :id => @non_illustrated.id)
+      assert_response(403)
+    end
+  end
 
   # def test_edit
   #   login_for(:admin)
@@ -153,10 +181,11 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   def test_update_non_illustrated_with_page
     setup_cards
     setup_page
+    login_for(:admin)
     post(:update, :id => @non_illustrated.id, 
       :firb_non_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :anastatica => @page.uri.to_s }, 
       :type => 'non_illustrated_memory_depiction')
-    assert_response(302)
+    assert_redirected_to(:action => :show, :id => @non_illustrated.id)
     card = FirbNonIllustratedMemoryDepictionCard.find(@non_illustrated.id)
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
@@ -167,6 +196,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   def test_update_illustrated_with_bibliography
     setup_cards
     setup_bibliographies
+    login_for(:admin)
     post(:update, :id => @illustrated_one.id, 
       :firb_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography => @bibliography_hash },
       :type => 'illustrated_memory_depiction')
@@ -175,6 +205,16 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
     assert_equal(3, card.bibliography_items.size)
+  end
+  
+  def test_update_non_authorized
+    setup_card
+    old_position = @non_illustrated.position
+    post(:update, :id => @non_illustrated.id, 
+      :firb_non_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography => '' },
+      :type => 'non_illustrated_memory_depiction')
+    assert_response(403)
+    assert_equal(FirbCard.find(@non_illustrated.id).position, old_position)
   end
 
 
@@ -185,6 +225,11 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     @illustrated_one.save!
     @illustrated_two = FirbIllustratedMemoryDepictionCard.create_card(:name => 'super_illu', :position => 'you guess')
     @illustrated_two.save!
+  end
+  
+  def setup_card
+    @non_illustrated = FirbNonIllustratedMemoryDepictionCard.create_card(:name => 'me title', :position => '3rb')
+    @non_illustrated.save!
   end
 
   def setup_iconclass

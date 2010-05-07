@@ -3,6 +3,8 @@ require('hpricot')
 class Admin::FirbImagesController < Admin::AdminSiteController
 
   hobo_model_controller
+  
+  
 
   auto_actions :all
   protect_from_forgery :only => [:create, :edit, :destroy]
@@ -17,6 +19,8 @@ class Admin::FirbImagesController < Admin::AdminSiteController
 
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
+    # Check this before the real creation TODO: Bit of a hack
+    FirbImage.new.creatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#create"
     img = FirbImage.create_with_file(params[:firb_image][:name], params[:firb_image][:file])
     %w{auto_ana auto_img_1 auto_img_2 auto_text_1 auto_text_2 auto_capo}.each do |f|
       if (params[f] == "on") 
@@ -33,14 +37,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
 
   # Will remove an image from the db, with all of its zones
   def destroy
-    img = FirbImage.find(params[:id])
-    name = img.name
-    if (img.remove)
-      flash[:notice] = "Image #{name} removed with all of its zones"
-    else
-      flash[:notice] = "Error removing the image"
-    end
-    redirect_to :controller => :firb_images, :action => :index
+    hobo_destroy { redirect_to :controller => :firb_images, :action => :index }
   end
 
   # Will add a zone to the FirbImage with the given id
@@ -58,6 +55,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   
   # Will get some base64-ed xml and save the related image
   def update
+    FirbImage.first.try.updatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
     b64 = params[:base64xml]
     FirbImageElement.save_from_xml(b64)
     render :text => "OK"

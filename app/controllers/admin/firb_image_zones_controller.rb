@@ -1,6 +1,9 @@
 class Admin::FirbImageZonesController < Admin::AdminSiteController
 
   hobo_model_controller
+  
+  
+  
   auto_actions :none
 
   # Removes a zone and all of its children

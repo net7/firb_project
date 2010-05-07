@@ -62,6 +62,11 @@ class Admin::IconclassTermsControllerTest < ActionController::TestCase
     assert_equal('Noo', term.note)
   end
   
+  def test_create_non_authorized
+    post(:create, :iconclass_term => { :term => '99', :pref_label => 'Nuffink', :alt_label => 'Boink', :soundex => '12345', :note => 'Noo'})
+    assert_response(403)
+  end
+  
   def test_update
     login_for(:admin)
     testing_terms
@@ -71,6 +76,32 @@ class Admin::IconclassTermsControllerTest < ActionController::TestCase
     term = IconclassTerm.find(term.id)
     # assert_equal('78B', term.term)
     assert_equal('Naboo', term.pref_label)
+  end
+  
+  def test_update_non_authorized
+    testing_terms
+    term = IconclassTerm.last
+    old_label = term.pref_label
+    post(:update, :id => term.id, :iconclass_term => { :term => '78B', :pref_label => 'Naboo' })
+    assert_response(403)
+    assert_equal(IconclassTerm.last.pref_label, old_label)
+  end
+  
+  def test_destroy
+    login_for(:admin)
+    testing_terms
+    assert_difference("IconclassTerm.count", -1) do
+      post(:destroy, :id => IconclassTerm.last.id)
+      assert_redirected_to(:action => :index)
+    end
+  end
+  
+  def test_destroy_non_authorized
+    testing_terms
+    assert_difference("IconclassTerm.count", 0) do
+      post(:destroy, :id => IconclassTerm.last.id)
+      assert_response(403)
+    end
   end
   
   def test_autocomplete_nonspecific

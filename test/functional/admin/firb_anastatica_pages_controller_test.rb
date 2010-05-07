@@ -47,21 +47,30 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
   end
 
   def test_create
+    login_for(:admin)
     assert_difference('FirbAnastaticaPage.count', 1) do
       post(:create, :firb_anastatica_page => { :title => 'Noo titeel', :page_position => 'xvrzf' })
-      assert_response(302)
+      assert_redirected_to(:controller => :firb_anastatica_pages, :action => :index)
     end
     new_page = FirbAnastaticaPage.last
     assert_equal('Noo titeel', new_page.title)
     assert_equal('xvrzf', new_page.page_position)
   end
   
+  def test_create_non_authorized
+    assert_difference('FirbAnastaticaPage.count', 0) do
+      post(:create, :firb_anastatica_page => { :title => 'Noo titeel', :page_position => 'xvrzf' })
+      assert_response(403)
+    end
+  end
+  
   def test_create_different
+    login_for(:admin)
     assert_difference('FirbAnastaticaPage.count', 1) do
       post(:create, "firb_anastatica_page"=> { "uri"=>"http://localhost:5000/",
        "page_position"=>"poh",
        "title"=>"doh" })
-      assert_response(302)
+      assert_redirected_to(:controller => :firb_anastatica_pages, :action => :index)
     end
     new_page = FirbAnastaticaPage.last
     assert_equal('doh', new_page.title)
@@ -70,6 +79,7 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
   end
   
   def test_create_with_image_zone
+    login_for(:admin)
     image_zone = FirbImageZone.create_with_name('foo')
     image_zone.save!
     assert_difference('FirbAnastaticaPage.count', 1) do
@@ -78,7 +88,7 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
        "title"=>"doh",
        "image_zone" => image_zone.uri.to_s
         })
-      assert_response(302)
+      assert_redirected_to(:controller => :firb_anastatica_pages, :action => :index)
     end
     new_page = FirbAnastaticaPage.last
     assert_equal('doh', new_page.title)
@@ -96,6 +106,7 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
   end
 
   def test_update
+    login_for(:admin)
     post(:update, :id => @page.id, :firb_anastatica_page => { :title => 'Noo titeel', :page_position => 'xvrzf' })
     assert_response(302)
     new_page = FirbAnastaticaPage.last
@@ -103,5 +114,26 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
     assert_equal('xvrzf', new_page.page_position)
   end
 
+  def test_update_non_authorized
+    old_title = @page.title
+    post(:update, :id => @page.id, :firb_anastatica_page => { :title => 'Noo titeel', :page_position => 'xvrzf' })
+    assert_response(403)
+    assert_equal(FirbAnastaticaPage.find(@page.id).title, old_title)
+  end
+  
+  def test_destroy
+    login_for(:admin)
+    assert_difference("FirbAnastaticaPage.count", -1) do
+      post(:destroy, :id => FirbAnastaticaPage.last.id)
+      assert_redirected_to(:action => :index)
+    end
+  end
+  
+  def test_destroy_non_authorized
+    assert_difference("FirbAnastaticaPage.count", 0) do
+      post(:destroy, :id => @page.id)
+      assert_response(403)
+    end
+  end
 
 end

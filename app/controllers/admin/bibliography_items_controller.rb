@@ -14,7 +14,7 @@ class Admin::BibliographyItemsController < Admin::AdminSiteController
   
   def create
     @bibliography_item = BibliographyItem.create_item(params[:bibliography_item])
-    if(@bibliography_item.save)
+    if(save_created!(@bibliography_item))
       flash[:notice] = I18n.t("bibliography_items.succesfully_created")
     else
       flash[:notice] = I18n.t("bibliography_items.error_creating")
@@ -23,13 +23,7 @@ class Admin::BibliographyItemsController < Admin::AdminSiteController
   end
   
   def update
-    @bibliography_item = BibliographyItem.find(params[:id], :prefetch_relations => true)
-    if(@bibliography_item.update_attributes(params[:bibliography_item]))
-      flash[:notice] = I18n.t("bibliography_items.successfully_update")
-    else
-      flash[:notice] = I18n.t("bibliography_items.error_updating")
-    end
-    redirect_to :action => 'index'
+    hobo_source_update(:find_options => { :prefetch_relations => true }) { redirect_to :action => :index }
   end
   
   def autocomplete

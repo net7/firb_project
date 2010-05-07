@@ -99,7 +99,7 @@
 </def>
 
 <def tag="link-add-to-image">
-    <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone", :controller => :firb_images, :id => this.id}, :class => "link-add link-add-top", :title => I18n.t("firb_image.zone_add") %>
+    <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone", :controller => :firb_images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("firb_image.zone_add") %>
 </def>
 <def tag="link-add-to-zone">
     <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone",  :controller => :firb_image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("firb_image.zone_add") %>
@@ -109,7 +109,7 @@
 </def>
 
 <def tag="delete-icon">
-    <delete-button image='icons/cross.png' class="delete-button" />
+    <delete-button image='icons/cross.png' class="button-float" />
 </def>
 
 <def tag="prop-language">

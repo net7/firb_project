@@ -16,7 +16,7 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
   
   def create
     @firb_anastatica_page = FirbAnastaticaPage.create_page(params[:firb_anastatica_page])
-    if(@firb_anastatica_page.save!)
+    if(save_created!(@firb_anastatica_page))
       flash[:notice] = "Image #{@firb_anastatica_page.name} succesfully created"
     else
       flash[:notice] = "Error creating the page"
@@ -28,11 +28,11 @@ class Admin::FirbAnastaticaPagesController < Admin::AdminSiteController
   
   
   def update
-    @firb_anastatica_page = FirbAnastaticaPage.find(params[:id], :prefetch_relations => true)
-    @firb_anastatica_page.update_attributes!(params[:firb_anastatica_page])
-    assign_book_from_params
-    delete_books_from_params
-    redirect_to :controller => :firb_anastatica_pages, :action => :index
+    hobo_source_update do
+      assign_book_from_params
+      delete_books_from_params
+      redirect_to :controller => :firb_anastatica_pages, :action => :index
+    end
   end
   
   private

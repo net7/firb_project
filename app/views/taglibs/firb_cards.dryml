@@ -88,7 +88,7 @@
 <def tag="card" for="FirbIllustratedMemoryDepictionCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><card-link /></h4>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link /> |
       <image-zone-link /> |
       <if test="&this.parent_card.blank?">
@@ -135,6 +135,21 @@
 </def>
 
 <!-- General tags -->
+
+<def tag='delete-card-icon'><%=
+  if (can_delete?)
+    attributes = { :type => "image", :src => "#{base_url}/images/icons/cross.png" }
+    label = ht("hobo.actions.remove", :default=>"Remove") 
+    confirm = ht("hobo.messages.confirm", :default=>"Are you sure?") 
+    
+    add_classes!(attributes, "image-button", "delete-button delete-#{this.class.name.underscore.dasherize}-button", "button-float")
+    fade = true 
+    url = url_for(:controller => :firb_cards, :action => :destroy, :id => this.id)
+    attributes[:value] = label
+    attributes[:onclick] = "Hobo.removeButton(this, '#{url}', #{js_updates(nil)}, {fade:#{fade}, confirm: #{confirm.inspect}})"
+    element(:input, attributes, nil, true, true)
+  end
+%></def>
 
 <def tag="card-type-selector">
   <ul id="card-selector">
