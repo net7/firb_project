@@ -19,7 +19,7 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
   def assign_collection
     source, collection = get_source_and_collection
     collection.updatable_by?(current_user) || raise(Hobo::PermissionDeniedError, "#{self.class.name}#assign_collection")
-    collection << source
+    collection.real_source << source unless(collection.real_source.include?(source))
     collection.save!
   end
   
@@ -28,7 +28,7 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
   def remove_collection
     source, collection = get_source_and_collection
     collection.updatable_by?(current_user) || raise(Hobo::PermissionDeniedError, "#{self.class.name}#assign_collection")
-    collection.delete(source)
+    collection.real_source.delete(source)
     collection.save!
   end
   
@@ -40,7 +40,7 @@ class Admin::TaliaSourcesController < Admin::AdminSiteController
     source_uri = N::URI.from_encoded(params[:source])
     collection_uri = N::URI.from_encoded(params[:collection])
     source = TaliaCore::ActiveSource.find(source_uri)
-    collection = TaliaCore::Collection.find(collection_uri)
+    collection = TaliaCollection.find(collection_uri)
     @source_id = params[:source]
     @source = TaliaSource.find(source.id)
     if(real= @source.real_source.class.include?(Hobo::Model))
