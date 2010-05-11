@@ -160,6 +160,8 @@ it:
         completed: "L'illustrazione è completa?"
         transcription_text: "Trascrizione"
         short_description: "Descrizione breve"
+        textual_source: "Scheda Testo"
+        parent_iconclass: "Iconclass della madre"
         
     firb_letter_illustration_cards:
         model_name: "Scheda capolettera"
@@ -242,6 +244,15 @@ it:
         transcription_text: "Trascrizione"
         descriptive_notes: "Note descrittive"
         description: "Descrizione"
+        child_cards: "Figlie"
+        component_zones: "Componenti"
+        iconclass_terms: "Iconclass"
+        iconclass_children: "Iconclass delle figlie"
+        study_notes: "Note di studio"
+        bibliography_items: "Elementi Bibliografici"
+        parent_code: "Codice (della madre)"
+        parent_collocation: "Collocazione (della madre)"
+        image_components: "Elementi decorativi"
         
     # Used in new.dryml
     new_firb_image:
@@ -291,6 +302,8 @@ it:
     # Used all over: general terms
     general:
         cancel: "Annulla"
+        'true': "vero"
+        'false': "falso"
 
     # Used all over: technical terms 
     firb:

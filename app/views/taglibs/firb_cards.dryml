@@ -78,7 +78,7 @@
 <def tag="card" for="FirbNonIllustratedMemoryDepictionCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><card-link /></h4>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link />
       
     </header:>
@@ -104,7 +104,7 @@
 <def tag="card" for="FirbLetterIllustrationCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><card-link /></h4>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link /> |
       <image-zone-link />
     </header:>
@@ -114,7 +114,7 @@
 <def tag="card" for="FirbParentIllustrationCard">
   <card class="firb-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><card-link /></h4>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link /> |
       <image-zone-link />
       <div>
@@ -135,6 +135,47 @@
 </def>
 
 <!-- General tags -->
+
+<def tag="field-row" attrs="fieldname">
+    <tr>
+        <th class="#{fieldname}-label" param="label"><ht key="#{this.class.name.tableize}.#{fieldname}"><%= fieldname.titleize %></ht></th>
+        <td class="#{fieldname}-view" param="view"><firb-card-link with="&this[fieldname.to_sym]" /></td>
+    </tr>
+</def>
+
+<def tag="field-collection-row" attrs="hrefatt, fieldname">
+    <field-row fieldname="&fieldname">
+        <label:><ht key="firb_cards.#{fieldname}"><%= fieldname.titleize %></ht></label:>
+        <view:>
+            <repeat with="&this.send(fieldname)" join=", ">
+                <firb-card-link />
+            </repeat>
+        </view:>
+    </field-row>
+</def>
+
+<def tag="card-name">
+    <%= this.name.blank? ? this.to_uri.local_name : this.name %>
+</def>
+
+<def tag="firb-card-link">
+    <if test="&this.is_a?(FirbCard)">
+        <a href="&url_for(:controller => :firb_cards, :action => :show, :id => this.id, :type => this.class.name.underscore.gsub('firb_', '').gsub('_card', ''))"><card-name /></a>
+    </if>
+    <else>
+        <if test="&this.is_a?(TaliaCore::Source)">
+            <if test="&this.is_a?(FirbImageZone) && this.get_firb_image_parent">
+                <a href="&url_for(:controller => :firb_images, :action => :show, :id => this.get_firb_image_parent.id, :type => :false)"><card-name /></a>
+            </if>
+            <else>
+                <a with="&this"><card-name /></a>
+            </else>
+        </if>
+        <else>
+            <%= this %>
+        </else>
+    </else>
+</def>
 
 <def tag='delete-card-icon'><%=
   if (can_delete?)

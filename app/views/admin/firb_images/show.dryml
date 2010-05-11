@@ -1,0 +1,5 @@
+<show-page>
+    <content-body:>
+        <card />
+    </content-body:>
+</show-page>

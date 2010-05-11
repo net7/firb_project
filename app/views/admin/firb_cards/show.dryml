@@ -1,3 +1,98 @@
+<def tag="image-part">
+    <% @imageid = this.id %>
+    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
+
+        <if test="&this.file_status == 'OK'">
+            <imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
+        </if>
+        <unless test="&this.file_status == 'OK'">
+            <img-not-ready />
+        </unless>
+        <span><link-imt-edit /></span>
+
+    </div>
+</def>
+
+<def tag="zone-image">
+    <if test="&this.try.image_zone && this.image_zone.get_firb_image_parent">
+        <image-part with="&this.image_zone.get_firb_image_parent" />
+    </if>
+</def>
+
+<def tag="field-table" polymorphic>
+    <zone-image />
+    <table class="field-list">
+        <field-row fieldname="anastatica" />
+        <field-collection-row fieldname="bibliography_items" />
+        <do param="post-bibliography" />
+        <field-row fieldname="tecnique" />
+        <field-row fieldname="measure" />
+        <field-row fieldname="position" />
+        <field-row fieldname="descriptive_notes" />
+        <field-row fieldname="study_notes" />
+        <field-row fieldname="description" />
+        <do param="post-description" />
+        <field-row fieldname="study_notes" />
+        <field-row fieldname="completed">
+            <view:><%= (this.completed == 0) ? I18n.t('general.false') : I18n.t('general.true') %></view:>
+        </field-row>
+    </table>
+</def>
+
+
+<def tag="field-table" for="FirbParentIllustrationCard">
+    <field-table merge>
+        <post-bibliography:>
+            <field-row fieldname="code" />
+            <field-row fieldname="collocation" />
+        </post-bibliography:>
+        <post-description:>
+            <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :firb_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
+            <field-collection-row fieldname="component_zones" />
+            <field-collection-row fieldname="iconclass_terms" />
+            <field-row fieldname="iconclass_children">
+                <view:>
+                    <repeat with="&this.child_cards" join=", ">
+                        <repeat with="&this.iconclass_terms" join=", ">
+                            <firb-card-link />
+                        </repeat>
+                    </repeat>
+                </view:>
+            </field-row>
+        </post-description:>
+    </field-table>
+</def>
+
+<def tag="field-table" for="FirbIllustratedMemoryDepictionCard">
+    <field-table merge>
+        <post-bibliography:>
+            <field-row fieldname="parent_code">
+                <view:><%= this.parent_card && this.parent_card.code %></view:>
+            </field-row>
+            <field-row fieldname="parent_collocation">
+                <view:><%= this.parent_card && this.parent_card.collocation %></view:>
+            </field-row>
+        </post-bibliography:>
+        <post-description:>
+            <field-row fieldname="textual_source" />
+            <field-row fieldname="transcription_text" />
+            <field-row fieldname="parent_iconclass">
+                <view:><%= this.parent_card && this.parent_card.iconclass_terms.collect { |term| term.term }.join(", ") %></view:>
+            </field-row>
+            <field-collection-row fieldname="iconclass_terms" />
+        </post-description:>
+    </field-table>
+</def>
+
+<def tag="field-table" for="FirbLetterIllustrationCard">
+    <field-table merge>
+        <post-description:>
+            <field-collection-row fieldname="iconclass_terms" />
+            <field-collection-row fieldname="image_components" />
+        </post-description:>
+    </field-table>
+</def>
+
 <show-page>
     <prepend-content-header:>
         <p><a href="&url_for(:action => :index)"><ht key="firb_cards.index">Index</ht></a></p>
@@ -10,22 +105,6 @@
 		</a>
 	</edit-link:>
 	<content-body:>
-	    <firb-card-content />
+	    <field-table />
     </content-body>
 </show-page>
-
-<def tag="firb-card-content" polymorphic>
-    <view:description param="description"/>
-    <unless test="&this.anastatica.blank?">
-    <p><b><ht key="firb_anastatica_pages.model_name">Anastatica Page</ht>:</b> <a with="&this.anastatica" action="show"><%= this.name %></a></p>
-    </unless>
-    <unless test="&this.bibliography_items.blank?">
-        <p>
-            <b><ht key="bibliography_items.model_name">Bibliography Items</ht>:</b>
-            <repeat with="&this.bibliography_items" join=", ">
-                <a with="&this" action="show"><%= this.name %></a>
-            </repeat>
-        </p>
-    </unless>
-    <field-list fields="code, collocation, tecnique, measure, position, descriptive_notes, study_notes, description, completed" param/>
-</def>

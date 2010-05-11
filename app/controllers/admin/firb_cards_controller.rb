@@ -44,7 +44,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   
   # Add the current card type to all links
   def default_url_options(options={})
-    if(options[:type] == 'false')
+    if(options[:type].to_s == 'false')
       options[:type] = nil
     else
       options[:type] ||= @card_type_name
