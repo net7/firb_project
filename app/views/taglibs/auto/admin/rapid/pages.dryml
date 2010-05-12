@@ -38,9 +38,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="bibliography_items.actions.new">New Elemento Bibliografico</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -48,6 +45,13 @@
 
         <page-nav param="bottom-page-nav"/>
 
+
+        <div param="new-form">
+          <h3 param="new-form-heading">
+            <ht key="bibliography_items.form.new.heading">New Elemento Bibliografico</ht>
+          </h3>
+          <form with="&@invalid_record || new_for_current_user(BibliographyItem)" param/>
+        </div>
 
       </section>
     </content:>

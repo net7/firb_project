@@ -59,6 +59,9 @@ module AdminHelper
     end
   end
 
+  def not_hidden?(model)
+    !(TaliaCore::CONFIG['hidden_tabs'].include?(model.name.tableize))
+  end
 
   # Selects the action for the firb_card forms (since hobo won't do it on the subclasses)
   def firb_card_action

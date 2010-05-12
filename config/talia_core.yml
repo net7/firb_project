@@ -25,3 +25,5 @@ namespaces:
 thumb_options: 
   height: "200"
   width: "200"
+hidden_tabs:
+  - 'talia_sources'
