@@ -77,6 +77,10 @@ class FirbCard < TaliaCore::Source
     super(options)
   end
 
+  def child_cards
+    ActiveRDF::Query.new(FirbCard).select(:card).where(:card, N::DCT.isPartOf, self).execute
+  end
+
   def self.create_card(options = {})
     setup_options!(options)
     new_url =  (N::LOCAL + 'firb_card/' + random_id).to_s

@@ -8,12 +8,8 @@ class FirbIllustratedMemoryDepictionCard < FirbIllustrationCard
   declare_attr_type :short_description, :text
   singular_property :transcription_text, N::TALIA.transcription
   declare_attr_type :transcription_text, :text
-  singular_property :parent_card, N::TALIA.parent_card
+  singular_property :parent_card, N::DCT.isPartOf
   singular_property  :textual_source, N::TALIA.attachedText
-  
-  def image_components
-    self[N::TALIA.image_component]
-  end
 
   # Still missing:
   # textual source: link to a text page

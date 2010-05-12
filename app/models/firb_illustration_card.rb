@@ -16,6 +16,10 @@ class FirbIllustrationCard < FirbCard
     iconclass_terms.count > 0
   end
 
+  def inherited_iconclasses
+    ActiveRDF::Query.new(IconclassTerm).select(:iconclass).where(:card, N::DCT.isPartOf, self).where(:card, N::DCT.subject, :iconclass).execute
+  end
+
   def self.remove_iconclass_terms(page)
     page.iconclass_terms.each do |t|
       page[N::DCT.subject].remove(t)
@@ -29,6 +33,10 @@ class FirbIllustrationCard < FirbCard
         page.dct::subject << iconclass_term
       end
     end
+  end
+
+  def image_components
+    self[N::TALIA.image_component]
   end
   
   def self.replace_iconclass_terms(new_terms, page)

@@ -10,19 +10,7 @@ class FirbParentIllustrationCard < FirbIllustrationCard
    
   fields do
     uri :string
-  end
-  
-  
-  def child_cards
-    ActiveRDF::Query.new(FirbIllustratedMemoryDepictionCard).select(:card).where(:card, N::TALIA.parent_card, self).execute
-  end
-  
-  def component_zones
-    ActiveRDF::Query.new(FirbImageZone).select(:zone).where(:zone, N::TALIA.component_zone, self).execute
-  end
-  
-  def inherited_iconclasses
-    ActiveRDF::Query.new(IconclassTerm).select(:iconclass).where(:card, N::TALIA.parent_card, self).where(:card, N::DCT.subject, :iconclass).execute
-  end
+  end  
+
   
 end
