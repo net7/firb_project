@@ -1,0 +1,16 @@
+<edit-page>
+    <delete-button: replace>
+        <%= if (can_delete?)
+            attributes = { :type => "button" }
+            label = ht 'firb_cards.actions.delete', :default=>['Remove This Scheda']
+            confirm = ht("hobo.messages.confirm", :default=>"Are you sure?") 
+
+            add_classes!(attributes, "button", "delete-button delete-#{this.class.name.underscore.dasherize}-button")
+            fade = true 
+            url = url_for(:controller => :firb_cards, :action => :destroy, :id => this.id)
+            attributes[:value] = label
+            attributes[:onclick] = "Hobo.removeButton(this, '#{url}', #{js_updates(nil)}, {fade:#{fade}, confirm: #{confirm.inspect}})"
+            element(:input, attributes, nil, true, true)
+          end %>
+    </delete-button:>
+</edit-page>
