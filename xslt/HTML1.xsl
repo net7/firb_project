@@ -5,22 +5,13 @@
 <xsl:param name="source_uri"/>
 
 <xsl:template match="/">
-<html><body><div class="thctag" about="{$source_uri}"><xsl:apply-templates select="*"/></div></body></html>
+<div class="thctag" about="{$source_uri}"><xsl:apply-templates select="*"/></div>
 </xsl:template>
-
-<xsl:template match="tei:TEI">
-                <xsl:apply-templates select="tei:text"/>
-</xsl:template>
-
-        <xsl:template match="tei:text">
-                        <xsl:apply-templates/>
-	</xsl:template>
-
 
 <xsl:template match="tei:p">
 <p>
   <xsl:choose>
-    <xsl:when test="count(lb)!=0">
+    <xsl:when test="count(tei:lb)!=0">
       <!-- Add text nodes preceding a 'lb' node -->
       <xsl:apply-templates select="tei:lb" />
       <!-- Add text node following the last 'lb' node -->
@@ -33,7 +24,7 @@
     <xsl:otherwise>
 
       <!-- the <p> tag does not contain any <lb> tags -->
-      <xsl:apply-templates/>
+      <xsl:apply-templates/> 
     </xsl:otherwise>
   </xsl:choose>
 </p>
