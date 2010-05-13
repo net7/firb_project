@@ -14,6 +14,11 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     @firb_text_card = FirbTextCard.find(params[:id], :prefetch_relations => true)
   end
 
+  def show_annotable
+    record = TaliaCore::DataTypes::DataRecord.find(params[:id])
+    @content = record.content_string
+  end
+
   def create
     txt = FirbTextCard.create_card(params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone])
     

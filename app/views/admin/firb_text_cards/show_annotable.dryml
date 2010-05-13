@@ -1,0 +1,7 @@
+<html><head>
+    <title></title>
+    <stylesheet name="annotable.css"/> 
+</head>
+<body>
+<%= @content %>
+</body></html>
