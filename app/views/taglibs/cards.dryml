@@ -145,7 +145,7 @@
       <else>
         <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records('TaliaCore::DataTypes::XmlData').first.id)"><ht key="text_cards.show_file">Mostra file</ht></a>
            <if test="!&this.data_records('TaliaCore::DataTypes::XmlData')[1].blank?">
-             <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records('TaliaCore::DataTypes::XmlData')[1].id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+             <br/><a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records('TaliaCore::DataTypes::XmlData')[1].id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
            </if>
       </else>
     </div>
