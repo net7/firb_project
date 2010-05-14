@@ -8,6 +8,6 @@ span.number {
 }
 img { 
     border: 0px; margin: 20px; width: 100px; height: 114px;
-    background-image: url(img/polaroid_frame.jpg);
+    background-image: url(/images/polaroid_frame.jpg);
     background-repeat: no-repeat; 
 }
