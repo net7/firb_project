@@ -5,7 +5,7 @@
 <xsl:param name="source_uri"/>
 
 <xsl:template match="/">
-<div class="thctag" about="{$source_uri}"><xsl:apply-templates select="*"/></div>
+<div class="THCContent" about="{$source_uri}"><xsl:apply-templates select="*"/></div>
 </xsl:template>
 
 <xsl:template match="tei:p">
@@ -39,7 +39,7 @@
  
 <xsl:template match="tei:graphic">
  <xsl:variable name="pos"><xsl:number level="any" count="tei:graphic"/></xsl:variable>
-  <img about="{$source_uri}_img_{$pos}"/><xsl:apply-templates/>
+  <img class="source_img" about="{$source_uri}_img_{$pos}"/><xsl:apply-templates/>
 </xsl:template>
 
 
