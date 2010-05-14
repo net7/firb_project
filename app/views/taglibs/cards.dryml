@@ -1,171 +1,174 @@
 <def tag="iconclassterm">
-	<div class='firb-iconclass-term'>
-		<span class='iconclass-term-term'><%= this.term %></span>
-		<span class='iconclass-term-soundex'>(<%= this.soundex %>)</span>: 
-		<span class='iconclass-term-label'><%= this.pref_label %></span>
-	</div>
+  <div class='firb-iconclass-term'>
+    <span class='iconclass-term-term'><%= this.term %></span>
+    <span class='iconclass-term-soundex'>(<%= this.soundex %>)</span>:
+    <span class='iconclass-term-label'><%= this.pref_label %></span>
+  </div>
 </def>
 
 <def tag="fposition" attrs="v">
-    <h5><%= I18n.t("firb.position") %>: </h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.position") %>: </h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="fcode" attrs="v">
-    <h5><%= I18n.t("firb.code") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.code") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="fcollocation" attrs="v">
-    <h5><%= I18n.t("firb.collocation") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.collocation") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="ftecnique" attrs="v">
-    <h5><%= I18n.t("firb.tecnique") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.tecnique") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="fmeasure" attrs="v">
-    <h5><%= I18n.t("firb.measure") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.measure") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="fposition" attrs="v">
-    <h5><%= I18n.t("firb.position") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.position") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="fdescriptivenotes" attrs="v">
-    <h5><%= I18n.t("firb.descriptive_notes") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.descriptive_notes") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="fstudynotes" attrs="v">
-    <h5><%= I18n.t("firb.study_notes") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.study_notes") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 <def tag="fdescription" attrs="v">
-    <h5><%= I18n.t("firb.description") %>:</h5>
-    <span>
-        <if test="!v.nil?"><%= v %></if>
-        <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
-    </span>
+  <h5><%= I18n.t("firb.description") %>:</h5>
+  <span>
+    <if test="!v.nil?"><%= v %></if>
+    <unless test="v.nil?"><%= I18n.t("firb.no_value") %></unless>
+  </span>
 </def>
 
 
 <def tag="card" for="FirbTextCard">
-	<card class="firb-text-card" param="default" merge>
+  <card class="firb-text-card" param="default" merge>
 
-		<% parent, parent_name, image_zone, image_zone_name = parent_and_zone(this) %>
+    <% parent, parent_name, image_zone, image_zone_name = parent_and_zone(this) %>
 
-		<h4 param="heading"><a action="edit"><%= "#{parent_name} : #{image_zone_name}" %></a><delete-icon /></h4>
+    <h4 param="heading"><a action="edit"><%= "#{parent_name} : #{image_zone_name}" %></a><delete-icon /></h4>
 
-		<div class="firb-image-picture" id="firb_image_container_#{this.id}">
+    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
 
-			<unless test="&image_zone.nil?">
-				<imt-viewer id="firb_image_#{this.id}" b64="#{thumb_xml(parent, [image_zone.uri.to_s])}"/>
-			</unless>
-			<if test="&image_zone.nil?">
-				<img-not-ready />
-			</if>
-		</div>
-		<div class="firb-text-page-content">
-			<div class='firb-text-page-anastatica'>
-				<if test="&this.has_anastatica_page?">
-					<h5><%= I18n.t("firb.anastatica") %>:</h5>
-					<span><%= anastatica_pretty_title(this.anastatica) %></span>
-				</if>
-				<unless test="&this.has_anastatica_page?">
-					<h5><%= I18n.t("firb_text_page.no_anastatica_associated") %></h5>
-				</unless>
+      <unless test="&image_zone.nil?">
+        <imt-viewer id="firb_image_#{this.id}" b64="#{thumb_xml(parent, [image_zone.uri.to_s])}"/>
+      </unless>
+      <if test="&image_zone.nil?">
+        <img-not-ready />
+      </if>
+    </div>
+    <div class="firb-text-page-content">
+      <div class='firb-text-page-anastatica'>
+        <if test="&this.has_anastatica_page?">
+          <h5><%= I18n.t("firb.anastatica") %>:</h5>
+          <span><%= anastatica_pretty_title(this.anastatica) %></span>
+        </if>
+        <unless test="&this.has_anastatica_page?">
+          <h5><%= I18n.t("firb_text_page.no_anastatica_associated") %></h5>
+        </unless>
 
-			</div>
+      </div>
 
-			<div class='firb-text-page-parafrasi'>
-				<h5><%= I18n.t("firb.parafrasi") %>:</h5>
-				<span><%= this.parafrasi %></span>
-			</div>
+      <div class='firb-text-page-parafrasi'>
+        <h5><%= I18n.t("firb.parafrasi") %>:</h5>
+        <span><%= this.parafrasi %></span>
+      </div>
 
-			<div class='firb-text-page-notes-container'>
+      <div class='firb-text-page-notes-container'>
 
-				<if test="&this.has_notes?">
-					<h5><%= this.notes_count %> <%= I18n.t("firb.notes") %> : </h5>
-					<ul>
-						<repeat with="&this.notes">
-							<li>
-								<div class='firb-text-page-note'>
-									<%= if (this.content.length > 80)
-									this.content.slice(0,80) + " ...."
-									else
-									this.content
-									end
-									%> 
-								</div>
-							</li>
-						</repeat>
-					</ul>
-				</if>
-				<unless test="&this.has_notes?">
-					<h5><%= I18n.t("firb_text_page.no_notes_associated") %></h5>
-				</unless>
-			</div>
+        <if test="&this.has_notes?">
+          <h5><%= this.notes_count %> <%= I18n.t("firb.notes") %> : </h5>
+          <ul>
+            <repeat with="&this.notes">
+              <li>
+                <div class='firb-text-page-note'>
+                  <%= if (this.content.length > 80)
+                    this.content.slice(0,80) + " ...."
+                  else
+                    this.content
+                  end
+                %>
+                </div>
+              </li>
+            </repeat>
+          </ul>
+        </if>
+        <unless test="&this.has_notes?">
+          <h5><%= I18n.t("firb_text_page.no_notes_associated") %></h5>
+        </unless>
+      </div>
 
-		</div>
-		
-		<div class="firb-text-page-file">
-		    <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-		        <ht key="firb_text_page.no_file">Nessun file</ht>
-	        </if>
-	        <else>
-	            <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records('TaliaCore::DataTypes::XmlData').first.id)"><ht key="text_cards.show_file">Mostra file</ht></a>
-            </else>
-	    </div>
+    </div>
 
-	</card>
+    <div class="firb-text-page-file">
+      <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
+        <ht key="firb_text_page.no_file">Nessun file</ht>
+      </if>
+      <else>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records('TaliaCore::DataTypes::XmlData').first.id)"><ht key="text_cards.show_file">Mostra file</ht></a>
+           <if test="!&this.data_records('TaliaCore::DataTypes::XmlData')[1].blank?">
+             <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records('TaliaCore::DataTypes::XmlData')[1].id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+           </if>
+      </else>
+    </div>
+
+  </card>
 </def>
 
 <def tag="card-with-drag-handle">
-	<% drag_id = this.to_uri.safe_encoded %>
-	<div id="#{drag_id}">
-		<card>
-			<before-heading:>
-				<if test="&this.with_acting_user(current_user) { this.update_permitted? }"><div class="drag_handle">&nbsp;</div></if>
-			</before-heading:>
-		</card>
-	</div>
-	<if test="&this.with_acting_user(current_user) { this.update_permitted? }">
-		<%= draggable_element(drag_id, 
-		:handle => "'drag_handle'", 
-		:revert => true, 
-		:ghosting => true,
-		:scroll => 'window' ) %>
-	</if>
+  <% drag_id = this.to_uri.safe_encoded %>
+  <div id="#{drag_id}">
+    <card>
+      <before-heading:>
+        <if test="&this.with_acting_user(current_user) { this.update_permitted? }"><div class="drag_handle">&nbsp;</div></if>
+      </before-heading:>
+    </card>
+  </div>
+  <if test="&this.with_acting_user(current_user) { this.update_permitted? }">
+    <%= draggable_element(drag_id,
+      :handle => "'drag_handle'",
+      :revert => true,
+      :ghosting => true,
+      :scroll => 'window' ) %>
+  </if>
 </def>
 
 <def tag="card" for="IconclassTerm">
@@ -173,15 +176,15 @@
     <header: param>
       <h4 param="heading"><a action="edit"><name/></a> - <%= this.pref_label %><delete-icon /></h4>
     </header:>
-	<body: param>
-		<p>
-			<b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %> |
-			<b><ht key="iconclass_terms.soundex">Soundex</ht>:</b> <%= this.soundex %>
-		</p>
-		<p>
-			<b><ht key="iconclass_terms.note">Note</ht>:</b> <%= this.note %>
-		</p>
-	</body>
+    <body: param>
+      <p>
+        <b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %> |
+        <b><ht key="iconclass_terms.soundex">Soundex</ht>:</b> <%= this.soundex %>
+      </p>
+      <p>
+        <b><ht key="iconclass_terms.note">Note</ht>:</b> <%= this.note %>
+      </p>
+      </body>
   </card>
 </def>
 
@@ -190,109 +193,109 @@
     <header: param>
       <h4 param="heading"><a action="edit"><name/></a> - <%= this.author %><delete-icon /></h4>
     </header:>
-	<body: param>
-		<p>
-			<b><ht key="bibliography_items.date">Date:</ht></b> <%= this.date %>
-		</p>
-		<p>
-			<b><ht key="bibliography_items.pages">Pages:</ht></b> <%= this.pages %>
-		</p>
-		<p>
-			<b><ht key="bibliography_items.publisher">Published by:</ht></b> <%= this.publisher %> |
-			<b><ht key="bibliography_items.published_in">Published in:</ht></b> <%= this.published_in %>
-		</p>
-		<p>
-			<b><ht key="bibliography_items.external_url">External URL:</ht></b> <%= this.external_url %>
-		</p>
-		<p>
-			<b><ht key="bibliography_items.doi">DOI:</ht></b> <%= this.doi %> |
-			<b><ht key="bibliography_items.isbn">ISBN:</ht></b> <%= this.isbn %> |
-			<b><ht key="bibliography_items.issn">ISSN:</ht></b> <%= this.issn %>
-		</p>
-	</body>
+    <body: param>
+      <p>
+        <b><ht key="bibliography_items.date">Date:</ht></b> <%= this.date %>
+      </p>
+      <p>
+        <b><ht key="bibliography_items.pages">Pages:</ht></b> <%= this.pages %>
+      </p>
+      <p>
+        <b><ht key="bibliography_items.publisher">Published by:</ht></b> <%= this.publisher %> |
+        <b><ht key="bibliography_items.published_in">Published in:</ht></b> <%= this.published_in %>
+      </p>
+      <p>
+        <b><ht key="bibliography_items.external_url">External URL:</ht></b> <%= this.external_url %>
+      </p>
+      <p>
+        <b><ht key="bibliography_items.doi">DOI:</ht></b> <%= this.doi %> |
+        <b><ht key="bibliography_items.isbn">ISBN:</ht></b> <%= this.isbn %> |
+        <b><ht key="bibliography_items.issn">ISSN:</ht></b> <%= this.issn %>
+      </p>
+      </body>
   </card>
 </def>
 
 <def tag="card" for="FirbImage">
-	<card class="firb-image" param="default" merge>
-		<h4 param="heading"><editor:name /> <span><delete-icon /><link-add-to-image /></span></h4> 
+  <card class="firb-image" param="default" merge>
+    <h4 param="heading"><editor:name /> <span><delete-icon /><link-add-to-image /></span></h4>
 
-		<% @imageid = this.id %>
-		<div class="firb-image-picture" id="firb_image_container_#{this.id}">
+    <% @imageid = this.id %>
+    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
 
-			<if test="&this.file_status == 'OK'">
-				<imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
-			</if>
-			<unless test="&this.file_status == 'OK'">
-				<img-not-ready />
-			</unless>
-			<span><link-imt-edit /></span>
+      <if test="&this.file_status == 'OK'">
+        <imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
+      </if>
+      <unless test="&this.file_status == 'OK'">
+        <img-not-ready />
+      </unless>
+      <span><link-imt-edit /></span>
 
-		</div>
+    </div>
 
-		<div class="firb-image-zones">
-			<h4><%= this.zone_count %> <ht key='firb_image.zones'>zones</ht>:</h4> 
-			<ul>
-				<li repeat="&this.zones">
-					<firbimagezone parentfirbimageid="firb_image_#{@imageid}"/>
-				</li>
-			</ul>
-		</div>
+    <div class="firb-image-zones">
+      <h4><%= this.zone_count %> <ht key='firb_image.zones'>zones</ht>:</h4>
+      <ul>
+        <li repeat="&this.zones">
+        <firbimagezone parentfirbimageid="firb_image_#{@imageid}"/>
+        </li>
+      </ul>
+    </div>
 
-	</card>
+  </card>
 </def>
 
 <def tag="card" for="TaliaCollection">
-	<card class="talia-collection" param="default" merge>
-		<header: param>
-			<h4 param="heading"><a><%= this.title %></a><delete-icon /></h4>
-		</header:>
-		<body:>
+  <card class="talia-collection" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><%= this.title %></a><delete-icon /></h4>
+    </header:>
+    <body:>
 
-        <ht key="talia_collections.side_collection.count" count="&this.real_source.elements.size">
+      <ht key="talia_collections.side_collection.count" count="&this.real_source.elements.size">
 			Contains <%= this.real_source.elements.size %> Sources
-        </ht>
+      </ht>
 
-		</body:>
-	</card>
+    </body:>
+  </card>
 </def>
 
 <def tag="card" for="FirbAnastaticaPage">
-	<card class="talia-source" param="default" merge>
-		<header: param>
-			<h4 param="heading"><a><name/></a><delete-icon /></h4>
-		</header:>
-		<body:>
-			<div><ht key="firb_anastatica_pages.page_position">Position</ht>: <%= this.page_position %></div>
-			<source-collections />
-		</body:>
-	</card>
+  <card class="talia-source" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a><delete-icon /></h4>
+    </header:>
+    <body:>
+      <div><ht key="firb_anastatica_pages.page_position">Position</ht>: <%= this.page_position %></div>
+      <source-collections />
+    </body:>
+  </card>
 </def>
 
 <def tag="card" for="TaliaSource">
-	<card class="talia-source" param="default" merge>
-		<header: param>
-			<h4 param="heading"><a><name/></a></h4>
-		</header:>
-		<body:>
-			<div><%= this.uri %> | <%= this.short_type %></div>
-			<source-collections />
-		</body:>
-	</card>
+  <card class="talia-source" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body:>
+      <div><%= this.uri %> | <%= this.short_type %></div>
+      <source-collections />
+    </body:>
+  </card>
 </def>
 
 <def tag="source-collections">
-	<% source_uri = this.to_uri.safe_encoded %>
-	<% can_update = this.with_acting_user(current_user) { this.update_permitted? } %>
-	<repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
-		<%= this.title || this.to_uri.local_name %> 
-		<if test="&can_update">
-			<remote-method-button method="disjoin_collection" label="x" 
-				params="&{:collection => this.to_uri.safe_encoded, :source => source_uri }" 
-				url="#{url_for(:controller => 'admin/talia_sources', :action => 'remove_collection')}"
-				spinner-next-to="#{source_uri}"
-				message="Deleting..."
-				/>
-		</if>
-	</repeat>
+  <% source_uri = this.to_uri.safe_encoded %>
+  <% can_update = this.with_acting_user(current_user) { this.update_permitted? } %>
+  <repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
+    <%= this.title || this.to_uri.local_name %>
+    <if test="&can_update">
+      <remote-method-button method="disjoin_collection" label="x"
+                            params="&{:collection => this.to_uri.safe_encoded, :source => source_uri }"
+                            url="#{url_for(:controller => 'admin/talia_sources', :action => 'remove_collection')}"
+                            spinner-next-to="#{source_uri}"
+                            message="Deleting..."
+                            />
+    </if>
+  </repeat>
 </def>

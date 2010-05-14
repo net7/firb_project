@@ -1,0 +1,13 @@
+span.line { 
+    display: block; 
+}
+span.number { 
+    display: inline; 
+    color: red; 
+    margin: 10px; 
+}
+img.source_img { 
+    border: 0px; margin: 20px; width: 100px; height: 114px;
+    background-image: url('/images/polaroid_frame.jpg');
+    background-repeat: no-repeat; 
+}
