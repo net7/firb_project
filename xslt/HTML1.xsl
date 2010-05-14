@@ -5,7 +5,7 @@
 <xsl:param name="source_uri"/>
 
 <xsl:template match="/">
-<div class="thctag" about="{$source_uri}"><xsl:apply-templates select="*"/></div>
+<div class="THCContent" about="{$source_uri}"><xsl:apply-templates select="*"/></div>
 </xsl:template>
 
 <xsl:template match="tei:p">
