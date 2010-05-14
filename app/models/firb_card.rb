@@ -11,6 +11,10 @@ class FirbCard < TaliaCore::Source
   # Anastatica page it links to
   singular_property :anastatica, N::DCT.isPartOf
 
+  # Author of the elment
+  singular_property :author, N::DCT.creator
+  declare_attr_type :author, :string
+
   # Code: internal identifier used by the owner of the original source
   # to archive it
   singular_property :code, N::TALIA.identifier

@@ -1,6 +1,7 @@
 class FirbIllustrationCard < FirbCard
 
   singular_property  :image_zone, N::DCT.isFormatOf
+  singular_property  :textual_source, N::TALIA.attachedText
 
   def iconclass_terms
     qry = ActiveRDF::Query.new(IconclassTerm).select(:it).distinct
@@ -36,7 +37,7 @@ class FirbIllustrationCard < FirbCard
   end
 
   def image_components
-    self[N::TALIA.image_component]
+    ActiveRDF::Query.new(ImageComponent).select(:image_component).where(:image_component, N::TALIA.image_component, self).execute
   end
   
   def self.replace_iconclass_terms(new_terms, page)

@@ -299,6 +299,15 @@ it:
         actions:
           delete: "Cancella questa scheda testo"
 
+    image_component:
+      model_name: "Componenti"
+      image_zone: "Zona"
+      name: "Nome"
+      zone_type: "Tipo della Zona"
+      actions:
+        create: "Crea"
+        delete: "Cancella" 
+
     # Used all over: general terms
     general:
         cancel: "Annulla"
