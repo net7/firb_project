@@ -62,6 +62,10 @@ module AdminHelper
   def not_hidden?(model)
     !(TaliaCore::CONFIG['hidden_tabs'].include?(model.name.tableize))
   end
+  
+  def image_components(components, card)
+    render :partial => 'admin/image_components/embedded_form', :locals => { :image_components => components, :new_component => ImageComponent.new, :current_card => card }
+  end
 
   # Selects the action for the firb_card forms (since hobo won't do it on the subclasses)
   def firb_card_action

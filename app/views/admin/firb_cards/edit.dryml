@@ -13,4 +13,8 @@
             element(:input, attributes, nil, true, true)
           end %>
     </delete-button:>
+    <append-content-body:>
+        <h2><ht key="image_component.model_name">Componenti</ht></h2>
+        <%= image_components(this.image_components, this) %>
+    </append-content-body:>
 </edit-page>

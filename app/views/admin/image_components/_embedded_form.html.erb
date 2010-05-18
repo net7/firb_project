@@ -1,0 +1,17 @@
+<div class="image-zones">
+<ul id="image-zone-list">
+    <%= render :partial => 'admin/image_components/component_list', :object => image_components %>
+</ul>
+
+    <% remote_form_for(new_component, :update => 'image-zone-list', :url => { :controller => 'admin/image_components', :action => :create, :id => new_component.id }) do |f| %>
+        <%= f.label :image_zone, I18n.t('image_component.image_zone')%>
+        <%= select_tag 'image_component[image_zone]', options_for_select(image_zone_select_uri) %><br/>
+        <%= f.label :name, I18n.t('image_component.name') %>
+        <%= f.text_field :name %><br/>
+        <%= f.label :zone_type, I18n.t('image_component.zone_type') %>
+        <%= f.text_field :zone_type %><br/>
+        <%= submit_tag I18n.t('image_component.actions.create') %>
+        <%= hidden_field_tag 'image_component[firb_card]', current_card.to_uri.to_s %>
+    <% end %>
+
+</div>
