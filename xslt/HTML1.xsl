@@ -39,7 +39,7 @@
  
 <xsl:template match="tei:graphic">
  <xsl:variable name="pos"><xsl:number level="any" count="tei:graphic"/></xsl:variable>
-  <img class="source_img" about="{$source_uri}_img_{$pos}"/><xsl:apply-templates/>
+  <img class="source_img" src="/images/illustration.jpg" about="{$source_uri}_img_{$pos}"/><xsl:apply-templates/>
 </xsl:template>
 
 
