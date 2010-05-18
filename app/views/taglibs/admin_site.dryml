@@ -89,27 +89,27 @@
 
 <def tag="img-not-ready">
     <div class="img-not-ready">
-        <img src='../../images/icons/hourglass.png' /> <ht key='firb_image.image_not_ready'>Image not ready yet</ht>
+        <img src='../images/icons/hourglass.png' /> <ht key='firb_image.image_not_ready'>Image not ready yet</ht>
     </div>
 </def>
 
 
 <def tag="link-imt-edit">
-    <%= link_to "<img src='../../images/icons/vector_add.png'> #{I18n.t("firb_image.draw_in_editor")}", {:action => :edit, :controller => :firb_images, :id => this.id}, :title => I18n.t("firb_image.draw_in_editor") %>
+    <%= link_to "<img src='../images/icons/vector_add.png'> #{I18n.t("firb_image.draw_in_editor")}", {:action => :edit, :controller => :firb_images, :id => this.id}, :title => I18n.t("firb_image.draw_in_editor") %>
 </def>
 
 <def tag="link-add-to-image">
-    <%= link_to "<img src='../../images/icons/layout_add.png'>", {:action => "add_zone", :controller => :firb_images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("firb_image.zone_add") %>
+    <%= link_to "<img src='../images/icons/layout_add.png'>", {:action => "add_zone", :controller => :firb_images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("firb_image.zone_add") %>
 </def>
 <def tag="link-add-to-zone">
-    <%= link_to "<img src='../../images/icons/layout_add.png'>", {:action => "add_zone",  :controller => :firb_image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("firb_image.zone_add") %>
+    <%= link_to "<img src='../images/icons/layout_add.png'>", {:action => "add_zone",  :controller => :firb_image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("firb_image.zone_add") %>
 </def>
 <def tag="link-del-zone">
-    <%= link_to "<img src='../../images/icons/cross.png'>", {:action => "remove_zone", :controller => :firb_image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.zone_del"), :confirm => I18n.t("firb_image.confirm_zone_del")  %>
+    <%= link_to "<img src='../images/icons/cross.png'>", {:action => "remove_zone", :controller => :firb_image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.zone_del"), :confirm => I18n.t("firb_image.confirm_zone_del")  %>
 </def>
 
 <def tag="delete-icon">
-    <delete-button image='../../images/icons/cross.png' class="button-float" />
+    <delete-button image='../images/icons/cross.png' class="button-float" />
 </def>
 
 <def tag="prop-language">
