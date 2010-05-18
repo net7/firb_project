@@ -1,0 +1,7 @@
+<index-page>
+    <count:>
+        <ht key="firb_images.collection.count" count="&this.total_entries">
+          There <count prefix="are"/>
+        </ht>
+    </count:>
+</index-page>

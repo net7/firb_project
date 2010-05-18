@@ -75,38 +75,38 @@
 <def tag="imt-viewer" attrs="id, b64">
     <div class="imt-viewer">
         <object class="IMTViewer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="#{id}" width="200" height="200" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
-            <param name="movie" value="/ImageMapperViewer.swf?js_prefix=jsapi_" />
+            <param name="movie" value="#{image_path('ImageMapperViewer.swf?js_prefix=jsapi_')}" />
             <param name="quality" value="high" />
             <param name="bgcolor" value="#ffffff" />
             <param name="allowScriptAccess" value="always" />
-            <embed src="/ImageMapperViewer.swf?js_prefix=jsapi_" quality="high" bgcolor="#ffffff" width="100%" height="100%" name="#{id}" align="middle" play="true" loop="false" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" b64="#{b64}"></embed>
+            <embed src="#{image_path('ImageMapperViewer.swf?js_prefix=jsapi_')}" quality="high" bgcolor="#ffffff" width="100%" height="100%" name="#{id}" align="middle" play="true" loop="false" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" b64="#{b64}"></embed>
         </object>
     </div>
 </def>
 
 <def tag="img-not-ready">
     <div class="img-not-ready">
-        <img src='/images/icons/hourglass.png' /> <ht key='firb_image.image_not_ready'>Image not ready yet</ht>
+        <img src='../images/icons/hourglass.png' /> <ht key='firb_image.image_not_ready'>Image not ready yet</ht>
     </div>
 </def>
 
 
 <def tag="link-imt-edit">
-    <%= link_to "<img src='/images/icons/vector_add.png'> #{I18n.t("firb_image.draw_in_editor")}", {:action => :edit, :controller => :firb_images, :id => this.id}, :title => I18n.t("firb_image.draw_in_editor") %>
+    <%= link_to "<img src='../images/icons/vector_add.png'> #{I18n.t("firb_image.draw_in_editor")}", {:action => :edit, :controller => :firb_images, :id => this.id}, :title => I18n.t("firb_image.draw_in_editor") %>
 </def>
 
 <def tag="link-add-to-image">
-    <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone", :controller => :firb_images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("firb_image.zone_add") %>
+    <%= link_to "<img src='../images/icons/layout_add.png'>", {:action => "add_zone", :controller => :firb_images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("firb_image.zone_add") %>
 </def>
 <def tag="link-add-to-zone">
-    <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone",  :controller => :firb_image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("firb_image.zone_add") %>
+    <%= link_to "<img src='../images/icons/layout_add.png'>", {:action => "add_zone",  :controller => :firb_image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("firb_image.zone_add") %>
 </def>
 <def tag="link-del-zone">
-    <%= link_to "<img src='/images/icons/cross.png'>", {:action => "remove_zone", :controller => :firb_image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.zone_del"), :confirm => I18n.t("firb_image.confirm_zone_del")  %>
+    <%= link_to "<img src='../images/icons/cross.png'>", {:action => "remove_zone", :controller => :firb_image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("firb_image.zone_del"), :confirm => I18n.t("firb_image.confirm_zone_del")  %>
 </def>
 
 <def tag="delete-icon">
-    <delete-button image='icons/cross.png' class="button-float" />
+    <delete-button image='../images/icons/cross.png' class="button-float" />
 </def>
 
 <def tag="prop-language">
