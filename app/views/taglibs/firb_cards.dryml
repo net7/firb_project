@@ -6,13 +6,14 @@
 <def tag="form" for="FirbLetterIllustrationCard">
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
-            <first-items:>
-                <image-zone-select />
-            </first-items:>
-            <last-items:>
-                <iconclass-terms-edit />
-                <component-items-edit />
-            </last-items:>
+            <before-anastatica:>
+                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+            </before-anastatica:>
+            <after-bibliography:>
+                <field-row fieldname="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
+            </after-bibliography:>
         </card-form-common>
     </form>
 </def>
@@ -20,21 +21,21 @@
 <def tag="form" for="FirbIllustratedMemoryDepictionCard">
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
-            <std-fields: replace>
-                <single-connection attribute="parent_card" type="FirbParentIllustrationCard"  />
-                <image-zone-select />
-                <field-list fields="name" />
-                <p><b><ht key="firb_cards.code">Codice</ht></b><%= this.parent_card.blank? ? '' : this.parent_card.code %></p>
-                <p><b><ht key="firb_cards.collocation">Collocazione</ht></b><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></p>
-                <field-list fields="tecnique, measure, position, descriptive_notes, completed" />
-                <single-connection attribute="textual_source" type="FirbTextCard"  />
-                <field-list fields="transcription_text, description, short_description" />
-                <component-items-edit />
-                <iconclass-terms-edit />
-            </std-fields:>
-            <study-fields: replace>
-                <field-list fields="study_notes" />
-            </study-fields:>
+            <before-anastatica:>
+                <single-connection-row fieldname="parent_card" type="FirbParentIllustrationCard" />
+                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+            </before-anastatica:>
+            <code: replace>
+                <field-row fieldname="code"><view:><%= this.parent_card.blank? ? '' : this.parent_card.code %></view:></field-row>
+            </code:>
+            <collocation: replace>
+                <field-row fieldname="collocation"><view:><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></view:></field-row>
+            </collocation:>
+            <after-completed:>
+                <single-connection-row fieldname="textual_source" type="FirbTextCard" />
+                <field-edit-row fieldname="short_description" />
+                <field-edit-row fieldname="transcription_text" />
+            </after-completed:>
         </card-form-common>
     </form>
 </def>
@@ -48,27 +49,29 @@
 <def tag="form" for="FirbParentIllustrationCard">
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
-            <first-items:>
-                <image-zone-select />
-            </first-items:>
-            <after-std-fields:>
-                <single-connection attribute="textual_source" type="FirbTextCard"  />
-            </after-std-fields:>
-            <last-items:>
-                <% if (children = this.child_cards).size > 0 %>
-                <p>
-                    <b><ht key="firb_card.children">Figlie:</ht></b> 
-                    <repeat with="&children" join=", " >
-                        <%= this.name %> (<repeat with="&this.image_components" join=","><%= this.name %></repeat>)
-                    </repeat>
-                </p>
-                <% end %>
-                <p>
-                    <b><ht key="firb_card.inherited_iconclass">Iconclass delle figlie:</ht></b> 
-                    <repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat>
-                </p>
-                <iconclass-terms-edit />
-            </last-items:>
+            <before-anastatica:>
+                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+            </before-anastatica:>
+            <after-completed:>
+                <single-connection-row fieldname="textual_source" type="FirbTextCard" />
+            </after-completed:>
+            <after-bibliography:>
+                <if test="&(children = this.child_cards).size > 0">
+                    <field-row fieldname="children">
+                        <view:>
+                            <repeat with="&children" join=", " >
+                                <%= this.name %> (<repeat with="&this.image_components" join=","><%= this.name %></repeat>)
+                            </repeat>
+                        </view:>
+                    </field-row>
+                </if>
+                <field-row fieldname="inherited_iconclass">
+                    <view:><repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat></view:>
+                </field-row>
+                <field-row fieldname="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
+            </after-bibliography:>
         </card-form-common>
     </form>
 </def>
@@ -136,11 +139,29 @@
 
 <!-- General tags -->
 
+<def tag="field-edit-table" polymorphic>
+    <table class="field-list">
+        <do param="content" />
+    </table>
+</def>
+
 <def tag="field-row" attrs="fieldname">
     <tr>
         <th class="#{fieldname}-label" param="label"><ht key="#{this.class.name.tableize}.#{fieldname}"><%= fieldname.titleize %></ht></th>
         <td class="#{fieldname}-view" param="view"><firb-card-link with="&this[fieldname.to_sym]" /></td>
     </tr>
+</def>
+
+<def tag="field-edit-row" attrs="fieldname">
+    <field-row fieldname="&fieldname">
+        <view:><input field="&fieldname" /></view:>
+    </field-row>
+</def>
+
+<def tag="single-connection-row" attrs="fieldname">
+    <field-row fieldname="&fieldname">
+        <view:><single-connection attribute="&fieldname" merge /></view:>
+    </field-row>
 </def>
 
 <def tag="field-collection-row" attrs="hrefatt, fieldname">
@@ -212,15 +233,28 @@
   </else>
 </def>
 
+
 <def tag="card-form-common">
     <error-messages param/>
-    <section param="first-items" />
-    <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
-    <section param="additional-items" />
-    <field-list fields="name, code, collocation, tecnique, measure, position, descriptive_notes, completed" param="std-fields" />
-    <field-list fields="description, study_notes" param="study-fields" />
-    <bibliography-items-edit />
-    <section param="last-items" />
+    <field-edit-table>
+        <content:>
+            <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
+            <field-edit-row fieldname="name" param="namefield"/>
+            <field-edit-row fieldname="code" param="code" />
+            <field-edit-row fieldname="collocation" param="collocation"/>
+            <field-edit-row fieldname="tecnique" param="tecnique" />
+            <field-edit-row fieldname="measure" param="measure" />
+            <field-edit-row fieldname="position" param="position" />
+            <field-edit-row fieldname="descriptive_notes" param="descriptivenotes" />
+            <field-edit-row fieldname="completed" param="completed"/>
+            <field-edit-row fieldname="description" param="description"/>
+            <field-edit-row fieldname="study_notes" param="studynotes" />
+            <field-row fieldname="bibliography" param="bibliography" >
+                <view:><bibliography-items-edit /></view:>
+            </field-row>
+        </content:>
+    </field-edit-table>
+
     <input type="hidden" name="type" value="&@card_type_name" />
     <unless test="&this.new_record?">
         <input type="hidden" name="_method" value="PUT" />
@@ -254,7 +288,6 @@
 
 
 <def tag="bibliography-items-edit">
-    <label for="bibliography-select"><ht key="firb_cards.bibliography">Bibliography Items</ht></label><br/>
     <%= render :partial => 'shared/multi_selector', 
                :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select, :autocomplete_url => '',
                             :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
@@ -262,7 +295,6 @@
 </def>
 
 <def tag="component-items-edit">
-    <label for="bibliography-select"><ht key="firb_cards.components">Componenti</ht></label><br/>
     <%= render :partial => 'shared/multi_selector', 
                :locals => { :main_name => @full_type_name, :param_name => 'image_component', :options => image_zone_select_uri, :autocomplete_url => '',
                             :existing => this.image_components.collect {|comp| [ comp.name, comp.uri.to_s ] } } 
@@ -270,7 +302,6 @@
 </def>
 
 <def tag="iconclass-terms-edit">
-    <label for="iconclass-select"><ht key="firb_cards.iconclass">Iconclass</ht></label><br/>
     <%= render :partial => 'shared/multi_selector',
              :locals => { :main_name => @full_type_name, :param_name => 'iconclass', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
                              :existing => this.iconclass_terms.collect {|ic| [ ic.term, ic.uri.to_s ] } }

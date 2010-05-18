@@ -5,9 +5,6 @@ class FirbLetterIllustrationCard < FirbIllustrationCard
   # list of decorative components, with: name, type (floreal, human, ..)
   # illustration's components
   
-  def image_components
-    self[N::TALIA.image_component]
-  end
   
   def self.setup_options!(options)
     options.to_options!

@@ -15,22 +15,19 @@
 
 
 <def tag="single-connection" attrs="typename, attribute, type, options">
-    <div class="single-connection">
-        <% typename ||= (this.class.name.underscore || type.underscore) %>
-        <% options ||= type.constantize.all.collect { |el| [ "#{el.name}", el.uri.to_s ] }.sort %>
-        <% attribute_el       = this.send(attribute.to_sym) %>
-        <if test              = "&attribute_el.blank?">
-            <select-menu name = "#{typename}[#{attribute}]"
-                options       = "&options" 
-                first-option  = "&I18n.t('firb_text_page.select_one')" />
-        </if>
-        <else>
-            <select-menu name = "#{typename}[#{attribute}]"
-                options       = "&options" 
-                selected      = "&attribute_el.uri.to_s" />
-        </else>
-        <label for            = "#{typename}[#{attribute}]"><%= I18n.t("firb.#{attribute}") %> </label><br />
-    </div>
+    <% typename ||= (this.class.name.underscore || type.underscore) %>
+    <% options ||= type.constantize.all.collect { |el| [ "#{el.name}", el.uri.to_s ] }.sort %>
+    <% attribute_el       = this.send(attribute.to_sym) %>
+    <if test              = "&attribute_el.blank?">
+        <select-menu name = "#{typename}[#{attribute}]"
+            options       = "&options" 
+            first-option  = "&I18n.t('firb_text_page.select_one')" />
+    </if>
+    <else>
+        <select-menu name = "#{typename}[#{attribute}]"
+            options       = "&options" 
+            selected      = "&attribute_el.uri.to_s" />
+    </else>
 </def>
 
 <def tag="image-zone-select">
