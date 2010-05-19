@@ -49,9 +49,6 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     text_card.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
     text_card.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
     text_card.title = params[:firb_text_card][:title] unless(params[:firb_text_card][:title].blank?)
-
-    # text_card.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
-    # image_zone_list.each{ |iz| hans[N::DCT.isFormatOf] << FirbImageZone.find(iz) }
     
     zones = params[:firb_text_card][:image_zone].values.collect{ |iz| FirbImageZone.find(iz) }
     text_card.predicate_replace(:dct, :isFormatOf, zones)
