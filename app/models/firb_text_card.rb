@@ -7,6 +7,7 @@ class FirbTextCard < TaliaCore::Source
   # that there is only one value at a time
   singular_property :parafrasi, N::DCT.description
   singular_property :anastatica, N::DCT.isPartOf
+  singular_property :title, N::DCNS.title
   
   fields do
     uri :string
@@ -21,19 +22,15 @@ class FirbTextCard < TaliaCore::Source
   # forms to decide the input type.
   declare_attr_type :parafrasi, :text
   
-  # Multi-value stuff:
-  # - No direct support through hobo as a field 
-  # - you can use the page.namespace:name notation
-
   # Creates a page initialazing it with a paraphrase and anastatica_page id
-  def self.create_card(parafrasi, ana_id, image_zone_list)
+  def self.create_card(title, parafrasi, ana_id, image_zone_list)
     hans = FirbTextCard.new(N::LOCAL + 'FirbTextCard/' + FirbImageElement.random_id)
     hans.parafrasi = parafrasi unless(parafrasi.blank?)
+    hans.title = title unless(title.blank?)
     if (!ana_id.blank?)
       hans.anastatica = FirbAnastaticaPage.find(ana_id)
     end
     image_zone_list.each{ |iz| hans[N::DCT.isFormatOf] << FirbImageZone.find(iz) }
-
     hans
   end
 

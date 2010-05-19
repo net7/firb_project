@@ -20,7 +20,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def create
-    txt = FirbTextCard.create_card(params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone].values)
+    txt = FirbTextCard.create_card(params[:firb_text_card][:title], params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone].values)
     
     if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
@@ -47,8 +47,10 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     text_card.updateable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
     
     text_card.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
-    text_card.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
     text_card.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
+    text_card.title = params[:firb_text_card][:title] unless(params[:firb_text_card][:title].blank?)
+
+    # text_card.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
     
     if (params[:firb_text_card][:note]) 
       FirbNote.replace_notes(params[:firb_text_card][:note], p)

@@ -82,7 +82,7 @@
 <def tag="card" for="FirbTextCard">
   <card class="firb-text-card" param="default" merge>
 
-    <h4 param="heading"><a action="edit">Titolo </a><delete-icon /></h4>
+    <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
     
     <div class="firb-image-picture" id="firb_image_container_#{this.id}">
       
