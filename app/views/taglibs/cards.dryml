@@ -85,7 +85,13 @@
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
     
     <div class="firb-image-picture" id="firb_image_container_#{this.id}">
-      
+        
+        <%= I18n.t("firb_text_page.image_zones") %>:
+        <ul>
+        <repeat with="&this.image_zones">
+            <li class='firb-text-card-image-zones'><%= this.name %></li>
+        </repeat>
+        </ul>
     </div>
     <div class="firb-text-page-content">
       <div class='firb-text-page-anastatica'>
