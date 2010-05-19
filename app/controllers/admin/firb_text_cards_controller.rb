@@ -20,7 +20,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def create
-    txt = FirbTextCard.create_card(params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone])
+    txt = FirbTextCard.create_card(params[:firb_text_card][:title], params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone].values)
     
     if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
@@ -44,11 +44,17 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   def update
     text_card = FirbTextCard.find(params[:id])
     
-    text_card.updateable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
+    text_card.updatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
     
     text_card.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
-    text_card.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
     text_card.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
+    text_card.title = params[:firb_text_card][:title] unless(params[:firb_text_card][:title].blank?)
+
+    # text_card.image_zone = FirbImageZone.find(params[:firb_text_card][:image_zone]) unless(params[:firb_text_card][:image_zone].blank?)
+    # image_zone_list.each{ |iz| hans[N::DCT.isFormatOf] << FirbImageZone.find(iz) }
+    
+    zones = params[:firb_text_card][:image_zone].values.collect{ |iz| FirbImageZone.find(iz) }
+    text_card.predicate_replace(:dct, :isFormatOf, zones)
     
     if (params[:firb_text_card][:note]) 
       FirbNote.replace_notes(params[:firb_text_card][:note], p)

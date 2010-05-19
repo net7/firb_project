@@ -296,6 +296,9 @@ it:
         remove_note: "Elimina questa nota"
         no_notes_associated: "Nessuna nota associata a questa pagina di testo"
         text_page: "Scheda testo"
+        title: "Titolo"
+        transcription_file: "File con la trascrizione XML"
+        image_zones: "Zone di immagine"
         actions:
           delete: "Cancella questa scheda testo"
 

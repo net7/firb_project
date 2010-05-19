@@ -22,11 +22,15 @@
     <form merge param="default" multipart="true">
         <error-messages param/>
         
-         <input type="file" name="firb_text_card[file]"/><br />
-        
-        <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
-        <image-zone-select />
-
+        <%= I18n.t("firb_text_page.title") %>: <input type="text" name="firb_text_card[title]" value="&this.title"/><br />
+        <br />
+        <%= I18n.t("firb_text_page.transcription_file") %>: <input type="file" name="firb_text_card[file]"/><br />
+        <br />
+        <%= I18n.t("firb_anastatica_pages.model_name") %>: <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
+        <br />
+        <%= I18n.t("firb_text_page.image_zones") %> :
+        <image-zones-edit />
+        <br />
         <div id="firb-notes">
 
             <if test="&this.has_notes?">
