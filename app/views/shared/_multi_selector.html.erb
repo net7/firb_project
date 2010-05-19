@@ -12,7 +12,7 @@
 <span id="<%= param_name %>-indicator" style="display: none">
   <img src="/images/icons/ajax-loader.gif" alt="Working..." />
 </span>
-<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" class="button" value="add" />
+<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" class="button" value="<%= I18n.t('general.add') %>" />
 <div id='<%= param_name %>-autocomplete-values' class="autocomplete"></div>
 
 <script>
@@ -41,7 +41,7 @@
 <select name="<%= param_name %>-selector" id="<%= param_name %>-selector">
     <%= options_for_select(options) %>
 </select>
-<input type="button" name="<%= param_name %>-add" class="button" id="<%= param_name %>-add" value="add" />
+<input type="button" name="<%= param_name %>-add" class="button" id="<%= param_name %>-add" value="<%= I18n.t('general.add') %>" />
 <script type="text/javascript">
 <%= param_name %>_selector = $('<%= param_name %>-selector')
 <%= param_name %>_button = $('<%= param_name %>-add')

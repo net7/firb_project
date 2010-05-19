@@ -153,6 +153,8 @@ it:
         code: "Codice"
         name: "Nome"
         collocation: "Collocazione"
+        parent_card: "Scheda illustrazione 'madre'"
+        image_zone: "Zona di immagine"
         tecnique: "Tecnica"
         measure: "Misure"
         position: "Posizione"
@@ -164,6 +166,7 @@ it:
         short_description: "Descrizione breve"
         textual_source: "Scheda Testo"
         parent_iconclass: "Iconclass della madre"
+        bibliography: "Bibliografia"
         
     firb_letter_illustration_cards:
         model_name: "Scheda capolettera"
@@ -191,6 +194,9 @@ it:
         completed: "L'illustrazione è completa?"
         bibliography_element: "Bibliografia"
         transcription_text: "Trascrizione"
+        image_zone: "Zona di immagine"
+        bibliography: "Bibliografia"
+        iconclass_terms: "Termini Iconclass"
 
     firb_parent_illustration_cards:
         model_name: "Scheda illustrazione"
@@ -218,7 +224,11 @@ it:
         completed: "L'illustrazione è completa?"
         bibliography_element: "Bibliografia"
         transcription_text: "Trascrizione"
-
+        image_zone: "Zona di immagine"
+        textual_source: "Scheda testo collegata"
+        inherited_iconclass: "Termini iconclass ereditati dalle 'figlie'"
+        iconclass_terms: "Termini Iconclass"
+        bibliography: "Bibliografia"
 
     # Firb cards
     firb_cards:
@@ -316,6 +326,7 @@ it:
     # Used all over: general terms
     general:
         cancel: "Annulla"
+        add: "Aggiungi"
         'true': "vero"
         'false': "falso"
 
