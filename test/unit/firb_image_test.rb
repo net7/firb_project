@@ -36,12 +36,11 @@ class FirbImageTest < ActiveSupport::TestCase
     image = FirbImage.new("http://firbimage/addzone")
     assert(image.zones.empty?)
     image.add_zone('testabc')
-    image.add_zone('testabcd')
-    image.add_zone('testabcde')
     image.save!
-    assert_equal(3, image.zones.size)
+    image = FirbImage.find(image.id)
+    assert_equal(1, image.zones.size)
     ids = image.zones.collect{|z| z.id }
-    assert_difference("TaliaCore::ActiveSource.count", -4) do
+    assert_difference("TaliaCore::ActiveSource.count", -2) do
       image.destroy
     end
     # image.destroy
