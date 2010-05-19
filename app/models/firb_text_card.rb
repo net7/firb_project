@@ -14,7 +14,7 @@ class FirbTextCard < TaliaCore::Source
   end
   
   def name
-    "text card #{self.id}"
+    title || "#{I18n.t('firb_text_cards.model_name')} #{self.id}"
   end
 
   # Declare methods (getter/setter pairs) that should be used as
