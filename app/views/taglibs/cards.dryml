@@ -82,18 +82,10 @@
 <def tag="card" for="FirbTextCard">
   <card class="firb-text-card" param="default" merge>
 
-    <% parent, parent_name, image_zone, image_zone_name = parent_and_zone(this) %>
-
-    <h4 param="heading"><a action="edit"><%= "#{parent_name} : #{image_zone_name}" %></a><delete-icon /></h4>
-
+    <h4 param="heading"><a action="edit">Titolo </a><delete-icon /></h4>
+    
     <div class="firb-image-picture" id="firb_image_container_#{this.id}">
-
-      <unless test="&image_zone.nil?">
-        <imt-viewer id="firb_image_#{this.id}" b64="#{thumb_xml(parent, [image_zone.uri.to_s])}"/>
-      </unless>
-      <if test="&image_zone.nil?">
-        <img-not-ready />
-      </if>
+      
     </div>
     <div class="firb-text-page-content">
       <div class='firb-text-page-anastatica'>

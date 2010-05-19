@@ -286,7 +286,6 @@
     </else>
 </def>
 
-
 <def tag="bibliography-items-edit">
     <%= render :partial => 'shared/multi_selector', 
                :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select, :autocomplete_url => '',
@@ -294,10 +293,10 @@
     %>
 </def>
 
-<def tag="component-items-edit">
+<def tag="image-zones-edit">
     <%= render :partial => 'shared/multi_selector', 
-               :locals => { :main_name => @full_type_name, :param_name => 'image_component', :options => image_zone_select_uri, :autocomplete_url => '',
-                            :existing => this.image_components.collect {|comp| [ comp.name, comp.uri.to_s ] } } 
+               :locals => { :main_name => "firb_text_card", :param_name => 'image_zone', :options => image_zone_select_uri, :autocomplete_url => '',
+                            :existing => this.image_zones.collect {|z| [ z.name, z.uri.to_s ] } } 
     %>
 </def>
 

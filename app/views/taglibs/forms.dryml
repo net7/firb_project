@@ -25,8 +25,9 @@
          <input type="file" name="firb_text_card[file]"/><br />
         
         <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
-        <image-zone-select />
-
+        <br />
+        <image-zones-edit />
+        <br />
         <div id="firb-notes">
 
             <if test="&this.has_notes?">
