@@ -1,8 +1,11 @@
 require "base64"
 
 class FirbImageElement < TaliaCore::Source
+  
+  before_destroy :remove_zones
 
   singular_property :name, N::TALIA.name
+  
   
   extend RandomId
 
@@ -37,6 +40,10 @@ class FirbImageElement < TaliaCore::Source
     zone = add_zone(name)
     zone.save!
     zone
+  end
+  
+  def remove_zones
+    zones.each { |z| z.destroy }
   end
   
   # Returns the XML (as a base64-encoded text) for the "Zones" polygons. This returns an XML which can be

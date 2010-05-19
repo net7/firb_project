@@ -32,6 +32,22 @@ class FirbImageTest < ActiveSupport::TestCase
     assert_equal(['test2', 'test'], image.zones.collect { |z| z.name })
   end
 
+  def test_destroy
+    image = FirbImage.new("http://firbimage/addzone")
+    assert(image.zones.empty?)
+    image.add_zone('testabc')
+    image.add_zone('testabcd')
+    image.add_zone('testabcde')
+    image.save!
+    assert_equal(3, image.zones.size)
+    ids = image.zones.collect{|z| z.id }
+    assert_difference("TaliaCore::ActiveSource.count", -4) do
+      image.destroy
+    end
+    # image.destroy
+    # ids.each{|id| assert(!TaliaCore::ActiveSource.exist?(id))}
+  end
+
   def test_file_status
     assert_equal(nil, @my_image.file_status)
   end

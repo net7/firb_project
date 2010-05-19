@@ -5,6 +5,8 @@ class FirbImage < FirbImageElement
   hobo_model # Don't put anything above this
   
   include StandardPermissions
+  
+  before_destroy :remove_zones
 
   # The file status will be originally empty (no file attach) and will be
   # set by the worker process, either to "OK" (successfully attached the file)
