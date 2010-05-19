@@ -47,8 +47,8 @@ module AdminHelper
     image.zones_xml(thumb_url(image), zone_list)
   end
 
-  def image_xml(image)
-    image.zones_xml(original_image_url(image))
+  def image_xml(image, url=nil)
+    image.zones_xml(original_image_url(image), nil, url)
   end
 
   def url_for_data_record(record)

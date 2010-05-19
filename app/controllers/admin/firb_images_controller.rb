@@ -54,7 +54,7 @@ class Admin::FirbImagesController < Admin::AdminSiteController
   end
   
   # Will get some base64-ed xml and save the related image
-  def update
+  def flash_update
     FirbImage.first.try.updatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
     b64 = params[:base64xml]
     FirbImageElement.save_from_xml(b64)

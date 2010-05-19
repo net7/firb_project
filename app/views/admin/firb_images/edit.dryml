@@ -17,7 +17,7 @@
     
     <script>
         function jsapi_initializeIMT(id) {
-        	var new_b64 = "<%= image_xml(this) %>";
+        	var new_b64 = "<%= image_xml(this, url_for(:controller => 'firb_images', :action => 'flash_update')) %>";
         	getFlashObject(id).initialize(new_b64);
         }
     </script>
