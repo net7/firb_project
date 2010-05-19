@@ -12,20 +12,32 @@ class BibliographyItemTest < ActiveSupport::TestCase
       true
     end
     setup_once(:item) do
-      BibliographyItem.create_item(:title => 'bingobongo',
-      :abstract => 'all about bingobongos',
-      :publisher => 'the man of bingobongo',
-      :author => 'the bingobongo',
-      :date => '01-10-1991',
-      :doi => '123456',
-      :isbn => '7890',
-      :issn => 'abcde',
-      :pages => '1-12',
-      :published_in => 'journal of bongo',
-      :external_url => 'http://bingobongo.org')
+      BibliographyItem.create_item(
+        :title => 'bingobongo',
+        :abstract => 'all about bingobongos',
+        :publisher => 'the man of bingobongo',
+        :author => 'the bingobongo',
+        :curator => 'the mr. Curator',
+        :translator => 'Don Chuck Translator',
+        :date => '01-10-1991',
+        :doi => '123456',
+        :isbn => '7890',
+        :issn => 'abcde',
+        :pages => '1-12',
+        :published_in => 'journal of bongo',
+        :external_url => 'http://bingobongo.org'
+      )
     end
   end
   
+  def test_curator
+    assert_equal('the mr. Curator', @item.curator)
+  end
+
+  def test_translator
+    assert_equal('Don Chuck Translator', @item.translator)
+  end
+
   def test_title
     assert_equal('bingobongo', @item.title)
   end

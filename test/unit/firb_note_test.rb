@@ -14,7 +14,7 @@ class FirbNoteTest < ActiveSupport::TestCase
     
     
     setup_once(:text) do
-      source = FirbTextCard.create_card('rollollolllo', nil, nil)
+      source = FirbTextCard.create_card('Title title title', 'rollollolllo', nil, [])
       source.save!
       source
     end
@@ -43,7 +43,7 @@ class FirbNoteTest < ActiveSupport::TestCase
   end
   
   def test_replace_notes
-    new_card = FirbTextCard.create_card('rollollolllo2', nil, nil)
+    new_card = FirbTextCard.create_card('Title title title BIS', 'rollollolllo2', nil, [])
     new_card.save!
     note = FirbNote.create_note('I am a new note', new_card.uri.to_s)
     note.save!
