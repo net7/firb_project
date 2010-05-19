@@ -1,10 +1,9 @@
-<div class="multi-selector">
 <ul id="<%= param_name %>-list">
     <% existing.each do |option, value| %>
         <li>
             <%= option %>
             <input type="hidden" value="<%= value %>" name="<%= main_name %>[<%= param_name %>][<%= value.hash %>]" />
-            <input type="button" value="remove" name="delete_<%= value.hash %>" />
+            <input type="image"  value="remove" src="<%= image_path('icons/cross.png') %>" name="delete_<%= value.hash %>" />
         </li>
     <% end %>
 </ul>
@@ -13,7 +12,7 @@
 <span id="<%= param_name %>-indicator" style="display: none">
   <img src="/images/icons/ajax-loader.gif" alt="Working..." />
 </span>
-<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" value="add" />
+<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" class="button" value="add" />
 <div id='<%= param_name %>-autocomplete-values' class="autocomplete"></div>
 
 <script>
@@ -42,7 +41,7 @@
 <select name="<%= param_name %>-selector" id="<%= param_name %>-selector">
     <%= options_for_select(options) %>
 </select>
-<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" value="add" />
+<input type="button" name="<%= param_name %>-add" class="button" id="<%= param_name %>-add" value="add" />
 <script type="text/javascript">
 <%= param_name %>_selector = $('<%= param_name %>-selector')
 <%= param_name %>_button = $('<%= param_name %>-add')
@@ -58,16 +57,14 @@ function <%= param_name %>Selected(event) {
 // Common script functions
 function add<%= param_name.capitalize %>Item(option) {
 	var rand = Math.floor(Math.random()*9999);
-	var markup = "<li>"+option.text+"<input type='hidden' name='<%= main_name %>[<%= param_name %>][new_"+rand+"]' value='"+option.value+"' /><input type='button' value='remove' onClick='delete<%= param_name.capitalize %>Item();' /></li>";
+	var markup = "<li>"+option.text+"<input type='hidden' name='<%= main_name %>[<%= param_name %>][new_"+rand+"]' value='"+option.value+"' /><input type='image' value='remove' onClick='delete<%= param_name.capitalize %>Item();' src='<%= image_path('icons/cross.png') %>' /></li>";
 	$('<%= param_name %>-list').insert({bottom: markup});
 
 }
 
 function delete<%= param_name.capitalize %>Item(event) {
-    if(event.element().type == 'button') {
+    if(event.element().type == 'image') {
         event.element().up().remove();
     }
 }
 </script>
-
-</div>

@@ -1,3 +1,16 @@
+<def tag="component-form" polymorphic>
+</def>
+
+<def tag="component-form" for="FirbIllustratedMemoryDepictionCard">
+    <h2><ht key="image_component.model_name">Componenti</ht></h2>
+    <%= image_components(this.image_components, this) %>
+</def>
+
+<def tag="component-form" for="FirbLetterIllustrationCard">
+    <h2><ht key="image_component.model_name">Componenti</ht></h2>
+    <%= image_components(this.image_components, this) %>
+</def>
+
 <edit-page>
     <delete-button: replace>
         <%= if (can_delete?)
@@ -14,7 +27,6 @@
           end %>
     </delete-button:>
     <append-content-body:>
-        <h2><ht key="image_component.model_name">Componenti</ht></h2>
-        <%= image_components(this.image_components, this) %>
+        <component-form />
     </append-content-body:>
 </edit-page>
