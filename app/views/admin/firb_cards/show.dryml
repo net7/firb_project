@@ -51,13 +51,7 @@
             <field-collection-row fieldname="image_components" />
             <field-collection-row fieldname="iconclass_terms" />
             <field-row fieldname="iconclass_children">
-                <view:>
-                    <repeat with="&this.child_cards" join=", ">
-                        <repeat with="&this.iconclass_terms" join=", ">
-                            <firb-card-link />
-                        </repeat>
-                    </repeat>
-                </view:>
+                <view:><child-cards /></view:>
             </field-row>
         </post-description:>
     </field-table>
@@ -82,6 +76,7 @@
             <field-collection-row fieldname="iconclass_terms" />
         </post-description:>
     </field-table>
+    <component-list />
 </def>
 
 <def tag="field-table" for="FirbLetterIllustrationCard">
@@ -91,6 +86,7 @@
             <field-collection-row fieldname="image_components" />
         </post-description:>
     </field-table>
+    <component-list />
 </def>
 
 <show-page>

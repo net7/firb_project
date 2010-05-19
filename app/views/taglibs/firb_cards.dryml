@@ -26,10 +26,10 @@
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <code: replace>
-                <field-row fieldname="code"><view:><%= this.parent_card.blank? ? '' : this.parent_card.code %></view:></field-row>
+                <field-row fieldname="parent_code"><view:><%= this.parent_card.blank? ? I18n.t('firb_cards.on_card_save') : this.parent_card.code %></view:></field-row>
             </code:>
             <collocation: replace>
-                <field-row fieldname="collocation"><view:><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></view:></field-row>
+                <field-row fieldname="parent_collocation"><view:><%= this.parent_card.nil? ? I18n.t('firb_cards.on_card_save') : this.parent_card.collocation %></view:></field-row>
             </collocation:>
             <after-completed:>
                 <single-connection-row fieldname="textual_source" type="FirbTextCard" />
@@ -59,9 +59,7 @@
                 <if test="&(children = this.child_cards).size > 0">
                     <field-row fieldname="children">
                         <view:>
-                            <repeat with="&children" join=", " >
-                                <%= this.name %> (<repeat with="&this.image_components" join=","><%= this.name %></repeat>)
-                            </repeat>
+                            <child-cards />
                         </view:>
                     </field-row>
                 </if>
@@ -284,6 +282,26 @@
     <else>
         <a with="&this.image_zone.get_firb_image_parent"><ht key="firb_image.model_name">Illustrazione</ht>: <%= this.name %></a>
     </else>
+</def>
+
+<def tag="component-list">
+    <h2 param="header"><ht key="firb_cards.components">Componenti</ht></h2>
+    <ul param="list">
+    <repeat with="&this.image_components">
+        <li>
+            <% zone_name = this.image_zone.try.name %>
+            <%= this.name %> (<%= this.zone_type %>) <a with="&this.image_zone.try.get_firb_image_parent"><%= zone_name %></a>
+        </li>
+    </repeat>
+    </ul>
+</def>
+
+<def tag="child-cards">
+    <repeat with="&this.child_cards" join=", ">
+        <repeat with="&this.iconclass_terms" join=", ">
+            <firb-card-link />
+        </repeat>
+    </repeat>
 </def>
 
 <def tag="bibliography-items-edit">
