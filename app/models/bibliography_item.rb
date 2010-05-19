@@ -15,6 +15,8 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   rdf_property :pages, N::MARCONT.hasPages
   rdf_property :published_in, N::MARCONT.publishedIn
   rdf_property :external_url, N::MARCONT.hasURL
+  rdf_property :curator, N::TALIA.curator
+  rdf_property :translator, N::TALIA.translator
   
   def self.create_item(options = {})
     options[:uri] = N::LOCAL + 'bibliographic_item/' + random_id

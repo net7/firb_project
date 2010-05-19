@@ -124,6 +124,8 @@ it:
         abstract: "Abstract"
         publisher: "Casa editrice"
         author: "Autore"
+        curator: "Curatore"
+        translator: "Traduttore"
         date: "Data"
         doi: "Codice DOI"
         isbn: "Codice ISBN"

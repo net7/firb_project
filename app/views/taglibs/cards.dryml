@@ -192,6 +192,12 @@
       <h4 param="heading"><a action="edit"><name/></a> - <%= this.author %><delete-icon /></h4>
     </header:>
     <body: param>
+        <p>
+          <b><ht key="bibliography_items.curator">Curator:</ht></b> <%= this.curator %>
+        </p>
+        <p>
+          <b><ht key="bibliography_items.translator">Translator:</ht></b> <%= this.translator %>
+        </p>
       <p>
         <b><ht key="bibliography_items.date">Date:</ht></b> <%= this.date %>
       </p>
