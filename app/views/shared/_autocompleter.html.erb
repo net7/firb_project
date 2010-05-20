@@ -28,7 +28,7 @@
 </ul>
 
 <input type='text' name='<%= input_text_id %>' id='<%= input_text_id %>' />
-<input type='button' name='<%= add_button_id %>' id='<%= add_button_id %>' />
+<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 <span style="display: none;" id='<%= indicator_id %>'>
       <img alt="Working..." src="/images/icons/ajax-loader.gif">
 </span>
@@ -86,6 +86,12 @@
         return true;
     } // remove_group()
 
+    // Will add some markup to the DOM, an LI item inside the specified UL object,
+    // displaying the display_string. values_array elements must be objects with
+    // this format: {name: "name of the field", value: "value to assign"}. They
+    // will be used in the hidden fields, so name will be something like
+    // modelname[param_name][sub_name][some_othername], or similar.
+    // This function will add the remove button as well.
     function populate_with_item(populate_ul, display_string, values_array) {
         var rand_id = "id_" + Math.floor(Math.random()*99999),
             markup = "";

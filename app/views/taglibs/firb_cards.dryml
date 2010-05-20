@@ -16,6 +16,9 @@
                 <field-row fieldname="iconclass_terms2">
                     <view:><iconclass-terms-edit2 /></view:>
                 </field-row>
+                <field-row fieldname="iconclass_terms3">
+                    <view:><iconclass-terms-edit3 /></view:>
+                </field-row>
             </after-bibliography:>
         </card-form-common>
     </form>
@@ -307,6 +310,13 @@
     <%= render :partial => 'shared/multi_selector',
              :locals => { :main_name => @full_type_name, :param_name => 'iconclass', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
                              :existing => this.iconclass_terms.collect {|ic| [ ic.term, ic.uri.to_s ] } }
+    %>
+</def>
+
+<def tag="iconclass-terms-edit3">
+    <%= render :partial => 'shared/autocompleter',
+             :locals => { :main_name => @full_type_name, :param_name => 'iconclass3', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
+                             :existing => this.iconclass_terms.collect {|ic| [ ic.term, ic.uri.to_s ]} }
     %>
 </def>
 
