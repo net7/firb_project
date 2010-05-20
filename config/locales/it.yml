@@ -231,6 +231,8 @@ it:
         inherited_iconclass: "Termini iconclass ereditati dalle 'figlie'"
         iconclass_terms: "Termini Iconclass"
         bibliography: "Bibliografia"
+        children: "Figlie"
+        iconclass_children: "Iconclass delle figlie"
 
     # Firb cards
     firb_cards:
@@ -269,8 +271,7 @@ it:
         bibliography_items: "Elementi Bibliografici"
         parent_code: "Codice (della madre)"
         parent_collocation: "Collocazione (della madre)"
-        image_components: "Elementi decorativi"
-        components: "Componenti"
+        image_components: "Componenti"
         on_card_save: "Impostato quando la scheda viene registrata"
         
     # Used in new.dryml

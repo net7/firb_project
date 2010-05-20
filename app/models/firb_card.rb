@@ -82,7 +82,7 @@ class FirbCard < TaliaCore::Source
   end
 
   def child_cards
-    ActiveRDF::Query.new(FirbCard).select(:card).where(:card, N::DCT.isPartOf, self).execute
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:card).where(:card, N::TALIA.parent_card, self).execute
   end
 
   def self.create_card(options = {})

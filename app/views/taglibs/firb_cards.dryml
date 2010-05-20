@@ -36,6 +36,11 @@
                 <field-edit-row fieldname="short_description" />
                 <field-edit-row fieldname="transcription_text" />
             </after-completed:>
+            <after-bibliography:>
+                <field-row fieldname="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
+            </after-bibliography:>
         </card-form-common>
     </form>
 </def>
@@ -56,13 +61,7 @@
                 <single-connection-row fieldname="textual_source" type="FirbTextCard" />
             </after-completed:>
             <after-bibliography:>
-                <if test="&(children = this.child_cards).size > 0">
-                    <field-row fieldname="children">
-                        <view:>
-                            <child-cards />
-                        </view:>
-                    </field-row>
-                </if>
+                <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :firb_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
                 <field-row fieldname="inherited_iconclass">
                     <view:><repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat></view:>
                 </field-row>
@@ -126,7 +125,7 @@
           <else>
                <ul>
                     <repeat with="&this.child_cards" join=", ">
-                        <li><a href="&url_for(:controller => :firb_cards, :action => :show, :id => this, :type => 'illustrated_memory_depiction')"><%= this.name %></a></li>
+                        <li><a href="&url_for(:controller => :firb_cards, :action => :show, :id => this.id, :type => 'illustrated_memory_depiction')"><%= this.name || this.to_uri.local_name %></a></li>
                     </repeat>
                 </ul>
           </else>
@@ -296,13 +295,6 @@
     </ul>
 </def>
 
-<def tag="child-cards">
-    <repeat with="&this.child_cards" join=", ">
-        <repeat with="&this.iconclass_terms" join=", ">
-            <firb-card-link />
-        </repeat>
-    </repeat>
-</def>
 
 <def tag="bibliography-items-edit">
     <%= render :partial => 'shared/multi_selector', 
