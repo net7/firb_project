@@ -7,51 +7,67 @@
         </li>
     <% end %>
 </ul>
-<% if !autocomplete_url.blank? %>
-<input type='text' size='50' id='<%= param_name %>-autocomplete-input' />
-<span id="<%= param_name %>-indicator" style="display: none">
-  <img src="/images/icons/ajax-loader.gif" alt="Working..." />
-</span>
-<input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" class="button" value="<%= I18n.t('general.add') %>" />
-<div id='<%= param_name %>-autocomplete-values' class="autocomplete"></div>
 
-<script>
-    new Ajax.Autocompleter("<%= param_name %>-autocomplete-input", "<%= param_name %>-autocomplete-values", "<%= autocomplete_url %>", {
-      paramName: "value",
-      indicator: "<%= param_name %>-indicator",
-      afterUpdateElement : <%= param_name %>updateCompleter
-    });
-    var current<%= param_name.capitalize %> = {};
-    function <%= param_name %>updateCompleter(text, li) {
-        current<%= param_name.capitalize %>['content'] = li.innerHTML;
-        current<%= param_name.capitalize %>['val'] = text.value;
-    }
+<!-- 
+    main_name : model name (eg: firb_card)
+    param_name : name of the variable (eg: image_zone, bibliography_item, ..)
+    existing : hash with the things that are already there (mainly for the edit action)
+        option : name that i show on the page (either simple (title of the book) or complex, component type and name)
+        value : submitted value (either ID or URI of the attached thing, URI is best)
+
+    on submit: params[:firb_card][:image_zone]
     
-    <%= param_name %>_button = $('<%= param_name %>-add')
-    <%= param_name %>_button.observe('click', <%= param_name %>Selected);
-    $('<%= param_name %>-list').observe('click', delete<%= param_name.capitalize %>Item)
+    or hash : params[:firb_card][:components][:name]
+              params[:firb_card][:components][:type]
+              and so on
+    
+-->
 
-    function <%= param_name %>Selected(event) {
-    	option = {}
-    	option.text = current<%= param_name.capitalize %>['content']
-    	option.value = current<%= param_name.capitalize %>['val']
-    	add<%= param_name.capitalize %>Item(option);
-    }
+<% if !autocomplete_url.blank? %>
+    <input type='text' size='50' id='<%= param_name %>-autocomplete-input' />
+    <span id="<%= param_name %>-indicator" style="display: none">
+      <img src="/images/icons/ajax-loader.gif" alt="Working..." />
+    </span>
+    <input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" class="button" value="<%= I18n.t('general.add') %>" />
+    <div id='<%= param_name %>-autocomplete-values' class="autocomplete"></div>
+
+    <script type="text/javascript">
+        new Ajax.Autocompleter("<%= param_name %>-autocomplete-input", "<%= param_name %>-autocomplete-values", "<%= autocomplete_url %>", {
+          paramName: "value",
+          indicator: "<%= param_name %>-indicator",
+          afterUpdateElement : <%= param_name %>updateCompleter
+        });
+        var current<%= param_name.capitalize %> = {};
+        function <%= param_name %>updateCompleter(text, li) {
+            current<%= param_name.capitalize %>['content'] = li.innerHTML;
+            current<%= param_name.capitalize %>['val'] = text.value;
+        }
+    
+        <%= param_name %>_button = $('<%= param_name %>-add')
+        <%= param_name %>_button.observe('click', <%= param_name %>Selected);
+        $('<%= param_name %>-list').observe('click', delete<%= param_name.capitalize %>Item)
+
+        function <%= param_name %>Selected(event) {
+        	option = {}
+        	option.text = current<%= param_name.capitalize %>['content']
+        	option.value = current<%= param_name.capitalize %>['val']
+        	add<%= param_name.capitalize %>Item(option);
+        }
 <% else %>
-<select name="<%= param_name %>-selector" id="<%= param_name %>-selector">
-    <%= options_for_select(options) %>
-</select>
-<input type="button" name="<%= param_name %>-add" class="button" id="<%= param_name %>-add" value="<%= I18n.t('general.add') %>" />
-<script type="text/javascript">
-<%= param_name %>_selector = $('<%= param_name %>-selector')
-<%= param_name %>_button = $('<%= param_name %>-add')
-<%= param_name %>_button.observe('click', <%= param_name %>Selected);
-$('<%= param_name %>-list').observe('click', delete<%= param_name.capitalize %>Item)
+    <select name="<%= param_name %>-selector" id="<%= param_name %>-selector">
+        <%= options_for_select(options) %>
+    </select>
+    <input type="button" name="<%= param_name %>-add" class="button" id="<%= param_name %>-add" value="<%= I18n.t('general.add') %>" />
+    <script type="text/javascript">
+        <%= param_name %>_selector = $('<%= param_name %>-selector')
+        <%= param_name %>_button = $('<%= param_name %>-add')
+        <%= param_name %>_button.observe('click', <%= param_name %>Selected);
+        $('<%= param_name %>-list').observe('click', delete<%= param_name.capitalize %>Item)
 
-function <%= param_name %>Selected(event) {
-	option = <%= param_name %>_selector.options[<%= param_name %>_selector.selectedIndex];
-	add<%= param_name.capitalize %>Item(option);
-}
+        function <%= param_name %>Selected(event) {
+        	option = <%= param_name %>_selector.options[<%= param_name %>_selector.selectedIndex];
+        	add<%= param_name.capitalize %>Item(option);
+        }
 <% end %>
 
 // Common script functions
@@ -63,7 +79,7 @@ function add<%= param_name.capitalize %>Item(option) {
 }
 
 function delete<%= param_name.capitalize %>Item(event) {
-    if(event.element().type == 'image') {
+    if (event.element().type == 'image') {
         event.element().up().remove();
     }
 }
