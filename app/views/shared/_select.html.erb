@@ -29,7 +29,7 @@
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
         <% existing.each do |name, value|
-           field_name = "#{main_name}[#{param_name}][#{value.hash}]"
+           field_name = "#{main_name}[#{param_name}][]"
         %>
             populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
         <% end %>
@@ -39,7 +39,7 @@
     $(add_button_id).observe('click', function() {
         var rand = Math.floor(Math.random()*99999),
             //n = main_name+"["+param_name+"]["+rand+"]",
-            n = main_name+"[]["+param_name+"]",
+            n = main_name+"["+param_name+"][]",
             foo = $(select_id).options[$(select_id).selectedIndex],
             display_string = foo.text,
             v = foo.value,
