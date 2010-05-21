@@ -11,7 +11,6 @@
 
 <ul id="<%= populate_ul_id %>"></ul>
 
-
 <br />
 Image name: <input type='text' id='image_component_name'>
 <br />
@@ -42,21 +41,8 @@ Image zone:
         <% end %>
     });
     
-    
-    $('image_component_type').observe('click') function () {
-        $('image_component_type').select();
-    }
-    
     // Click on add button: populate our list with the selected item
     $(add_button_id).observe('click', function() {
-        /*
-        var rand = Math.floor(Math.random()*99999),
-            n = main_name+"[]["+param_name+"]",
-            foo = $(select_id).options[$(select_id).selectedIndex],
-            display_string = foo.text,
-            v = foo.value,
-            hidden_hash = [{name: n, value: v}];
-        */
         
         var n, display_string, v, hidden_hash = [];
 
@@ -80,8 +66,6 @@ Image zone:
         hidden_hash.push({name: n, value: v});
         
         populate_with_item(populate_ul_id, display_string, hidden_hash);
-        
-        // Empty
     });
     
 })();
