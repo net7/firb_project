@@ -6,6 +6,8 @@ class FirbCard < TaliaCore::Source
   singular_property :name, N::TALIA.name
   declare_attr_type :name, :string
   
+  multi_property :bibliography_items, N::TALIA.hasBibliography, :force_relation => true
+  
   extend RandomId
 
   # Anastatica page it links to
@@ -68,17 +70,8 @@ class FirbCard < TaliaCore::Source
     uri :string
   end
   
-  def bibliography_items
-    self[N::TALIA.hasBibliography]
-  end
-
   def has_anastatica_page?
     !self.anastatica.blank?
-  end
-
-  def rewrite_attributes!(options = {})
-    setup_options!(options)
-    super(options)
   end
 
   def child_cards
@@ -86,7 +79,6 @@ class FirbCard < TaliaCore::Source
   end
 
   def self.create_card(options = {})
-    setup_options!(options)
     new_url =  (N::LOCAL + 'firb_card/' + random_id).to_s
     options[:uri] = new_url
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
@@ -97,14 +89,5 @@ class FirbCard < TaliaCore::Source
     card = create_card(options).create_permission_check!
   end
 
-  def setup_options!(options)
-    self.class.setup_options!(options)
-  end
-
-  def self.setup_options!(options)
-    options.to_options!
-    options[N::TALIA.hasBibliography.to_s] = options.delete(:bibliography).to_a.collect { |bib| BibliographyItem.find(bib) }
-    options
-  end
 
 end

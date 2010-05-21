@@ -43,7 +43,7 @@ class FirbCardTest < ActiveSupport::TestCase
       :description => 'Endangered species',
       :completed => 'true',
       :anastatica => @page.uri,
-      :bibliography => @bibliographies.collect { |bib| bib.uri.to_s }
+      :bibliography_items => @bibliographies.collect { |bib| bib.uri.to_s }
       )
       
       source.save!
@@ -135,7 +135,7 @@ class FirbCardTest < ActiveSupport::TestCase
     new_find = FirbCard.find(source.id)
     new_find.rewrite_attributes!(:name => "barf",
     :anastatica => @page.uri,
-    :bibliography => @bibliographies.collect { |bib| bib.uri.to_s })
+    :bibliography_items => @bibliographies.collect { |bib| bib.uri.to_s })
     new_card = FirbCard.find(source.id)
     assert_equal('barf', new_card.name)
     assert_equal(new_card.anastatica.uri, @page.uri)

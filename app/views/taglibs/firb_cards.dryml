@@ -246,7 +246,7 @@
             <field-edit-row fieldname="completed" param="completed"/>
             <field-edit-row fieldname="description" param="description"/>
             <field-edit-row fieldname="study_notes" param="studynotes" />
-            <field-row fieldname="bibliography" param="bibliography" >
+            <field-row fieldname="bibliography_items" param="bibliography" >
                 <view:><bibliography-items-edit /></view:>
             </field-row>
         </content:>
@@ -298,7 +298,7 @@
 
 <def tag="bibliography-items-edit">
     <%= render :partial => 'shared/multi_selector', 
-               :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select, :autocomplete_url => '',
+               :locals => { :main_name => @full_type_name, :param_name => 'bibliography_items', :options => bibliography_select, :autocomplete_url => '',
                             :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
     %>
 </def>
@@ -312,7 +312,7 @@
 
 <def tag="iconclass-terms-edit">
     <%= render :partial => 'shared/multi_selector',
-             :locals => { :main_name => @full_type_name, :param_name => 'iconclass', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
+             :locals => { :main_name => @full_type_name, :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
                              :existing => this.iconclass_terms.collect {|ic| [ ic.term, ic.uri.to_s ] } }
     %>
 </def>

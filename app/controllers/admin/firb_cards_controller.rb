@@ -80,11 +80,11 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
   
   def set_link_options!
-    card_params[:bibliography] = card_params[:bibliography].values if(card_params[:bibliography].is_a?(Hash))
-    card_params[:iconclass] = card_params[:iconclass].values if(card_params[:iconclass].is_a?(Hash))
+    card_params[:bibliography_items] = card_params[:bibliography_items].values if(card_params[:bibliography_items].is_a?(Hash))
+    card_params[:iconclass_terms] = card_params[:iconclass_terms].values if(card_params[:iconclass_terms].is_a?(Hash))
     card_params[:image_component] = card_params[:image_component].values if(card_params[:image_component].is_a?(Hash))
-    if(card_params[:iconclass])
-      card_params[:iconclass] = card_params[:iconclass].collect do |ic|
+    if(card_params[:iconclass_terms])
+      card_params[:iconclass_terms] = card_params[:iconclass_terms].collect do |ic|
         if(ic =~ /http:\/\//)
           ic
         else

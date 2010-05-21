@@ -1,21 +1,8 @@
 class FirbIllustrationCard < FirbCard
 
-  singular_property  :image_zone, N::DCT.isFormatOf
-  singular_property  :textual_source, N::TALIA.attachedText
-
-  def iconclass_terms
-    qry = ActiveRDF::Query.new(IconclassTerm).select(:it).distinct
-    qry.where(self, N::DCT.subject, :it)
-    qry.execute
-  end
-
-  def iconclass_terms_count
-    iconclass_terms.count
-  end
-  
-  def has_iconclass_terms?
-    iconclass_terms.count > 0
-  end
+  singular_property :image_zone, N::DCT.isFormatOf
+  singular_property :textual_source, N::TALIA.attachedText
+  multi_property :iconclass_terms, N::DCT.subject, :force_relation => true
 
   def inherited_iconclasses
     ActiveRDF::Query.new(IconclassTerm).select(:iconclass).where(:card, N::DCT.isPartOf, self).where(:card, N::DCT.subject, :iconclass).execute
@@ -46,10 +33,5 @@ class FirbIllustrationCard < FirbCard
     page.save
   end
   
-  def self.setup_options!(options)
-    options.to_options!
-    options[N::DCT.subject.to_s] = options.delete(:iconclass).to_a.collect { |ic| IconclassTerm.find(ic) }
-    super(options)
-  end
 
 end

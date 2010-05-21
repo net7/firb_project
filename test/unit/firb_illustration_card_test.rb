@@ -38,7 +38,7 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
       source = FirbIllustrationCard.create_card(
       :name => "illustration",
       :image_zone => @image_zone.uri,
-      :iconclass => @iconclasses.collect { |ic| ic.uri.to_s }
+      :iconclass_terms => @iconclasses.collect { |ic| ic.uri.to_s }
       )
       
       source.save!
@@ -66,7 +66,7 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
     new_find.rewrite_attributes!(
     :name => "illustrationY",
     :image_zone => @image_zone.uri,
-    :iconclass => @iconclasses.collect { |ic| ic.uri.to_s }
+    :iconclass_terms => @iconclasses.collect { |ic| ic.uri.to_s }
     )
     new_card = FirbIllustrationCard.find(source.id)
     assert_equal('illustrationY', new_card.name)
