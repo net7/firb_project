@@ -16,11 +16,11 @@
 <ul id="<%= populate_ul_id %>"></ul>
 
 <input type='text' name='<%= input_text_id %>' id='<%= input_text_id %>' />
-<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 <span style="display: none;" id='<%= indicator_id %>'>
       <img alt="Working..." src="/images/icons/ajax-loader.gif">
 </span>
-<div id='<%= populate_autocomplete_div_id %>'></div>
+<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
+<div id='<%= populate_autocomplete_div_id %>' class="autocomplete"></div>
 
 <script>
 
