@@ -19,6 +19,36 @@
     <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
     <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
   </owl:Ontology>
+  <owl:Class rdf:ID="Place">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label xml:lang="it">Luogho</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Scene">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label xml:lang="it">Scena</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Number">
+    <rdfs:label xml:lang="it">Numero</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Object">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label xml:lang="it">ogetto</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="AlphaCharacter">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label xml:lang="it">Lettere dell'alfabeto</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Person">
+    <rdfs:label xml:lang="it">Persona</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </owl:Class>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/relation"/>
   <rdf:Property rdf:ID="hasSwickyNotebook">
     <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/references"/>
@@ -33,8 +63,8 @@
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/subject"/>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/coverage"/>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/format"/>
-  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/rights"/>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+  <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/rights"/>
   <rdf:Property rdf:about="http://purl.org/dc/elements/1.1/type"/>
   <rdf:Property rdf:about="http://www.muruca.org/ontologies/file_status">
     <rdfs:comment xml:lang="en">Describes the "status" of the file(s) that is/are attached to a Source. E.g., this may be used to indicate if processing of the files has already finished.</rdfs:comment>
