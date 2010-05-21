@@ -345,4 +345,3 @@
         :action => :autocomplete), :existing => this.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
     %>
 </def>
-
