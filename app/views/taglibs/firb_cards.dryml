@@ -13,6 +13,9 @@
                 <field-row fieldname="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
+                <field-row fieldname="iconclass_terms2">
+                    <view:><iconclass-terms-edit-new /></view:>
+                </field-row>
             </after-bibliography:>
         </card-form-common>
     </form>
@@ -314,5 +317,21 @@
     <%= render :partial => 'shared/multi_selector',
              :locals => { :main_name => @full_type_name, :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
                              :existing => this.iconclass_terms.collect {|ic| [ ic.term, ic.uri.to_s ] } }
+    %>
+</def>
+
+<def tag="select-bibliography-items">
+    <%= 
+        render :partial => 'shared/select', 
+            :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select,
+            :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
+    %>
+</def>
+
+<def tag="iconclass-terms-edit-new">
+    <%= 
+        render :partial => 'shared/autocompleter',
+        :locals => { :main_name => @full_type_name, :param_name => 'iconclass2', :autocomplete_url => url_for(:controller => 'iconclass_terms',
+        :action => :autocomplete), :existing => this.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
     %>
 </def>

@@ -1,0 +1,53 @@
+<%
+    # Parameters to pass in: 
+    # main_name: name of the model (eg: BibliographyItem)
+    # param_name: name of the field (eg: author)
+    # existing: hash of already existing items of this kind, to add right away
+    # options: options to display into the select 
+
+    populate_ul_id = param_name+"_list"
+    select_id = param_name+"_select"
+    add_button_id = param_name+"_add"
+
+%>
+
+<ul id="<%= populate_ul_id %>"></ul>
+<select name="<%= select_id %>" id="<%= select_id %>">
+    <%= options_for_select(options) %>
+</select>
+<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
+
+<script>
+
+(function() {
+    var param_name = "<%= param_name %>",
+        add_button_id = "<%= add_button_id %>",
+        populate_ul_id = "<%= populate_ul_id %>",
+        select_id = "<%= select_id %>",
+        main_name = "<%= main_name %>";
+    
+    // Load all existing data as soon as the window is ready
+    Event.observe(window, 'load', function() {
+        <% existing.each do |name, value|
+           field_name = "#{main_name}[#{param_name}][#{value.hash}]"
+        %>
+            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+        <% end %>
+    });
+    
+    // Click on add button: populate our list with the selected item
+    $(add_button_id).observe('click', function() {
+        var rand = Math.floor(Math.random()*99999),
+            //n = main_name+"["+param_name+"]["+rand+"]",
+            n = main_name+"[]["+param_name+"]",
+            foo = $(select_id).options[$(select_id).selectedIndex],
+            display_string = foo.text,
+            v = foo.value,
+            hidden_hash = [{name: n, value: v}];
+
+        populate_with_item(populate_ul_id, display_string, hidden_hash);
+    });
+    
+})();
+
+</script>
