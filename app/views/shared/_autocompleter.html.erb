@@ -60,10 +60,10 @@
     $(add_button_id).observe('click', function() {
         var rand = Math.floor(Math.random()*99999),
             n = main_name+"["+param_name+"]["+rand+"]",
-            v = current[param_name]['value'];
-        console.log("# Add button click: "+n+" >> "+v);
-            
-        populate_with_item(populate_ul_id, current[param_name]['content'], [{name: n, value: v}]);
+            v = current[param_name]['value'],
+            display_string = current[param_name]['content'];
+
+        populate_with_item(populate_ul_id, display_string, [{name: n, value: v}]);
     });
     
 })();
