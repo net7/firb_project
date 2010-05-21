@@ -109,7 +109,7 @@
         <h5><%= I18n.t("firb.parafrasi") %>:</h5>
         <span><%= this.parafrasi %></span>
       </div>
-
+      
       <div class='firb-text-page-notes-container'>
 
         <if test="&this.has_notes?">
