@@ -122,6 +122,18 @@ div.autocomplete ul li {
 }
 
 
+/* Remove button, present almost everywhere */
+
+span.remove_button { 
+    display: inline-block;
+    border: 0px;
+    width: 16px; 
+    height: 16px; 
+    text-indent: -9999px;
+    background-image: url(../images/icons/cross.png); 
+    cursor: pointer;
+}
+
 /* iconclass term */
 div#firb-iconclass-terms div.firb-iconclass-term {
     border: 0px;

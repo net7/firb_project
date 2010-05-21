@@ -64,3 +64,42 @@ document.observe('click', function(e) {
         e.stop();
     }
 });
+
+
+
+// Click on remove button: remove the entire group!
+function remove_group(id) {
+    console.log("# Remove button click "+id);
+    $(''+id).remove();
+    return true;
+} // remove_group()
+
+// Will add some markup to the DOM, an LI item inside the specified UL object,
+// displaying the display_string. values_array elements must be objects with
+// this format: {name: "name of the field", value: "value to assign"}. They
+// will be used in the hidden fields, so name will be something like
+// modelname[param_name][sub_name][some_othername], or similar.
+// This function will add the remove button as well.
+function populate_with_item(populate_ul, display_string, values_array) {
+    var rand_id = "id_" + Math.floor(Math.random()*99999),
+        markup = "";
+
+    console.log("# Called pop with "+populate_ul+", "+display_string+" "+values_array+" id: "+rand_id);
+        
+    markup += "<li id='"+rand_id+"'>";
+    markup += "<span class='display_string'>"+display_string+"</span>";
+
+    // Add all of the needed hidden fields
+    for (var i = values_array.length - 1; i >= 0; i--) {
+        var name = values_array[i].name,
+            value = values_array[i].value;
+        markup += "<input type='hidden' value='"+value+"' name='"+name+"'>"
+    };
+    
+    var rem = 'remove_group("'+rand_id+'")';
+    markup += "<span class='remove_button' onClick='"+rem+"'>X</span>"
+    markup += "</li>";
+    
+    $(populate_ul).insert({bottom: markup});
+
+} // populate_with_item()
