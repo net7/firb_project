@@ -13,9 +13,6 @@
                 <field-row fieldname="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
-                <field-row fieldname="iconclass_terms2">
-                    <view:><iconclass-terms-edit-new /></view:>
-                </field-row>
                 <field-row fieldname="letter_components">
                     <view:><letter-illustration-components-edit /></view:>
                 </field-row>
@@ -302,6 +299,14 @@
         </li>
     </repeat>
     </ul>
+</def>
+
+<def tag="non-illustrated-memory-depiction-edit">
+    <%= 
+        render :partial => 'shared/non_illustrated_memory_depictions',
+        :locals => { :main_name => @full_type_name, :param_name => 'memory_depiction_components', 
+        :existing => this.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.zone_type}): #{ic.image_zone.try.name}", ic.uri.to_s]} }
+    %>
 </def>
 
 <def tag="illustrated-memory-depiction-components-edit">

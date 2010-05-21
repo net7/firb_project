@@ -31,6 +31,11 @@
         <%= I18n.t("firb_text_page.image_zones") %> :
         <image-zones-edit />
         <br />
+        <div id="non-illustrated-memory-depictions">
+            <%= I18n.t("firb_text_page.non_ill_mem_dep") %> :
+            <non-illustrated-memory-depiction-edit />
+        </div>
+        <br />
         <div id="firb-notes">
 
             <if test="&this.has_notes?">

@@ -9,6 +9,8 @@ class FirbTextCard < TaliaCore::Source
   singular_property :anastatica, N::DCT.isPartOf
   singular_property :title, N::DCNS.title
   
+  multi_property :non_illustrated_memory_depictions, N::TALIA.hasNonIllustratedMemoryDepiction, :force_relation => true  
+  
   fields do
     uri :string
   end

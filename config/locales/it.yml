@@ -317,6 +317,7 @@ it:
         no_notes_associated: "Nessuna nota associata a questa pagina di testo"
         text_page: "Scheda testo"
         title: "Titolo"
+        non_ill_mem_dep: "Immagini di memoria non illustrate"
         transcription_file: "File con la trascrizione XML"
         image_zones: "Zone di immagine"
         actions:
