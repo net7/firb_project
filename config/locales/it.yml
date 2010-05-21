@@ -166,6 +166,8 @@ it:
         short_description: "Descrizione breve"
         textual_source: "Scheda Testo"
         parent_iconclass: "Iconclass della madre"
+        parent_code: "Codice (della madre)"
+        parent_collocation: "Collocazione (della madre)"
         bibliography: "Bibliografia"
         
     firb_letter_illustration_cards:
@@ -229,16 +231,21 @@ it:
         inherited_iconclass: "Termini iconclass ereditati dalle 'figlie'"
         iconclass_terms: "Termini Iconclass"
         bibliography: "Bibliografia"
+        children: "Figlie"
+        iconclass_children: "Iconclass delle figlie"
 
     # Firb cards
     firb_cards:
         model_name: "Scheda"
         model_name_plural: "Schede"
+        edit:
+            heading: "Modifica {{name}}"
         new:
             heading: "Crea una nuova scheda"
         actions:
             new: "Crea nuova scheda"
             delete: "Cancella scheda"
+            edit: "Modifica {{name}}"
         collection:
             count: "Ci sono {{count}} schede di questa tipologia"
             empty_message: "Nessuna scheda di questa tipologia da visualizzare"
@@ -264,7 +271,8 @@ it:
         bibliography_items: "Elementi Bibliografici"
         parent_code: "Codice (della madre)"
         parent_collocation: "Collocazione (della madre)"
-        image_components: "Elementi decorativi"
+        image_components: "Componenti"
+        on_card_save: "Impostato quando la scheda viene registrata"
         
     # Used in new.dryml
     new_firb_image:

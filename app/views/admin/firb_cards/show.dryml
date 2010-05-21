@@ -53,7 +53,7 @@
             <field-row fieldname="iconclass_children">
                 <view:>
                     <repeat with="&this.child_cards" join=", ">
-                        <repeat with="&this.iconclass_terms" join=", ">
+                        <repeat with="&this.try.iconclass_terms" join=", ">
                             <firb-card-link />
                         </repeat>
                     </repeat>
@@ -66,6 +66,7 @@
 <def tag="field-table" for="FirbIllustratedMemoryDepictionCard">
     <field-table merge>
         <post-bibliography:>
+            <field-row fieldname="parent_card" />
             <field-row fieldname="parent_code">
                 <view:><%= this.parent_card && this.parent_card.code %></view:>
             </field-row>
@@ -82,6 +83,7 @@
             <field-collection-row fieldname="iconclass_terms" />
         </post-description:>
     </field-table>
+    <component-list />
 </def>
 
 <def tag="field-table" for="FirbLetterIllustrationCard">
@@ -91,6 +93,7 @@
             <field-collection-row fieldname="image_components" />
         </post-description:>
     </field-table>
+    <component-list />
 </def>
 
 <show-page>

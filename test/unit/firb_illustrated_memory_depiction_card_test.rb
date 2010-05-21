@@ -49,4 +49,21 @@ class FirbIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
     assert_equal(@card.code, "codyhoo")
   end
   
+  def test_parent_child_relation
+    card = FirbIllustratedMemoryDepictionCard.create_card(:name => "tito", :position => "ups")
+    parent = FirbParentIllustrationCard.create_card(:name => 'madre', :position => 'xxx')
+    parent.save!
+    card.parent_card = parent
+    card.save!
+    parent = FirbParentIllustrationCard.find(parent.id)
+    card = FirbIllustratedMemoryDepictionCard.find(card.id)
+    assert_kind_of(FirbParentIllustrationCard, card.parent_card)
+    assert_equal(parent.uri, card.parent_card.uri)
+    assert_equal(1, parent.child_cards.size)
+    child = parent.child_cards.first
+    assert(!child.new_record?)
+    assert_kind_of(FirbIllustratedMemoryDepictionCard, child)
+    assert_equal(card.uri, child.uri)
+  end
+  
 end

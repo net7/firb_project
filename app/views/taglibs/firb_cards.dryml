@@ -29,16 +29,21 @@
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <code: replace>
-                <field-row fieldname="code"><view:><%= this.parent_card.blank? ? '' : this.parent_card.code %></view:></field-row>
+                <field-row fieldname="parent_code"><view:><%= this.parent_card.blank? ? I18n.t('firb_cards.on_card_save') : this.parent_card.code %></view:></field-row>
             </code:>
             <collocation: replace>
-                <field-row fieldname="collocation"><view:><%= this.parent_card.nil? ? '' : this.parent_card.collocation %></view:></field-row>
+                <field-row fieldname="parent_collocation"><view:><%= this.parent_card.nil? ? I18n.t('firb_cards.on_card_save') : this.parent_card.collocation %></view:></field-row>
             </collocation:>
             <after-completed:>
                 <single-connection-row fieldname="textual_source" type="FirbTextCard" />
                 <field-edit-row fieldname="short_description" />
                 <field-edit-row fieldname="transcription_text" />
             </after-completed:>
+            <after-bibliography:>
+                <field-row fieldname="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
+            </after-bibliography:>
         </card-form-common>
     </form>
 </def>
@@ -59,15 +64,7 @@
                 <single-connection-row fieldname="textual_source" type="FirbTextCard" />
             </after-completed:>
             <after-bibliography:>
-                <if test="&(children = this.child_cards).size > 0">
-                    <field-row fieldname="children">
-                        <view:>
-                            <repeat with="&children" join=", " >
-                                <%= this.name %> (<repeat with="&this.image_components" join=","><%= this.name %></repeat>)
-                            </repeat>
-                        </view:>
-                    </field-row>
-                </if>
+                <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :firb_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
                 <field-row fieldname="inherited_iconclass">
                     <view:><repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat></view:>
                 </field-row>
@@ -131,7 +128,7 @@
           <else>
                <ul>
                     <repeat with="&this.child_cards" join=", ">
-                        <li><a href="&url_for(:controller => :firb_cards, :action => :show, :id => this, :type => 'illustrated_memory_depiction')"><%= this.name %></a></li>
+                        <li><a href="&url_for(:controller => :firb_cards, :action => :show, :id => this.id, :type => 'illustrated_memory_depiction')"><%= this.name || this.to_uri.local_name %></a></li>
                     </repeat>
                 </ul>
           </else>
@@ -288,6 +285,19 @@
         <a with="&this.image_zone.get_firb_image_parent"><ht key="firb_image.model_name">Illustrazione</ht>: <%= this.name %></a>
     </else>
 </def>
+
+<def tag="component-list">
+    <h2 param="header"><ht key="firb_cards.components">Componenti</ht></h2>
+    <ul param="list">
+    <repeat with="&this.image_components">
+        <li>
+            <% zone_name = this.image_zone.try.name %>
+            <%= this.name %> (<%= this.zone_type %>) <a with="&this.image_zone.try.get_firb_image_parent"><%= zone_name %></a>
+        </li>
+    </repeat>
+    </ul>
+</def>
+
 
 <def tag="bibliography-items-edit">
     <%= render :partial => 'shared/multi_selector', 
