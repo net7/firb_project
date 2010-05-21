@@ -13,6 +13,9 @@
                 <field-row fieldname="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
+                <field-row fieldname="letter_components">
+                    <view:><letter-illustration-components-edit /></view:>
+                </field-row>
             </after-bibliography:>
         </card-form-common>
     </form>
@@ -39,6 +42,9 @@
             <after-bibliography:>
                 <field-row fieldname="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
+                </field-row>
+                <field-row fieldname="memory_depiction_components">
+                    <view:><illustrated-memory-depiction-components-edit /></view:>
                 </field-row>
             </after-bibliography:>
         </card-form-common>
@@ -293,6 +299,22 @@
         </li>
     </repeat>
     </ul>
+</def>
+
+<def tag="illustrated-memory-depiction-components-edit">
+    <%= 
+        render :partial => 'shared/illustrated_memory_depiction_components',
+        :locals => { :main_name => @full_type_name, :param_name => 'memory_depiction_components', 
+        :existing => this.image_components.collect {|ic| [ "#{ic.name} (#{ic.zone_type}): #{ic.image_zone.try.name}", ic.uri.to_s]} }
+    %>
+</def>
+
+<def tag="letter-illustration-components-edit">
+    <%= 
+        render :partial => 'shared/letter_illustration_components',
+        :locals => { :main_name => @full_type_name, :param_name => 'letter_components', 
+        :existing => this.image_components.collect {|ic| [ "#{ic.name} (#{ic.zone_type}): #{ic.image_zone.try.name}", ic.uri.to_s]} }
+    %>
 </def>
 
 <def tag="image-zones-edit">

@@ -12,14 +12,14 @@
 <ul id="<%= populate_ul_id %>"></ul>
 
 <br />
-Image name: <input type='text' id='image_component_name'>
+Component name: <input type='text' id='image_component_name'>
 <br />
-Image type: <input type='text' id='image_component_type'>
+Component type: <input type='text' id='image_component_type'>
 <br />
 Image zone:
 
 <%= 
-    select_tag "#{FirbImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'letter_component_zone_image_id'}
+    select_tag "#{FirbImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'ill_mem_dep_zone_image_id'}
 %>
 
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
@@ -59,7 +59,7 @@ Image zone:
         hidden_hash.push({name: n, value: v});
         
         // Component image zone 
-        foo = $('letter_component_zone_image_id').options[$('letter_component_zone_image_id').selectedIndex];
+        foo = $('ill_mem_dep_zone_image_id').options[$('ill_mem_dep_zone_image_id').selectedIndex];
         n = main_name+"["+param_name+"][][image_component_image_zone]";
         v = foo.value;
         display_string += foo.text;
