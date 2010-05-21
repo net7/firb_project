@@ -69,7 +69,6 @@ document.observe('click', function(e) {
 
 // Click on remove button: remove the entire group!
 function remove_group(id) {
-    console.log("# Remove button click "+id);
     $(''+id).remove();
     return true;
 } // remove_group()
@@ -84,7 +83,7 @@ function populate_with_item(populate_ul, display_string, values_array) {
     var rand_id = "id_" + Math.floor(Math.random()*99999),
         markup = "";
 
-    console.log("# Called pop with "+populate_ul+", "+display_string+" "+values_array+" id: "+rand_id);
+    // console.log("# Called pop with "+populate_ul+", "+display_string+" "+values_array+" id: "+rand_id);
         
     markup += "<li id='"+rand_id+"'>";
     markup += "<span class='display_string'>"+display_string+"</span>";
