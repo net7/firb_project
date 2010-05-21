@@ -78,20 +78,5 @@ class Admin::FirbCardsController < Admin::AdminSiteController
       card_params[param] = card_params[param].to_uri if(card_params[param].is_a?(String) && !card_params[param].blank?)
     end
   end
-  
-  def set_link_options!
-    card_params[:bibliography_items] = card_params[:bibliography_items].values if(card_params[:bibliography_items].is_a?(Hash))
-    card_params[:iconclass_terms] = card_params[:iconclass_terms].values if(card_params[:iconclass_terms].is_a?(Hash))
-    card_params[:image_component] = card_params[:image_component].values if(card_params[:image_component].is_a?(Hash))
-    if(card_params[:iconclass_terms])
-      card_params[:iconclass_terms] = card_params[:iconclass_terms].collect do |ic|
-        if(ic =~ /http:\/\//)
-          ic
-        else
-          IconclassTerm.make_uri(ic.strip)
-        end
-      end
-    end
-  end
 
 end

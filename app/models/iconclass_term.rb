@@ -12,6 +12,22 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   rdf_property :note, N::SKOS.editorialNote, :text
   declare_attr_type :term, :string
   
+  def self.new(*params)
+    if((params.size == 1) && params.first.is_a?(String) && !(ic =~ /http:\/\//))
+      super(make_uri(params.first))
+    else
+      super(*params)
+    end
+  end
+  
+  def self.find(*params)
+    if((params.size == 1) && params.first.is_a?(String) && !(ic =~ /http:\/\//))
+      super(make_uri(params.first))
+    else
+      super(*params)
+    end
+  end
+  
   def self.create_term(options = {})
     options.to_options!
     term = options.delete(:term)

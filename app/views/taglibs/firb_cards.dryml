@@ -13,9 +13,6 @@
                 <field-row fieldname="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
-                <field-row fieldname="iconclass_terms2">
-                    <view:><iconclass-terms-edit-new /></view:>
-                </field-row>
             </after-bibliography:>
         </card-form-common>
     </form>
@@ -298,14 +295,6 @@
     </ul>
 </def>
 
-
-<def tag="bibliography-items-edit">
-    <%= render :partial => 'shared/multi_selector', 
-               :locals => { :main_name => @full_type_name, :param_name => 'bibliography_items', :options => bibliography_select, :autocomplete_url => '',
-                            :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
-    %>
-</def>
-
 <def tag="image-zones-edit">
     <%= render :partial => 'shared/multi_selector', 
                :locals => { :main_name => "firb_text_card", :param_name => 'image_zone', :options => image_zone_select_uri, :autocomplete_url => '',
@@ -313,14 +302,7 @@
     %>
 </def>
 
-<def tag="iconclass-terms-edit">
-    <%= render :partial => 'shared/multi_selector',
-             :locals => { :main_name => @full_type_name, :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
-                             :existing => this.iconclass_terms.collect {|ic| [ ic.term, ic.uri.to_s ] } }
-    %>
-</def>
-
-<def tag="select-bibliography-items">
+<def tag="bibliography-items-edit">
     <%= 
         render :partial => 'shared/select', 
             :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select,
@@ -328,10 +310,10 @@
     %>
 </def>
 
-<def tag="iconclass-terms-edit-new">
+<def tag="iconclass-terms-edit">
     <%= 
         render :partial => 'shared/autocompleter',
-        :locals => { :main_name => @full_type_name, :param_name => 'iconclass2', :autocomplete_url => url_for(:controller => 'iconclass_terms',
+        :locals => { :main_name => @full_type_name, :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
         :action => :autocomplete), :existing => this.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
     %>
 </def>
