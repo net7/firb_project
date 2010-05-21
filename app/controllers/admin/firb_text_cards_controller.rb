@@ -49,16 +49,19 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     text_card.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
     text_card.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
     text_card.title = params[:firb_text_card][:title] unless(params[:firb_text_card][:title].blank?)
-    
-    zones = params[:firb_text_card][:image_zone].values.collect{ |iz| FirbImageZone.find(iz) }
-    text_card.predicate_replace(:dct, :isFormatOf, zones)
-    
+
+    #TODO: is it ok to do nothing in case this is nil?
+    unless params[:firb_text_card][:image_zone].nil?
+      zones = params[:firb_text_card][:image_zone].values.collect{ |iz| FirbImageZone.find(iz) }
+      text_card.predicate_replace(:dct, :isFormatOf, zones)
+    end
+
     if (params[:firb_text_card][:note]) 
-      FirbNote.replace_notes(params[:firb_text_card][:note], p)
+      FirbNote.replace_notes(params[:firb_text_card][:note], text_card)
     end
 
     if (text_card.save)
-      attach_file_to(p)
+      attach_file_to(text_card)
       flash[:notice] = "Text page updated"
     else
       flash[:notice] = "Error updating the text page"
