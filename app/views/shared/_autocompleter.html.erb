@@ -1,22 +1,15 @@
 <%
-    # Parameters: 
+    # Parameters to pass in: 
     # main_name: name of the model (eg: BibliographyItem)
     # param_name: name of the field (eg: author)
     # autocomplete_url: url where to ask for the autocomplete list
     # existing: hash of already existing items of this kind, to add right away
-
-    #on submit: params[:firb_card][:image_zone]
-    #
-    #or hash : params[:firb_card][:components][:name]
-    #          params[:firb_card][:components][:type]
-    #          and so on
 
     populate_ul_id = param_name+"_list"
     populate_autocomplete_div_id = param_name+"_autocomplete_div"
     input_text_id = param_name+"_autocomplete_me"
     add_button_id = param_name+"_add"
     indicator_id = param_name+"_indicator"
-
 
 %>
 
@@ -39,8 +32,6 @@
         main_name = "<%= main_name %>",
         current = [];
         
-    // DEBUG: not sure if this get initialized on every partial we call... 
-    // but in the end, is it bad?
     current[param_name] = [];
     
     // Load all existing data as soon as the window is ready
