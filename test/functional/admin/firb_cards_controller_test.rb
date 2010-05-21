@@ -105,7 +105,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference('FirbIllustratedMemoryDepictionCard.count', 1) do
       post(:create, 
-        :firb_illustrated_memory_depiction_card => { :name => 'New illu', :position => 'last_and_first', :anastatica => '', :bibliography_items => @bibliography_hash }, 
+        :firb_illustrated_memory_depiction_card => { :name => 'New illu', :position => 'last_and_first', :anastatica => '', :bibliography_items => @bibliography_arr }, 
         :type => 'illustrated_memory_depiction' )
       assert_redirected_to(:controller => :firb_cards, :action => :index)
     end
@@ -122,7 +122,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference('FirbLetterIllustrationCard.count', 1) do
       post(:create, 
-        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_hash }, 
+        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_arr }, 
         :type => 'letter_illustration' )
       assert_redirected_to(:controller => :firb_cards, :action => :index)
     end
@@ -140,7 +140,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference('FirbLetterIllustrationCard.count', 1) do
       post(:create, 
-        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_term_hash }, 
+        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_term_arr }, 
         :type => 'letter_illustration' )
       assert_redirected_to(:controller => :firb_cards, :action => :index)
     end
@@ -198,7 +198,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     setup_bibliographies
     login_for(:admin)
     post(:update, :id => @illustrated_one.id, 
-      :firb_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => @bibliography_hash },
+      :firb_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => @bibliography_arr },
       :type => 'illustrated_memory_depiction')
     assert_redirected_to :controller => :firb_cards, :action => :show
     card = FirbIllustratedMemoryDepictionCard.find(@illustrated_one.id)
@@ -234,8 +234,8 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
 
   def setup_iconclass
     @iconclasses = []
-    @iconclass_hash = {}
-    @iconclass_term_hash = {}
+    @iconclass_arr = []
+    @iconclass_term_arr = []
     (0..1).each do |idx|
       iconclass = IconclassTerm.create_term(:term => "61 E (+#{idx})", 
         :pref_label => 'foo', 
@@ -244,8 +244,8 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
         :note => 'Cool' )
       iconclass.save!
       @iconclasses << iconclass
-      @iconclass_hash["bar_#{iconclass.uri.to_s.hash}"] = iconclass.uri.to_s
-      @iconclass_term_hash["bar_#{iconclass.uri.to_s.hash}"] = iconclass.term
+      @iconclass_arr << iconclass.uri.to_s
+      @iconclass_term_arr << iconclass.term
     end
   end
   
@@ -261,9 +261,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       bibliography.save!
       @bibliographies << bibliography
     end
-    @bibliography_hash = {}
-    @bibliographies.each { |bib| @bibliography_hash["foo_#{bib.uri.to_s.hash}"] = bib.uri.to_s }
-    @bibliographies
+    @bibliography_arr = @bibliographies.collect { |bib| bib.uri.to_s }
   end
 
   def setup_page

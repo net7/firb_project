@@ -27,7 +27,6 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def create
-    set_link_options!
     @firb_card = @card_type.create_card(card_params)
     if(save_created!(@firb_card))
       flash[:notice] = "Card succesfully created"
@@ -38,7 +37,6 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
   
   def update
-    set_link_options!
     hobo_source_update(:params => card_params)
   end
   
@@ -74,9 +72,8 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   # changes some of the params to URI objects
   def uri_params
     return unless(card_params)
-    %w(anastatica image_zone textual_source parent_card).each do |param|
-      card_params[param] = card_params[param].to_uri if(card_params[param].is_a?(String) && !card_params[param].blank?)
-    end
+    # TODO: Hack for problem with autocomplete and "hidden" paramters
+    card_params[:iconclass_terms] = card_params[:iconclass_terms].collect { |it| (it =~ /http:\/\//) ? it : IconclassTerm.make_uri(it) }if(card_params[:iconclass_terms])
   end
 
 end

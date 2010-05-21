@@ -11,7 +11,7 @@ class FirbCard < TaliaCore::Source
   extend RandomId
 
   # Anastatica page it links to
-  singular_property :anastatica, N::DCT.isPartOf
+  singular_property :anastatica, N::DCT.isPartOf, :force_relation => true
 
   # Author of the elment
   singular_property :author, N::DCT.creator

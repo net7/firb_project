@@ -327,7 +327,7 @@
 <def tag="bibliography-items-edit">
     <%= 
         render :partial => 'shared/select', 
-            :locals => { :main_name => @full_type_name, :param_name => 'bibliography', :options => bibliography_select,
+            :locals => { :main_name => @full_type_name, :param_name => 'bibliography_items', :options => bibliography_select,
             :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
     %>
 </def>

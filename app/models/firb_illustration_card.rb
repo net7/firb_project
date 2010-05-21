@@ -1,7 +1,7 @@
 class FirbIllustrationCard < FirbCard
 
-  singular_property :image_zone, N::DCT.isFormatOf
-  singular_property :textual_source, N::TALIA.attachedText
+  singular_property :image_zone, N::DCT.isFormatOf, :force_relation => true
+  singular_property :textual_source, N::TALIA.attachedText, :force_relation => true
   multi_property :iconclass_terms, N::DCT.subject, :force_relation => true
 
   def inherited_iconclasses
@@ -16,7 +16,7 @@ class FirbIllustrationCard < FirbCard
 
   def self.add_iconclass_terms(terms, page)
     terms.each do |key, value|
-      iconclass_term = IconclassTerm.find_by_term(value)
+      iconclass_term = IconclassTerm.find(value)
       if (!iconclass_term.nil?)
         page.dct::subject << iconclass_term
       end

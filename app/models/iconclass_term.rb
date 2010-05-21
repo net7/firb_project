@@ -13,7 +13,7 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   declare_attr_type :term, :string
   
   def self.new(*params)
-    if((params.size == 1) && params.first.is_a?(String) && !(ic =~ /http:\/\//))
+    if((params.size == 1) && params.first.is_a?(String) && !(params.first =~ /http:\/\//))
       super(make_uri(params.first))
     else
       super(*params)
@@ -21,7 +21,7 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   end
   
   def self.find(*params)
-    if((params.size == 1) && params.first.is_a?(String) && !(ic =~ /http:\/\//))
+    if((params.size == 1) && params.first.is_a?(String) && !(params.first =~ /http:\/\//))
       super(make_uri(params.first))
     else
       super(*params)
@@ -52,10 +52,6 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   
   def term=(value)
     self.uri = self.class.make_uri(value)
-  end
-  
-  def self.find_by_term(term)
-    find(make_uri(term))
   end
   
   # Creates the uri for the given term

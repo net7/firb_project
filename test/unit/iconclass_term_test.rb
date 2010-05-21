@@ -57,7 +57,7 @@ class IconclassTermTest < ActiveSupport::TestCase
       :note => 'ping'
       )
     termy.save!
-    assert_equal(termy, IconclassTerm.find_by_term('61E(+1)'))
+    assert_equal(termy, IconclassTerm.find('61E(+1)'))
   end
   
   def test_create_blank

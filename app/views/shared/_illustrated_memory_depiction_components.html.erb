@@ -35,7 +35,7 @@ Image zone:
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
         <% existing.each do |name, value|
-           field_name = "#{main_name}[][#{param_name}]"
+           field_name = "#{main_name}[#{param_name}][]"
         %>
             populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
         <% end %>
