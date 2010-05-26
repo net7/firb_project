@@ -32,7 +32,7 @@ class FirbTextCard < TaliaCore::Source
     if (!ana_id.blank?)
       card.anastatica = FirbAnastaticaPage.find(ana_id)
     end
-    image_zone_list.each{ |iz| card[N::DCT.isFormatOf] << FirbImageZone.find(iz) }
+    image_zone_list.each{ |iz| card[N::DCT.isFormatOf] << FirbImageZone.find(iz) } if (!image_zone_list.nil?)
     card
   end
 
