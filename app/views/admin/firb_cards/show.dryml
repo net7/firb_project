@@ -48,7 +48,6 @@
         </post-bibliography:>
         <post-description:>
             <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :firb_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
-            <field-collection-row fieldname="image_components" />
             <field-collection-row fieldname="iconclass_terms" />
             <field-row fieldname="iconclass_children">
                 <view:>
@@ -90,7 +89,6 @@
     <field-table merge>
         <post-description:>
             <field-collection-row fieldname="iconclass_terms" />
-            <field-collection-row fieldname="image_components" />
         </post-description:>
     </field-table>
     <component-list />

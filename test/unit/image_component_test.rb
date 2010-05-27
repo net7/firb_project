@@ -16,13 +16,9 @@ class ImageComponentTest < ActiveSupport::TestCase
       image_zone.save!
       image_zone
     end
-    setup_once(:firb_card) do 
-      firb_card = FirbCard.create_card
-      firb_card.save!
-      firb_card
-    end
+
     setup_once(:image_component) do
-      image_component = ImageComponent.create_component(:name => 'nomy', :zone_type => 'xxx', :firb_card => @firb_card.uri.to_s, :image_zone => @image_zone.uri.to_s)
+      image_component = ImageComponent.create_component(:name => 'nomy', :zone_type => 'xxx', :image_zone => @image_zone.uri.to_s)
       image_component.save!
       image_component
     end
@@ -38,11 +34,6 @@ class ImageComponentTest < ActiveSupport::TestCase
   
   def test_zone_type
     assert_equal('xxx', @image_component.zone_type)
-  end
-  
-  def test_firb_card
-    assert_kind_of(FirbCard, @image_component.firb_card)
-    assert_equal(@image_component.firb_card.uri, @firb_card.uri)
   end
   
   def test_image_zone

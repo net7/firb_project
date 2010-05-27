@@ -5,7 +5,7 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   extend RdfProperties
   
   rdf_property :title, N::MARCONT.title
-  rdf_property :abstract, N::MARCONT.abstract, :text
+  rdf_property :abstract, N::MARCONT.abstract, :type => :text
   rdf_property :publisher, N::MARCONT.hasPublisher
   rdf_property :author, N::MARCONT.author
   rdf_property :date, N::MARCONT.hasDate

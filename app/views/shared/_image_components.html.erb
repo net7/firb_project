@@ -35,7 +35,7 @@ Image zone:
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
         <% existing.each do |name, value|
-           field_name = "#{main_name}[#{param_name}][]"
+           field_name = "#{main_name}[#{param_name}][][uri]"
         %>
             populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
         <% end %>
@@ -48,22 +48,27 @@ Image zone:
 
         // Component name
         v = $('image_component_name').value;
-        n = main_name+"["+param_name+"][][image_component_name]";
+        n = main_name+"["+param_name+"][][name]";
         display_string = v;
         hidden_hash.push({name: n, value: v});
 
         // Component type
         v = $('image_component_type').value;
-        n = main_name+"["+param_name+"][][image_component_zone_type]";
+        n = main_name+"["+param_name+"][][zone_type]";
         display_string += " ("+v+"): ";
         hidden_hash.push({name: n, value: v});
         
         // Component image zone 
         foo = $('ill_mem_dep_zone_image_id').options[$('ill_mem_dep_zone_image_id').selectedIndex];
-        n = main_name+"["+param_name+"][][image_component_image_zone]";
+        n = main_name+"["+param_name+"][][image_zone]";
         v = foo.value;
         display_string += foo.text;
         hidden_hash.push({name: n, value: v});
+        
+        // Empty uri, must be last here to be the first element
+        // in the list
+        n = main_name+"["+param_name+"][][uri]";
+        hidden_hash.push({name: n, value: ""});
         
         populate_with_item(populate_ul_id, display_string, hidden_hash);
     });

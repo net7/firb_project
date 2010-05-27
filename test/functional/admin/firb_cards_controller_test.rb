@@ -35,12 +35,42 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   end
 
   def test_index_letter
-    setup_cards
+    setup_additional_cards
     login_for(:admin)
     get(:index, :type => 'letter_illustration')
     assert_response(:success)
-    assert_select('ul.collection', 0)
+    assert_select('ul.collection') { assert_select('li.item', 1)}
   end
+  
+  def test_index_parent
+    setup_additional_cards
+    login_for(:admin)
+    get(:index, :type => 'parent_illustration')
+    assert_response(:success)
+    assert_select('ul.collection') { assert_select('li.item', 1)}
+  end
+
+  def test_show_letter
+    setup_additional_cards
+    login_for(:admin)
+    get(:show, :type => 'parent_illustration', :id => @parent.id)
+    assert_response(:success)
+  end
+  
+  def test_show_illustrated
+    setup_cards
+    login_for(:admin)
+    get(:show, :type => 'illustrated_memory_depiction', :id => @illustrated_one.id)
+    assert_response(:success)
+  end
+
+  def test_show_illustrated
+    setup_cards
+    login_for(:admin)
+    get(:show, :type => 'non_illustrated_memory_depiction', :id => @non_illustrated.id)
+    assert_response(:success)
+  end
+
 
   # def test_show
   #   login_for(:admin)
@@ -133,6 +163,44 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     assert_equal(new_card.image_zone.uri, @image_zone.uri)
   end
   
+  def test_create_letter_with_component
+    setup_page
+    setup_image_zone
+    login_for(:admin)
+    assert_difference('FirbLetterIllustrationCard.count', 1) do
+      assert_difference('ImageComponent.count', 1) do
+        post(:create, 
+          :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }] }, 
+          :type => 'letter_illustration' )
+      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      end
+    end
+    new_card = FirbLetterIllustrationCard.last
+    assert_equal('Plonker', new_card.name)
+    assert_equal('last_and_first', new_card.position)
+    assert_equal(1, new_card.image_components.size)
+  end
+  
+  def test_create_letter_with_existing_component
+    setup_page
+    setup_image_zone
+    login_for(:admin)
+    compo = ImageComponent.create_component(:name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s)
+    compo.save!
+    assert_difference('FirbLetterIllustrationCard.count', 1) do
+      assert_difference('ImageComponent.count', 1) do
+        post(:create, 
+          :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }, {:uri => compo.uri.to_s }] }, 
+          :type => 'letter_illustration' )
+      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      end
+    end
+    new_card = FirbLetterIllustrationCard.last
+    assert_equal('Plonker', new_card.name)
+    assert_equal('last_and_first', new_card.position)
+    assert_equal(2, new_card.image_components.size)
+  end
+  
   def test_create_letter_with_zone_and_iconclass_codes
     setup_page
     setup_iconclass
@@ -207,6 +275,68 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     assert_equal(3, card.bibliography_items.size)
   end
   
+  def test_update_letter_with_component
+    setup_image_zone
+    card =  FirbLetterIllustrationCard.create_card(:name => "compy test",
+      :image_zone => @image_zone.uri,
+      :image_components => [ {
+        :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
+    }])
+    card.save!
+    component = ImageComponent.last
+    login_for(:admin)
+    assert_difference("ImageComponent.count", 0) do
+      post(:update, :id => card.id, 
+        :firb_letter_illustration_card => { :name => 'changed', :image_components => [ { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone }]},
+        :type => 'letter_illustration')
+      assert_redirected_to :controller => :firb_cards, :action => :show
+    end
+    card = FirbLetterIllustrationCard.find(card.id)
+    assert_equal(1, card.image_components.size)
+    assert_equal('FOOZ', card.image_components.first.name)
+  end
+  
+  def test_update_letter_with_component
+    setup_image_zone
+    card =  FirbLetterIllustrationCard.create_card(:name => "compy test",
+      :image_zone => @image_zone.uri,
+      :image_components => [ {
+        :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
+    }])
+    card.save!
+    component = ImageComponent.last
+    login_for(:admin)
+    assert_difference("ImageComponent.count", -1) do
+      post(:update, :id => card.id, 
+        :firb_letter_illustration_card => { :name => 'changed', :image_components => [ ]},
+        :type => 'letter_illustration')
+      assert_redirected_to :controller => :firb_cards, :action => :show
+    end
+    card = FirbLetterIllustrationCard.find(card.id)
+    assert_equal(0, card.image_components.size)
+  end
+  
+  def test_update_letter_with_component_adding
+    setup_image_zone
+    card =  FirbLetterIllustrationCard.create_card(:name => "compy test",
+      :image_zone => @image_zone.uri,
+      :image_components => [ {
+        :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
+    }])
+    card.save!
+    component = ImageComponent.last
+    login_for(:admin)
+    assert_difference("ImageComponent.count", 1) do
+      post(:update, :id => card.id, 
+        :firb_letter_illustration_card => { :name => 'changed', :image_components => [ {:uri => component.uri.to_s }, { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone } ]},
+        :type => 'letter_illustration')
+      assert_redirected_to :controller => :firb_cards, :action => :show
+    end
+    card = FirbLetterIllustrationCard.find(card.id)
+    assert_equal(2, card.image_components.size)
+    assert(ImageComponent.exists?(component.id))
+  end
+  
   def test_update_non_authorized
     setup_card
     old_position = @non_illustrated.position
@@ -225,6 +355,13 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     @illustrated_one.save!
     @illustrated_two = FirbIllustratedMemoryDepictionCard.create_card(:name => 'super_illu', :position => 'you guess')
     @illustrated_two.save!
+  end
+  
+  def setup_additional_cards
+    @parent = FirbParentIllustrationCard.create_card(:name => 'madre', :position => 'on top')
+    @parent.save!
+    @letter = FirbLetterIllustrationCard.create_card(:name => 'Letter', :position => 'first')
+    @letter.save!
   end
   
   def setup_card

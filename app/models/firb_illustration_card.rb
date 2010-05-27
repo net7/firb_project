@@ -3,9 +3,15 @@ class FirbIllustrationCard < FirbCard
   singular_property :image_zone, N::DCT.isFormatOf, :force_relation => true
   singular_property :textual_source, N::TALIA.attachedText, :force_relation => true
   multi_property :iconclass_terms, N::DCT.subject, :force_relation => true
+  multi_property :image_components, N::TALIA.image_component, :force_relation => true, :dependent => :destroy
 
   def inherited_iconclasses
     ActiveRDF::Query.new(IconclassTerm).select(:iconclass).where(:card, N::DCT.isPartOf, self).where(:card, N::DCT.subject, :iconclass).execute
+  end
+  
+  def rewrite_attributes!(options)
+    process_component_options!(options)
+    super(options)
   end
 
   def self.remove_iconclass_terms(page)
@@ -22,10 +28,6 @@ class FirbIllustrationCard < FirbCard
       end
     end
   end
-
-  def image_components
-    ActiveRDF::Query.new(ImageComponent).select(:image_component).where(:image_component, N::TALIA.image_component, self).execute
-  end
   
   def self.replace_iconclass_terms(new_terms, page)
     FirbIllustrationPage.remove_iconclass_terms(page)
@@ -33,5 +35,29 @@ class FirbIllustrationCard < FirbCard
     page.save
   end
   
+  def self.create_card(options = {})
+    process_component_options!(options)
+    card = super(options)
+  end
+  
+  def self.process_component_options!(options)
+    return nil if(options[:image_components].blank?)
+    options[:image_components].collect! do |comp_options|
+      if(comp_options.is_a?(ImageComponent))
+        comp_options
+      elsif(comp_options[:uri].blank?)
+        comp = ImageComponent.create_component(comp_options)
+        comp.save!
+        comp
+      else
+        ImageComponent.find(comp_options[:uri])
+      end
+    end
+  end
+  
+  def process_component_options!(component_options)
+    self.class.process_component_options!(component_options)
+  end
+
 
 end
