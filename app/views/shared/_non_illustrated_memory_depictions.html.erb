@@ -16,11 +16,6 @@ Descrizione breve dell'immagine di memoria: <input type='text' id='image_compone
 <br />
 Tipo dell'immagine di meoria: <input type='text' id='image_component_type'>
 <br />
-Zona di immagine associata:
-
-<%= 
-    select_tag "#{FirbImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'letter_component_zone_image_id'}
-%>
 
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 
@@ -56,13 +51,6 @@ Zona di immagine associata:
         v = $('image_component_type').value;
         n = main_name+"["+param_name+"][][image_component_zone_type]";
         display_string += " ("+v+"): ";
-        hidden_hash.push({name: n, value: v});
-        
-        // Component image zone 
-        foo = $('letter_component_zone_image_id').options[$('letter_component_zone_image_id').selectedIndex];
-        n = main_name+"["+param_name+"][][image_component_image_zone]";
-        v = foo.value;
-        display_string += foo.text;
         hidden_hash.push({name: n, value: v});
         
         populate_with_item(populate_ul_id, display_string, hidden_hash);

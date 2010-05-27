@@ -20,7 +20,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def create
-    txt = FirbTextCard.create_card(params[:firb_text_card][:title], params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone].values)
+    txt = FirbTextCard.create_card(params[:firb_text_card][:title], params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone])
     
     if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
