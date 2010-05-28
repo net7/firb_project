@@ -1,5 +1,5 @@
 require 'simplyx'
-require 'Nokogiri'
+require 'nokogiri'
 
 class Admin::FirbTextCardsController < Admin::AdminSiteController
 
