@@ -53,6 +53,7 @@ module AdminHelper
 
   def url_for_data_record(record)
     if(record)
+      return record.static_path unless record.static_path.nil?
       url_for :controller => '/source_data', :action => 'show', :id => record.id
     else
       ''
