@@ -285,6 +285,7 @@ it:
         connect_automatically: "Aggiungi automaticamente le seguenti sotto-zone"
         nome: "Nome dell'illustrazione"
         upload_image: "Carica e salva l'illustrazione"
+        upload_limits: "Caricare solo immagini in formato JPEG/JPG, sotto i 5Mb di dimensione."
       
     # Used in admin_site.dryml
     firb_image:

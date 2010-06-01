@@ -1,6 +1,8 @@
 <new-page> 
 	<form: for="FirbImage" multipart="true">
 
+        <p><ht key='new_firb_image.upload_limits'>Only upload images in the JPG/JPEG format, under 5Mb in size.</ht></p>
+
         <input type="file" name="firb_image[file]"/><br />
 
         <input:name />
