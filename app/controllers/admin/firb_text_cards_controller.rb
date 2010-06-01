@@ -22,6 +22,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def create
+    notes = params[:firb_text_card].delete(:note)
     txt = FirbTextCard.create_card(params[:firb_text_card])
     
     if(save_created!(txt))
@@ -32,8 +33,8 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
     
     attach_file_to(txt)
 
-    if (params[:firb_text_card][:note])
-      FirbNote.create_notes(params[:firb_text_card][:note].values, txt)
+    if (notes)
+      FirbNote.create_notes(notes.values, txt)
     end
     
     redirect_to :controller => :firb_text_cards, :action => :index
@@ -44,9 +45,10 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def update
+    notes = params[:firb_text_card].delete(:note)
     hobo_source_update do |updated_source|
-    if (params[:firb_text_card][:note]) 
-        FirbNote.replace_notes(params[:firb_text_card][:note], updated_source)
+    if (notes) 
+        FirbNote.replace_notes(notes, updated_source)
     end
     redirect_to :controller => :firb_text_cards, :action => :index
   end

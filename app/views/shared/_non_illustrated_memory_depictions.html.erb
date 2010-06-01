@@ -30,9 +30,9 @@ Tipo dell'immagine di meoria: <input type='text' id='image_component_type'>
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
         <% existing.each do |name, value|
-           field_name = "#{main_name}[][#{param_name}]"
+           field_name = "#{main_name}[#{param_name}][]"
         %>
-            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>[uri]', value: '<%= value %>'}]);
         <% end %>
     });
     
@@ -43,15 +43,18 @@ Tipo dell'immagine di meoria: <input type='text' id='image_component_type'>
 
         // Component name
         v = $('image_component_name').value;
-        n = main_name+"["+param_name+"][][image_component_name]";
+        n = main_name+"["+param_name+"][][short_description]";
         display_string = v;
         hidden_hash.push({name: n, value: v});
 
         // Component type
         v = $('image_component_type').value;
-        n = main_name+"["+param_name+"][][image_component_zone_type]";
+        n = main_name+"["+param_name+"][][depiction_type]";
         display_string += " ("+v+"): ";
         hidden_hash.push({name: n, value: v});
+        
+        // Empty uri
+        hidden_hash.push({name: main_name+"["+param_name+"][][uri]", value: ""})
         
         populate_with_item(populate_ul_id, display_string, hidden_hash);
     });
