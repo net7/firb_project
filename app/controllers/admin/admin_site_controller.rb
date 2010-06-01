@@ -13,7 +13,7 @@ class Admin::AdminSiteController < ApplicationController
     thing.updatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
     thing.rewrite_attributes!(options[:params] || attribute_parameters)
     if(block_given?)
-      yield
+      yield(thing)
     else
       redirect_to :action => :show, :id => params[:id]
     end

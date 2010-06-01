@@ -142,7 +142,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     new_card = FirbIllustratedMemoryDepictionCard.last
     assert_equal('New illu', new_card.name)
     assert_equal('last_and_first', new_card.position)
-    assert_equal(3, new_card.bibliography_items.size)
+    assert_property(new_card.bibliography_items, *@bibliographies)
   end
 
   def test_create_letter_with_zone_and_iconclass
@@ -159,7 +159,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     new_card = FirbLetterIllustrationCard.last
     assert_equal('Letter', new_card.name)
     assert_equal('last_and_first', new_card.position)
-    assert_equal(2, new_card.iconclass_terms.size)
+    assert_property(new_card.iconclass_terms, *@iconclasses)
     assert_equal(new_card.image_zone.uri, @image_zone.uri)
   end
   
@@ -215,7 +215,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     new_card = FirbLetterIllustrationCard.last
     assert_equal('Letter', new_card.name)
     assert_equal('last_and_first', new_card.position)
-    assert_equal(2, new_card.iconclass_terms.size)
+    assert_property(new_card.iconclass_terms, *@iconclasses)
     assert_equal(new_card.image_zone.uri, @image_zone.uri)
   end
   
@@ -272,7 +272,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     card = FirbIllustratedMemoryDepictionCard.find(@illustrated_one.id)
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
-    assert_equal(3, card.bibliography_items.size)
+    assert_property(card.bibliography_items, *@bibliographies)
   end
   
   def test_update_letter_with_component

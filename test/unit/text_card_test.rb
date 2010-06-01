@@ -23,12 +23,20 @@ class TextCardTest < ActiveSupport::TestCase
       image_zone2 = FirbImageZone.create_with_name('heydo')
       image_zone1.save!
       image_zone2.save!
-      image_zones = [image_zone1.id, image_zone2.id]
+      image_zones = [image_zone1.uri.to_s, image_zone2.uri.to_s]
       image_zones
     end
     
+    setup_once(:non_illustrated) do
+      (1..2).collect do |idx|
+        card = FirbNonIllustratedMemoryDepictionCard.create_card(:name => "FOO#{idx}")
+        card.save!
+        { :uri => card.uri.to_s }
+      end
+    end
+    
     setup_once(:card) do
-      source = FirbTextCard.create_card('Title of the card', 'parafrasi pararararrarara', @anastatica.uri.to_s, @image_zones)
+      source = FirbTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => @non_illustrated)
       source.save!
       source
     end
@@ -36,6 +44,18 @@ class TextCardTest < ActiveSupport::TestCase
     assert_not_nil(@card)
     assert_not_nil(@anastatica)
     assert_not_nil(@image_zones)
+    assert_not_nil(@non_illustrated)
+  end
+  
+  def test_non_illustrated
+    assert_equal(2, @card.non_illustrated_memory_depictions.size)
+  end
+  
+  def test_create_components
+    assert_difference("FirbNonIllustratedMemoryDepictionCard.count", 1) do
+      card =   FirbTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => [:uri => "", :title => "Noobar"])
+      card.save!
+    end
   end
   
   def test_title

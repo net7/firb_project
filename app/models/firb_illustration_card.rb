@@ -8,11 +8,6 @@ class FirbIllustrationCard < FirbCard
   def inherited_iconclasses
     ActiveRDF::Query.new(IconclassTerm).select(:iconclass).where(:card, N::DCT.isPartOf, self).where(:card, N::DCT.subject, :iconclass).execute
   end
-  
-  def rewrite_attributes!(options)
-    process_component_options!(options)
-    super(options)
-  end
 
   def self.remove_iconclass_terms(page)
     page.iconclass_terms.each do |t|
@@ -28,36 +23,29 @@ class FirbIllustrationCard < FirbCard
       end
     end
   end
-  
+
   def self.replace_iconclass_terms(new_terms, page)
     FirbIllustrationPage.remove_iconclass_terms(page)
     FirbIllustrationPage.add_iconclass_terms(new_terms, page)
     page.save
   end
-  
-  def self.create_card(options = {})
-    process_component_options!(options)
-    card = super(options)
-  end
-  
-  def self.process_component_options!(options)
-    return nil if(options[:image_components].blank?)
-    options[:image_components].collect! do |comp_options|
-      if(comp_options.is_a?(ImageComponent))
-        comp_options
-      elsif(comp_options[:uri].blank?)
-        comp = ImageComponent.create_component(comp_options)
-        comp.save!
-        comp
-      else
-        ImageComponent.find(comp_options[:uri])
+
+  # TODO: Hacks superclass internal behaviour
+  def self.split_attribute_hash(options)
+    unless(options[:image_components].blank?)
+      options[:image_components].collect! do |comp_options|
+        if(comp_options.is_a?(ImageComponent))
+          comp_options
+        elsif(comp_options[:uri].blank?)
+          comp = ImageComponent.create_component(comp_options)
+          comp.save!
+          comp
+        else
+          ImageComponent.find(comp_options[:uri])
+        end
       end
     end
+    super(options)
   end
-  
-  def process_component_options!(component_options)
-    self.class.process_component_options!(component_options)
-  end
-
 
 end

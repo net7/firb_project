@@ -20,7 +20,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def create
-    txt = FirbTextCard.create_card(params[:firb_text_card][:title], params[:firb_text_card][:parafrasi], params[:firb_text_card][:anastatica], params[:firb_text_card][:image_zone])
+    txt = FirbTextCard.create_card(params[:firb_text_card])
     
     if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
@@ -42,39 +42,18 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def update
-    text_card = FirbTextCard.find(params[:id])
-    
-    text_card.updatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
-    
-    text_card.anastatica = FirbAnastaticaPage.find(params[:firb_text_card][:anastatica]) unless(params[:firb_text_card][:anastatica].blank?)
-    text_card.parafrasi = params[:firb_text_card][:parafrasi] unless(params[:firb_text_card][:parafrasi].blank?)
-    text_card.title = params[:firb_text_card][:title] unless(params[:firb_text_card][:title].blank?)
-
-    #TODO: is it ok to do nothing in case this is nil?
-    unless params[:firb_text_card][:image_zone].nil?
-      zones = params[:firb_text_card][:image_zone].values.collect{ |iz| FirbImageZone.find(iz) }
-      text_card.predicate_replace(:dct, :isFormatOf, zones)
+    hobo_source_update do |updated_source|
+      if (params[:firb_text_card][:note]) 
+        FirbNote.replace_notes(params[:firb_text_card][:note], updated_source)
+      end
+      redirect_to :controller => :firb_text_cards, :action => :index
     end
-
-    if (params[:firb_text_card][:note]) 
-      FirbNote.replace_notes(params[:firb_text_card][:note], text_card)
-    end
-
-    if (text_card.save)
-      attach_file_to(text_card)
-      flash[:notice] = "Text page updated"
-    else
-      flash[:notice] = "Error updating the text page"
-    end
-    
-    redirect_to :controller => :firb_text_cards, :action => :index
   end
   
   private
   
   def attach_file_to(text_card)
     if(params[:firb_text_card][:file])
-      puts "GOING TO ATTACH"
       xml_data = TaliaCore::DataTypes::XmlData.new
       xml_data.create_from_data('data.xml', params[:firb_text_card][:file], :options => { :mime_type => 'text/xml' })
       text_card.data_records.destroy_all

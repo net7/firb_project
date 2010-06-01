@@ -319,7 +319,7 @@
 
 <def tag="image-zones-edit">
     <%= render :partial => 'shared/multi_selector', 
-               :locals => { :main_name => "firb_text_card", :param_name => 'image_zone', :options => image_zone_select_uri, :autocomplete_url => '',
+               :locals => { :main_name => "firb_text_card", :param_name => 'image_zones', :options => image_zone_select_uri, :autocomplete_url => '',
                             :existing => this.image_zones.collect {|z| [ z.name, z.uri.to_s ] } } 
     %>
 </def>
