@@ -18,7 +18,7 @@ class ImageComponentTest < ActiveSupport::TestCase
     end
 
     setup_once(:image_component) do
-      image_component = ImageComponent.create_component(:name => 'nomy', :zone_type => 'xxx', :image_zone => @image_zone.uri.to_s)
+      image_component = ImageComponent.new(:name => 'nomy', :zone_type => 'xxx', :image_zone => @image_zone.uri.to_s)
       image_component.save!
       image_component
     end

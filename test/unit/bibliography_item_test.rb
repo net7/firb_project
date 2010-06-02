@@ -12,7 +12,7 @@ class BibliographyItemTest < ActiveSupport::TestCase
       true
     end
     setup_once(:item) do
-      BibliographyItem.create_item(
+      BibliographyItem.new(
         :title => 'bingobongo',
         :abstract => 'all about bingobongos',
         :publisher => 'the man of bingobongo',

@@ -12,12 +12,12 @@ class FirbAnastaticaPageTest < ActiveSupport::TestCase
       true
     end
     setup_once(:page) do
-      source = FirbAnastaticaPage.create_page(:title => "tito", :page_position => "ups")
+      source = FirbAnastaticaPage.new(:title => "tito", :page_position => "ups")
       source.save!
       source
     end
     setup_once(:page2) do 
-      source = FirbAnastaticaPage.create_page(:title => "chicken", :page_position => "ups") 
+      source = FirbAnastaticaPage.new(:title => "chicken", :page_position => "ups") 
       source.save!
       source
     end
@@ -44,18 +44,18 @@ class FirbAnastaticaPageTest < ActiveSupport::TestCase
   end
   
   def test_create
-    page = FirbAnastaticaPage.create_page
+    page = FirbAnastaticaPage.new
     assert_kind_of(FirbAnastaticaPage, page)
     assert_not_nil(page.uri)
     assert_match(/[^\s]+/, page.uri.to_s)
   end
   
   def test_create_with_save
-    assert_nothing_raised { FirbAnastaticaPage.create_page.save! }
+    assert_nothing_raised { FirbAnastaticaPage.new.save! }
   end
   
   def test_create_with_options
-    page = FirbAnastaticaPage.create_page(:title => "tito", :page_position => "ups")
+    page = FirbAnastaticaPage.new(:title => "tito", :page_position => "ups")
     assert_equal("ups", page.page_position)
     assert_equal("tito", page.title)
   end
@@ -72,7 +72,7 @@ class FirbAnastaticaPageTest < ActiveSupport::TestCase
     image_zone = FirbImageZone.create_with_name('foo')
     image_zone.save!
     
-    page = FirbAnastaticaPage.create_page(:title => "tito", :page_position => "ups", :image_zone => image_zone)
+    page = FirbAnastaticaPage.new(:title => "tito", :page_position => "ups", :image_zone => image_zone)
     page.save!
     
     assert_equal(image_zone.uri, FirbAnastaticaPage.find(page.id).image_zone.uri)

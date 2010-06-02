@@ -1,8 +1,9 @@
 class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   hobo_model # Don't put anything above this
   include StandardPermissions
-  extend RandomId
   extend RdfProperties
+  
+  autofill_uri
   
   rdf_property :title, N::MARCONT.title
   rdf_property :abstract, N::MARCONT.abstract, :type => :text
@@ -17,12 +18,6 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   rdf_property :external_url, N::MARCONT.hasURL
   rdf_property :curator, N::TALIA.curator
   rdf_property :translator, N::TALIA.translator
-  
-  def self.create_item(options = {})
-    options[:uri] = N::LOCAL + 'bibliographic_item/' + random_id
-    raise(ArgumentError, "Record already exists #{options[:uri]}") if(TaliaCore::ActiveSource.exists?(options[:uri]))
-    self.new(options)
-  end
   
   def name
     title || uri.local_name

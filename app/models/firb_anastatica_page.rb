@@ -1,7 +1,6 @@
 class FirbAnastaticaPage < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
-  extend RandomId
   
   singular_property :title, N::DCNS.title
   declare_attr_type :title, :string
@@ -10,13 +9,7 @@ class FirbAnastaticaPage < TaliaCore::Source
   declare_attr_type :name, :string
   singular_property :image_zone, N::DCT.isFormatOf
   
-  def self.create_page(options = {})
-    options.to_options!
-    new_url =  (N::LOCAL + 'anastatica/' + random_id).to_s
-    options[:uri] = new_url
-    raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
-    self.new(options)
-  end
+  autofill_uri :force => true
   
   def name
     title || uri.local_name

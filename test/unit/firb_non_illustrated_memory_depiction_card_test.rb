@@ -12,7 +12,7 @@ class FirbNonIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
       true
     end
     setup_once(:card) do
-      source = FirbNonIllustratedMemoryDepictionCard.create_card(
+      source = FirbNonIllustratedMemoryDepictionCard.new(
       :name => "evil guy",
       :code => "codyhoo"
       )
@@ -25,18 +25,18 @@ class FirbNonIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
   end
   
   def test_create
-    card = FirbNonIllustratedMemoryDepictionCard.create_card
+    card = FirbNonIllustratedMemoryDepictionCard.new
     assert_kind_of(FirbNonIllustratedMemoryDepictionCard, card)
     assert_not_nil(card.uri)
     assert_match(/[^\s]+/, card.uri.to_s)
   end
   
   def test_create_with_save
-    assert_nothing_raised { FirbCard.create_card.save! }
+    assert_nothing_raised { FirbCard.new.save! }
   end
   
   def test_create_with_options
-    card = FirbNonIllustratedMemoryDepictionCard.create_card(:name => "tito", :position => "ups")
+    card = FirbNonIllustratedMemoryDepictionCard.new(:name => "tito", :position => "ups")
     assert_equal("ups", card.position)
     assert_equal("tito", card.name)
   end

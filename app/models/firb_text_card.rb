@@ -42,7 +42,7 @@ class FirbTextCard < TaliaCore::Source
         if(comp_options.is_a?(TaliaCore::ActiveSource))
           comp_options
         elsif(comp_options[:uri].blank?)
-          comp = FirbNonIllustratedMemoryDepictionCard.create_card(comp_options)
+          comp = FirbNonIllustratedMemoryDepictionCard.new(comp_options)
           comp.save!
           comp
         else

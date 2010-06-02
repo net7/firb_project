@@ -8,6 +8,8 @@ class FirbCard < TaliaCore::Source
   
   multi_property :bibliography_items, N::TALIA.hasBibliography, :force_relation => true
   
+  autofill_uri :force => true
+  
   extend RandomId
 
   # Anastatica page it links to
@@ -77,16 +79,9 @@ class FirbCard < TaliaCore::Source
   def child_cards
     ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:card).where(:card, N::TALIA.parent_card, self).execute
   end
-
-  def self.create_card(options = {})
-    new_url =  (N::LOCAL + 'firb_card/' + random_id).to_s
-    options[:uri] = new_url
-    raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
-    self.new(options) # Check if it attaches :image_zone and :anastatica
-  end
   
   def self.create_card_with_permission_check(options = {})
-    card = create_card(options).create_permission_check!
+    card = new(options).create_permission_check!
   end
 
 

@@ -12,7 +12,7 @@ class FirbLetterIllustrationCardTest < ActiveSupport::TestCase
       true
     end
     setup_once(:card) do
-      source = FirbLetterIllustrationCard.create_card(
+      source = FirbLetterIllustrationCard.new(
       :name => "evil guy",
       :code => "codyhoo"
       )
@@ -25,18 +25,18 @@ class FirbLetterIllustrationCardTest < ActiveSupport::TestCase
   end
   
   def test_create
-    card = FirbLetterIllustrationCard.create_card
+    card = FirbLetterIllustrationCard.new
     assert_kind_of(FirbLetterIllustrationCard, card)
     assert_not_nil(card.uri)
     assert_match(/[^\s]+/, card.uri.to_s)
   end
   
   def test_create_with_save
-    assert_nothing_raised { FirbLetterIllustrationCard.create_card.save! }
+    assert_nothing_raised { FirbLetterIllustrationCard.new.save! }
   end
   
   def test_create_with_options
-    card = FirbLetterIllustrationCard.create_card(:name => "tito", :code => "ups")
+    card = FirbLetterIllustrationCard.new(:name => "tito", :code => "ups")
     assert_equal("ups", card.code)
     assert_equal("tito", card.name)
   end

@@ -160,7 +160,7 @@ class Admin::BibliographyItemsControllerTest < ActionController::TestCase
         :external_url => 'http://bingobongo.org/part_two'
       }
     ]
-    @item_definitions.each { |item| BibliographyItem.create_item(item).save! }
+    @item_definitions.each { |item| BibliographyItem.new(item).save! }
   end
 
 end

@@ -185,7 +185,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     setup_page
     setup_image_zone
     login_for(:admin)
-    compo = ImageComponent.create_component(:name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s)
+    compo = ImageComponent.new(:name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s)
     compo.save!
     assert_difference('FirbLetterIllustrationCard.count', 1) do
       assert_difference('ImageComponent.count', 1) do
@@ -277,7 +277,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   
   def test_update_letter_with_component
     setup_image_zone
-    card =  FirbLetterIllustrationCard.create_card(:name => "compy test",
+    card =  FirbLetterIllustrationCard.new(:name => "compy test",
       :image_zone => @image_zone.uri,
       :image_components => [ {
         :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -298,7 +298,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   
   def test_update_letter_with_component
     setup_image_zone
-    card =  FirbLetterIllustrationCard.create_card(:name => "compy test",
+    card =  FirbLetterIllustrationCard.new(:name => "compy test",
       :image_zone => @image_zone.uri,
       :image_components => [ {
         :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -318,7 +318,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   
   def test_update_letter_with_component_adding
     setup_image_zone
-    card =  FirbLetterIllustrationCard.create_card(:name => "compy test",
+    card =  FirbLetterIllustrationCard.new(:name => "compy test",
       :image_zone => @image_zone.uri,
       :image_components => [ {
         :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -349,23 +349,23 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
 
 
   def setup_cards
-    @non_illustrated = FirbNonIllustratedMemoryDepictionCard.create_card(:name => 'me title', :position => '3rb')
+    @non_illustrated = FirbNonIllustratedMemoryDepictionCard.new(:name => 'me title', :position => '3rb')
     @non_illustrated.save!
-    @illustrated_one = FirbIllustratedMemoryDepictionCard.create_card(:name => 'illuostrous', :position => 'whatever')
+    @illustrated_one = FirbIllustratedMemoryDepictionCard.new(:name => 'illuostrous', :position => 'whatever')
     @illustrated_one.save!
-    @illustrated_two = FirbIllustratedMemoryDepictionCard.create_card(:name => 'super_illu', :position => 'you guess')
+    @illustrated_two = FirbIllustratedMemoryDepictionCard.new(:name => 'super_illu', :position => 'you guess')
     @illustrated_two.save!
   end
   
   def setup_additional_cards
-    @parent = FirbParentIllustrationCard.create_card(:name => 'madre', :position => 'on top')
+    @parent = FirbParentIllustrationCard.new(:name => 'madre', :position => 'on top')
     @parent.save!
-    @letter = FirbLetterIllustrationCard.create_card(:name => 'Letter', :position => 'first')
+    @letter = FirbLetterIllustrationCard.new(:name => 'Letter', :position => 'first')
     @letter.save!
   end
   
   def setup_card
-    @non_illustrated = FirbNonIllustratedMemoryDepictionCard.create_card(:name => 'me title', :position => '3rb')
+    @non_illustrated = FirbNonIllustratedMemoryDepictionCard.new(:name => 'me title', :position => '3rb')
     @non_illustrated.save!
   end
 
@@ -394,7 +394,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   def setup_bibliographies
     @bibliographies = []
     (0..2).each do |idx|
-      bibliography = BibliographyItem.create_item(:title => "bib_#{idx}")
+      bibliography = BibliographyItem.new(:title => "bib_#{idx}")
       bibliography.save!
       @bibliographies << bibliography
     end
@@ -402,7 +402,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   end
 
   def setup_page
-    @page = FirbAnastaticaPage.create_page(:title => "meep", :page_positon => "1", :name => "first page")
+    @page = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
     @page.save!
     @page
   end

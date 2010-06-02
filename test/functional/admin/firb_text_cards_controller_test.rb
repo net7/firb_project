@@ -174,7 +174,7 @@ class Admin::FirbTextCardsControllerTest < ActionController::TestCase
   
   def setup_non_illustrated
     @non_illustrated = (1..2).collect do |idx|
-      card = FirbNonIllustratedMemoryDepictionCard.create_card(:name => "FOO#{idx}")
+      card = FirbNonIllustratedMemoryDepictionCard.new(:name => "FOO#{idx}")
       card.save!
       { :uri => card.uri.to_s }
     end
@@ -187,7 +187,7 @@ class Admin::FirbTextCardsControllerTest < ActionController::TestCase
   end
   
   def setup_anastatica
-    @anastatica = FirbAnastaticaPage.create_page(:title => "meep", :page_positon => "1", :name => "first page")
+    @anastatica = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
     @anastatica.save!
   end
   

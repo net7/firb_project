@@ -957,6 +957,125 @@
 
 
 
+<!-- ====== Parade Pages ====== -->
+
+<def tag="index-page" for="Parade">
+  <page merge title="#{ht 'parades.index.title', :default=>['Parades'] }">
+    <body: class="index-page parade" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="parades.index.heading">
+            Parades
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="parades.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="parades.actions.new">New Parade</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Parade">
+  <page merge title="#{ht 'parades.new.title', :default=>[' New Parade'] }">
+    <body: class="new-page parade" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="parades.new.heading">
+            New Parade
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'parades.actions.create', :default=>['Create Parade']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Parade">
+  <page merge title="#{ht 'parades.show.title', :default=>['Parade'] }">
+
+    <body: class="show-page parade" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="parades.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="parades.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Parade
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Parade">
+  <page merge title="#{ht 'parades.edit.title', :default=>['Edit Parade'] }">
+
+    <body: class="edit-page parade" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="parades.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'parades.actions.delete', :default=>['Remove This Parade']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== TaliaCollection Pages ====== -->
 
 <def tag="index-page" for="TaliaCollection">

@@ -11,7 +11,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def new
-    @firb_card = @card_type.create_card
+    @firb_card = @card_type.new
     @firb_card.acting_user = current_user
     @card_type = params[:type] || default_type
   end
@@ -25,7 +25,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def create
-    @firb_card = @card_type.create_card(card_params)
+    @firb_card = @card_type.new(card_params)
     if(save_created!(@firb_card))
       flash[:notice] = "Card succesfully created"
     else
