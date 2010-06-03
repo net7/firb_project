@@ -9,14 +9,6 @@ class FirbPiTextCard < FirbTextCard
   rdf_property :parafrasi, N::DCT.description, :type => :text
   multi_property :non_illustrated_memory_depictions, N::TALIA.hasNonIllustratedMemoryDepiction, :force_relation => true, :dependent => :destroy
   
-  fields do
-    uri :string
-  end
-  
-  def name
-    title || "#{I18n.t('firb_text_card.model_name')} #{self.id}"
-  end
-  
   def self.create_card(options)
     new_url =  (N::LOCAL + 'firb_pi_text_card/' + random_id).to_s
     options[:uri] = new_url
@@ -40,24 +32,6 @@ class FirbPiTextCard < FirbTextCard
       end
     end
     super(options)
-  end
-
-  def has_anastatica_page?
-    !self.anastatica.blank?
-  end
-
-  def notes
-    qry = ActiveRDF::Query.new(FirbNote).select(:note).distinct
-    qry.where(:note, N::DCT.isPartOf, self)
-    qry.execute
-  end
-
-  def notes_count
-    notes.count
-  end
-  
-  def has_notes?
-    !new_record? && (notes.count > 0)
   end
   
 end
