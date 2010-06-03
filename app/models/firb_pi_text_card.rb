@@ -1,7 +1,13 @@
-class FirbTextCard < TaliaCore::Source
+class FirbPiTextCard < FirbTextCard
+  hobo_model
+  include StandardPermissions
+    
+  singular_property :anastatica, N::DCT.isPartOf, :force_relation => true
+  rdf_property :title, N::DCNS.title
+  multi_property :image_zones, N::DCT.isFormatOf, :force_relation => true
 
-  extend RandomId
-  extend RdfProperties
+  rdf_property :parafrasi, N::DCT.description, :type => :text
+  multi_property :non_illustrated_memory_depictions, N::TALIA.hasNonIllustratedMemoryDepiction, :force_relation => true, :dependent => :destroy
   
   fields do
     uri :string
@@ -11,9 +17,8 @@ class FirbTextCard < TaliaCore::Source
     title || "#{I18n.t('firb_text_card.model_name')} #{self.id}"
   end
   
-  # Creates a page initialazing it with a paraphrase and anastatica_page id
   def self.create_card(options)
-    new_url =  (N::LOCAL + 'firb_text_card/' + random_id).to_s
+    new_url =  (N::LOCAL + 'firb_pi_text_card/' + random_id).to_s
     options[:uri] = new_url
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(options) # Check if it attaches :image_zone and :anastatica
