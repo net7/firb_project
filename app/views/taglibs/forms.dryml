@@ -48,7 +48,7 @@
             </if>
         </div>
 
-        <span id="firb-add-note" onclick="textPageAddNote()">Add a note</span>
+        <span id="firb-add-note" onclick="textPageAddNote('firb_pi_text_card')">Add a note</span>
 
         <input:parafrasi for='text' value='&this.parafrasi' />
         <label for='firb_pi_text_card[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />

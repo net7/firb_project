@@ -18,24 +18,6 @@ class FirbTextCard < TaliaCore::Source
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(options) # Check if it attaches :image_zone and :anastatica
   end
-  
-  # TODO: Hacks superclass internal behaviour
-  def self.split_attribute_hash(options)
-    unless(options[:non_illustrated_memory_depictions].blank?)
-      options[:non_illustrated_memory_depictions].collect! do |comp_options|
-        if(comp_options.is_a?(TaliaCore::ActiveSource))
-          comp_options
-        elsif(comp_options[:uri].blank?)
-          comp = FirbNonIllustratedMemoryDepictionCard.create_card(comp_options)
-          comp.save!
-          comp
-        else
-          FirbNonIllustratedMemoryDepictionCard.find(comp_options[:uri])
-        end
-      end
-    end
-    super(options)
-  end
 
   def has_anastatica_page?
     !self.anastatica.blank?

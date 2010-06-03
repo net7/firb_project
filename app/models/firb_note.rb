@@ -14,7 +14,6 @@ class FirbNote < TaliaCore::Source
   def self.create_note(content, text_card)
     n = FirbNote.new(N::LOCAL + 'firbnote/' + FirbImageElement.random_id)
     n.content = content
-    # p = FirbTextCard.find(text_card)
     p = TaliaCore::ActiveSource.find(text_card)
     n.text_card = p
     n

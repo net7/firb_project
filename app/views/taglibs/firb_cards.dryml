@@ -304,7 +304,7 @@
 <def tag="non-illustrated-memory-depiction-edit">
     <%= 
         render :partial => 'shared/non_illustrated_memory_depictions',
-        :locals => { :main_name => 'firb_text_card', :param_name => 'non_illustrated_memory_depictions', 
+        :locals => { :main_name => 'firb_pi_text_card', :param_name => 'non_illustrated_memory_depictions', 
         :existing => this.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.depiction_type})", ic.uri.to_s]} }
     %>
 </def>
@@ -319,7 +319,7 @@
 
 <def tag="image-zones-edit">
     <%= render :partial => 'shared/select', 
-               :locals => { :main_name => "firb_text_card", :param_name => 'image_zones', :options => image_zone_select_uri, :autocomplete_url => '',
+               :locals => { :main_name => "firb_pi_text_card", :param_name => 'image_zones', :options => image_zone_select_uri, :autocomplete_url => '',
                             :existing => this.image_zones.collect {|z| [ z.name, z.uri.to_s ] } } 
     %>
 </def>
