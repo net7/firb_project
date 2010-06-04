@@ -21,6 +21,7 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
 
   def create
     notes = params[:firb_pi_text_card].delete(:note)
+    file = params[:firb_pi_text_card].delete(:file)
     txt = FirbPiTextCard.create_card(params[:firb_pi_text_card])
     
     if(save_created!(txt))
@@ -29,7 +30,7 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
       flash[:notice] = "Error creating the page"
     end
     
-    attach_file_to(txt)
+    attach_file_to(txt, file)
 
     if (notes)
       FirbNote.create_notes(notes.values, txt)
@@ -54,10 +55,10 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
   
   private
   
-  def attach_file_to(text_card)
-    if(params[:firb_pi_text_card][:file])
+  def attach_file_to(text_card, file)
+    if()
       
-      xml_string = params[:firb_text_card][:file].read
+      xml_string = file.read
       doc = Nokogiri::XML(xml_string)
       schema  = File.open('xslt/swicky_tei.rng') { |schemafile| Nokogiri::XML::RelaxNG(schemafile) }
       error_string = "The XML source has not been attached to '#{text_card.title}' since it's not well formed. Hints:"+"<br><ul>"

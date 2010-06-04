@@ -53,7 +53,7 @@ class PiTextCardTest < ActiveSupport::TestCase
   
   def test_create_components
     assert_difference("FirbNonIllustratedMemoryDepictionCard.count", 1) do
-      card =   FirbPiTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => [:uri => "", :title => "Noobar"])
+      card = FirbPiTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => [:uri => "", :title => "Noobar"])
       card.save!
     end
   end
