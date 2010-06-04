@@ -1,19 +1,17 @@
 require 'simplyx'
 require 'nokogiri'
 
-class Admin::FirbTextCardsController < Admin::AdminSiteController
+class Admin::FirbPiTextCardsController < Admin::AdminSiteController
 
   hobo_model_controller
-  
-
   auto_actions :all
 
   def index
-    @firb_text_cards = FirbTextCard.paginate(:page => params[:page], :prefetch_relations => true)
+    @firb_pi_text_cards = FirbPiTextCard.paginate(:page => params[:page], :prefetch_relations => true)
   end
   
   def show
-    @firb_text_card = FirbTextCard.find(params[:id], :prefetch_relations => true)
+    @firb_pi_text_card = FirbPiTextCard.find(params[:id], :prefetch_relations => true)
   end
 
   def show_annotable
@@ -22,8 +20,8 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def create
-    notes = params[:firb_text_card].delete(:note)
-    txt = FirbTextCard.create_card(params[:firb_text_card])
+    notes = params[:firb_pi_text_card].delete(:note)
+    txt = FirbPiTextCard.create_card(params[:firb_pi_text_card])
     
     if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
@@ -37,27 +35,27 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
       FirbNote.create_notes(notes.values, txt)
     end
     
-    redirect_to :controller => :firb_text_cards, :action => :index
+    redirect_to :controller => :firb_pi_text_cards, :action => :index
   end
 
   def destroy
-    hobo_destroy { redirect_to :controller => :firb_text_cards, :action => :index }
+    hobo_destroy { redirect_to :controller => :firb_pi_text_cards, :action => :index }
   end
 
   def update
-    notes = params[:firb_text_card].delete(:note)
+    notes = params[:firb_pi_text_card].delete(:note)
     hobo_source_update do |updated_source|
     if (notes) 
         FirbNote.replace_notes(notes, updated_source)
     end
-    redirect_to :controller => :firb_text_cards, :action => :index
+    redirect_to :controller => :firb_pi_text_cards, :action => :index
   end
   end
   
   private
   
   def attach_file_to(text_card)
-    if(params[:firb_text_card][:file])
+    if(params[:firb_pi_text_card][:file])
       
       xml_string = params[:firb_text_card][:file].read
       doc = Nokogiri::XML(xml_string)

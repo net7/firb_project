@@ -37,9 +37,9 @@ function jsapi_mouseClick(fid, ki) {
 // Adds dynamically a note to the bottom of the #firb-notes div, 
 // uses the same markup as in views/admin/firb_text_cards/new.dryml
 // Used in that same dryml template
-function textPageAddNote() {
+function textPageAddNote(model_name) {
     var rand = Math.floor(Math.random()*9999),
-        markup = "<div class='firb-note'><textarea rows='4' cols='50' name='firb_text_card[note][new_"+rand+"]'></textarea><span class='firb-remove-note'>Elimina nota</span></div>";
+        markup = "<div class='firb-note'><textarea rows='4' cols='50' name='"+model_name+"[note][new_"+rand+"]'></textarea><span class='firb-remove-note'>Elimina nota</span></div>";
     $$('#firb-notes')[0].insert({bottom: markup});
 }
 
