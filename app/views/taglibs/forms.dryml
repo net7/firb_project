@@ -61,29 +61,39 @@
     <form merge param="default" multipart="true">
         <error-messages param/>
         
-        <%= I18n.t("firb_text_page.title") %>: <input type="text" name="firb_vt_text_card_handwritten[title]" value="&this.title"/><br />
-        <br />
-        <%= I18n.t("firb_text_page.transcription_file") %>: <input type="file" name="firb_vt_text_card_handwritten[file]"/><br />
-        <br />
-        <%= I18n.t("firb_anastatica_pages.model_name") %>: <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
-        <br />
-        <%= I18n.t("firb_text_page.image_zones") %> :
-        <image-zones-edit />
-        <br />
-        
-        <field-edit-row fieldname="signature" /><br /><br />
-        <field-edit-row fieldname="measure" /><br /><br />
-        <field-edit-row fieldname="watermark" /><br /><br />
-        <field-edit-row fieldname="cartulation" /><br /><br />
-        <field-edit-row fieldname="technical_notes" /><br /><br />
-        <field-edit-row fieldname="handwritten_notes" /><br /><br />
-        <field-edit-row fieldname="conservation_status" /><br /><br />
-        <field-edit-row fieldname="autography" /><br /><br />
-        <field-edit-row fieldname="date" /><br /><br />
+        <field-edit-table>
+            <content:>
 
-        <field-row fieldname="bibliography_items" param="bibliography_items" >
-            <view:><bibliography-items-edit /></view:>
-        </field-row>
+            <field-edit-row fieldname="title" />
+
+            <field-row fieldname="transcription_file">
+                <view:><input type="file" name="firb_vt_text_card_handwritten[file]"/></view:>
+            </field-row>
+
+            <field-row fieldname="anastatica" param="anastatica" >
+                <view:><single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" /></view:>
+            </field-row>
+
+            <field-row fieldname="image_zones" param="image_zones" >
+                <view:><image-zones-edit /></view:>
+            </field-row>
+
+            <field-edit-row fieldname="signature" />
+            <field-edit-row fieldname="measure" />
+            <field-edit-row fieldname="watermark" />
+            <field-edit-row fieldname="cartulation" />
+            <field-edit-row fieldname="technical_notes" />
+            <field-edit-row fieldname="handwritten_notes" />
+            <field-edit-row fieldname="conservation_status" />
+            <field-edit-row fieldname="autography" />
+            <field-edit-row fieldname="date" />
+
+            <field-row fieldname="bibliography_items" param="bibliography_items" >
+                <view:><bibliography-items-edit /></view:>
+            </field-row>
+
+            </content:>
+        </field-edit-table>
 
         <br />
         <div id="firb-notes">
