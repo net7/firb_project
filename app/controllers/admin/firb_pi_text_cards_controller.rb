@@ -1,7 +1,7 @@
 require 'simplyx'
 require 'nokogiri'
 
-class Admin::FirbPiTextCardsController < Admin::AdminSiteController
+class Admin::FirbPiTextCardsController < Admin::FirbTextCardsController
 
   hobo_model_controller
   auto_actions :all
@@ -12,11 +12,6 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
 
   def show
     @firb_pi_text_card = FirbPiTextCard.find(params[:id], :prefetch_relations => true)
-  end
-
-  def show_annotable
-    record = TaliaCore::DataTypes::DataRecord.find(params[:id])
-    @content = record.content_string
   end
 
   def create
