@@ -84,7 +84,7 @@
             </if>
         </div>
 
-        <span id="firb-add-note" onclick="textPageAddNote('firb_vt_text_card')">Add a note</span>
+        <span id="firb-add-note" onclick="textPageAddNote('firb_vt_text_card_handwritten')">Add a note</span>
 
         <submit label="Save" /><or-cancel with="&FirbVtTextCardHandwritten" />
     </form>
