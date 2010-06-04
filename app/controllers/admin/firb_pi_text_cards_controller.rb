@@ -9,7 +9,7 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
   def index
     @firb_pi_text_cards = FirbPiTextCard.paginate(:page => params[:page], :prefetch_relations => true)
   end
-  
+
   def show
     @firb_pi_text_card = FirbPiTextCard.find(params[:id], :prefetch_relations => true)
   end
@@ -23,19 +23,19 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
     notes = params[:firb_pi_text_card].delete(:note)
     file = params[:firb_pi_text_card].delete(:file)
     txt = FirbPiTextCard.create_card(params[:firb_pi_text_card])
-    
+
     if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
     else
       flash[:notice] = "Error creating the page"
     end
-    
-    attach_file_to(txt, file)
+
+    txt.attach_file(file)
 
     if (notes)
       FirbNote.create_notes(notes.values, txt)
     end
-    
+
     redirect_to :controller => :firb_pi_text_cards, :action => :index
   end
 
@@ -45,44 +45,16 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
 
   def update
     notes = params[:firb_pi_text_card].delete(:note)
+    file = params[:firb_pi_text_card].delete(:file)
     hobo_source_update do |updated_source|
-    if (notes) 
+      if (notes) 
         FirbNote.replace_notes(notes, updated_source)
-    end
-    redirect_to :controller => :firb_pi_text_cards, :action => :index
-  end
-  end
-  
-  private
-  
-  def attach_file_to(text_card, file)
-    if()
+      end
       
-      xml_string = file.read
-      doc = Nokogiri::XML(xml_string)
-      schema  = File.open('xslt/swicky_tei.rng') { |schemafile| Nokogiri::XML::RelaxNG(schemafile) }
-      error_string = "The XML source has not been attached to '#{text_card.title}' since it's not well formed. Hints:"+"<br><ul>"
-      schema.validate(doc).each do |error|
-        error_string += "<li>" + error.message + "</li>"
-      end
-      error_string += "</ul>"
-
-      if (schema.valid?(doc)) 
-        xml_data = TaliaCore::DataTypes::XmlData.new
-        xml_data.create_from_data('data.xml', xml_string, :options => { :mime_type => 'text/xml' })
-        text_card.data_records.destroy_all
-        text_card.data_records << xml_data
-        options = {"source_uri" => text_card.uri.to_s }
-        xsl_file = 'xslt/HTML1.xsl'
-        xml_file = xml_data.full_filename
-        html1 = Simplyx::XsltProcessor::perform_transformation(xsl_file, xml_file, options)
-        html1_data = TaliaCore::DataTypes::XmlData.new
-        html1_data.create_from_data('html1.html', html1, :options => { :mime_type => 'text/html' })
-        text_card.data_records << html1_data
-        text_card.save!
-      else
-        flash[:notice] = error_string
-      end
+      updated_source.attach_file(file)
+      updated_source.save!
+      
+      redirect_to :controller => :firb_pi_text_cards, :action => :index
     end
   end
 

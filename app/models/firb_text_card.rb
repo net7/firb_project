@@ -37,4 +37,34 @@ class FirbTextCard < TaliaCore::Source
     !new_record? && (notes.count > 0)
   end
   
+  def attach_file(file)
+    if(file)
+      xml_string = file.read
+      doc = Nokogiri::XML(xml_string)
+      schema  = File.open('xslt/swicky_tei.rng') { |schemafile| Nokogiri::XML::RelaxNG(schemafile) }
+      error_string = "The XML source has not been attached to '#{self.title}' since it's not well formed. Hints:"+"<br><ul>"
+      schema.validate(doc).each do |error|
+        error_string += "<li>" + error.message + "</li>"
+      end
+      error_string += "</ul>"
+
+      if (schema.valid?(doc)) 
+        xml_data = TaliaCore::DataTypes::XmlData.new
+        xml_data.create_from_data('data.xml', xml_string, :options => { :mime_type => 'text/xml' })
+        self.data_records.destroy_all
+        self.data_records << xml_data
+        options = {"source_uri" => self.uri.to_s }
+        xsl_file = 'xslt/HTML1.xsl'
+        xml_file = xml_data.full_filename
+        html1 = Simplyx::XsltProcessor::perform_transformation(xsl_file, xml_file, options)
+        html1_data = TaliaCore::DataTypes::XmlData.new
+        html1_data.create_from_data('html1.html', html1, :options => { :mime_type => 'text/html' })
+        self.data_records << html1_data
+        self.save!
+      else
+        flash[:notice] = error_string
+      end
+    end
+  end
+  
 end
