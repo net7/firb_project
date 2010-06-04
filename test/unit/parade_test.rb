@@ -13,7 +13,7 @@ class ParadeTest < ActiveSupport::TestCase
     end
     
     setup_once(:parade) do
-      parade = Parade.new
+      parade = Parade.new(:title => "Parade Title")
       parade << ParadeCart.new(:name => "first_foo")
       parade << ParadeCharacter.new(:name => "first_bar")
       parade << ParadeCharacter.new(:name => "second_bar")
@@ -39,5 +39,9 @@ class ParadeTest < ActiveSupport::TestCase
   def test_carts
     carts = @parade.carts.collect { |c| c.name }
     assert_equal(%w(first_foo second_foo), carts)
+  end
+  
+  def test_title
+    assert_equal(@parade.title, "Parade Title")
   end
 end

@@ -19,7 +19,10 @@ class Admin::ParadesControllerTest < ActionController::TestCase
   end
 
   def test_index
-    flunk
+    setup_parade
+    login_for(:admin)
+    get(:index)
+    assert_response :success
   end
 
   def test_show
@@ -27,11 +30,20 @@ class Admin::ParadesControllerTest < ActionController::TestCase
   end
   
   def test_create
-    flunk
+    login_for(:admin)
+    assert_difference('TaliaCore::Collection.count', 1) do
+      post(:create, :talia_collection => { :title => 'Meee new title' })
+      assert_response 302
+    end
+    new_parade = Parade.last
+    assert_equal('Meee new title', new_parade.title)
   end
   
   def test_create_non_authorized
-    flunk
+    assert_difference('TaliaCore::Collection.count', 0) do
+      post(:create, :talia_collection => { :title => 'Meee new title'})
+      assert_response 403
+    end
   end
   
   def test_update
@@ -49,4 +61,12 @@ class Admin::ParadesControllerTest < ActionController::TestCase
   def test_destroy_non_authorized
     flunk
   end
+  
+  private 
+  
+  def setup_parade
+    @parade = Parade.new(:title => "Foobar")
+    @parade.save!
+  end
+  
 end

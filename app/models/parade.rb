@@ -6,9 +6,12 @@ class Parade < TaliaCore::Collection
   include StandardPermissions
   extend RdfProperties
   
-  autofill_uri
-  
+  autofill_uri :force => true
+     
   multi_property :processions, N::TALIA.hasProcession, :force_relation => true, :dependent => :destroy
+  
+  declare_attr_type :name, :string
+  declare_attr_type :title, :string
   
   def characters
     ordered_objects.find_all { |el| el.is_a?(ParadeCharacter) }

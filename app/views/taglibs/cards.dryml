@@ -264,6 +264,21 @@
   </card>
 </def>
 
+<def tag="card" for="Parade">
+  <card class="talia-collection" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><%= this.title %></a><delete-icon /></h4>
+    </header:>
+    <body:>
+
+      <ht key="parades.collection.count" carts="&this.carts.size" chars="&this.characters.size">
+			Contains <%= this.carts.size %> carts and <%= this.characters.size %> characters
+      </ht>
+
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="FirbAnastaticaPage">
   <card class="talia-source" param="default" merge>
     <header: param>
