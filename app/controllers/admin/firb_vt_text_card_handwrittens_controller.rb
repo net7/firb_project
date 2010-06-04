@@ -25,7 +25,9 @@ class Admin::FirbVtTextCardHandwrittensController < Admin::FirbTextCardsControll
       flash[:notice] = "Error creating the page"
     end
 
-    txt.attach_file(file)
+    if (err = txt.attach_file(file))
+      flash[:notice] = err
+    end
 
     if (notes)
       FirbNote.create_notes(notes.values, txt)

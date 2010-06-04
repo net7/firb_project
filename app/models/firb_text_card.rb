@@ -61,8 +61,9 @@ class FirbTextCard < TaliaCore::Source
         html1_data.create_from_data('html1.html', html1, :options => { :mime_type => 'text/html' })
         self.data_records << html1_data
         self.save!
+        return false
       else
-        flash[:notice] = error_string
+        return error_string
       end
     end
   end
