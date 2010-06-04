@@ -58,7 +58,7 @@ class FirbTextCard < TaliaCore::Source
         xml_file = xml_data.full_filename
         html1 = Simplyx::XsltProcessor::perform_transformation(xsl_file, xml_file, options)
         html1_data = TaliaCore::DataTypes::XmlData.new
-        html1_data.create_from_data('html1.html', html1, :options => { :mime_type => 'text/html' })
+        html1_data.create_from_data('html1.html', html1, :options => { :mime_type => 'text/xml' })
         self.data_records << html1_data
         self.save!
         return false
