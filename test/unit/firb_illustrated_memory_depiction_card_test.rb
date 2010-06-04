@@ -12,7 +12,7 @@ class FirbIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
       true
     end
     setup_once(:card) do
-      source = FirbIllustratedMemoryDepictionCard.create_card(
+      source = FirbIllustratedMemoryDepictionCard.new(
       :name => "evil guy",
       :code => "codyhoo"
       )
@@ -25,18 +25,18 @@ class FirbIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
   end
   
   def test_create
-    card = FirbIllustratedMemoryDepictionCard.create_card
+    card = FirbIllustratedMemoryDepictionCard.new
     assert_kind_of(FirbIllustratedMemoryDepictionCard, card)
     assert_not_nil(card.uri)
     assert_match(/[^\s]+/, card.uri.to_s)
   end
   
   def test_create_with_save
-    assert_nothing_raised { FirbIllustratedMemoryDepictionCard.create_card.save! }
+    assert_nothing_raised { FirbIllustratedMemoryDepictionCard.new.save! }
   end
   
   def test_create_with_options
-    card = FirbIllustratedMemoryDepictionCard.create_card(:name => "tito", :position => "ups")
+    card = FirbIllustratedMemoryDepictionCard.new(:name => "tito", :position => "ups")
     assert_equal("ups", card.position)
     assert_equal("tito", card.name)
   end
@@ -50,8 +50,8 @@ class FirbIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
   end
   
   def test_parent_child_relation
-    card = FirbIllustratedMemoryDepictionCard.create_card(:name => "tito", :position => "ups")
-    parent = FirbParentIllustrationCard.create_card(:name => 'madre', :position => 'xxx')
+    card = FirbIllustratedMemoryDepictionCard.new(:name => "tito", :position => "ups")
+    parent = FirbParentIllustrationCard.new(:name => 'madre', :position => 'xxx')
     parent.save!
     card.parent_card = parent
     card.save!

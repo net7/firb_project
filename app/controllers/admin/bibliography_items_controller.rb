@@ -13,7 +13,7 @@ class Admin::BibliographyItemsController < Admin::AdminSiteController
   end
   
   def create
-    @bibliography_item = BibliographyItem.create_item(params[:bibliography_item])
+    @bibliography_item = BibliographyItem.new(params[:bibliography_item])
     if(save_created!(@bibliography_item))
       flash[:notice] = I18n.t("bibliography_items.succesfully_created")
     else

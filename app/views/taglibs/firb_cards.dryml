@@ -218,8 +218,10 @@
 
 <def tag="card-type-selector">
   <ul id="card-selector">
-    <% # Non illustrated are created from text cards %>
-    <% %w(illustrated_memory_depiction letter_illustration parent_illustration).each do |type| %>
+    <% # Non illustrated are created from text cards
+       card_types = TaliaCore::CONFIG['firb_card_types'] || %w(parent_illustration)
+    %>
+    <% card_types.each do |type| %>
        <% if(@card_type_name == type) %>
          <li class="selected"><ht key="firb_cards.#{type}_link" /></li>
        <% else %>

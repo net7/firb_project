@@ -18,7 +18,7 @@ module FakeSource
       if(result.is_a?(Array))
         result.collect { |s| from_real_source(s) }
       else
-        result.blank? ? result : from_real_source(result)
+        result.nil? ? result : from_real_source(result)
       end
     end
     

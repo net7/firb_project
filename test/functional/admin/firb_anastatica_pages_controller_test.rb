@@ -5,7 +5,7 @@ class Admin::FirbAnastaticaPagesControllerTest < ActionController::TestCase
   include TaliaUtil::TestHelpers
 
   def setup
-    @page = FirbAnastaticaPage.create_page(:title => 'me title', :page_position => '3rb')
+    @page = FirbAnastaticaPage.new(:title => 'me title', :page_position => '3rb')
     @page.save!
     TaliaUtil::Util.flush_rdf
   end

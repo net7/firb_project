@@ -2,6 +2,8 @@ class FirbIllustratedMemoryDepictionCard < FirbIllustrationCard
   
   include StandardPermissions
   
+  autofill_uri :force => true
+  
   # Short description: brief desc. of the depiction, say "Male person
   # drawing"
   singular_property :short_description, N::TALIA.short_description

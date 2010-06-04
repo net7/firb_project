@@ -57,9 +57,9 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
   def attach_file_to(text_card)
     if(params[:firb_pi_text_card][:file])
       
-      xml_file = File.open(params[:firb_pi_text_card][:file].path())
-      doc = Nokogiri::XML(xml_file)
-      schema  = Nokogiri::XML::RelaxNG(File.open('xslt/swicky_tei.rng'))
+      xml_string = params[:firb_text_card][:file].read
+      doc = Nokogiri::XML(xml_string)
+      schema  = File.open('xslt/swicky_tei.rng') { |schemafile| Nokogiri::XML::RelaxNG(schemafile) }
       error_string = "The XML source has not been attached to '#{text_card.title}' since it's not well formed. Hints:"+"<br><ul>"
       schema.validate(doc).each do |error|
         error_string += "<li>" + error.message + "</li>"
@@ -68,7 +68,7 @@ class Admin::FirbPiTextCardsController < Admin::AdminSiteController
 
       if (schema.valid?(doc)) 
         xml_data = TaliaCore::DataTypes::XmlData.new
-        xml_data.create_from_data('data.xml', params[:firb_pi_text_card][:file], :options => { :mime_type => 'text/xml' })
+        xml_data.create_from_data('data.xml', xml_string, :options => { :mime_type => 'text/xml' })
         text_card.data_records.destroy_all
         text_card.data_records << xml_data
         options = {"source_uri" => text_card.uri.to_s }

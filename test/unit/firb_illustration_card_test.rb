@@ -37,14 +37,14 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
     
     setup_once(:components) do
       (1..2).collect do |idx|
-        comp = ImageComponent.create_component(:name => "FOO#{idx}", :zone_type => "BAR", :image_zone => @image_zone)
+        comp = ImageComponent.new(:name => "FOO#{idx}", :zone_type => "BAR", :image_zone => @image_zone)
         comp.save!
         comp
       end
     end
     
     setup_once(:card) do
-      source = FirbIllustrationCard.create_card(
+      source = FirbIllustrationCard.new(
       :name => "illustration",
       :image_zone => @image_zone.uri,
       :iconclass_terms => @iconclasses.collect { |ic| ic.uri.to_s },
@@ -72,7 +72,7 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
   
   def test_create_components
     assert_difference("ImageComponent.count", 1) do
-      card =  FirbIllustrationCard.create_card(:name => "compy test",
+      card =  FirbIllustrationCard.new(:name => "compy test",
         :image_zone => @image_zone.uri,
         :image_components => [{ :uri => @components.first.uri.to_s },{
           :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -82,7 +82,7 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
   end
   
   def test_rewrite_attributes
-    source = FirbIllustrationCard.create_card(
+    source = FirbIllustrationCard.new(
     :name => "illustrationx"
     )
     source.save!

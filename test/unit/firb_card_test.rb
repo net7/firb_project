@@ -13,7 +13,7 @@ class FirbCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:page) do 
-      page = FirbAnastaticaPage.create_page(:title => "meep", :page_positon => "1", :name => "first page")
+      page = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
       page.save!
       page
     end
@@ -21,7 +21,7 @@ class FirbCardTest < ActiveSupport::TestCase
     setup_once(:bibliographies) do
       bibliographies = []
       (0..2).each do |idx|
-        bibliography = BibliographyItem.create_item(:title => "bib_#{idx}")
+        bibliography = BibliographyItem.new(:title => "bib_#{idx}")
         bibliography.save!
         bibliographies << bibliography
       end
@@ -31,7 +31,7 @@ class FirbCardTest < ActiveSupport::TestCase
     assert_equal(3, @bibliographies.size)
     
     setup_once(:card) do
-      source = FirbCard.create_card(
+      source = FirbCard.new(
       :name => "evil guy",
       :code => "codyhoo", 
       :collocation => "wassup, man?",
@@ -67,7 +67,7 @@ class FirbCardTest < ActiveSupport::TestCase
   end
   
   def test_create
-    card = FirbCard.create_card
+    card = FirbCard.new
     assert_kind_of(FirbCard, card)
     assert_not_nil(card.uri)
     assert_match(/[^\s]+/, card.uri.to_s)
@@ -78,11 +78,11 @@ class FirbCardTest < ActiveSupport::TestCase
   end
   
   def test_create_with_save
-    assert_nothing_raised { FirbCard.create_card.save! }
+    assert_nothing_raised { FirbCard.new.save! }
   end
   
   def test_create_with_options
-    card = FirbCard.create_card(:name => "tito", :position => "ups")
+    card = FirbCard.new(:name => "tito", :position => "ups")
     assert_equal("ups", card.position)
     assert_equal("tito", card.name)
   end
@@ -128,7 +128,7 @@ class FirbCardTest < ActiveSupport::TestCase
   end
   
   def test_rewrite_attributes
-    source = FirbCard.create_card(
+    source = FirbCard.new(
     :name => "evil guy"
     )
     source.save!

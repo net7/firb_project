@@ -13,7 +13,7 @@ class PiTextCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:anastatica) do 
-      page = FirbAnastaticaPage.create_page(:title => "meep", :page_positon => "1", :name => "first page")
+      page = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
       page.save!
       page
     end
@@ -29,7 +29,7 @@ class PiTextCardTest < ActiveSupport::TestCase
     
     setup_once(:non_illustrated) do
       (1..2).collect do |idx|
-        card = FirbNonIllustratedMemoryDepictionCard.create_card(:name => "FOO#{idx}")
+        card = FirbNonIllustratedMemoryDepictionCard.new(:name => "FOO#{idx}")
         card.save!
         { :uri => card.uri.to_s }
       end

@@ -56,6 +56,12 @@ class FakeSourceTest < ActiveSupport::TestCase
     assert_equal(@real_collection.elements, @fake_collection.real_source.elements)
   end
   
+  def test_passthrough_attribute
+    collection = TaliaCollection.new
+    collection.title = "foobar"
+    assert_equal("foobar", collection.real_source.title)
+  end
+  
   def test_rdf_collection
     real_result = ActiveRDF::Query.new(N::URI).select(:predicate, :object).where(@real_collection, :predicate, :object).execute
     fake_result = ActiveRDF::Query.new(N::URI).select(:predicate, :object).where(@fake_collection.to_uri, :predicate, :object).execute

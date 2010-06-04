@@ -5,6 +5,8 @@ class FirbIllustrationCard < FirbCard
   multi_property :iconclass_terms, N::DCT.subject, :force_relation => true
   multi_property :image_components, N::TALIA.image_component, :force_relation => true, :dependent => :destroy
 
+  autofill_uri :force => true
+
   def inherited_iconclasses
     ActiveRDF::Query.new(IconclassTerm).select(:iconclass).where(:card, N::DCT.isPartOf, self).where(:card, N::DCT.subject, :iconclass).execute
   end
@@ -37,7 +39,7 @@ class FirbIllustrationCard < FirbCard
         if(comp_options.is_a?(ImageComponent))
           comp_options
         elsif(comp_options[:uri].blank?)
-          comp = ImageComponent.create_component(comp_options)
+          comp = ImageComponent.new(comp_options)
           comp.save!
           comp
         else
