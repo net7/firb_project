@@ -9,7 +9,7 @@
     <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatiche</ht></nav-item>
     <nav-item with="&FirbCard"><ht key="firb_cards.nav_item">Schede</ht></nav-item>
     <nav-item with="&FirbImage"><ht key="firb_images.nav_item">Illustrazioni</ht></nav-item>
-    <nav-item with="&FirbTextCard"><ht key="firb_text_cards.nav_item">Schede di testo</ht></nav-item>
+    <nav-item with="&FirbPiTextCard"><ht key="firb_pi_text_cards.nav_item">Firb Pi Text Cards</ht></nav-item>
   </navigation>
 </def>
 
@@ -718,22 +718,22 @@
 
 
 
-<!-- ====== FirbTextCard Pages ====== -->
+<!-- ====== FirbPiTextCard Pages ====== -->
 
-<def tag="index-page" for="FirbTextCard">
-  <page merge title="#{ht 'firb_text_cards.index.title', :default=>['Schede di testo'] }">
-    <body: class="index-page firb-text-card" param/>
+<def tag="index-page" for="FirbPiTextCard">
+  <page merge title="#{ht 'firb_pi_text_cards.index.title', :default=>['Firb Pi Text Cards'] }">
+    <body: class="index-page firb-pi-text-card" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
-          <ht key="firb_text_cards.index.heading">
-            Schede di testo
+          <ht key="firb_pi_text_cards.index.heading">
+            Firb Pi Text Cards
           </ht>
         </h2>
 
         <p param="count" if>
-          <ht key="firb_text_cards.collection.count" count="&this.size">
+          <ht key="firb_pi_text_cards.collection.count" count="&this.size">
             There <count prefix="are"/>
           </ht>
         </p>
@@ -741,7 +741,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_text_cards.actions.new">New Scheda di testo</ht>
+          <ht key="firb_pi_text_cards.actions.new">New Firb Pi Text Card</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -757,22 +757,22 @@
 </def>
 
 
-<def tag="new-page" for="FirbTextCard">
-  <page merge title="#{ht 'firb_text_cards.new.title', :default=>[' New Scheda di testo'] }">
-    <body: class="new-page firb-text-card" param/>
+<def tag="new-page" for="FirbPiTextCard">
+  <page merge title="#{ht 'firb_pi_text_cards.new.title', :default=>[' New Firb Pi Text Card'] }">
+    <body: class="new-page firb-pi-text-card" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="firb_text_cards.new.heading">
-            New Scheda di testo
+          <ht key="firb_pi_text_cards.new.heading">
+            New Firb Pi Text Card
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_text_cards.actions.create', :default=>['Create Scheda di testo']}"/>
+          <submit: label="#{ht 'firb_pi_text_cards.actions.create', :default=>['Create Firb Pi Text Card']}"/>
         </form>
       </section>
     </content:>
@@ -780,15 +780,15 @@
 </def>
 
 
-<def tag="show-page" for="FirbTextCard">
-  <page merge title="#{ht 'firb_text_cards.show.title', :default=>['Scheda di testo'] }">
+<def tag="show-page" for="FirbPiTextCard">
+  <page merge title="#{ht 'firb_pi_text_cards.show.title', :default=>['Firb Pi Text Card'] }">
 
-    <body: class="show-page firb-text-card" param/>
+    <body: class="show-page firb-pi-text-card" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="firb_text_cards.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="firb_pi_text_cards.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
               </ht>
             </h2>
@@ -796,8 +796,8 @@
             <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_text_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Scheda di testo
+              <ht key="firb_pi_text_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Firb Pi Text Card
               </ht>
             </a>
           </header>
@@ -811,19 +811,19 @@
 </def>
 
 
-<def tag="edit-page" for="FirbTextCard">
-  <page merge title="#{ht 'firb_text_cards.edit.title', :default=>['Edit Scheda di testo'] }">
+<def tag="edit-page" for="FirbPiTextCard">
+  <page merge title="#{ht 'firb_pi_text_cards.edit.title', :default=>['Edit Firb Pi Text Card'] }">
 
-    <body: class="edit-page firb-text-card" param/>
+    <body: class="edit-page firb-pi-text-card" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="firb_text_cards.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="firb_pi_text_cards.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_text_cards.actions.delete', :default=>['Remove This Scheda di testo']}" param/>
+        <delete-button label="#{ht 'firb_pi_text_cards.actions.delete', :default=>['Remove This Firb Pi Text Card']}" param/>
       </section>
 
       <section param="content-body">

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TextCardTest < ActiveSupport::TestCase
+class PiTextCardTest < ActiveSupport::TestCase
   
   include TaliaUtil::TestHelpers
   suppress_fixtures
@@ -36,7 +36,7 @@ class TextCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:card) do
-      source = FirbTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => @non_illustrated)
+      source = FirbPiTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => @non_illustrated)
       source.save!
       source
     end
@@ -53,7 +53,7 @@ class TextCardTest < ActiveSupport::TestCase
   
   def test_create_components
     assert_difference("FirbNonIllustratedMemoryDepictionCard.count", 1) do
-      card =   FirbTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => [:uri => "", :title => "Noobar"])
+      card =   FirbPiTextCard.create_card(:title => 'Title of the card', :parafrasi => 'parafrasi pararararrarara', :anastatica => @anastatica.uri.to_s, :image_zones => @image_zones, :non_illustrated_memory_depictions => [:uri => "", :title => "Noobar"])
       card.save!
     end
   end

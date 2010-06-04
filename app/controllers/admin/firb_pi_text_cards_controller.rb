@@ -1,19 +1,17 @@
 require 'simplyx'
 require 'nokogiri'
 
-class Admin::FirbTextCardsController < Admin::AdminSiteController
+class Admin::FirbPiTextCardsController < Admin::AdminSiteController
 
   hobo_model_controller
-  
-
   auto_actions :all
 
   def index
-    @firb_text_cards = FirbTextCard.paginate(:page => params[:page], :prefetch_relations => true)
+    @firb_pi_text_cards = FirbPiTextCard.paginate(:page => params[:page], :prefetch_relations => true)
   end
   
   def show
-    @firb_text_card = FirbTextCard.find(params[:id], :prefetch_relations => true)
+    @firb_pi_text_card = FirbPiTextCard.find(params[:id], :prefetch_relations => true)
   end
 
   def show_annotable
@@ -22,8 +20,8 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   end
 
   def create
-    notes = params[:firb_text_card].delete(:note)
-    txt = FirbTextCard.create_card(params[:firb_text_card])
+    notes = params[:firb_pi_text_card].delete(:note)
+    txt = FirbPiTextCard.create_card(params[:firb_pi_text_card])
     
     if(save_created!(txt))
       flash[:notice] = "Text page succesfully created"
@@ -37,29 +35,29 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
       FirbNote.create_notes(notes.values, txt)
     end
     
-    redirect_to :controller => :firb_text_cards, :action => :index
+    redirect_to :controller => :firb_pi_text_cards, :action => :index
   end
 
   def destroy
-    hobo_destroy { redirect_to :controller => :firb_text_cards, :action => :index }
+    hobo_destroy { redirect_to :controller => :firb_pi_text_cards, :action => :index }
   end
 
   def update
-    notes = params[:firb_text_card].delete(:note)
+    notes = params[:firb_pi_text_card].delete(:note)
     hobo_source_update do |updated_source|
     if (notes) 
         FirbNote.replace_notes(notes, updated_source)
     end
-    redirect_to :controller => :firb_text_cards, :action => :index
+    redirect_to :controller => :firb_pi_text_cards, :action => :index
   end
   end
   
   private
   
   def attach_file_to(text_card)
-    if(params[:firb_text_card][:file])
+    if(params[:firb_pi_text_card][:file])
       
-      xml_file = File.open(params[:firb_text_card][:file].path())
+      xml_file = File.open(params[:firb_pi_text_card][:file].path())
       doc = Nokogiri::XML(xml_file)
       schema  = Nokogiri::XML::RelaxNG(File.open('xslt/swicky_tei.rng'))
       error_string = "The XML source has not been attached to '#{text_card.title}' since it's not well formed. Hints:"+"<br><ul>"
@@ -70,7 +68,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
 
       if (schema.valid?(doc)) 
         xml_data = TaliaCore::DataTypes::XmlData.new
-        xml_data.create_from_data('data.xml', params[:firb_text_card][:file], :options => { :mime_type => 'text/xml' })
+        xml_data.create_from_data('data.xml', params[:firb_pi_text_card][:file], :options => { :mime_type => 'text/xml' })
         text_card.data_records.destroy_all
         text_card.data_records << xml_data
         options = {"source_uri" => text_card.uri.to_s }

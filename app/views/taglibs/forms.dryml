@@ -18,13 +18,13 @@
 </def>
 
 
-<def tag="form" for="FirbTextCard">
+<def tag="form" for="FirbPiTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
         
-        <%= I18n.t("firb_text_page.title") %>: <input type="text" name="firb_text_card[title]" value="&this.title"/><br />
+        <%= I18n.t("firb_text_page.title") %>: <input type="text" name="firb_pi_text_card[title]" value="&this.title"/><br />
         <br />
-        <%= I18n.t("firb_text_page.transcription_file") %>: <input type="file" name="firb_text_card[file]"/><br />
+        <%= I18n.t("firb_text_page.transcription_file") %>: <input type="file" name="firb_pi_text_card[file]"/><br />
         <br />
         <%= I18n.t("firb_anastatica_pages.model_name") %>: <single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" />
         <br />
@@ -41,19 +41,19 @@
             <if test="&this.has_notes?">
                 <repeat with="&this.notes">
                     <div class='firb-note'>
-                        <textarea rows="4" cols="50" name='firb_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                        <textarea rows="4" cols="50" name='firb_pi_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
                         <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
                     </div>
                 </repeat>
             </if>
         </div>
 
-        <span id="firb-add-note" onclick="textPageAddNote()">Add a note</span>
+        <span id="firb-add-note" onclick="textPageAddNote('firb_pi_text_card')">Add a note</span>
 
         <input:parafrasi for='text' value='&this.parafrasi' />
-        <label for='firb_text_card[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
+        <label for='firb_pi_text_card[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
 
-        <submit label="Save" /><or-cancel with="&FirbTextCard" />
+        <submit label="Save" /><or-cancel with="&FirbPiTextCard" />
     </form>
 </def>
 

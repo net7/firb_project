@@ -62,8 +62,16 @@
   </card>
 </def>
 
-<def tag="card" for="FirbTextCard">
-  <card class="firb-text-card" param="default" merge>
+<def tag="card" for="FirbPiTextCard">
+  <card class="firb-pi-text-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbTextCardVtHandwritten">
+  <card class="firb-text-card-vt-handwritten" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>

@@ -72,12 +72,12 @@
 
 
 
-<def tag="form" for="FirbTextCard">
+<def tag="form" for="FirbPiTextCard">
   <form merge param="default">
     <error-messages param/>
     <field-list fields="uri" param/>
     <div param="actions">
-      <submit label="#{ht 'firb_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'firb_pi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

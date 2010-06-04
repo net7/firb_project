@@ -79,7 +79,7 @@
 </def>
 
 
-<def tag="card" for="FirbTextCard">
+<def tag="card" for="FirbPiTextCard">
   <card class="firb-text-card" param="default" merge>
 
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
