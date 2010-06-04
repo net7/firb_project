@@ -12,7 +12,6 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
   
   def attach_file_to(text_card, file)
     if (file)
-      
       xml_file = File.open(file.path())
       doc = Nokogiri::XML(xml_file)
       schema  = Nokogiri::XML::RelaxNG(File.open('xslt/swicky_tei.rng'))
@@ -32,7 +31,7 @@ class Admin::FirbTextCardsController < Admin::AdminSiteController
         xml_file = xml_data.full_filename
         html1 = Simplyx::XsltProcessor::perform_transformation(xsl_file, xml_file, options)
         html1_data = TaliaCore::DataTypes::XmlData.new
-        html1_data.create_from_data('html1.html', html1, :options => { :mime_type => 'text/html' })
+        html1_data.create_from_data('html1.html', html1, :options => { :mime_type => 'text/xml' })
         text_card.data_records << html1_data
         text_card.save!
       else
