@@ -13,6 +13,11 @@ class Admin::FirbVtTextCardHandwrittensController < Admin::FirbTextCardsControll
   def show
     @firb_vt_text_card_handwritten = FirbVtTextCardHandwritten.find(params[:id], :prefetch_relations => true)
   end
+  
+  def edit
+    @full_type_name = "firb_vt_text_card_handwritten"
+    @firb_vt_text_card_handwritten = FirbVtTextCardHandwritten.find(params[:id], :prefetch_relations => true)
+  end
 
   def create
     notes = params[:firb_vt_text_card_handwritten].delete(:note)

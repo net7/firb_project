@@ -70,6 +70,20 @@
         <%= I18n.t("firb_text_page.image_zones") %> :
         <image-zones-edit />
         <br />
+        
+        <field-edit-row fieldname="signature" /><br /><br />
+        <field-edit-row fieldname="measure" /><br /><br />
+        <field-edit-row fieldname="watermark" /><br /><br />
+        <field-edit-row fieldname="cartulation" /><br /><br />
+        <field-edit-row fieldname="technical_notes" /><br /><br />
+        <field-edit-row fieldname="handwritten_notes" /><br /><br />
+        <field-edit-row fieldname="conservation_status" /><br /><br />
+        <field-edit-row fieldname="autography" /><br /><br />
+        <field-edit-row fieldname="date" /><br /><br />
+
+        <field-row fieldname="bibliography_items" param="bibliography_items" >
+            <view:><bibliography-items-edit /></view:>
+        </field-row>
 
         <br />
         <div id="firb-notes">
