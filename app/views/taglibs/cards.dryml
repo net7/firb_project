@@ -317,12 +317,26 @@
     
     <div class="firb-text-page-content">
         Autore: <%= this.author %> <br /> 
-        Numero carta: <%= this.page_position %>
+        Numero carta: <%= this.page_position %> <br />
         Collocazione: <%= this.collocation %> <br /> 
         Segnatura: <%= this.signature %> <br /> 
     </div>
 
     <div class="firb-text-page-content">
+
+        <div class='firb-text-page-anastatica'>
+          <if test="&this.has_anastatica_page?">
+            <h5><%= I18n.t("firb.anastatica") %>:</h5>
+            <span><%= anastatica_pretty_title(this.anastatica) %></span>
+          </if>
+          <unless test="&this.has_anastatica_page?">
+            <h5><%= I18n.t("firb_text_page.no_anastatica_associated") %></h5>
+          </unless>
+
+        </div>
+
+        <h5>Commento:</h5>
+        
         <%= this.comment %>
     </div>
 
