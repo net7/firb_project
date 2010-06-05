@@ -189,6 +189,37 @@
     </form>
 </def>
 
+<def tag="form" for="FirbBgTextCard">
+    <form merge param="default" multipart="true">
+        <error-messages param/>
+        
+        <field-edit-table>
+            <content:>
+
+            <field-edit-row fieldname="title" />
+
+            <field-row fieldname="anastatica" param="anastatica" >
+                <view:><single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" /></view:>
+            </field-row>
+
+            <field-row fieldname="transcription_file">
+                <view:><input type="file" name="firb_bg_text_card[file]"/></view:>
+            </field-row>
+
+            <field-edit-row fieldname="collocation" />
+            <field-edit-row fieldname="signature" />
+            <field-edit-row fieldname="author" />
+            <field-edit-row fieldname="page_position" />
+            <field-edit-row fieldname="comment" />
+
+            </content:>
+        </field-edit-table>
+
+        <submit label="Save" /><or-cancel with="&FirbFiTextCard" />
+    </form>
+</def>
+
+
 <def tag="removeable-books">
 	<% books = this.attached_to_books %>
 	<% unless(books.empty?) %>
