@@ -9,13 +9,6 @@ class FirbPiTextCard < FirbTextCard
   rdf_property :parafrasi, N::DCT.description, :type => :text
   multi_property :non_illustrated_memory_depictions, N::TALIA.hasNonIllustratedMemoryDepiction, :force_relation => true, :dependent => :destroy
   
-  def self.create_card(options)
-    new_url =  (N::LOCAL + 'firb_pi_text_card/' + random_id).to_s
-    options[:uri] = new_url
-    raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
-    self.new(options) # Check if it attaches :image_zone and :anastatica
-  end
-  
   # TODO: Hacks superclass internal behaviour
   def self.split_attribute_hash(options)
     unless(options[:non_illustrated_memory_depictions].blank?)
