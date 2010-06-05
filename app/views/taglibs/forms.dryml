@@ -114,6 +114,56 @@
     </form>
 </def>
 
+<def tag="form" for="FirbVtTextCardPrinted">
+    <form merge param="default" multipart="true">
+        <error-messages param/>
+        
+        <field-edit-table>
+            <content:>
+
+            <field-edit-row fieldname="title" />
+
+            <field-row fieldname="transcription_file">
+                <view:><input type="file" name="firb_vt_text_card_printed[file]"/></view:>
+            </field-row>
+
+            <field-row fieldname="anastatica" param="anastatica" >
+                <view:><single-connection attribute="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" /></view:>
+            </field-row>
+
+            <single-connection-row fieldname="transc_handwritten" type="FirbVtTextCardHandwritten" />
+
+            <field-row fieldname="image_zones" param="image_zones" >
+                <view:><image-zones-edit /></view:>
+            </field-row>
+
+            <field-edit-row fieldname="page_position" />
+            <field-edit-row fieldname="letter_number" />
+            <field-edit-row fieldname="collocation" />
+
+            <single-connection-row fieldname="edition" type="BibliographyItem" />
+
+            </content:>
+        </field-edit-table>
+
+        <br />
+        <div id="firb-notes">
+
+            <if test="&this.has_notes?">
+                <repeat with="&this.notes">
+                    <div class='firb-note'>
+                        <textarea rows="4" cols="50" name='firb_vt_text_card_printed[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                        <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
+                    </div>
+                </repeat>
+            </if>
+        </div>
+
+        <span id="firb-add-note" onclick="textPageAddNote('firb_vt_text_card_printed')">Add a note</span>
+
+        <submit label="Save" /><or-cancel with="&FirbVtTextCardPrinted" />
+    </form>
+</def>
 
 <def tag="removeable-books">
 	<% books = this.attached_to_books %>

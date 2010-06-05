@@ -1,9 +1,8 @@
-  class FirbVtTextCardHandwritten < FirbTextCard
+class FirbVtTextCardHandwritten < FirbTextCard
 
   hobo_model
   include StandardPermissions
   
-
   singular_property :anastatica, N::DCT.isPartOf, :force_relation => true
   rdf_property :title, N::DCNS.title
   multi_property :image_zones, N::DCT.isFormatOf, :force_relation => true
