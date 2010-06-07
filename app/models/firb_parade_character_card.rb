@@ -9,9 +9,7 @@ class FirbParadeCharacterCard < FirbIllustrationCard
   
   common_properties
   
-  manual_property :collection
-  manual_property :parade
   singular_property :cart, N::TALIA.cart, :force_relation => true
-  rdf_property :character_qualities, :type => :text
+  rdf_property :character_qualities, N::TALIA.character_qualities, :type => :text
   
 end
