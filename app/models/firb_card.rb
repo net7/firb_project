@@ -2,9 +2,9 @@ class FirbCard < TaliaCore::Source
   hobo_model # Don't put anything above this
   
   include StandardPermissions
+  extend RdfProperties
   
-  singular_property :name, N::TALIA.name
-  declare_attr_type :name, :string
+  rdf_property :name, N::TALIA.name
   
   multi_property :bibliography_items, N::TALIA.hasBibliography, :force_relation => true
   
@@ -53,8 +53,7 @@ class FirbCard < TaliaCore::Source
   # are positioned clockwise in the four corners of a room with gray floor
   # and green walls. The fifth depiction is positioned between the door and
   # and the fourth depiction"
-  singular_property :study_notes, N::TALIA.study_notes
-  declare_attr_type :study_notes, :text
+  rdf_property :study_notes, N::TALIA.study_notes, :type => :text
   
   # Description: long description of the depiction, say "Male person
   # dressed in green and red, with a white hat and long brown hair, is

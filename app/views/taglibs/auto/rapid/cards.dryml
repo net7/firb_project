@@ -27,6 +27,14 @@
   </card>
 </def>
 
+<def tag="card" for="FirbBgTextCard">
+  <card class="firb-bg-text-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="FirbCard">
   <card class="firb-card" param="default" merge>
     <header: param>
@@ -35,6 +43,14 @@
     <body: param>
       <view:description param="description"/>
     </body:>
+  </card>
+</def>
+
+<def tag="card" for="FirbFiTextCard">
+  <card class="firb-fi-text-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
   </card>
 </def>
 
@@ -64,6 +80,22 @@
 
 <def tag="card" for="FirbPiTextCard">
   <card class="firb-pi-text-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbVtTextCardHandwritten">
+  <card class="firb-vt-text-card-handwritten" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbVtTextCardPrinted">
+  <card class="firb-vt-text-card-printed" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>

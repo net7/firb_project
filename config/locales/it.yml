@@ -328,6 +328,18 @@ it:
         bibliography: "Bibliografia"
         children: "Figlie"
         iconclass_children: "Iconclass delle figlie"
+    
+    firb_parade_cart_cards:
+        actions:
+            new: "Crea nuova scheda"
+            delete: "Cancella scheda"
+            edit: "Modifica {{name}}"
+            
+    firb_parade_character_cards:
+        actions:
+            new: "Crea nuova scheda"
+            delete: "Cancella scheda"
+            edit: "Modifica {{name}}"
 
     # Firb cards
     firb_cards:
@@ -349,6 +361,8 @@ it:
         illustrated_memory_depiction_link: "Scheda di immagine di memoria illustrata"
         letter_illustration_link: "Scheda capolettera"
         parent_illustration_link: "Scheda illustrazione"
+        parade_cart_link: "Carro"
+        parade_character_link: "Personaggio"
         new_link: "Crea"
         position: "Carta"
         name: "Nome"

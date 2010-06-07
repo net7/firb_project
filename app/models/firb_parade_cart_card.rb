@@ -1,6 +1,10 @@
 # Represents a Cart (Carro) in the Parade of FIRB FI
-class ParadeCart < FirbIllustrationCard
+class FirbParadeCartCard < FirbIllustrationCard
   
+  include FiCardsCommonFields
+  extend FiCardsCommonFields::DefinedProperties
+  
+  common_properties
   autofill_uri :force => true
   
   singular_property :vehicle, N::TALIA.vehicle, :force_relation => true

@@ -13,12 +13,16 @@ class Parade < TaliaCore::Collection
   declare_attr_type :name, :string
   declare_attr_type :title, :string
   
+  def name
+    title.blank? ? uri.local_name : title
+  end
+  
   def characters
-    ordered_objects.find_all { |el| el.is_a?(ParadeCharacter) }
+    ordered_objects.find_all { |el| el.is_a?(FirbParadeCharacterCard) }
   end
   
   def carts
-    ordered_objects.find_all { |el| el.is_a?(ParadeCart) }
+    ordered_objects.find_all { |el| el.is_a?(FirbParadeCartCard) }
   end
   
   def add_procession(options)
@@ -66,7 +70,7 @@ class Parade < TaliaCore::Collection
   
   def only_carts_and_characters
     ordered_objects.each do |element|
-      errors.add_to_base("Illegal type for #{element.uri}") unless(element.is_a?(ParadeCart) || element.is_a?(ParadeCharacter))
+      errors.add_to_base("Illegal type for #{element.uri}") unless(element.is_a?(FirbParadeCartCard) || element.is_a?(FirbParadeCharacterCard))
     end
   end
 end

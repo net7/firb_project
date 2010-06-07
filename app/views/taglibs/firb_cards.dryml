@@ -3,9 +3,68 @@
     <h2>You shouldn't see this</h2>
 </def>
 
-<def tag="form" for="FirbLetterIllustrationCard">
+
+<def tag="form" for="FirbParadeCartCard">
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
+            <content:>
+                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="collection" type="TaliaCollection" />
+                <single-connection-row fieldname="parade" type="Parade" />
+                <field-edit-row fieldname="name" />
+                <field-edit-row fieldname="code"  />
+                <field-edit-row fieldname="author" />
+                <field-edit-row fieldname="tecnique" />
+                <field-edit-row fieldname="measure" />
+                <field-edit-row fieldname="descriptive_notes" />
+                <field-edit-row fieldname="description" />
+                <field-edit-row fieldname="transcription" />
+                <field-edit-row fieldname="baldini_text" />
+                <field-edit-row fieldname="cini_text" />
+                <!-- TODO: Iconclass Figlie -->
+                <!-- TODO: Cini and baldini +iconclass -> Sources? -->
+                <field-edit-row fieldname="study_notes" />
+                <field-row fieldname="bibliography_items" param="bibliography" >
+                    <view:><bibliography-items-edit /></view:>
+                </field-row>
+            </content:>
+        </card-form-common>
+    </form>
+</def>
+
+<def tag="form" for="FirbParadeCharacterCard">
+    <form merge param="default" action="&firb_card_action">
+        <card-form-common>
+            <content:>
+                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="collection" type="TaliaCollection" />
+                <single-connection-row fieldname="parade" type="Parade" />
+                <single-connection-row fieldname="cart" type="FirbParadeCartCard" />
+                <field-edit-row fieldname="name" />
+                <field-edit-row fieldname="code"  />
+                <field-edit-row fieldname="author" />
+                <field-edit-row fieldname="tecnique" />
+                <field-edit-row fieldname="measure" />
+                <field-edit-row fieldname="descriptive_notes" />
+                <field-edit-row fieldname="description" />
+                <field-edit-row fieldname="character_qualities" />
+                <field-edit-row fieldname="transcription" />
+                <field-edit-row fieldname="baldini_text" />
+                <field-edit-row fieldname="cini_text" />
+                <!-- TODO: Iconclass Figlie -->
+                <!-- TODO: Cini and baldini +iconclass -> Sources? -->
+                <field-edit-row fieldname="study_notes" />
+                <field-row fieldname="bibliography_items" param="bibliography" >
+                    <view:><bibliography-items-edit /></view:>
+                </field-row>
+            </content:>
+        </card-form-common>
+    </form>
+</def>
+
+<def tag="form" for="FirbLetterIllustrationCard">
+    <form merge param="default" action="&firb_card_action">
+        <card-form-common-pi>
             <before-anastatica:>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
@@ -17,13 +76,13 @@
                     <view:><image-components-edit /></view:>
                 </field-row>
             </after-bibliography:>
-        </card-form-common>
+        </card-form-common-pi>
     </form>
 </def>
 
 <def tag="form" for="FirbIllustratedMemoryDepictionCard">
     <form merge param="default" action="&firb_card_action">
-        <card-form-common>
+        <card-form-common-pi>
             <before-anastatica:>
                 <single-connection-row fieldname="parent_card" type="FirbParentIllustrationCard" />
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
@@ -47,19 +106,19 @@
                     <view:><image-components-edit /></view:>
                 </field-row>
             </after-bibliography:>
-        </card-form-common>
+        </card-form-common-pi>
     </form>
 </def>
 
 <def tag="form" for="FirbNonIllustratedMemoryDepictionCard">
     <form merge param="default" action="&firb_card_action">
-        <card-form-common />
+        <card-form-common-pi />
     </form>
 </def>
 
 <def tag="form" for="FirbParentIllustrationCard">
     <form merge param="default" action="&firb_card_action">
-        <card-form-common>
+        <card-form-common-pi>
             <before-anastatica:>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
@@ -75,7 +134,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
             </after-bibliography:>
-        </card-form-common>
+        </card-form-common-pi>
     </form>
 </def>
 
@@ -238,10 +297,23 @@
   </else>
 </def>
 
-
 <def tag="card-form-common">
     <error-messages param/>
     <field-edit-table>
+        <content:><do param="content" /></content:>
+    </field-edit-table>
+
+    <input type="hidden" name="type" value="&@card_type_name" />
+    <unless test="&this.new_record?">
+        <input type="hidden" name="_method" value="PUT" />
+    </unless>
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
+    </div>
+</def>
+
+<def tag="card-form-common-pi">
+    <card-form-common>
         <content:>
             <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
             <field-edit-row fieldname="name" param="namefield"/>
@@ -258,15 +330,7 @@
                 <view:><bibliography-items-edit /></view:>
             </field-row>
         </content:>
-    </field-edit-table>
-
-    <input type="hidden" name="type" value="&@card_type_name" />
-    <unless test="&this.new_record?">
-        <input type="hidden" name="_method" value="PUT" />
-    </unless>
-    <div param="actions">
-      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel-link param="cancel"/>
-    </div>
+    </card-form-common>
 </def>
 
 <def tag="card-link">

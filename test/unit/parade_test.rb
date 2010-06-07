@@ -14,12 +14,12 @@ class ParadeTest < ActiveSupport::TestCase
     
     setup_once(:parade) do
       parade = Parade.new(:title => "Parade Title")
-      parade << ParadeCart.new(:name => "first_foo")
-      parade << ParadeCharacter.new(:name => "first_bar")
-      parade << ParadeCharacter.new(:name => "second_bar")
-      parade << ParadeCharacter.new(:name => "third_bar")
-      parade << ParadeCart.new(:name => "second_foo")
-      parade << ParadeCharacter.new(:name => "fourth_bar")
+      parade << FirbParadeCartCard.new(:name => "first_foo")
+      parade << FirbParadeCharacterCard.new(:name => "first_bar")
+      parade << FirbParadeCharacterCard.new(:name => "second_bar")
+      parade << FirbParadeCharacterCard.new(:name => "third_bar")
+      parade << FirbParadeCartCard.new(:name => "second_foo")
+      parade << FirbParadeCharacterCard.new(:name => "fourth_bar")
       parade.save!
       parade = Parade.find(parade.id)
     end
