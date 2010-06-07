@@ -92,7 +92,7 @@ it:
         note: "Note"
         iconclass_link: "Vedi questo termine su www.iconclass.org"
 
-    firb_text_cards:
+    firb_pi_text_cards:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"    
         new: 
@@ -103,6 +103,7 @@ it:
         actions:
             new: "Crea una nuova scheda di testo"
             delete: "Cancella questa scheda di testo"
+            create: "Salva"
 
     firb_bg_text_cards:
         model_name: "Scheda di testo"
@@ -126,6 +127,10 @@ it:
         page_position: "Numero della pagina"
         comment: "Commento"
 
+    firb_text_card:
+        model_name: "Scheda di testo"
+        model_name_plural: "Schede di testo"
+
     firb_fi_text_cards:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"
@@ -145,7 +150,55 @@ it:
         edition: "Edizione di riferimento"
         page_position: "Pagine di riferimento"
 
+    firb_vt_text_card_handwrittens:
+        model_name: "Scheda di testo (manoscritto)"
+        model_name_plural: "Schede di testo (manoscritto)"
+        new: 
+            heading: "Nuova scheda di testo"
+        collection:
+            count: "Ci sono {{count}} schede di testo"
+            empty_message: "Nessuna scheda di testo da visualizzare"
+        actions:
+            new: "Crea una nuova scheda di testo"
+            delete: "Cancella questa scheda di testo"
+            create: "Salva"
+        edit:
+            heading: "Modifica questa scheda di testo"
+        title: "Titolo"
+        image_zones: "Zone di immagine"
+        signature: "Segnatura"
+        measure: "Misure"
+        watermark: "Filigrana"
+        cartulation: "Cartulazione"
+        technical_notes: "Note tecniche"
+        handwritten_notes: "Note manoscritte"
+        conservation_status: "Stato di conservazione"
+        autography: "Autografia"
+        date: "Data"
+        bibliography_items: "Elementi bibliografici"
 
+    firb_vt_text_card_printeds:
+        model_name: "Scheda di testo (stampa)"
+        model_name_plural: "Schede di testo (stampa)"
+        new: 
+            heading: "Nuova scheda di testo"
+        collection:
+            count: "Ci sono {{count}} schede di testo"
+            empty_message: "Nessuna scheda di testo da visualizzare"
+        actions:
+            new: "Crea una nuova scheda di testo"
+            delete: "Cancella questa scheda di testo"
+            create: "Salva"
+        edit:
+            heading: "Modifica questa scheda di testo"
+        title: "Titolo"
+        image_zones: "Zone di immagine"
+        transcr_handwritten: "Scheda di testo (manoscritto)"
+        page_position: "Numero pagina"
+        letter_number: "Numero della lettera"
+        collocation: "Collocazione"
+        edition: "Edizione"
+        
     bibliography_items:
         model_name: "Elemento Bibliografico"
         model_name_plural: "Elementi Bibliografici"
