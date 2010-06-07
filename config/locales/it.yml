@@ -104,6 +104,28 @@ it:
             new: "Crea una nuova scheda di testo"
             delete: "Cancella questa scheda di testo"
 
+    firb_bg_text_cards:
+        model_name: "Scheda di testo"
+        model_name_plural: "Schede di testo"
+        new: 
+            heading: "Nuova scheda di testo"
+        collection:
+            count: "Ci sono {{count}} schede di testo"
+            empty_message: "Nessuna scheda di testo da visualizzare"
+        actions:
+            new: "Crea una nuova scheda di testo"
+            delete: "Cancella questa scheda di testo"
+        edit:
+            heading: "Modifica questa scheda di testo"
+        title: "Titolo"
+        transcription_file: "File XML della trascrizione"
+        collocation: "Collocazione"
+        signature: "Segnatura"
+        author: "Autore"
+        page_position: "Numero della pagina"
+        comment: "Commento"
+
+
     bibliography_items:
         model_name: "Elemento Bibliografico"
         model_name_plural: "Elementi Bibliografici"
@@ -319,7 +341,7 @@ it:
         text_page: "Scheda testo"
         title: "Titolo"
         non_ill_mem_dep: "Immagini di memoria non illustrate"
-        transcription_file: "File con la trascrizione XML"
+        transcription_file: "File XML della trascrizione"
         image_zones: "Zone di immagine"
         actions:
           delete: "Cancella questa scheda testo"
