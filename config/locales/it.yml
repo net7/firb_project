@@ -115,6 +115,7 @@ it:
         actions:
             new: "Crea una nuova scheda di testo"
             delete: "Cancella questa scheda di testo"
+            create: "Salva"
         edit:
             heading: "Modifica questa scheda di testo"
         title: "Titolo"
@@ -124,6 +125,25 @@ it:
         author: "Autore"
         page_position: "Numero della pagina"
         comment: "Commento"
+
+    firb_fi_text_cards:
+        model_name: "Scheda di testo"
+        model_name_plural: "Schede di testo"
+        new: 
+            heading: "Nuova scheda di testo"
+        collection:
+            count: "Ci sono {{count}} schede di testo"
+            empty_message: "Nessuna scheda di testo da visualizzare"
+        actions:
+            new: "Crea una nuova scheda di testo"
+            delete: "Cancella questa scheda di testo"
+            create: "Salva"
+        edit:
+            heading: "Modifica questa scheda di testo"
+        title: "Titolo"
+        transcription_file: "File XML della trascrizione"
+        edition: "Edizione di riferimento"
+        page_position: "Pagine di riferimento"
 
 
     bibliography_items:
