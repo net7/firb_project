@@ -25,6 +25,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def create
+    puts "DOOD #{card_params.inspect} - #{@card_type.inspect}"
     @firb_card = @card_type.new(card_params)
     if(save_created!(@firb_card))
       flash[:notice] = "Card succesfully created"
@@ -55,7 +56,7 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
   
   def default_type
-    'illustrated_memory_depiction'
+    TaliaCore::CONFIG['firb_card_types'] ? TaliaCore::CONFIG['firb_card_types'].first : 'illustrated_memory_depiction'
   end
   
   # Creates the type class from the param passed to the action
