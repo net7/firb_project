@@ -151,8 +151,8 @@ it:
         page_position: "Pagine di riferimento"
 
     firb_vt_text_card_handwrittens:
-        model_name: "Scheda di testo (manoscritto)"
-        model_name_plural: "Schede di testo (manoscritto)"
+        model_name: "Scheda manoscritto"
+        model_name_plural: "Schede manoscritto"
         new: 
             heading: "Nuova scheda di testo"
         collection:
@@ -178,8 +178,8 @@ it:
         bibliography_items: "Elementi bibliografici"
 
     firb_vt_text_card_printeds:
-        model_name: "Scheda di testo (stampa)"
-        model_name_plural: "Schede di testo (stampa)"
+        model_name: "Scheda stampa"
+        model_name_plural: "Schede stampa"
         new: 
             heading: "Nuova scheda di testo"
         collection:
