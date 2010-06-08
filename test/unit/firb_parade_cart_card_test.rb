@@ -24,6 +24,18 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
       collection
     end
     
+    setup_once(:baldini) do
+      baldini = FirbFiTextCard.create_card(:title => "Baldini Text")
+      baldini.save!
+      baldini
+    end
+    
+    setup_once(:cini) do
+      cini = FirbFiTextCard.create_card(:title => "Cini Text")
+      cini.save!
+      cini
+    end
+    
     setup_once(:cart) do
       cart = FirbParadeCartCard.new(
       :name => "first_foo",
@@ -37,11 +49,12 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
       # TODO: Deity
       # TODO: THRONE
       :transcription => "Che Carro!",
-      :baldini_text => "Baldini",
-      :cini_text => "Cini",
+      :baldini_text => @baldini.uri.to_s,
+      :cini_text => @cini,
       :study_notes => 'study',
       :collection => @collection.uri.to_s,
-      :parade => @parade.uri.to_s
+      :parade => @parade.uri.to_s,
+      :note => { "new.blarg" => "hello world", "new.boo" => "second chance" }
       )
       cart.save!
       cart = FirbParadeCartCard.find(cart.id)
@@ -83,11 +96,11 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
   end
   
   def test_baldini_text
-    assert_equal(@cart.baldini_text, "Baldini")
+    assert_equal(@cart.baldini_text.name, "Baldini Text")
   end
   
   def test_cini_text
-    assert_equal(@cart.cini_text, "Cini")
+    assert_equal(@cart.cini_text.name, "Cini Text")
   end
   
   def test_study_notes
@@ -98,11 +111,20 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
     @collection.reload
     collection = TaliaCore::ActiveSource.find(@collection.id)
     assert_equal(collection.first.uri, @cart.uri)
+    assert_equal(@cart.collection.uri, collection.uri)
   end
   
   def test_parade
+    @parade.reload
     parade = Parade.find(@parade.id)
     assert_equal(parade.first.uri, @cart.uri)
+    assert_equal(@cart.parade.uri, @parade.uri)
+  end
+  
+  def test_notes
+    assert_equal(2, @cart.notes.size)
+    assert_kind_of(FirbNote, @cart.notes.first)
+    assert_equal("hello world", @cart.notes.first.content)
   end
   
 end

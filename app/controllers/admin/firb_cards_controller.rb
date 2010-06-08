@@ -25,7 +25,6 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def create
-    puts "DOOD #{card_params.inspect} - #{@card_type.inspect}"
     @firb_card = @card_type.new(card_params)
     if(save_created!(@firb_card))
       flash[:notice] = "Card succesfully created"

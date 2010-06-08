@@ -12,7 +12,9 @@ module FiCards
       end
     end
     new_card = FirbParadeCartCard.last
+    assert_not_nil(new_card.collection)
     assert_equal('Foobar', new_card.name)
+    assert_equal(new_card.collection.uri, @collection.uri)
   end
 
   def test_create_cart_with_parade
@@ -24,6 +26,9 @@ module FiCards
       assert_redirected_to :controller => :firb_cards, :action => :index
       @parade.reload
     end
+    new_card = FirbParadeCartCard.last
+    assert_not_nil(new_card.parade)
+    assert_equal(new_card.parade.uri, @parade.uri)
   end
   
   def test_create_character_with_collection

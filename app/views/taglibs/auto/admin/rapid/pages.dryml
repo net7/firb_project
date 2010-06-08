@@ -1081,14 +1081,14 @@
 <!-- ====== FirbVtTextCardHandwritten Pages ====== -->
 
 <def tag="index-page" for="FirbVtTextCardHandwritten">
-  <page merge title="#{ht 'firb_vt_text_card_handwrittens.index.title', :default=>['Schede di testo (manoscritto)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_handwrittens.index.title', :default=>['Schede manoscritto'] }">
     <body: class="index-page firb-vt-text-card-handwritten" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="firb_vt_text_card_handwrittens.index.heading">
-            Schede di testo (manoscritto)
+            Schede manoscritto
           </ht>
         </h2>
 
@@ -1101,7 +1101,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_vt_text_card_handwrittens.actions.new">New Scheda di testo (manoscritto)</ht>
+          <ht key="firb_vt_text_card_handwrittens.actions.new">New Scheda manoscritto</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -1118,21 +1118,21 @@
 
 
 <def tag="new-page" for="FirbVtTextCardHandwritten">
-  <page merge title="#{ht 'firb_vt_text_card_handwrittens.new.title', :default=>[' New Scheda di testo (manoscritto)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_handwrittens.new.title', :default=>[' New Scheda manoscritto'] }">
     <body: class="new-page firb-vt-text-card-handwritten" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="firb_vt_text_card_handwrittens.new.heading">
-            New Scheda di testo (manoscritto)
+            New Scheda manoscritto
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_vt_text_card_handwrittens.actions.create', :default=>['Create Scheda di testo (manoscritto)']}"/>
+          <submit: label="#{ht 'firb_vt_text_card_handwrittens.actions.create', :default=>['Create Scheda manoscritto']}"/>
         </form>
       </section>
     </content:>
@@ -1141,7 +1141,7 @@
 
 
 <def tag="show-page" for="FirbVtTextCardHandwritten">
-  <page merge title="#{ht 'firb_vt_text_card_handwrittens.show.title', :default=>['Scheda di testo (manoscritto)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_handwrittens.show.title', :default=>['Scheda manoscritto'] }">
 
     <body: class="show-page firb-vt-text-card-handwritten" param/>
 
@@ -1157,7 +1157,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="firb_vt_text_card_handwrittens.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Scheda di testo (manoscritto)
+                Edit Scheda manoscritto
               </ht>
             </a>
           </header>
@@ -1172,7 +1172,7 @@
 
 
 <def tag="edit-page" for="FirbVtTextCardHandwritten">
-  <page merge title="#{ht 'firb_vt_text_card_handwrittens.edit.title', :default=>['Edit Scheda di testo (manoscritto)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_handwrittens.edit.title', :default=>['Edit Scheda manoscritto'] }">
 
     <body: class="edit-page firb-vt-text-card-handwritten" param/>
 
@@ -1183,7 +1183,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_vt_text_card_handwrittens.actions.delete', :default=>['Remove This Scheda di testo (manoscritto)']}" param/>
+        <delete-button label="#{ht 'firb_vt_text_card_handwrittens.actions.delete', :default=>['Remove This Scheda manoscritto']}" param/>
       </section>
 
       <section param="content-body">
@@ -1201,14 +1201,14 @@
 <!-- ====== FirbVtTextCardPrinted Pages ====== -->
 
 <def tag="index-page" for="FirbVtTextCardPrinted">
-  <page merge title="#{ht 'firb_vt_text_card_printeds.index.title', :default=>['Schede di testo (stampa)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_printeds.index.title', :default=>['Schede stampa'] }">
     <body: class="index-page firb-vt-text-card-printed" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="firb_vt_text_card_printeds.index.heading">
-            Schede di testo (stampa)
+            Schede stampa
           </ht>
         </h2>
 
@@ -1221,7 +1221,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="firb_vt_text_card_printeds.actions.new">New Scheda di testo (stampa)</ht>
+          <ht key="firb_vt_text_card_printeds.actions.new">New Scheda stampa</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -1238,21 +1238,21 @@
 
 
 <def tag="new-page" for="FirbVtTextCardPrinted">
-  <page merge title="#{ht 'firb_vt_text_card_printeds.new.title', :default=>[' New Scheda di testo (stampa)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_printeds.new.title', :default=>[' New Scheda stampa'] }">
     <body: class="new-page firb-vt-text-card-printed" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="firb_vt_text_card_printeds.new.heading">
-            New Scheda di testo (stampa)
+            New Scheda stampa
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'firb_vt_text_card_printeds.actions.create', :default=>['Create Scheda di testo (stampa)']}"/>
+          <submit: label="#{ht 'firb_vt_text_card_printeds.actions.create', :default=>['Create Scheda stampa']}"/>
         </form>
       </section>
     </content:>
@@ -1261,7 +1261,7 @@
 
 
 <def tag="show-page" for="FirbVtTextCardPrinted">
-  <page merge title="#{ht 'firb_vt_text_card_printeds.show.title', :default=>['Scheda di testo (stampa)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_printeds.show.title', :default=>['Scheda stampa'] }">
 
     <body: class="show-page firb-vt-text-card-printed" param/>
 
@@ -1277,7 +1277,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="firb_vt_text_card_printeds.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Scheda di testo (stampa)
+                Edit Scheda stampa
               </ht>
             </a>
           </header>
@@ -1292,7 +1292,7 @@
 
 
 <def tag="edit-page" for="FirbVtTextCardPrinted">
-  <page merge title="#{ht 'firb_vt_text_card_printeds.edit.title', :default=>['Edit Scheda di testo (stampa)'] }">
+  <page merge title="#{ht 'firb_vt_text_card_printeds.edit.title', :default=>['Edit Scheda stampa'] }">
 
     <body: class="edit-page firb-vt-text-card-printed" param/>
 
@@ -1303,7 +1303,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'firb_vt_text_card_printeds.actions.delete', :default=>['Remove This Scheda di testo (stampa)']}" param/>
+        <delete-button label="#{ht 'firb_vt_text_card_printeds.actions.delete', :default=>['Remove This Scheda stampa']}" param/>
       </section>
 
       <section param="content-body">

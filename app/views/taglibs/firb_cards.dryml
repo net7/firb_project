@@ -18,14 +18,16 @@
                 <field-edit-row fieldname="measure" />
                 <field-edit-row fieldname="descriptive_notes" />
                 <field-edit-row fieldname="description" />
-                <field-edit-row fieldname="transcription" />
-                <field-edit-row fieldname="baldini_text" />
-                <field-edit-row fieldname="cini_text" />
+                <single-connection-row fieldname="baldini_text" type="FirbFiTextCard" />
+                <single-connection-row fieldname="cini_text" type="FirbFiTextCard" />
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
                 <field-edit-row fieldname="study_notes" />
                 <field-row fieldname="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
+                </field-row>
+                <field-row fieldname="notes" param="notes" >
+                    <view:><firb-notes-edit /></view:>
                 </field-row>
             </content:>
         </card-form-common>
@@ -48,14 +50,16 @@
                 <field-edit-row fieldname="descriptive_notes" />
                 <field-edit-row fieldname="description" />
                 <field-edit-row fieldname="character_qualities" />
-                <field-edit-row fieldname="transcription" />
-                <field-edit-row fieldname="baldini_text" />
-                <field-edit-row fieldname="cini_text" />
+                <single-connection-row fieldname="baldini_text" type="FirbFiTextCard" />
+                <single-connection-row fieldname="cini_text" type="FirbFiTextCard" />
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
                 <field-edit-row fieldname="study_notes" />
                 <field-row fieldname="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
+                </field-row>
+                <field-row fieldname="notes" param="notes" >
+                    <view:><firb-notes-edit /></view:>
                 </field-row>
             </content:>
         </card-form-common>
@@ -195,6 +199,24 @@
                 </ul>
           </else>
       </div>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbParadeCharacterCard">
+  <card class="firb-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <image-zone-link />
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FirbParadeCartCard">
+  <card class="firb-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <image-zone-link />
     </header:>
   </card>
 </def>
@@ -404,4 +426,16 @@
         :locals => { :main_name => @full_type_name, :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
         :action => :autocomplete), :existing => this.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
     %>
+</def>
+
+<def tag="firb-notes-edit">
+    <div id="firb-notes">
+        <repeat with="&this.notes">
+            <div class='firb-note'>
+                <textarea rows="4" cols="50" name='<%= @full_type_name %>[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
+            </div>
+        </repeat>
+    </div>
+    <span id="firb-add-note" onclick="textPageAddNote('<%= @full_type_name %>')">Add a note</span>
 </def>
