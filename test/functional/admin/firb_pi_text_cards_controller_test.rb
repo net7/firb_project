@@ -187,7 +187,7 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
   end
   
   def setup_anastatica
-    @anastatica = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
+    @anastatica = Anastatica.new(:title => "meep", :page_positon => "1", :name => "first page")
     @anastatica.save!
   end
   

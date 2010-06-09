@@ -128,7 +128,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     new_card = FirbNonIllustratedMemoryDepictionCard.last
     assert_equal('New one', new_card.name)
     assert_equal('last_and_first', new_card.position)
-    assert_kind_of(FirbAnastaticaPage, new_card.anastatica)
+    assert_kind_of(Anastatica, new_card.anastatica)
     assert_equal(new_card.anastatica.uri, @page.uri)
   end
 
@@ -260,7 +260,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     card = FirbNonIllustratedMemoryDepictionCard.find(@non_illustrated.id)
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
-    assert_kind_of(FirbAnastaticaPage, card.anastatica)
+    assert_kind_of(Anastatica, card.anastatica)
     assert_equal(card.anastatica.uri, @page.uri)
   end
 

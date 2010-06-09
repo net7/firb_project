@@ -1,4 +1,4 @@
-class FirbAnastaticaPage < TaliaCore::Source
+class Anastatica < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
   

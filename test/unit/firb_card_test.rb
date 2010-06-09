@@ -13,7 +13,7 @@ class FirbCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:page) do 
-      page = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
+      page = Anastatica.new(:title => "meep", :page_positon => "1", :name => "first page")
       page.save!
       page
     end
@@ -62,7 +62,7 @@ class FirbCardTest < ActiveSupport::TestCase
   # singular_property :image_zone, N::DCT.isFormatOf
 
   def test_anastatica
-    assert_kind_of(FirbAnastaticaPage, @card.anastatica)
+    assert_kind_of(Anastatica, @card.anastatica)
     assert_equal(@card.anastatica.uri, @page.uri)
   end
   
