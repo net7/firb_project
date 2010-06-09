@@ -12,18 +12,6 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
       true
     end
     
-    setup_once(:parade) do
-      parade = Parade.new(:title => "Sfilata")
-      parade.save!
-      parade 
-    end
-    
-    setup_once(:collection) do
-      collection = TaliaCore::Collection.new(:title => "collection", :uri => N::LOCAL.barcollection)
-      collection.save!
-      collection
-    end
-    
     setup_once(:baldini) do
       baldini = FirbFiTextCard.create_card(:title => "Baldini Text")
       baldini.save!
@@ -52,8 +40,6 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
       :baldini_text => @baldini.uri.to_s,
       :cini_text => @cini,
       :study_notes => 'study',
-      :collection => @collection.uri.to_s,
-      :parade => @parade.uri.to_s,
       :note => { "new.blarg" => "hello world", "new.boo" => "second chance" }
       )
       cart.save!
@@ -105,20 +91,6 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
   
   def test_study_notes
     assert_equal(@cart.study_notes, 'study')
-  end
-  
-  def test_collection
-    @collection.reload
-    collection = TaliaCore::ActiveSource.find(@collection.id)
-    assert_equal(collection.first.uri, @cart.uri)
-    assert_equal(@cart.collection.uri, collection.uri)
-  end
-  
-  def test_parade
-    @parade.reload
-    parade = Parade.find(@parade.id)
-    assert_equal(parade.first.uri, @cart.uri)
-    assert_equal(@cart.parade.uri, @parade.uri)
   end
   
   def test_notes

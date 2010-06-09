@@ -476,8 +476,8 @@
     </header:>
     <body:>
 
-      <ht key="parades.collection.count" carts="&this.carts.size" chars="&this.characters.size">
-			Contains <%= this.carts.size %> carts and <%= this.characters.size %> characters
+      <ht key="parades.collection.count" count="&this.size">
+			Contains
       </ht>
 
     </body:>

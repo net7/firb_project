@@ -10,7 +10,6 @@
             <content:>
                 <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
-                <single-connection-row fieldname="parade" type="Parade" />
                 <field-edit-row fieldname="name" />
                 <field-edit-row fieldname="code"  />
                 <field-edit-row fieldname="author" />
@@ -40,7 +39,6 @@
             <content:>
                 <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
-                <single-connection-row fieldname="parade" type="Parade" />
                 <single-connection-row fieldname="cart" type="FirbParadeCartCard" />
                 <field-edit-row fieldname="name" />
                 <field-edit-row fieldname="code"  />

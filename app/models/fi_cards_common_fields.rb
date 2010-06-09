@@ -33,6 +33,7 @@ module FiCardsCommonFields
   end
   
   def note=(value)
+    self.save! if(self.new_record?)
     FirbNote.replace_notes(value, self)
   end
   
