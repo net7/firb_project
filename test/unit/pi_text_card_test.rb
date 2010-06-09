@@ -13,7 +13,7 @@ class PiTextCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:anastatica) do 
-      page = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
+      page = Anastatica.new(:title => "meep", :page_positon => "1", :name => "first page")
       page.save!
       page
     end

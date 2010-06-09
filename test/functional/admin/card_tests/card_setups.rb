@@ -33,7 +33,7 @@ module CardSetups
   end
 
   def setup_page
-    @page = FirbAnastaticaPage.new(:title => "meep", :page_positon => "1", :name => "first page")
+    @page = Anastatica.new(:title => "meep", :page_positon => "1", :name => "first page")
     @page.save!
     @page
   end
