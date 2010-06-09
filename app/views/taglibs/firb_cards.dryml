@@ -8,6 +8,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
             <content:>
+                <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
                 <single-connection-row fieldname="collection" type="TaliaCollection" />
                 <single-connection-row fieldname="parade" type="Parade" />
@@ -38,6 +39,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
             <content:>
+                <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
                 <single-connection-row fieldname="collection" type="TaliaCollection" />
                 <single-connection-row fieldname="parade" type="Parade" />
