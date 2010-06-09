@@ -6,21 +6,10 @@ module FiCardsCommonFields
       rdf_property :transcription, N::TALIA.transcription, :type => :text
       singular_property :baldini_text, N::TALIA.baldini, :force_relation => true
       singular_property :cini_text, N::TALIA.cini, :force_relation => true
-      manual_property :collection
       manual_property :parade
       manual_property :note
     end
     
-  end
-  
-  def collection
-    TaliaCore::Collection.find(:first, :find_through => [N::DCT.hasPart, self])
-  end
-  
-  def collection=(value)
-    value = value.is_a?(TaliaCore::Collection) ? value : TaliaCore::Collection.find(value)
-    value << self unless(value.include?(self))
-    value.save!
   end
   
   def parade
