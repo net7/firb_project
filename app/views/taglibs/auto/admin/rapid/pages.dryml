@@ -5,13 +5,132 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Anastatica"><ht key="anastaticas.nav_item">Anastatiche</ht></nav-item>
     <nav-item with="&BibliographyItem"><ht key="bibliography_items.nav_item">Elementi Bibliografici</ht></nav-item>
-    <nav-item with="&FirbAnastaticaPage"><ht key="firb_anastatica_pages.nav_item">Anastatiche</ht></nav-item>
     <nav-item with="&FirbBgTextCard"><ht key="firb_bg_text_cards.nav_item">Schede di testo</ht></nav-item>
     <nav-item with="&FirbCard"><ht key="firb_cards.nav_item">Schede</ht></nav-item>
     <nav-item with="&FirbFiTextCard"><ht key="firb_fi_text_cards.nav_item">Schede di testo</ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Anastatica Pages ====== -->
+
+<def tag="index-page" for="Anastatica">
+  <page merge title="#{ht 'anastaticas.index.title', :default=>['Anastatiche'] }">
+    <body: class="index-page anastatica" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="anastaticas.index.heading">
+            Anastatiche
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="anastaticas.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="anastaticas.actions.new">New Anastatica</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Anastatica">
+  <page merge title="#{ht 'anastaticas.new.title', :default=>[' New Anastatica'] }">
+    <body: class="new-page anastatica" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="anastaticas.new.heading">
+            New Anastatica
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'anastaticas.actions.create', :default=>['Create Anastatica']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Anastatica">
+  <page merge title="#{ht 'anastaticas.show.title', :default=>['Anastatica'] }">
+
+    <body: class="show-page anastatica" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="anastaticas.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="anastaticas.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Anastatica
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Anastatica">
+  <page merge title="#{ht 'anastaticas.edit.title', :default=>['Edit Anastatica'] }">
+
+    <body: class="edit-page anastatica" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="anastaticas.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'anastaticas.actions.delete', :default=>['Remove This Anastatica']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 
@@ -233,125 +352,6 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'custom_templates.actions.delete', :default=>['Remove This Template']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
-<!-- ====== FirbAnastaticaPage Pages ====== -->
-
-<def tag="index-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.index.title', :default=>['Anastatiche'] }">
-    <body: class="index-page firb-anastatica-page" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="firb_anastatica_pages.index.heading">
-            Anastatiche
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="firb_anastatica_pages.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="firb_anastatica_pages.actions.new">New Anastatica</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.new.title', :default=>[' New Anastatica'] }">
-    <body: class="new-page firb-anastatica-page" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_anastatica_pages.new.heading">
-            New Anastatica
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'firb_anastatica_pages.actions.create', :default=>['Create Anastatica']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.show.title', :default=>['Anastatica'] }">
-
-    <body: class="show-page firb-anastatica-page" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="firb_anastatica_pages.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_anastatica_pages.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Anastatica
-              </ht>
-            </a>
-          </header>
-
-          <section param="content-body">
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="FirbAnastaticaPage">
-  <page merge title="#{ht 'firb_anastatica_pages.edit.title', :default=>['Edit Anastatica'] }">
-
-    <body: class="edit-page firb-anastatica-page" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_anastatica_pages.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'firb_anastatica_pages.actions.delete', :default=>['Remove This Anastatica']}" param/>
       </section>
 
       <section param="content-body">
@@ -1542,125 +1542,6 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'parades.actions.delete', :default=>['Remove This Parade']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
-<!-- ====== Procession Pages ====== -->
-
-<def tag="index-page" for="Procession">
-  <page merge title="#{ht 'processions.index.title', :default=>['Processions'] }">
-    <body: class="index-page procession" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="processions.index.heading">
-            Processions
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="processions.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="processions.actions.new">New Procession</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="Procession">
-  <page merge title="#{ht 'processions.new.title', :default=>[' New Procession'] }">
-    <body: class="new-page procession" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="processions.new.heading">
-            New Procession
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'processions.actions.create', :default=>['Create Procession']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="Procession">
-  <page merge title="#{ht 'processions.show.title', :default=>['Procession'] }">
-
-    <body: class="show-page procession" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="processions.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="processions.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Procession
-              </ht>
-            </a>
-          </header>
-
-          <section param="content-body">
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="Procession">
-  <page merge title="#{ht 'processions.edit.title', :default=>['Edit Procession'] }">
-
-    <body: class="edit-page procession" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="processions.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'processions.actions.delete', :default=>['Remove This Procession']}" param/>
       </section>
 
       <section param="content-body">

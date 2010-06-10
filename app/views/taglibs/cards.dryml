@@ -484,13 +484,13 @@
   </card>
 </def>
 
-<def tag="card" for="FirbAnastaticaPage">
+<def tag="card" for="Anastatica">
   <card class="talia-source" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a><delete-icon /></h4>
     </header:>
     <body:>
-      <div><ht key="firb_anastatica_pages.page_position">Position</ht>: <%= this.page_position %></div>
+      <div><ht key="anastatica.page_position">Position</ht>: <%= this.page_position %></div>
       <source-collections />
     </body:>
   </card>

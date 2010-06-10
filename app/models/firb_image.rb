@@ -3,7 +3,7 @@ require 'digest/md5'
 
 class FirbImage < FirbImageElement
   hobo_model # Don't put anything above this
-  
+
   include StandardPermissions
 
   # The file status will be originally empty (no file attach) and will be

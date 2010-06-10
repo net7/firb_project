@@ -1,5 +1,13 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="card" for="Anastatica">
+  <card class="anastatica" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="BibliographyItem">
   <card class="bibliography-item" param="default" merge>
     <header: param>
@@ -16,14 +24,6 @@
     <body: param>
       <view:content param="description"/>
     </body:>
-  </card>
-</def>
-
-<def tag="card" for="FirbAnastaticaPage">
-  <card class="firb-anastatica-page" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
   </card>
 </def>
 
@@ -120,14 +120,6 @@
 
 <def tag="card" for="Parade">
   <card class="parade" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-  </card>
-</def>
-
-<def tag="card" for="Procession">
-  <card class="procession" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>

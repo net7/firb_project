@@ -23,7 +23,7 @@ class Admin::AnastaticasController < Admin::AdminSiteController
     end
     assign_book_from_params
     delete_books_from_params
-    redirect_to :controller => :anastatica, :action => :index
+    redirect_to :controller => :anastaticas, :action => :index
   end
   
   
@@ -31,7 +31,7 @@ class Admin::AnastaticasController < Admin::AdminSiteController
     hobo_source_update do
       assign_book_from_params
       delete_books_from_params
-      redirect_to :controller => :anastatica, :action => :index
+      redirect_to :controller => :anastaticas, :action => :index
     end
   end
   

@@ -8,7 +8,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
             <content:>
-                <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
+                <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
                 <single-connection-row fieldname="parade" type="Parade" />
                 <field-edit-row fieldname="name" />
@@ -38,7 +38,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common>
             <content:>
-                <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
+                <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
                 <single-connection-row fieldname="parade" type="Parade" />
                 <single-connection-row fieldname="cart" type="FirbParadeCartCard" />
@@ -337,7 +337,7 @@
 <def tag="card-form-common-pi">
     <card-form-common>
         <content:>
-            <single-connection-row fieldname="anastatica" type="FirbAnastaticaPage" options="&anastatiche_select" param="anastatica"/>
+            <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
             <field-edit-row fieldname="name" param="namefield"/>
             <field-edit-row fieldname="code" param="code" />
             <field-edit-row fieldname="collocation" param="collocation"/>
