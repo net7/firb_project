@@ -53,6 +53,10 @@ class FirbTextCard < TaliaCore::Source
         xml_data.create_from_data('data.xml', xml_string, :options => { :mime_type => 'text/xml' })
         self.data_records.destroy_all
         self.data_records << xml_data
+        # here we prepare the HTML1 version of the uploaded file, the one to be used by swickynotes
+        # to add semantic notes to the text.
+        # the XSLT needs the source_uri parameter to fill some THCTag with it, we pass it in the 
+        # "options" hash
         options = {"source_uri" => self.uri.to_s }
         xsl_file = 'xslt/HTML1.xsl'
         xml_file = xml_data.full_filename

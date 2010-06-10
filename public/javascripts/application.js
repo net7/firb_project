@@ -6,8 +6,10 @@
 
 // Initialization: IMT will call this when it's ready to load an image
 function jsapi_initializeIMW(id) {
-	var new_b64 = $$('#'+id+" embed")[0].readAttribute('b64');
-	getFlashObject(id).initialize(new_b64, 1);
+    var new_b64;
+    if (navigator.appName.indexOf("Microsoft") != -1) new_b64 = $(id).readAttribute('b64');
+    else new_b64 = $$('#'+id+" embed")[0].readAttribute('b64');
+    getFlashObject(id).initialize(new_b64, 1);
 } // jsapi_initializeIMW()
 
 function getFlashObject(movieName) {

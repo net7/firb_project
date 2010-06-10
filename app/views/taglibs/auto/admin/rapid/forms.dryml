@@ -1,0 +1,215 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<def tag="form" for="Anastatica">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'anastaticas.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="BibliographyItem">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'bibliography_items.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="CustomTemplate">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, template_type, content" param/>
+    <div param="actions">
+      <submit label="#{ht 'custom_templates.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbBgTextCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_bg_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbFiTextCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_fi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbImageZone">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_image_zones.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbImage">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_images.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbPiTextCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_pi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbVtTextCardHandwritten">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_vt_text_card_handwrittens.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbVtTextCardPrinted">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_vt_text_card_printeds.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="IconclassTerm">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Parade">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'parades.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="TaliaCollection">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="TaliaSource">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri, type" param/>
+    <div param="actions">
+      <submit label="#{ht 'talia_sources.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="User">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, administrator, state" param/>
+    <div param="actions">
+      <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="signup-form" polymorphic/>
+<def tag="signup-form" for="User">
+  <form lifecycle="signup" merge param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="#{ht 'users.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="reset-password-form" polymorphic/>
+<def tag="reset-password-form" for="User">
+  <form lifecycle="reset_password" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="password, password_confirmation" param/>
+    <div param="actions">
+      <submit label="#{ht 'users.actions.reset_password', :default=>['Reset Password']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
