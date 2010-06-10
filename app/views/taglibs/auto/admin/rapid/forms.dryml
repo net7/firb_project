@@ -1,5 +1,17 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="form" for="Anastatica">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{ht 'anastaticas.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="BibliographyItem">
   <form merge param="default">
     <error-messages param/>
@@ -18,18 +30,6 @@
     <field-list fields="name, template_type, content" param/>
     <div param="actions">
       <submit label="#{ht 'custom_templates.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="FirbAnastaticaPage">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="" param/>
-    <div param="actions">
-      <submit label="#{ht 'firb_anastatica_pages.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -150,18 +150,6 @@
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'parades.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="Procession">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="" param/>
-    <div param="actions">
-      <submit label="#{ht 'processions.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
