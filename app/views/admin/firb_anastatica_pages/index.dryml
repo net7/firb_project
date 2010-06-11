@@ -12,7 +12,7 @@
 		</sidebared-content>
 	</content:>
 	<count:>
-        <ht key="firb_anastatica_pages.collection.count" count="&this.total_entries">
+        <ht key="anastatica.collection.count" count="&this.total_entries">
           There <count prefix="are"/>
         </ht>
     </count:>

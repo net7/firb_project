@@ -74,12 +74,12 @@
  -->
 <def tag="imt-viewer" attrs="id, b64">
     <div class="imt-viewer">
-        <object class="IMTViewer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="#{id}" width="200" height="200" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+        <object class="IMTViewer" b64="#{b64}" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="#{id}" width="200" height="200" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
             <param name="movie" value="#{image_path('ImageMapperViewer.swf?js_prefix=jsapi_')}" />
             <param name="quality" value="high" />
             <param name="bgcolor" value="#ffffff" />
             <param name="allowScriptAccess" value="always" />
-            <embed src="#{image_path('ImageMapperViewer.swf?js_prefix=jsapi_')}" quality="high" bgcolor="#ffffff" width="100%" height="100%" name="#{id}" align="middle" play="true" loop="false" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" b64="#{b64}"></embed>
+            <embed src="#{image_path('ImageMapperViewer.swf?js_prefix=jsapi_')}&oid=#{id}" quality="high" bgcolor="#ffffff" width="100%" height="100%" name="#{id}" align="middle" play="true" loop="false" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" b64="#{b64}"></embed>
         </object>
     </div>
 </def>

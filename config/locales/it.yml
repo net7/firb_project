@@ -28,7 +28,7 @@ it:
             heading: "Crea un nuovo libro"
         title: "Titolo"
 
-    firb_anastatica_pages:
+    anastaticas:
         model_name: "Anastatica"
         model_name_plural: "Anastatiche" 
         collection:
