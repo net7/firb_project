@@ -1,0 +1,34 @@
+<def tag="firb-card-link">
+    <% name = (this.try.name || this.try.to_uri.local_name || this.to_s) %>
+    <if test="&this.is_a?(FirbCard)">
+        <%= link_to name, :controller => :firb_cards, :action => :show, :id => this.id, :type => this.class.name.underscore.gsub('firb_', '').gsub('_card', '') %>
+    </if>
+    <else>
+        <a><%= name %></a>
+    </else>
+</def>
+
+
+<show-page>
+    <content-body:>
+        <div class='page-position'>
+            <h3><ht key="anastaticas.page_position">Page position</ht>: <%= this.page_position %></h3>
+        </div>
+        <h3><ht key="talia_collections.model_name_plural">Collections</ht>:</h3>
+        <% source_uri = this.to_uri.safe_encoded %>
+        <repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
+            <%= this.title || this.to_uri.local_name %> 
+        </repeat>
+        <h3><ht key="anastaticas.parts_of_this_source">Parts of this source</ht></h3>
+        <% parts = this.parts_by_class %>
+        <% part_list = parts.keys.sort %>
+        <repeat with="&part_list">
+            <if test="&this.classify.constantize < Hobo::Model">
+                <h4><%= this.titleize.pluralize %></h4>
+                <ul>
+                    <repeat with="&parts[this]"><li><firb-card-link /></li></repeat>
+                </ul>
+            </if>
+        </repeat>
+    </content-body:>
+</show-page>

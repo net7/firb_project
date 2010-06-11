@@ -33,9 +33,6 @@ class Admin::FirbCardsController < Admin::AdminSiteController
       flash[:notice] = "#{I18n.t("firb_cards.errors.create_card")}: #{@firb_card.errors.full_messages.join(', ')}"
       render :action => :new
     end
-  rescue ActiveRecord::RecordInvalid => e
-    flash[:notice] = "#{I18n.t("firb_cards.errors.create_card")}: #{e.message}"
-    redirect_to :back
   end
   
   def update

@@ -1,0 +1,19 @@
+<index-page>
+	<content: replace>
+		<sidebared-content>
+			<collection:>
+				<item:>
+					<card-with-drag-handle />
+				</item:>
+			</collection:>
+			<aside:>
+				<collection-sidebar with="&all_collections" />
+			</aside:>
+		</sidebared-content>
+	</content:>
+	<count:>
+        <ht key="anastaticas.collection.count" count="&this.total_entries">
+          There <count prefix="are"/>
+        </ht>
+    </count:>
+</index-page>

@@ -432,6 +432,10 @@ it:
         image_zones: "Zone di immagine"
         actions:
           delete: "Cancella questa scheda testo"
+          
+    processions:
+      errors:
+        too_many_carts: "Non posso aggiungere più di un carro a un corteo."
 
     image_component:
       model_name: "Componenti"
