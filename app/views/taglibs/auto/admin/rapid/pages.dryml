@@ -5,7 +5,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Anastatica"><ht key="anastaticas.nav_item">Anastaticas</ht></nav-item>
+    <nav-item with="&Anastatica"><ht key="anastaticas.nav_item">Anastatiche</ht></nav-item>
     <nav-item with="&BibliographyItem"><ht key="bibliography_items.nav_item">Elementi Bibliografici</ht></nav-item>
     <nav-item with="&FirbBgTextCard"><ht key="firb_bg_text_cards.nav_item">Schede di testo</ht></nav-item>
     <nav-item with="&FirbCard"><ht key="firb_cards.nav_item">Schede</ht></nav-item>
@@ -19,14 +19,14 @@
 <!-- ====== Anastatica Pages ====== -->
 
 <def tag="index-page" for="Anastatica">
-  <page merge title="#{ht 'anastaticas.index.title', :default=>['Anastaticas'] }">
+  <page merge title="#{ht 'anastaticas.index.title', :default=>['Anastatiche'] }">
     <body: class="index-page anastatica" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="anastaticas.index.heading">
-            Anastaticas
+            Anastatiche
           </ht>
         </h2>
 

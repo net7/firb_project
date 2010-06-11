@@ -28,10 +28,14 @@ class Admin::FirbCardsController < Admin::AdminSiteController
     @firb_card = @card_type.new(card_params)
     if(save_created!(@firb_card))
       flash[:notice] = "Card succesfully created"
+      redirect_to :action => :index
     else
-      flash[:notice] = "Error creating card"
+      flash[:notice] = "#{I18n.t("firb_cards.errors.create_card")}: #{@firb_card.errors.full_messages.join(', ')}"
+      render :action => :new
     end
-    redirect_to :action => :index
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:notice] = "#{I18n.t("firb_cards.errors.create_card")}: #{e.message}"
+    redirect_to :back
   end
   
   def update

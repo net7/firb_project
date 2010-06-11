@@ -80,7 +80,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
   #   get(:show, :id => @page.id)
   #   assert_response(:success)
   #   assert_select 'div.page-position', "Page position: #{@page.page_position}"
-  #   assert_select 'span.firb-anastatica-page-name', @page.name
+  #   assert_select 'span.anastatica-name', @page.name
   # end
   # 
   def test_new_non_illustrated

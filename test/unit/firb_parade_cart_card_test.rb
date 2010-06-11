@@ -24,6 +24,18 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
       cini
     end
     
+    setup_once(:procession) do
+      procession = Procession.new(:name => "Sfilata")
+      procession.save!
+      procession
+    end
+    
+    setup_once(:anastatica) do 
+      page = Anastatica.new(:title => "meep", :page_positon => "1", :name => "first page")
+      page.save!
+      page
+    end
+    
     setup_once(:cart) do
       cart = FirbParadeCartCard.new(
       :name => "first_foo",
@@ -36,6 +48,8 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
       # TODO: Vehicle
       # TODO: Deity
       # TODO: THRONE
+      :procession => @procession.uri.to_s,
+      :anastatica => @anastatica.uri.to_s,
       :transcription => "Che Carro!",
       :baldini_text => @baldini.uri.to_s,
       :cini_text => @cini,
@@ -43,10 +57,25 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
       :note => { "new.blarg" => "hello world", "new.boo" => "second chance" }
       )
       cart.save!
-      cart = FirbParadeCartCard.find(cart.id)
+      cart
     end
     
+    @cart.reload
+    @procession.reload
+    
     assert_not_nil(@cart)
+  end
+  
+  def test_procession
+    assert_kind_of(Procession, @cart.procession)
+    assert_equal(@cart.procession.uri, @procession.uri)
+    assert_equal(@cart.uri, @procession.first.uri)
+    assert_equal(1, @procession.size)
+  end
+  
+  def test_anastatica
+    assert_kind_of(Anastatica, @cart.anastatica)
+    assert_equal(@anastatica.uri, @cart.anastatica.uri)
   end
   
   def test_name

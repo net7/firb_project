@@ -30,8 +30,8 @@ class ProcessionTest < ActiveSupport::TestCase
     assert_equal(3, @procession.size)
   end
   
-  def test_carts_size
-    assert_equal(1, @procession.carts.size)
+  def test_cart_size
+    assert_equal("Pflonk", @procession.cart.name)
   end
   
   def test_characters_size

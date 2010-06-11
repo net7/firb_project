@@ -484,13 +484,28 @@
   </card>
 </def>
 
+<def tag="card" for="Procession">
+  <card class="talia-collection" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><%= this.title %></a><delete-icon /></h4>
+    </header:>
+    <body:>
+
+      <ht key="parades.collection.count" count="&this.size">
+			Contains
+      </ht>
+
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Anastatica">
   <card class="talia-source" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a><delete-icon /></h4>
     </header:>
     <body:>
-      <div><ht key="anastatica.page_position">Position</ht>: <%= this.page_position %></div>
+      <div><ht key="anastaticas.page_position">Position</ht>: <%= this.page_position %></div>
       <source-collections />
     </body:>
   </card>

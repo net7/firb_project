@@ -19,8 +19,8 @@ class Procession < TaliaCore::Collection
     ordered_objects.find_all { |el| el.is_a?(FirbParadeCharacterCard) }
   end
 
-  def carts
-    ordered_objects.find_all { |el| el.is_a?(FirbParadeCartCard) }
+  def cart
+    ordered_objects.find { |el| el.is_a?(FirbParadeCartCard) }
   end
 
   def only_carts_and_characters

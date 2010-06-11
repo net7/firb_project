@@ -1,7 +1,7 @@
 module Admin::FirbTextCardHelper
   
   # Produces an hash to be passed to an input (select_for format)
-  # with all of our FirbAnastaticaPages
+  # with all of our Anastaticas
   def anastatiche_select
     foo = Anastatica.all.collect{|a| ["#{a.title}: #{a.page_position}", a.uri.to_s]}
     foo.sort

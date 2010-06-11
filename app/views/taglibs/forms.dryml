@@ -3,7 +3,7 @@
     <error-messages param/>
     <image-zone-select />
     <field-list fields="page_position, title" param/>
-	<label for="select_list"><ht key="firb_anastatica_pages.page_to_book">Attach to book</ht></label>
+	<label for="select_list"><ht key="anastaticas.page_to_book">Attach to book</ht></label>
 	<removeable-books />
 	<% book_hash = {} ; this.unattached_books.each { |b| book_hash[b.name] = b.to_uri.safe_encoded } %>
 	<unless test="&book_hash.empty?">
@@ -12,7 +12,7 @@
 		<select-menu options="&book_hash" id="anastatica_page_attach" name="attach_book" />
 	</unless>
     <div param="actions">
-		<submit label="#{ht 'firb_anastatica_pages.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+		<submit label="#{ht 'anastaticas.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -26,7 +26,7 @@
         <br />
         <%= I18n.t("firb_text_page.transcription_file") %>: <input type="file" name="firb_pi_text_card[file]"/><br />
         <br />
-        <%= I18n.t("firb_anastatica_pages.model_name") %>: <single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" />
+        <%= I18n.t("anastaticas.model_name") %>: <single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" />
         <br />
         <%= I18n.t("firb_text_page.image_zones") %> :
         <image-zones-edit />
@@ -223,7 +223,7 @@
 <def tag="removeable-books">
 	<% books = this.attached_to_books %>
 	<% unless(books.empty?) %>
-	<h3><ht key="firb_anastatica_pages.attached_to_books">Attached to books (check to remove)</ht></h3>
+	<h3><ht key="anastaticas.attached_to_books">Attached to books (check to remove)</ht></h3>
 	<% end %>
 	<p>
 	<% for attached_book in this.attached_to_books %>
@@ -243,6 +243,16 @@
 </def>
 
 <def tag="form" for="Parade">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title" param/>
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+<def tag="form" for="Procession">
   <form merge param="default">
     <error-messages param/>
     <field-list fields="title" param/>
