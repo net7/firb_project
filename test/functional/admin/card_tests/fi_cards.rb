@@ -23,51 +23,10 @@ module FiCards
     cart_two.save!
     assert_difference('FirbParadeCartCard.count', 0) do
         post :create, :firb_parade_cart_card => { :name => "Foobar", :procession => @procession.uri.to_s }, :type => 'parade_cart'
-        assert_template :new
+        assert_response :success
+        assert_select "div.error-messages" 
     end
   end
-  
-  # 
-  # def test_create_cart_with_parade
-  #   setup_image_zone
-  #   setup_parade
-  #   login_for(:admin)
-  #   assert_difference('@parade.size', 1) do
-  #     post :create, :firb_parade_cart_card => { :name => "Foobar", :parade => @parade.uri.to_s }, :type => 'parade_cart'
-  #     assert_redirected_to :controller => :firb_cards, :action => :index
-  #     @parade.reload
-  #   end
-  #   new_card = FirbParadeCartCard.last
-  #   assert_not_nil(new_card.parade)
-  #   assert_equal(new_card.parade.uri, @parade.uri)
-  # end
-  # 
-  # def test_create_character_with_collection
-  #   setup_image_zone
-  #   setup_collection
-  #   login_for(:admin)
-  #   assert_difference('FirbParadeCharacterCard.count', 1) do
-  #     assert_difference('@collection.size', 1) do
-  #       post :create, :firb_parade_character_card => { :name => "Foobar", :collection => @collection.uri.to_s }, :type => 'parade_character'
-  #       assert_redirected_to :controller => :firb_cards, :action => :index
-  #       @collection.reload
-  #     end
-  #   end
-  #   new_card = FirbParadeCharacterCard.last
-  #   assert_equal('Foobar', new_card.name)
-  # end
-  # 
-  # def test_create_character_with_parade
-  #   setup_image_zone
-  #   setup_parade
-  #   login_for(:admin)
-  #   assert_difference('@parade.size', 1) do
-  #     post :create, :firb_parade_character_card => { :name => "Foobar", :parade => @parade.uri.to_s }, :type => 'parade_character'
-  #     assert_redirected_to :controller => :firb_cards, :action => :index
-  #     @parade.reload
-  #   end
-  # end
-  #
   
   def setup_procession
     @procession = Procession.new(:title => "Corteo")

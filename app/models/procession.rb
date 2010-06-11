@@ -28,10 +28,10 @@ class Procession < TaliaCore::Collection
     ordered_objects.each do |element|
       if(element.is_a?(FirbParadeCartCard))
         # We can allow at most one cart in the procession
-        cart_seen ? errors.add_to_base(I18n.t('processions.errors.too_many_carts')) : (cart_seen = true)
+        cart_seen ? errors.add_to_base(I18n.t('procession.errors.too_many_carts')) : (cart_seen = true)
       else
         # If we don't have a cart, it should be a character
-        errors.add_to_base(I18n.t('processions.errors.illegal_type', element.uri)) unless(element.is_a?(FirbParadeCharacterCard))
+        errors.add_to_base(I18n.t('procession.errors.illegal_type', :type => element.class.name )) unless(element.is_a?(FirbParadeCharacterCard))
       end
     end
   end

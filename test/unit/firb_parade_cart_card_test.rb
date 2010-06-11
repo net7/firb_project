@@ -73,6 +73,19 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
     assert_equal(1, @procession.size)
   end
   
+  def test_for_invalid_procession
+    new_cart = FirbParadeCartCard.new(:name => "Second", :procession => @procession)
+    assert_equal(2, @procession.size)
+    assert(!@procession.valid?)
+    assert(!new_cart.procession_valid?)
+    new_cart.valid?
+  end
+  
+  def test_for_invalid_procession_save
+    new_cart = FirbParadeCartCard.new(:name => "Second", :procession => @procession.uri.to_s)
+    assert(!new_cart.save)
+  end
+  
   def test_anastatica
     assert_kind_of(Anastatica, @cart.anastatica)
     assert_equal(@anastatica.uri, @cart.anastatica.uri)

@@ -1,2 +1,0 @@
-POOOF <%=h @firb_card.inspect %>
-<new-page />

@@ -382,6 +382,8 @@ it:
         parent_collocation: "Collocazione (della madre)"
         image_components: "Componenti"
         on_card_save: "Impostato quando la scheda viene registrata"
+        errors:
+          create_card: "Errore durante la creazione della scheda"
         
     # Used in new.dryml
     new_firb_image:
@@ -433,9 +435,11 @@ it:
         actions:
           delete: "Cancella questa scheda testo"
           
-    processions:
+    procession:
+      model_name: "Corteo"
       errors:
         too_many_carts: "Non posso aggiungere più di un carro a un corteo."
+        illegal_type: "Un elemento del typo {{type}} no può essere parte di un corteo."
 
     image_component:
       model_name: "Componenti"

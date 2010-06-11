@@ -9,8 +9,8 @@ module FiCardsCommonFields
       manual_property :procession
       manual_property :note
       
-      validate :validate_procession
-      before_validation :save_procession
+      before_validation :validate_procession
+      after_save :save_procession
     end
     
   end
@@ -21,6 +21,8 @@ module FiCardsCommonFields
   
   def procession=(value)
     @procession = (value.is_a?(Procession) ? value : Procession.find(value))
+    @procession_new = true
+    @procession << self
   end
   
   def note
@@ -34,27 +36,31 @@ module FiCardsCommonFields
   end
   
   def note=(value)
-    self.save! if(self.new_record?)
+    if(self.new_record?)
+      return unless(self.save)
+    end
     FirbNote.replace_notes(value, self)
   end
   
   def validate_procession
-    if(@procession && !@procession.valid?)
+    if(!procession_valid?)
       @procession.errors.each_full { |msg| errors.add('procession', msg) }
     end
+    procession_valid?
   end
   
   def save_procession
-    if(@procession && (@procession != fetch_procession))
-      @procession << self 
-      @procession.save
-    else
-      true
-    end
+    is_new = @procession_new
+    @procession_new = false
+    is_new ? @procession.save : procession_valid?
   end
   
   def fetch_procession
     Procession.find(:first, :find_through => [N::DCT.hasPart, self])
+  end
+  
+  def procession_valid?
+    @procession ? @procession.valid? : true
   end
   
 end
