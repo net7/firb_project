@@ -12,7 +12,7 @@ class ImageComponentTest < ActiveSupport::TestCase
       true
     end
     setup_once(:image_zone) do
-      image_zone = FirbImageZone.create_with_name("zony")
+      image_zone = ImageZone.create_with_name("zony")
       image_zone.save!
       image_zone
     end
@@ -37,7 +37,7 @@ class ImageComponentTest < ActiveSupport::TestCase
   end
   
   def test_image_zone
-    assert_kind_of(FirbImageZone, @image_component.image_zone)
+    assert_kind_of(ImageZone, @image_component.image_zone)
     assert_equal(@image_component.image_zone.uri, @image_zone.uri)
   end
   

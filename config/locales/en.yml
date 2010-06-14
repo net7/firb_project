@@ -11,8 +11,8 @@ en:
         model_name: "Book"
         model_name_plural: "Books"
         
-    # Used in views/admin/firb_images/new.dryml
-    new_firb_image:
+    # Used in views/admin/images/new.dryml
+    new_image:
         text: "Text portion"
         other_text: "Yet another text portion"
         picture: "Picture"
@@ -20,7 +20,7 @@ en:
         headletter: "Letter"
       
     # Used in admin_site.dryml
-    firb_image:
+    image:
         zones: "Zones"
         original_name: "Original name"
         zone_add: "Add a zone"

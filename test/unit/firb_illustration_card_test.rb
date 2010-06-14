@@ -27,7 +27,7 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:image_zone) do
-      zone = FirbImageZone.create_with_name('hello')
+      zone = ImageZone.create_with_name('hello')
       zone.save!
       zone
     end

@@ -18,7 +18,7 @@ module CardSetups
   end
   
   def setup_image_zone
-    @image_zone = FirbImageZone.create_with_name('hello')
+    @image_zone = ImageZone.create_with_name('hello')
     @image_zone.save!
   end
 

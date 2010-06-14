@@ -19,8 +19,8 @@ class PiTextCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:image_zones) do
-      image_zone1 = FirbImageZone.create_with_name('hello')
-      image_zone2 = FirbImageZone.create_with_name('heydo')
+      image_zone1 = ImageZone.create_with_name('hello')
+      image_zone2 = ImageZone.create_with_name('heydo')
       image_zone1.save!
       image_zone2.save!
       image_zones = [image_zone1.uri.to_s, image_zone2.uri.to_s]

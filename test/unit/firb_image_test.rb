@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'fileutils'
 
-class FirbImageTest < ActiveSupport::TestCase
+class ImageTest < ActiveSupport::TestCase
   
   def setup
     flush_rdf
-    @my_image = FirbImage.new("http://default-firb.com/image")
+    @my_image = Image.new("http://default-firb.com/image")
     @test_file_name = File.join(TALIA_CODE_ROOT, 'test', 'fixtures', 'tiny.jpg')
     TaliaCore::CONFIG['iip_root_directory_location'] = File.join(TALIA_CODE_ROOT, 'test', 'tmp_iip_root')
     FileUtils.rm_rf(TaliaCore::CONFIG['iip_root_directory_location'])
@@ -23,7 +23,7 @@ class FirbImageTest < ActiveSupport::TestCase
   end
   
   def test_add_zone
-    image = FirbImage.new("http://firbimage/addzone")
+    image = Image.new("http://image/addzone")
     assert(image.zones.empty?)
     image.add_zone('test2')
     image.add_zone('test')
@@ -33,11 +33,11 @@ class FirbImageTest < ActiveSupport::TestCase
   end
 
   def test_destroy
-    image = FirbImage.new("http://firbimage/addzone")
+    image = Image.new("http://image/addzone")
     assert(image.zones.empty?)
     image.add_zone('testabc')
     image.save!
-    image = FirbImage.find(image.id)
+    image = Image.find(image.id)
     assert_equal(1, image.zones.size)
     ids = image.zones.collect{|z| z.id }
     assert_difference("TaliaCore::ActiveSource.count", -2) do
@@ -52,7 +52,7 @@ class FirbImageTest < ActiveSupport::TestCase
   end
 
   def test_attach_file
-    image = FirbImage.new("http://firbimage/addzone")
+    image = Image.new("http://image/addzone")
     image.attach_file(@test_file_name)
     image.save!
     wait_for_attach(image)
@@ -62,7 +62,7 @@ class FirbImageTest < ActiveSupport::TestCase
   end
   
   def test_attach_tempfile
-    image = FirbImage.new("http://firbimage/addzone_temp")
+    image = Image.new("http://image/addzone_temp")
     tmpfile = 'nil'
     Tempfile.open((rand Time.now.to_i).to_s) do |tf|
       File.open(@test_file_name) { |test| tf << test.read }
@@ -79,7 +79,7 @@ class FirbImageTest < ActiveSupport::TestCase
   end
   
   def test_thumb_and_orig
-    image = FirbImage.new("http://firbimage/thumb_and_orig")
+    image = Image.new("http://image/thumb_and_orig")
     image.attach_file(@test_file_name)
     image.save!
     wait_for_attach(image)

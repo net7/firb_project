@@ -69,7 +69,7 @@ class AnastaticaTest < ActiveSupport::TestCase
   end
   
   def test_image_zone
-    image_zone = FirbImageZone.create_with_name('foo')
+    image_zone = ImageZone.create_with_name('foo')
     image_zone.save!
     
     page = Anastatica.new(:title => "tito", :page_position => "ups", :image_zone => image_zone)

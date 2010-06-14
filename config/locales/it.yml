@@ -54,7 +54,7 @@ it:
         page_position: "Carta"
         title: "Titolo"
 
-    firb_images:
+    images:
         model_name: "Illustrazione"
         model_name_plural: "Illustrazioni"
         collection:
@@ -386,7 +386,7 @@ it:
           create_card: "Errore durante la creazione della scheda"
         
     # Used in new.dryml
-    new_firb_image:
+    new_image:
         anastatica: "Anastatica"
         text: "Porzione di testo"
         other_text: "Altra porzione di testo"
@@ -399,7 +399,7 @@ it:
         upload_limits: "Caricare solo immagini in formato JPEG/JPG, sotto i 5Mb di dimensione."
       
     # Used in admin_site.dryml
-    firb_image:
+    image:
         zones: "Zone"
         original_name: "Nome originale"
         zone_add: "Aggiungi una zona"

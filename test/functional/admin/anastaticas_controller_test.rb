@@ -80,7 +80,7 @@ class Admin::AnastaticasControllerTest < ActionController::TestCase
   
   def test_create_with_image_zone
     login_for(:admin)
-    image_zone = FirbImageZone.create_with_name('foo')
+    image_zone = ImageZone.create_with_name('foo')
     image_zone.save!
     assert_difference('Anastatica.count', 1) do
       post(:create, "anastatica"=> { "uri"=>"http://localhost:5000/",

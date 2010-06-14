@@ -27,10 +27,10 @@ function getFlashObject(movieName) {
 }
 
 function jsapi_mouseOver(fid, ki) {	
-    $$("span#firb_image_zone_"+ki)[0].toggleClassName('highlighted');
+    $$("span#image_zone_"+ki)[0].toggleClassName('highlighted');
 }
 function jsapi_mouseOut(fid, ki) {
-    $$("span#firb_image_zone_"+ki)[0].toggleClassName('highlighted');
+    $$("span#image_zone_"+ki)[0].toggleClassName('highlighted');
 }
 function jsapi_mouseClick(fid, ki) {
 	return true;
