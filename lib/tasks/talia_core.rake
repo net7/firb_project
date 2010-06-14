@@ -27,5 +27,37 @@ namespace :iconclass do
       end
     end
   end
+end
+
+namespace :talia_model do 
+   
+  desc "Rename a talia_source model into the database. Will need another rake task after that to rebuild the RDF. Param: old=<old source name> new=<new source name>"
+  task :rename => 'talia_core:init' do
+    old_name = ENV['old']
+    new_name = ENV['new']
+    
+    query = "UPDATE active_sources SET type='#{new_name}' WHERE type='#{old_name}'"
+    puts "@@ Submitting query: #{query}"
+    m = ActiveRecord::Base.connection.execute(query)
+    puts "@@ Modified #{m} rows"
+  end
   
+end
+
+namespace :firb do
+  desc "Rename FirbImage, FirbImageZone active sources to Image, ImageZone"
+  task :images_rename => 'talia_core:init' do
+    ENV['old'] = 'FirbImage'
+    ENV['new'] = 'Image'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    ENV['old'] = 'FirbImageZone'
+    ENV['new'] = 'ImageZone'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+    
+    Rake::Task['talia_core:rebuild_rdf'].invoke
+  end
+
 end
