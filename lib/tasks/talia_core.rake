@@ -58,6 +58,8 @@ namespace :firb do
     Rake::Task['talia_model:rename'].invoke
     
     Rake::Task['talia_core:rebuild_rdf'].invoke
+    Rake::Task['talia_core:setup_ontologies'].invoke
+
   end
 
 end
