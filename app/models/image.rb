@@ -6,6 +6,9 @@ class Image < ImageElement
 
   include StandardPermissions
 
+  cattr_reader :per_page
+  @@per_page = 10
+
   # The file status will be originally empty (no file attach) and will be
   # set by the worker process, either to "OK" (successfully attached the file)
   # or to an error message. 
