@@ -13,12 +13,12 @@ module Admin::FirbTextCardHelper
   end
   
   # Produces an hash to be passed to an input (select_for) format
-  # with all of our FirbImageZones
+  # with all of our ImageZones
   def image_zone_select_uri
-    foo = FirbImageZone.all.collect do |a|
+    foo = ImageZone.all.collect do |a|
       parent = a.get_parent
       breadcrumbs = ""
-      while(parent.class.to_s != "FirbImage" && !parent.nil?)
+      while(parent.class.to_s != "Image" && !parent.nil?)
         breadcrumbs = parent.name + " > " + breadcrumbs 
         parent = parent.get_parent
       end

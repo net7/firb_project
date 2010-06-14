@@ -1,0 +1,2 @@
+module Admin::ImageZonesHelper
+end

@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'digest/md5'
 
-class FirbImage < FirbImageElement
+class Image < ImageElement
   hobo_model # Don't put anything above this
 
   include StandardPermissions
@@ -57,7 +57,7 @@ class FirbImage < FirbImageElement
     else
       FileUtils.copy(up_file, staged_file)
     end
-    FirbImageWorker.async_create_image(:image_uri => self.uri, :image_file => staged_file)
+    ImageWorker.async_create_image(:image_uri => self.uri, :image_file => staged_file)
   end
 
 end

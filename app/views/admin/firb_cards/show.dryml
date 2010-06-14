@@ -1,9 +1,9 @@
 <def tag="image-part">
     <% @imageid = this.id %>
-    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
+    <div class="firb-image-picture" id="image_container_#{this.id}">
 
         <if test="&this.file_status == 'OK'">
-            <imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
+            <imt-viewer id="image_#{@imageid}" b64="#{thumb_xml(this)}"/>
         </if>
         <unless test="&this.file_status == 'OK'">
             <img-not-ready />
@@ -14,8 +14,8 @@
 </def>
 
 <def tag="zone-image">
-    <if test="&this.try.image_zone && this.image_zone.get_firb_image_parent">
-        <image-part with="&this.image_zone.get_firb_image_parent" />
+    <if test="&this.try.image_zone && this.image_zone.get_image_parent">
+        <image-part with="&this.image_zone.get_image_parent" />
     </if>
 </def>
 

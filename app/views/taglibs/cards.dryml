@@ -84,7 +84,7 @@
 
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
     
-    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
+    <div class="firb-image-picture" id="image_container_#{this.id}">
         
         <%= I18n.t("firb_text_page.image_zones") %>:
         <ul>
@@ -156,7 +156,7 @@
 
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
     
-    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
+    <div class="firb-image-picture" id="image_container_#{this.id}">
         
         <%= I18n.t("firb_text_page.image_zones") %>:
         <ul>
@@ -223,7 +223,7 @@
 
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
     
-    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
+    <div class="firb-image-picture" id="image_container_#{this.id}">
         
         <%= I18n.t("firb_text_page.image_zones") %>:
         <ul>
@@ -425,15 +425,15 @@
   </card>
 </def>
 
-<def tag="card" for="FirbImage">
-  <card class="firb-image" param="default" merge>
+<def tag="card" for="Image">
+  <card class="image" param="default" merge>
     <h4 param="heading"><editor:name /> <span><delete-icon /><link-add-to-image /></span></h4>
 
     <% @imageid = this.id %>
-    <div class="firb-image-picture" id="firb_image_container_#{this.id}">
+    <div class="firb-image-picture" id="image_container_#{this.id}">
 
       <if test="&this.file_status == 'OK'">
-        <imt-viewer id="firb_image_#{@imageid}" b64="#{thumb_xml(this)}"/>
+        <imt-viewer id="image_#{@imageid}" b64="#{thumb_xml(this)}"/>
       </if>
       <unless test="&this.file_status == 'OK'">
         <img-not-ready />
@@ -443,10 +443,10 @@
     </div>
 
     <div class="firb-image-zones">
-      <h4><%= this.zone_count %> <ht key='firb_image.zones'>zones</ht>:</h4>
+      <h4><%= this.zone_count %> <ht key='image.zones'>zones</ht>:</h4>
       <ul>
         <li repeat="&this.zones">
-        <firbimagezone parentfirbimageid="firb_image_#{@imageid}"/>
+        <imagezone parentimageid="image_#{@imageid}"/>
         </li>
       </ul>
     </div>

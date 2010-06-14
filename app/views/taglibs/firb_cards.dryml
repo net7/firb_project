@@ -9,7 +9,7 @@
         <card-form-common>
             <content:>
                 <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
-                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
                 <single-connection-row fieldname="procession" type="Procession" />
                 <field-edit-row fieldname="name" />
                 <field-edit-row fieldname="code"  />
@@ -39,7 +39,7 @@
         <card-form-common>
             <content:>
                 <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
-                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
                 <single-connection-row fieldname="procession" type="Procession" />
                 <field-edit-row fieldname="name" />
                 <field-edit-row fieldname="code"  />
@@ -69,7 +69,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common-pi>
             <before-anastatica:>
-                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <after-bibliography:>
                 <field-row fieldname="iconclass_terms">
@@ -88,7 +88,7 @@
         <card-form-common-pi>
             <before-anastatica:>
                 <single-connection-row fieldname="parent_card" type="FirbParentIllustrationCard" />
-                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <code: replace>
                 <field-row fieldname="parent_code"><view:><%= this.parent_card.blank? ? I18n.t('firb_cards.on_card_save') : this.parent_card.code %></view:></field-row>
@@ -123,7 +123,7 @@
     <form merge param="default" action="&firb_card_action">
         <card-form-common-pi>
             <before-anastatica:>
-                <single-connection-row fieldname="image_zone" type="FirbImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <after-completed:>
                 <single-connection-row fieldname="textual_source" type="FirbPiTextCard" />
@@ -268,8 +268,8 @@
     </if>
     <else>
         <if test="&this.is_a?(TaliaCore::Source)">
-            <if test="&this.is_a?(FirbImageZone) && this.get_firb_image_parent">
-                <a href="&url_for(:controller => :firb_images, :action => :show, :id => this.get_firb_image_parent.id, :type => :false)"><card-name /></a>
+            <if test="&this.is_a?(ImageZone) && this.get_image_parent">
+                <a href="&url_for(:controller => :images, :action => :show, :id => this.get_image_parent.id, :type => :false)"><card-name /></a>
             </if>
             <else>
                 <a with="&this"><card-name /></a>
@@ -372,7 +372,7 @@
         <ht key="firb_cards.no_image_zone">Nessuna Zona/Illustrazione collegata</ht>
     </if>
     <else>
-        <a with="&this.image_zone.get_firb_image_parent"><ht key="firb_image.model_name">Illustrazione</ht>: <%= this.name %></a>
+        <a with="&this.image_zone.get_image_parent"><ht key="image.model_name">Illustrazione</ht>: <%= this.name %></a>
     </else>
 </def>
 
@@ -382,7 +382,7 @@
     <repeat with="&this.image_components">
         <li>
             <% zone_name = this.image_zone.try.name %>
-            <%= this.name %> (<%= this.zone_type %>) <a with="&this.image_zone.try.get_firb_image_parent"><%= zone_name %></a>
+            <%= this.name %> (<%= this.zone_type %>) <a with="&this.image_zone.try.get_image_parent"><%= zone_name %></a>
         </li>
     </repeat>
     </ul>

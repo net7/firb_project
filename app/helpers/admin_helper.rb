@@ -82,7 +82,7 @@ module AdminHelper
   # associated image_zone and it's name, if there's any. 
   def parent_and_zone(object)
     if !object.image_zone.nil?
-    		parent = object.image_zone.get_firb_image_parent
+    		parent = object.image_zone.get_image_parent
     		parent_name = parent.name
     		image_zone = object.image_zone
     		image_zone_name = image_zone.name

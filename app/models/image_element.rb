@@ -1,11 +1,10 @@
 require "base64"
 
-class FirbImageElement < TaliaCore::Source
+class ImageElement < TaliaCore::Source
   
   before_destroy :remove_zones
 
   singular_property :name, N::TALIA.name
-  
   
   extend RandomId
 
@@ -17,9 +16,9 @@ class FirbImageElement < TaliaCore::Source
     count
   end
 
-  # Returns the FirbImageZone sources which is part of this object
+  # Returns the ImageZone sources which is part of this object
   def zones
-    qry = ActiveRDF::Query.new(FirbImageZone).select(:zone).distinct
+    qry = ActiveRDF::Query.new(ImageZone).select(:zone).distinct
     qry.where(self, N::TALIA.hasSubZone, :zone)
     qry.execute
   end
@@ -30,7 +29,7 @@ class FirbImageElement < TaliaCore::Source
 
   # Adds a new, empty zone to this object.
   def add_zone(name)
-    zone = FirbImageZone.create_with_name(name)
+    zone = ImageZone.create_with_name(name)
     self[N::TALIA.hasSubZone] << zone
     zone
   end
@@ -59,7 +58,7 @@ class FirbImageElement < TaliaCore::Source
           add_zone_to_xml(z, xml, self.uri.to_s, zone_list)
         end
       }
-      #xml.cb(:u => "/admin/firb_images/update/", :p => "base64xml")
+      #xml.cb(:u => "/admin/images/update/", :p => "base64xml")
       xml.cb(:u => url, :p => "base64xml")
     }
     base64 = Base64.encode64(xml.target!)
@@ -96,7 +95,7 @@ class FirbImageElement < TaliaCore::Source
     zone_uri = zone_xml[:s]
     zone_coordinates = zone_xml[:t].split('@').last
     zone_name = zone_xml[:l]
-    zone = FirbImageZone.find(zone_uri)
+    zone = ImageZone.find(zone_uri)
     zone.name = zone_name
     zone.coordinates = zone_coordinates
     zone.save!
@@ -104,6 +103,5 @@ class FirbImageElement < TaliaCore::Source
       save_zone_data(subzone_xml)
     end
   end
-
 
 end

@@ -1,6 +1,6 @@
 <% for image_component in component_list %>
     <li>
-        <%= image_component.name %> (<%= image_component.zone_type %>): <%= link_to image_component.image_zone.name, :controller => :firb_images, :action => :show, :id => image_component.image_zone.get_firb_image_parent %>
+        <%= image_component.name %> (<%= image_component.zone_type %>): <%= link_to image_component.image_zone.name, :controller => :images, :action => :show, :id => image_component.image_zone.get_image_parent %>
         <%= button_to_remote(I18n.t('image_component.actions.delete'), :update => 'image-zone-list', :method => 'delete', :url => { :controller => 'admin/image_components', :action => :destroy, :id => image_component.id, :type => :false }) %>
     </li>
 <% end %>

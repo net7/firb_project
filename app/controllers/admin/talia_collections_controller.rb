@@ -4,9 +4,7 @@ class Admin::TaliaCollectionsController < Admin::AdminSiteController
 
   auto_actions :all
 
-
-
-  # Will create a new FirbImage, with some automatic zones automagically added
+  # Will create a new Image, with some automatic zones automagically added
   def create
     @talia_collection = TaliaCollection.create_collection(params[:talia_collection])
     if(save_created!(@talia_collection))

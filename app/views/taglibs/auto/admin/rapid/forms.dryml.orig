@@ -72,6 +72,30 @@
 
 
 
+<def tag="form" for="FirbImageZone">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_image_zones.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="FirbImage">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'firb_images.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="FirbPiTextCard">
   <form merge param="default">
     <error-messages param/>
@@ -120,48 +144,12 @@
 
 
 
-<def tag="form" for="ImageZone">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'image_zones.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="Image">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'images.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
 <def tag="form" for="Parade">
   <form merge param="default">
     <error-messages param/>
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'parades.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="Procession">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="" param/>
-    <div param="actions">
-      <submit label="#{ht 'processions.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

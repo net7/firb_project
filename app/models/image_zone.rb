@@ -1,4 +1,4 @@
-class FirbImageZone < FirbImageElement
+class ImageZone < ImageElement
   hobo_model # Don't put anything above this
   include StandardPermissions
   
@@ -35,29 +35,29 @@ class FirbImageZone < FirbImageElement
     parent.save
   end
 
-  # Gets the parent of this FirbImageZone, either another FirbImageZone or
-  # a FirbImage object
+  # Gets the parent of this ImageZone, either another ImageZone or
+  # an Image object
   def get_parent
-    qry = ActiveRDF::Query.new(FirbImageZone).select(:parent).distinct
+    qry = ActiveRDF::Query.new(ImageZone).select(:parent).distinct
     qry.where(:parent, N::TALIA.hasSubZone, self)
-    qry.where(:parent, N::RDF.type, N::TALIA.FirbImageZone)
+    qry.where(:parent, N::RDF.type, N::TALIA.ImageZone)
     parent = qry.execute
 
     if(parent.empty?)
-      qry = ActiveRDF::Query.new(FirbImage).select(:parent).distinct
+      qry = ActiveRDF::Query.new(Image).select(:parent).distinct
       qry.where(:parent, N::TALIA.hasSubZone, self)
-      qry.where(:parent, N::RDF.type, N::TALIA.FirbImage)
+      qry.where(:parent, N::RDF.type, N::TALIA.Image)
       parent = qry.execute
     end
     
     parent.first
   end
   
-  # Will recurse on its parents to get the FirbImage
-  def get_firb_image_parent
+  # Will recurse on its parents to get the Image
+  def get_image_parent
     parent = self.get_parent
     loop do
-      break if (parent.class.to_s == "FirbImage")
+      break if (parent.class.to_s == "Image")
       parent = parent.get_parent
     end
     parent
@@ -65,7 +65,7 @@ class FirbImageZone < FirbImageElement
   
   
   def self.find_by_name(name)
-    ActiveRDF::Query.new(FirbImageZone).select(:zone).where(:zone).where(:zone, N::TALIA.name, name).execute.first
+    ActiveRDF::Query.new(ImageZone).select(:zone).where(:zone).where(:zone, N::TALIA.name, name).execute.first
   end
 
   # Returns the XML describing the polygon that this zone contains

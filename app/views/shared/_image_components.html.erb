@@ -19,7 +19,7 @@ Component type: <input type='text' id='image_component_type'>
 Image zone:
 
 <%= 
-    select_tag "#{FirbImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'ill_mem_dep_zone_image_id'}
+    select_tag "#{ImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'ill_mem_dep_zone_image_id'}
 %>
 
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />

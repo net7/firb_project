@@ -1,4 +1,4 @@
-class FirbImageWorker < Workling::Base
+class ImageWorker < Workling::Base
   
   def create_image(options)
     logger.debug("\033[35m\033[4m\033[1mImageWorker\033[0m Begin to process #{options.inspect}")

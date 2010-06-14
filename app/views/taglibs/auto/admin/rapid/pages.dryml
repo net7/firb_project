@@ -727,237 +727,6 @@
 
 
 
-<!-- ====== FirbImageZone Pages ====== -->
-
-<def tag="index-page" for="FirbImageZone">
-  <page merge title="#{ht 'firb_image_zones.index.title', :default=>['Firb Image Zones'] }">
-    <body: class="index-page firb-image-zone" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="firb_image_zones.index.heading">
-            Firb Image Zones
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="firb_image_zones.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="FirbImageZone">
-  <page merge title="#{ht 'firb_image_zones.new.title', :default=>[' New Firb Image Zone'] }">
-    <body: class="new-page firb-image-zone" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_image_zones.new.heading">
-            New Firb Image Zone
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'firb_image_zones.actions.create', :default=>['Create Firb Image Zone']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="FirbImageZone">
-  <page merge title="#{ht 'firb_image_zones.show.title', :default=>['Firb Image Zone'] }">
-
-    <body: class="show-page firb-image-zone" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="firb_image_zones.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-          </header>
-
-          <section param="content-body">
-            <field-list fields="uri" param/>
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="FirbImageZone">
-  <page merge title="#{ht 'firb_image_zones.edit.title', :default=>['Edit Firb Image Zone'] }">
-
-    <body: class="edit-page firb-image-zone" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_image_zones.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'firb_image_zones.actions.delete', :default=>['Remove This Firb Image Zone']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
-<!-- ====== FirbImage Pages ====== -->
-
-<def tag="index-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.index.title', :default=>['Illustrazioni'] }">
-    <body: class="index-page firb-image" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="firb_images.index.heading">
-            Illustrazioni
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="firb_images.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="firb_images.actions.new">New Illustrazione</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.new.title', :default=>[' New Illustrazione'] }">
-    <body: class="new-page firb-image" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_images.new.heading">
-            New Illustrazione
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'firb_images.actions.create', :default=>['Create Illustrazione']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.show.title', :default=>['Illustrazione'] }">
-
-    <body: class="show-page firb-image" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="firb_images.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_images.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Illustrazione
-              </ht>
-            </a>
-          </header>
-
-          <section param="content-body">
-            <field-list fields="uri" param/>
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="FirbImage">
-  <page merge title="#{ht 'firb_images.edit.title', :default=>['Edit Illustrazione'] }">
-
-    <body: class="edit-page firb-image" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_images.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'firb_images.actions.delete', :default=>['Remove This Illustrazione']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
 <!-- ====== FirbPiTextCard Pages ====== -->
 
 <def tag="index-page" for="FirbPiTextCard">
@@ -1423,6 +1192,237 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'iconclass_terms.actions.delete', :default=>['Remove This Termine iconclass']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== ImageZone Pages ====== -->
+
+<def tag="index-page" for="ImageZone">
+  <page merge title="#{ht 'image_zones.index.title', :default=>['Image Zones'] }">
+    <body: class="index-page image-zone" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="image_zones.index.heading">
+            Image Zones
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="image_zones.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ImageZone">
+  <page merge title="#{ht 'image_zones.new.title', :default=>[' New Image Zone'] }">
+    <body: class="new-page image-zone" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="image_zones.new.heading">
+            New Image Zone
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'image_zones.actions.create', :default=>['Create Image Zone']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ImageZone">
+  <page merge title="#{ht 'image_zones.show.title', :default=>['Image Zone'] }">
+
+    <body: class="show-page image-zone" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="image_zones.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="uri" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ImageZone">
+  <page merge title="#{ht 'image_zones.edit.title', :default=>['Edit Image Zone'] }">
+
+    <body: class="edit-page image-zone" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="image_zones.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'image_zones.actions.delete', :default=>['Remove This Image Zone']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Image Pages ====== -->
+
+<def tag="index-page" for="Image">
+  <page merge title="#{ht 'images.index.title', :default=>['Illustrazioni'] }">
+    <body: class="index-page image" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="images.index.heading">
+            Illustrazioni
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="images.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="images.actions.new">New Illustrazione</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Image">
+  <page merge title="#{ht 'images.new.title', :default=>[' New Illustrazione'] }">
+    <body: class="new-page image" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="images.new.heading">
+            New Illustrazione
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'images.actions.create', :default=>['Create Illustrazione']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Image">
+  <page merge title="#{ht 'images.show.title', :default=>['Illustrazione'] }">
+
+    <body: class="show-page image" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="images.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="images.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Illustrazione
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="uri" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Image">
+  <page merge title="#{ht 'images.edit.title', :default=>['Edit Illustrazione'] }">
+
+    <body: class="edit-page image" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="images.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'images.actions.delete', :default=>['Remove This Illustrazione']}" param/>
       </section>
 
       <section param="content-body">
