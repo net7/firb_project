@@ -15,15 +15,11 @@ class Admin::AnastaticasController < Admin::AdminSiteController
   end
   
   def create
-    @anastatica = Anastatica.new(params[:anastatica])
-    if(save_created!(@anastatica))
-      flash[:notice] = "Image #{@anastatica.name} succesfully created"
-    else
-      flash[:notice] = "Error creating the page"
+    hobo_source_create do
+      assign_book_from_params
+      delete_books_from_params
+      redirect_to :controller => :anastaticas, :action => :index
     end
-    assign_book_from_params
-    delete_books_from_params
-    redirect_to :controller => :anastaticas, :action => :index
   end
   
   
@@ -38,7 +34,7 @@ class Admin::AnastaticasController < Admin::AdminSiteController
   private
   
   def assign_book_from_params
-    if(!params[:attach_book].blank? && @anastatica.with_acting_user(current_user) { @anastatica.update_permitted? })
+    if(!params[:attach_book].blank? && @anastatica.updatable_by?(current_user))
       uri = N::URI.from_encoded(params[:attach_book])
       book = TaliaCore::Collection.find(uri.to_s)
       book << @anastatica
@@ -47,7 +43,7 @@ class Admin::AnastaticasController < Admin::AdminSiteController
   end
   
   def delete_books_from_params
-    if(!params[:delete_books].blank? && @anastatica.with_acting_user(current_user) { @anastatica.update_permitted? })
+    if(!params[:delete_books].blank? && @anastatica.updatable_by?(current_user))
       params[:delete_books].each do |id, book_uri|
         book = TaliaCore::Collection.find(id)
         book.delete(@anastatica)

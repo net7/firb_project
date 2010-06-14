@@ -23,7 +23,7 @@ class Admin::FirbBgTextCardsController < Admin::FirbTextCardsController
     file = params[:firb_bg_text_card].delete(:file)
     txt = FirbBgTextCard.create_card(params[:firb_bg_text_card])
 
-    if(save_created!(txt))
+    if(save_created(txt))
       flash[:notice] = "Text page succesfully created"
     else
       flash[:notice] = "Error creating the page"

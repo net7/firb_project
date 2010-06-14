@@ -15,7 +15,7 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
   
   def create
     @iconclass_term = IconclassTerm.create_term(params[:iconclass_term])
-    if(save_created!(@iconclass_term))
+    if(save_created(@iconclass_term))
       flash[:notice] = "Iconclass term successfully created"
     else
       flash[:notice] = "Error creating term"

@@ -24,7 +24,7 @@ class Admin::FirbVtTextCardPrintedsController < Admin::FirbTextCardsController
     file = params[:firb_vt_text_card_printed].delete(:file)
     txt = FirbVtTextCardPrinted.create_card(params[:firb_vt_text_card_printed])
 
-    if(save_created!(txt))
+    if(save_created(txt))
       flash[:notice] = "Text page succesfully created"
     else
       flash[:notice] = "Error creating the page"

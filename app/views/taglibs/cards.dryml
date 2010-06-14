@@ -361,11 +361,11 @@
   <div id="#{drag_id}">
     <card>
       <before-heading:>
-        <if test="&this.with_acting_user(current_user) { this.update_permitted? }"><div class="drag_handle">&nbsp;</div></if>
+        <if test="&this.updatable_by?(current_user)"><div class="drag_handle">&nbsp;</div></if>
       </before-heading:>
     </card>
   </div>
-  <if test="&this.with_acting_user(current_user) { this.update_permitted? }">
+  <if test="&this.updatable_by?(current_user)">
     <%= draggable_element(drag_id,
       :handle => "'drag_handle'",
       :revert => true,
@@ -525,7 +525,7 @@
 
 <def tag="source-collections">
   <% source_uri = this.to_uri.safe_encoded %>
-  <% can_update = this.with_acting_user(current_user) { this.update_permitted? } %>
+  <% can_update = this.updatable_by?(current_user) %>
   <repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
     <%= this.title || this.to_uri.local_name %>
     <if test="&can_update">

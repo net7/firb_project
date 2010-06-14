@@ -43,7 +43,7 @@
 			</div>
 		</item:>
 		<after-item:>
-			<if test="&this.with_acting_user(current_user) { this.update_permitted? }">
+			<if test="&this.updatable_by?(current_user)">
 				<%= drop_receiving_element(this.to_uri.safe_encoded,
 				:url => { :controller => 'admin/talia_sources', :action => 'assign_collection' },
 				:with => "'source=' + encodeURIComponent(element.id) + '&collection=#{this.to_uri.safe_encoded}'",
