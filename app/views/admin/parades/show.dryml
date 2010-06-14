@@ -1,4 +1,4 @@
-<% can_edit_stuff = @parade.with_acting_user(current_user){ @parade.update_permitted? } %>
+<% can_edit_stuff = @parade.updatable_by?(current_user) %>
 <show-page>
 	<content-body: >
 		<field-list fields="title" />	

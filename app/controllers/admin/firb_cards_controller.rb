@@ -25,18 +25,15 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   end
 
   def create
-    @firb_card = @card_type.new(card_params)
-    if(save_created!(@firb_card))
-      flash[:notice] = "Card succesfully created"
+    hobo_source_create(:params => card_params, :class_name => @card_type.name) do |card|
       redirect_to :action => :index
-    else
-      flash[:notice] = "#{I18n.t("firb_cards.errors.create_card")}: #{@firb_card.errors.full_messages.join(', ')}"
-      render :action => :new
     end
   end
   
   def update
-    hobo_source_update(:params => card_params)
+    hobo_source_update(:params => card_params) do |card|
+      redirect_to :action => :show, :id => card.id
+    end
   end
   
   # Add the current card type to all links

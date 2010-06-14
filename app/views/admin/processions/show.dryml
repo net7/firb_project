@@ -1,4 +1,4 @@
-<% can_edit_stuff = @procession.with_acting_user(current_user){ @procession.update_permitted? } %>
+<% can_edit_stuff = @procession.updatable_by?(current_user) %>
 <show-page>
 	<content-body: >
 		<field-list fields="title" />	

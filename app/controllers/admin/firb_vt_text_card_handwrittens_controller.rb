@@ -24,7 +24,7 @@ class Admin::FirbVtTextCardHandwrittensController < Admin::FirbTextCardsControll
     file = params[:firb_vt_text_card_handwritten].delete(:file)
     txt = FirbVtTextCardHandwritten.create_card(params[:firb_vt_text_card_handwritten])
 
-    if(save_created!(txt))
+    if(save_created(txt))
       flash[:notice] = "Text page succesfully created"
     else
       flash[:notice] = "Error creating the page"

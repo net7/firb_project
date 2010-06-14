@@ -9,7 +9,7 @@ class Admin::TaliaCollectionsController < Admin::AdminSiteController
   # Will create a new FirbImage, with some automatic zones automagically added
   def create
     @talia_collection = TaliaCollection.create_collection(params[:talia_collection])
-    if(save_created!(@talia_collection))
+    if(save_created(@talia_collection))
       flash[:notice] = "Collection #{@talia_collection.name} succesfully created"
     else
       flash[:notice] = "Error creating the collection"
