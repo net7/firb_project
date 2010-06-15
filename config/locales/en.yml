@@ -3,7 +3,7 @@ en:
       actions:
           cancel: "Cancel"
     # Model names
-    firb_text_pages: 
+    text_pages: 
         model_name: "Text Page"
         model_name_plural: "Text Pages"    
 
@@ -31,7 +31,7 @@ en:
         confirm_image_del: "Do you really want to delete this image and all of its zones?"
         
     # Used in views/admin/firb_text_pages/new.dryml
-    firb_text_page:
+    text_page:
         parafrasi: "Paraphrase"
         select_one: "Please select one.."
         no_anastatica_associated: "No Anastatica page associated to this Text Page"

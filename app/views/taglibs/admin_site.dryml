@@ -21,7 +21,7 @@
     <if test              = "&attribute_el.blank?">
         <select-menu name = "#{typename}[#{attribute}]"
             options       = "&options" 
-            first-option  = "&I18n.t('firb_text_page.select_one')" />
+            first-option  = "&I18n.t('text_page.select_one')" />
     </if>
     <else>
         <select-menu name = "#{typename}[#{attribute}]"

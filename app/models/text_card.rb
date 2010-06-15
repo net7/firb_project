@@ -1,4 +1,4 @@
-class FirbTextCard < TaliaCore::Source
+class TextCard < TaliaCore::Source
 
   extend RandomId
   extend RdfProperties
@@ -8,12 +8,12 @@ class FirbTextCard < TaliaCore::Source
   end
   
   def name
-    title || "#{I18n.t('firb_text_card.model_name')} #{self.id}"
+    title || "#{I18n.t('text_card.model_name')} #{self.id}"
   end
   
   # Creates a page initialazing it with a paraphrase and anastatica_page id
   def self.create_card(options)
-    new_url =  (N::LOCAL + 'firb_text_card/' + random_id).to_s
+    new_url =  (N::LOCAL + 'text_card/' + random_id).to_s
     options[:uri] = new_url
     raise(ArgumentError, "Record already exists #{new_url}") if(TaliaCore::ActiveSource.exists?(new_url))
     self.new(options) # Check if it attaches :image_zone and :anastatica

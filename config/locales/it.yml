@@ -92,7 +92,7 @@ it:
         note: "Note"
         iconclass_link: "Vedi questo termine su www.iconclass.org"
 
-    firb_pi_text_cards:
+    pi_text_cards:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"    
         new: 
@@ -105,7 +105,7 @@ it:
             delete: "Cancella questa scheda di testo"
             create: "Salva"
 
-    firb_bg_text_cards:
+    bg_text_cards:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"
         new: 
@@ -127,11 +127,11 @@ it:
         page_position: "Numero della pagina"
         comment: "Commento"
 
-    firb_text_card:
+    text_card:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"
 
-    firb_fi_text_cards:
+    fi_text_cards:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"
         new: 
@@ -150,7 +150,7 @@ it:
         edition: "Edizione di riferimento"
         page_position: "Pagine di riferimento"
 
-    firb_vt_text_card_handwrittens:
+    vt_handwritten_text_cards:
         model_name: "Scheda manoscritto"
         model_name_plural: "Schede manoscritto"
         new: 
@@ -177,7 +177,7 @@ it:
         date: "Data"
         bibliography_items: "Elementi bibliografici"
 
-    firb_vt_text_card_printeds:
+    vt_printed_text_cards:
         model_name: "Scheda stampa"
         model_name_plural: "Schede stampa"
         new: 
@@ -419,7 +419,7 @@ it:
             delete: "Cancella qusto libro"
 
     # Used in views/admin/firb_text_pages/new.dryml
-    firb_text_page:
+    text_page:
         parafrasi: "Parafrasi"
         select_one: "Scegline uno..."
         no_anastatica_associated: "Nessuna anastatica associata a questa pagina di testo"

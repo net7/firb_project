@@ -1,4 +1,4 @@
-class FirbPiTextCard < FirbTextCard
+class PiTextCard < TextCard
   hobo_model
   include StandardPermissions
     

@@ -18,21 +18,21 @@
 </def>
 
 
-<def tag="form" for="FirbPiTextCard">
+<def tag="form" for="PiTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
         
-        <%= I18n.t("firb_text_page.title") %>: <input type="text" name="firb_pi_text_card[title]" value="&this.title"/><br />
+        <%= I18n.t("text_page.title") %>: <input type="text" name="pi_text_card[title]" value="&this.title"/><br />
         <br />
-        <%= I18n.t("firb_text_page.transcription_file") %>: <input type="file" name="firb_pi_text_card[file]"/><br />
+        <%= I18n.t("text_page.transcription_file") %>: <input type="file" name="pi_text_card[file]"/><br />
         <br />
         <%= I18n.t("anastaticas.model_name") %>: <single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" />
         <br />
-        <%= I18n.t("firb_text_page.image_zones") %> :
+        <%= I18n.t("text_page.image_zones") %> :
         <image-zones-edit />
         <br />
         <div id="non-illustrated-memory-depictions">
-            <%= I18n.t("firb_text_page.non_ill_mem_dep") %> :
+            <%= I18n.t("text_page.non_ill_mem_dep") %> :
             <non-illustrated-memory-depiction-edit />
         </div>
         <br />
@@ -41,23 +41,23 @@
             <if test="&this.has_notes?">
                 <repeat with="&this.notes">
                     <div class='firb-note'>
-                        <textarea rows="4" cols="50" name='firb_pi_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                        <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
+                        <textarea rows="4" cols="50" name='pi_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                        <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
                     </div>
                 </repeat>
             </if>
         </div>
 
-        <span id="firb-add-note" onclick="textPageAddNote('firb_pi_text_card')">Add a note</span>
+        <span id="firb-add-note" onclick="textPageAddNote('pi_text_card')">Add a note</span>
 
         <input:parafrasi for='text' value='&this.parafrasi' />
-        <label for='firb_pi_text_card[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
+        <label for='pi_text_card[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
 
-        <submit label="Save" /><or-cancel with="&FirbPiTextCard" />
+        <submit label="Save" /><or-cancel with="&PiTextCard" />
     </form>
 </def>
 
-<def tag="form" for="FirbVtTextCardHandwritten">
+<def tag="form" for="VtHandwrittenTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
         
@@ -67,7 +67,7 @@
             <field-edit-row fieldname="title" />
 
             <field-row fieldname="transcription_file">
-                <view:><input type="file" name="firb_vt_text_card_handwritten[file]"/></view:>
+                <view:><input type="file" name="vt_handwritten_text_card[file]"/></view:>
             </field-row>
 
             <field-row fieldname="anastatica" param="anastatica" >
@@ -101,20 +101,20 @@
             <if test="&this.has_notes?">
                 <repeat with="&this.notes">
                     <div class='firb-note'>
-                        <textarea rows="4" cols="50" name='firb_vt_text_card_handwritten[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                        <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
+                        <textarea rows="4" cols="50" name='vt_handwritten_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                        <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
                     </div>
                 </repeat>
             </if>
         </div>
 
-        <span id="firb-add-note" onclick="textPageAddNote('firb_vt_text_card_handwritten')">Add a note</span>
+        <span id="firb-add-note" onclick="textPageAddNote('vt_handwritten_text_card')">Add a note</span>
 
-        <submit label="Save" /><or-cancel with="&FirbVtTextCardHandwritten" />
+        <submit label="Save" /><or-cancel with="&VtHandwrittenTextCard" />
     </form>
 </def>
 
-<def tag="form" for="FirbVtTextCardPrinted">
+<def tag="form" for="VtPrintedTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
         
@@ -124,14 +124,14 @@
             <field-edit-row fieldname="title" />
 
             <field-row fieldname="transcription_file">
-                <view:><input type="file" name="firb_vt_text_card_printed[file]"/></view:>
+                <view:><input type="file" name="vt_printed_text_card[file]"/></view:>
             </field-row>
 
             <field-row fieldname="anastatica" param="anastatica" >
                 <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
             </field-row>
 
-            <single-connection-row fieldname="transc_handwritten" type="FirbVtTextCardHandwritten" />
+            <single-connection-row fieldname="transc_handwritten" type="VtHandwrittenTextCard" />
 
             <field-row fieldname="image_zones" param="image_zones" >
                 <view:><image-zones-edit /></view:>
@@ -152,20 +152,20 @@
             <if test="&this.has_notes?">
                 <repeat with="&this.notes">
                     <div class='firb-note'>
-                        <textarea rows="4" cols="50" name='firb_vt_text_card_printed[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                        <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
+                        <textarea rows="4" cols="50" name='vt_printed_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                        <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
                     </div>
                 </repeat>
             </if>
         </div>
 
-        <span id="firb-add-note" onclick="textPageAddNote('firb_vt_text_card_printed')">Add a note</span>
+        <span id="firb-add-note" onclick="textPageAddNote('vt_printed_text_card')">Add a note</span>
 
-        <submit label="Save" /><or-cancel with="&FirbVtTextCardPrinted" />
+        <submit label="Save" /><or-cancel with="&VtPrintedTextCard" />
     </form>
 </def>
 
-<def tag="form" for="FirbFiTextCard">
+<def tag="form" for="FiTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
         
@@ -175,7 +175,7 @@
             <field-edit-row fieldname="title" />
 
             <field-row fieldname="transcription_file">
-                <view:><input type="file" name="firb_fi_text_card[file]"/></view:>
+                <view:><input type="file" name="fi_text_card[file]"/></view:>
             </field-row>
 
             <single-connection-row fieldname="edition" type="BibliographyItem" />
@@ -185,11 +185,11 @@
             </content:>
         </field-edit-table>
 
-        <submit label="Save" /><or-cancel with="&FirbFiTextCard" />
+        <submit label="Save" /><or-cancel with="&FiTextCard" />
     </form>
 </def>
 
-<def tag="form" for="FirbBgTextCard">
+<def tag="form" for="BgTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
         
@@ -203,7 +203,7 @@
             </field-row>
 
             <field-row fieldname="transcription_file">
-                <view:><input type="file" name="firb_bg_text_card[file]"/></view:>
+                <view:><input type="file" name="bg_text_card[file]"/></view:>
             </field-row>
 
             <field-edit-row fieldname="collocation" />
@@ -215,7 +215,7 @@
             </content:>
         </field-edit-table>
 
-        <submit label="Save" /><or-cancel with="&FirbFiTextCard" />
+        <submit label="Save" /><or-cancel with="&FiTextCard" />
     </form>
 </def>
 

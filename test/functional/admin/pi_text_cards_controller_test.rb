@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
-class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
+class Admin::PiTextCardsControllerTest < ActionController::TestCase
 
   include TaliaUtil::TestHelpers
 
@@ -43,11 +43,11 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
   def test_create_with_non_illustrated
     setup_non_illustrated
     login_for(:admin)
-    assert_difference('FirbPiTextCard.count', 1) do
-      post(:create, :firb_pi_text_card => { :title => 'foo', :non_illustrated_memory_depictions => @non_illustrated })
-      assert_redirected_to(:controller => :firb_pi_text_cards, :action => :index)
+    assert_difference('PiTextCard.count', 1) do
+      post(:create, :pi_text_card => { :title => 'foo', :non_illustrated_memory_depictions => @non_illustrated })
+      assert_redirected_to(:controller => :pi_text_cards, :action => :index)
     end
-    new_card = FirbPiTextCard.last
+    new_card = PiTextCard.last
     assert_equal('foo', new_card.title)
     assert_equal(2, new_card.non_illustrated_memory_depictions.size)
   end
@@ -56,18 +56,18 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
     setup_image_zone
     setup_anastatica
     login_for(:admin)
-    assert_difference('FirbPiTextCard.count', 1) do
-      post(:create, :firb_pi_text_card => { :title => 'foo', :anastatica => @anastatica, :image_zones => [ @image_zone.uri.to_s ] })
-      assert_redirected_to(:controller => :firb_pi_text_cards, :action => :index)
+    assert_difference('PiTextCard.count', 1) do
+      post(:create, :pi_text_card => { :title => 'foo', :anastatica => @anastatica, :image_zones => [ @image_zone.uri.to_s ] })
+      assert_redirected_to(:controller => :pi_text_cards, :action => :index)
     end
-    new_card = FirbPiTextCard.last
+    new_card = PiTextCard.last
     assert_equal(@anastatica.uri, new_card.anastatica.uri)
     assert_equal(1, new_card.image_zones.size)
   end
   
   def test_create_non_authorized
-    assert_difference('FirbPiTextCard.count', 0) do
-      post(:create, :firb_pi_text_card => { :title => 'foo' })
+    assert_difference('PiTextCard.count', 0) do
+      post(:create, :pi_text_card => { :title => 'foo' })
       assert_response(403)
     end
   end
@@ -87,11 +87,11 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
     setup_non_illustrated
     login_for(:admin)
     post(:update, :id => @card.id, 
-      :firb_pi_text_card => { :title => 'changed', :anastatica => @anastatica, 
+      :pi_text_card => { :title => 'changed', :anastatica => @anastatica, 
         :image_zones => [ @image_zone.uri.to_s ],
         :non_illustrated_memory_depictions => @non_illustrated })
-    assert_redirected_to :controller => :firb_pi_text_cards, :action => :index
-    card = FirbPiTextCard.find(@card.id)
+    assert_redirected_to :controller => :pi_text_cards, :action => :index
+    card = PiTextCard.find(@card.id)
     assert_equal('changed', card.title)
     assert_equal(@anastatica.uri, card.anastatica.uri)
     noicards = FirbNonIllustratedMemoryDepictionCard.all
@@ -104,11 +104,11 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference("FirbNonIllustratedMemoryDepictionCard.count", 1) do
       post(:update, :id => @card.id, 
-        :firb_pi_text_card => { :title => 'changed', 
+        :pi_text_card => { :title => 'changed', 
           :non_illustrated_memory_depictions => [{ :name => "FOOZ" }] })
-      assert_redirected_to :controller => :firb_pi_text_cards, :action => :index
+      assert_redirected_to :controller => :pi_text_cards, :action => :index
     end
-    card = FirbPiTextCard.find(@card.id)
+    card = PiTextCard.find(@card.id)
     assert_equal('changed', card.title)
     assert_property(card.non_illustrated_memory_depictions, *FirbNonIllustratedMemoryDepictionCard.all)
   end
@@ -122,11 +122,11 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference("FirbNonIllustratedMemoryDepictionCard.count", 0) do
       post(:update, :id => @card.id, 
-        :firb_pi_text_card => { :title => 'changed', 
+        :pi_text_card => { :title => 'changed', 
           :non_illustrated_memory_depictions => [{ :name => "FOOZ" }, FirbNonIllustratedMemoryDepictionCard.last ] })
-      assert_redirected_to :controller => :firb_pi_text_cards, :action => :index
+      assert_redirected_to :controller => :pi_text_cards, :action => :index
     end
-    card = FirbPiTextCard.find(@card.id)
+    card = PiTextCard.find(@card.id)
     assert_equal('changed', card.title)
     assert(!FirbNonIllustratedMemoryDepictionCard.exists?(to_delete.id))
     assert_equal(2, card.non_illustrated_memory_depictions.size)
@@ -135,7 +135,7 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
   def test_update_non_authorized
     setup_blank_card
     post(:update, :id => @card.id, 
-      :firb_pi_text_card => { :title => 'changed' })
+      :pi_text_card => { :title => 'changed' })
     assert_response 403
   end
   
@@ -145,10 +145,10 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
     @card.non_illustrated_memory_depictions = FirbNonIllustratedMemoryDepictionCard.all
     @card.save
     login_for(:admin)
-    assert_difference("FirbPiTextCard.count", -1) do
+    assert_difference("PiTextCard.count", -1) do
       assert_difference("FirbNonIllustratedMemoryDepictionCard.count", -2) do
         post(:destroy, :id => @card.id)
-        assert_redirected_to :controller => :firb_pi_text_cards, :action => :index
+        assert_redirected_to :controller => :pi_text_cards, :action => :index
       end
     end
   end
@@ -156,15 +156,15 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
   def test_destroy
     setup_blank_card
     login_for(:admin)
-    assert_difference("FirbPiTextCard.count", -1) do
+    assert_difference("PiTextCard.count", -1) do
       post(:destroy, :id => @card.id)
-      assert_redirected_to :controller => :firb_pi_text_cards, :action => :index
+      assert_redirected_to :controller => :pi_text_cards, :action => :index
     end
   end
   
   def test_destroy_non_authorized
     setup_blank_card
-    assert_difference("FirbPiTextCard.count", 0) do
+    assert_difference("PiTextCard.count", 0) do
       post(:destroy, :id => @card.id)
       assert_response 403
     end
@@ -181,7 +181,7 @@ class Admin::FirbPiTextCardsControllerTest < ActionController::TestCase
   end
   
   def setup_blank_card
-    @card = FirbPiTextCard.create_card(:title => 'Foo')
+    @card = PiTextCard.create_card(:title => 'Foo')
     @card.save!
     TaliaUtil::Util.flush_rdf
   end

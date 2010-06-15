@@ -1,7 +1,7 @@
 require 'simplyx'
 require 'nokogiri'
 
-class Admin::FirbTextCardsController < Admin::AdminSiteController
+class Admin::TextCardsController < Admin::AdminSiteController
 
   def show_annotable
     record = TaliaCore::DataTypes::DataRecord.find(params[:id])

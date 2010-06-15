@@ -1,4 +1,4 @@
-class FirbVtTextCardPrinted < FirbTextCard
+class VtPrintedTextCard < TextCard
 
   hobo_model
   include StandardPermissions

@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/test/:action/:id', :controller => 'test'
   map.connect '/admin/images/:action/:id', :controller => 'admin/images'
   map.connect '/admin/image_zones/:action/:id', :controller => 'admin/image_zones'
-  map.connect '/admin/firb_pi_text_cards/:action/:id', :controller => 'admin/firb_pi_text_cards'
+  map.connect '/admin/pi_text_cards/:action/:id', :controller => 'admin/pi_text_cards'
   map.connect '/admin/firb_illustrated_memory_depiction_pages/:action/:id', :controller => 'admin/firb_illustrated_memory_depiction_pages'
   map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms'
   

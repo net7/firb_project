@@ -12,6 +12,18 @@
 
 
 
+<def tag="form" for="BgTextCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'bg_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="BibliographyItem">
   <form merge param="default">
     <error-messages param/>
@@ -36,12 +48,12 @@
 
 
 
-<def tag="form" for="FirbBgTextCard">
+<def tag="form" for="FiTextCard">
   <form merge param="default">
     <error-messages param/>
     <field-list fields="uri" param/>
     <div param="actions">
-      <submit label="#{ht 'firb_bg_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'fi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -54,54 +66,6 @@
     <field-list fields="uri" param/>
     <div param="actions">
       <submit label="#{ht 'firb_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="FirbFiTextCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'firb_fi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="FirbPiTextCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'firb_pi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="FirbVtTextCardHandwritten">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'firb_vt_text_card_handwrittens.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="FirbVtTextCardPrinted">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'firb_vt_text_card_printeds.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -150,6 +114,18 @@
     <field-list fields="" param/>
     <div param="actions">
       <submit label="#{ht 'parades.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="PiTextCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'pi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -224,4 +200,28 @@
     </div>
   </form>
 </def>
+
+<def tag="form" for="VtHandwrittenTextCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'vt_handwritten_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="VtPrintedTextCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'vt_printed_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
 

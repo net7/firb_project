@@ -1,6 +1,10 @@
 class Admin::AdminSiteController < ApplicationController
 
   hobo_controller
+
+  def my_name
+    (this ? this.class : model).name.underscore
+  end
   
   private
   
@@ -11,10 +15,6 @@ class Admin::AdminSiteController < ApplicationController
   def current_thing=(value)
     @current_thing = value
     self.instance_variable_set(:"@#{my_name}", value)
-  end
-  
-  def my_name
-    (this ? this.class : model).name.underscore
   end
   
   def save_created(thing)
