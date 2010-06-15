@@ -24,7 +24,7 @@ class Admin::AnastaticasController < Admin::AdminSiteController
   
   
   def update
-    hobo_source_update do
+    hobo_source_update(:find_options => { :prefetch_relations => true }) do
       assign_book_from_params
       delete_books_from_params
       redirect_to :controller => :anastaticas, :action => :index

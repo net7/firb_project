@@ -13,13 +13,9 @@ class Admin::BibliographyItemsController < Admin::AdminSiteController
   end
   
   def create
-    @bibliography_item = BibliographyItem.new(params[:bibliography_item])
-    if(save_created(@bibliography_item))
-      flash[:notice] = I18n.t("bibliography_items.succesfully_created")
-    else
-      flash[:notice] = I18n.t("bibliography_items.error_creating")
+    hobo_source_create do
+      redirect_to :action => 'index'
     end
-    redirect_to :action => 'index'
   end
   
   def update
