@@ -76,6 +76,44 @@ namespace :firb do
     end
   end
 
+  desc "Rename Firb*TextCards active source to *TextCards"
+  task :text_cards_rename => 'talia_core:init' do
+    ENV['old'] = 'FirbTextCard'
+    ENV['new'] = 'TextCard'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    ENV['old'] = 'FirbPiTextCard'
+    ENV['new'] = 'PiTextCard'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    ENV['old'] = 'FirbFiTextCard'
+    ENV['new'] = 'FiTextCard'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    ENV['old'] = 'FirbBgTextCard'
+    ENV['new'] = 'BgTextCard'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    ENV['old'] = 'FirbVtTextCardHandwritten'
+    ENV['new'] = 'VtHandwrittenTextCard'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    ENV['old'] = 'FirbVtTextCardPrinted'
+    ENV['new'] = 'VtPrintedTextCard'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    if (ENV['make_all'] != true) do
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
   desc "Rename all the Firb* models to the news names"
   task :rename_all => 'talia_core:init' do
     ENV['make_all'] = true
@@ -84,6 +122,9 @@ namespace :firb do
 
     Rake::Task['firb:anastatica_rename'].reenable
     Rake::Task['firb:anastatica_rename'].invoke    
+
+    Rake::Task['firb:text_cards_rename'].reenable
+    Rake::Task['firb:text_cards_rename'].invoke    
 
     Rake::Task['talia_core:rebuild_rdf'].invoke
     Rake::Task['talia_core:setup_ontologies'].invoke
