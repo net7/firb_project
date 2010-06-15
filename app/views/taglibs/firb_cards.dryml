@@ -18,8 +18,8 @@
                 <field-edit-row fieldname="measure" />
                 <field-edit-row fieldname="descriptive_notes" />
                 <field-edit-row fieldname="description" />
-                <single-connection-row fieldname="baldini_text" type="FirbFiTextCard" />
-                <single-connection-row fieldname="cini_text" type="FirbFiTextCard" />
+                <single-connection-row fieldname="baldini_text" type="FiTextCard" />
+                <single-connection-row fieldname="cini_text" type="FiTextCard" />
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
                 <field-edit-row fieldname="study_notes" />
@@ -49,8 +49,8 @@
                 <field-edit-row fieldname="descriptive_notes" />
                 <field-edit-row fieldname="description" />
                 <field-edit-row fieldname="character_qualities" />
-                <single-connection-row fieldname="baldini_text" type="FirbFiTextCard" />
-                <single-connection-row fieldname="cini_text" type="FirbFiTextCard" />
+                <single-connection-row fieldname="baldini_text" type="FiTextCard" />
+                <single-connection-row fieldname="cini_text" type="FiTextCard" />
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
                 <field-edit-row fieldname="study_notes" />
@@ -97,7 +97,7 @@
                 <field-row fieldname="parent_collocation"><view:><%= this.parent_card.nil? ? I18n.t('firb_cards.on_card_save') : this.parent_card.collocation %></view:></field-row>
             </collocation:>
             <after-completed:>
-                <single-connection-row fieldname="textual_source" type="FirbPiTextCard" />
+                <single-connection-row fieldname="textual_source" type="PiTextCard" />
                 <field-edit-row fieldname="short_description" />
                 <field-edit-row fieldname="transcription_text" />
             </after-completed:>
@@ -126,7 +126,7 @@
                 <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <after-completed:>
-                <single-connection-row fieldname="textual_source" type="FirbPiTextCard" />
+                <single-connection-row fieldname="textual_source" type="PiTextCard" />
             </after-completed:>
             <after-bibliography:>
                 <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :firb_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
@@ -391,7 +391,7 @@
 <def tag="non-illustrated-memory-depiction-edit">
     <%= 
         render :partial => 'shared/non_illustrated_memory_depictions',
-        :locals => { :main_name => 'firb_pi_text_card', :param_name => 'non_illustrated_memory_depictions', 
+        :locals => { :main_name => 'pi_text_card', :param_name => 'non_illustrated_memory_depictions', 
         :existing => this.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.depiction_type})", ic.uri.to_s]} }
     %>
 </def>
@@ -399,14 +399,14 @@
 <def tag="image-components-edit">
     <%= 
         render :partial => 'shared/image_components',
-        :locals => { :main_name => @full_type_name, :param_name => 'image_components', 
+        :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'image_components', 
         :existing => this.image_components.collect {|ic| [ "#{ic.name} (#{ic.zone_type}): #{ic.image_zone.try.name}", ic.uri.to_s]} }
     %>
 </def>
 
 <def tag="image-zones-edit">
     <%= render :partial => 'shared/select', 
-               :locals => { :main_name => @full_type_name, :param_name => 'image_zones', :options => image_zone_select_uri, :autocomplete_url => '',
+               :locals => { :main_name => (@full_type_name || controller.my_name) , :param_name => 'image_zones', :options => image_zone_select_uri, :autocomplete_url => '',
                             :existing => this.image_zones.collect {|z| [ z.name, z.uri.to_s ] } } 
     %>
 </def>
@@ -414,7 +414,7 @@
 <def tag="bibliography-items-edit">
     <%= 
         render :partial => 'shared/select', 
-            :locals => { :main_name => @full_type_name, :param_name => 'bibliography_items', :options => bibliography_select,
+            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select,
             :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
     %>
 </def>
@@ -422,7 +422,7 @@
 <def tag="iconclass-terms-edit">
     <%= 
         render :partial => 'shared/autocompleter',
-        :locals => { :main_name => @full_type_name, :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
+        :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
         :action => :autocomplete), :existing => this.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
     %>
 </def>
@@ -432,7 +432,7 @@
         <repeat with="&this.notes">
             <div class='firb-note'>
                 <textarea rows="4" cols="50" name='<%= @full_type_name %>[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                <span class='firb-remove-note'><%= I18n.t("firb_text_page.remove_note") %></span>
+                <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
             </div>
         </repeat>
     </div>
