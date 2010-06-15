@@ -37,9 +37,9 @@ namespace :talia_model do
     new_name = ENV['new']
     
     query = "UPDATE active_sources SET type='#{new_name}' WHERE type='#{old_name}'"
-    puts "@@ Submitting query: #{query}"
+    puts "@@ Renaming #{old_name} to #{new_name}. Query: #{query}"
     m = ActiveRecord::Base.connection.execute(query)
-    puts "@@ Modified #{m} rows"
+    puts "@@ #{m} rows modified"
   end
   
 end
@@ -57,9 +57,36 @@ namespace :firb do
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
     
+    if (ENV['make_all'] != true) do
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
+  desc "Rename FirbAnastaticaPage active sources to Anastatica"
+  task :anastatica_rename => 'talia_core:init' do
+    ENV['old'] = 'FirbAnastaticaPage'
+    ENV['new'] = 'Anastatica'
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    if (ENV['make_all'] != true) do
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
+  desc "Rename all the Firb* models to the news names"
+  task :rename_all => 'talia_core:init' do
+    ENV['make_all'] = true
+    Rake::Task['firb:images_rename'].reenable
+    Rake::Task['firb:images_rename'].invoke
+
+    Rake::Task['firb:anastatica_rename'].reenable
+    Rake::Task['firb:anastatica_rename'].invoke    
+
     Rake::Task['talia_core:rebuild_rdf'].invoke
     Rake::Task['talia_core:setup_ontologies'].invoke
-
   end
 
 end
