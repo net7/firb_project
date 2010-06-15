@@ -57,7 +57,7 @@ namespace :firb do
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
     
-    if (ENV['make_all'] != true) do
+    if (ENV['make_all'].nil?)
       Rake::Task['talia_core:rebuild_rdf'].invoke
       Rake::Task['talia_core:setup_ontologies'].invoke
     end
@@ -70,7 +70,7 @@ namespace :firb do
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    if (ENV['make_all'] != true) do
+    if (ENV['make_all'].nil?)
       Rake::Task['talia_core:rebuild_rdf'].invoke
       Rake::Task['talia_core:setup_ontologies'].invoke
     end
@@ -108,7 +108,7 @@ namespace :firb do
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    if (ENV['make_all'] != true) do
+    if (ENV['make_all'].nil?)
       Rake::Task['talia_core:rebuild_rdf'].invoke
       Rake::Task['talia_core:setup_ontologies'].invoke
     end
@@ -116,7 +116,7 @@ namespace :firb do
 
   desc "Rename all the Firb* models to the news names"
   task :rename_all => 'talia_core:init' do
-    ENV['make_all'] = true
+    ENV['make_all'] = 'something'
     Rake::Task['firb:images_rename'].reenable
     Rake::Task['firb:images_rename'].invoke
 
