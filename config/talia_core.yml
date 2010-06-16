@@ -27,7 +27,7 @@ thumb_options:
   width: "200"
 hidden_tabs:
   - 'talia_sources'
-firb_card_types:
+base_card_types:
   - illustrated_memory_depiction 
   - letter_illustration 
   - parent_illustration

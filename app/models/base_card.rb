@@ -1,4 +1,4 @@
-class FirbCard < TaliaCore::Source
+class BaseCard < TaliaCore::Source
   hobo_model # Don't put anything above this
   
   include StandardPermissions

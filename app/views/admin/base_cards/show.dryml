@@ -47,13 +47,13 @@
             <field-row fieldname="collocation" />
         </post-bibliography:>
         <post-description:>
-            <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :firb_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
+            <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
             <field-collection-row fieldname="iconclass_terms" />
             <field-row fieldname="iconclass_children">
                 <view:>
                     <repeat with="&this.child_cards" join=", ">
                         <repeat with="&this.try.iconclass_terms" join=", ">
-                            <firb-card-link />
+                            <base-card-link />
                         </repeat>
                     </repeat>
                 </view:>
@@ -96,12 +96,12 @@
 
 <show-page>
     <prepend-content-header:>
-        <p><a href="&url_for(:action => :index)"><ht key="firb_cards.index">Index</ht></a></p>
+        <p><a href="&url_for(:action => :index)"><ht key="base_cards.index">Index</ht></a></p>
     </prepend-content-header:>
 	<edit-link: replace>
 		<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
-			<ht key="firb_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-				Edit Firb Card
+			<ht key="base_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+				Edit Card
 			</ht>
 		</a>
 	</edit-link:>

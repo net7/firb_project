@@ -1,4 +1,4 @@
-class Admin::FirbCardsController < Admin::AdminSiteController
+class Admin::BaseCardsController < Admin::AdminSiteController
 
   hobo_model_controller
   
@@ -7,21 +7,20 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   before_filter :set_card_type, :uri_params
   
   def index
-    @firb_cards = @card_type.paginate(:page => params[:page], :prefetch_relations => true)
+    @base_cards = @card_type.paginate(:page => params[:page], :prefetch_relations => true)
   end
 
   def new
-    @firb_card = @card_type.new
-    @firb_card.acting_user = current_user
-    @card_type = params[:type] || default_type
+    @base_card = @card_type.new
+    @base_card.acting_user = current_user
   end
 
   def edit
-    @firb_card = FirbCard.find(params[:id], :prefetch_relations => true)
+    @base_card = BaseCard.find(params[:id], :prefetch_relations => true)
   end
   
   def destroy
-    hobo_destroy { redirect_to :controller => :firb_cards, :action => :index }
+    hobo_destroy { redirect_to :controller => :base_cards, :action => :index }
   end
 
   def create
@@ -49,19 +48,19 @@ class Admin::FirbCardsController < Admin::AdminSiteController
   private
   
   def card_params
-    params[:"firb_#{@card_type_name}_card"]
+    params[@card_type_name.to_sym]
   end
   
   def default_type
-    TaliaCore::CONFIG['firb_card_types'] ? TaliaCore::CONFIG['firb_card_types'].first : 'illustrated_memory_depiction'
+    TaliaCore::CONFIG['card_types'] ? TaliaCore::CONFIG['card_types'].first : 'pi_illustrated_memory_depiction_card'
   end
   
   # Creates the type class from the param passed to the action
   def set_card_type
     @card_type_name = (params[:type] || default_type)
-    @full_type_name = "firb_#{@card_type_name}_card"
+    @full_type_name = @card_type_name
     @card_type = @full_type_name.classify.constantize
-    raise(ArgumentError, "No valid card type") unless(@card_type <= FirbCard)
+    raise(ArgumentError, "No valid card type") unless(@card_type <= BaseCard)
     @card_type
   end
   

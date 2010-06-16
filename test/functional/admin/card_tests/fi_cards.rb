@@ -6,7 +6,7 @@ module FiCards
     assert_difference('FirbParadeCartCard.count', 1) do
       assert_difference('@procession.size', 1) do
         post :create, :firb_parade_cart_card => { :name => "Foobar", :procession => @procession.uri.to_s }, :type => 'parade_cart'
-        assert_redirected_to :controller => :firb_cards, :action => :index
+        assert_redirected_to :controller => :base_cards, :action => :index
         @procession.reload
       end
     end

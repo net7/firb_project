@@ -1,11 +1,11 @@
 <!-- All the forms -->
-<def tag="form" for="FirbCard">
+<def tag="form" for="BaseCard">
     <h2>You shouldn't see this</h2>
 </def>
 
 
 <def tag="form" for="FirbParadeCartCard">
-    <form merge param="default" action="&firb_card_action">
+    <form merge param="default" action="&base_card_action">
         <card-form-common>
             <content:>
                 <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
@@ -35,7 +35,7 @@
 </def>
 
 <def tag="form" for="FirbParadeCharacterCard">
-    <form merge param="default" action="&firb_card_action">
+    <form merge param="default" action="&base_card_action">
         <card-form-common>
             <content:>
                 <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
@@ -66,7 +66,7 @@
 </def>
 
 <def tag="form" for="FirbLetterIllustrationCard">
-    <form merge param="default" action="&firb_card_action">
+    <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
                 <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
@@ -84,17 +84,17 @@
 </def>
 
 <def tag="form" for="FirbIllustratedMemoryDepictionCard">
-    <form merge param="default" action="&firb_card_action">
+    <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
                 <single-connection-row fieldname="parent_card" type="FirbParentIllustrationCard" />
                 <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <code: replace>
-                <field-row fieldname="parent_code"><view:><%= this.parent_card.blank? ? I18n.t('firb_cards.on_card_save') : this.parent_card.code %></view:></field-row>
+                <field-row fieldname="parent_code"><view:><%= this.parent_card.blank? ? I18n.t('base_cards.on_card_save') : this.parent_card.code %></view:></field-row>
             </code:>
             <collocation: replace>
-                <field-row fieldname="parent_collocation"><view:><%= this.parent_card.nil? ? I18n.t('firb_cards.on_card_save') : this.parent_card.collocation %></view:></field-row>
+                <field-row fieldname="parent_collocation"><view:><%= this.parent_card.nil? ? I18n.t('base_cards.on_card_save') : this.parent_card.collocation %></view:></field-row>
             </collocation:>
             <after-completed:>
                 <single-connection-row fieldname="textual_source" type="PiTextCard" />
@@ -114,13 +114,13 @@
 </def>
 
 <def tag="form" for="FirbNonIllustratedMemoryDepictionCard">
-    <form merge param="default" action="&firb_card_action">
+    <form merge param="default" action="&base_card_action">
         <card-form-common-pi />
     </form>
 </def>
 
 <def tag="form" for="FirbParentIllustrationCard">
-    <form merge param="default" action="&firb_card_action">
+    <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
                 <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
@@ -129,7 +129,7 @@
                 <single-connection-row fieldname="textual_source" type="PiTextCard" />
             </after-completed:>
             <after-bibliography:>
-                <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :firb_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
+                <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
                 <field-row fieldname="inherited_iconclass">
                     <view:><repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat></view:>
                 </field-row>
@@ -144,7 +144,7 @@
 <!-- All the cards -->
 
 <def tag="card" for="FirbNonIllustratedMemoryDepictionCard">
-  <card class="firb-card" param="default" merge>
+  <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link />
@@ -154,23 +154,23 @@
 </def>
 
 <def tag="card" for="FirbIllustratedMemoryDepictionCard">
-  <card class="firb-card" param="default" merge>
+  <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link /> |
       <image-zone-link /> |
       <if test="&this.parent_card.blank?">
-          <ht key="firb_cards.no_parent">Nessuna Scheda Madre</ht>
+          <ht key="base_cards.no_parent">Nessuna Scheda Madre</ht>
       </if>
       <else>
-          <a href="&url_for(:controller => :firb_cards, :action => :show, :id => this.parent_card, :type => 'parent_illustration')"><ht key="firb_parent_illustration_page.model_name">Scheda Madre</ht>: <%= this.parent_card.name %></a>
+          <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.parent_card, :type => 'parent_illustration')"><ht key="firb_parent_illustration_page.model_name">Scheda Madre</ht>: <%= this.parent_card.name %></a>
       </else>
     </header:>
   </card>
 </def>
 
 <def tag="card" for="FirbLetterIllustrationCard">
-  <card class="firb-card" param="default" merge>
+  <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link /> |
@@ -180,20 +180,20 @@
 </def>
 
 <def tag="card" for="FirbParentIllustrationCard">
-  <card class="firb-card" param="default" merge>
+  <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link /> |
       <image-zone-link />
       <div>
-          <ht key="firb_cards.children">Figlie</ht>:
+          <ht key="base_cards.children">Figlie</ht>:
           <if test="&this.child_cards.blank?">
-              <ht key="firb_cards.no_child">Nessuna Figlia</ht>
+              <ht key="base_cards.no_child">Nessuna Figlia</ht>
           </if>
           <else>
                <ul>
                     <repeat with="&this.child_cards" join=", ">
-                        <li><a href="&url_for(:controller => :firb_cards, :action => :show, :id => this.id, :type => 'illustrated_memory_depiction')"><%= this.name || this.to_uri.local_name %></a></li>
+                        <li><a href="&url_for(:controller => :base_cards, :action => :show, :id => this.id, :type => 'illustrated_memory_depiction')"><%= this.name || this.to_uri.local_name %></a></li>
                     </repeat>
                 </ul>
           </else>
@@ -203,7 +203,7 @@
 </def>
 
 <def tag="card" for="FirbParadeCharacterCard">
-  <card class="firb-card" param="default" merge>
+  <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <image-zone-link />
@@ -212,7 +212,7 @@
 </def>
 
 <def tag="card" for="FirbParadeCartCard">
-  <card class="firb-card" param="default" merge>
+  <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <image-zone-link />
@@ -231,7 +231,7 @@
 <def tag="field-row" attrs="fieldname">
     <tr>
         <th class="#{fieldname}-label" param="label"><ht key="#{this.class.name.tableize}.#{fieldname}"><%= fieldname.titleize %></ht></th>
-        <td class="#{fieldname}-view" param="view"><firb-card-link with="&this[fieldname.to_sym]" /></td>
+        <td class="#{fieldname}-view" param="view"><base-card-link with="&this[fieldname.to_sym]" /></td>
     </tr>
 </def>
 
@@ -249,10 +249,10 @@
 
 <def tag="field-collection-row" attrs="hrefatt, fieldname">
     <field-row fieldname="&fieldname">
-        <label:><ht key="firb_cards.#{fieldname}"><%= fieldname.titleize %></ht></label:>
+        <label:><ht key="base_cards.#{fieldname}"><%= fieldname.titleize %></ht></label:>
         <view:>
             <repeat with="&this.send(fieldname)" join=", ">
-                <firb-card-link />
+                <base-card-link />
             </repeat>
         </view:>
     </field-row>
@@ -262,9 +262,9 @@
     <%= this.name.blank? ? this.to_uri.local_name : this.name %>
 </def>
 
-<def tag="firb-card-link">
-    <if test="&this.is_a?(FirbCard)">
-        <a href="&url_for(:controller => :firb_cards, :action => :show, :id => this.id, :type => this.class.name.underscore.gsub('firb_', '').gsub('_card', ''))"><card-name /></a>
+<def tag="base-card-link">
+    <if test="&this.is_a?(BaseCard)">
+        <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.id, :type => this.class.name.underscore) "><card-name /></a>
     </if>
     <else>
         <if test="&this.is_a?(TaliaCore::Source)">
@@ -289,7 +289,7 @@
     
     add_classes!(attributes, "image-button", "delete-button delete-#{this.class.name.underscore.dasherize}-button", "button-float")
     fade = true 
-    url = url_for(:controller => :firb_cards, :action => :destroy, :id => this.id)
+    url = url_for(:controller => :base_cards, :action => :destroy, :id => this.id)
     attributes[:value] = label
     attributes[:onclick] = "Hobo.removeButton(this, '#{url}', #{js_updates(nil)}, {fade:#{fade}, confirm: #{confirm.inspect}})"
     element(:input, attributes, nil, true, true)
@@ -299,13 +299,13 @@
 <def tag="card-type-selector">
   <ul id="card-selector">
     <% # Non illustrated are created from text cards
-       card_types = TaliaCore::CONFIG['firb_card_types'] || %w(parent_illustration)
+       card_types = TaliaCore::CONFIG['base_card_types'] || %w(parent_illustration)
     %>
     <% card_types.each do |type| %>
        <% if(@card_type_name == type) %>
-         <li class="selected"><ht key="firb_cards.#{type}_link" /></li>
+         <li class="selected"><ht key="base_cards.#{type}_link" /></li>
        <% else %>
-         <li><%= link_to I18n.t("firb_cards.#{type}_link"), url_for(:action => :index, :type => type) %></li>
+         <li><%= link_to I18n.t("base_cards.#{type}_link"), url_for(:action => :index, :type => type) %></li>
        <% end %>
     <% end %>
   </ul>
@@ -355,12 +355,12 @@
 </def>
 
 <def tag="card-link">
-    <%= link_to((this.name || this.uri.local_name), :controller => :firb_cards, :action => :show, :id => this.id) %>
+    <%= link_to((this.name || this.uri.local_name), :controller => :base_cards, :action => :show, :id => this.id) %>
 </def>
 
 <def tag="anastatica-link">
     <if test="&this.anastatica.blank?">
-        <ht key="firb_cards.no_anastatica">Nessuna Anastatica collegata</ht>
+        <ht key="base_cards.no_anastatica">Nessuna Anastatica collegata</ht>
     </if>
     <else>
         <a with="&this.anastatica"><ht key="anastatica_page.model_name">Anastatica</ht>: <%= this.name %></a>
@@ -369,7 +369,7 @@
 
 <def tag="image-zone-link">
     <if test="&this.image_zone.blank?">
-        <ht key="firb_cards.no_image_zone">Nessuna Zona/Illustrazione collegata</ht>
+        <ht key="base_cards.no_image_zone">Nessuna Zona/Illustrazione collegata</ht>
     </if>
     <else>
         <a with="&this.image_zone.get_image_parent"><ht key="image.model_name">Illustrazione</ht>: <%= this.name %></a>
@@ -377,7 +377,7 @@
 </def>
 
 <def tag="component-list">
-    <h2 param="header"><ht key="firb_cards.components">Componenti</ht></h2>
+    <h2 param="header"><ht key="base_cards.components">Componenti</ht></h2>
     <ul param="list">
     <repeat with="&this.image_components">
         <li>

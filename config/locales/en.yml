@@ -72,7 +72,7 @@ en:
         completed: "Is the depiction complete?"
         iconclass_terms: "Iconclass terms"
         
-    firb_cards:
+    base_cards:
         new_link: "New Card"
         non_illustrated_memory_depiction_link: "Non Illustrated Memory Depiction" 
         illustrated_memory_depiction_link: "Illustrated Memory Depiction" 

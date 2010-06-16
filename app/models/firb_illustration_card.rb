@@ -1,4 +1,4 @@
-class FirbIllustrationCard < FirbCard
+class FirbIllustrationCard < BaseCard
 
   singular_property :image_zone, N::DCT.isFormatOf, :force_relation => true
   singular_property :textual_source, N::TALIA.attachedText, :force_relation => true

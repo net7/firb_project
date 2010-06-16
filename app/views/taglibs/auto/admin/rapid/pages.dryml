@@ -6,10 +6,10 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Anastatica"><ht key="anastaticas.nav_item">Anastatiche</ht></nav-item>
+    <nav-item with="&BaseCard"><ht key="base_cards.nav_item">Schede</ht></nav-item>
     <nav-item with="&BgTextCard"><ht key="bg_text_cards.nav_item">Schede di testo</ht></nav-item>
     <nav-item with="&BibliographyItem"><ht key="bibliography_items.nav_item">Elementi Bibliografici</ht></nav-item>
     <nav-item with="&FiTextCard"><ht key="fi_text_cards.nav_item">Schede di testo</ht></nav-item>
-    <nav-item with="&FirbCard"><ht key="firb_cards.nav_item">Schede</ht></nav-item>
   </navigation>
 </def>
 
@@ -121,6 +121,127 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'anastaticas.actions.delete', :default=>['Remove This Anastatica']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== BaseCard Pages ====== -->
+
+<def tag="index-page" for="BaseCard">
+  <page merge title="#{ht 'base_cards.index.title', :default=>['Schede'] }">
+    <body: class="index-page base-card" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="base_cards.index.heading">
+            Schede
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="base_cards.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="base_cards.actions.new">New Scheda</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="BaseCard">
+  <page merge title="#{ht 'base_cards.new.title', :default=>[' New Scheda'] }">
+    <body: class="new-page base-card" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="base_cards.new.heading">
+            New Scheda
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'base_cards.actions.create', :default=>['Create Scheda']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="BaseCard">
+  <page merge title="#{ht 'base_cards.show.title', :default=>['Scheda'] }">
+
+    <body: class="show-page base-card" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="base_cards.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="base_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Scheda
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="uri" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="BaseCard">
+  <page merge title="#{ht 'base_cards.edit.title', :default=>['Edit Scheda'] }">
+
+    <body: class="edit-page base-card" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="base_cards.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'base_cards.actions.delete', :default=>['Remove This Scheda']}" param/>
       </section>
 
       <section param="content-body">
@@ -592,127 +713,6 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'fi_text_cards.actions.delete', :default=>['Remove This Scheda di testo']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
-<!-- ====== FirbCard Pages ====== -->
-
-<def tag="index-page" for="FirbCard">
-  <page merge title="#{ht 'firb_cards.index.title', :default=>['Schede'] }">
-    <body: class="index-page firb-card" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="firb_cards.index.heading">
-            Schede
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="firb_cards.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="firb_cards.actions.new">New Scheda</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="FirbCard">
-  <page merge title="#{ht 'firb_cards.new.title', :default=>[' New Scheda'] }">
-    <body: class="new-page firb-card" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_cards.new.heading">
-            New Scheda
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'firb_cards.actions.create', :default=>['Create Scheda']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="FirbCard">
-  <page merge title="#{ht 'firb_cards.show.title', :default=>['Scheda'] }">
-
-    <body: class="show-page firb-card" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="firb_cards.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="firb_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Scheda
-              </ht>
-            </a>
-          </header>
-
-          <section param="content-body">
-            <view:description param="description"/>
-            <field-list fields="uri" param/>
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="FirbCard">
-  <page merge title="#{ht 'firb_cards.edit.title', :default=>['Edit Scheda'] }">
-
-    <body: class="edit-page firb-card" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="firb_cards.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'firb_cards.actions.delete', :default=>['Remove This Scheda']}" param/>
       </section>
 
       <section param="content-body">

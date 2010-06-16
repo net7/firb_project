@@ -8,6 +8,17 @@
   </card>
 </def>
 
+<def tag="card" for="BaseCard">
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="BgTextCard">
   <card class="bg-text-card" param="default" merge>
     <header: param>
@@ -40,17 +51,6 @@
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
-  </card>
-</def>
-
-<def tag="card" for="FirbCard">
-  <card class="firb-card" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-    <body: param>
-      <view:description param="description"/>
-    </body:>
   </card>
 </def>
 

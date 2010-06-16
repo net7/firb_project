@@ -1,7 +1,7 @@
-<def tag="firb-card-link">
+<def tag="base-card-link">
     <% name = (this.try.name || this.try.to_uri.local_name || this.to_s) %>
-    <if test="&this.is_a?(FirbCard)">
-        <%= link_to name, :controller => :firb_cards, :action => :show, :id => this.id, :type => this.class.name.underscore.gsub('firb_', '').gsub('_card', '') %>
+    <if test="&this.is_a?(BaseCard)">
+        <%= link_to name, :controller => :base_cards, :action => :show, :id => this.id, :type => this.class.name.underscore %>
     </if>
     <else>
         <a><%= name %></a>
@@ -26,7 +26,7 @@
             <if test="&this.classify.constantize < Hobo::Model">
                 <h4><%= this.titleize.pluralize %></h4>
                 <ul>
-                    <repeat with="&parts[this]"><li><firb-card-link /></li></repeat>
+                    <repeat with="&parts[this]"><li><base-card-link /></li></repeat>
                 </ul>
             </if>
         </repeat>

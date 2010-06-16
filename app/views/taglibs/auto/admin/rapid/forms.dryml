@@ -12,6 +12,18 @@
 
 
 
+<def tag="form" for="BaseCard">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="uri" param/>
+    <div param="actions">
+      <submit label="#{ht 'base_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="BgTextCard">
   <form merge param="default">
     <error-messages param/>
@@ -54,18 +66,6 @@
     <field-list fields="uri" param/>
     <div param="actions">
       <submit label="#{ht 'fi_text_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="FirbCard">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="uri" param/>
-    <div param="actions">
-      <submit label="#{ht 'firb_cards.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

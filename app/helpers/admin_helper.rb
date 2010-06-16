@@ -68,12 +68,12 @@ module AdminHelper
     render :partial => 'admin/image_components/embedded_form', :locals => { :image_components => components, :new_component => ImageComponent.new, :current_card => card }
   end
 
-  # Selects the action for the firb_card forms (since hobo won't do it on the subclasses)
-  def firb_card_action
-    if(@firb_card.new_record?)
+  # Selects the action for the base_card forms (since hobo won't do it on the subclasses)
+  def base_card_action
+    if(@base_card.new_record?)
       url_for(:action => :create, :type => 'false')
     else
-      url_for(:action => :update, :id => @firb_card.id, :type => 'false')
+      url_for(:action => :update, :id => @base_card.id, :type => 'false')
     end
   end
 

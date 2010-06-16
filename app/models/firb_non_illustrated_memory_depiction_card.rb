@@ -1,4 +1,4 @@
-class FirbNonIllustratedMemoryDepictionCard < FirbCard
+class FirbNonIllustratedMemoryDepictionCard < BaseCard
   
   include StandardPermissions
   extend RdfProperties

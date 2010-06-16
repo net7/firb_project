@@ -32,7 +32,7 @@ class FirbNonIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
   end
   
   def test_create_with_save
-    assert_nothing_raised { FirbCard.new.save! }
+    assert_nothing_raised { BaseCard.new.save! }
   end
   
   def test_create_with_options

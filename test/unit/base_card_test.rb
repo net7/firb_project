@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FirbCardTest < ActiveSupport::TestCase
+class CardTest < ActiveSupport::TestCase
   
   include TaliaUtil::TestHelpers
   suppress_fixtures
@@ -31,7 +31,7 @@ class FirbCardTest < ActiveSupport::TestCase
     assert_equal(3, @bibliographies.size)
     
     setup_once(:card) do
-      source = FirbCard.new(
+      source = BaseCard.new(
       :name => "evil guy",
       :code => "codyhoo", 
       :collocation => "wassup, man?",
@@ -67,8 +67,8 @@ class FirbCardTest < ActiveSupport::TestCase
   end
   
   def test_create
-    card = FirbCard.new
-    assert_kind_of(FirbCard, card)
+    card = BaseCard.new
+    assert_kind_of(BaseCard, card)
     assert_not_nil(card.uri)
     assert_match(/[^\s]+/, card.uri.to_s)
   end
@@ -78,11 +78,11 @@ class FirbCardTest < ActiveSupport::TestCase
   end
   
   def test_create_with_save
-    assert_nothing_raised { FirbCard.new.save! }
+    assert_nothing_raised { BaseCard.new.save! }
   end
   
   def test_create_with_options
-    card = FirbCard.new(:name => "tito", :position => "ups")
+    card = BaseCard.new(:name => "tito", :position => "ups")
     assert_equal("ups", card.position)
     assert_equal("tito", card.name)
   end
@@ -128,15 +128,15 @@ class FirbCardTest < ActiveSupport::TestCase
   end
   
   def test_rewrite_attributes
-    source = FirbCard.new(
+    source = BaseCard.new(
     :name => "evil guy"
     )
     source.save!
-    new_find = FirbCard.find(source.id)
+    new_find = BaseCard.find(source.id)
     new_find.rewrite_attributes!(:name => "barf",
     :anastatica => @page.uri,
     :bibliography_items => @bibliographies.collect { |bib| bib.uri.to_s })
-    new_card = FirbCard.find(source.id)
+    new_card = BaseCard.find(source.id)
     assert_equal('barf', new_card.name)
     assert_equal(new_card.anastatica.uri, @page.uri)
     assert_equal(3, new_card.bibliography_items.size)

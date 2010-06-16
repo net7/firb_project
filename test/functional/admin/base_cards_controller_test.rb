@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 Dir[File.join(File.dirname(__FILE__), 'card_tests', '*.rb')].each { |file| require file.gsub(/\.rb\Z/, '') }
 
-class Admin::FirbCardsControllerTest < ActionController::TestCase
+class Admin::BaseCardsControllerTest < ActionController::TestCase
 
   include TaliaUtil::TestHelpers
   include CardSetups
@@ -123,7 +123,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 1) do
       post(:create, :firb_non_illustrated_memory_depiction_card => { :name => 'New one', :position => 'last_and_first', :anastatica => @page.uri.to_s }, :type => 'non_illustrated_memory_depiction')
-      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      assert_redirected_to(:controller => :base_cards, :action => :index)
     end
     new_card = FirbNonIllustratedMemoryDepictionCard.last
     assert_equal('New one', new_card.name)
@@ -140,7 +140,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       post(:create, 
         :firb_illustrated_memory_depiction_card => { :name => 'New illu', :position => 'last_and_first', :anastatica => '', :bibliography_items => @bibliography_arr }, 
         :type => 'illustrated_memory_depiction' )
-      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      assert_redirected_to(:controller => :base_cards, :action => :index)
     end
     new_card = FirbIllustratedMemoryDepictionCard.last
     assert_equal('New illu', new_card.name)
@@ -157,7 +157,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       post(:create, 
         :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_arr }, 
         :type => 'letter_illustration' )
-      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      assert_redirected_to(:controller => :base_cards, :action => :index)
     end
     new_card = FirbLetterIllustrationCard.last
     assert_equal('Letter', new_card.name)
@@ -175,7 +175,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
         post(:create, 
           :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }] }, 
           :type => 'letter_illustration' )
-      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      assert_redirected_to(:controller => :base_cards, :action => :index)
       end
     end
     new_card = FirbLetterIllustrationCard.last
@@ -195,7 +195,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
         post(:create, 
           :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }, {:uri => compo.uri.to_s }] }, 
           :type => 'letter_illustration' )
-      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      assert_redirected_to(:controller => :base_cards, :action => :index)
       end
     end
     new_card = FirbLetterIllustrationCard.last
@@ -213,7 +213,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       post(:create, 
         :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_term_arr }, 
         :type => 'letter_illustration' )
-      assert_redirected_to(:controller => :firb_cards, :action => :index)
+      assert_redirected_to(:controller => :base_cards, :action => :index)
     end
     new_card = FirbLetterIllustrationCard.last
     assert_equal('Letter', new_card.name)
@@ -271,7 +271,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
     post(:update, :id => @illustrated_one.id, 
       :firb_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => @bibliography_arr },
       :type => 'illustrated_memory_depiction')
-    assert_redirected_to :controller => :firb_cards, :action => :show
+    assert_redirected_to :controller => :base_cards, :action => :show
     card = FirbIllustratedMemoryDepictionCard.find(@illustrated_one.id)
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
@@ -292,7 +292,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       post(:update, :id => card.id, 
         :firb_letter_illustration_card => { :name => 'changed', :image_components => [ { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone }]},
         :type => 'letter_illustration')
-      assert_redirected_to :controller => :firb_cards, :action => :show
+      assert_redirected_to :controller => :base_cards, :action => :show
     end
     card = FirbLetterIllustrationCard.find(card.id)
     assert_equal(1, card.image_components.size)
@@ -313,7 +313,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       post(:update, :id => card.id, 
         :firb_letter_illustration_card => { :name => 'changed', :image_components => [ ]},
         :type => 'letter_illustration')
-      assert_redirected_to :controller => :firb_cards, :action => :show
+      assert_redirected_to :controller => :base_cards, :action => :show
     end
     card = FirbLetterIllustrationCard.find(card.id)
     assert_equal(0, card.image_components.size)
@@ -333,7 +333,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       post(:update, :id => card.id, 
         :firb_letter_illustration_card => { :name => 'changed', :image_components => [ {:uri => component.uri.to_s }, { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone } ]},
         :type => 'letter_illustration')
-      assert_redirected_to :controller => :firb_cards, :action => :show
+      assert_redirected_to :controller => :base_cards, :action => :show
     end
     card = FirbLetterIllustrationCard.find(card.id)
     assert_equal(2, card.image_components.size)
@@ -347,7 +347,7 @@ class Admin::FirbCardsControllerTest < ActionController::TestCase
       :firb_non_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => '' },
       :type => 'non_illustrated_memory_depiction')
     assert_response(403)
-    assert_equal(FirbCard.find(@non_illustrated.id).position, old_position)
+    assert_equal(BaseCard.find(@non_illustrated.id).position, old_position)
   end
 
 

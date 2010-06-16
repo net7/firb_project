@@ -342,7 +342,7 @@ it:
             edit: "Modifica {{name}}"
 
     # Firb cards
-    firb_cards:
+    base_cards:
         model_name: "Scheda"
         model_name_plural: "Schede"
         edit:

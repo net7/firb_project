@@ -19,7 +19,7 @@
             </tr>
         </table>    
         <%= submit_tag I18n.t('image_component.actions.create'), :class => 'button' %>
-        <%= hidden_field_tag 'image_component[firb_card]', current_card.to_uri.to_s %>
+        <%= hidden_field_tag 'image_component[base_card]', current_card.to_uri.to_s %>
         </table>
     <% end %>
 
