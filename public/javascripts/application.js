@@ -37,7 +37,7 @@ function jsapi_mouseClick(fid, ki) {
 }
 
 // Adds dynamically a note to the bottom of the #firb-notes div, 
-// uses the same markup as in views/admin/firb_text_cards/new.dryml
+// uses the same markup as in views/admin/text_cards/new.dryml
 // Used in that same dryml template
 // Fixme: Needs refactoring
 function textPageAddNote(model_name) {

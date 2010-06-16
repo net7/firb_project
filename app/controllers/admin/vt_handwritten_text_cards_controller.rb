@@ -35,7 +35,7 @@ class Admin::VtHandwrittenTextCardsController < Admin::TextCardsController
     end
 
     if (notes)
-      FirbNote.create_notes(notes.values, txt)
+      Note.create_notes(notes.values, txt)
     end
 
     redirect_to :controller => :vt_handwritten_text_cards, :action => :index
@@ -50,7 +50,7 @@ class Admin::VtHandwrittenTextCardsController < Admin::TextCardsController
     file = params[:firb_handwritten_vt_text_card].delete(:file)
     hobo_source_update do |updated_source|
       if (notes) 
-        FirbNote.replace_notes(notes, updated_source)
+        Note.replace_notes(notes, updated_source)
       end
       
       updated_source.attach_file(file)

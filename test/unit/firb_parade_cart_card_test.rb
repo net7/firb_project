@@ -137,7 +137,7 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
   
   def test_notes
     assert_equal(2, @cart.notes.size)
-    assert_kind_of(FirbNote, @cart.notes.first)
+    assert_kind_of(Note, @cart.notes.first)
     assert_equal("hello world", @cart.notes.first.content)
   end
   

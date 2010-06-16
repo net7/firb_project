@@ -26,7 +26,7 @@ module FiCardsCommonFields
   end
   
   def note
-    qry = ActiveRDF::Query.new(FirbNote).select(:note).distinct
+    qry = ActiveRDF::Query.new(Note).select(:note).distinct
     qry.where(:note, N::DCT.isPartOf, self)
     qry.execute
   end
@@ -39,7 +39,7 @@ module FiCardsCommonFields
     if(self.new_record?)
       return unless(self.save)
     end
-    FirbNote.replace_notes(value, self)
+    Note.replace_notes(value, self)
   end
   
   def validate_procession

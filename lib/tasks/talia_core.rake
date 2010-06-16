@@ -31,15 +31,25 @@ end
 
 namespace :talia_model do 
    
-  desc "Rename a talia_source model into the database. Will need another rake task after that to rebuild the RDF. Param: old=<old source name> new=<new source name>"
+  desc "Rename a talia_source model into the database. Will need another rake task after that to rebuild the RDF. Param: old=<old source name> new=<new source name>. You can specify old_uri and new_uri to change the sources uris as well"
   task :rename => 'talia_core:init' do
     old_name = ENV['old']
     new_name = ENV['new']
     
     query = "UPDATE active_sources SET type='#{new_name}' WHERE type='#{old_name}'"
-    puts "@@ Renaming #{old_name} to #{new_name}. Query: #{query}"
+    puts "@@ Renaming type #{old_name} to #{new_name}. Query: #{query}"
     m = ActiveRecord::Base.connection.execute(query)
-    puts "@@ #{m} rows modified"
+    puts "@@ #{m} types modified"
+        
+    if (!ENV['old_uri'].nil?)
+      old_uri = ENV['old_uri']
+      new_uri = ENV['new_uri']
+      query = "UPDATE active_sources SET uri = replace(uri, '#{old_uri}', '#{new_uri}')"
+      
+      puts "@@ Renaming URIs #{old_uri} to #{new_uri}. Query: #{query}"
+      m = ActiveRecord::Base.connection.execute(query)
+      puts "@@ #{m} uris modified"      
+    end
   end
   
 end
@@ -47,13 +57,11 @@ end
 namespace :firb do
   desc "Rename FirbImage, FirbImageZone active sources to Image, ImageZone"
   task :images_rename => 'talia_core:init' do
-    ENV['old'] = 'FirbImage'
-    ENV['new'] = 'Image'
+    ENV = ENV.merge({'old' => 'FirbImage', 'new' => 'Image'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    ENV['old'] = 'FirbImageZone'
-    ENV['new'] = 'ImageZone'
+    ENV = ENV.merge({'old' => 'FirbImageZone', 'new' => 'ImageZone'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
     
@@ -65,8 +73,7 @@ namespace :firb do
 
   desc "Rename FirbAnastaticaPage active sources to Anastatica"
   task :anastatica_rename => 'talia_core:init' do
-    ENV['old'] = 'FirbAnastaticaPage'
-    ENV['new'] = 'Anastatica'
+    ENV = ENV.merge({'old' => 'FirbAnastaticaPage', 'new' => 'Anastatica'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
@@ -78,33 +85,41 @@ namespace :firb do
 
   desc "Rename Firb*TextCards active source to *TextCards"
   task :text_cards_rename => 'talia_core:init' do
-    ENV['old'] = 'FirbTextCard'
-    ENV['new'] = 'TextCard'
+
+    ENV = ENV.merge({'old' => 'FirbTextCard', 'new' => 'TextCard', 'old_uri' => "firb_text_card", 'new_uri' => 'text_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    ENV['old'] = 'FirbPiTextCard'
-    ENV['new'] = 'PiTextCard'
+    # These models used the same firb_text_card uris, so they should already be renamed
+    ENV = ENV.merge({'old' => 'FirbPiTextCard', 'new' => 'PiTextCard'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    ENV['old'] = 'FirbFiTextCard'
-    ENV['new'] = 'FiTextCard'
+    ENV = ENV.merge({'old' => 'FirbFiTextCard', 'new' => 'FiTextCard'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    ENV['old'] = 'FirbBgTextCard'
-    ENV['new'] = 'BgTextCard'
+    ENV = ENV.merge({'old' => 'FirbBgTextCard', 'new' => 'BgTextCard'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    ENV['old'] = 'FirbVtTextCardHandwritten'
-    ENV['new'] = 'VtHandwrittenTextCard'
+    ENV = ENV.merge({'old' => 'FirbVtTextCardHandwritten', 'new' => 'VtHandwrittenTextCard'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
-    ENV['old'] = 'FirbVtTextCardPrinted'
-    ENV['new'] = 'VtPrintedTextCard'
+    ENV = ENV.merge({'old' => 'FirbVtTextCardPrinted', 'new' => 'VtPrintedTextCard'})
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    if (ENV['make_all'].nil?)
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
+  desc "Rename FirbNotes active sources to Note"
+  task :notes_rename => 'talia_core:init' do
+    ENV = ENV.merge({'old' => 'FirbNote', 'new' => 'Note', 'old_uri' => 'firbnote', 'new_uri' => 'note'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
@@ -125,6 +140,9 @@ namespace :firb do
 
     Rake::Task['firb:text_cards_rename'].reenable
     Rake::Task['firb:text_cards_rename'].invoke    
+
+    Rake::Task['firb:notes_rename'].reenable
+    Rake::Task['firb:notes_rename'].invoke
 
     Rake::Task['talia_core:rebuild_rdf'].invoke
     Rake::Task['talia_core:setup_ontologies'].invoke

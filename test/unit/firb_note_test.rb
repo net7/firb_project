@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FirbNoteTest < ActiveSupport::TestCase
+class NoteTest < ActiveSupport::TestCase
   
   include TaliaUtil::TestHelpers
   suppress_fixtures
@@ -20,7 +20,7 @@ class FirbNoteTest < ActiveSupport::TestCase
     end
     
     setup_once(:note) do
-      note = FirbNote.create_note('I am a note', @text.uri.to_s)
+      note = Note.create_note('I am a note', @text.uri.to_s)
       note.save!
       note
     end
@@ -45,10 +45,10 @@ class FirbNoteTest < ActiveSupport::TestCase
   def test_replace_notes
     new_card = FirbTextCard.create_card(:title => 'Title title title BIS', :parafrasi => 'rollollolllo2')
     new_card.save!
-    note = FirbNote.create_note('I am a new note', new_card.uri.to_s)
+    note = Note.create_note('I am a new note', new_card.uri.to_s)
     note.save!
-    FirbNote.replace_notes({ "new_1234" => "bingobong", note.uri.to_s => "pongo" }, new_card)
-    new_note = FirbNote.find(note.id)
+    Note.replace_notes({ "new_1234" => "bingobong", note.uri.to_s => "pongo" }, new_card)
+    new_note = Note.find(note.id)
     new_card = FirbTextCard.find(new_card.id)
     assert_equal("pongo", new_note.content)
     assert_equal(2, new_card.notes_count)

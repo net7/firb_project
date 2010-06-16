@@ -24,7 +24,7 @@ class TextCard < TaliaCore::Source
   end
 
   def notes
-    qry = ActiveRDF::Query.new(FirbNote).select(:note).distinct
+    qry = ActiveRDF::Query.new(Note).select(:note).distinct
     qry.where(:note, N::DCT.isPartOf, self)
     qry.execute
   end

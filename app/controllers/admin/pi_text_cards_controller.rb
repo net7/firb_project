@@ -28,7 +28,7 @@ class Admin::PiTextCardsController < Admin::TextCardsController
     txt.attach_file(file)
 
     if (notes)
-      FirbNote.create_notes(notes.values, txt)
+      Note.create_notes(notes.values, txt)
     end
 
     redirect_to :controller => :pi_text_cards, :action => :index
@@ -43,7 +43,7 @@ class Admin::PiTextCardsController < Admin::TextCardsController
     file = params[:pi_text_card].delete(:file)
     hobo_source_update do |updated_source|
       if (notes) 
-        FirbNote.replace_notes(notes, updated_source)
+        Note.replace_notes(notes, updated_source)
       end
       
       updated_source.attach_file(file)
