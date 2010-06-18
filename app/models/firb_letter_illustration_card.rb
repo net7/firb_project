@@ -1,4 +1,4 @@
-class FirbLetterIllustrationCard < FirbIllustrationCard
+class FirbLetterIllustrationCard < IllustrationCard
   include StandardPermissions
   
   autofill_uri :force => true

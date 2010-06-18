@@ -1,4 +1,4 @@
-class FirbParentIllustrationCard < FirbIllustrationCard
+class FirbParentIllustrationCard < IllustrationCard
   
   include StandardPermissions
   

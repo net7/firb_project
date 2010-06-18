@@ -1,4 +1,4 @@
-class FirbIllustrationCard < BaseCard
+class IllustrationCard < BaseCard
 
   singular_property :image_zone, N::DCT.isFormatOf, :force_relation => true
   singular_property :textual_source, N::TALIA.attachedText, :force_relation => true
@@ -27,8 +27,8 @@ class FirbIllustrationCard < BaseCard
   end
 
   def self.replace_iconclass_terms(new_terms, page)
-    FirbIllustrationPage.remove_iconclass_terms(page)
-    FirbIllustrationPage.add_iconclass_terms(new_terms, page)
+    IllustrationCard.remove_iconclass_terms(page)
+    IllustrationCard.add_iconclass_terms(new_terms, page)
     page.save
   end
 

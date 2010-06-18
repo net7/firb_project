@@ -1,4 +1,4 @@
-class FirbIllustratedMemoryDepictionCard < FirbIllustrationCard
+class FirbIllustratedMemoryDepictionCard < IllustrationCard
   
   include StandardPermissions
   

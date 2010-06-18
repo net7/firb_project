@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FirbIllustrationCardTest < ActiveSupport::TestCase
+class IllustrationCardTest < ActiveSupport::TestCase
   
   include TaliaUtil::TestHelpers
   suppress_fixtures
@@ -44,7 +44,7 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:card) do
-      source = FirbIllustrationCard.new(
+      source = IllustrationCard.new(
       :name => "illustration",
       :image_zone => @image_zone.uri,
       :iconclass_terms => @iconclasses.collect { |ic| ic.uri.to_s },
@@ -72,7 +72,7 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
   
   def test_create_components
     assert_difference("ImageComponent.count", 1) do
-      card =  FirbIllustrationCard.new(:name => "compy test",
+      card =  IllustrationCard.new(:name => "compy test",
         :image_zone => @image_zone.uri,
         :image_components => [{ :uri => @components.first.uri.to_s },{
           :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -82,17 +82,17 @@ class FirbIllustrationCardTest < ActiveSupport::TestCase
   end
   
   def test_rewrite_attributes
-    source = FirbIllustrationCard.new(
+    source = IllustrationCard.new(
     :name => "illustrationx"
     )
     source.save!
-    new_find = FirbIllustrationCard.find(source.id)
+    new_find = IllustrationCard.find(source.id)
     new_find.rewrite_attributes!(
     :name => "illustrationY",
     :image_zone => @image_zone.uri,
     :iconclass_terms => @iconclasses.collect { |ic| ic.uri.to_s }
     )
-    new_card = FirbIllustrationCard.find(source.id)
+    new_card = IllustrationCard.find(source.id)
     assert_equal('illustrationY', new_card.name)
     assert_equal(new_card.image_zone.uri, @image_zone.uri)
     assert_equal(2, new_card.iconclass_terms.size)
