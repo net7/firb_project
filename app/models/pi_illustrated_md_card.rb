@@ -1,4 +1,4 @@
-class FirbIllustratedMemoryDepictionCard < IllustrationCard
+class PiIllustratedMdCard < IllustrationCard
   
   include StandardPermissions
   

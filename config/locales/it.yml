@@ -231,7 +231,7 @@ it:
         collection:
           count: "Ci sono {{count}} elementi bibliografici"
 
-    firb_illustrated_memory_depiction_cards:
+    pi_illustrated_md_cards:
         model_name: "Scheda di immagine di memoria illustrata"
         model_name_plural: "Schede di immagini di memoria illustrate"
         collection:

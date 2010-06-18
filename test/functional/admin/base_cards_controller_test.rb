@@ -32,7 +32,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_index_illustrated
     setup_cards
     login_for(:admin)
-    get(:index, :type => 'illustrated_memory_depiction')
+    get(:index, :type => 'pi_illustrated_md_card')
     assert_response(:success)
     assert_select('ul.collection') { assert_select('li.item', 2) }
   end
@@ -63,7 +63,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_show_illustrated
     setup_cards
     login_for(:admin)
-    get(:show, :type => 'illustrated_memory_depiction', :id => @illustrated_one.id)
+    get(:show, :type => 'pi_illustrated_md_card', :id => @illustrated_one.id)
     assert_response(:success)
   end
 
@@ -92,7 +92,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
 
   def test_new_illustrated
     login_for(:admin)
-    get(:new, :type => 'illustrated_memory_depiction')
+    get(:new, :type => 'pi_illustrated_md_card')
     assert_response(:success)
     # assert_select 'th.page-position-label'
   end
@@ -136,13 +136,13 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     setup_page
     setup_bibliographies
     login_for(:admin)
-    assert_difference('FirbIllustratedMemoryDepictionCard.count', 1) do
+    assert_difference('PiIllustratedMdCard.count', 1) do
       post(:create, 
-        :firb_illustrated_memory_depiction_card => { :name => 'New illu', :position => 'last_and_first', :anastatica => '', :bibliography_items => @bibliography_arr }, 
-        :type => 'illustrated_memory_depiction' )
+        :pi_illustrated_md_card => { :name => 'New illu', :position => 'last_and_first', :anastatica => '', :bibliography_items => @bibliography_arr }, 
+        :type => 'pi_illustrated_md_card' )
       assert_redirected_to(:controller => :base_cards, :action => :index)
     end
-    new_card = FirbIllustratedMemoryDepictionCard.last
+    new_card = PiIllustratedMdCard.last
     assert_equal('New illu', new_card.name)
     assert_equal('last_and_first', new_card.position)
     assert_property(new_card.bibliography_items, *@bibliographies)
@@ -269,10 +269,10 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     setup_bibliographies
     login_for(:admin)
     post(:update, :id => @illustrated_one.id, 
-      :firb_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => @bibliography_arr },
-      :type => 'illustrated_memory_depiction')
+      :pi_illustrated_md_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => @bibliography_arr },
+      :type => 'pi_illustrated_md_card')
     assert_redirected_to :controller => :base_cards, :action => :show
-    card = FirbIllustratedMemoryDepictionCard.find(@illustrated_one.id)
+    card = PiIllustratedMdCard.find(@illustrated_one.id)
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
     assert_property(card.bibliography_items, *@bibliographies)

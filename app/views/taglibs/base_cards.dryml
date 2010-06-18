@@ -83,7 +83,7 @@
     </form>
 </def>
 
-<def tag="form" for="FirbIllustratedMemoryDepictionCard">
+<def tag="form" for="PiIllustratedMdCard">
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
@@ -129,7 +129,7 @@
                 <single-connection-row fieldname="textual_source" type="PiTextCard" />
             </after-completed:>
             <after-bibliography:>
-                <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
+                <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
                 <field-row fieldname="inherited_iconclass">
                     <view:><repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat></view:>
                 </field-row>
@@ -152,7 +152,7 @@
   </card>
 </def>
 
-<def tag="card" for="FirbIllustratedMemoryDepictionCard">
+<def tag="card" for="PiIllustratedMdCard">
   <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
@@ -192,7 +192,7 @@
           <else>
                <ul>
                     <repeat with="&this.child_cards" join=", ">
-                        <li><a href="&url_for(:controller => :base_cards, :action => :show, :id => this.id, :type => 'illustrated_memory_depiction')"><%= this.name || this.to_uri.local_name %></a></li>
+                        <li><a href="&url_for(:controller => :base_cards, :action => :show, :id => this.id, :type => 'pi_illustrated_md_card')"><%= this.name || this.to_uri.local_name %></a></li>
                     </repeat>
                 </ul>
           </else>

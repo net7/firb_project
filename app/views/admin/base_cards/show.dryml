@@ -47,7 +47,7 @@
             <field-row fieldname="collocation" />
         </post-bibliography:>
         <post-description:>
-            <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'illustrated_memory_depiction'}" />
+            <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
             <field-collection-row fieldname="iconclass_terms" />
             <field-row fieldname="iconclass_children">
                 <view:>
@@ -62,7 +62,7 @@
     </field-table>
 </def>
 
-<def tag="field-table" for="FirbIllustratedMemoryDepictionCard">
+<def tag="field-table" for="PiIllustratedMdCard">
     <field-table merge>
         <post-bibliography:>
             <field-row fieldname="parent_card" />

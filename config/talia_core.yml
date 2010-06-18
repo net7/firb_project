@@ -28,7 +28,7 @@ thumb_options:
 hidden_tabs:
   - 'talia_sources'
 base_card_types:
-  - illustrated_memory_depiction 
+  - pi_illustrated_md_card 
   - pi_letter_illustration_card 
   - pi_illustration_card
   - parade_cart

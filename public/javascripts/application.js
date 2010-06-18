@@ -48,7 +48,7 @@ function textPageAddNote(model_name) {
 
 function addIconclassTerm() {
     var rand = Math.floor(Math.random()*9999);
-    var markup = "<div class='firb-iconclass-term'>"+currentIconterm.content+"<input type='hidden' name='firb_illustrated_memory_depiction_page[iconclass_term][new_"+rand+"]' value='"+currentIconterm.val+"' /><span class='firb-remove-iconclass-term'>Elimina iconterm</span></div>";
+    var markup = "<div class='firb-iconclass-term'>"+currentIconterm.content+"<input type='hidden' name='pi_illustrated_md_card[iconclass_term][new_"+rand+"]' value='"+currentIconterm.val+"' /><span class='firb-remove-iconclass-term'>Elimina iconterm</span></div>";
     $$('#firb-iconclass-terms')[0].insert({bottom: markup});
     
 }

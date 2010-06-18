@@ -41,9 +41,9 @@ en:
         no_notes_associated: "No note associated to this Text Page"
         text_page: "Text Page"
 
-    firb_illustrated_memory_depiction_page:
-        edit: "Edit this this memory depiction page"
-        remove: "Remove this memory depiction page"
+    pi_illustrated_md_card:
+        edit: "Edit this this memory depiction card"
+        remove: "Remove this memory depiction card"
 
     # Used all over: general terms
     general:
