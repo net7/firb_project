@@ -1,4 +1,5 @@
-class FirbLetterIllustrationCard < IllustrationCard
+# Letter Illustration Card (Firb Pi): scheda capolettera
+class PiLetterIllustrationCard < IllustrationCard
   include StandardPermissions
   
   autofill_uri :force => true

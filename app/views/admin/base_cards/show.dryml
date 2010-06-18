@@ -85,7 +85,7 @@
     <component-list />
 </def>
 
-<def tag="field-table" for="FirbLetterIllustrationCard">
+<def tag="field-table" for="PiLetterIllustrationCard">
     <field-table merge>
         <post-description:>
             <field-collection-row fieldname="iconclass_terms" />

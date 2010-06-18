@@ -52,7 +52,7 @@ class Admin::BaseCardsController < Admin::AdminSiteController
   end
   
   def default_type
-    TaliaCore::CONFIG['card_types'] ? TaliaCore::CONFIG['card_types'].first : 'pi_illustrated_memory_depiction_card'
+    TaliaCore::CONFIG['card_types'] ? TaliaCore::CONFIG['card_types'].first : 'pi_illustrated_md_card'
   end
   
   # Creates the type class from the param passed to the action

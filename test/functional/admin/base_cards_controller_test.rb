@@ -153,13 +153,13 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     setup_iconclass
     setup_image_zone
     login_for(:admin)
-    assert_difference('FirbLetterIllustrationCard.count', 1) do
+    assert_difference('PiLetterIllustrationCard.count', 1) do
       post(:create, 
         :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_arr }, 
         :type => 'letter_illustration' )
       assert_redirected_to(:controller => :base_cards, :action => :index)
     end
-    new_card = FirbLetterIllustrationCard.last
+    new_card = PiLetterIllustrationCard.last
     assert_equal('Letter', new_card.name)
     assert_equal('last_and_first', new_card.position)
     assert_property(new_card.iconclass_terms, *@iconclasses)
@@ -170,7 +170,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     setup_page
     setup_image_zone
     login_for(:admin)
-    assert_difference('FirbLetterIllustrationCard.count', 1) do
+    assert_difference('PiLetterIllustrationCard.count', 1) do
       assert_difference('ImageComponent.count', 1) do
         post(:create, 
           :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }] }, 
@@ -178,7 +178,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
       assert_redirected_to(:controller => :base_cards, :action => :index)
       end
     end
-    new_card = FirbLetterIllustrationCard.last
+    new_card = PiLetterIllustrationCard.last
     assert_equal('Plonker', new_card.name)
     assert_equal('last_and_first', new_card.position)
     assert_equal(1, new_card.image_components.size)
@@ -190,7 +190,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     compo = ImageComponent.new(:name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s)
     compo.save!
-    assert_difference('FirbLetterIllustrationCard.count', 1) do
+    assert_difference('PiLetterIllustrationCard.count', 1) do
       assert_difference('ImageComponent.count', 1) do
         post(:create, 
           :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }, {:uri => compo.uri.to_s }] }, 
@@ -198,7 +198,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
       assert_redirected_to(:controller => :base_cards, :action => :index)
       end
     end
-    new_card = FirbLetterIllustrationCard.last
+    new_card = PiLetterIllustrationCard.last
     assert_equal('Plonker', new_card.name)
     assert_equal('last_and_first', new_card.position)
     assert_equal(2, new_card.image_components.size)
@@ -209,13 +209,13 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     setup_iconclass
     setup_image_zone
     login_for(:admin)
-    assert_difference('FirbLetterIllustrationCard.count', 1) do
+    assert_difference('PiLetterIllustrationCard.count', 1) do
       post(:create, 
         :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_term_arr }, 
         :type => 'letter_illustration' )
       assert_redirected_to(:controller => :base_cards, :action => :index)
     end
-    new_card = FirbLetterIllustrationCard.last
+    new_card = PiLetterIllustrationCard.last
     assert_equal('Letter', new_card.name)
     assert_equal('last_and_first', new_card.position)
     assert_property(new_card.iconclass_terms, *@iconclasses)
@@ -280,7 +280,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   
   def test_update_letter_with_component
     setup_image_zone
-    card =  FirbLetterIllustrationCard.new(:name => "compy test",
+    card =  PiLetterIllustrationCard.new(:name => "compy test",
       :image_zone => @image_zone.uri,
       :image_components => [ {
         :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -294,14 +294,14 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
         :type => 'letter_illustration')
       assert_redirected_to :controller => :base_cards, :action => :show
     end
-    card = FirbLetterIllustrationCard.find(card.id)
+    card = PiLetterIllustrationCard.find(card.id)
     assert_equal(1, card.image_components.size)
     assert_equal('FOOZ', card.image_components.first.name)
   end
   
   def test_update_letter_with_component
     setup_image_zone
-    card =  FirbLetterIllustrationCard.new(:name => "compy test",
+    card =  PiLetterIllustrationCard.new(:name => "compy test",
       :image_zone => @image_zone.uri,
       :image_components => [ {
         :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -315,13 +315,13 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
         :type => 'letter_illustration')
       assert_redirected_to :controller => :base_cards, :action => :show
     end
-    card = FirbLetterIllustrationCard.find(card.id)
+    card = PiLetterIllustrationCard.find(card.id)
     assert_equal(0, card.image_components.size)
   end
   
   def test_update_letter_with_component_adding
     setup_image_zone
-    card =  FirbLetterIllustrationCard.new(:name => "compy test",
+    card =  PiLetterIllustrationCard.new(:name => "compy test",
       :image_zone => @image_zone.uri,
       :image_components => [ {
         :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone
@@ -335,7 +335,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
         :type => 'letter_illustration')
       assert_redirected_to :controller => :base_cards, :action => :show
     end
-    card = FirbLetterIllustrationCard.find(card.id)
+    card = PiLetterIllustrationCard.find(card.id)
     assert_equal(2, card.image_components.size)
     assert(ImageComponent.exists?(component.id))
   end
@@ -363,7 +363,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def setup_additional_cards
     @parent = FirbParentIllustrationCard.new(:name => 'madre', :position => 'on top')
     @parent.save!
-    @letter = FirbLetterIllustrationCard.new(:name => 'Letter', :position => 'first')
+    @letter = PiLetterIllustrationCard.new(:name => 'Letter', :position => 'first')
     @letter.save!
   end
   
