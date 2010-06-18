@@ -1,4 +1,5 @@
-class FirbParentIllustrationCard < IllustrationCard
+# Pi illustration Card: scheda illustrazione (Firb Pi)
+class PiIllustrationCard < IllustrationCard
   
   include StandardPermissions
   

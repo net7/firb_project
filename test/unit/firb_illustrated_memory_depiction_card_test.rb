@@ -51,13 +51,13 @@ class FirbIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
   
   def test_parent_child_relation
     card = FirbIllustratedMemoryDepictionCard.new(:name => "tito", :position => "ups")
-    parent = FirbParentIllustrationCard.new(:name => 'madre', :position => 'xxx')
+    parent = PiIllustrationCard.new(:name => 'madre', :position => 'xxx')
     parent.save!
     card.parent_card = parent
     card.save!
-    parent = FirbParentIllustrationCard.find(parent.id)
+    parent = PiIllustrationCard.find(parent.id)
     card = FirbIllustratedMemoryDepictionCard.find(card.id)
-    assert_kind_of(FirbParentIllustrationCard, card.parent_card)
+    assert_kind_of(PiIllustrationCard, card.parent_card)
     assert_equal(parent.uri, card.parent_card.uri)
     assert_equal(1, parent.child_cards.size)
     child = parent.child_cards.first

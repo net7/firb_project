@@ -87,7 +87,7 @@
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
-                <single-connection-row fieldname="parent_card" type="FirbParentIllustrationCard" />
+                <single-connection-row fieldname="parent_card" type="PiIllustrationCard" />
                 <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
             </before-anastatica:>
             <code: replace>
@@ -119,7 +119,7 @@
     </form>
 </def>
 
-<def tag="form" for="FirbParentIllustrationCard">
+<def tag="form" for="PiIllustrationCard">
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
@@ -162,7 +162,7 @@
           <ht key="base_cards.no_parent">Nessuna Scheda Madre</ht>
       </if>
       <else>
-          <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.parent_card, :type => 'parent_illustration')"><ht key="firb_parent_illustration_page.model_name">Scheda Madre</ht>: <%= this.parent_card.name %></a>
+          <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.parent_card, :type => 'pi_illustration_card')"><ht key="pi_illustration_page.model_name">Scheda Madre</ht>: <%= this.parent_card.name %></a>
       </else>
     </header:>
   </card>
@@ -178,7 +178,7 @@
   </card>
 </def>
 
-<def tag="card" for="FirbParentIllustrationCard">
+<def tag="card" for="PiIllustrationCard">
   <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
@@ -298,7 +298,7 @@
 <def tag="card-type-selector">
   <ul id="card-selector">
     <% # Non illustrated are created from text cards
-       card_types = TaliaCore::CONFIG['base_card_types'] || %w(parent_illustration)
+       card_types = TaliaCore::CONFIG['base_card_types'] || %w(pi_illustration_card)
     %>
     <% card_types.each do |type| %>
        <% if(@card_type_name == type) %>

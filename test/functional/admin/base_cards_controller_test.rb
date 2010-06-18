@@ -40,7 +40,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_index_letter
     setup_additional_cards
     login_for(:admin)
-    get(:index, :type => 'letter_illustration')
+    get(:index, :type => 'pi_letter_illustration_card')
     assert_response(:success)
     assert_select('ul.collection') { assert_select('li.item', 1)}
   end
@@ -48,7 +48,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_index_parent
     setup_additional_cards
     login_for(:admin)
-    get(:index, :type => 'parent_illustration')
+    get(:index, :type => 'pi_illustration_card')
     assert_response(:success)
     assert_select('ul.collection') { assert_select('li.item', 1)}
   end
@@ -56,7 +56,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_show_letter
     setup_additional_cards
     login_for(:admin)
-    get(:show, :type => 'parent_illustration', :id => @parent.id)
+    get(:show, :type => 'pi_illustration_card', :id => @parent.id)
     assert_response(:success)
   end
   
@@ -99,14 +99,14 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   
   def test_new_letter
     login_for(:admin)
-    get(:new, :type => 'letter_illustration')
+    get(:new, :type => 'pi_letter_illustration_card')
     assert_response(:success)
     # assert_select 'th.page-position-label'
   end
 
   def test_new_parent
     login_for(:admin)
-    get(:new, :type => 'parent_illustration')
+    get(:new, :type => 'pi_illustration_card')
     assert_response(:success)
     # assert_select 'th.page-position-label'
   end
@@ -155,8 +155,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference('PiLetterIllustrationCard.count', 1) do
       post(:create, 
-        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_arr }, 
-        :type => 'letter_illustration' )
+        :pi_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_arr }, 
+        :type => 'pi_letter_illustration_card' )
       assert_redirected_to(:controller => :base_cards, :action => :index)
     end
     new_card = PiLetterIllustrationCard.last
@@ -173,8 +173,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     assert_difference('PiLetterIllustrationCard.count', 1) do
       assert_difference('ImageComponent.count', 1) do
         post(:create, 
-          :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }] }, 
-          :type => 'letter_illustration' )
+          :pi_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }] }, 
+          :type => 'pi_letter_illustration_card' )
       assert_redirected_to(:controller => :base_cards, :action => :index)
       end
     end
@@ -193,8 +193,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     assert_difference('PiLetterIllustrationCard.count', 1) do
       assert_difference('ImageComponent.count', 1) do
         post(:create, 
-          :firb_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }, {:uri => compo.uri.to_s }] }, 
-          :type => 'letter_illustration' )
+          :pi_letter_illustration_card => { :name => 'Plonker', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_components => [{ :name => "FOOX", :zone_type => "BAR", :image_zone => @image_zone.uri.to_s }, {:uri => compo.uri.to_s }] }, 
+          :type => 'pi_letter_illustration_card' )
       assert_redirected_to(:controller => :base_cards, :action => :index)
       end
     end
@@ -211,8 +211,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference('PiLetterIllustrationCard.count', 1) do
       post(:create, 
-        :firb_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_term_arr }, 
-        :type => 'letter_illustration' )
+        :pi_letter_illustration_card => { :name => 'Letter', :position => 'last_and_first', :anastatica => '', :bibliography_items => '', :image_zone => @image_zone.uri.to_s, :iconclass_terms => @iconclass_term_arr }, 
+        :type => 'pi_letter_illustration_card' )
       assert_redirected_to(:controller => :base_cards, :action => :index)
     end
     new_card = PiLetterIllustrationCard.last
@@ -290,8 +290,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference("ImageComponent.count", 0) do
       post(:update, :id => card.id, 
-        :firb_letter_illustration_card => { :name => 'changed', :image_components => [ { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone }]},
-        :type => 'letter_illustration')
+        :pi_letter_illustration_card => { :name => 'changed', :image_components => [ { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone }]},
+        :type => 'pi_letter_illustration_card')
       assert_redirected_to :controller => :base_cards, :action => :show
     end
     card = PiLetterIllustrationCard.find(card.id)
@@ -311,8 +311,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference("ImageComponent.count", -1) do
       post(:update, :id => card.id, 
-        :firb_letter_illustration_card => { :name => 'changed', :image_components => [ ]},
-        :type => 'letter_illustration')
+        :pi_letter_illustration_card => { :name => 'changed', :image_components => [ ]},
+        :type => 'pi_letter_illustration_card')
       assert_redirected_to :controller => :base_cards, :action => :show
     end
     card = PiLetterIllustrationCard.find(card.id)
@@ -331,8 +331,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     login_for(:admin)
     assert_difference("ImageComponent.count", 1) do
       post(:update, :id => card.id, 
-        :firb_letter_illustration_card => { :name => 'changed', :image_components => [ {:uri => component.uri.to_s }, { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone } ]},
-        :type => 'letter_illustration')
+        :pi_letter_illustration_card => { :name => 'changed', :image_components => [ {:uri => component.uri.to_s }, { :name => "FOOZ", :zone_type => "BAR", :image_zone => @image_zone } ]},
+        :type => 'pi_letter_illustration_card')
       assert_redirected_to :controller => :base_cards, :action => :show
     end
     card = PiLetterIllustrationCard.find(card.id)
@@ -361,7 +361,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   end
   
   def setup_additional_cards
-    @parent = FirbParentIllustrationCard.new(:name => 'madre', :position => 'on top')
+    @parent = PiIllustrationCard.new(:name => 'madre', :position => 'on top')
     @parent.save!
     @letter = PiLetterIllustrationCard.new(:name => 'Letter', :position => 'first')
     @letter.save!

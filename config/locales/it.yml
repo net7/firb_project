@@ -265,7 +265,7 @@ it:
         parent_collocation: "Collocazione (della madre)"
         bibliography: "Bibliografia"
         
-    firb_letter_illustration_cards:
+    pi_letter_illustration_cards:
         model_name: "Scheda capolettera"
         model_name_plural: "Schede capolettera"
         collection:
@@ -295,7 +295,7 @@ it:
         bibliography: "Bibliografia"
         iconclass_terms: "Termini Iconclass"
 
-    firb_parent_illustration_cards:
+    pi_illustration_cards:
         model_name: "Scheda illustrazione"
         model_name_plural: "Schede illustrazione"
         actions:

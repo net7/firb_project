@@ -29,7 +29,7 @@ hidden_tabs:
   - 'talia_sources'
 base_card_types:
   - illustrated_memory_depiction 
-  - letter_illustration 
-  - parent_illustration
+  - pi_letter_illustration_card 
+  - pi_illustration_card
   - parade_cart
   - parade_character

@@ -40,7 +40,7 @@
 </def>
 
 
-<def tag="field-table" for="FirbParentIllustrationCard">
+<def tag="field-table" for="PiIllustrationCard">
     <field-table merge>
         <post-bibliography:>
             <field-row fieldname="code" />
