@@ -14,7 +14,7 @@ class NoteTest < ActiveSupport::TestCase
     
     
     setup_once(:text) do
-      source = FirbTextCard.create_card(:title => 'Title title title', :parafrasi => 'rollollolllo')
+      source = PiTextCard.create_card(:title => 'Title title title', :parafrasi => 'rollollolllo')
       source.save!
       source
     end
@@ -43,13 +43,13 @@ class NoteTest < ActiveSupport::TestCase
   end
   
   def test_replace_notes
-    new_card = FirbTextCard.create_card(:title => 'Title title title BIS', :parafrasi => 'rollollolllo2')
+    new_card = PiTextCard.create_card(:title => 'Title title title BIS', :parafrasi => 'rollollolllo2')
     new_card.save!
     note = Note.create_note('I am a new note', new_card.uri.to_s)
     note.save!
     Note.replace_notes({ "new_1234" => "bingobong", note.uri.to_s => "pongo" }, new_card)
     new_note = Note.find(note.id)
-    new_card = FirbTextCard.find(new_card.id)
+    new_card = PiTextCard.find(new_card.id)
     assert_equal("pongo", new_note.content)
     assert_equal(2, new_card.notes_count)
   end

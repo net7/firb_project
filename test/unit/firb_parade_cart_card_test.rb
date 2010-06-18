@@ -13,13 +13,13 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:baldini) do
-      baldini = FirbFiTextCard.create_card(:title => "Baldini Text")
+      baldini = FiTextCard.create_card(:title => "Baldini Text")
       baldini.save!
       baldini
     end
     
     setup_once(:cini) do
-      cini = FirbFiTextCard.create_card(:title => "Cini Text")
+      cini = FiTextCard.create_card(:title => "Cini Text")
       cini.save!
       cini
     end
