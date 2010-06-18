@@ -16,11 +16,11 @@ class PiTextCard < TextCard
         if(comp_options.is_a?(TaliaCore::ActiveSource))
           comp_options
         elsif(comp_options[:uri].blank?)
-          comp = FirbNonIllustratedMemoryDepictionCard.new(comp_options)
+          comp = PiNonIllustratedMdCard.new(comp_options)
           comp.save!
           comp
         else
-          FirbNonIllustratedMemoryDepictionCard.find(comp_options[:uri])
+          PiNonIllustratedMdCard.find(comp_options[:uri])
         end
       end
     end

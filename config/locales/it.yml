@@ -234,6 +234,8 @@ it:
     pi_illustrated_md_cards:
         model_name: "Scheda di immagine di memoria illustrata"
         model_name_plural: "Schede di immagini di memoria illustrate"
+        messages:
+            create_success: "La nuova scheda di immagine di memoria illustrata è stata salvata."
         collection:
             count: "Ci sono {{count}} schede immagine di memoria"
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
@@ -268,6 +270,8 @@ it:
     pi_letter_illustration_cards:
         model_name: "Scheda capolettera"
         model_name_plural: "Schede capolettera"
+        messages:
+            create_success: "La nuova scheda capolettera è stata salvata."
         collection:
             count: "Ci sono {{count}} schede capolettera"
             empty_message: "Nessuna capolettera da visualizzare"
@@ -298,6 +302,8 @@ it:
     pi_illustration_cards:
         model_name: "Scheda illustrazione"
         model_name_plural: "Schede illustrazione"
+        messages:
+            create_success: "La nuova scheda illustrazione è stata salvata"
         actions:
             create: "Salva questa scheda illustrazione"
             new: "Crea una nuova scheda illustrazione"
@@ -358,9 +364,9 @@ it:
             empty_message: "Nessuna scheda di questa tipologia da visualizzare"
         collocation: "Collocazione"
         non_illustrated_memory_depiction_link: "Scheda di immagine di memoria non illustrata"
-        illustrated_memory_depiction_link: "Scheda di immagine di memoria illustrata"
-        letter_illustration_link: "Scheda capolettera"
-        parent_illustration_link: "Scheda illustrazione"
+        pi_illustrated_md_card_link: "Immagine di memoria illustrata"
+        pi_letter_illustration_card_link: "Capolettera"
+        pi_illustration_card_link: "Illustrazione"
         parade_cart_link: "Carro"
         parade_character_link: "Personaggio"
         new_link: "Crea"

@@ -390,7 +390,7 @@
 <def tag="pi-non-illustrated-m-d-card-edit">
     <%= 
         render :partial => 'shared/non_illustrated_memory_depictions',
-        :locals => { :main_name => 'pi_text_card', :param_name => 'pi_non_illustrated_m_d_card', 
+        :locals => { :main_name => 'pi_text_card', :param_name => 'non_illustrated_memory_depictions', 
         :existing => this.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.depiction_type})", ic.uri.to_s]} }
     %>
 </def>
