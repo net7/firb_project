@@ -119,7 +119,7 @@ namespace :firb do
 
   desc "Rename FirbNonIllustratedMemoryDepictionCard to PiNonIllustratedMdCard"
   task :non_illustrated_md_card_rename => 'talia_core:init' do
-    ENV = ENV.merge({'old' => 'FirbNonIllustratedMemoryDepictionCard', new => 'PiNonIllustratedMdCard', 'old_uri' => 'firb_non_illustrated_memory_depiction_cards', 'new_uri' => 'pi_non_illustrated_memory_depiction_card'})
+    ENV = ENV.merge({'old' => 'FirbNonIllustratedMemoryDepictionCard', 'new' => 'PiNonIllustratedMdCard', 'old_uri' => 'firb_non_illustrated_memory_depiction_cards', 'new_uri' => 'pi_non_illustrated_memory_depiction_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
@@ -131,7 +131,7 @@ namespace :firb do
 
   desc "Rename FirbLetterIllustrationCard to PiLetterIllustrationCard"
   task :letter_illustration_rename => 'talia_core:init' do
-    ENV = ENV.merge({'old' => 'FirbLetterIllustrationCard', new => 'PiLetterIllustrationCard', 'old_uri' => 'firb_card', 'new_uri' => 'pi_letter_illustration_card'})
+    ENV = ENV.merge({'old' => 'FirbLetterIllustrationCard', 'new' => 'PiLetterIllustrationCard', 'old_uri' => 'firb_card', 'new_uri' => 'pi_letter_illustration_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
@@ -143,7 +143,7 @@ namespace :firb do
 
   desc "Rename FirbParentIllustrationCard to PiIllustrationCard"
   task :parent_illustration_rename => 'talia_core:init' do
-    ENV = ENV.merge({'old' => 'FirbParentIllustrationCard', new => 'PiIllustrationCard', old_uri => 'parent_illustration', 'new_uri' => 'pi_illustration_card'})
+    ENV = ENV.merge({'old' => 'FirbParentIllustrationCard', 'new' => 'PiIllustrationCard', 'old_uri' => 'parent_illustration', 'new_uri' => 'pi_illustration_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
@@ -155,7 +155,7 @@ namespace :firb do
 
   desc "Rename FirbIllustratedMemoryDepictionCard to PiIllustratedMdCard"
   task :illustrated_md_rename => 'talia_core:init' do
-     ENV = ENV.merge({'old' => 'FirbIllustratedMemoryDepictionPage', new => 'PiIllustratedMdCard', old_uri => 'firbillustratedmemorydepiction', 'new_uri' => 'pi_illustrated_md_card'})
+     ENV = ENV.merge({'old' => 'FirbIllustratedMemoryDepictionPage', 'new' => 'PiIllustratedMdCard', 'old_uri' => 'firbillustratedmemorydepiction', 'new_uri' => 'pi_illustrated_md_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
 
