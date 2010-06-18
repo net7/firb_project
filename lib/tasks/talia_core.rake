@@ -130,7 +130,7 @@ namespace :firb do
   end
 
   desc "Rename FirbLetterIllustrationCard to PiLetterIllustrationCard"
-  task :_rename => 'talia_core:init' do
+  task :letter_illustration_rename => 'talia_core:init' do
     ENV = ENV.merge({'old' => 'FirbLetterIllustrationCard', new => 'PiLetterIllustrationCard', 'old_uri' => 'firb_card', 'new_uri' => 'pi_letter_illustration_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
@@ -142,7 +142,7 @@ namespace :firb do
   end
 
   desc "Rename FirbParentIllustrationCard to PiIllustrationCard"
-  task :_rename => 'talia_core:init' do
+  task :parent_illustration_rename => 'talia_core:init' do
     ENV = ENV.merge({'old' => 'FirbParentIllustrationCard', new => 'PiIllustrationCard', old_uri => 'parent_illustration', 'new_uri' => 'pi_illustration_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
@@ -154,7 +154,7 @@ namespace :firb do
   end
 
   desc "Rename FirbIllustratedMemoryDepictionCard to PiIllustratedMdCard"
-  task :_rename => 'talia_core:init' do
+  task :illustrated_md_rename => 'talia_core:init' do
      ENV = ENV.merge({'old' => 'FirbIllustratedMemoryDepictionPage', new => 'PiIllustratedMdCard', old_uri => 'firbillustratedmemorydepiction', 'new_uri' => 'pi_illustrated_md_card'})
     Rake::Task['talia_model:rename'].reenable
     Rake::Task['talia_model:rename'].invoke
@@ -191,6 +191,18 @@ namespace :firb do
 
     Rake::Task['firb:notes_rename'].reenable
     Rake::Task['firb:notes_rename'].invoke
+
+    Rake::Task['firb:parent_illustration_rename'].reenable
+    Rake::Task['firb:parent_illustration_rename'].invoke
+
+    Rake::Task['firb:letter_illustration_rename'].reenable
+    Rake::Task['firb:letter_illustration_rename'].invoke
+
+    Rake::Task['firb:non_illustrated_md_card_rename'].reenable
+    Rake::Task['firb:non_illustrated_md_card_rename'].invoke
+
+    Rake::Task['firb:illustrated_md_rename'].reenable
+    Rake::Task['firb:illustrated_md_rename'].invoke
 
     Rake::Task['talia_core:rebuild_rdf'].invoke
     Rake::Task['talia_core:setup_ontologies'].invoke
