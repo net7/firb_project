@@ -112,7 +112,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   end
 
   def test_create_non_illustrated_non_authorized
-    assert_difference('PiNonIllustratedMDCard.count', 0) do
+    assert_difference('PiNonIllustratedMdCard.count', 0) do
       post(:create, :pi_non_illustrated_m_d_card => { :name => 'New one', :position => 'last_and_first', :anastatica => '' }, :type => 'pi_non_illustrated_m_d_card')
       assert_response(403)
     end
@@ -121,11 +121,11 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_create_non_illustrated_with_page
     setup_page
     login_for(:admin)
-    assert_difference('PiNonIllustratedMDCard.count', 1) do
+    assert_difference('PiNonIllustratedMdCard.count', 1) do
       post(:create, :pi_non_illustrated_m_d_card => { :name => 'New one', :position => 'last_and_first', :anastatica => @page.uri.to_s }, :type => 'pi_non_illustrated_m_d_card')
       assert_redirected_to(:controller => :base_cards, :action => :index)
     end
-    new_card = PiNonIllustratedMDCard.last
+    new_card = PiNonIllustratedMdCard.last
     assert_equal('New one', new_card.name)
     assert_equal('last_and_first', new_card.position)
     assert_kind_of(Anastatica, new_card.anastatica)
@@ -225,16 +225,16 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_destroy
     setup_card
     login_for(:admin)
-    assert_difference('PiNonIllustratedMDCard.count', -1) do
+    assert_difference('PiNonIllustratedMdCard.count', -1) do
       post(:destroy, :id => @non_illustrated.id)
       assert_response(302)
     end
-    assert(!PiNonIllustratedMDCard.exists?(@non_illustrated.id))
+    assert(!PiNonIllustratedMdCard.exists?(@non_illustrated.id))
   end
 
   def test_destroy_non_authorized
     setup_card
-    assert_difference('PiNonIllustratedMDCard.count', 0) do
+    assert_difference('PiNonIllustratedMdCard.count', 0) do
       post(:destroy, :id => @non_illustrated.id)
       assert_response(403)
     end
@@ -257,7 +257,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
       :pi_non_illustrated_m_d_card => { :name => 'changed', :position => 'last_and_first', :anastatica => @page.uri.to_s }, 
       :type => 'pi_non_illustrated_m_d_card')
     assert_redirected_to(:action => :show, :id => @non_illustrated.id)
-    card = PiNonIllustratedMDCard.find(@non_illustrated.id)
+    card = PiNonIllustratedMdCard.find(@non_illustrated.id)
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
     assert_kind_of(Anastatica, card.anastatica)
@@ -352,7 +352,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
 
 
   def setup_cards
-    @non_illustrated = PiNonIllustratedMDCard.new(:name => 'me title', :position => '3rb')
+    @non_illustrated = PiNonIllustratedMdCard.new(:name => 'me title', :position => '3rb')
     @non_illustrated.save!
     @illustrated_one = PiIllustratedMDCard.new(:name => 'illuostrous', :position => 'whatever')
     @illustrated_one.save!
@@ -368,7 +368,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   end
   
   def setup_card
-    @non_illustrated = PiNonIllustratedMDCard.new(:name => 'me title', :position => '3rb')
+    @non_illustrated = PiNonIllustratedMdCard.new(:name => 'me title', :position => '3rb')
     @non_illustrated.save!
   end
 
