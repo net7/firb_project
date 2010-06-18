@@ -1,4 +1,6 @@
-class FirbNonIllustratedMemoryDepictionCard < BaseCard
+# Non illustrated memory depiction card: immagini di memoria non illustrate (firb PI)
+# Used as part of PI text cards
+class PiNonIllustratedMDCard < BaseCard
   
   include StandardPermissions
   extend RdfProperties

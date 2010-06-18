@@ -24,7 +24,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_index_non_illustrated
     setup_cards
     login_for(:admin)
-    get(:index, :type => 'non_illustrated_memory_depiction')
+    get(:index, :type => 'pi_non_illustrated_m_d_card')
     assert_response(:success)
     assert_select('ul.collection') { assert_select('li.item', 1) }
   end
@@ -70,7 +70,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_show_illustrated
     setup_cards
     login_for(:admin)
-    get(:show, :type => 'non_illustrated_memory_depiction', :id => @non_illustrated.id)
+    get(:show, :type => 'pi_non_illustrated_m_d_card', :id => @non_illustrated.id)
     assert_response(:success)
   end
 
@@ -85,7 +85,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   # 
   def test_new_non_illustrated
     login_for(:admin)
-    get(:new, :type => 'non_illustrated_memory_depiction')
+    get(:new, :type => 'pi_non_illustrated_m_d_card')
     assert_response(:success)
     # assert_select 'th.page-position-label'
   end 
@@ -112,8 +112,8 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   end
 
   def test_create_non_illustrated_non_authorized
-    assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 0) do
-      post(:create, :firb_non_illustrated_memory_depiction_card => { :name => 'New one', :position => 'last_and_first', :anastatica => '' }, :type => 'non_illustrated_memory_depiction')
+    assert_difference('PiNonIllustratedMDCard.count', 0) do
+      post(:create, :pi_non_illustrated_m_d_card => { :name => 'New one', :position => 'last_and_first', :anastatica => '' }, :type => 'pi_non_illustrated_m_d_card')
       assert_response(403)
     end
   end
@@ -121,11 +121,11 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_create_non_illustrated_with_page
     setup_page
     login_for(:admin)
-    assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 1) do
-      post(:create, :firb_non_illustrated_memory_depiction_card => { :name => 'New one', :position => 'last_and_first', :anastatica => @page.uri.to_s }, :type => 'non_illustrated_memory_depiction')
+    assert_difference('PiNonIllustratedMDCard.count', 1) do
+      post(:create, :pi_non_illustrated_m_d_card => { :name => 'New one', :position => 'last_and_first', :anastatica => @page.uri.to_s }, :type => 'pi_non_illustrated_m_d_card')
       assert_redirected_to(:controller => :base_cards, :action => :index)
     end
-    new_card = FirbNonIllustratedMemoryDepictionCard.last
+    new_card = PiNonIllustratedMDCard.last
     assert_equal('New one', new_card.name)
     assert_equal('last_and_first', new_card.position)
     assert_kind_of(Anastatica, new_card.anastatica)
@@ -225,16 +225,16 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def test_destroy
     setup_card
     login_for(:admin)
-    assert_difference('FirbNonIllustratedMemoryDepictionCard.count', -1) do
+    assert_difference('PiNonIllustratedMDCard.count', -1) do
       post(:destroy, :id => @non_illustrated.id)
       assert_response(302)
     end
-    assert(!FirbNonIllustratedMemoryDepictionCard.exists?(@non_illustrated.id))
+    assert(!PiNonIllustratedMDCard.exists?(@non_illustrated.id))
   end
 
   def test_destroy_non_authorized
     setup_card
-    assert_difference('FirbNonIllustratedMemoryDepictionCard.count', 0) do
+    assert_difference('PiNonIllustratedMDCard.count', 0) do
       post(:destroy, :id => @non_illustrated.id)
       assert_response(403)
     end
@@ -254,10 +254,10 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     setup_page
     login_for(:admin)
     post(:update, :id => @non_illustrated.id, 
-      :firb_non_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :anastatica => @page.uri.to_s }, 
-      :type => 'non_illustrated_memory_depiction')
+      :pi_non_illustrated_m_d_card => { :name => 'changed', :position => 'last_and_first', :anastatica => @page.uri.to_s }, 
+      :type => 'pi_non_illustrated_m_d_card')
     assert_redirected_to(:action => :show, :id => @non_illustrated.id)
-    card = FirbNonIllustratedMemoryDepictionCard.find(@non_illustrated.id)
+    card = PiNonIllustratedMDCard.find(@non_illustrated.id)
     assert_equal('changed', card.name)
     assert_equal('last_and_first', card.position)
     assert_kind_of(Anastatica, card.anastatica)
@@ -344,19 +344,19 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
     setup_card
     old_position = @non_illustrated.position
     post(:update, :id => @non_illustrated.id, 
-      :firb_non_illustrated_memory_depiction_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => '' },
-      :type => 'non_illustrated_memory_depiction')
+      :pi_non_illustrated_m_d_card => { :name => 'changed', :position => 'last_and_first', :bibliography_items => '' },
+      :type => 'pi_non_illustrated_m_d_card')
     assert_response(403)
     assert_equal(BaseCard.find(@non_illustrated.id).position, old_position)
   end
 
 
   def setup_cards
-    @non_illustrated = FirbNonIllustratedMemoryDepictionCard.new(:name => 'me title', :position => '3rb')
+    @non_illustrated = PiNonIllustratedMDCard.new(:name => 'me title', :position => '3rb')
     @non_illustrated.save!
-    @illustrated_one = FirbIllustratedMemoryDepictionCard.new(:name => 'illuostrous', :position => 'whatever')
+    @illustrated_one = PiIllustratedMDCard.new(:name => 'illuostrous', :position => 'whatever')
     @illustrated_one.save!
-    @illustrated_two = FirbIllustratedMemoryDepictionCard.new(:name => 'super_illu', :position => 'you guess')
+    @illustrated_two = PiIllustratedMDCard.new(:name => 'super_illu', :position => 'you guess')
     @illustrated_two.save!
   end
   
@@ -368,7 +368,7 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   end
   
   def setup_card
-    @non_illustrated = FirbNonIllustratedMemoryDepictionCard.new(:name => 'me title', :position => '3rb')
+    @non_illustrated = PiNonIllustratedMDCard.new(:name => 'me title', :position => '3rb')
     @non_illustrated.save!
   end
 

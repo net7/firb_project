@@ -113,7 +113,7 @@
     </form>
 </def>
 
-<def tag="form" for="FirbNonIllustratedMemoryDepictionCard">
+<def tag="form" for="PiNonIllustratedMDCard">
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi />
     </form>
@@ -143,12 +143,11 @@
 
 <!-- All the cards -->
 
-<def tag="card" for="FirbNonIllustratedMemoryDepictionCard">
+<def tag="card" for="PiNonIllustratedMDCard">
   <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <anastatica-link />
-      
     </header:>
   </card>
 </def>
@@ -388,10 +387,10 @@
     </ul>
 </def>
 
-<def tag="non-illustrated-memory-depiction-edit">
+<def tag="pi-non-illustrated-m-d-card-edit">
     <%= 
         render :partial => 'shared/non_illustrated_memory_depictions',
-        :locals => { :main_name => 'pi_text_card', :param_name => 'non_illustrated_memory_depictions', 
+        :locals => { :main_name => 'pi_text_card', :param_name => 'pi_non_illustrated_m_d_card', 
         :existing => this.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.depiction_type})", ic.uri.to_s]} }
     %>
 </def>

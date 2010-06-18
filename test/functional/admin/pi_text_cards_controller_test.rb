@@ -94,7 +94,7 @@ class Admin::PiTextCardsControllerTest < ActionController::TestCase
     card = PiTextCard.find(@card.id)
     assert_equal('changed', card.title)
     assert_equal(@anastatica.uri, card.anastatica.uri)
-    noicards = FirbNonIllustratedMemoryDepictionCard.all
+    noicards = PiNonIllustratedMDCard.all
     assert_property(card.non_illustrated_memory_depictions, *noicards)
     assert_property(card.image_zones, @image_zone)
   end
@@ -102,7 +102,7 @@ class Admin::PiTextCardsControllerTest < ActionController::TestCase
   def test_update_with_new_non_illustrated
     setup_blank_card
     login_for(:admin)
-    assert_difference("FirbNonIllustratedMemoryDepictionCard.count", 1) do
+    assert_difference("PiNonIllustratedMDCard.count", 1) do
       post(:update, :id => @card.id, 
         :pi_text_card => { :title => 'changed', 
           :non_illustrated_memory_depictions => [{ :name => "FOOZ" }] })
@@ -110,25 +110,25 @@ class Admin::PiTextCardsControllerTest < ActionController::TestCase
     end
     card = PiTextCard.find(@card.id)
     assert_equal('changed', card.title)
-    assert_property(card.non_illustrated_memory_depictions, *FirbNonIllustratedMemoryDepictionCard.all)
+    assert_property(card.non_illustrated_memory_depictions, *PiNonIllustratedMDCard.all)
   end
   
   def test_update_with_new_existing_non_illustrated
     setup_blank_card
     setup_non_illustrated
-    @card.non_illustrated_memory_depictions = FirbNonIllustratedMemoryDepictionCard.all
+    @card.non_illustrated_memory_depictions = PiNonIllustratedMDCard.all
     @card.save
-    to_delete = FirbNonIllustratedMemoryDepictionCard.first
+    to_delete = PiNonIllustratedMDCard.first
     login_for(:admin)
-    assert_difference("FirbNonIllustratedMemoryDepictionCard.count", 0) do
+    assert_difference("PiNonIllustratedMDCard.count", 0) do
       post(:update, :id => @card.id, 
         :pi_text_card => { :title => 'changed', 
-          :non_illustrated_memory_depictions => [{ :name => "FOOZ" }, FirbNonIllustratedMemoryDepictionCard.last ] })
+          :non_illustrated_memory_depictions => [{ :name => "FOOZ" }, PiNonIllustratedMDCard.last ] })
       assert_redirected_to :controller => :pi_text_cards, :action => :index
     end
     card = PiTextCard.find(@card.id)
     assert_equal('changed', card.title)
-    assert(!FirbNonIllustratedMemoryDepictionCard.exists?(to_delete.id))
+    assert(!PiNonIllustratedMDCard.exists?(to_delete.id))
     assert_equal(2, card.non_illustrated_memory_depictions.size)
   end
 
@@ -142,11 +142,11 @@ class Admin::PiTextCardsControllerTest < ActionController::TestCase
   def test_destroy_with_non_illustrated
     setup_blank_card
     setup_non_illustrated
-    @card.non_illustrated_memory_depictions = FirbNonIllustratedMemoryDepictionCard.all
+    @card.non_illustrated_memory_depictions = PiNonIllustratedMDCard.all
     @card.save
     login_for(:admin)
     assert_difference("PiTextCard.count", -1) do
-      assert_difference("FirbNonIllustratedMemoryDepictionCard.count", -2) do
+      assert_difference("PiNonIllustratedMDCard.count", -2) do
         post(:destroy, :id => @card.id)
         assert_redirected_to :controller => :pi_text_cards, :action => :index
       end
@@ -174,7 +174,7 @@ class Admin::PiTextCardsControllerTest < ActionController::TestCase
   
   def setup_non_illustrated
     @non_illustrated = (1..2).collect do |idx|
-      card = FirbNonIllustratedMemoryDepictionCard.new(:name => "FOO#{idx}")
+      card = PiNonIllustratedMDCard.new(:name => "FOO#{idx}")
       card.save!
       { :uri => card.uri.to_s }
     end

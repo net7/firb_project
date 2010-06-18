@@ -33,7 +33,7 @@
         <br />
         <div id="non-illustrated-memory-depictions">
             <%= I18n.t("text_page.non_ill_mem_dep") %> :
-            <non-illustrated-memory-depiction-edit />
+            <pi-non-illustrated-m-d-card-edit />
         </div>
         <br />
         <div id="firb-notes">

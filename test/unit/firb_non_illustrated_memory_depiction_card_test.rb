@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FirbNonIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
+class PiNonIllustratedMDCardTest < ActiveSupport::TestCase
   
   include TaliaUtil::TestHelpers
   suppress_fixtures
@@ -12,7 +12,7 @@ class FirbNonIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
       true
     end
     setup_once(:card) do
-      source = FirbNonIllustratedMemoryDepictionCard.new(
+      source = PiNonIllustratedMDCard.new(
       :name => "evil guy",
       :code => "codyhoo"
       )
@@ -25,8 +25,8 @@ class FirbNonIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
   end
   
   def test_create
-    card = FirbNonIllustratedMemoryDepictionCard.new
-    assert_kind_of(FirbNonIllustratedMemoryDepictionCard, card)
+    card = PiNonIllustratedMDCard.new
+    assert_kind_of(PiNonIllustratedMDCard, card)
     assert_not_nil(card.uri)
     assert_match(/[^\s]+/, card.uri.to_s)
   end
@@ -36,7 +36,7 @@ class FirbNonIllustratedMemoryDepictionCardTest < ActiveSupport::TestCase
   end
   
   def test_create_with_options
-    card = FirbNonIllustratedMemoryDepictionCard.new(:name => "tito", :position => "ups")
+    card = PiNonIllustratedMDCard.new(:name => "tito", :position => "ups")
     assert_equal("ups", card.position)
     assert_equal("tito", card.name)
   end
