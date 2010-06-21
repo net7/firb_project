@@ -39,16 +39,17 @@ shown_tabs:
   - 'vt_printed_text_cards'
   - 'bg_text_cards'
   - 'fi_text_cards'
-  - 'parades'
-  - 'processions'
+  - 'fi_parade_cart_cards'
+  - 'fi_processions'
+  - 'fi_character_card'
   - 'pi_text_cards'
 # the list of subtypes of "base_card"s edit it as desired
 base_card_types:
-  - pi_illustrated_md_card
-  - pi_letter_illustration_card
+  - pi_illustrated_md_card 
+  - pi_letter_illustration_card 
   - pi_illustration_card
-  - parade_cart
-  - parade_character
+  - fi_parade_cart_card
+  - fi_character_card
 iip_server_uri: http://localhost/fcgi-bin/iipsrv.fcgi
 vips_command: /opt/local/bin/vips
 convert_command: /usr/bin/convert
