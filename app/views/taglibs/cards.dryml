@@ -469,7 +469,7 @@
   </card>
 </def>
 
-<def tag="card" for="Parade">
+<def tag="card" for="FiParade">
   <card class="talia-collection" param="default" merge>
     <header: param>
       <h4 param="heading"><a><%= this.title %></a><delete-icon /></h4>

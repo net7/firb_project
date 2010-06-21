@@ -35,7 +35,7 @@ class Admin::FiParadesControllerTest < ActionController::TestCase
       post(:create, :talia_collection => { :title => 'Meee new title' })
       assert_response 302
     end
-    new_parade = Parade.last
+    new_parade = FiParade.last
     assert_equal('Meee new title', new_parade.title)
   end
   
@@ -65,7 +65,7 @@ class Admin::FiParadesControllerTest < ActionController::TestCase
   private 
   
   def setup_parade
-    @parade = Parade.new(:title => "Foobar")
+    @parade = FiParade.new(:title => "Foobar")
     @parade.save!
   end
   

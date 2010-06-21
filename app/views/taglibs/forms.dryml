@@ -242,7 +242,7 @@
   </form>
 </def>
 
-<def tag="form" for="Parade">
+<def tag="form" for="FiParade">
   <form merge param="default">
     <error-messages param/>
     <field-list fields="title" param/>

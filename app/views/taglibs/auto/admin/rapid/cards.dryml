@@ -99,7 +99,7 @@
   </card>
 </def>
 
-<def tag="card" for="Parade">
+<def tag="card" for="FiParade">
   <card class="parade" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>

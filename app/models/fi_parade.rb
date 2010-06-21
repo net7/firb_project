@@ -1,5 +1,5 @@
 # Represent a Parade (Sfilata) in the FIRB FI site
-class Parade < TaliaCore::Collection
+class FiParade < TaliaCore::Collection
   hobo_model # Don't put anything above this
   validate :only_processions
   

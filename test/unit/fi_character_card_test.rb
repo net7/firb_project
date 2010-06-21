@@ -13,7 +13,7 @@ class FiCharacterCardTest < ActiveSupport::TestCase
     end
 
     setup_once(:parade) do
-      parade = Parade.new(:title => "Sfilata")
+      parade = FiParade.new(:title => "Sfilata")
       parade.save!
       parade 
     end

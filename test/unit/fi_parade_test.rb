@@ -13,7 +13,7 @@ class FiParadeTest < ActiveSupport::TestCase
     end
     
     setup_once(:parade) do
-      parade = Parade.new(:title => "Parade Title")
+      parade = FiParade.new(:title => "Parade Title")
       parade << FiProcession.new(:name => "first_foo")
       parade << FiProcession.new(:name => "first_bar")
       parade.save!
