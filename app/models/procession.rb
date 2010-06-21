@@ -16,7 +16,7 @@ class Procession < TaliaCore::Collection
   end
 
   def characters
-    ordered_objects.find_all { |el| el.is_a?(FirbParadeCharacterCard) }
+    ordered_objects.find_all { |el| el.is_a?(FiCharacterCard) }
   end
 
   def cart
@@ -31,7 +31,7 @@ class Procession < TaliaCore::Collection
         cart_seen ? errors.add_to_base(I18n.t('procession.errors.too_many_carts')) : (cart_seen = true)
       else
         # If we don't have a cart, it should be a character
-        errors.add_to_base(I18n.t('procession.errors.illegal_type', :type => element.class.name )) unless(element.is_a?(FirbParadeCharacterCard))
+        errors.add_to_base(I18n.t('procession.errors.illegal_type', :type => element.class.name )) unless(element.is_a?(FiCharacterCard))
       end
     end
   end

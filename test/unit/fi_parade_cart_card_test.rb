@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FirbParadeCartCardTest < ActiveSupport::TestCase
+class FiParadeCartCardTest < ActiveSupport::TestCase
   
   include TaliaUtil::TestHelpers
   suppress_fixtures

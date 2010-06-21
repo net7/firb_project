@@ -341,7 +341,7 @@ it:
             delete: "Cancella scheda"
             edit: "Modifica {{name}}"
             
-    firb_parade_character_cards:
+    fi_character_cards:
         actions:
             new: "Crea nuova scheda"
             delete: "Cancella scheda"
@@ -368,7 +368,7 @@ it:
         pi_letter_illustration_card_link: "Capolettera"
         pi_illustration_card_link: "Illustrazione"
         fi_parade_cart_card_link: "Carro"
-        parade_character_link: "Personaggio"
+        fi_character_card_link: "Personaggio"
         new_link: "Crea"
         position: "Carta"
         name: "Nome"

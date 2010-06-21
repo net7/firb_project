@@ -1,6 +1,6 @@
 # Represents a character in the FIRB FI parade. A character may or may not be related
 # to a cart
-class FirbParadeCharacterCard < IllustrationCard
+class FiCharacterCard < IllustrationCard
   
   autofill_uri
   

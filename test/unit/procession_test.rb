@@ -15,8 +15,8 @@ class ProcessionTest < ActiveSupport::TestCase
     setup_once(:procession) do
       procession = Procession.new(:title => "Bar")
       procession << FiParadeCartCard.new(:name => "Pflonk")
-      procession << FirbParadeCharacterCard.new(:name => "Foo")
-      procession << FirbParadeCharacterCard.new(:name => "Bar")
+      procession << FiCharacterCard.new(:name => "Foo")
+      procession << FiCharacterCard.new(:name => "Bar")
       procession.save!
       procession
     end

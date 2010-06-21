@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class FiCharacterCartCardTest < ActiveSupport::TestCase
+class FiCharacterCardTest < ActiveSupport::TestCase
 
   include TaliaUtil::TestHelpers
   suppress_fixtures
@@ -26,7 +26,7 @@ class FiCharacterCartCardTest < ActiveSupport::TestCase
   end
 
   def test_char_qualities
-    card = FirbParadeCharacterCard.new(:character_qualities => "Boing")
+    card = FiCharacterCard.new(:character_qualities => "Boing")
     card.save!
     card.reload
     assert_equal(card.character_qualities, "Boing")

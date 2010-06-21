@@ -56,7 +56,7 @@ module FiCardsCommonFields
   end
   
   def fetch_procession
-    Procession.find(:first, :find_through => [N::DCT.hasPart, self])
+    Procession.find(:first, :find_through => [N::DCT.hasPart, self.uri])
   end
   
   def procession_valid?
