@@ -177,6 +177,54 @@ namespace :firb do
     end
   end
 
+  desc "Rename FirbParadeCartCard to FiParadeCartCard"
+  task :notes_rename => 'talia_core:init' do
+    ENV = ENV.merge({'old' => 'FirbParadeCartCard', 'new' => 'FiParadeCartCard', 'old_uri' => 'parade_cart', 'new_uri' => 'fi_parade_cart_card'})
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    if (ENV['make_all'].nil?)
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
+  desc "Rename FirbParadeCharacterCard to FiCharacterCard"
+  task :notes_rename => 'talia_core:init' do
+    ENV = ENV.merge({'old' => 'FirbParadeCharacterCard', 'new' => 'FiCharacterCard', 'old_uri' => 'parade_character', 'new_uri' => 'fi_character_card'})
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    if (ENV['make_all'].nil?)
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
+  desc "Rename Procession to FiProcession"
+  task :notes_rename => 'talia_core:init' do
+    ENV = ENV.merge({'old' => 'Procession', 'new' => 'FiProcession', 'old_uri' => 'procession', 'new_uri' => 'fi_procession'})
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    if (ENV['make_all'].nil?)
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
+  desc "Rename Parade to FiParade"
+  task :notes_rename => 'talia_core:init' do
+    ENV = ENV.merge({'old' => 'Parade', 'new' => 'FiParade', 'old_uri' => 'parade', 'new_uri' => 'fi_parade'})
+    Rake::Task['talia_model:rename'].reenable
+    Rake::Task['talia_model:rename'].invoke
+
+    if (ENV['make_all'].nil?)
+      Rake::Task['talia_core:rebuild_rdf'].invoke
+      Rake::Task['talia_core:setup_ontologies'].invoke
+    end
+  end
+
   desc "Rename all the Firb* models to the news names"
   task :rename_all => 'talia_core:init' do
     ENV['make_all'] = 'something'
