@@ -37,7 +37,7 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:cart) do
-      cart = FirbParadeCartCard.new(
+      cart = FiParadeCartCard.new(
       :name => "first_foo",
       :code => "XY Ungelöst",
       :author => "Whoever wins",
@@ -74,7 +74,7 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
   end
   
   def test_for_invalid_procession
-    new_cart = FirbParadeCartCard.new(:name => "Second", :procession => @procession)
+    new_cart = FiParadeCartCard.new(:name => "Second", :procession => @procession)
     assert_equal(2, @procession.size)
     assert(!@procession.valid?)
     assert(!new_cart.procession_valid?)
@@ -82,7 +82,7 @@ class FirbParadeCartCardTest < ActiveSupport::TestCase
   end
   
   def test_for_invalid_procession_save
-    new_cart = FirbParadeCartCard.new(:name => "Second", :procession => @procession.uri.to_s)
+    new_cart = FiParadeCartCard.new(:name => "Second", :procession => @procession.uri.to_s)
     assert(!new_cart.save)
   end
   

@@ -14,7 +14,7 @@ class ProcessionTest < ActiveSupport::TestCase
     
     setup_once(:procession) do
       procession = Procession.new(:title => "Bar")
-      procession << FirbParadeCartCard.new(:name => "Pflonk")
+      procession << FiParadeCartCard.new(:name => "Pflonk")
       procession << FirbParadeCharacterCard.new(:name => "Foo")
       procession << FirbParadeCharacterCard.new(:name => "Bar")
       procession.save!
@@ -48,7 +48,7 @@ class ProcessionTest < ActiveSupport::TestCase
   end
   
   def test_valid_too_many_carts
-    @procession << FirbParadeCartCard.new(:name => 'foobar')
+    @procession << FiParadeCartCard.new(:name => 'foobar')
     assert(!@procession.valid?)
   end
 

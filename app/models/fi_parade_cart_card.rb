@@ -1,5 +1,5 @@
 # Represents a Cart (Carro) in the Parade of FIRB FI
-class FirbParadeCartCard < IllustrationCard
+class FiParadeCartCard < IllustrationCard
   
   include FiCardsCommonFields
   extend FiCardsCommonFields::DefinedProperties

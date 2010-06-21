@@ -4,7 +4,7 @@
 </def>
 
 
-<def tag="form" for="FirbParadeCartCard">
+<def tag="form" for="FiParadeCartCard">
     <form merge param="default" action="&base_card_action">
         <card-form-common>
             <content:>
@@ -210,7 +210,7 @@
   </card>
 </def>
 
-<def tag="card" for="FirbParadeCartCard">
+<def tag="card" for="FiParadeCartCard">
   <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>

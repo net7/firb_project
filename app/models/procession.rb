@@ -20,13 +20,13 @@ class Procession < TaliaCore::Collection
   end
 
   def cart
-    ordered_objects.find { |el| el.is_a?(FirbParadeCartCard) }
+    ordered_objects.find { |el| el.is_a?(FiParadeCartCard) }
   end
 
   def only_carts_and_characters
     cart_seen = false
     ordered_objects.each do |element|
-      if(element.is_a?(FirbParadeCartCard))
+      if(element.is_a?(FiParadeCartCard))
         # We can allow at most one cart in the procession
         cart_seen ? errors.add_to_base(I18n.t('procession.errors.too_many_carts')) : (cart_seen = true)
       else
