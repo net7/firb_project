@@ -1,4 +1,4 @@
-class Admin::ParadesController < Admin::AdminSiteController
+class Admin::FiParadesController < Admin::AdminSiteController
 
   hobo_model_controller
 

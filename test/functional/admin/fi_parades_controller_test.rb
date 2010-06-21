@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
-class Admin::ParadesControllerTest < ActionController::TestCase
+class Admin::FiParadesControllerTest < ActionController::TestCase
 
   include TaliaUtil::TestHelpers
 
