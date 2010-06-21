@@ -61,7 +61,8 @@ module AdminHelper
   end
 
   def not_hidden?(model)
-    !(TaliaCore::CONFIG['hidden_tabs'].include?(model.name.tableize))
+    #!(TaliaCore::CONFIG['hidden_tabs'].include?(model.name.tableize))
+    TaliaCore::CONFIG['shown_tabs'].include?(model.name.tableize)
   end
   
   def image_components(components, card)
@@ -82,15 +83,15 @@ module AdminHelper
   # associated image_zone and it's name, if there's any. 
   def parent_and_zone(object)
     if !object.image_zone.nil?
-    		parent = object.image_zone.get_image_parent
-    		parent_name = parent.name
-    		image_zone = object.image_zone
-    		image_zone_name = image_zone.name
+      parent = object.image_zone.get_image_parent
+      parent_name = parent.name
+      image_zone = object.image_zone
+      image_zone_name = image_zone.name
 		else
-		    parent = nil
-    		image_zone = nil
-    		parent_name = I18n.t("firb.no_associated_image")
-    		image_zone_name = I18n.t("firb.no_associated_zone")
+      parent = nil
+      image_zone = nil
+      parent_name = I18n.t("firb.no_associated_image")
+      image_zone_name = I18n.t("firb.no_associated_zone")
 		end
 		return parent, parent_name, image_zone, image_zone_name
   end
