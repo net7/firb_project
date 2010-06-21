@@ -20,7 +20,7 @@ module FiCardsCommonFields
   end
   
   def procession=(value)
-    @procession = (value.is_a?(Procession) ? value : Procession.find(value))
+    @procession = (value.is_a?(FiProcession) ? value : FiProcession.find(value))
     @procession_new = true
     @procession << self
   end
@@ -56,7 +56,7 @@ module FiCardsCommonFields
   end
   
   def fetch_procession
-    Procession.find(:first, :find_through => [N::DCT.hasPart, self.uri])
+    FiProcession.find(:first, :find_through => [N::DCT.hasPart, self.uri])
   end
   
   def procession_valid?

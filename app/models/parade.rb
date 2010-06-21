@@ -18,7 +18,7 @@ class Parade < TaliaCore::Collection
   
   def only_processions
     ordered_objects.each do |element|
-      errors.add_to_base("Illegal type for #{element.inspect}: #{element.class.name}") unless(element.is_a?(Procession))
+      errors.add_to_base("Illegal type for #{element.inspect}: #{element.class.name}") unless(element.is_a?(FiProcession))
     end
   end
 

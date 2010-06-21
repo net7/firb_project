@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ProcessionTest < ActiveSupport::TestCase
+class FiProcessionTest < ActiveSupport::TestCase
   
   include TaliaUtil::TestHelpers
   suppress_fixtures
@@ -13,7 +13,7 @@ class ProcessionTest < ActiveSupport::TestCase
     end
     
     setup_once(:procession) do
-      procession = Procession.new(:title => "Bar")
+      procession = FiProcession.new(:title => "Bar")
       procession << FiParadeCartCard.new(:name => "Pflonk")
       procession << FiCharacterCard.new(:name => "Foo")
       procession << FiCharacterCard.new(:name => "Bar")

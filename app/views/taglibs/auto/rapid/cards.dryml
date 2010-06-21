@@ -46,6 +46,14 @@
   </card>
 </def>
 
+<def tag="card" for="FiProcession">
+  <card class="fi-procession" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="FiTextCard">
   <card class="fi-text-card" param="default" merge>
     <header: param>
@@ -104,14 +112,6 @@
 
 <def tag="card" for="PiTextCard">
   <card class="pi-text-card" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-  </card>
-</def>
-
-<def tag="card" for="Procession">
-  <card class="procession" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>

@@ -29,7 +29,7 @@ module FiCards
   end
   
   def setup_procession
-    @procession = Procession.new(:title => "Corteo")
+    @procession = FiProcession.new(:title => "Corteo")
     @procession.save!
   end
 

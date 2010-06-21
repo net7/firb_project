@@ -14,8 +14,8 @@ class ParadeTest < ActiveSupport::TestCase
     
     setup_once(:parade) do
       parade = Parade.new(:title => "Parade Title")
-      parade << Procession.new(:name => "first_foo")
-      parade << Procession.new(:name => "first_bar")
+      parade << FiProcession.new(:name => "first_foo")
+      parade << FiProcession.new(:name => "first_bar")
       parade.save!
       parade
     end

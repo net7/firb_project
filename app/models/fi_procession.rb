@@ -1,4 +1,4 @@
-class Procession < TaliaCore::Collection
+class FiProcession < TaliaCore::Collection
 
   hobo_model # Don't put anything above this
   validate :only_carts_and_characters

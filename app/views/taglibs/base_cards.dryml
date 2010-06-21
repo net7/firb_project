@@ -10,7 +10,7 @@
             <content:>
                 <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
-                <single-connection-row fieldname="procession" type="Procession" />
+                <single-connection-row fieldname="procession" type="FiProcession" />
                 <field-edit-row fieldname="name" />
                 <field-edit-row fieldname="code"  />
                 <field-edit-row fieldname="author" />
@@ -40,7 +40,7 @@
             <content:>
                 <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
                 <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
-                <single-connection-row fieldname="procession" type="Procession" />
+                <single-connection-row fieldname="procession" type="FiProcession" />
                 <field-edit-row fieldname="name" />
                 <field-edit-row fieldname="code"  />
                 <field-edit-row fieldname="author" />

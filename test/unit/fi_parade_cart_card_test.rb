@@ -25,7 +25,7 @@ class FiParadeCartCardTest < ActiveSupport::TestCase
     end
     
     setup_once(:procession) do
-      procession = Procession.new(:name => "Sfilata")
+      procession = FiProcession.new(:name => "Sfilata")
       procession.save!
       procession
     end
@@ -67,7 +67,7 @@ class FiParadeCartCardTest < ActiveSupport::TestCase
   end
   
   def test_procession
-    assert_kind_of(Procession, @cart.procession)
+    assert_kind_of(FiProcession, @cart.procession)
     assert_equal(@cart.procession.uri, @procession.uri)
     assert_equal(@cart.uri, @procession.first.uri)
     assert_equal(1, @procession.size)
