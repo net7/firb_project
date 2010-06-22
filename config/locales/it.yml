@@ -119,6 +119,7 @@ it:
             create: "Salva"
         edit:
             heading: "Modifica questa scheda di testo"
+        book: "Collezione di riferimento"
         title: "Titolo"
         transcription_file: "File XML della trascrizione"
         collocation: "Collocazione"

@@ -202,6 +202,8 @@
                 <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
             </field-row>
 
+            <single-connection-row fieldname="book" type="TaliaCollection" />
+
             <field-row fieldname="transcription_file">
                 <view:><input type="file" name="bg_text_card[file]"/></view:>
             </field-row>
@@ -215,7 +217,7 @@
             </content:>
         </field-edit-table>
 
-        <submit label="Save" /><or-cancel with="&FiTextCard" />
+        <submit label="Save" /><or-cancel with="&BgTextCard" />
     </form>
 </def>
 

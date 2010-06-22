@@ -228,6 +228,7 @@
 </def>
 
 <def tag="field-row" attrs="fieldname">
+    <% puts this.inspect %>
     <tr>
         <th class="#{fieldname}-label" param="label"><ht key="#{this.class.name.tableize}.#{fieldname}"><%= fieldname.titleize %></ht></th>
         <td class="#{fieldname}-view" param="view"><base-card-link with="&this[fieldname.to_sym]" /></td>
