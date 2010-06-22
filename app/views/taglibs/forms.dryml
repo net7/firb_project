@@ -211,7 +211,9 @@
                     <view:><input type="file" name="bg_illustration_card[file]"/></view:>
                 </field-row>
 
-                <!-- fonti dell'immagine, usi successivi -->
+                <field-row fieldname="related_source_in">
+                    <view:><bg-related-sources-edit fieldname='related_source_in'/></view:>
+                </field-row>
 
                 <field-edit-row fieldname="study_notes" />
                 <field-edit-row fieldname="motto" />

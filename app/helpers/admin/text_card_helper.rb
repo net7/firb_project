@@ -38,6 +38,11 @@ module Admin::TextCardHelper
     IconclassTerm.all.collect { |ic| [ "#{ic.term}", ic.uri.to_s ] }.sort
   end
   
+  def bg_related_sources_select
+    foo = BgIllustrationCard.all.collect { |ill| ["Illustrazione: #{ill.name}", ill.uri.to_s]}
+    foo = foo.push(BgTextCard.all.collect { |t| ["Scheda testo: #{t.name}", t.uri.to_s]})
+  end
+  
   # Limits the dropdown menu to TaliaCore::Collection items
   def bg_books_select 
     foo = TaliaCollection.all

@@ -129,19 +129,19 @@ it:
         comment: "Commento"
 
     bg_illustration_cards:
-        model_name: "Illustrazione"
-        model_name_plural: "Illustrazioni"
+        model_name: "Impresa"
+        model_name_plural: "Imprese"
         new: 
-            heading: "Nuova scheda illustrazione"
+            heading: "Nuova scheda impresa"
         collection:
-            count: "Ci sono {{count}} schede illustrazione"
-            empty_message: "Nessuna scheda illustrazione da visualizzare"
+            count: "Ci sono {{count}} schede impresa"
+            empty_message: "Nessuna scheda impresa da visualizzare"
         actions:
-            new: "Crea una nuova scheda illustrazione"
-            delete: "Cancella questa scheda illustrazione"
+            new: "Crea una nuova scheda impresa"
+            delete: "Cancella questa scheda impresa"
             create: "Salva"
         edit:
-            heading: "Modifica questa scheda illustrazione"
+            heading: "Modifica questa scheda impresa"
         name: "Nome"
         book: "Collezione di riferimento"
         signature: "Segnatura"
@@ -403,7 +403,7 @@ it:
         pi_illustration_card_link: "Illustrazione"
         fi_parade_cart_card_link: "Carro"
         fi_character_card_link: "Personaggio"
-        bg_illustration_card_link: "Illustrazione"
+        bg_illustration_card_link: "Impresa"
         new_link: "Crea"
         position: "Carta"
         name: "Nome"
