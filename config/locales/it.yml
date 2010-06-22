@@ -142,8 +142,24 @@ it:
             create: "Salva"
         edit:
             heading: "Modifica questa scheda illustrazione"
+        name: "Nome"
         book: "Collezione di riferimento"
-        
+        signature: "Segnatura"
+        collocation: "Collocazione"
+        tecnique: "Tecnica"
+        measure: "Misure"
+        technical_notes: "Note descrittive (tecniche)"
+        edition: "Edizione di riferimento"
+        description_file: "File XML della descrizione"
+        study_notes: "Note di studio"
+        motto: "Motto"
+        motto_language: "Lingua del motto"
+        motto_translation: "Traduzione del motto"
+        owner: "Possessore dell'impresa"
+        original_meaning: "Significato originale"
+        contextual_meaning: "Significato contestuale"
+        copyright_notes: "Note sul copyright"
+        bibliography_items: "Elementi Bibliografici"
 
     text_card:
         model_name: "Scheda di testo"
@@ -387,6 +403,7 @@ it:
         pi_illustration_card_link: "Illustrazione"
         fi_parade_cart_card_link: "Carro"
         fi_character_card_link: "Personaggio"
+        bg_illustration_card_link: "Illustrazione"
         new_link: "Crea"
         position: "Carta"
         name: "Nome"
