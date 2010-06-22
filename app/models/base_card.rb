@@ -2,6 +2,7 @@ class BaseCard < TaliaCore::Source
   hobo_model # Don't put anything above this
   
   include StandardPermissions
+  include FileAttached
   extend RdfProperties
   
   rdf_property :name, N::TALIA.name

@@ -24,7 +24,9 @@ class Admin::BaseCardsController < Admin::AdminSiteController
   end
 
   def create
+    file = card_params.delete(:file)
     hobo_source_create(:params => card_params, :class_name => @card_type.name) do |card|
+      card.attach_file(file) if (file && card.respond_to?(:attach_file))
       redirect_to :action => :index
     end
   end

@@ -128,6 +128,23 @@ it:
         page_position: "Numero della pagina"
         comment: "Commento"
 
+    bg_illustration_cards:
+        model_name: "Illustrazione"
+        model_name_plural: "Illustrazioni"
+        new: 
+            heading: "Nuova scheda illustrazione"
+        collection:
+            count: "Ci sono {{count}} schede illustrazione"
+            empty_message: "Nessuna scheda illustrazione da visualizzare"
+        actions:
+            new: "Crea una nuova scheda illustrazione"
+            delete: "Cancella questa scheda illustrazione"
+            create: "Salva"
+        edit:
+            heading: "Modifica questa scheda illustrazione"
+        book: "Collezione di riferimento"
+        
+
     text_card:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"

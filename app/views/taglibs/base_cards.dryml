@@ -219,6 +219,29 @@
   </card>
 </def>
 
+<def tag="card" for="BgIllustrationCard">
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <image-zone-link />
+
+    <div class="text-file">
+      <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
+        <ht key="text_page.no_file">Nessun file</ht>
+      </if>
+      <else>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)">
+            <ht key="text_cards.show_file">Mostra file</ht></a>
+        <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
+          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)">
+             <ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+        </if>
+      </else>
+    </div>
+    </header:>
+  </card>
+</def>
+
 <!-- General tags -->
 
 <def tag="field-edit-table" polymorphic>
@@ -228,7 +251,6 @@
 </def>
 
 <def tag="field-row" attrs="fieldname">
-    <% puts this.inspect %>
     <tr>
         <th class="#{fieldname}-label" param="label"><ht key="#{this.class.name.tableize}.#{fieldname}"><%= fieldname.titleize %></ht></th>
         <td class="#{fieldname}-view" param="view"><base-card-link with="&this[fieldname.to_sym]" /></td>

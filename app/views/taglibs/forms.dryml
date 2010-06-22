@@ -189,6 +189,50 @@
     </form>
 </def>
 
+<def tag="form" for="BgIllustrationCard">
+    <form merge param="default" action="&base_card_action" multipart="true">
+        <card-form-common>
+            <content:>
+                <field-edit-row fieldname="name" />
+
+                <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
+                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
+                <single-connection-row fieldname="book" type="TaliaCollection" options="&bg_books_select" />
+
+                <field-edit-row fieldname="signature" />
+                <field-edit-row fieldname="collocation" />
+                <field-edit-row fieldname="tecnique" />
+                <field-edit-row fieldname="measure" />
+                <field-edit-row fieldname="technical_notes" />
+
+                <single-connection-row fieldname="edition" type="BibliographyItem" />
+
+                <field-row fieldname="description_file">
+                    <view:><input type="file" name="bg_illustration_card[file]"/></view:>
+                </field-row>
+
+                <!-- fonti dell'immagine, usi successivi -->
+
+                <field-edit-row fieldname="study_notes" />
+                <field-edit-row fieldname="motto" />
+                <field-edit-row fieldname="motto_language" />
+                <field-edit-row fieldname="motto_translation" />
+
+                <field-edit-row fieldname="owner" />
+                
+                <field-edit-row fieldname="original_meaning"  />
+                <field-edit-row fieldname="contextual_meaning" />
+
+                <field-edit-row fieldname="copyright_notes" />
+
+                <field-row fieldname="bibliography_items" param="bibliography" >
+                    <view:><bibliography-items-edit /></view:>
+                </field-row>
+            </content:>
+        </card-form-common>
+    </form>
+</def>
+
 <def tag="form" for="BgTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>

@@ -37,5 +37,16 @@ module Admin::TextCardHelper
   def iconclass_select
     IconclassTerm.all.collect { |ic| [ "#{ic.term}", ic.uri.to_s ] }.sort
   end
+  
+  # Limits the dropdown menu to TaliaCore::Collection items
+  def bg_books_select 
+    foo = TaliaCollection.all
+    foo.reject! do |t| 
+        real_class = (t.is_a?(TaliaCollection)) ? t.real_source.class : t.class 
+        real_class != TaliaCore::Collection
+    end
+    foo.collect! { |a| ["#{a.title}: #{a.class.name}", a.uri.to_s]}
+    foo.sort
+  end
 
 end
