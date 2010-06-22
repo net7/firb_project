@@ -15,6 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/images/:action/:id', :controller => 'admin/images'
   map.connect '/admin/image_zones/:action/:id', :controller => 'admin/image_zones'
   map.connect '/admin/pi_text_cards/:action/:id', :controller => 'admin/pi_text_cards'
+  map.connect '/admin/fi_text_cards/:action/:id', :controller => 'admin/fi_text_cards'
+  map.connect '/admin/vt_handwritten_text_cards/:action/:id', :controller => 'admin/vt_handwritten_text_cards'
+  map.connect '/admin/vt_printed_text_cards/:action/:id', :controller => 'admin/vt_printed_text_cards'
+  map.connect '/admin/bg_text_cards/:action/:id', :controller => 'admin/bg_text_cards'
   map.connect '/admin/pi_illustrated_md_cards/:action/:id', :controller => 'admin/pi_illustrated_md_cards'
   map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms'
   
