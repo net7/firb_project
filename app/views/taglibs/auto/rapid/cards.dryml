@@ -46,6 +46,14 @@
   </card>
 </def>
 
+<def tag="card" for="FiParade">
+  <card class="fi-parade" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="FiProcession">
   <card class="fi-procession" param="default" merge>
     <header: param>
@@ -99,14 +107,6 @@
     <body: param>
       <view:content param="description"/>
     </body:>
-  </card>
-</def>
-
-<def tag="card" for="Parade">
-  <card class="parade" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
   </card>
 </def>
 

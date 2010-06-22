@@ -42,12 +42,12 @@ class Admin::VtHandwrittenTextCardsController < Admin::TextCardsController
   end
 
   def destroy
-    hobo_destroy { redirect_to :controller => :firb_handwritten_vt_text_cards, :action => :index }
+    hobo_destroy { redirect_to :controller => :vt_handwritten_text_card, :action => :index }
   end
 
   def update
-    notes = params[:firb_handwritten_vt_text_card].delete(:note)
-    file = params[:firb_handwritten_vt_text_card].delete(:file)
+    notes = params[:vt_handwritten_text_card].delete(:note)
+    file = params[:vt_handwritten_text_card].delete(:file)
     hobo_source_update do |updated_source|
       if (notes) 
         Note.replace_notes(notes, updated_source)
@@ -56,7 +56,7 @@ class Admin::VtHandwrittenTextCardsController < Admin::TextCardsController
       updated_source.attach_file(file)
       updated_source.save!
       
-      redirect_to :controller => :firb_handwritten_vt_text_card, :action => :index
+      redirect_to :controller => :vt_handwritten_text_cards, :action => :index
     end
   end
 
