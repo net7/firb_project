@@ -6,8 +6,8 @@ class BgIllustrationCard < IllustrationCard
   autofill_uri :force => true
 
   # Fonti dell'immagine (in) ed usi successivi (out)
-  rdf_property :related_source_in, N::TALIA.related_source, :force_relation => true
-  rdf_property :related_source_out, N::TALIA.related_source, :force_relation => true
+  multi_property :related_source_in, N::TALIA.related_source_in, :force_relation => true
+  multi_property :related_source_out, N::TALIA.related_source_out, :force_relation => true
 
   # Segnatura
   rdf_property :signature, N::TALIA.signature

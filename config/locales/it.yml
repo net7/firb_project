@@ -129,19 +129,21 @@ it:
         comment: "Commento"
 
     bg_illustration_cards:
-        model_name: "Impresa"
-        model_name_plural: "Imprese"
+        model_name: "Illustrazione"
+        model_name_plural: "Illustrazione"
         new: 
-            heading: "Nuova scheda impresa"
+            heading: "Nuova scheda illustrazione"
         collection:
-            count: "Ci sono {{count}} schede impresa"
-            empty_message: "Nessuna scheda impresa da visualizzare"
+            count: "Ci sono {{count}} schede illustrazione"
+            empty_message: "Nessuna scheda illustrazione da visualizzare"
         actions:
             new: "Crea una nuova scheda impresa"
-            delete: "Cancella questa scheda impresa"
+            delete: "Cancella questa scheda illustrazione"
             create: "Salva"
         edit:
-            heading: "Modifica questa scheda impresa"
+            heading: "Modifica questa scheda illustrazione"
+        messages:
+            create_success: "Scheda illustrazione creata con successo."
         name: "Nome"
         book: "Collezione di riferimento"
         signature: "Segnatura"
@@ -160,6 +162,8 @@ it:
         contextual_meaning: "Significato contestuale"
         copyright_notes: "Note sul copyright"
         bibliography_items: "Elementi Bibliografici"
+        related_source_out: "Usi successivi"
+        related_source_in: "Fonti dell'immagine"
 
     text_card:
         model_name: "Scheda di testo"

@@ -413,12 +413,12 @@
 <def tag="bg-related-sources-edit" attrs="fieldname">
     <%= 
         render :partial => 'shared/select', 
-            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => "&fieldname", :options => bg_related_sources_select,
-            :existing => [].collect {|s| [ s.name, s.uri.to_s ] } } 
+            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => fieldname, :options => bg_related_sources_select,
+            :existing => this.send(fieldname).collect {|s| [ s.name, s.uri.to_s ] } } 
     %>
 </def>
 
-<def tag="pi-non-illustrated-m-d-card-edit">
+<def tag="pi-non-illustrated-md-card-edit">
     <%= 
         render :partial => 'shared/non_illustrated_memory_depictions',
         :locals => { :main_name => 'pi_text_card', :param_name => 'non_illustrated_memory_depictions', 

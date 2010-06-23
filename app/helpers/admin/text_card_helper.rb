@@ -38,9 +38,11 @@ module Admin::TextCardHelper
     IconclassTerm.all.collect { |ic| [ "#{ic.term}", ic.uri.to_s ] }.sort
   end
   
+  # Lists all the possible Bg- sources (illustration cards and text cards)
   def bg_related_sources_select
     foo = BgIllustrationCard.all.collect { |ill| ["Illustrazione: #{ill.name}", ill.uri.to_s]}
-    foo = foo.push(BgTextCard.all.collect { |t| ["Scheda testo: #{t.name}", t.uri.to_s]})
+    foo =foo + BgTextCard.all.collect { |t| ["Scheda testo: #{t.name}", t.uri.to_s]}
+    foo.sort
   end
   
   # Limits the dropdown menu to TaliaCore::Collection items
@@ -50,7 +52,7 @@ module Admin::TextCardHelper
         real_class = (t.is_a?(TaliaCollection)) ? t.real_source.class : t.class 
         real_class != TaliaCore::Collection
     end
-    foo.collect! { |a| ["#{a.title}: #{a.class.name}", a.uri.to_s]}
+    foo.collect! { |a| ["#{a.title}", a.uri.to_s]}
     foo.sort
   end
 

@@ -33,7 +33,7 @@
         <br />
         <div id="non-illustrated-memory-depictions">
             <%= I18n.t("text_page.non_ill_mem_dep") %> :
-            <pi-non-illustrated-m-d-card-edit />
+            <pi-non-illustrated-md-card-edit />
         </div>
         <br />
         <div id="firb-notes">
@@ -209,6 +209,10 @@
 
                 <field-row fieldname="description_file">
                     <view:><input type="file" name="bg_illustration_card[file]"/></view:>
+                </field-row>
+
+                <field-row fieldname="related_source_out">
+                    <view:><bg-related-sources-edit fieldname='related_source_out'/></view:>
                 </field-row>
 
                 <field-row fieldname="related_source_in">
