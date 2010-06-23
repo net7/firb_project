@@ -25,8 +25,9 @@ class Admin::PiTextCardsController < Admin::TextCardsController
       flash[:notice] = "Error creating the page"
     end
 
-    txt.attach_file(file)
-
+    foo = txt.attach_file(file)
+    flash[:notice] += "<br><br>" + foo if (foo)
+      
     if (notes)
       Note.create_notes(notes.values, txt)
     end

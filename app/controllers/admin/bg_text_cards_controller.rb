@@ -29,9 +29,8 @@ class Admin::BgTextCardsController < Admin::TextCardsController
       flash[:notice] = "Error creating the page"
     end
 
-    if (err = txt.attach_file(file))
-      flash[:notice] = err
-    end
+    foo = txt.attach_file(file)
+    flash[:notice] += "<br><br>" + foo if (foo)
 
     redirect_to :controller => :bg_text_cards, :action => :index
   end

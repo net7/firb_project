@@ -1,5 +1,6 @@
 module FileAttached 
 
+  # Will return false if everything is ok, else an error string with some hints on the XML
   def attach_file(file)
     if(file)
       xml_string = file.read

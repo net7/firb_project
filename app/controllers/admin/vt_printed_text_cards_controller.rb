@@ -30,9 +30,8 @@ class Admin::VtPrintedTextCardsController < Admin::TextCardsController
       flash[:notice] = "Error creating the page"
     end
 
-    if (err = txt.attach_file(file))
-      flash[:notice] = err
-    end
+    foo = txt.attach_file(file)
+    flash[:notice] += "<br><br>" + foo if (foo)
 
     if (notes)
       Note.create_notes(notes.values, txt)
