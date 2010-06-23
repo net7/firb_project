@@ -137,7 +137,7 @@ it:
             count: "Ci sono {{count}} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         actions:
-            new: "Crea una nuova scheda impresa"
+            new: "Crea una nuova scheda illustrazione"
             delete: "Cancella questa scheda illustrazione"
             create: "Salva"
         edit:
@@ -407,7 +407,7 @@ it:
         pi_illustration_card_link: "Illustrazione"
         fi_parade_cart_card_link: "Carro"
         fi_character_card_link: "Personaggio"
-        bg_illustration_card_link: "Impresa"
+        bg_illustration_card_link: "Illustrazione"
         new_link: "Crea"
         position: "Carta"
         name: "Nome"
