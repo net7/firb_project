@@ -50,6 +50,7 @@ base_card_types:
   - pi_illustration_card
   - fi_parade_cart_card
   - fi_character_card
+  - bg_illustration_card
 iip_server_uri: http://localhost/fcgi-bin/iipsrv.fcgi
 vips_command: /opt/local/bin/vips
 convert_command: /usr/bin/convert
