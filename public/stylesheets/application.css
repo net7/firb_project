@@ -1,5 +1,5 @@
 .drag_handle {
-	background: transparent url(/images/icons/arrow_out.png) top left no-repeat;
+	background: transparent url(../images/icons/arrow_out.png) top left no-repeat;
 	float: right;
 	width: 16px;
 	height: 16px;
