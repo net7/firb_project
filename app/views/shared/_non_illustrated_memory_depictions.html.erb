@@ -14,7 +14,8 @@
 <br />
 Descrizione breve dell'immagine di memoria: <input type='text' id='image_component_name'>
 <br />
-Tipo dell'immagine di memoria: <input type='text' id='image_component_type'>
+Component type: 
+<%= select_tag "#{ImageZone}[image_component_type]", options_for_select(pi_memory_depiction_types), {:id => 'image_component_type'} %>
 <br />
 
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
@@ -52,6 +53,15 @@ Tipo dell'immagine di memoria: <input type='text' id='image_component_type'>
         n = main_name+"["+param_name+"][][depiction_type]";
         display_string += " ("+v+"): ";
         hidden_hash.push({name: n, value: v});
+
+        // Component type
+        foo = $('image_component_type').options[$('image_component_type').selectedIndex];
+        v = foo.value;
+        n = main_name+"["+param_name+"][][zone_type]";
+        display_string += " ("+v+"): ";
+        hidden_hash.push({name: n, value: v});
+
+
         
         // Empty uri
         hidden_hash.push({name: main_name+"["+param_name+"][][uri]", value: ""})

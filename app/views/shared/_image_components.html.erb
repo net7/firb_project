@@ -4,7 +4,7 @@
     # param_name: name of the field (eg: author)
     # existing: hash of already existing items of this kind, to add right away
 
-    # Used by dryml tag image-components-edit, used by pi illustrated md card
+    # Used by dryml tag image-components-edit
     
     populate_ul_id = param_name+"_list"
     add_button_id = param_name+"_add"
@@ -17,10 +17,10 @@
 Component name: <input type='text' id='image_component_name'>
 <br />
 Component type: 
-<%= select_tag "#{ImageZone}[image_component_type]", options_for_select(pi_memory_depiction_types), {:id => 'image_component_type'} %>
+<%= select_tag "#{ImageZone}[image_component_type]", options_for_select(pi_component_types), {:id => 'image_component_type'} %>
 <br />
 Image zone:
-<%= select_tag "#{ImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'ill_mem_dep_zone_image_id'} %>
+<%= select_tag "#{ImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'zone_image_id'} %>
 
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 
@@ -60,7 +60,7 @@ Image zone:
         hidden_hash.push({name: n, value: v});
         
         // Component image zone 
-        foo = $('ill_mem_dep_zone_image_id').options[$('ill_mem_dep_zone_image_id').selectedIndex];
+        foo = $('zone_image_id').options[$('zone_image_id').selectedIndex];
         n = main_name+"["+param_name+"][][image_zone]";
         v = foo.value;
         display_string += foo.text;
