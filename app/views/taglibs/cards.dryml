@@ -1,7 +1,6 @@
 <def tag="iconclassterm">
   <div class='firb-iconclass-term'>
     <span class='iconclass-term-term'><%= this.term %></span>
-    <span class='iconclass-term-soundex'>(<%= this.soundex %>)</span>:
     <span class='iconclass-term-label'><%= this.pref_label %></span>
   </div>
 </def>
@@ -382,7 +381,6 @@
     <body: param>
       <p>
         <b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %> |
-        <b><ht key="iconclass_terms.soundex">Soundex</ht>:</b> <%= this.soundex %>
       </p>
       <p>
         <b><ht key="iconclass_terms.note">Note</ht>:</b> <%= this.note %>

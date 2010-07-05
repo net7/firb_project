@@ -8,7 +8,6 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   declare_attr_type :name, :string
   # We have a single alt label at the moment (!)
   rdf_property :alt_label, N::SKOS.altLabel
-  rdf_property :soundex, N::TALIA.soundex
   rdf_property :note, N::SKOS.editorialNote, :type => :text
   declare_attr_type :term, :string
   

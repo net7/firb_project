@@ -43,7 +43,6 @@ class Admin::IconclassTermsControllerTest < ActionController::TestCase
     assert_select 'input#iconclass_term_term'
     assert_select 'input#iconclass_term_pref_label'
     assert_select 'input#iconclass_term_alt_label'
-    assert_select 'input#iconclass_term_soundex'
     assert_select 'textarea#iconclass_term_note'
     assert_select 'input.submit-button'
   end
@@ -51,19 +50,18 @@ class Admin::IconclassTermsControllerTest < ActionController::TestCase
   def test_create
     login_for(:admin)
     assert_difference('IconclassTerm.count', 1) do
-      post(:create, :iconclass_term => { :term => '99', :pref_label => 'Nuffink', :alt_label => 'Boink', :soundex => '12345', :note => 'Noo'})
+      post(:create, :iconclass_term => { :term => '99', :pref_label => 'Nuffink', :alt_label => 'Boink', :note => 'Noo'})
       assert_redirected_to(:action => 'index')
     end
     term = IconclassTerm.last
     assert_equal('99', term.term)
     assert_equal('Nuffink', term.pref_label)
     assert_equal('Boink', term.alt_label)
-    assert_equal('12345', term.soundex)
     assert_equal('Noo', term.note)
   end
   
   def test_create_non_authorized
-    post(:create, :iconclass_term => { :term => '99', :pref_label => 'Nuffink', :alt_label => 'Boink', :soundex => '12345', :note => 'Noo'})
+    post(:create, :iconclass_term => { :term => '99', :pref_label => 'Nuffink', :alt_label => 'Boink', :note => 'Noo'})
     assert_response(403)
   end
   
@@ -148,42 +146,36 @@ class Admin::IconclassTermsControllerTest < ActionController::TestCase
         :term => '2', 
         :pref_label => 'Nature', 
         :alt_label => 'nature',
-        :soundex => '12345',
         :note => ''
       },
       {
         :term => '21', 
         :pref_label => 'the four elements, and ether, the fifth element', 
         :alt_label => "elements · five · four · nature",
-        :soundex => '12345',
         :note => 'Cool'
       },
       {
         :term => '21E', 
         :pref_label => "ether as 'quinta essentia", 
         :alt_label => 'elements · essentia · ether · five · four · nature · quinta essentia',
-        :soundex => '12345',
         :note => ''
       },
       {
         :term => '5(+3)', 
         :pref_label => 'Abstract Ideas and Concepts (+ symbolical representation of concept)',
         :alt_label => 'abstract idea · allegory · idea · personification · symbol', 
-        :soundex => 'meep',
         :note => 'Cool'
       },
       {
         :term => '32B(+5)', 
         :pref_label => 'human races; peoples; nationalities (+ babies and children)',
         :alt_label => 'age · baby · child · human being · nationality · race (human) · sex · young', 
-        :soundex => '54321',
         :note => ''
       },
       {
         :term => '61 E (+0)', 
         :pref_label => 'correction of naughty children',
         :alt_label => 'child · civilization · correction · culture · family · naughtiness · offspring · parents · punishment · society',
-        :soundex => 'm',
         :note => 'Cool'
       }
     ]

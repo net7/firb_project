@@ -88,7 +88,6 @@ it:
         term: "Codice iconclass"
         pref_label: "Descrizione primaria"
         alt_label: "Descrizione secondaria"
-        soundex: "Codice SOUNDEX"
         note: "Note"
         iconclass_link: "Vedi questo termine su www.iconclass.org"
 
