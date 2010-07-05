@@ -392,17 +392,20 @@
 <def tag="card" for="BibliographyItem">
   <card class="bibliography-item" param="default" merge>
     <header: param>
-      <h4 param="heading"><a action="edit"><name/></a> - <%= this.author %><delete-icon /></h4>
+      <h4 param="heading"><a action="edit"><%= this.ref_name %> (<%= this.author %>: <name/>)</a> <delete-icon /></h4>
     </header:>
     <body: param>
         <p>
-          <b><ht key="bibliography_items.curator">Curator:</ht></b> <%= this.curator %>
+          <b><ht key="bibliography_items.title">Title</ht>:</b> <%= this.title %>
         </p>
         <p>
-          <b><ht key="bibliography_items.translator">Translator:</ht></b> <%= this.translator %>
+          <b><ht key="bibliography_items.curator">Curator</ht>:</b> <%= this.curator %>
+        </p>
+        <p>
+          <b><ht key="bibliography_items.translator">Translator</ht>:</b> <%= this.translator %>
         </p>
       <p>
-        <b><ht key="bibliography_items.date">Date:</ht></b> <%= this.date %>
+        <b><ht key="bibliography_items.date">Date</ht>:</b> <%= this.date %>
       </p>
       <p>
         <b><ht key="bibliography_items.pages">Pages:</ht></b> <%= this.pages %>

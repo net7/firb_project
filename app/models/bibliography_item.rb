@@ -5,6 +5,7 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   
   autofill_uri
   
+  rdf_property :ref_name, N::DCNS.title
   rdf_property :title, N::MARCONT.title
   rdf_property :abstract, N::MARCONT.abstract, :type => :text
   rdf_property :publisher, N::MARCONT.hasPublisher

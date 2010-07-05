@@ -446,7 +446,7 @@
     <%= 
         render :partial => 'shared/select', 
             :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select,
-            :existing => this.bibliography_items.collect {|bib| [ bib.title, bib.uri.to_s ] } } 
+            :existing => this.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
     %>
 </def>
 
