@@ -76,7 +76,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row fieldname="image_components">
-                    <view:><image-components-edit /></view:>
+                    <view:><image-components-edit options="&letter_component_types" /></view:>
                 </field-row>
             </after-bibliography:>
         </card-form-common-pi>
@@ -106,7 +106,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row fieldname="image_components">
-                    <view:><image-components-edit /></view:>
+                    <view:><image-components-edit options="&pi_memory_depiction_types" /></view:>
                 </field-row>
             </after-bibliography:>
         </card-form-common-pi>
@@ -426,10 +426,11 @@
     %>
 </def>
 
-<def tag="image-components-edit">
+<def tag="image-components-edit" attrs="options">
     <%= 
         render :partial => 'shared/image_components',
         :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'image_components', 
+        :options => (options || nil),
         :existing => this.image_components.collect {|ic| [ "#{ic.name} (#{ic.zone_type}): #{ic.image_zone.try.name}", ic.uri.to_s]} }
     %>
 </def>

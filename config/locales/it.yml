@@ -426,6 +426,8 @@ it:
         parent_code: "Codice (della madre)"
         parent_collocation: "Collocazione (della madre)"
         image_components: "Componenti"
+        image_component_name: "Nome del componente"
+        component_type: "Tipo del componente"
         on_card_save: "Impostato quando la scheda viene registrata"
         errors:
           create_card: "Errore durante la creazione della scheda"
@@ -487,11 +489,12 @@ it:
         too_many_carts: "Non posso aggiungere più di un carro a un corteo."
         illegal_type: "Un elemento del typo {{type}} no può essere parte di un corteo."
 
-    image_component:
+    image_components:
       model_name: "Componenti"
       image_zone: "Zona"
       name: "Nome"
       zone_type: "Tipo della Zona"
+      component_type: "Tipo del componente"
       actions:
         create: "Crea"
         delete: "Cancella" 

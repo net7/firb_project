@@ -68,4 +68,10 @@ module Admin::TextCardHelper
     ["luoghi", "numeri", "lettere dell'alfabeto", "persone", "oggetti", "scene"].collect{ |t| [t, t] }
   end
 
+  # Placeholder for something more appropriate: something which gathers the real 
+  # types from an ontology or some db thingie
+  def letter_component_types
+    ["floreale", "vegetale", "umano"].collect{ |t| [t, t] }
+  end
+
 end

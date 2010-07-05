@@ -3,6 +3,7 @@
     # main_name: name of the model (eg: BibliographyItem)
     # param_name: name of the field (eg: author)
     # existing: hash of already existing items of this kind, to add right away
+    # options: options array to show
 
     # Used by dryml tag image-components-edit
     
@@ -14,12 +15,12 @@
 <ul id="<%= populate_ul_id %>"></ul>
 
 <br />
-Component name: <input type='text' id='image_component_name'>
+<%= I18n.t('image_components.name') %>: <input type='text' id='image_component_name'>
 <br />
-Component type: 
-<%= select_tag "#{ImageZone}[image_component_type]", options_for_select(pi_component_types), {:id => 'image_component_type'} %>
+<%= I18n.t('image_components.component_type') %>: 
+<%= select_tag "#{ImageZone}[image_component_type]", options_for_select(options), {:id => 'image_component_type'} %>
 <br />
-Image zone:
+<%= I18n.t('image_components.image_zone') %>: 
 <%= select_tag "#{ImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'zone_image_id'} %>
 
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
