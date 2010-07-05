@@ -41,7 +41,7 @@ module Admin::TextCardHelper
   # Lists all the possible Bg- sources (illustration cards and text cards)
   def bg_related_sources_select
     foo = BgIllustrationCard.all.collect { |ill| ["Illustrazione: #{ill.name}", ill.uri.to_s]}
-    foo =foo + BgTextCard.all.collect { |t| ["Scheda testo: #{t.name}", t.uri.to_s]}
+    foo = foo + BgTextCard.all.collect { |t| ["Scheda testo: #{t.name}", t.uri.to_s]}
     foo.sort
   end
   
@@ -54,6 +54,18 @@ module Admin::TextCardHelper
     end
     foo.collect! { |a| ["#{a.title}", a.uri.to_s]}
     foo.sort
+  end
+
+  # Placeholder for something more appropriate: something which gathers the real 
+  # types from an ontology or some db thingie
+  def pi_memory_depiction_component_types
+    ["luoghi", "numeri", "lettere dell'alfabeto", "persone", "oggetti"].collect{ |t| [t, t] }
+  end
+
+  # Placeholder for something more appropriate: something which gathers the real 
+  # types from an ontology or some db thingie
+  def pi_memory_depiction_types
+    ["luoghi", "numeri", "lettere dell'alfabeto", "persone", "oggetti", "scene"].collect{ |t| [t, t] }
   end
 
 end

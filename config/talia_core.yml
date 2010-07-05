@@ -25,11 +25,28 @@ namespaces:
 thumb_options: 
   height: "200"
   width: "200"
-hidden_tabs:
-  - 'talia_sources'
 base_card_types:
   - pi_illustrated_md_card 
   - pi_letter_illustration_card 
   - pi_illustration_card
-  - parade_cart
-  - parade_character
+  - fi_parade_cart_card
+  - fi_character_card
+  - bg_illustration_card
+shown_tabs:
+#  - 'talia_sources'
+  - 'base_cards'
+  - 'images'
+  - 'anastaticas'
+  - 'talia_collections'
+  - 'users'
+  - 'iconclass_terms'
+  - 'bibliography_items'
+  - 'vt_handwritten_text_cards'
+  - 'vt_printed_text_cards'
+  - 'bg_text_cards'
+  - 'fi_text_cards'
+  - 'fi_parade_cart_cards'
+  - 'fi_processions'
+  - 'fi_character_card'
+  - 'pi_text_cards'
+  
