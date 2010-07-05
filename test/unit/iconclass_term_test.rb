@@ -15,7 +15,6 @@ class IconclassTermTest < ActiveSupport::TestCase
       IconclassTerm.create_term(:term => '61 E (+0)', 
         :pref_label => 'foo', 
         :alt_label => 'bar',
-        :soundex => 'meep',
         :note => 'Cool'
         )
     end
@@ -31,10 +30,6 @@ class IconclassTermTest < ActiveSupport::TestCase
   
   def test_alt_label
     assert_equal('bar', @term.alt_label)
-  end
-  
-  def test_soundex
-    assert_equal('meep', @term.soundex)
   end
   
   def test_note
@@ -53,7 +48,6 @@ class IconclassTermTest < ActiveSupport::TestCase
     termy = IconclassTerm.create_term(:term => '61 E (+1)', 
       :pref_label => 'foo', 
       :alt_label => 'bar',
-      :soundex => 'meep',
       :note => 'ping'
       )
     termy.save!
@@ -64,7 +58,6 @@ class IconclassTermTest < ActiveSupport::TestCase
     no_note = IconclassTerm.create_term(:term => '61 E (+0)', 
       :pref_label => 'foo', 
       :alt_label => 'bar',
-      :soundex => 'meep',
       :note => ''
       )
     no_note.save!

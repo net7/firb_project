@@ -26,7 +26,7 @@ it:
             delete: "Cancella questo libro"
         new:
             heading: "Crea un nuovo libro"
-        title: "Titolo"
+        title: "Nome di riferimento"
 
     anastaticas:
         model_name: "Anastatica"
@@ -52,7 +52,7 @@ it:
         parts_of_this_source: "Elementi collegati a questa pagina anastatica"
         page_to_book: "Inserisci nel libro"
         page_position: "Carta"
-        title: "Titolo"
+        title: "Nome di riferimento"
 
     images:
         model_name: "Illustrazione"
@@ -88,7 +88,6 @@ it:
         term: "Codice iconclass"
         pref_label: "Descrizione primaria"
         alt_label: "Descrizione secondaria"
-        soundex: "Codice SOUNDEX"
         note: "Note"
         iconclass_link: "Vedi questo termine su www.iconclass.org"
 
@@ -120,13 +119,14 @@ it:
         edit:
             heading: "Modifica questa scheda di testo"
         book: "Collezione di riferimento"
-        title: "Titolo"
+        title: "Nome di riferimento"
         transcription_file: "File XML della trascrizione"
         collocation: "Collocazione"
         signature: "Segnatura"
         author: "Autore"
         page_position: "Numero della pagina"
         comment: "Commento"
+        bibliography_items: "Elementi bibliografici"
 
     bg_illustration_cards:
         model_name: "Illustrazione"
@@ -144,7 +144,8 @@ it:
             heading: "Modifica questa scheda illustrazione"
         messages:
             create_success: "Scheda illustrazione creata con successo."
-        name: "Nome"
+        name: "Nome di riferimento"
+        image_zone: "Zona di immagine" 
         book: "Collezione di riferimento"
         signature: "Segnatura"
         collocation: "Collocazione"
@@ -183,7 +184,7 @@ it:
             create: "Salva"
         edit:
             heading: "Modifica questa scheda di testo"
-        title: "Titolo"
+        title: "Nome di riferimento"
         transcription_file: "File XML della trascrizione"
         edition: "Edizione di riferimento"
         page_position: "Pagine di riferimento"
@@ -202,7 +203,7 @@ it:
             create: "Salva"
         edit:
             heading: "Modifica questa scheda di testo"
-        title: "Titolo"
+        title: "Nome di riferimento"
         image_zones: "Zone di immagine"
         signature: "Segnatura"
         measure: "Misure"
@@ -229,7 +230,7 @@ it:
             create: "Salva"
         edit:
             heading: "Modifica questa scheda di testo"
-        title: "Titolo"
+        title: "Nome di riferimento"
         image_zones: "Zone di immagine"
         transcr_handwritten: "Scheda di testo (manoscritto)"
         page_position: "Numero pagina"
@@ -253,7 +254,8 @@ it:
             heading: "Nuovo elemento bibliografico"
         succesfully_created: "L'elemento bibliografico è stato creato con successo"
         error_creating: "ERRORE: ci sono stati dei problemi e l'elemento bibliografico non è stato creato"
-        title: "Titolo"
+        ref_name: "Nome di riferimento"
+        title: "Titolo dell'opera"
         abstract: "Abstract"
         publisher: "Casa editrice"
         author: "Autore"
@@ -286,7 +288,7 @@ it:
         index:
             heading: "Schede di immagini di memoria illustrate"
         code: "Codice"
-        name: "Nome"
+        name: "Nome di riferimento"
         collocation: "Collocazione"
         parent_card: "Scheda illustrazione 'madre'"
         image_zone: "Zona di immagine"
@@ -322,7 +324,7 @@ it:
         index:
             heading: "Schede capolettera"
         code: "Codice"
-        name: "Nome"
+        name: "Nome di riferimento"
         collocation: "Collocazione"
         tecnique: "Tecnica"
         measure: "Misure"
@@ -354,7 +356,7 @@ it:
         index:
             heading: "Schede illustrazione"
         code: "Codice"
-        name: "Nome"
+        name: "Nome di riferimento"
         collocation: "Collocazione"
         tecnique: "Tecnica"
         measure: "Misure"
@@ -410,7 +412,7 @@ it:
         bg_illustration_card_link: "Illustrazione"
         new_link: "Crea"
         position: "Carta"
-        name: "Nome"
+        name: "Nome di riferimento"
         code: "Codice"
         collocation: "Collocazione"
         bibliography: "Bibliografia"
@@ -475,7 +477,7 @@ it:
         remove_note: "Elimina questa nota"
         no_notes_associated: "Nessuna nota associata a questa pagina di testo"
         text_page: "Scheda testo"
-        title: "Titolo"
+        title: "Nome di riferimento"
         non_ill_mem_dep: "Immagini di memoria non illustrate"
         transcription_file: "File XML della trascrizione"
         image_zones: "Zone di immagine"

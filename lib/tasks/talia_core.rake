@@ -11,7 +11,8 @@ namespace :iconclass do
     CSV.open(ENV['csv'], 'r') do |row|
       # puts row.inspect
       begin
-        IconclassTerm.create_term(:term => row[2], :pref_label => row[1], :alt_label => row[4], :soundex => row[3], :note => row[5]).save!
+        # Ignores the soundex column (row[3])
+        IconclassTerm.create_term(:term => row[2], :pref_label => row[1], :alt_label => row[4], :note => row[5]).save!
         print '.'
       rescue Exception => e
         errors << [e, row]

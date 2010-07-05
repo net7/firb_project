@@ -1,7 +1,6 @@
 <def tag="iconclassterm">
   <div class='firb-iconclass-term'>
     <span class='iconclass-term-term'><%= this.term %></span>
-    <span class='iconclass-term-soundex'>(<%= this.soundex %>)</span>:
     <span class='iconclass-term-label'><%= this.pref_label %></span>
   </div>
 </def>
@@ -382,7 +381,6 @@
     <body: param>
       <p>
         <b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %> |
-        <b><ht key="iconclass_terms.soundex">Soundex</ht>:</b> <%= this.soundex %>
       </p>
       <p>
         <b><ht key="iconclass_terms.note">Note</ht>:</b> <%= this.note %>
@@ -394,17 +392,20 @@
 <def tag="card" for="BibliographyItem">
   <card class="bibliography-item" param="default" merge>
     <header: param>
-      <h4 param="heading"><a action="edit"><name/></a> - <%= this.author %><delete-icon /></h4>
+      <h4 param="heading"><a action="edit"><%= this.ref_name %> (<%= this.author %>: <name/>)</a> <delete-icon /></h4>
     </header:>
     <body: param>
         <p>
-          <b><ht key="bibliography_items.curator">Curator:</ht></b> <%= this.curator %>
+          <b><ht key="bibliography_items.title">Title</ht>:</b> <%= this.title %>
         </p>
         <p>
-          <b><ht key="bibliography_items.translator">Translator:</ht></b> <%= this.translator %>
+          <b><ht key="bibliography_items.curator">Curator</ht>:</b> <%= this.curator %>
+        </p>
+        <p>
+          <b><ht key="bibliography_items.translator">Translator</ht>:</b> <%= this.translator %>
         </p>
       <p>
-        <b><ht key="bibliography_items.date">Date:</ht></b> <%= this.date %>
+        <b><ht key="bibliography_items.date">Date</ht>:</b> <%= this.date %>
       </p>
       <p>
         <b><ht key="bibliography_items.pages">Pages:</ht></b> <%= this.pages %>

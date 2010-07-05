@@ -8,7 +8,6 @@ module CardSetups
       iconclass = IconclassTerm.create_term(:term => "61 E (+#{idx})", 
         :pref_label => 'foo', 
         :alt_label => 'bar',
-        :soundex => 'meep',
         :note => 'Cool' )
       iconclass.save!
       @iconclasses << iconclass

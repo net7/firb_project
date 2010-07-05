@@ -28,10 +28,10 @@ class BgIllustrationCard < IllustrationCard
 
   # Significati originale e contestuale
   rdf_property :original_meaning, N::TALIA.original_meaning, :type => 'text'
-  rdf_property :contextual_meaning, N::TALIA.contextual_meaning, :type => 'text'
+  rdf_property :contextual_meaning, N::TALIA.contextual_meaning, :type => 'string'
 
   # Note relative al copyright
-  rdf_property :copyright_notes, N::TALIA.copyright_notes, :type => 'text'
+  rdf_property :copyright_notes, N::TALIA.copyright_notes, :type => 'string'
     
   # Libro a cui appartiene
   manual_property :book
