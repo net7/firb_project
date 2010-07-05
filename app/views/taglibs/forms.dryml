@@ -258,11 +258,12 @@
                 <view:><input type="file" name="bg_text_card[file]"/></view:>
             </field-row>
 
-            <field-edit-row fieldname="collocation" />
-            <field-edit-row fieldname="signature" />
-            <field-edit-row fieldname="author" />
             <field-edit-row fieldname="page_position" />
             <field-edit-row fieldname="comment" />
+
+            <field-row fieldname="bibliography_items" param="bibliography" >
+                <view:><bibliography-items-edit /></view:>
+            </field-row>
 
             </content:>
         </field-edit-table>
