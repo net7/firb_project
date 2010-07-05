@@ -30,14 +30,13 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
   def autocomplete
     value = params[:value]
     raise(ArgumentError, "Parameter missing") unless(value)
-    query = ActiveRDF::Query.new(IconclassTerm).select(:term, :alt_label, :pref_label)
+    query = ActiveRDF::Query.new(IconclassTerm).select(:term, :pref_label)
     query.where(:term, N::SKOS.prefLabel, :pref_label)
-    query.where(:term, N::SKOS.altLabel, :alt_label)
     @completions = query.execute
-    @completions.reject! do |term, alt_label, pref_label|
+
+    @completions.reject! do |term, pref_label|
       !(
         term.term =~ /#{value}/i ||
-        alt_label =~ /#{value}/i ||
         pref_label =~ /#{value}/i
       )
     end
