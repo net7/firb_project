@@ -354,9 +354,9 @@ class Admin::BaseCardsControllerTest < ActionController::TestCase
   def setup_cards
     @non_illustrated = PiNonIllustratedMdCard.new(:name => 'me title', :position => '3rb')
     @non_illustrated.save!
-    @illustrated_one = PiIllustratedMDCard.new(:name => 'illuostrous', :position => 'whatever')
+    @illustrated_one = PiIllustratedMdCard.new(:name => 'illuostrous', :position => 'whatever')
     @illustrated_one.save!
-    @illustrated_two = PiIllustratedMDCard.new(:name => 'super_illu', :position => 'you guess')
+    @illustrated_two = PiIllustratedMdCard.new(:name => 'super_illu', :position => 'you guess')
     @illustrated_two.save!
   end
   
