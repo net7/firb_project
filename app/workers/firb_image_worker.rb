@@ -11,8 +11,10 @@ class ImageWorker < Workling::Base
   rescue Exception => e
     logger.error("\033[35m\033[4m\033[1mImageWorker\033[0m Could not attach the image file with #{options.inspect}: #{e.message}")
     e.backtrace.each { |msg| logger.debug msg }
-    image_source.file_status = "ERROR: #{e.message}"
-    image_source.save!
+    if(image_source)
+      image_source.file_status = "ERROR: #{e.message}"
+      image_source.save!
+    end
   end
   
 end

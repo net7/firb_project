@@ -86,10 +86,7 @@ module FakeSource
     was_new = self.new_record?
     result = (throws ? real_source.save! : real_source.save)
     self.id = real_source.id
-    if(was_new)
-      self.id = real_source.id
-      self.instance_variable_set(:@new_record, false)
-    end
+    self.instance_variable_set(:@new_record, false) if(was_new)
     result
   end
   

@@ -31,8 +31,8 @@ class Admin::FiParadesControllerTest < ActionController::TestCase
   
   def test_create
     login_for(:admin)
-    assert_difference('TaliaCore::Collection.count', 1) do
-      post(:create, :talia_collection => { :title => 'Meee new title' })
+    assert_difference('FiParade.count', 1) do
+      post(:create, :fi_parade => { :title => 'Meee new title' })
       assert_response 302
     end
     new_parade = FiParade.last
@@ -40,8 +40,8 @@ class Admin::FiParadesControllerTest < ActionController::TestCase
   end
   
   def test_create_non_authorized
-    assert_difference('TaliaCore::Collection.count', 0) do
-      post(:create, :talia_collection => { :title => 'Meee new title'})
+    assert_difference('FiParade.count', 0) do
+      post(:create, :fi_parade => { :title => 'Meee new title'})
       assert_response 403
     end
   end
