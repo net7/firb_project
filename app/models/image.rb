@@ -17,7 +17,7 @@ class Image < ImageElement
   def self.file_staging_dir
     @file_staging_dir ||=  begin
       staging_dir = File.join(TaliaCore::CONFIG['data_directory_location'], 'staged_images')
-      FileUtils.mkdir(staging_dir) unless(File.exist?(staging_dir))
+      FileUtils.mkdir_p(staging_dir) unless(File.exist?(staging_dir))
       staging_dir
     end
   end
