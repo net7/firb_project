@@ -258,11 +258,12 @@
                 <view:><input type="file" name="bg_text_card[file]"/></view:>
             </field-row>
 
-            <field-edit-row fieldname="collocation" />
-            <field-edit-row fieldname="signature" />
-            <field-edit-row fieldname="author" />
             <field-edit-row fieldname="page_position" />
             <field-edit-row fieldname="comment" />
+
+            <field-row fieldname="bibliography_items" param="bibliography" >
+                <view:><bibliography-items-edit /></view:>
+            </field-row>
 
             </content:>
         </field-edit-table>
@@ -317,7 +318,7 @@
 <def tag="form" for="IconclassTerm">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="term, pref_label, alt_label, soundex, note" param/>
+    <field-list fields="term, pref_label, alt_label, note" param/>
     <div param="actions">
       <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel with="&IconclassTerm" id="" param="cancel"/>
     </div>
@@ -327,7 +328,7 @@
 <def tag="form" for="BibliographyItem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title, abstract, publisher, author, curator, translator, date, doi, isbn, issn, pages, published_in, external_url" param/>
+    <field-list fields="ref_name, title, abstract, publisher, author, curator, translator, date, doi, isbn, issn, pages, published_in, external_url" param/>
     <div param="actions">
       <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel with="&BibliographyItem" param="cancel"/>
     </div>

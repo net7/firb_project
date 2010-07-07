@@ -7,9 +7,6 @@
 			<b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %>
 		</p>
 		<p>
-			<b><ht key="iconclass_terms.soundex">Soundex:</ht></b> <%= this.soundex %>
-		</p>
-		<p>
 			<b><ht key="iconclass_terms.note">Note:</ht></b> <%= this.note %>
 		</p>
 		<p>

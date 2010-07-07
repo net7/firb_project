@@ -31,7 +31,7 @@ module Admin::TextCardHelper
   end
   
   def bibliography_select
-    BibliographyItem.all.collect { |b| [ "#{b.title}", b.uri.to_s ] }.sort
+    BibliographyItem.all.collect { |b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] }.sort
   end
 
   def iconclass_select

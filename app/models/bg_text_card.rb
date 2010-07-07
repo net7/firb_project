@@ -11,17 +11,11 @@ class BgTextCard < TextCard
   # Numero carta
   rdf_property :page_position, N::TALIA.position
 
-  # Collocazione
-  rdf_property :collocation, N::TALIA.provenance
-
-  # Segnatura
-  rdf_property :signature, N::TALIA.signature
-
-  # Autore
-  rdf_property :author, N::DCT.creator
-
   # Commento
-  rdf_property :comment, N::TALIA.comment, :type => 'text'
+  rdf_property :comment, N::TALIA.comment, :type => 'string'
+
+  # Bibliografia
+  multi_property :bibliography_items, N::TALIA.hasBibliography, :force_relation => true
 
   # Libro a cui appartiene
   manual_property :book

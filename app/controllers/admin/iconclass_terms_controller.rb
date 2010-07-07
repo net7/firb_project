@@ -34,6 +34,15 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
     query.where(:term, N::SKOS.prefLabel, :pref_label)
     query.where(:term, N::SKOS.altLabel, :alt_label)
     @completions = query.execute
+
+    query = ActiveRDF::Query.new(IconclassTerm).select(:term, :pref_label)
+    query.where(:term, N::SKOS.prefLabel, :pref_label)
+    completions_without_alt = query.execute
+
+    completions_without_alt.each do |term, pref_label|
+      @completions << [term, '', pref_label] if @completions.assoc(term).nil?
+    end
+
     @completions.reject! do |term, alt_label, pref_label|
       !(
         term.term =~ /#{value}/i ||
