@@ -78,12 +78,14 @@ class BookmarksController < ApplicationController
   end
   
   def get_bookmark_collection
-    @collection = BookmarkCollection.new((N::LOCAL + "bookmarks/#{@user.name}").to_uri)
-    @collection.save!
+    if logged_in?
+      @collection = BookmarkCollection.new((N::LOCAL + "bookmarks/#{@user.name}").to_uri)
+      @collection.save!
+    end
   end
 
   def logged_in?
-    !current_user.nil?
+    return true unless (current_user.instance_of? Guest)
   end
 
 end
