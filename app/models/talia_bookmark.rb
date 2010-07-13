@@ -7,6 +7,7 @@ class TaliaBookmark < TaliaCore::Source
   singular_property :date, N::DCNS.date
   singular_property :notes, N::TALIA.notes
   singular_property :public, N::TALIA.public
+  singular_property :resource_type, N::TALIA.resource_type
 
   def self.create_bookmark(options)
     options.to_options!

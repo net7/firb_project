@@ -25,13 +25,30 @@ class BookmarksController < ApplicationController
   def index
     if logged_in?
       @bookmarks = @collection.elements
-      html = render_to_string "bookmark/index"
-      data = {'box' => 'Bookmarks'}
-      error = 0;
-      render_json(html, data, error)
+      respond_to do |format|
+        format.json {render_json_index}
+        format.html {render_html_index}
+      end
     else
       render_not_logged_in_json
     end
+  end
+
+  def render_html_index
+    html = render_to_string "bookmark/index"
+    data = {'box' => 'Bookmarks'}
+    error = 0;
+    render_json(html, data, error)
+
+  end
+
+  def render_json_index
+    result = []
+    @collection.elements.each do |b|
+      result << {'title' => b.title, 'qstring' => b.link, 'date' => b.date,
+        'note' => b.notes, 'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
+    end
+    render :json => result
   end
 
   def delete

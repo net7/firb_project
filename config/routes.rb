@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
 
-  map.connect '/bookmarks/:action', :controller => 'bookmarks'
+  map.connect '/bookmarks/:action.:format', :controller => 'bookmarks'
   
   
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'
