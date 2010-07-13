@@ -2,9 +2,12 @@
   Your Bookmarks:
   <ul>
     <% @bookmarks.each do |b| %>
-      <li><a href="<%= b.link %>"><%= b.title %></a> <%= "#{b.date.day}/#{b.date.month}/#{b.date.year}"</li>
-        <div>Note: <%= b.notes %></div>
-<div>pubblico? <% if b.public %>Si<% else %>No<% end %>
+      <% time = Time.parse(b.date) %>
+      <li><a href="<%= b.link %>"><%= b.title %></a> <%= "#{time.day}/#{time.month}/#{time.year}"%>
+        <div class="bookmark_notes">Note: <%= b.notes %></div>
+        <div class="bookmarl_public">pubblico? <% if b.public %>Si<% else %>No<% end %></div>
+        <div class="bookmark_uri"><%= b.uri %></div>
+      </li>
       <% end %>
   </ul>
 </div>

@@ -3,8 +3,17 @@ class BookmarkCollection < TaliaCore::Collection
   extend TaliaUtil::UriHelper
   include ActiveRDF::ResourceLike
 
-#  attr_reader :user_url, :url
-#
-#  alias :uri :url
+  #  attr_reader :user_url, :url
+  #
+  #  alias :uri :url
 
+  def remove_bookmark(uri)
+    elements.each do |bookmark|
+      if (bookmark.uri.to_s == uri)
+        delete(bookmark)
+        bookmark.destroy
+        save!
+      end
+    end
+  end
 end
