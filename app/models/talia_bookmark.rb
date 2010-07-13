@@ -2,7 +2,7 @@ class TaliaBookmark < TaliaCore::Source
 
   extend RandomId
     
-  singular_property :link, N::DCNS.url
+  singular_property :qstring, N::DCNS.url
   singular_property :title, N::DCNS.title
   singular_property :date, N::DCNS.date
   singular_property :notes, N::TALIA.notes

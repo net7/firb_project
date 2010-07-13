@@ -45,7 +45,7 @@ class BookmarksController < ApplicationController
   def render_json_index
     result = []
     @collection.elements.each do |b|
-      result << {'title' => b.title, 'qstring' => b.link, 'date' => b.date,
+      result << {'title' => b.title, 'qstring' => b.qstring, 'date' => b.date,
         'note' => b.notes, 'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
     end
     render :json => result
@@ -63,7 +63,7 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # We update just the notes
+  # We update just the notes and the public fields
   def update
     if logged_in?
       # TODO: all
