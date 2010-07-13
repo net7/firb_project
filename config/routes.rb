@@ -2,12 +2,16 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :oai
 
   Hobo.add_routes(map)
-  
+
   map.site_search  'search', :controller => 'admin/front', :action => 'search'
 
   map.admin '/admin', :controller => 'admin/front', :action => 'index'
   map.connect '/admin/import/:action', :controller => 'admin/import'
   map.connect '/admin/talia_sources/:action/:id', :controller => 'admin/talia_sources'
+
+
+
+  map.connect '/bookmarks/:action', :controller => 'bookmarks'
   
   
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'

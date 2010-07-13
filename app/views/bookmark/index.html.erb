@@ -1,0 +1,10 @@
+<div>
+  Your Bookmarks:
+  <ul>
+    <% @bookmarks.each do |b| %>
+      <li><a href="<%= b.link %>"><%= b.title %></a> <%= "#{b.date.day}/#{b.date.month}/#{b.date.year}"</li>
+        <div>Note: <%= b.notes %></div>
+<div>pubblico? <% if b.public %>Si<% else %>No<% end %>
+      <% end %>
+  </ul>
+</div>
