@@ -43,12 +43,13 @@ class BookmarksController < ApplicationController
   end
 
   def render_json_index
-    result = []
+    data = []
     @collection.elements.each do |b|
-      result << {'error' => '0', 'data' => {'title' => b.title, 
+      data << {'title' => b.title,
           'qstring' => b.qstring, 'date' => b.date, 'note' => b.notes,
-          'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}}
+          'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
     end
+    result = ['error' => '0', 'data' => data]
     render :json => result
   end
 
