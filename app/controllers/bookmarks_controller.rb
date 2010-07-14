@@ -49,7 +49,7 @@ class BookmarksController < ApplicationController
           'qstring' => b.qstring, 'date' => b.date, 'note' => b.notes,
           'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
     end
-    result = ['error' => '0', 'data' => data]
+    result = {'error' => '0', 'data' => data}
     render :json => result
   end
 
