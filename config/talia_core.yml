@@ -30,3 +30,4 @@ data_directory_location: data
 #iip_server_uri: http://localhost:/fcgi-bin/iipsrv.fcgi
 #vips_command: /usr/bin/vips
 #convert_command: /usr/bin/convert
+login_redirect_url: http://babylon.netseven.it/~fonda/doni/

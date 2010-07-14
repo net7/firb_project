@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   auto_actions :all, :except => [ :index, :new, :create ]
 
   def base_url
-    (ActionController::Base.relative_url_root || "") + '/admin/'
+  #  (ActionController::Base.relative_url_root || "") + '/admin/'
+  TaliaCore::CONFIG['login_redirect_url'] || (ActionController::Base.relative_url_root || "") + '/admin/'
   end
 
 end
