@@ -1,7 +1,10 @@
 class BookmarkCollection < TaliaCore::Collection
+  
   include TaliaUtil::UriHelper
   extend TaliaUtil::UriHelper
   include ActiveRDF::ResourceLike
+
+  self.inheritance_column = 'foo'
 
   #  attr_reader :user_url, :url
   #

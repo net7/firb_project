@@ -1,7 +1,8 @@
 class TaliaBookmark < TaliaCore::Source
-
+  hobo_model
   extend RandomId
-    
+
+
   singular_property :qstring, N::DCNS.url
   singular_property :title, N::DCNS.title
   singular_property :date, N::DCNS.date
@@ -9,6 +10,8 @@ class TaliaBookmark < TaliaCore::Source
   singular_property :public, N::TALIA.public
   singular_property :resource_type, N::TALIA.resource_type
 
+  self.inheritance_column = 'foo'
+    
   def self.create_bookmark(options)
     options.to_options!
     new_thing = self.new(options)

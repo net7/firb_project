@@ -3,7 +3,7 @@
   <ul>
     <% @bookmarks.each do |b| %>
       <% time = Time.parse(b.date) %>
-      <li><a href="<%= b.link %>"><%= b.title %></a> <%= "#{time.day}/#{time.month}/#{time.year}"%>
+      <li>qstring= <%= b.qstring %>  title <%= b.title %> <%= "#{time.day}/#{time.month}/#{time.year}"%>
         <div class="bookmark_notes">Note: <%= b.notes %></div>
         <div class="bookmarl_public">pubblico? <% if b.public %>Si<% else %>No<% end %></div>
         <div class="bookmark_uri"><%= b.uri %></div>
