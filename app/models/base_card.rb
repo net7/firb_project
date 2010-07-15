@@ -7,7 +7,7 @@ class BaseCard < TaliaCore::Source
   
   rdf_property :name, N::TALIA.name
   
-  multi_property :bibliography_items, N::TALIA.hasBibliography, :force_relation => true
+  multi_property :bibliography_items, N::TALIA.hasBibliography, :type => BibliographyItem
   
   autofill_uri :force => true
   

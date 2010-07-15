@@ -4,20 +4,20 @@
 # Be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development: 
-  adapter: jdbcmysql
+  adapter: mysql
   host: localhost
   password: talia
   username: talia
-  database: talia_2_3_new_talia_development
+  database: firb_development
 production:
-  adapter: jdbcmysql
+  adapter: mysql
   host: localhost
   password: talia
   username: talia
-  database: talia_2_3_new_talia_production
+  database: firb_production
 test:
   adapter: mysql
   host: localhost
   password: talia
   username: talia
-  database: talia_2_3_new_talia_test
+  database: firb_talia_test

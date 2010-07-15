@@ -340,9 +340,7 @@
             <field-edit-row field="completed" param="completed"/>
             <field-edit-row field="description" param="description"/>
             <field-edit-row field="study_notes" param="studynotes" />
-            <field-row field="bibliography_items" param="bibliography" >
-                <view:><bibliography-items-edit /></view:>
-            </field-row>
+            <field-edit-row field="bibliography_items" param="bibliography" />
         </content:>
     </card-form-common>
 </def>
@@ -425,7 +423,7 @@
     <%= 
         render :partial => 'shared/autocompleter',
         :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
-        :action => :autocomplete), :existing => this_parent.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
+        :action => :autocomplete), :existing => this_parent.iconclass_terms.collect {|ic| [ thi, ic.uri.to_s ]} }
     %>
 </def>
 

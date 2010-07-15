@@ -28,4 +28,9 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
     title = value
   end
   
+  # For the list select
+  def to_list_s
+    "#{ref_name} (#{author}: #{title})"
+  end
+  
 end
