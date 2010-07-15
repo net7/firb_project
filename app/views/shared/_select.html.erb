@@ -11,27 +11,27 @@
 
 %>
 
-<ul id="<%= populate_ul_id %>"></ul>
-<select name="<%= select_id %>" id="<%= select_id %>">
+<ul id="<%=h populate_ul_id %>"></ul>
+<select name="<%=h select_id %>" id="<%=h select_id %>">
     <%= options_for_select(options) %>
 </select>
-<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
+<input type='button' class='button' value="<%=h I18n.t('general.add') %>" name='<%=h add_button_id %>' id='<%=h add_button_id %>' />
 
 <script>
 
 (function() {
-    var param_name = "<%= param_name %>",
-        add_button_id = "<%= add_button_id %>",
-        populate_ul_id = "<%= populate_ul_id %>",
-        select_id = "<%= select_id %>",
-        main_name = "<%= main_name %>";
+    var param_name = "<%=escape_javascript param_name %>",
+        add_button_id = "<%=escape_javascript add_button_id %>",
+        populate_ul_id = "<%=escape_javascript populate_ul_id %>",
+        select_id = "<%=escape_javascript select_id %>",
+        main_name = "<%=escape_javascript main_name %>";
     
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
         <% existing.each do |name, value|
-           field_name = "#{main_name}[#{param_name}][]"
+           field_name = "#{escape_javascript main_name}[#{escape_javascript param_name}][]"
         %>
-            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+            populate_with_item(populate_ul_id, '<%=escape_javascript name %>', [{name: '<%= field_name %>', value: '<%=escape_javascript value %>'}]);
         <% end %>
     });
     
