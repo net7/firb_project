@@ -22,7 +22,7 @@ module Admin::TextCardHelper
         breadcrumbs = parent.name + " > " + breadcrumbs 
         parent = parent.get_parent
       end
-      breadcrumbs = parent.name + " > " + breadcrumbs unless(parent.nil?)
+      breadcrumbs = parent.name_label + " > " + breadcrumbs unless parent.nil?
       breadcrumbs += a.name
       
       [breadcrumbs, a.uri.to_s]

@@ -16,6 +16,10 @@ class ImageElement < TaliaCore::Source
     count
   end
 
+  def name_label
+    self.name || self.uri.local_name
+  end
+
   # Returns the ImageZone sources which is part of this object
   def zones
     qry = ActiveRDF::Query.new(ImageZone).select(:zone).distinct
