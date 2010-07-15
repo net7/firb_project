@@ -22,19 +22,19 @@
 <def tag="field-table" polymorphic>
     <zone-image />
     <table class="field-list">
-        <field-row fieldname="anastatica" />
-        <field-collection-row fieldname="bibliography_items" />
+        <field-row field="anastatica" />
+        <field-row field="bibliography_items" />
         <do param="post-bibliography" />
-        <field-row fieldname="tecnique" />
-        <field-row fieldname="measure" />
-        <field-row fieldname="position" />
-        <field-row fieldname="descriptive_notes" />
-        <field-row fieldname="study_notes" />
-        <field-row fieldname="description" />
+        <field-row field="tecnique" />
+        <field-row field="measure" />
+        <field-row field="position" />
+        <field-row field="descriptive_notes" />
+        <field-row field="study_notes" />
+        <field-row field="description" />
         <do param="post-description" />
-        <field-row fieldname="study_notes" />
-        <field-row fieldname="completed">
-            <view:><%= (this.completed == 0) ? I18n.t('general.false') : I18n.t('general.true') %></view:>
+        <field-row field="study_notes" />
+        <field-row field="completed">
+            <view:><%= (this == 0) ? I18n.t('general.false') : I18n.t('general.true') %></view:>
         </field-row>
     </table>
 </def>
@@ -43,13 +43,13 @@
 <def tag="field-table" for="PiIllustrationCard">
     <field-table merge>
         <post-bibliography:>
-            <field-row fieldname="code" />
-            <field-row fieldname="collocation" />
+            <field-row field="code" />
+            <field-row field="collocation" />
         </post-bibliography:>
         <post-description:>
-            <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
-            <field-collection-row fieldname="iconclass_terms" />
-            <field-row fieldname="iconclass_children">
+            <field-row field="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
+            <field-row field="iconclass_terms" />
+            <field-row field="iconclass_children">
                 <view:>
                     <repeat with="&this.child_cards" join=", ">
                         <repeat with="&this.try.iconclass_terms" join=", ">
@@ -65,21 +65,21 @@
 <def tag="field-table" for="PiIllustratedMdCard">
     <field-table merge>
         <post-bibliography:>
-            <field-row fieldname="parent_card" />
-            <field-row fieldname="parent_code">
-                <view:><%= this.parent_card && this.parent_card.code %></view:>
+            <field-row field="parent_card" />
+            <field-row field="parent_code">
+                <view:><%= this_parent.parent_card && this.parent_card.code %></view:>
             </field-row>
-            <field-row fieldname="parent_collocation">
-                <view:><%= this.parent_card && this.parent_card.collocation %></view:>
+            <field-row field="parent_collocation">
+                <view:><%= this_parent.parent_card && this.parent_card.collocation %></view:>
             </field-row>
         </post-bibliography:>
         <post-description:>
-            <field-row fieldname="textual_source" />
-            <field-row fieldname="transcription_text" />
-            <field-row fieldname="parent_iconclass">
-                <view:><%= this.parent_card && this.parent_card.iconclass_terms.collect { |term| term.term }.join(", ") %></view:>
+            <field-row field="textual_source" />
+            <field-row field="transcription_text" />
+            <field-row field="parent_iconclass">
+                <view:><%= this_parent.parent_card && this.parent_card.iconclass_terms.collect { |term| term.term }.join(", ") %></view:>
             </field-row>
-            <field-collection-row fieldname="iconclass_terms" />
+            <field-row field="iconclass_terms" />
         </post-description:>
     </field-table>
     <component-list />
@@ -88,7 +88,7 @@
 <def tag="field-table" for="PiLetterIllustrationCard">
     <field-table merge>
         <post-description:>
-            <field-collection-row fieldname="iconclass_terms" />
+            <field-row field="iconclass_terms" />
         </post-description:>
     </field-table>
     <component-list />

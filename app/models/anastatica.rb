@@ -7,7 +7,7 @@ class Anastatica < TaliaCore::Source
   singular_property :page_position, N::TALIA.position
   declare_attr_type :page_position, :string
   declare_attr_type :name, :string
-  singular_property :image_zone, N::DCT.isFormatOf
+  singular_property :image_zone, N::DCT.isFormatOf, :type => ImageZone
   
   autofill_uri :force => true
   

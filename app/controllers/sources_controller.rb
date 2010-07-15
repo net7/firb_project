@@ -67,7 +67,7 @@ class SourcesController < ApplicationController
     @types = @source.types
     @types.each do |type|
       caller = type.to_name_s('_')
-      self.send(caller) if(self.respond_to?(caller))
+      self.try_call(caller)
     end
     respond_to do |format|
       format.html { render :action => template_for(@source) }

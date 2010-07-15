@@ -8,25 +8,25 @@
     <form merge param="default" action="&base_card_action">
         <card-form-common>
             <content:>
-                <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
-                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
-                <single-connection-row fieldname="procession" type="FiProcession" />
-                <field-edit-row fieldname="name" />
-                <field-edit-row fieldname="code"  />
-                <field-edit-row fieldname="author" />
-                <field-edit-row fieldname="tecnique" />
-                <field-edit-row fieldname="measure" />
-                <field-edit-row fieldname="descriptive_notes" />
-                <field-edit-row fieldname="description" />
-                <single-connection-row fieldname="baldini_text" type="FiTextCard" />
-                <single-connection-row fieldname="cini_text" type="FiTextCard" />
+                <field-edit-row field="anastatica" fieldtype="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
+                <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
+                <field-edit-row field="procession" fieldtype="FiProcession" />
+                <field-edit-row field="name" />
+                <field-edit-row field="code"  />
+                <field-edit-row field="author" />
+                <field-edit-row field="tecnique" />
+                <field-edit-row field="measure" />
+                <field-edit-row field="descriptive_notes" />
+                <field-edit-row field="description" />
+                <field-edit-row field="baldini_text" fieldtype="FiTextCard" />
+                <field-edit-row field="cini_text" fieldtype="FiTextCard" />
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
-                <field-edit-row fieldname="study_notes" />
-                <field-row fieldname="bibliography_items" param="bibliography" >
+                <field-edit-row field="study_notes" />
+                <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row fieldname="notes" param="notes" >
+                <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
                 </field-row>
             </content:>
@@ -38,26 +38,26 @@
     <form merge param="default" action="&base_card_action">
         <card-form-common>
             <content:>
-                <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
-                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
-                <single-connection-row fieldname="procession" type="FiProcession" />
-                <field-edit-row fieldname="name" />
-                <field-edit-row fieldname="code"  />
-                <field-edit-row fieldname="author" />
-                <field-edit-row fieldname="tecnique" />
-                <field-edit-row fieldname="measure" />
-                <field-edit-row fieldname="descriptive_notes" />
-                <field-edit-row fieldname="description" />
-                <field-edit-row fieldname="character_qualities" />
-                <single-connection-row fieldname="baldini_text" type="FiTextCard" />
-                <single-connection-row fieldname="cini_text" type="FiTextCard" />
+                <field-edit-row field="anastatica" fieldtype="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
+                <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
+                <field-edit-row field="procession" fieldtype="FiProcession" />
+                <field-edit-row field="name" />
+                <field-edit-row field="code"  />
+                <field-edit-row field="author" />
+                <field-edit-row field="tecnique" />
+                <field-edit-row field="measure" />
+                <field-edit-row field="descriptive_notes" />
+                <field-edit-row field="description" />
+                <field-edit-row field="character_qualities" />
+                <field-edit-row field="baldini_text" fieldtype="FiTextCard" />
+                <field-edit-row field="cini_text" fieldtype="FiTextCard" />
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
-                <field-edit-row fieldname="study_notes" />
-                <field-row fieldname="bibliography_items" param="bibliography" >
+                <field-edit-row field="study_notes" />
+                <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row fieldname="notes" param="notes" >
+                <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
                 </field-row>
             </content:>
@@ -69,14 +69,14 @@
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
-                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
+                <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
             </before-anastatica:>
             <after-bibliography:>
-                <field-row fieldname="iconclass_terms">
+                <field-row field="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
-                <field-row fieldname="image_components">
-                    <view:><image-components-edit options="&letter_component_types" /></view:>
+                <field-row field="image_components">
+                    <view:><image-components-edit selectoptions="&letter_component_types" /></view:>
                 </field-row>
             </after-bibliography:>
         </card-form-common-pi>
@@ -87,26 +87,26 @@
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
-                <single-connection-row fieldname="parent_card" type="PiIllustrationCard" />
-                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
+                <field-edit-row field="parent_card" fieldtype="PiIllustrationCard" />
+                <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
             </before-anastatica:>
             <code: replace>
-                <field-row fieldname="parent_code"><view:><%= this.parent_card.blank? ? I18n.t('base_cards.on_card_save') : this.parent_card.code %></view:></field-row>
+                <field-row field="parent_code"><view:><%= this_parent.parent_card.blank? ? I18n.t('base_cards.on_card_save') : this_parent.parent_card.code %></view:></field-row>
             </code:>
             <collocation: replace>
-                <field-row fieldname="parent_collocation"><view:><%= this.parent_card.nil? ? I18n.t('base_cards.on_card_save') : this.parent_card.collocation %></view:></field-row>
+                <field-row field="parent_collocation"><view:><%= this_parent.parent_card.nil? ? I18n.t('base_cards.on_card_save') : this_parent.parent_card.collocation %></view:></field-row>
             </collocation:>
             <after-completed:>
-                <single-connection-row fieldname="textual_source" type="PiTextCard" />
-                <field-edit-row fieldname="short_description" />
-                <field-edit-row fieldname="transcription_text" />
+                <field-edit-row field="textual_source" fieldtype="PiTextCard" />
+                <field-edit-row field="short_description" />
+                <field-edit-row field="transcription_text" />
             </after-completed:>
             <after-bibliography:>
-                <field-row fieldname="iconclass_terms">
+                <field-row field="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
-                <field-row fieldname="image_components">
-                    <view:><image-components-edit options="&pi_memory_depiction_types" /></view:>
+                <field-row field="image_components">
+                    <view:><image-components-edit selectoptions="&pi_memory_depiction_types" /></view:>
                 </field-row>
             </after-bibliography:>
         </card-form-common-pi>
@@ -123,17 +123,17 @@
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
             <before-anastatica:>
-                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
+                <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
             </before-anastatica:>
             <after-completed:>
-                <single-connection-row fieldname="textual_source" type="PiTextCard" />
+                <field-edit-row field="textual_source" fieldtype="PiTextCard" />
             </after-completed:>
             <after-bibliography:>
-                <field-collection-row fieldname="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
-                <field-row fieldname="inherited_iconclass">
+                <field-row field="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
+                <field-row field="inherited_iconclass">
                     <view:><repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat></view:>
                 </field-row>
-                <field-row fieldname="iconclass_terms">
+                <field-row field="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
             </after-bibliography:>
@@ -244,39 +244,10 @@
 
 <!-- General tags -->
 
-<def tag="field-edit-table" polymorphic>
-    <table class="field-list">
-        <do param="content" />
-    </table>
-</def>
-
-<def tag="field-row" attrs="fieldname">
-    <tr>
-        <th class="#{fieldname}-label" param="label"><ht key="#{this.class.name.tableize}.#{fieldname}"><%= fieldname.titleize %></ht></th>
-        <td class="#{fieldname}-view" param="view"><base-card-link with="&this[fieldname.to_sym]" /></td>
-    </tr>
-</def>
-
-<def tag="field-edit-row" attrs="fieldname">
-    <field-row fieldname="&fieldname">
-        <view:><input field="&fieldname" /></view:>
-    </field-row>
-</def>
 
 <def tag="single-connection-row" attrs="fieldname">
-    <field-row fieldname="&fieldname">
+    <field-row field="&fieldname">
         <view:><single-connection attribute="&fieldname" merge /></view:>
-    </field-row>
-</def>
-
-<def tag="field-collection-row" attrs="hrefatt, fieldname">
-    <field-row fieldname="&fieldname">
-        <label:><ht key="base_cards.#{fieldname}"><%= fieldname.titleize %></ht></label:>
-        <view:>
-            <repeat with="&this.send(fieldname)" join=", ">
-                <base-card-link />
-            </repeat>
-        </view:>
     </field-row>
 </def>
 
@@ -358,18 +329,18 @@
 <def tag="card-form-common-pi">
     <card-form-common>
         <content:>
-            <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
-            <field-edit-row fieldname="name" param="namefield"/>
-            <field-edit-row fieldname="code" param="code" />
-            <field-edit-row fieldname="collocation" param="collocation"/>
-            <field-edit-row fieldname="tecnique" param="tecnique" />
-            <field-edit-row fieldname="measure" param="measure" />
-            <field-edit-row fieldname="position" param="position" />
-            <field-edit-row fieldname="descriptive_notes" param="descriptivenotes" />
-            <field-edit-row fieldname="completed" param="completed"/>
-            <field-edit-row fieldname="description" param="description"/>
-            <field-edit-row fieldname="study_notes" param="studynotes" />
-            <field-row fieldname="bibliography_items" param="bibliography" >
+            <field-edit-row field="anastatica" fieldtype="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
+            <field-edit-row field="name" param="namefield"/>
+            <field-edit-row field="code" param="code" />
+            <field-edit-row field="collocation" param="collocation"/>
+            <field-edit-row field="tecnique" param="tecnique" />
+            <field-edit-row field="measure" param="measure" />
+            <field-edit-row field="position" param="position" />
+            <field-edit-row field="descriptive_notes" param="descriptivenotes" />
+            <field-edit-row field="completed" param="completed"/>
+            <field-edit-row field="description" param="description"/>
+            <field-edit-row field="study_notes" param="studynotes" />
+            <field-row field="bibliography_items" param="bibliography" >
                 <view:><bibliography-items-edit /></view:>
             </field-row>
         </content:>
@@ -426,12 +397,12 @@
     %>
 </def>
 
-<def tag="image-components-edit" attrs="options">
+<def tag="image-components-edit" attrs="selectoptions">
     <%= 
         render :partial => 'shared/image_components',
         :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'image_components', 
-        :options => (options || nil),
-        :existing => this.image_components.collect {|ic| [ "#{ic.name} (#{ic.zone_type}): #{ic.image_zone.try.name}", ic.uri.to_s]} }
+        :options => (selectoptions || nil),
+        :existing => this_parent.image_components.collect {|ic| [ "#{ic.name} (#{ic.zone_type}): #{ic.image_zone.try.name}", ic.uri.to_s]} }
     %>
 </def>
 
@@ -446,7 +417,7 @@
     <%= 
         render :partial => 'shared/select', 
             :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select,
-            :existing => this.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
+            :existing => this_parent.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
     %>
 </def>
 
@@ -454,7 +425,7 @@
     <%= 
         render :partial => 'shared/autocompleter',
         :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
-        :action => :autocomplete), :existing => this.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
+        :action => :autocomplete), :existing => this_parent.iconclass_terms.collect {|ic| [ "#{ic.term} : #{ic.pref_label}", ic.uri.to_s ]} }
     %>
 </def>
 

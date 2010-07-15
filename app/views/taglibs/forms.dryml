@@ -64,31 +64,31 @@
         <field-edit-table>
             <content:>
 
-            <field-edit-row fieldname="title" />
+            <field-edit-row field="title" />
 
-            <field-row fieldname="transcription_file">
+            <field-row field="transcription_file">
                 <view:><input type="file" name="vt_handwritten_text_card[file]"/></view:>
             </field-row>
 
-            <field-row fieldname="anastatica" param="anastatica" >
+            <field-row field="anastatica" param="anastatica" >
                 <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
             </field-row>
 
-            <field-row fieldname="image_zones" param="image_zones" >
+            <field-row field="image_zones" param="image_zones" >
                 <view:><image-zones-edit /></view:>
             </field-row>
 
-            <field-edit-row fieldname="signature" />
-            <field-edit-row fieldname="measure" />
-            <field-edit-row fieldname="watermark" />
-            <field-edit-row fieldname="cartulation" />
-            <field-edit-row fieldname="technical_notes" />
-            <field-edit-row fieldname="handwritten_notes" />
-            <field-edit-row fieldname="conservation_status" />
-            <field-edit-row fieldname="autography" />
-            <field-edit-row fieldname="date" />
+            <field-edit-row field="signature" />
+            <field-edit-row field="measure" />
+            <field-edit-row field="watermark" />
+            <field-edit-row field="cartulation" />
+            <field-edit-row field="technical_notes" />
+            <field-edit-row field="handwritten_notes" />
+            <field-edit-row field="conservation_status" />
+            <field-edit-row field="autography" />
+            <field-edit-row field="date" />
 
-            <field-row fieldname="bibliography_items" param="bibliography_items" >
+            <field-row field="bibliography_items" param="bibliography_items" >
                 <view:><bibliography-items-edit /></view:>
             </field-row>
 
@@ -121,27 +121,27 @@
         <field-edit-table>
             <content:>
 
-            <field-edit-row fieldname="title" />
+            <field-edit-row field="title" />
 
-            <field-row fieldname="transcription_file">
+            <field-row field="transcription_file">
                 <view:><input type="file" name="vt_printed_text_card[file]"/></view:>
             </field-row>
 
-            <field-row fieldname="anastatica" param="anastatica" >
+            <field-row field="anastatica" param="anastatica" >
                 <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
             </field-row>
 
-            <single-connection-row fieldname="transc_handwritten" type="VtHandwrittenTextCard" />
+            <field-edit-row field="transc_handwritten" type="VtHandwrittenTextCard" />
 
-            <field-row fieldname="image_zones" param="image_zones" >
+            <field-row field="image_zones" param="image_zones" >
                 <view:><image-zones-edit /></view:>
             </field-row>
 
-            <field-edit-row fieldname="page_position" />
-            <field-edit-row fieldname="letter_number" />
-            <field-edit-row fieldname="collocation" />
+            <field-edit-row field="page_position" />
+            <field-edit-row field="letter_number" />
+            <field-edit-row field="collocation" />
 
-            <single-connection-row fieldname="edition" type="BibliographyItem" />
+            <field-edit-row field="edition" type="BibliographyItem" />
 
             </content:>
         </field-edit-table>
@@ -172,15 +172,15 @@
         <field-edit-table>
             <content:>
 
-            <field-edit-row fieldname="title" />
+            <field-edit-row field="title" />
 
-            <field-row fieldname="transcription_file">
+            <field-row field="transcription_file">
                 <view:><input type="file" name="fi_text_card[file]"/></view:>
             </field-row>
 
-            <single-connection-row fieldname="edition" type="BibliographyItem" />
+            <field-edit-row field="edition" type="BibliographyItem" />
 
-            <field-edit-row fieldname="page_position" />
+            <field-edit-row field="page_position" />
 
             </content:>
         </field-edit-table>
@@ -193,45 +193,45 @@
     <form merge param="default" action="&base_card_action" multipart="true">
         <card-form-common>
             <content:>
-                <field-edit-row fieldname="name" />
+                <field-edit-row field="name" />
 
-                <single-connection-row fieldname="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
-                <single-connection-row fieldname="image_zone" type="ImageZone" options="&image_zone_select_uri" />
-                <single-connection-row fieldname="book" type="TaliaCollection" options="&bg_books_select" />
+                <field-edit-row field="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
+                <field-edit-row field="image_zone" type="ImageZone" options="&image_zone_select_uri" />
+                <field-edit-row field="book" type="TaliaCollection" options="&bg_books_select" />
 
-                <field-edit-row fieldname="signature" />
-                <field-edit-row fieldname="collocation" />
-                <field-edit-row fieldname="tecnique" />
-                <field-edit-row fieldname="measure" />
-                <field-edit-row fieldname="technical_notes" />
+                <field-edit-row field="signature" />
+                <field-edit-row field="collocation" />
+                <field-edit-row field="tecnique" />
+                <field-edit-row field="measure" />
+                <field-edit-row field="technical_notes" />
 
-                <single-connection-row fieldname="edition" type="BibliographyItem" />
+                <field-edit-row field="edition" type="BibliographyItem" />
 
-                <field-row fieldname="description_file">
+                <field-row field="description_file">
                     <view:><input type="file" name="bg_illustration_card[file]"/></view:>
                 </field-row>
 
-                <field-row fieldname="related_source_out">
-                    <view:><bg-related-sources-edit fieldname='related_source_out'/></view:>
+                <field-row field="related_source_out">
+                    <view:><bg-related-sources-edit field='related_source_out'/></view:>
                 </field-row>
 
-                <field-row fieldname="related_source_in">
-                    <view:><bg-related-sources-edit fieldname='related_source_in'/></view:>
+                <field-row field="related_source_in">
+                    <view:><bg-related-sources-edit field='related_source_in'/></view:>
                 </field-row>
 
-                <field-edit-row fieldname="study_notes" />
-                <field-edit-row fieldname="motto" />
-                <field-edit-row fieldname="motto_language" />
-                <field-edit-row fieldname="motto_translation" />
+                <field-edit-row field="study_notes" />
+                <field-edit-row field="motto" />
+                <field-edit-row field="motto_language" />
+                <field-edit-row field="motto_translation" />
 
-                <field-edit-row fieldname="owner" />
+                <field-edit-row field="owner" />
                 
-                <field-edit-row fieldname="original_meaning"  />
-                <field-edit-row fieldname="contextual_meaning" />
+                <field-edit-row field="original_meaning"  />
+                <field-edit-row field="contextual_meaning" />
 
-                <field-edit-row fieldname="copyright_notes" />
+                <field-edit-row field="copyright_notes" />
 
-                <field-row fieldname="bibliography_items" param="bibliography" >
+                <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
             </content:>
@@ -246,22 +246,22 @@
         <field-edit-table>
             <content:>
 
-            <field-edit-row fieldname="title" />
+            <field-edit-row field="title" />
 
-            <field-row fieldname="anastatica" param="anastatica" >
+            <field-row field="anastatica" param="anastatica" >
                 <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
             </field-row>
 
-            <single-connection-row fieldname="book" type="TaliaCollection" />
+            <field-edit-row field="book" type="TaliaCollection" />
 
-            <field-row fieldname="transcription_file">
+            <field-row field="transcription_file">
                 <view:><input type="file" name="bg_text_card[file]"/></view:>
             </field-row>
 
-            <field-edit-row fieldname="page_position" />
-            <field-edit-row fieldname="comment" />
+            <field-edit-row field="page_position" />
+            <field-edit-row field="comment" />
 
-            <field-row fieldname="bibliography_items" param="bibliography" >
+            <field-row field="bibliography_items" param="bibliography" >
                 <view:><bibliography-items-edit /></view:>
             </field-row>
 

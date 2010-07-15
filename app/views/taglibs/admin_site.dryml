@@ -8,30 +8,16 @@
 <include src="taglibs/cards"/>
 <include src="taglibs/forms"/>
 <include src="taglibs/base_cards" />
+<include src="taglibs/talia_backend" />
+
 
 <set-theme name="clean"/>
 
 <def tag="app-name">Talia Admin Panel</def>
 
-
-<def tag="single-connection" attrs="typename, attribute, type, options">
-    <% typename ||= (this.class.name.underscore || type.underscore) %>
-    <% options ||= type.constantize.all.collect { |el| [ "#{el.name}", el.uri.to_s ] }.sort %>
-    <% attribute_el       = this.send(attribute.to_sym) %>
-    <if test              = "&attribute_el.blank?">
-        <select-menu name = "#{typename}[#{attribute}]"
-            options       = "&options" 
-            first-option  = "&I18n.t('text_page.select_one')" />
-    </if>
-    <else>
-        <select-menu name = "#{typename}[#{attribute}]"
-            options       = "&options" 
-            selected      = "&attribute_el.uri.to_s" />
-    </else>
-</def>
-
 <def tag="image-zone-select">
-    <single-connection attribute="image_zone" type="ImageZone" options="&image_zone_select_uri" merge />
+    <% puts "667 #{this.inspect}" %>
+    <talia-input field="image_zone" selectoptions="&image_zone_select_uri" merge />
 </def>
 
 <def tag="collection-sidebar">
