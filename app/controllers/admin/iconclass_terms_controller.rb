@@ -40,7 +40,7 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
     completions_without_alt = query.execute
 
     completions_without_alt.each do |term, pref_label|
-      @completions << [term, '', pref_label] if @completions.assoc(term).nil?
+  @completions << [term, pref_label, pref_label] if @completions.assoc(term).nil?
     end
 
     @completions.reject! do |term, alt_label, pref_label|
