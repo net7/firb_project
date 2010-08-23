@@ -47,7 +47,7 @@ class TaliaUser < TaliaCore::Source
       if (u.name == name && u.email_address == email_address.sub('@', '_'))
         ret = u
       else
-        # puts "MAL #{u.name} -- #{u.email_address}"
+        puts "MAL #{u.name} -- #{u.email_address}"
       end
     end
       
