@@ -11,6 +11,14 @@
   </card>
 </def>
 
+<def tag="card" for="TaliaBookmark">
+  <card class="talia-bookmark" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="TaliaCollection">
   <card class="talia-collection" param="default" merge>
     <header: param>

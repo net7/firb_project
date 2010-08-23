@@ -1,0 +1,26 @@
+<div class='widget'>
+    <div class='widgetHeader'>
+        <h3 class='widgetHeaderTitle'>Bookmarks in questo notebook</h3>
+        <div class='widgetHeaderTools'>
+            <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
+            
+    	</div>
+    </div>
+    <div class='widgetContent'>
+        <% notebook_widget['bookmarks'].each do |b| %>
+            <span class='field_title collapsed'>Title: <%= b['title'] %></span>
+            <div class='field_content collapsed'>
+                <ul>
+                    <li>uri: <%= b['uri'] %></li>
+                    <li>Data: <%= b['date'] %></li>
+                    <li>Note: <%= b['note'] %></li>
+                    <li>Tipo: <%= b['resourceType'] %></li>
+                    <li>QString: <%= b['qstring'] %></li>
+                    <li><a class='resource' href="<%= b['qstring'] %>">Apri</a></li>
+                </ul>
+            </div>
+            
+        <% end %>        
+    </div>
+    
+    
