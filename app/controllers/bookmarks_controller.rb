@@ -1,10 +1,72 @@
 class BookmarksController < ApplicationController
   hobo_controller
 
-#  before_filter :get_user
   before_filter :basic_auth
+  before_filter :get_talia_user
   before_filter :get_bookmark_collection
   #  skip_before_filter :verify_authenticity_token
+
+  # TODO: make a stub for the collection, which contains:
+  # - my (which are notebooks)
+  # - subscribed  (which are notebooks)
+  # Each notebook shows:
+  # - uri, public (T/F), author (email or talia user?), note, title, subscribers, bookmarks
+  # Each bookmark shows:
+  # - uri, title, author(? or just NB author?) qstring, type, date
+
+  def stub
+    bm11 = {'uri' => 'http://something1/', 
+            'title' => 'MARMI, 1552-1553, I, p. 1', 
+            'qstring' => 'boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx',
+            'resourceType' => 'transcription',
+            'date' => 'oggi' }
+    bm12 = {'uri' => 'http://something2/', 
+            'title' => 'MARMI, 1552-1553, I, p. 1', 
+            'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
+            'resourceType' => 'imageInfo',
+            'date' => 'ieri sul presto' }
+    bm22 = {'uri' => 'http://something2/', 
+            'title' => 'MARMI, 1552-1553, I, p. 1', 
+            'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
+            'resourceType' => 'imageInfo',
+            'date' => 'ieri l\'altro' }
+    nb1 = {'uri' => 'http://notebook1url/',
+            'public' => true,
+            'author' => 'Simone Fonda',
+            'note' => 'Not a book note book not ebook notebook',
+            'title' => 'Not a book',
+            'subscribers' => 30341,
+            'bookmarks' => [bm11, bm12]}
+    nb2 = {'uri' => 'http://notebook2url/',
+            'public' => true,
+            'author' => 'Michele Barbera',
+            'note' => 'Out of town very important conference notebook',
+            'title' => 'Out of town notebook',
+            'subscribers' => 21,
+            'bookmarks' => [bm22]}
+    nb3 = {'uri' => 'http://notebook2url/',
+            'public' => true,
+            'author' => 'Danilo Giacomi',
+            'note' => 'Super secret notebook',
+            'title' => 'Empty notebook, but secret',
+            'subscribers' => 21,
+            'bookmarks' => []}
+    html = {}
+#    {'error' => '0', 'data' => {'prefs' => {}, 
+#                                'notebooks' => {'my' => [nb1], 'subscribed' => [nb2]},
+#                                'login_panel_html' => html}
+#    }
+    {'error' => '0', 'data' => {'prefs' => {'name' => @user.name, 
+                                            'resizemeImagesMaxWidth' => '600', 
+                                            'animations' => 1,
+                                            'useCookie' => true}, 
+                                'notebooks' => [nb1]+[nb2]},
+                                'login_panel_html' => html
+    }
+    
+
+  end
+
 
   # Create a new bookmark and add it to the user collection
   def new
@@ -43,14 +105,16 @@ class BookmarksController < ApplicationController
   end
 
   def render_json_index
-    data = []
-    @collection.elements.each do |b|
-      data << {'title' => b.title,
-          'qstring' => b.qstring, 'date' => b.date, 'note' => b.notes,
-          'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
-    end
-    result = {'error' => '0', 'data' => data}
-    render :json => result
+    # TODO: created a stub to get a legal result out of this
+    #data = []
+    #@collection.elements.each do |b|
+    #  data << { 'title' => b.title,
+    #      'qstring' => b.qstring, 'date' => b.date, 'note' => b.notes,
+    #      'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
+    #end
+    #result = {'error' => '0', 'data' => data}
+    # render :json => result
+    render :json => stub
   end
 
   def delete
@@ -79,6 +143,7 @@ class BookmarksController < ApplicationController
     }
   end
 
+  # TODO: is this called at all? Dont we get a basic auth error if we're not logged in? 
   def render_not_logged_in_json
     html = 'Not Logged in'
     data = 'Not Logged in'
@@ -91,12 +156,10 @@ class BookmarksController < ApplicationController
 
   private
 
-  #  Proper user control, based on hobo users
-  #
-  #   def get_user
-  #    @user = current_user
-  #    raise(ActiveRecord::RecordNotFound, "No user #{params[:user_name]}") unless(@user)
-  #  end
+   def get_talia_user
+    @talia_user = TaliaUser.find_by_name_and_email(@user.name, @user.email_address)
+    raise(ActiveRecord::RecordNotFound, "No user #{params[:user_name]}") unless(@talia_user)
+  end
   #
   #  def get_bookmark_collection
   #    if logged_in?
