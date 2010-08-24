@@ -21,17 +21,20 @@ class BookmarksController < ApplicationController
     @bm11 = {'uri' => 'http://something1/', 
             'title' => 'MARMI, 1552-1553, I, p. 1', 
             'qstring' => 'boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx',
+            'note' => 'Mamma mia che bella questa trascrizione.. wunderbar',
             'resourceType' => 'transcription',
             'date' => 'oggi' }
     @bm12 = {'uri' => 'http://something2/', 
             'title' => 'MARMI, 1552-1553, I, p. 1', 
             'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
             'resourceType' => 'imageInfo',
+            'note' => 'Nota piccina, corta corta',
             'date' => 'ieri sul presto' }
     @bm22 = {'uri' => 'http://something2/', 
             'title' => 'MARMI, 1552-1553, I, p. 1', 
             'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
             'resourceType' => 'imageInfo',
+            'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',        
             'date' => 'ieri l\'altro' }
     @nb1 = {'uri' => 'http://notebook1url/',
             'public' => true,
@@ -70,10 +73,13 @@ class BookmarksController < ApplicationController
   # contains the given qstring in one of its bookmarks. The notebooks will contain only the 
   # bookmarks of the given qstring
   def get_my_doni_widget
-      foo = stub;
-      html = render_to_string :partial => '/bookmark/my_doni_widget.html', :object => @nb2
+      foo = stub
+      qstring = params[:qstring]
+      # TODO : replace nb1 and nb2 with arrays with owned and subscribed notebooks which 
+      # contains the given qstring
+      html = render_to_string :partial => '/bookmark/my_doni_widget.html', :locals => { :my => [@nb2], :subscribed => [@nb1, @nb3]}
       error = 0
-      data = {:error => error, :box => @nb1['title'], :html => html}
+      data = {:error => error, :html => html}
       render_json(html, data, error)
   end
 
