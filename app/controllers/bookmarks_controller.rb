@@ -55,69 +55,10 @@ class BookmarksController < ApplicationController
             'subscribers' => 21,
             'bookmarks' => []}
 
-    # TODO: questo pezzo di HTML deve contenere username/pass con cui ci si e' loggati,
-    # altrimenti mostra il box di login e basta.
-    # Se siamo loggati passa anche le preferenze e tutti i notebooks di cui l'utente e'
-    # autore e quelli di cui e' solo lettore. I notebooks vengono renderizzati in HTML
-    # e passati tramite json per le strutture interne del gestore dei bookmarks.
-    # La renderizzazione html dei bookmarks riflette la struttura a widget del Doni ed 
-    # i link hanno il solito formato per interagire con l'interfaccia, .resource per i
-    # link ai box di contenuto, e qualche altro formato per la gestione (ne concordiamo uno,
-    # tipo.. una certa classe .loginBox o qualcosa di simile.)
-
-    html =    
-    "<div class='widget'>
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>Account</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-                
-        	</div>
-        </div>
-        <div class='widgetContent'>
-
-        </div>
-        
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>Preferenze</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-            </div>
-        </div>
-        <div class='widgetContent'>Le tue preferenze sono state applicate.</div>
-
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>I miei Notebook</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-            </div>
-        </div>
-        <div class='widgetContent'>"+(render_to_string :partial => '/bookmark/notebook_index.html', :object => [@nb1])+"</div>
-        
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>Altri Notebook</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-            </div>
-        </div>
-        <div class='widgetContent'>"+(render_to_string :partial => '/bookmark/notebook_index.html', :object => [@nb2, @nb3])+"</div>
-
-    </div>"
-
-    {'error' => '0', 
-     'data' => {'prefs' => {'name' => @user.name, 
-                            'resizemeImagesMaxWidth' => '600', 
-                            'animations' => 1,
-                            'useCookie' => true},
-                'notebooks' => [@nb1]+[@nb2],
-                'login_panel_html' => html
-                }
-    }
-    
   end
 
-  def getNotebook
-      foo = stub;
+  def get_notebook
+      foo = stub
       html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @nb1
       error = 0
       data = {:box => @nb1['title'], :html => html}
@@ -127,7 +68,6 @@ class BookmarksController < ApplicationController
 
   # Create a new bookmark and add it to the user collection
   def new
-    #    if logged_in?
     bookmark = TaliaBookmark.create_bookmark(params)
     @collection << bookmark
     @collection.save!
@@ -135,22 +75,15 @@ class BookmarksController < ApplicationController
     data = {}
     error = 0;
     render_json(html, data, error)
-    #    else
-    #      redirect_to :controller => 'users' #, :action => 'login'
-    #    end
   end
 
   # Return a list of bookmarks with all their data
   def index
-    #    if logged_in?
-    # @bookmarks = @collection.elements
+    @bookmarks = @collection.elements
     respond_to do |format|
       format.json {render_json_index}
       format.html {render_html_index}
     end
-    #    else
-    #      render_not_logged_in_json
-    #    end
   end
 
   def render_html_index
@@ -171,19 +104,33 @@ class BookmarksController < ApplicationController
     #end
     #result = {'error' => '0', 'data' => data}
     # render :json => result
-    render :json => stub
+
+    # TODO: delete this stub and get the real data from rdf, replace @nb1-2-3 with real stuff,
+    # keeping them into an array.
+    foo = stub
+    html = render_to_string :partial => '/bookmark/my_doni_index.html', :locals => { :my => [@nb1], :subscribed => [@nb2, @nb3]}
+
+    # TODO: any idea on how to craft a json like this in a better way? Like some
+    # helper .. dunno
+    json = { 'error' => '0', 
+             'data' => {'prefs' => {'name' => @user.name, 
+                                    'resizemeImagesMaxWidth' => '600', 
+                                    'animations' => 1,
+                                    'useCookie' => true},
+                        'notebooks' => [@nb1]+[@nb2],
+                        'login_panel_html' => html
+                        }
+            }
+    
+    render :json => json
   end
 
   def delete
-#    if logged_in?
       @collection.remove_bookmark(params[:bookmark_uri])
       html = 'deleted'
       data = {}
       error = 0
       render_json(html, data, error)
-#    else
-#      render_not_logged_in_json
-#    end
   end
 
   # We update just the notes and the public fields
