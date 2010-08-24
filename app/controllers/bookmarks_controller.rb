@@ -57,11 +57,23 @@ class BookmarksController < ApplicationController
 
   end
 
-  def get_notebook
+  # Returns an entire box with all of its notebook's widgets
+  def get_notebook_box
       foo = stub
       html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @nb1
       error = 0
-      data = {:box => @nb1['title'], :html => html}
+      data = {:error => error, :box => @nb1['title'], :html => html}
+      render_json(html, data, error)
+  end
+
+  # Returns a widget to be inserted at the top of a content box, with all the notebooks which
+  # contains the given qstring in one of its bookmarks. The notebooks will contain only the 
+  # bookmarks of the given qstring
+  def get_my_doni_widget
+      foo = stub;
+      html = render_to_string :partial => '/bookmark/my_doni_widget.html', :object => @nb2
+      error = 0
+      data = {:error => error, :box => @nb1['title'], :html => html}
       render_json(html, data, error)
   end
 
@@ -112,13 +124,18 @@ class BookmarksController < ApplicationController
 
     # TODO: any idea on how to craft a json like this in a better way? Like some
     # helper .. dunno
+
+    # prefs: contains the preference object got from the frontend on a
+    #        preference save action
+    # notebooks: contains all the notebooks this user is subscribed to/owner of
+    # login_panel_html: html code for the my doni box
     json = { 'error' => '0', 
              'data' => {'prefs' => {'name' => @user.name, 
                                     'resizemeImagesMaxWidth' => '600', 
                                     'animations' => 1,
                                     'useCookie' => true},
                         'notebooks' => [@nb1]+[@nb2],
-                        'login_panel_html' => html
+                        'my_doni_html' => html
                         }
             }
     
