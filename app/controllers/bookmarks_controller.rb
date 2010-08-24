@@ -1,11 +1,10 @@
 require "base64"
-
 class BookmarksController < ApplicationController
   hobo_controller
 
   before_filter :basic_auth
   before_filter :get_talia_user
-  before_filter :get_bookmark_collection
+  before_filter :get_bookmark_collections
   #  skip_before_filter :verify_authenticity_token
 
   # TODO: make a stub for the collection, which contains:
@@ -19,41 +18,41 @@ class BookmarksController < ApplicationController
 
   def stub
     @bm11 = {'uri' => 'http://something1/', 
-            'title' => 'MARMI, 1552-1553, I, p. 1', 
-            'qstring' => 'boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx',
-            'resourceType' => 'transcription',
-            'date' => 'oggi' }
+      'title' => 'MARMI, 1552-1553, I, p. 1',
+      'qstring' => 'boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx',
+      'resourceType' => 'transcription',
+      'date' => 'oggi' }
     @bm12 = {'uri' => 'http://something2/', 
-            'title' => 'MARMI, 1552-1553, I, p. 1', 
-            'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
-            'resourceType' => 'imageInfo',
-            'date' => 'ieri sul presto' }
+      'title' => 'MARMI, 1552-1553, I, p. 1',
+      'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
+      'resourceType' => 'imageInfo',
+      'date' => 'ieri sul presto' }
     @bm22 = {'uri' => 'http://something2/', 
-            'title' => 'MARMI, 1552-1553, I, p. 1', 
-            'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
-            'resourceType' => 'imageInfo',
-            'date' => 'ieri l\'altro' }
+      'title' => 'MARMI, 1552-1553, I, p. 1',
+      'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
+      'resourceType' => 'imageInfo',
+      'date' => 'ieri l\'altro' }
     @nb1 = {'uri' => 'http://notebook1url/',
-            'public' => true,
-            'author' => 'Simone Fonda',
-            'note' => 'Not a book note book not ebook notebook',
-            'title' => 'Not a book',
-            'subscribers' => 30341,
-            'bookmarks' => [@bm11, @bm12]}
+      'public' => true,
+      'author' => 'Simone Fonda',
+      'note' => 'Not a book note book not ebook notebook',
+      'title' => 'Not a book',
+      'subscribers' => 30341,
+      'bookmarks' => [@bm11, @bm12]}
     @nb2 = {'uri' => 'http://notebook2url/',
-            'public' => true,
-            'author' => 'Michele Barbera',
-            'note' => 'Out of town very important conference notebook',
-            'title' => 'Out of town notebook',
-            'subscribers' => 21,
-            'bookmarks' => [@bm22]}
+      'public' => true,
+      'author' => 'Michele Barbera',
+      'note' => 'Out of town very important conference notebook',
+      'title' => 'Out of town notebook',
+      'subscribers' => 21,
+      'bookmarks' => [@bm22]}
     @nb3 = {'uri' => 'http://notebook2url/',
-            'public' => true,
-            'author' => 'Danilo Giacomi',
-            'note' => 'Super secret notebook',
-            'title' => 'Empty notebook, but secret',
-            'subscribers' => 21,
-            'bookmarks' => []}
+      'public' => true,
+      'author' => 'Danilo Giacomi',
+      'note' => 'Super secret notebook',
+      'title' => 'Empty notebook, but secret',
+      'subscribers' => 21,
+      'bookmarks' => []}
 
     # TODO: questo pezzo di HTML deve contenere username/pass con cui ci si e' loggati,
     # altrimenti mostra il box di login e basta.
@@ -66,7 +65,7 @@ class BookmarksController < ApplicationController
     # tipo.. una certa classe .loginBox o qualcosa di simile.)
 
     html =    
-    "<div class='widget'>
+      "<div class='widget'>
         <div class='widgetHeader'>
             <h3 class='widgetHeaderTitle'>Account</h3>
             <div class='widgetHeaderTools'>
@@ -105,45 +104,65 @@ class BookmarksController < ApplicationController
     </div>"
 
     {'error' => '0', 
-     'data' => {'prefs' => {'name' => @user.name, 
-                            'resizemeImagesMaxWidth' => '600', 
-                            'animations' => 1,
-                            'useCookie' => true},
-                'notebooks' => [@nb1]+[@nb2],
-                'login_panel_html' => html
-                }
+      'data' => {'prefs' => {'name' => @user.name,
+          'resizemeImagesMaxWidth' => '600',
+          'animations' => 1,
+          'useCookie' => true},
+        'notebooks' => [@nb1]+[@nb2],
+        'login_panel_html' => html
+      }
     }
     
   end
 
   def getNotebook
-      foo = stub;
-      html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @nb1
-      error = 0
-      data = {:box => @nb1['title'], :html => html}
-      render_json(html, data, error)
+    foo = stub;
+    html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @nb1
+    error = 0
+    data = {:box => @nb1['title'], :html => html}
+    render_json(html, data, error)
   end
 
 
-  # Create a new bookmark and add it to the user collection
+  # Create a new bookmark and add it to the specified notebook
+  # the form should pass, amongst other things, the notebook uri to which
+  # the bookmark has to be added (:notebook)
   def new
-    #    if logged_in?
+    notebook_uri = params.delete(:notebook)
     bookmark = TaliaBookmark.create_bookmark(params)
-    @collection << bookmark
-    @collection.save!
+    notebook = BookmarkCollection.find(notebook_uri)
+    notebook.add_bookmark(bookmark)
     html = bookmark.uri
     data = {}
     error = 0;
     render_json(html, data, error)
-    #    else
-    #      redirect_to :controller => 'users' #, :action => 'login'
-    #    end
+  end
+
+  # creates a new notebook
+  def new_notebook
+    notebook = BookmarkCollection.create_bookmark_collection(params)
+    notebook.set_owner(@talia_user)
+    notebook.save!
+    html = notebook.uri
+    data = {}
+    error = 0;
+    render_json(html, data, error)
+  end
+
+  def follow_notebook
+    notebook = BookmarkCollection.find(params.delete(:notebook))
+    raise if notebook.nil? or !notebook.is_a? BookmarkCollection
+    add_follower(@talia_user)
   end
 
   # Return a list of bookmarks with all their data
   def index
     #    if logged_in?
-    # @bookmarks = @collection.elements
+    #     @bookmarks = @collection.elements
+
+    @my_notebooks = get_user_notebooks
+    @other_notebooks = get_other_notebooks
+
     respond_to do |format|
       format.json {render_json_index}
       format.html {render_html_index}
@@ -169,21 +188,23 @@ class BookmarksController < ApplicationController
     #      'qstring' => b.qstring, 'date' => b.date, 'note' => b.notes,
     #      'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
     #end
+    #
     #result = {'error' => '0', 'data' => data}
     # render :json => result
+
     render :json => stub
   end
 
   def delete
-#    if logged_in?
-      @collection.remove_bookmark(params[:bookmark_uri])
-      html = 'deleted'
-      data = {}
-      error = 0
-      render_json(html, data, error)
-#    else
-#      render_not_logged_in_json
-#    end
+    #    if logged_in?
+    @collection.remove_bookmark(params[:bookmark_uri])
+    html = 'deleted'
+    data = {}
+    error = 0
+    render_json(html, data, error)
+    #    else
+    #      render_not_logged_in_json
+    #    end
   end
 
   # We update just the notes and the public fields
@@ -200,9 +221,9 @@ class BookmarksController < ApplicationController
     }
   end
 
-  # TODO: is this called at all? Dont we get a basic auth error if we're not logged in? 
-  def render_not_logged_in_json
-    html = 'Not Logged in'
+  
+  def render_invalid_user_and_pass_json
+    html = 'Invalid User and Password'
     data = 'Not Logged in'
     error = 30;
     render :json => {'error' => error,
@@ -213,10 +234,25 @@ class BookmarksController < ApplicationController
 
   private
 
-   def get_talia_user
+  def get_talia_user
     @talia_user = TaliaUser.find_by_name_and_email(@user.name, @user.email_address)
-    raise(ActiveRecord::RecordNotFound, "No user #{params[:user_name]}") unless(@talia_user)
+    render_invalid_user_and_pass_json unless(@talia_user)
   end
+
+  # Returns the list of notebooks of the active @talia_user
+  def get_user_notebooks
+    qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
+    qry.where(:bc, N::TALIA.owner, @talia_user)
+    qry.execute
+  end
+
+  # Returns the list of notebooks the active @talia_user is following
+  def get_other_notebooks
+    qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
+    qry.where(@talia_user, N::TALIA.follows, :bc)
+    qry.execute
+  end
+
   #
   #  def get_bookmark_collection
   #    if logged_in?
@@ -230,21 +266,27 @@ class BookmarksController < ApplicationController
   #  end
 
 
-#  def get_user
-#    @user = User.find_by_name(params[:user_name])
-#    #    raise(ActiveRecord::RecordNotFound, "No user #{params[:user_name]}") unless(@user)
-#    render_not_logged_in_json unless(@user)
-#  end
+  #  def get_user
+  #    @user = User.find_by_name(params[:user_name])
+  #    #    raise(ActiveRecord::RecordNotFound, "No user #{params[:user_name]}") unless(@user)
+  #    render_not_logged_in_json unless(@user)
+  #  end
 
-  def get_bookmark_collection
-    @collection = BookmarkCollection.new((N::LOCAL + "bookmarks/#{@user.name}").to_uri)
-    @collection.save!
+  def get_bookmark_collections
+    qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
+    qry.where(:bc, N::TALIA.owner, @talia_user)
+    @collections = qry.execute
+
+
+    #    @collection = BookmarkCollection.new((N::LOCAL + "bookmarks/#{@user.name}").to_uri)
+    #    @collection.save!
   end
 
   def basic_auth
-#    user_email = @user.email_address
+    #    user_email = @user.email_address
     authenticate_or_request_with_http_basic("Bookmarks") do |user, pass|
       @user = User.authenticate(user, pass) #if(@user.name == user)
     end
   end
+
 end
