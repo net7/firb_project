@@ -63,6 +63,7 @@ class BookmarksController < ApplicationController
   def get_bookmark_dialog
 
     #      foo = stub
+    load_notebooks_vars
 
     # TODO: move this html to a view or another partial ..
     html = "<div class='dialog_accordion'>"
@@ -74,9 +75,8 @@ class BookmarksController < ApplicationController
 
     # Use my notebooks to render the edit forms
     # TODO: need to filter @my_notebooks to get out only those having a bm which refers to params[:qstring]
-    if (!@my_notebooks.nil?) then
-        html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html', :locals => { :my => [@my_notebooks]}
-    end
+    # FIXME: uncomment this as soon as edit_dialog gets needed
+    #html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html', :locals => { :my => [@my_notebooks]} unless @my_notebooks.empty?
     
     # TODO: remove this html as before
     html += "</div>"
@@ -88,10 +88,10 @@ class BookmarksController < ApplicationController
 
   # Returns an entire box with all of its notebook's widgets
   def get_notebook_box
-    foo = stub
-    html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @nb1
+    # TODO: for what notebook? All of em? set @some_notebook
+    # html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @some_notebook
     error = 0
-    data = {:error => error, :box => @nb1['title'], :html => html}
+    data = {:error => error, :box => @some_notebook.title, :html => html}
     render_json(html, data, error)
   end
 
@@ -100,10 +100,12 @@ class BookmarksController < ApplicationController
   # bookmarks of the given qstring
   def get_my_doni_widget
     #      foo = stub
+    load_notebooks_vars
     qstring = params[:qstring]
     # TODO : replace nb1 and nb2 with arrays with owned and subscribed notebooks which
     # contains the given qstring
-    html = render_to_string :partial => '/bookmark/my_doni_widget.html'#, :locals => { :my => [@nb2], :subscribed => [@nb1, @nb3]}
+    # html = render_to_string :partial => '/bookmark/my_doni_widget.html'#, :locals => { :my => [@nb2], :subscribed => [@nb1, @nb3]}
+    html = render_to_string :partial => '/bookmark/my_doni_widget.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks}
     error = 0
     data = {:error => error, :html => html}
     render_json(html, data, error)
@@ -126,6 +128,7 @@ class BookmarksController < ApplicationController
 
   # creates a new notebook
   def new_notebook
+    puts "------------- " + params.inspect
     notebook = BookmarkCollection.create_bookmark_collection(params)
     notebook.set_owner(@talia_user)
     notebook.save!
@@ -179,12 +182,12 @@ class BookmarksController < ApplicationController
     #    foo = stub
     load_notebooks_vars
 
-    html = render_to_string :partial => '/bookmark/my_doni_index.html' #, :locals => { :my => [@nb1]+@my_notebooks, :subscribed => [@nb2, @nb3]}
+    # html = render_to_string :partial => '/bookmark/my_doni_index.html' #, :locals => { :my => [@nb1]+@my_notebooks, :subscribed => [@nb2, @nb3]}
+    html = render_to_string :partial => '/bookmark/my_doni_index.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks }
 
     puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
     puts @my_notebooks.inspect + @subscribed_notebooks.inspect
     puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
-
 
     # TODO: any idea on how to craft a json like this in a better way? Like some
     # helper .. dunno
@@ -267,8 +270,8 @@ class BookmarksController < ApplicationController
 
 
   def load_notebooks_vars
-    @my_notebooks = get_user_notebooks
-    @subscribed_notebooks = get_subscribed_notebooks
+    @my_notebooks = get_user_notebooks || []
+    @subscribed_notebooks = get_subscribed_notebooks || []
   end
 
   # Returns the list of notebooks the active @talia_user is following

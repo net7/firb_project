@@ -5,7 +5,11 @@
         <li>Tipo <%= bm[:resourceTypeString] %> <%= bm[:resourceType] %></li>
         <li>Data <%= Time.now.strftime("%x %X") %></li>
 
+        <% if (my_notebooks_select.empty?) %>
+            <li class='bm_nb_select'>Non hai nessun notebook, creane uno adesso.</li>
+        <% else %>
         <li class='bm_nb_select'>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'bm_nb_select'} %></li>
+        <% end %>
 
         <li>
             <ul>
