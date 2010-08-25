@@ -177,7 +177,12 @@ class BookmarksController < ApplicationController
     # TODO: delete this stub and get the real data from rdf, replace @nb1-2-3 with real stuff,
     # keeping them into an array.
     foo = stub
-    html = render_to_string :partial => '/bookmark/my_doni_index.html', :locals => { :my => [@nb1], :subscribed => [@nb2, @nb3]}
+    html = render_to_string :partial => '/bookmark/my_doni_index.html', :locals => { :my => [@nb1]+@my_notebooks, :subscribed => [@nb2, @nb3]}
+
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
+    puts @my_notebooks.inspect + @other_notebooks.inspect   
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
+
 
     # TODO: any idea on how to craft a json like this in a better way? Like some
     # helper .. dunno
