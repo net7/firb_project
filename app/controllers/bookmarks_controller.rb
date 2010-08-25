@@ -72,11 +72,12 @@ class BookmarksController < ApplicationController
       
     html += render_to_string :partial => '/bookmark/bookmark_new_dialog.html', :locals => { :bm => bm }
 
-    # Look for the proper bookmarks items and render the edit forms
-    # TODO: find a way to include the 'father' notebook into this locals.. or just pass in notebooks
-    #       with just the bookmarks which refer to this qstring
-    html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html' #, :locals => { :my => [@bm12, @bm22]}
-
+    # Use my notebooks to render the edit forms
+    # TODO: need to filter @my_notebooks to get out only those having a bm which refers to params[:qstring]
+    if (!@my_notebooks.nil?) then
+        html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html', :locals => { :my => [@my_notebooks]}
+    end
+    
     # TODO: remove this html as before
     html += "</div>"
 
