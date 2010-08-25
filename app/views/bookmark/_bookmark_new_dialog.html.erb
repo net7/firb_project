@@ -4,18 +4,18 @@
         <input type='hidden' class='newbm_qstring' value='<%= bm[:qstring] %>'>
         <li>Tipo <%= bm[:resourceTypeString] %> <%= bm[:resourceType] %></li>
         <li>Data <%= Time.now.strftime("%x %X") %></li>
+        <li class='newbm_nb_select'>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'newbm_nb'} %></li>
         <li>
             <ul>
                 <li><button class='newbm_newnb_button'>Crea un nuovo notebook</button></li>
-                <li class='newbm_nb_select'>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'newbm_nb'} %></li>
                 <li class='newbm_new_nb_form'>
                     <ul>
-                        <li><input type='text' class='newbm_newnb' value='Nome del nuovo notebook'></li>
-                        <li><textarea cols='40' rows='3' class='newbm_newnb_note'>Nota del nuovo notebook .. </textarea></li>
+                        <li><input type='text' class='newbm_newnb' placeholder='Nome del nuovo notebook ..'></li>
+                        <li><textarea cols='40' rows='3' class='newbm_newnb_note' placeholder="Nota del nuovo notebook .. "></textarea></li>
                     </ul>
                 </li>
             </ul>
-        <li><textarea cols='50' rows='5' class='newbm_note'>La tua nota .. </textarea></li>
+        <li><textarea cols='50' rows='5' class='newbm_note' placeholder='La tua nota su questo box di contenuto .. '></textarea></li>
         <li><button class='newbm_save'>Salva</button></li>
     </ul>
 </div>

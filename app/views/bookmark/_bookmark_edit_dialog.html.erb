@@ -1,10 +1,28 @@
 <% my.each do |bm| %>
-    <h3>Notebook -NOMENOTEBOOK-, data <%= bm['date'] %></h3>
-    <div>
+    <h3>Notebook -NOMENOTEBOOK-, data 
+    <%= 
+    bm['date'] #strftime("%x %X")
+     %></h3>
+    <div class='editbm_form'>
         <ul>
-            <input type='hidden' class='newbm_qstring'>
+            <input type='hidden' class='newbm_qstring' value='<%= bm['qstring'] %>'>
+
+
             <li><textarea cols='50' rows='5' class='newbm_note'><%= bm['note'] %></textarea></li>
-            <li><span class='newbm_save'>Salva</span></li>
+            <li class='newbm_nb_select'>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'newbm_nb'} %></li>
+            <li>
+
+                <ul>
+                    <li><button class='newbm_newnb_button'>Crea un nuovo notebook</button></li>
+                    <li class='newbm_new_nb_form'>
+                        <ul>
+                            <li><input type='text' class='newbm_newnb' placeholder='Nome del nuovo notebook ..'></li>
+                            <li><textarea cols='40' rows='3' class='newbm_newnb_note' placeholder="Nota del nuovo notebook .. "></textarea></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><button class='newbm_save'>Salva</button></li>
         </ul>
     </div>
 <% end %>
