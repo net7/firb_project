@@ -18,23 +18,23 @@ class BookmarksController < ApplicationController
 
   def stub
     @bm11 = {'uri' => 'http://something1/', 
-            'title' => 'MARMI, 1552-1553, I, p. 1', 
-            'qstring' => 'boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx',
-            'note' => 'Mamma mia che bella questa trascrizione.. wunderbar',
-            'resourceType' => 'transcription',
-            'date' => 'oggi' }
+      'title' => 'MARMI, 1552-1553, I, p. 1',
+      'qstring' => 'boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx',
+      'note' => 'Mamma mia che bella questa trascrizione.. wunderbar',
+      'resourceType' => 'transcription',
+      'date' => 'oggi' }
     @bm12 = {'uri' => 'http://something2/', 
-            'title' => 'MARMI, 1552-1553, I, p. 1', 
-            'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
-            'resourceType' => 'imageInfo',
-            'note' => 'Nota piccina, corta corta',
-            'date' => 'ieri sul presto' }
+      'title' => 'MARMI, 1552-1553, I, p. 1',
+      'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
+      'resourceType' => 'imageInfo',
+      'note' => 'Nota piccina, corta corta',
+      'date' => 'ieri sul presto' }
     @bm22 = {'uri' => 'http://something2/', 
-            'title' => 'MARMI, 1552-1553, I, p. 1', 
-            'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
-            'resourceType' => 'imageInfo',
-            'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',        
-            'date' => 'ieri l\'altro' }
+      'title' => 'MARMI, 1552-1553, I, p. 1',
+      'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
+      'resourceType' => 'imageInfo',
+      'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'date' => 'ieri l\'altro' }
     @nb1 = {'uri' => 'http://notebook1url/',
       'public' => true,
       'author' => 'Simone Fonda',
@@ -62,57 +62,57 @@ class BookmarksController < ApplicationController
   # Returns the form for the frontend's new/modify dialog
   def get_bookmark_dialog
 
-      foo = stub
+    #      foo = stub
 
-      # TODO: move this html to a view or another partial ..
-      html = "<div class='dialog_accordion'>"
+    # TODO: move this html to a view or another partial ..
+    html = "<div class='dialog_accordion'>"
 
-      # Insert the standard 'new' bookmark part
-      bm = {:qstring => params[:qstring], :title => params[:title], :resourceType => params[:resourceType], :resourceTypeString => params[:resourceTypeString]}
+    # Insert the standard 'new' bookmark part
+    bm = {:qstring => params[:qstring], :title => params[:title], :resourceType => params[:resourceType], :resourceTypeString => params[:resourceTypeString]}
       
-      html += render_to_string :partial => '/bookmark/bookmark_new_dialog.html', :locals => { :bm => bm }
+    html += render_to_string :partial => '/bookmark/bookmark_new_dialog.html', :locals => { :bm => bm }
 
-      # Look for the proper bookmarks items and render the edit forms
-      # TODO: find a way to include the 'father' notebook into this locals.. or just pass in notebooks
-      #       with just the bookmarks which refer to this qstring
-      html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html', :locals => { :my => [@bm12, @bm22]}
+    # Look for the proper bookmarks items and render the edit forms
+    # TODO: find a way to include the 'father' notebook into this locals.. or just pass in notebooks
+    #       with just the bookmarks which refer to this qstring
+    html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html' #, :locals => { :my => [@bm12, @bm22]}
 
-      # TODO: remove this html as before
-      html += "</div>"
+    # TODO: remove this html as before
+    html += "</div>"
 
-      error = 0
-      data = {:error => error, :html => html}
-      render_json(html, data, error)
+    error = 0
+    data = {:error => error, :html => html}
+    render_json(html, data, error)
   end
 
   # Returns an entire box with all of its notebook's widgets
   def get_notebook_box
-      foo = stub
-      html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @nb1
-      error = 0
-      data = {:error => error, :box => @nb1['title'], :html => html}
-      render_json(html, data, error)
+    foo = stub
+    html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @nb1
+    error = 0
+    data = {:error => error, :box => @nb1['title'], :html => html}
+    render_json(html, data, error)
   end
 
   # Returns a widget to be inserted at the top of a content box, with all the notebooks which
   # contains the given qstring in one of its bookmarks. The notebooks will contain only the 
   # bookmarks of the given qstring
   def get_my_doni_widget
-      foo = stub
-      qstring = params[:qstring]
-      # TODO : replace nb1 and nb2 with arrays with owned and subscribed notebooks which 
-      # contains the given qstring
-      html = render_to_string :partial => '/bookmark/my_doni_widget.html', :locals => { :my => [@nb2], :subscribed => [@nb1, @nb3]}
-      error = 0
-      data = {:error => error, :html => html}
-      render_json(html, data, error)
+    #      foo = stub
+    qstring = params[:qstring]
+    # TODO : replace nb1 and nb2 with arrays with owned and subscribed notebooks which
+    # contains the given qstring
+    html = render_to_string :partial => '/bookmark/my_doni_widget.html'#, :locals => { :my => [@nb2], :subscribed => [@nb1, @nb3]}
+    error = 0
+    data = {:error => error, :html => html}
+    render_json(html, data, error)
   end
 
 
   # Create a new bookmark and add it to the specified notebook
   # the form should pass, amongst other things, the notebook uri to which
   # the bookmark has to be added (:notebook)
-  def new
+  def new_bookmark
     notebook_uri = params.delete(:notebook)
     bookmark = TaliaBookmark.create_bookmark(params)
     notebook = BookmarkCollection.find(notebook_uri)
@@ -145,8 +145,7 @@ class BookmarksController < ApplicationController
     #    if logged_in?
     #     @bookmarks = @collection.elements
 
-    @my_notebooks = get_user_notebooks
-    @other_notebooks = get_other_notebooks
+    load_notebooks_vars
 
     respond_to do |format|
       format.json {render_json_index}
@@ -176,11 +175,13 @@ class BookmarksController < ApplicationController
 
     # TODO: delete this stub and get the real data from rdf, replace @nb1-2-3 with real stuff,
     # keeping them into an array.
-    foo = stub
-    html = render_to_string :partial => '/bookmark/my_doni_index.html', :locals => { :my => [@nb1]+@my_notebooks, :subscribed => [@nb2, @nb3]}
+    #    foo = stub
+    load_notebooks_vars
+
+    html = render_to_string :partial => '/bookmark/my_doni_index.html' #, :locals => { :my => [@nb1]+@my_notebooks, :subscribed => [@nb2, @nb3]}
 
     puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
-    puts @my_notebooks.inspect + @other_notebooks.inspect   
+    puts @my_notebooks.inspect + @subscribed_notebooks.inspect
     puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
 
 
@@ -191,22 +192,30 @@ class BookmarksController < ApplicationController
     #        preference save action
     # notebooks: contains all the notebooks this user is subscribed to/owner of
     # login_panel_html: html code for the my doni box
+
+    notebooks = []
+    @my_notebooks.each{|n| notebooks << jsonify_notebook(n)}
+    @subscribed_notebooks.each{|n| notebooks << jsonify_notebook(n)}
+    
     json = { 'error' => '0', 
-             'data' => {'prefs' => {'name' => @user.name, 
-                                    'resizemeImagesMaxWidth' => '600', 
-                                    'animations' => 1,
-                                    'useCookie' => true},
-                        'notebooks' => [@nb1]+[@nb2],
-                        'my_doni_html' => html
-                        }
-            }
+      'data' => {'prefs' => {'name' => @user.name,
+          'resizemeImagesMaxWidth' => '600',
+          'animations' => 1,
+          'useCookie' => true},
+        #                        'notebooks' => [@nb1]+[@nb2],
+        'notebooks' => notebooks,
+        'my_doni_html' => html
+      }
+    }
     
     render :json => json
   end
 
   def delete
-    #    if logged_in?
-    @collection.remove_bookmark(params[:bookmark_uri])
+    collection_uri = params.delete(:notebook)
+    collection = BookmarkColletion.find(collection_uri)
+    #TODO return error if collection not owned by current user
+    collection.remove_bookmark(params[:bookmark_uri])
     html = 'deleted'
     data = {}
     error = 0
@@ -255,40 +264,47 @@ class BookmarksController < ApplicationController
     qry.execute
   end
 
+
+  def load_notebooks_vars
+    @my_notebooks = get_user_notebooks
+    @subscribed_notebooks = get_subscribed_notebooks
+  end
+
   # Returns the list of notebooks the active @talia_user is following
-  def get_other_notebooks
+  def get_subscribed_notebooks
     qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
     qry.where(@talia_user, N::TALIA.follows, :bc)
     qry.execute
   end
 
-  #
-  #  def get_bookmark_collection
-  #    if logged_in?
-  #      @collection = BookmarkCollection.new((N::LOCAL + "bookmarks/#{@user.name}").to_uri)
-  #      @collection.save!
-  #    end
-  #  end
-  #
-  #  def logged_in?
-  #    return true unless (current_user.instance_of? Guest)
-  #  end
+  def jsonify_notebook(notebook)
+    {'uri' => "'#{notebook.uri}'",
+      'public' => true,
+      'author' => "'#{notebook.owner.name}'",
+      'note' => "'#{notebook.notes}'",
+      'title' => "'#{notebook.name}'",
+      'subscribers' => "'#{notebook.followers.count}'",
+      'bookmarks' => jsonify_bookmars(notebook)}
+  end
 
+  def jsonify_bookmars(notebook)
+    res = []
+    notebook.elements.each do |bookmark|
+      res << {'uri' => "'#{bookmark.uri}'",
+        'title' => "'#{bookmark.title}'",
+        'qstring' => "'#{bookmark.qstring}'",
+        'resourceType' => "'#{bookmark.resource_type}'",
+        'note' => "'#{bookmark.notes}'",
+        'date' => "'#{bookmark.date}" }
+    end
+    res
+  end
 
-  #  def get_user
-  #    @user = User.find_by_name(params[:user_name])
-  #    #    raise(ActiveRecord::RecordNotFound, "No user #{params[:user_name]}") unless(@user)
-  #    render_not_logged_in_json unless(@user)
-  #  end
 
   def get_bookmark_collections
     qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
     qry.where(:bc, N::TALIA.owner, @talia_user)
     @collections = qry.execute
-
-
-    #    @collection = BookmarkCollection.new((N::LOCAL + "bookmarks/#{@user.name}").to_uri)
-    #    @collection.save!
   end
 
   def basic_auth

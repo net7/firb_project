@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class='widgetContent'>
-        <%= render :partial => '/bookmark/notebook_index.html', :object => my %>
+        <%= render :partial => '/bookmark/notebook_index.html', :object => @my_notebooks %>
     </div>
 
     
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class='widgetContent'>
-        <%= render :partial => '/bookmark/notebook_index.html', :object => subscribed %>
+        <%= render :partial => '/bookmark/notebook_index.html', :object => @subscribed_notebooks %>
     </div>
 
 </div>
