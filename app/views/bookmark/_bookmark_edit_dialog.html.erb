@@ -1,0 +1,9 @@
+<% my.each do |bm| %>
+    <h3>Notebook -NOMENOTEBOOK-, data <%= bm['date'] %></h3>
+    <div>
+        <ul>
+            <input type='hidden' class='newbm_qstring'>
+            <li><textarea cols='50' rows='5'><%= bm['note'] %></textarea></li>
+        </ul>
+    </div>
+<% end %>

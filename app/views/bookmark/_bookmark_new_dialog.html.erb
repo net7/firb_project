@@ -1,0 +1,16 @@
+<h3>Crea un nuovo bookmark</h3>
+<div class='newbm_form'>
+    <ul>
+        <input type='hidden' class='newbm_qstring' value='<%= bm[:qstring] %>'>
+        <li>Tipo <%= bm[:resourceTypeString] %> <%= bm[:resourceType] %></li>
+        <li>Data <%= Time.now.strftime("%x %X") %></li>
+        <li>
+            <ul>
+                <li>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'newbm_nb'} %></li>
+                <li>o creane uno nuovo <input type='text' class='newbm_newnb'></li>
+            </ul>
+        </li>
+        <li><textarea cols='50' rows='5'>La tua nota .. </textarea></li>
+        <li><span class='newbm_salva'>Salva</span></li>
+    </ul>
+</div>

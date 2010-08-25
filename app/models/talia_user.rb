@@ -41,13 +41,13 @@ class TaliaUser < TaliaCore::Source
     # the desider talia user
     ret = nil
     qry.execute.each do |u|
-      puts u.inspect
+      # puts u.inspect
       # TODO: since the .email_address methos replaces .. we do the same
       # then search for it
       if (u.name == name && u.email_address == email_address.sub('@', '_'))
         ret = u
       else
-        puts "MAL #{u.name} -- #{u.email_address}"
+        # puts "MALE #{u.name} -- #{u.email_address}"
       end
     end
       

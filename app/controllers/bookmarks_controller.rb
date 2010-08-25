@@ -56,66 +56,33 @@ class BookmarksController < ApplicationController
       'title' => 'Empty notebook, but secret',
       'subscribers' => 21,
       'bookmarks' => []}
-
-    # TODO: questo pezzo di HTML deve contenere username/pass con cui ci si e' loggati,
-    # altrimenti mostra il box di login e basta.
-    # Se siamo loggati passa anche le preferenze e tutti i notebooks di cui l'utente e'
-    # autore e quelli di cui e' solo lettore. I notebooks vengono renderizzati in HTML
-    # e passati tramite json per le strutture interne del gestore dei bookmarks.
-    # La renderizzazione html dei bookmarks riflette la struttura a widget del Doni ed 
-    # i link hanno il solito formato per interagire con l'interfaccia, .resource per i
-    # link ai box di contenuto, e qualche altro formato per la gestione (ne concordiamo uno,
-    # tipo.. una certa classe .loginBox o qualcosa di simile.)
-
-    html =    
-      "<div class='widget'>
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>Account</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-                
-        	</div>
-        </div>
-        <div class='widgetContent'>
-
-        </div>
-        
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>Preferenze</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-            </div>
-        </div>
-        <div class='widgetContent'>Le tue preferenze sono state applicate.</div>
-
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>I miei Notebook</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-            </div>
-        </div>
-        <div class='widgetContent'>"+(render_to_string :partial => '/bookmark/notebook_index.html', :object => [@nb1])+"</div>
-        
-        <div class='widgetHeader'>
-            <h3 class='widgetHeaderTitle'>Altri Notebook</h3>
-            <div class='widgetHeaderTools'>
-                <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-            </div>
-        </div>
-        <div class='widgetContent'>"+(render_to_string :partial => '/bookmark/notebook_index.html', :object => [@nb2, @nb3])+"</div>
-
-    </div>"
-
-    {'error' => '0', 
-      'data' => {'prefs' => {'name' => @user.name,
-          'resizemeImagesMaxWidth' => '600',
-          'animations' => 1,
-          'useCookie' => true},
-        'notebooks' => [@nb1]+[@nb2],
-        'login_panel_html' => html
-      }
-    }
     
+  end
+
+  # Returns the form for the frontend's new/modify dialog
+  def get_bookmark_dialog
+
+      foo = stub
+
+      # TODO: move this html to a view or another partial ..
+      html = "<div class='dialog_accordion'>"
+
+      # Insert the standard 'new' bookmark part
+      bm = {:qstring => params[:qstring], :title => params[:title], :resourceType => params[:resourceType], :resourceTypeString => params[:resourceTypeString]}
+      
+      html += render_to_string :partial => '/bookmark/bookmark_new_dialog.html', :locals => { :bm => bm }
+
+      # Look for the proper bookmarks items and render the edit forms
+      # TODO: find a way to include the 'father' notebook into this locals.. or just pass in notebooks
+      #       with just the bookmarks which refer to this qstring
+      html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html', :locals => { :my => [@bm12, @bm22]}
+
+      # TODO: remove this html as before
+      html += "</div>"
+
+      error = 0
+      data = {:error => error, :html => html}
+      render_json(html, data, error)
   end
 
   # Returns an entire box with all of its notebook's widgets
