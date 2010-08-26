@@ -50,11 +50,25 @@ class BookmarksController < ApplicationController
   # bookmarks of the given qstring
   def get_my_doni_widget
     load_notebooks_vars
-    qstring = params[:qstring]
+    qstring = Base64.decode64(params[:qstring])
+    puts "E INFATTI " + qstring
     # TODO : replace nb1 and nb2 with arrays with owned and subscribed notebooks which
     # contains the given qstring
     # html = render_to_string :partial => '/bookmark/my_doni_widget.html'#, :locals => { :my => [@nb2], :subscribed => [@nb1, @nb3]}
-    html = render_to_string :partial => '/bookmark/my_doni_widget.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks}
+
+    @my_jsonified = []
+    @sub_jsonified = []
+    @my_notebooks.each{|n| @my_jsonified << jsonify_notebook(n) }
+    @subscribed_notebooks.each{|n| @sub_jsonified << jsonify_notebook(n) }
+
+    # Delete the notebooks which doesnt have a bookmark on qstring
+    @my_jsonified.each{ |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
+    @my_jsonified = @my_jsonified.select { |n| n['bookmarks'] != [] }
+
+    @sub_jsonified.each{ |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
+    @sub_jsonified = @sub_jsonified.select { |n| n['bookmarks'] != [] }
+
+    html = render_to_string :partial => '/bookmark/my_doni_widget.html', :locals => { :my => @my_jsonified, :subscribed => @sub_jsonified}
     error = 0
     data = {:error => error, :html => html}
     render_json(html, data, error)
@@ -70,7 +84,7 @@ class BookmarksController < ApplicationController
         # "create_new_notebook"=>"false"}
 
         nb_uri = params[:sel_nb]
-        if (params[:create_new_notebook]) then
+        if (params[:create_new_notebook] == 'true') then
             p = {:title => params[:newnb_title], :notes => params[:newnb_note], :public => params[:newnb_public]}
             notebook = BookmarkCollection.create_bookmark_collection(p)
             notebook.set_owner(@talia_user)
@@ -78,13 +92,13 @@ class BookmarksController < ApplicationController
             nb_uri = notebook.uri
         end
 
-        p = {:qstring => params[:qstring], :title => params[:title], :notes => params[:notes], 
+        p = {:qstring => Base64.decode64(params[:qstring]), :title => params[:title], :notes => params[:notes], 
              :resource_type => params[:resourceType]}
-        bookmark = TaliaBookmark.create_bookmark(params)
+        bookmark = TaliaBookmark.create_bookmark(p)
         notebook = BookmarkCollection.find(nb_uri)
         notebook.add_bookmark(bookmark)
 
-        html = ""
+        html = "Created with qstring " + Base64.decode64(params[:qstring])
         error = 0
         data = {:error => error, :html => html}
         render_json(html, data, error)
@@ -256,12 +270,12 @@ class BookmarksController < ApplicationController
   end
 
   def jsonify_notebook(notebook)
-    {'uri' => "'#{notebook.uri}'",
+    {'uri' => "#{notebook.uri}",
       'public' => true,
-      'author' => "'#{notebook.owner.name}'",
-      'note' => "'#{notebook.notes}'",
-      'title' => "'#{notebook.name}'",
-      'subscribers' => "'#{notebook.followers.count}'",
+      'author' => "#{notebook.owner.name}",
+      'note' => "#{notebook.notes}",
+      'title' => "#{notebook.name}",
+      'subscribers' => "#{notebook.followers.count}",
       'bookmarks' => jsonify_bookmarks(notebook)}
   end
 
@@ -269,12 +283,12 @@ class BookmarksController < ApplicationController
     res = []
     notebook.elements.each do |bookmark|
       bookmark = bookmark.becomes(TaliaBookmark)
-      res << {'uri' => "'#{bookmark.uri}'",
-        'title' => "'#{bookmark.title}'",
-        'qstring' => "'#{bookmark.qstring}'",
-        'resourceType' => "'#{bookmark.resource_type}'",
-        'note' => "'#{bookmark.notes}'",
-        'date' => "'#{bookmark.date}" }
+      res << {'uri' => "#{bookmark.uri}",
+        'title' => "#{bookmark.title}",
+        'qstring' => "#{bookmark.qstring}",
+        'resourceType' => "#{bookmark.resource_type}",
+        'note' => "#{bookmark.notes}",
+        'date' => "#{bookmark.date}" }
     end
     res
   end
