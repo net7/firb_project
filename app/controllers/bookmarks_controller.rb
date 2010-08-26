@@ -70,8 +70,8 @@ class BookmarksController < ApplicationController
         # "create_new_notebook"=>"false"}
 
         nb_uri = params[:sel_nb]
-        if (params[:creating_new_notebook]) then
-            p = {:name => params[:newnb_title], :notes => params[:newnb_note], :public => params[:newnb_public]}
+        if (params[:create_new_notebook]) then
+            p = {:title => params[:newnb_title], :notes => params[:newnb_note], :public => params[:newnb_public]}
             notebook = BookmarkCollection.create_bookmark_collection(p)
             notebook.set_owner(@talia_user)
             notebook.save!
