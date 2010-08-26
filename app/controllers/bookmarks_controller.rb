@@ -3,8 +3,8 @@ class BookmarksController < ApplicationController
   hobo_controller
 
   before_filter :basic_auth, :except => :autocomplete_notebook_title
-  before_filter :get_talia_user
-  before_filter :get_bookmark_collections
+  before_filter :get_talia_user, :except => :autocomplete_notebook_title
+  before_filter :get_bookmark_collections, :except => :autocomplete_notebook_title
   #  skip_before_filter :verify_authenticity_token
 
   # Returns the form for the frontend's new/modify dialog
@@ -211,11 +211,13 @@ class BookmarksController < ApplicationController
       'data' => data
     }
   end
-  
+
   def autocomplete_notebook_title
       qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
+      qry.where(:bc, N::TALIA.owner, :zz)
+      # TODO: Put a where title like params[:term]
       notebooks = qry.execute
-      notebooks.collect {|n| {:id => n.title, :label => n.title, :value => n.uri  }}
+      notebooks = notebooks.collect { |n| {:id => "#{n.uri}", :label => "#{n.title}", :value => "#{n.owner.name}: #{n.title}"  }}
       render :json => notebooks
   end
 
