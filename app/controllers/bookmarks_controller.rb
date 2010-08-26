@@ -116,9 +116,13 @@ class BookmarksController < ApplicationController
   end
 
   def follow_notebook
-    notebook = BookmarkCollection.find(params.delete(:notebook))
+    notebook = BookmarkCollection.find(params[:uri])
     raise if notebook.nil? or !notebook.is_a? BookmarkCollection
-    add_follower(@talia_user)
+    notebook.add_follower(@talia_user)
+    html = notebook.uri
+    data = {}
+    error = 0;
+    render_json(html, data, error)
   end
 
   # Return a list of bookmarks with all their data
