@@ -12,15 +12,11 @@
         <input type='hidden' class='bm_qstring' value='<%= bm.qstring %>'>
         <li class='bm_nb_select'>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'bm_nb_select'} %></li>
 
-        <li>
+        <li><button class='bm_newnb_button'>Crea un nuovo notebook</button></li>
+        <li class='bm_new_nb_form'>
             <ul>
-                <li><button class='bm_newnb_button'>Crea un nuovo notebook</button></li>
-                <li class='bm_new_nb_form'>
-                    <ul>
-                        <li><input type='text' class='bm_newnb_title' placeholder='Nome del nuovo notebook ..'></li>
-                        <li><textarea cols='40' rows='3' class='bm_newnb_note' placeholder="Nota del nuovo notebook .. "></textarea></li>
-                    </ul>
-                </li>
+                <li><input type='text' class='bm_newnb_title' placeholder='Nome del nuovo notebook ..'></li>
+                <li><textarea cols='40' rows='3' class='bm_newnb_note' placeholder="Nota del nuovo notebook .. "></textarea></li>
             </ul>
         </li>
 

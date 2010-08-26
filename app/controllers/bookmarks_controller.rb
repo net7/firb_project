@@ -89,9 +89,12 @@ class BookmarksController < ApplicationController
   # Returns an entire box with all of its notebook's widgets
   def get_notebook_box
     # TODO: for what notebook? All of em? set @some_notebook
-    # html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @some_notebook
+    
+    @notebook = BookmarkCollection.find(Base64.decode64(params[:uri]))
+
+    html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @notebook
     error = 0
-    data = {:error => error, :box => @some_notebook.title, :html => html}
+    data = {:error => error, :box => @notebook.title, :html => html}
     render_json(html, data, error)
   end
 
@@ -111,6 +114,34 @@ class BookmarksController < ApplicationController
     render_json(html, data, error)
   end
 
+  # new_bookmark/new_notebook/.. wrapper: will check the params[] array
+  # creates the notebook if needed and create/modify the bookmark
+    def save_bookmark
+
+        # Parameters: {"notes"=>"", "title"=>"MARMI, 1552-1553, I, p. 1", 
+        # "qstring"=>"boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx", "resourceType"=>"Trascrizione: ", 
+        # "sel_nb"=>"http://localhost:3009/bookmark_notebook/1074332122", "newnb_title"=>"", "newnb_note"=>"", "newnb_public"=>"true", 
+        # "create_new_notebook"=>"false"}
+
+        nb_uri = params[:sel_nb]
+        if (params[:creating_new_notebook]) then
+            p = {:name => params[:newnb_title], :notes => params[:newnb_note], :public => params[:newnb_public]}
+            notebook = BookmarkCollection.create_bookmark_collection(p)
+            notebook.set_owner(@talia_user)
+            notebook.save!
+            nb_uri = notebook.uri
+        end
+
+        p = {:qstring => params[:qstring], :title => params[:title], :notes => params[:notes], 
+             :resource_type => params[:resourceType]}
+        bookmark = TaliaBookmark.create_bookmark(params)
+        notebook = BookmarkCollection.find(nb_uri)
+
+        html = ""
+        error = 0
+        data = {:error => error, :html => html}
+        render_json(html, data, error)
+    end
 
   # Create a new bookmark and add it to the specified notebook
   # the form should pass, amongst other things, the notebook uri to which
@@ -128,7 +159,6 @@ class BookmarksController < ApplicationController
 
   # creates a new notebook
   def new_notebook
-    puts "------------- " + params.inspect
     notebook = BookmarkCollection.create_bookmark_collection(params)
     notebook.set_owner(@talia_user)
     notebook.save!

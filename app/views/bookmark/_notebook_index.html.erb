@@ -1,7 +1,7 @@
 <div>
     <% notebook_index.each do |nb| %>
     <div class='widgetField'>
-        <span class='field_title collapsed'>Title: <%= nb.name %></span>
+        <span class='field_title collapsed'>Title: <%= nb.title %></span>
         <div class='field_content collapsed'>
             <ul>
 
@@ -15,7 +15,7 @@
 <li><a class='myDoni' href="#">Condividi</a></li>
                 <li><a class='myDoni' href="#">Pubblica</a></li>
                 <li><a class='myDoni' href="#">Cancella</a></li>
-                <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= Base64.encode64(nb['uri']) %>">Apri questo bookmark</a></li>
+                <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= Base64.encode64s(nb['uri']) %>">Apri questo notebook</a></li>
             </ul>
         </div>
     </div>
