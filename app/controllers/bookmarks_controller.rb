@@ -2,9 +2,9 @@ require "base64"
 class BookmarksController < ApplicationController
   hobo_controller
 
-  before_filter :basic_auth, :except => :autocomplete_notebook_title
-  before_filter :get_talia_user, :except => :autocomplete_notebook_title
-  before_filter :get_bookmark_collections, :except => :autocomplete_notebook_title
+  before_filter :basic_auth
+  before_filter :get_talia_user
+  before_filter :get_bookmark_collections
   #  skip_before_filter :verify_authenticity_token
 
   # Returns the form for the frontend's new/modify dialog
@@ -219,9 +219,13 @@ class BookmarksController < ApplicationController
   def autocomplete_notebook_title
       qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
       qry.where(:bc, N::TALIA.owner, :zz)
-      # TODO: Put a where title like params[:term]
+
+      # TODO: do this search in the proper way (R)
+      # The owner is checked just by the name .. 
       notebooks = qry.execute
-      notebooks = notebooks.collect { |n| {:id => "#{n.uri}", :label => "#{n.title}", :value => "#{n.owner.name}: #{n.title}"  }}
+      notebooks = notebooks.select { |n| "#{n.title}".include?(params[:term]) }
+      notebooks = notebooks.select { |n| n.owner.name != @talia_user.name }
+      notebooks.collect! { |n| {:id => "#{n.uri}", :label => "#{n.title}", :value => "#{n.owner.name}: #{n.title}"  }}
       render :json => notebooks
   end
 
