@@ -2,67 +2,14 @@ require "base64"
 class BookmarksController < ApplicationController
   hobo_controller
 
-  before_filter :basic_auth
+  before_filter :basic_auth, :except => :autocomplete_notebook_title
   before_filter :get_talia_user
   before_filter :get_bookmark_collections
   #  skip_before_filter :verify_authenticity_token
 
-  # TODO: make a stub for the collection, which contains:
-  # - my (which are notebooks)
-  # - subscribed  (which are notebooks)
-  # Each notebook shows:
-  # - uri, public (T/F), author (email or talia user?), note, title, subscribers, bookmarks
-  # Each bookmark shows:
-  # - uri, title, author(? or just NB author?) qstring, type, date
-  # Give this both as json and as html inside the login action (/index)
-
-  def stub
-    @bm11 = {'uri' => 'http://something1/', 
-      'title' => 'MARMI, 1552-1553, I, p. 1',
-      'qstring' => 'boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx',
-      'note' => 'Mamma mia che bella questa trascrizione.. wunderbar',
-      'resourceType' => 'transcription',
-      'date' => 'oggi' }
-    @bm12 = {'uri' => 'http://something2/', 
-      'title' => 'MARMI, 1552-1553, I, p. 1',
-      'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
-      'resourceType' => 'imageInfo',
-      'note' => 'Nota piccina, corta corta',
-      'date' => 'ieri sul presto' }
-    @bm22 = {'uri' => 'http://something2/', 
-      'title' => 'MARMI, 1552-1553, I, p. 1',
-      'qstring' => 'boxViewer.php?method=getImageInfo&lang=it&contexts=marmi1552&resource=eG1sOi8vYWZkL21hcm1pMTU1Ml9pbWcvcDAwMXB0MDAxcGcwMDE=',
-      'resourceType' => 'imageInfo',
-      'note' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      'date' => 'ieri l\'altro' }
-    @nb1 = {'uri' => 'http://notebook1url/',
-      'public' => true,
-      'author' => 'Simone Fonda',
-      'note' => 'Not a book note book not ebook notebook',
-      'title' => 'Not a book',
-      'subscribers' => 30341,
-      'bookmarks' => [@bm11, @bm12]}
-    @nb2 = {'uri' => 'http://notebook2url/',
-      'public' => true,
-      'author' => 'Michele Barbera',
-      'note' => 'Out of town very important conference notebook',
-      'title' => 'Out of town notebook',
-      'subscribers' => 21,
-      'bookmarks' => [@bm22]}
-    @nb3 = {'uri' => 'http://notebook2url/',
-      'public' => true,
-      'author' => 'Danilo Giacomi',
-      'note' => 'Super secret notebook',
-      'title' => 'Empty notebook, but secret',
-      'subscribers' => 21,
-      'bookmarks' => []}
-    
-  end
-
   # Returns the form for the frontend's new/modify dialog
   def get_bookmark_dialog
 
-    #      foo = stub
     load_notebooks_vars
 
     # TODO: move this html to a view or another partial ..
@@ -102,7 +49,6 @@ class BookmarksController < ApplicationController
   # contains the given qstring in one of its bookmarks. The notebooks will contain only the 
   # bookmarks of the given qstring
   def get_my_doni_widget
-    #      foo = stub
     load_notebooks_vars
     qstring = params[:qstring]
     # TODO : replace nb1 and nb2 with arrays with owned and subscribed notebooks which
@@ -265,6 +211,13 @@ class BookmarksController < ApplicationController
       'data' => data
     }
   end
+  
+  def autocomplete_notebook_title
+      qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
+      notebooks = qry.execute
+      notebooks.collect {|n| {:id => n.title, :label => n.title, :value => n.uri  }}
+      render :json => notebooks
+  end
 
   private
 
@@ -279,7 +232,6 @@ class BookmarksController < ApplicationController
     qry.where(:bc, N::TALIA.owner, @talia_user)
     qry.execute
   end
-
 
   def load_notebooks_vars
     @my_notebooks = get_user_notebooks || []
