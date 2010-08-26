@@ -136,6 +136,7 @@ class BookmarksController < ApplicationController
              :resource_type => params[:resourceType]}
         bookmark = TaliaBookmark.create_bookmark(params)
         notebook = BookmarkCollection.find(nb_uri)
+        notebook.add_bookmark(bookmark)
 
         html = ""
         error = 0
@@ -196,28 +197,9 @@ class BookmarksController < ApplicationController
   end
 
   def render_json_index
-    # TODO: created a stub to get a legal result out of this
-    #data = []
-    #@collection.elements.each do |b|
-    #  data << { 'title' => b.title,
-    #      'qstring' => b.qstring, 'date' => b.date, 'note' => b.notes,
-    #      'resource_type' => b.resource_type, 'uri' => b.uri.to_s, 'public' => b.public}
-    #end
-    #
-    #result = {'error' => '0', 'data' => data}
-    # render :json => result
 
-    # TODO: delete this stub and get the real data from rdf, replace @nb1-2-3 with real stuff,
-    # keeping them into an array.
-    #    foo = stub
     load_notebooks_vars
-
-    # html = render_to_string :partial => '/bookmark/my_doni_index.html' #, :locals => { :my => [@nb1]+@my_notebooks, :subscribed => [@nb2, @nb3]}
     html = render_to_string :partial => '/bookmark/my_doni_index.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks }
-
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
-    puts @my_notebooks.inspect + @subscribed_notebooks.inspect
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@@"
 
     # TODO: any idea on how to craft a json like this in a better way? Like some
     # helper .. dunno
@@ -228,15 +210,15 @@ class BookmarksController < ApplicationController
     # login_panel_html: html code for the my doni box
 
     notebooks = []
-    @my_notebooks.each{|n| notebooks << jsonify_notebook(n)}
-    @subscribed_notebooks.each{|n| notebooks << jsonify_notebook(n)}
+    @my_notebooks.each{|n| notebooks << jsonify_notebook(n) }
+    @subscribed_notebooks.each{|n| notebooks << jsonify_notebook(n) }
     
     json = { 'error' => '0', 
       'data' => {'prefs' => {'name' => @user.name,
           'resizemeImagesMaxWidth' => '600',
           'animations' => 1,
           'useCookie' => true},
-        #                        'notebooks' => [@nb1]+[@nb2],
+        # 'notebooks' => [@nb1]+[@nb2],
         'notebooks' => notebooks,
         'my_doni_html' => html
       }
@@ -318,12 +300,13 @@ class BookmarksController < ApplicationController
       'note' => "'#{notebook.notes}'",
       'title' => "'#{notebook.name}'",
       'subscribers' => "'#{notebook.followers.count}'",
-      'bookmarks' => jsonify_bookmars(notebook)}
+      'bookmarks' => jsonify_bookmarks(notebook)}
   end
 
-  def jsonify_bookmars(notebook)
+  def jsonify_bookmarks(notebook)
     res = []
     notebook.elements.each do |bookmark|
+      bookmark = bookmark.becomes(TaliaBookmark)
       res << {'uri' => "'#{bookmark.uri}'",
         'title' => "'#{bookmark.title}'",
         'qstring' => "'#{bookmark.qstring}'",

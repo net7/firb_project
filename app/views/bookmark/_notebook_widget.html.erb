@@ -7,14 +7,18 @@
     	</div>
     </div>
     <div class='widgetContent'>
-        <% notebook_widget.elements.each do |b| %>
-            <span class='field_title collapsed'>Title: <%= b['title'] %></span>
+        <% 
+            notebook_widget.elements.each do |b| 
+            b = b.becomes(TaliaBookmark)
+        %>
+
+            <span class='field_title collapsed'>Title: <%= b.title %></span>
             <div class='field_content collapsed'>
                 <ul>
                     <li>uri: <%= b.uri %></li>
                     <li>Data: <%= b.date %></li>
-                    <li>Note: <%= b.note %></li>
-                    <li>Tipo: <%= b.resourceType %></li>
+                    <li>Note: <%= b.notes %></li>
+                    <li>Tipo: <%= b.resource_type %></li>
                     <li>QString: <%= b.qstring %></li>
                     <li><a class='resource' href="<%= b['qstring'] %>">Apri</a></li>
                 </ul>
