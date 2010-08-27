@@ -1,7 +1,6 @@
-<div class='widget'>
+<div class='widget myDoni'>
 
 
-    <% if my.length > 0 %>
     <div class='widgetHeader'>
         <h3 class='widgetHeaderTitle'>I miei notebook</h3>
         <div class='widgetHeaderTools'>
@@ -9,13 +8,13 @@
     	</div>
     </div>
     <div class='widgetContent'>
-        <%= render :partial => '/bookmarks/notebook_and_bookmarks.html', :object => my %>
+        <% if my.length > 0 %>
+            <%= render :partial => '/bookmarks/notebook_and_bookmarks.html', :object => my %>
+        <% else %>
+            Non ci sono tuoi notebook su questa pagina
+        <% end %>
     </div>
-    <% else %>
-        Non ci sono tuoi notebook su questa pagina
-    <% end %>
 
-    <% if subscribed.length > 0 %>
     <div class='widgetHeader'>
         <h3 class='widgetHeaderTitle'>Altri notebook</h3>
         <div class='widgetHeaderTools'>
@@ -23,10 +22,11 @@
     	</div>
     </div>
     <div class='widgetContent'>
-        <%= render :partial => '/bookmarks/notebook_and_bookmarks.html', :object => subscribed %>
+        <% if subscribed.length > 0 %>
+            <%= render :partial => '/bookmarks/notebook_and_bookmarks.html', :object => subscribed %>
+        <% else %>
+            Non ci sono notebook di altri autori su questa pagina
+        <% end %>
     </div>
-    <% else %>
-        Non ci sono notebook di altri autori su questa pagina
-    <% end %>
 
 </div>
