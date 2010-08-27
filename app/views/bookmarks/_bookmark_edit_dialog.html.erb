@@ -1,16 +1,22 @@
 <% 
-    puts "òòòòòòòòòòòòòòòò "+my.inspect
-    my.each do |bm|  
+    puts "0000000000000 " + my.inspect
+    my.each do |nb| 
+        nb['bookmarks'].each do |bm|
+
 %>
-<h3>Notebook -NOMENOTEBOOK-, data 
+
+
+<h3>Notebook <%= nb['title'] %>, data 
 <%= 
-    # bm['date'] # strftime("%x %X")
- %>
+    nb['date'] # strftime("%x %X")
+%>
 </h3>
 <div class='editbm_form'>
     <ul>
-        <input type='hidden' class='bm_qstring' value='<%= bm.qstring %>'>
-        <li class='bm_nb_select'>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'bm_nb_select'} %></li>
+        <input type='hidden' class='bm_qstring' value='<%= bm['qstring'] %>'>
+        <li class='bm_nb_select'>
+            Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select, nb['uri']), {:class => 'bm_nb_select'} %>
+        </li>
 
         <li><button class='bm_newnb_button'>Crea un nuovo notebook</button></li>
         <li class='bm_new_nb_form'>
@@ -20,10 +26,13 @@
             </ul>
         </li>
 
-        <li><textarea cols='50' rows='5' class='bm_note'><%= bm[:note] %></textarea></li>
+        <li><textarea cols='50' rows='5' class='bm_note'><%= bm['note'] %></textarea></li>
 
         <li><button class='bm_save_button'>Salva</button></li>
     </ul>
 </div>
 
-<% end %>
+<% 
+        end
+    end 
+%>

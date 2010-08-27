@@ -17,7 +17,6 @@ class BookmarksController < ApplicationController
 
     # Insert the standard 'new' bookmark part
     bm = {:qstring => qstring, :title => params[:title], :resourceType => params[:resourceType], :resourceTypeString => params[:resourceTypeString]}
-      
     html += render_to_string :partial => '/bookmarks/bookmark_new_dialog.html', :locals => { :bm => bm }
 
     # Use my notebooks to render the edit forms
@@ -25,7 +24,7 @@ class BookmarksController < ApplicationController
     # FIXME: uncomment this as soon as edit_dialog gets needed
 
     @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
-    html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => [@my_jsonified]} unless @my_jsonified.empty?
+    html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified} unless @my_jsonified.empty?
     
     # TODO: remove this html as before
     html += "</div>"
@@ -263,7 +262,7 @@ class BookmarksController < ApplicationController
       'public' => true,
       'author' => "#{notebook.owner.name}",
       'note' => "#{notebook.notes}",
-      'title' => "#{notebook.name}",
+      'title' => "#{notebook.title}",
       'subscribers' => "#{notebook.followers.count}",
       'bookmarks' => jsonify_bookmarks(notebook)}
   end
