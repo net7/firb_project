@@ -1,8 +1,6 @@
 <% 
-    puts "0000000000000 " + my.inspect
     my.each do |nb| 
         nb['bookmarks'].each do |bm|
-
 %>
 
 
@@ -13,7 +11,9 @@
 </h3>
 <div class='editbm_form'>
     <ul>
+
         <input type='hidden' class='bm_qstring' value='<%= bm['qstring'] %>'>
+        <input type='hidden' class='bm_uri' value='<%= bm['uri'] %>'>
         <li class='bm_nb_select'>
             Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select, nb['uri']), {:class => 'bm_nb_select'} %>
         </li>
