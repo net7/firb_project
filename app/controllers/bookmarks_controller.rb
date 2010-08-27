@@ -120,6 +120,24 @@ class BookmarksController < ApplicationController
     render_json(html, data, error)
   end
 
+  # Deletes a notebook and all its bookmarks
+  # it uss the notebook URI passed in the :notebook param to identify the notebook
+  # to be deleted
+  def delete_notebook
+    notebook_uri = params.delete(:notebook)
+    notebook = BookmarkCollection.find(notebook_uri)
+    notebook.elements.each do |bookmark|
+      bookmark = bookmark.becomes(TaliaBookmark)
+      bookmark.destroy
+    end
+    notebook.destroy
+    html = 'deleted'
+    data = {}
+    error = 0;
+    render_json(html, data, error)
+  end
+
+
   def follow_notebook
     notebook = BookmarkCollection.find(params[:uri])
     raise if notebook.nil? or !notebook.is_a? BookmarkCollection
@@ -182,11 +200,15 @@ class BookmarksController < ApplicationController
     render :json => json
   end
 
-  def delete
-    collection_uri = params.delete(:notebook)
-    collection = BookmarkColletion.find(collection_uri)
-    #TODO return error if collection not owned by current user
-    collection.remove_bookmark(params[:bookmark_uri])
+  # Deletes a bookmark in a notebook
+  # needs both notebook and bookmark URIs, passed in :notebook and :bookmark params
+  def delete_bookmark
+    notebook = BookmarkController.find(params[:notebook])
+    bookmark = TaliaBookmark.find(params[:bookmark])
+
+    notebook.detach_bookmark(params[:bookmark])
+    bookmark.destroy
+
     html = 'deleted'
     data = {}
     error = 0

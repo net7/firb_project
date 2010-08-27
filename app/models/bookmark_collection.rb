@@ -38,14 +38,19 @@ class BookmarkCollection < TaliaCore::Collection
     save!
   end
 
-  def remove_bookmark(uri)
-    elements.each do |bookmark|
-      if (bookmark.uri.to_s == uri)
-        delete(bookmark)
-        bookmark.destroy
-        save!
-      end
-    end
+  def detach_bookmark(uri)
+    bookmark = TaliaCore::ActiveSource.find(uri)
+    self.delete_at(self.index_of(bookmark))
+    self.save!
+    bookmark
+
+#    elements.each do |bookmark|
+#      if (bookmark.uri.to_s == uri)
+#        delete(bookmark)
+#        bookmark.destroy
+#        save!
+#      end
+#    end
   end
 
   def set_owner(user)
@@ -54,8 +59,8 @@ class BookmarkCollection < TaliaCore::Collection
   end
 
   def add_follower(user)
-    user.talia.follows << self
-    user.save!
+    self.talia.followedBy << user
+    self.save!
   end
   
   def owner
@@ -65,7 +70,7 @@ class BookmarkCollection < TaliaCore::Collection
   # Returns a SemanticCollectionWrapper with all the user following this Notebook
   def followers
     qry = ActiveRDF::Query.new(TaliaUser).select(:user).distinct
-    qry.where(:user, N::TALIA.follows, self)
+    qry.where(self, N::TALIA.followedBy, :user)
     qry.execute
   end
 
