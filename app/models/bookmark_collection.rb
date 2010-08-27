@@ -40,7 +40,7 @@ class BookmarkCollection < TaliaCore::Collection
 
   def detach_bookmark(uri)
     bookmark = TaliaCore::ActiveSource.find(uri)
-    self.delete_at(self.index_of(bookmark))
+    self.delete_at(self.index(bookmark))
     self.save!
     bookmark
 

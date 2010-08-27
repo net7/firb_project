@@ -84,23 +84,28 @@ class BookmarksController < ApplicationController
         end
 
         # No URI: we are creating a new bookmark
-        if (params[:uri] == '') then
-            p = {:qstring => Base64.decode64(params[:qstring]), :title => params[:title], :notes => params[:notes], 
+        if (params[:uri].nil?) then
+            p = {:qstring => params[:qstring], :title => params[:title], :notes => params[:notes], 
                 :resource_type => params[:resourceType]}
             bookmark = TaliaBookmark.create_bookmark(p)
             notebook = BookmarkCollection.find(nb_uri)
             notebook.add_bookmark(bookmark)
+            bookmark.save!
 
         # URI: we are editing an existing bookmark
         else
             bookmark = TaliaBookmark.find(params[:uri])
             bookmark.notes = params[:notes]
+            bookmark.date = Time.now
+            bookmark.save!
 
             # Let's see if the user has changed this bookmark's notebook
-            if (params[:bm_oldnb_uri] != nb_uri)
-                old_nb = TaliaBookmark.find(params[:bm_oldnb_uri])
-                old_nb.detach(params[:uri])
+            if (params[:oldnb_uri] != nb_uri)
+                old_nb = BookmarkCollection.find(params[:oldnb_uri])
+                old_nb.detach_bookmark(bookmark.uri)
+                notebook = BookmarkCollection.find(nb_uri)
                 notebook.add_bookmark(bookmark)
+                notebook.save!
             end
         end
 

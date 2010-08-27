@@ -3,11 +3,7 @@
         nb['bookmarks'].each do |bm|
 %>
 
-
-<h3>Notebook <%= nb['title'] %>, data 
-<%= 
-    nb['date'] # strftime("%x %X")
-%>
+<h3>Notebook <%= nb['title'] %>, <%= bm['date'] %>
 </h3>
 <div class='editbm_form'>
     <ul>
