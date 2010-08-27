@@ -5,25 +5,27 @@ class BookmarksController < ApplicationController
   before_filter :basic_auth
   before_filter :get_talia_user
   before_filter :get_bookmark_collections
-  #  skip_before_filter :verify_authenticity_token
 
   # Returns the form for the frontend's new/modify dialog
   def get_bookmark_dialog
 
     load_notebooks_vars
+    qstring = Base64.decode64(params[:qstring])
 
     # TODO: move this html to a view or another partial ..
     html = "<div class='dialog_accordion'>"
 
     # Insert the standard 'new' bookmark part
-    bm = {:qstring => params[:qstring], :title => params[:title], :resourceType => params[:resourceType], :resourceTypeString => params[:resourceTypeString]}
+    bm = {:qstring => qstring, :title => params[:title], :resourceType => params[:resourceType], :resourceTypeString => params[:resourceTypeString]}
       
-    html += render_to_string :partial => '/bookmark/bookmark_new_dialog.html', :locals => { :bm => bm }
+    html += render_to_string :partial => '/bookmarks/bookmark_new_dialog.html', :locals => { :bm => bm }
 
     # Use my notebooks to render the edit forms
     # TODO: need to filter @my_notebooks to get out only those having a bm which refers to params[:qstring]
     # FIXME: uncomment this as soon as edit_dialog gets needed
-    #html += render_to_string :partial => '/bookmark/bookmark_edit_dialog.html', :locals => { :my => [@my_notebooks]} unless @my_notebooks.empty?
+
+    @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
+    html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => [@my_jsonified]} unless @my_jsonified.empty?
     
     # TODO: remove this html as before
     html += "</div>"
@@ -35,11 +37,10 @@ class BookmarksController < ApplicationController
 
   # Returns an entire box with all of its notebook's widgets
   def get_notebook_box
-    # TODO: for what notebook? All of em? set @some_notebook
     
     @notebook = BookmarkCollection.find(Base64.decode64(params[:uri]))
 
-    html = render_to_string :partial => '/bookmark/notebook_widget.html', :object => @notebook
+    html = render_to_string :partial => '/bookmarks/notebook_widget.html', :object => @notebook
     error = 0
     data = {:error => error, :box => @notebook.title, :html => html}
     render_json(html, data, error)
@@ -51,37 +52,28 @@ class BookmarksController < ApplicationController
   def get_my_doni_widget
     load_notebooks_vars
     qstring = Base64.decode64(params[:qstring])
-    puts "E INFATTI " + qstring
-    # TODO : replace nb1 and nb2 with arrays with owned and subscribed notebooks which
-    # contains the given qstring
-    # html = render_to_string :partial => '/bookmark/my_doni_widget.html'#, :locals => { :my => [@nb2], :subscribed => [@nb1, @nb3]}
 
-    @my_jsonified = []
-    @sub_jsonified = []
-    @my_notebooks.each{|n| @my_jsonified << jsonify_notebook(n) }
-    @subscribed_notebooks.each{|n| @sub_jsonified << jsonify_notebook(n) }
+    @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
+    @sub_jsonified = jsonify_and_filter_notebook_by_qstring(@subscribed_notebooks, qstring)
 
-    # Delete the notebooks which doesnt have a bookmark on qstring
-    @my_jsonified.each{ |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
-    @my_jsonified = @my_jsonified.select { |n| n['bookmarks'] != [] }
-
-    @sub_jsonified.each{ |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
-    @sub_jsonified = @sub_jsonified.select { |n| n['bookmarks'] != [] }
-
-    html = render_to_string :partial => '/bookmark/my_doni_widget.html', :locals => { :my => @my_jsonified, :subscribed => @sub_jsonified}
+    html = render_to_string :partial => '/bookmarks/my_doni_widget.html', :locals => { :my => @my_jsonified, :subscribed => @sub_jsonified}
     error = 0
     data = {:error => error, :html => html}
     render_json(html, data, error)
   end
 
-  # new_bookmark/new_notebook/.. wrapper: will check the params[] array
-  # creates the notebook if needed and create/modify the bookmark
-    def save_bookmark
+    # First jsonifies an array of notebooks, then filters out those nb which dont contain
+    # at least a bookmark referring qstring. It filters the bookmarks as well
+    def jsonify_and_filter_notebook_by_qstring (notebooks, qstring)
+        jsonified = []
+        notebooks.each   { |n| jsonified << jsonify_notebook(n) }
+        jsonified.each   { |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
+        jsonified.select { |n| n['bookmarks'] != [] }
+    end
 
-        # Parameters: {"notes"=>"", "title"=>"MARMI, 1552-1553, I, p. 1", 
-        # "qstring"=>"boxViewer.php?method=getTranscription&lang=it&contexts=marmi1552&resource=eHBiMDAwMDAx", "resourceType"=>"Trascrizione: ", 
-        # "sel_nb"=>"http://localhost:3009/bookmark_notebook/1074332122", "newnb_title"=>"", "newnb_note"=>"", "newnb_public"=>"true", 
-        # "create_new_notebook"=>"false"}
+    # new_bookmark/new_notebook/.. wrapper: will check the params[] array
+    # creates the notebook if needed and create/modify the bookmark
+    def save_bookmark
 
         nb_uri = params[:sel_nb]
         if (params[:create_new_notebook] == 'true') then
@@ -163,29 +155,29 @@ class BookmarksController < ApplicationController
   def render_json_index
 
     load_notebooks_vars
-    html = render_to_string :partial => '/bookmark/my_doni_index.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks }
+    html = render_to_string :partial => '/bookmarks/my_doni_index.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks }
 
-    # TODO: any idea on how to craft a json like this in a better way? Like some
-    # helper .. dunno
+
+    notebooks = []
+    @my_notebooks.each{|n| notebooks << jsonify_notebook(n) }
+    @subscribed_notebooks.each{|n| notebooks << jsonify_notebook(n) }
 
     # prefs: contains the preference object got from the frontend on a
     #        preference save action
     # notebooks: contains all the notebooks this user is subscribed to/owner of
     # login_panel_html: html code for the my doni box
-
-    notebooks = []
-    @my_notebooks.each{|n| notebooks << jsonify_notebook(n) }
-    @subscribed_notebooks.each{|n| notebooks << jsonify_notebook(n) }
     
     json = { 'error' => '0', 
-      'data' => {'prefs' => {'name' => @user.name,
-          'resizemeImagesMaxWidth' => '600',
-          'animations' => 1,
-          'useCookie' => true},
-        # 'notebooks' => [@nb1]+[@nb2],
-        'notebooks' => notebooks,
-        'my_doni_html' => html
-      }
+            'data' => {
+                'prefs' => {
+                    'name' => @user.name,
+                    'resizemeImagesMaxWidth' => '600',
+                    'animations' => 1,
+                    'useCookie' => true
+                    },
+                'notebooks' => notebooks,
+                'my_doni_html' => html
+            }
     }
     
     render :json => json
@@ -200,9 +192,6 @@ class BookmarksController < ApplicationController
     data = {}
     error = 0
     render_json(html, data, error)
-    #    else
-    #      render_not_logged_in_json
-    #    end
   end
 
   # We update just the notes and the public fields
