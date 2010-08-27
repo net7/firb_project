@@ -24,7 +24,7 @@ class BookmarksController < ApplicationController
     # FIXME: uncomment this as soon as edit_dialog gets needed
 
     @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
-    html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified} unless @my_jsonified.empty?
+    html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified } unless @my_jsonified.empty?
     
     # TODO: remove this html as before
     html += "</div>"
@@ -49,11 +49,17 @@ class BookmarksController < ApplicationController
   # contains the given qstring in one of its bookmarks. The notebooks will contain only the 
   # bookmarks of the given qstring
   def get_my_doni_widget
+
     load_notebooks_vars
     qstring = Base64.decode64(params[:qstring])
 
+    puts "OOOOOOOOOPS " + @talia_user.inspect
+    puts "11111111111111111111111111 >" + @my_notebooks.inspect + @subscribed_notebooks.inspect + qstring
+
     @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
     @sub_jsonified = jsonify_and_filter_notebook_by_qstring(@subscribed_notebooks, qstring)
+
+    puts "22222222222222222222222  >" + @my_jsonified.inspect + @sub_jsonified.inspect
 
     html = render_to_string :partial => '/bookmarks/my_doni_widget.html', :locals => { :my => @my_jsonified, :subscribed => @sub_jsonified}
     error = 0
@@ -61,6 +67,9 @@ class BookmarksController < ApplicationController
     render_json(html, data, error)
   end
 
+
+    # TODO: move this to self. or/and to private section ? 
+    
     # First jsonifies an array of notebooks, then filters out those nb which dont contain
     # at least a bookmark referring qstring. It filters the bookmarks as well
     def jsonify_and_filter_notebook_by_qstring (notebooks, qstring)
@@ -295,7 +304,7 @@ class BookmarksController < ApplicationController
   # Returns the list of notebooks the active @talia_user is following
   def get_subscribed_notebooks
     qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
-    qry.where(@talia_user, N::TALIA.follows, :bc)
+    qry.where(:bc, N::TALIA.followedBy, @talia_user)
     qry.execute
   end
 

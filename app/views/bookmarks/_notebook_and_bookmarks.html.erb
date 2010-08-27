@@ -1,7 +1,7 @@
 <div>
     <% notebook_and_bookmarks.each do |nb| %>
     <div class='widgetField'>
-        <span class='field_title collapsed'>Da <%= nb['title'] %>, note di <%= nb['author']%></span>
+        <span class='field_title collapsed'>Da <%= nb['title'] %>, note di <%= nb['owner']%></span>
         <div class='field_content collapsed'>
             <ul>
                 <li><%= nb['note'] %></li>
