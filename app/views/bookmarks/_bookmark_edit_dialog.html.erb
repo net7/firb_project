@@ -14,6 +14,7 @@
 
         <input type='hidden' class='bm_qstring' value='<%= bm['qstring'] %>'>
         <input type='hidden' class='bm_uri' value='<%= bm['uri'] %>'>
+        <input type='hidden' class='bm_oldnb_uri' value='<%= nb['uri'] %>'>
         <li class='bm_nb_select'>
             Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select, nb['uri']), {:class => 'bm_nb_select'} %>
         </li>
