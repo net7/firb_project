@@ -5,7 +5,7 @@
         <div class='field_content collapsed'>
             <ul>
                 <li><%= nb['note'] %></li>
-                <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= Base64.encode64(nb['uri']) %>">Apri il notebook</a></li>
+                <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= Base64.encode64s(nb['uri']) %>">Apri il notebook</a></li>
                 <li>
                 <% nb['bookmarks'].each do |b| %>
                     <ul>
