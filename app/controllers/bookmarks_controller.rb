@@ -2,9 +2,9 @@ require "base64"
 class BookmarksController < ApplicationController
   hobo_controller
 
-  before_filter :basic_auth
-  before_filter :get_talia_user
-  before_filter :get_bookmark_collections
+  before_filter :basic_auth, :except => :my_doni_login_box
+  before_filter :get_talia_user, :except => :my_doni_login_box
+  before_filter :get_bookmark_collections, :except => :my_doni_login_box
 
   # Returns the form for the frontend's new/modify dialog
   def get_bookmark_dialog
@@ -21,7 +21,6 @@ class BookmarksController < ApplicationController
 
     # Use my notebooks to render the edit forms
     # TODO: need to filter @my_notebooks to get out only those having a bm which refers to params[:qstring]
-    # FIXME: uncomment this as soon as edit_dialog gets needed
 
     @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
     html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified } unless @my_jsonified.empty?
@@ -29,61 +28,40 @@ class BookmarksController < ApplicationController
     # TODO: remove this html as before
     html += "</div>"
 
-    error = 0
-    data = {:error => error, :html => html}
-    render_json(html, data, error)
+    data = {:error => 0, :html => html}
+    render_json(html, data, 0)
   end
 
   # Returns an entire box with all of its notebook's widgets
   def get_notebook_box
-    
     @notebook = BookmarkCollection.find(Base64.decode64(params[:uri]))
-
     html = render_to_string :partial => '/bookmarks/notebook_widget.html', :object => @notebook
-    error = 0
-    data = {:error => error, :box => @notebook.title, :html => html}
-    render_json(html, data, error)
+    data = {:error => 0, :box => @notebook.title, :html => html}
+    render_json(html, data, 0)
   end
 
   # Returns a widget to be inserted at the top of a content box, with all the notebooks which
   # contains the given qstring in one of its bookmarks. The notebooks will contain only the 
   # bookmarks of the given qstring
   def get_my_doni_widget
-
     load_notebooks_vars
     qstring = Base64.decode64(params[:qstring])
-
-    puts "OOOOOOOOOPS " + @talia_user.inspect
-    puts "11111111111111111111111111 >" + @my_notebooks.inspect + @subscribed_notebooks.inspect + qstring
 
     @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
     @sub_jsonified = jsonify_and_filter_notebook_by_qstring(@subscribed_notebooks, qstring)
 
-    puts "22222222222222222222222  >" + @my_jsonified.inspect + @sub_jsonified.inspect
-
     html = render_to_string :partial => '/bookmarks/my_doni_widget.html', :locals => { :my => @my_jsonified, :subscribed => @sub_jsonified}
-    error = 0
-    data = {:error => error, :html => html}
-    render_json(html, data, error)
+    data = {:error => 0, :html => html}
+    render_json(html, data, 0)
   end
 
-
-    # TODO: move this to self. or/and to private section ? 
-    
-    # First jsonifies an array of notebooks, then filters out those nb which dont contain
-    # at least a bookmark referring qstring. It filters the bookmarks as well
-    def jsonify_and_filter_notebook_by_qstring (notebooks, qstring)
-        jsonified = []
-        notebooks.each   { |n| jsonified << jsonify_notebook(n) }
-        jsonified.each   { |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
-        jsonified.select { |n| n['bookmarks'] != [] }
-    end
 
     # new_bookmark/new_notebook/.. wrapper: will check the params[] array
     # creates the notebook if needed and create/modify the bookmark
     def save_bookmark
 
         nb_uri = params[:sel_nb]
+        # Are we creating a new notebook?
         if (params[:create_new_notebook] == 'true') then
             p = {:title => params[:newnb_title], :notes => params[:newnb_note], :public => params[:newnb_public]}
             notebook = BookmarkCollection.create_bookmark_collection(p)
@@ -119,9 +97,8 @@ class BookmarksController < ApplicationController
         end
 
         html = "Created with qstring " + Base64.decode64(params[:qstring])
-        error = 0
-        data = {:error => error, :html => html}
-        render_json(html, data, error)
+        data = {:error => 0, :html => html}
+        render_json(html, data, 0)
     end
 
   # Create a new bookmark and add it to the specified notebook
@@ -134,8 +111,7 @@ class BookmarksController < ApplicationController
     notebook.add_bookmark(bookmark)
     html = bookmark.uri
     data = {}
-    error = 0;
-    render_json(html, data, error)
+    render_json(html, data, 0)
   end
 
   # creates a new notebook
@@ -145,8 +121,7 @@ class BookmarksController < ApplicationController
     notebook.save!
     html = notebook.uri
     data = {}
-    error = 0;
-    render_json(html, data, error)
+    render_json(html, data, 0)
   end
 
   # Deletes a notebook and all its bookmarks
@@ -162,8 +137,7 @@ class BookmarksController < ApplicationController
     notebook.destroy
     html = 'deleted'
     data = {}
-    error = 0;
-    render_json(html, data, error)
+    render_json(html, data, 0)
   end
 
 
@@ -173,36 +147,37 @@ class BookmarksController < ApplicationController
     notebook.add_follower(@talia_user)
     html = notebook.uri
     data = {}
-    error = 0;
-    render_json(html, data, error)
+    render_json(html, data, 0)
   end
 
-  # Return a list of bookmarks with all their data
+
+  def render_html_index
+    html = render_to_string "bookmark/index"
+    data = {'box' => 'Bookmarks'}
+    render_json(html, data, 0)
+  end
+
+  # First request for a login box
+  def my_doni_login_box
+      html = render_to_string :partial => '/bookmarks/my_doni_login_box.html'
+      data = {:error => 0, :html => html, :box => "myDoni :)"}
+      render_json(html, data, 0)
+  end
+
+  # Return a box with the login panel for a logged in user, along with all of his
+  # bookmarks, notebooks and preferences
   def index
-    #    if logged_in?
-    #     @bookmarks = @collection.elements
-
     load_notebooks_vars
-
     respond_to do |format|
       format.json {render_json_index}
       format.html {render_html_index}
     end
   end
 
-  def render_html_index
-    html = render_to_string "bookmark/index"
-    data = {'box' => 'Bookmarks'}
-    error = 0;
-    render_json(html, data, error)
-
-  end
-
   def render_json_index
 
     load_notebooks_vars
     html = render_to_string :partial => '/bookmarks/my_doni_index.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks }
-
 
     notebooks = []
     @my_notebooks.each{|n| notebooks << jsonify_notebook(n) }
@@ -213,7 +188,7 @@ class BookmarksController < ApplicationController
     # notebooks: contains all the notebooks this user is subscribed to/owner of
     # login_panel_html: html code for the my doni box
     
-    json = { 'error' => '0', 
+    json = { 'error' => 0, 
             'data' => {
                 'prefs' => {
                     'name' => @user.name,
@@ -240,8 +215,7 @@ class BookmarksController < ApplicationController
 
     html = 'deleted'
     data = {}
-    error = 0
-    render_json(html, data, error)
+    render_json(html, data, 0)
   end
 
   # We update just the notes and the public fields
@@ -282,7 +256,18 @@ class BookmarksController < ApplicationController
       render :json => notebooks
   end
 
+
   private
+
+  # First jsonifies an array of notebooks, then filters out those nb which dont contain
+  # at least a bookmark referring qstring. It filters the bookmarks as well
+  def jsonify_and_filter_notebook_by_qstring (notebooks, qstring)
+      jsonified = []
+      notebooks.each   { |n| jsonified << jsonify_notebook(n) }
+      jsonified.each   { |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
+      jsonified.select { |n| n['bookmarks'] != [] }
+  end
+
 
   def get_talia_user
     @talia_user = TaliaUser.find_by_name_and_email(@user.name, @user.email_address)
