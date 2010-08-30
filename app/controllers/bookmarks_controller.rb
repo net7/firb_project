@@ -157,9 +157,18 @@ class BookmarksController < ApplicationController
     render_json(html, data, 0)
   end
 
-  # First request for a login box
+  # First request for a login box, not authenticated
   def my_doni_login_box
       html = render_to_string :partial => '/bookmarks/my_doni_login_box.html'
+      data = {:error => 0, :html => html, :box => "myDoni :)"}
+      render_json(html, data, 0)
+  end
+
+  # TODO: do this better with the other my_doni_login_box ? 
+  def my_doni_loggedin_box
+      load_notebooks_vars
+      html = render_to_string :partial => '/bookmarks/my_doni_index.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks }
+
       data = {:error => 0, :html => html, :box => "myDoni :)"}
       render_json(html, data, 0)
   end
@@ -189,7 +198,8 @@ class BookmarksController < ApplicationController
     # login_panel_html: html code for the my doni box
     
     json = { 'error' => 0, 
-            'data' => {
+             'box' => 'MyDoni :)',
+             'data' => {
                 'prefs' => {
                     'name' => @user.name,
                     'resizemeImagesMaxWidth' => '600',
