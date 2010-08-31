@@ -1,11 +1,8 @@
 class BookmarkCollection < TaliaCore::Collection
   hobo_model
-  include TaliaUtil::UriHelper
-  extend TaliaUtil::UriHelper
-  include ActiveRDF::ResourceLike
   extend RandomId
 
-  singular_property :name, N::DCT.title
+  singular_property :title, N::DCT.title
   singular_property :notes, N::TALIA.notes
   singular_property :public, N::TALIA.public
   
@@ -14,11 +11,7 @@ class BookmarkCollection < TaliaCore::Collection
   PUBLIC = 'true'
   PRIVATE = 'false'
 
-  self.inheritance_column = 'foo'
-
-  #  attr_reader :user_url, :url
-  #
-  #  alias :uri :url
+#  self.inheritance_column = 'foo'
 
   def self.create_bookmark_collection(options)
     options.to_options!
