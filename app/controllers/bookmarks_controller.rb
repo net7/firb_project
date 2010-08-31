@@ -140,7 +140,6 @@ class BookmarksController < ApplicationController
     render_json(html, data, 0)
   end
 
-
   def follow_notebook
     notebook = BookmarkCollection.find(params[:uri])
     raise if notebook.nil? or !notebook.is_a? BookmarkCollection
@@ -150,6 +149,14 @@ class BookmarksController < ApplicationController
     render_json(html, data, 0)
   end
 
+  def unfollow_notebook
+    notebook = BookmarkCollection.find(Base64.decode64(params[:uri]))
+    raise if notebook.nil? or !notebook.is_a? BookmarkCollection
+    notebook.remove_follower(@talia_user)
+    html = notebook.uri
+    data = {}
+    render_json(html, data, 0)
+  end
 
   def render_html_index
     html = render_to_string "bookmark/index"
