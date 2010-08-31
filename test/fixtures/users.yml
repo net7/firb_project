@@ -9,4 +9,7 @@ admin:
   name: admin
   state: active
   email_address: admin@admin.com
+  # this is the "admin" password
+  crypted_password: fea8d175d7cadb60c5209366251a39f0db250bc7
+  salt: 742d1ceb1a6df7d1a75d0b944bb44b6e8e37d44e
   administrator: true
