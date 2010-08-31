@@ -9,8 +9,11 @@ class BookmarksController < ApplicationController
 
     def get_notebook_dialog
         load_notebooks_vars
-        # uri = Base64.decode64(params[:uri])
-        html = render_to_string :partial => '/bookmarks/notebook_new_dialog.html'
+        nb = nil
+        if (params[:uri] != "")
+            nb = BookmarkCollection.find(Base64.decode64(params[:uri]))
+        end
+        html = render_to_string :partial => '/bookmarks/notebook_new_dialog.html', :locals => { :nb => nb }
         data = {:error => 0, :html => html}
         render_json(html, data, 0)
     end
@@ -65,13 +68,21 @@ class BookmarksController < ApplicationController
   end
 
     def save_notebook
+
         # No URI: we are creating a new bookmark
         if (params[:uri].nil?) then
             p = {:title => params[:title], :notes => params[:notes], :public => params[:public]}
             notebook = BookmarkCollection.create_bookmark_collection(p)
             notebook.set_owner(@talia_user)
             notebook.save!
-            nb_uri = notebook.uri
+
+        # Else we are saving an already existing one
+        else
+            notebook = BookmarkCollection.find(params[:uri])
+            notebook.title = params[:title]
+            notebook.notes = params[:notes]
+            notebook.public = (params[:public] == "true");
+            notebook.save!
         end
 
         html = notebook.uri.to_s

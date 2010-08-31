@@ -1,9 +1,18 @@
-<h3>Crea un nuovo Notebook</h3>
+<h3>
+    <% if (nb.nil?) %>
+        Crea un nuovo Notebook
+    <% else %>
+        Modifica Notebook
+    <% end %>
+</h3>
 <div class='newnb_form'>
     <ul>
-        <li><input type='text' class='nb_title' placeholder='Titolo del nuovo notebook ..'></li>
-        <li><input type='checkbox' CHECKED class='nb_public'>Pubblico</li>
-        <li><textarea cols='40' rows='3' class='nb_note' placeholder="Nota del nuovo notebook .. "></textarea></li>
+        <% if (!nb.nil?) %>
+            <input type='hidden' class='nb_uri' value='<%= nb.uri %>'>
+        <% end %>
+        <li><input type='text' class='nb_title' placeholder='Titolo del nuovo notebook ..' value='<%= if (!nb.nil?); nb.title; end %>'></li>
+        <li><input type='checkbox' class='nb_public' <%= if (!nb.nil? && nb.public); "CHECKED" ; end %>>Pubblico</li>
+        <li><textarea cols='40' rows='3' class='nb_note' placeholder="Nota del nuovo notebook .. "><%= if (!nb.nil?); nb.notes; end %></textarea></li>
         <li><button class='nb_save_button'>Salva</button></li>
     </ul>
 </div>

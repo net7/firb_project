@@ -19,7 +19,7 @@
                 <% end %>    
                 
                 <% if @talia_user.name == nb.owner.name %>
-                    <li><a class='myDoni' href='#'>Modifica</a></li>
+                    <li><a class='myDoni edit_notebook' href="boxViewer.php?method=myDoniEditNotebook&lang=it&uri=<%= b64uri %>">Modifica</a></li>
                     <li><a class='myDoni delete_notebook' href="boxViewer.php?method=myDoniDeleteNotebook&lang=it&uri=<%= b64uri %>">Cancella</a></li>
                 <% else %>
                     <li><a class='myDoni' href="boxViewer.php?method=myDoniUnfollowNotebook&lang=it&uri=<%= b64uri %>">Togli dai tuoi preferiti</a></li>
