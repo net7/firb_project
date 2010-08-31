@@ -8,7 +8,7 @@ development:
   host: localhost
   username: talia
   password: talia
-  database: demo_development
+  database: bookmarks_development
 production:
   adapter: jdbcmysql
   host: localhost
