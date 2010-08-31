@@ -2,7 +2,6 @@ class TaliaBookmark < TaliaCore::Source
   hobo_model
   extend RandomId
 
-
   singular_property :qstring, N::DCNS.url
   singular_property :title, N::DCNS.title
   singular_property :date, N::DCNS.date

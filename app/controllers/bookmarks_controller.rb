@@ -6,6 +6,15 @@ class BookmarksController < ApplicationController
   before_filter :get_talia_user, :except => :my_doni_login_box
   before_filter :get_bookmark_collections, :except => :my_doni_login_box
 
+
+    def get_notebook_dialog
+        load_notebooks_vars
+        # uri = Base64.decode64(params[:uri])
+        html = render_to_string :partial => '/bookmarks/notebook_new_dialog.html'
+        data = {:error => 0, :html => html}
+        render_json(html, data, 0)
+    end
+
   # Returns the form for the frontend's new/modify dialog
   def get_bookmark_dialog
 
@@ -55,6 +64,20 @@ class BookmarksController < ApplicationController
     render_json(html, data, 0)
   end
 
+    def save_notebook
+        # No URI: we are creating a new bookmark
+        if (params[:uri].nil?) then
+            p = {:title => params[:title], :notes => params[:notes], :public => params[:public]}
+            notebook = BookmarkCollection.create_bookmark_collection(p)
+            notebook.set_owner(@talia_user)
+            notebook.save!
+            nb_uri = notebook.uri
+        end
+
+        html = notebook.uri.to_s
+        data = {:error => 0, :html => html}
+        render_json(html, data, 0)
+    end
 
     # new_bookmark/new_notebook/.. wrapper: will check the params[] array
     # creates the notebook if needed and create/modify the bookmark

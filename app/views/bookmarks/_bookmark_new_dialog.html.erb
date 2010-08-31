@@ -10,17 +10,13 @@
         <% if (my_notebooks_select.empty?) %>
             <li class='bm_nb_select'>Non hai nessun notebook, creane uno adesso.</li>
         <% else %>
-        <li class='bm_nb_select'>Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'bm_nb_select'} %></li>
+            <li class='bm_nb_select'>
+                Nel notebook <%= select_tag 'notebook', options_for_select(my_notebooks_select), {:class => 'bm_nb_select'} %>
+            </li>
         <% end %>
 
         <li><button class='bm_newnb_button'>Crea un nuovo notebook</button></li>
-        <li class='bm_new_nb_form'>
-            <ul>
-                <li><input type='text' class='bm_newnb_title' placeholder='Titolo del nuovo notebook ..'></li>
-                <li><input type='checkbox' CHECKED class='bm_newnb_public'>Pubblico</li>
-                <li><textarea cols='40' rows='3' class='bm_newnb_note' placeholder="Nota del nuovo notebook .. "></textarea></li>
-            </ul>
-        </li>
+
         <li><textarea cols='50' rows='5' class='bm_note' placeholder='La tua nota su questo box di contenuto .. '></textarea></li>
         <li><button class='bm_save_button'>Salva</button></li>
     </ul>

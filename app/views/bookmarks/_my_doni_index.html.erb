@@ -27,6 +27,8 @@
     </div>
     <div class='widgetContent'>
         <%= render :partial => '/bookmarks/notebook_index.html', :object => @my_notebooks %>
+
+        <p><a class='myDoni' href='boxViewer.php?method=myDoniCreateNotebook'>Crea un notebook</a></p>
     </div>
     
     <div class='widgetHeader'>
@@ -36,7 +38,9 @@
         </div>
     </div>
     <div class='widgetContent'>
-        <p><input class='my_doni_notebook_title' placeholder='incolla qui il nome del notebook'></p><button class='my_doni_add_notebook'>Aggiungi il notebook</button></p>
+        <p>Aggiungi un botebook: </p>
+        <p><input class='my_doni_notebook_title' placeholder='nome del notebook'></p>
+    
         <%= render :partial => '/bookmarks/notebook_index.html', :object => @subscribed_notebooks %>
     </div>
 

@@ -2,11 +2,11 @@ class BookmarkCollection < TaliaCore::Collection
   hobo_model
   extend RandomId
 
-  singular_property :title, N::DCT.title
+  # No need to create a :title property, it gets inherited 
+  # from TaliaCore::Collection
   singular_property :notes, N::TALIA.notes
   singular_property :public, N::TALIA.public
   
-
   # constants to be used for :public property
   PUBLIC = 'true'
   PRIVATE = 'false'

@@ -14,7 +14,7 @@
                 <li>Subscribers #: <%= nb.followers.count %></li>
                 <li>Bookmarks #: <%= nb.elements.count %></li>
 
-                <% if @talia_user.name != nb.owner.name %>
+                <% if @talia_user.name == nb.owner.name %>
                     <li>Public: <%= if nb.public then "Si" else "No" end %> </li>
                 <% end %>    
                 
