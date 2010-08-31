@@ -6,13 +6,18 @@
         <div class='field_content collapsed'>
             <ul>
 
-                <li>uri:<%= nb.uri %></li>
-                <li>Author: <%= nb.owner.name %></li>
-                <li>Note: <%= nb.notes %></li>
+                <% if @talia_user.name != nb.owner.name %>
+                    <li>Author: <%= nb.owner.name %></li>
+                <% end %>
+
+                <li>Notebook note: <%= nb.notes %></li>
                 <li>Subscribers #: <%= nb.followers.count %></li>
                 <li>Bookmarks #: <%= nb.elements.count %></li>
-                <li>Public: <%= if nb.public then "Si" else "No" end %> </li>
 
+                <% if @talia_user.name != nb.owner.name %>
+                    <li>Public: <%= if nb.public then "Si" else "No" end %> </li>
+                <% end %>    
+                
                 <% if @talia_user.name == nb.owner.name %>
                     <li><a class='myDoni' href='#'>Modifica</a></li>
                     <li><a class='myDoni delete_notebook' href="boxViewer.php?method=myDoniDeleteNotebook&lang=it&uri=<%= b64uri %>">Cancella</a></li>
