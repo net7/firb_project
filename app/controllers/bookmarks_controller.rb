@@ -144,7 +144,7 @@ class BookmarksController < ApplicationController
     notebook = BookmarkCollection.find(params[:uri])
     raise if notebook.nil? or !notebook.is_a? BookmarkCollection
     notebook.add_follower(@talia_user)
-    html = notebook.uri
+    html = notebook.uri.to_s
     data = {}
     render_json(html, data, 0)
   end
@@ -153,7 +153,7 @@ class BookmarksController < ApplicationController
     notebook = BookmarkCollection.find(Base64.decode64(params[:uri]))
     raise if notebook.nil? or !notebook.is_a? BookmarkCollection
     notebook.remove_follower(@talia_user)
-    html = notebook.uri
+    html = notebook.uri.to_s
     data = {}
     render_json(html, data, 0)
   end
