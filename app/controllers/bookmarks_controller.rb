@@ -128,14 +128,14 @@ class BookmarksController < ApplicationController
   # it uss the notebook URI passed in the :notebook param to identify the notebook
   # to be deleted
   def delete_notebook
-    notebook_uri = params.delete(:notebook)
-    notebook = BookmarkCollection.find(notebook_uri)
+    # notebook_uri = params.delete(:notebook)
+    notebook = BookmarkCollection.find(Base64.decode64(params[:uri]))
     notebook.elements.each do |bookmark|
       bookmark = bookmark.becomes(TaliaBookmark)
       bookmark.destroy
     end
+    html = notebook.uri.to_s
     notebook.destroy
-    html = 'deleted'
     data = {}
     render_json(html, data, 0)
   end
