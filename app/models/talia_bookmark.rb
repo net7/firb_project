@@ -9,7 +9,7 @@ class TaliaBookmark < TaliaCore::Source
   singular_property :notes, N::TALIA.notes
   singular_property :resource_type, N::TALIA.resource_type
 
-  self.inheritance_column = 'foo'
+#  self.inheritance_column = 'foo'
     
   def self.create_bookmark(options)
     options.to_options!
