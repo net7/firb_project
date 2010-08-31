@@ -43,35 +43,40 @@ class BookmarkCollection < TaliaCore::Collection
     self.delete_at(self.index(bookmark))
     self.save!
     bookmark
-
-#    elements.each do |bookmark|
-#      if (bookmark.uri.to_s == uri)
-#        delete(bookmark)
-#        bookmark.destroy
-#        save!
-#      end
-#    end
   end
 
   def set_owner(user)
-    #TODO: be sure to delete possibile existing relations with users
-    self.talia.owner << user
+    owner = self[N::TALIA.owner]
+    owner.remove
+    owner << user
   end
 
   def add_follower(user)
     self.talia.followedBy << user
     self.save!
   end
-  
+
+  def remove_follower(user_uri)
+    user = TaliaUser.find(user_uri)
+
+#    followers = self.talia.followedBy
+# TODO check if followers doesn't break anything
+    followers.remove(user)
+    self.save!
+  end
+
   def owner
     self.talia.owner.first
   end
 
   # Returns a SemanticCollectionWrapper with all the user following this Notebook
+
+  # TODO, just use self.talia.followedBy (check if something breaks) ? 
   def followers
-    qry = ActiveRDF::Query.new(TaliaUser).select(:user).distinct
-    qry.where(self, N::TALIA.followedBy, :user)
-    qry.execute
+#    qry = ActiveRDF::Query.new(TaliaUser).select(:user).distinct
+#    qry.where(self, N::TALIA.followedBy, :user)
+#    qry.execute
+    self.talia.followedBy
   end
 
   # Toggles the public status of this bookmark collection

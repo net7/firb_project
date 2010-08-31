@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that
   before_create { |user| user.administrator = true if !Rails.env.test? && count == 0 }
+  # connect the creation of a hobo user with the creation of a TaliaUser
   after_create { |user| TaliaUser.create_from_name_and_email(user.name, user.email_address)}
   # --- Signup lifecycle --- #
 
