@@ -301,7 +301,7 @@ class BookmarksController < ApplicationController
 
       # TODO: do this search in the proper way (R)
       # The owner is checked just by the name .. 
-      notebooks = notebooks.select { |n| "#{n.title}".upcase.include?(params[:term].upcase) && n.owner.name != @talia_user.name && n.public }
+      notebooks = notebooks.select { |n| "#{n.title}".upcase.include?(params[:term].upcase) && n.owner.name != @talia_user.name && n.public && !n.has_follower?(@talia_user) }
       notebooks.collect! { |n| {:id => "#{n.uri}", :label => "#{n.owner.name}: #{n.title}", :value => "#{n.owner.name}: #{n.title}" }}
       render :json => notebooks
   end
