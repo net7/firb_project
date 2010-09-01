@@ -49,11 +49,7 @@ class BookmarkCollection < TaliaCore::Collection
     self.save!
   end
 
-  def remove_follower(user_uri)
-    user = TaliaUser.find(user_uri)
-
-#    followers = self.talia.followedBy
-# TODO check if followers doesn't break anything
+  def remove_follower(user)
     followers.remove(user)
     self.save!
   end
@@ -63,13 +59,12 @@ class BookmarkCollection < TaliaCore::Collection
   end
 
   # Returns a SemanticCollectionWrapper with all the user following this Notebook
-
-  # TODO, just use self.talia.followedBy (check if something breaks) ? 
   def followers
-#    qry = ActiveRDF::Query.new(TaliaUser).select(:user).distinct
-#    qry.where(self, N::TALIA.followedBy, :user)
-#    qry.execute
     self.talia.followedBy
+  end
+
+  def has_follower?(user)
+    user.in? self.followers
   end
 
   # Toggles the public status of this bookmark collection
