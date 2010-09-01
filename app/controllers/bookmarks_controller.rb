@@ -297,16 +297,14 @@ class BookmarksController < ApplicationController
   def autocomplete_notebook_title
       qry = ActiveRDF::Query.new(BookmarkCollection).select(:bc).distinct
       qry.where(:bc, N::TALIA.owner, :zz)
+      notebooks = qry.execute
 
       # TODO: do this search in the proper way (R)
       # The owner is checked just by the name .. 
-      notebooks = qry.execute
-      notebooks = notebooks.select { |n| "#{n.title}".include?(params[:term]) }
-      notebooks = notebooks.select { |n| n.owner.name != @talia_user.name }
-      notebooks.collect! { |n| {:id => "#{n.uri}", :label => "#{n.title}", :value => "#{n.owner.name}: #{n.title}"  }}
+      notebooks = notebooks.select { |n| "#{n.title}".upcase.include?(params[:term].upcase) && n.owner.name != @talia_user.name && n.public }
+      notebooks.collect! { |n| {:id => "#{n.uri}", :label => "#{n.owner.name}: #{n.title}", :value => "#{n.owner.name}: #{n.title}" }}
       render :json => notebooks
   end
-
 
   private
 
