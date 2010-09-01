@@ -11,7 +11,7 @@ class BookmarkCollection < TaliaCore::Collection
   PUBLIC = 'true'
   PRIVATE = 'false'
 
-#  self.inheritance_column = 'foo'
+  #  self.inheritance_column = 'foo'
 
   def self.create_bookmark_collection(options)
     options.to_options!
@@ -75,5 +75,13 @@ class BookmarkCollection < TaliaCore::Collection
     self.save!
   end
 
-  
+
+  # override destroy method to remove also bookmarks related to it
+  def destroy
+    self.elements.each do |bookmark|
+      bookmark = bookmark.becomes(TaliaBookmark)
+      bookmark.destroy
+    end
+    super
+  end
 end
