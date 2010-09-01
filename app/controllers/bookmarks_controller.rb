@@ -44,6 +44,19 @@ class BookmarksController < ApplicationController
     render_json(html, data, 0)
   end
 
+  def get_bookmark_dialog_from_uri
+      load_notebooks_vars
+      @my_jsonified = jsonify_and_filter_notebook_by_uri(@my_notebooks, params[:uri])
+
+      # TODO: move this html elsewhere !
+      html = "<div class='dialog_accordion'>"
+      html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified } unless @my_jsonified.empty?
+      html += "</div>"
+
+      data = {:error => 0, :html => html}
+      render_json(html, data, 0)
+  end
+
   # Returns an entire box with all of its notebook's widgets
   def get_notebook_box
     @notebook = BookmarkCollection.find(Base64.decode64(params[:uri]))
@@ -309,6 +322,13 @@ class BookmarksController < ApplicationController
       jsonified = []
       notebooks.each   { |n| jsonified << jsonify_notebook(n) }
       jsonified.each   { |n| n['bookmarks'] = n['bookmarks'].select { |b| b['qstring'] == qstring } }
+      jsonified.select { |n| n['bookmarks'] != [] }
+  end
+
+  def jsonify_and_filter_notebook_by_uri (notebooks, uri)
+      jsonified = []
+      notebooks.each   { |n| jsonified << jsonify_notebook(n) }
+      jsonified.each   { |n| n['bookmarks'] = n['bookmarks'].select { |b| b['uri'] == uri } }
       jsonified.select { |n| n['bookmarks'] != [] }
   end
 
