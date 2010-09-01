@@ -357,15 +357,17 @@ class BookmarksController < ApplicationController
     qry.execute
   end
 
-  def jsonify_notebook(notebook)
-    {'uri' => "#{notebook.uri}",
-      'public' => true,
-      'author' => "#{notebook.owner.name}",
-      'note' => "#{notebook.notes}",
-      'title' => "#{notebook.title}",
-      'subscribers' => "#{notebook.followers.count}",
-      'bookmarks' => jsonify_bookmarks(notebook)}
-  end
+    def jsonify_notebook(notebook)
+        {'uri' => "#{notebook.uri}",
+            'public' => true,
+            'own_nb' => notebook.owner.name == @talia_user.name,
+            'author' => "#{notebook.owner.name}",
+            'note' => "#{notebook.notes}",
+            'title' => "#{notebook.title}",
+            'subscribers' => "#{notebook.followers.count}",
+            'bookmarks' => jsonify_bookmarks(notebook)
+        }
+    end
 
   def jsonify_bookmarks(notebook)
     res = []
