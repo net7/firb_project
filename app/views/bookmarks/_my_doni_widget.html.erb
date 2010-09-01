@@ -1,52 +1,31 @@
-<% 
-    if my.length > 0 
-        cl = 'expanded'
-    else
-        cl = 'collapsed'
-    end
-%>
-
 <div class='widget myDoni'>
 
+<% if my.length > 0 %>
     <div class='widgetHeader'>
-        <% if my.length > 0 %>
             <h3 class='widgetHeaderTitle'>I miei notebook</h3>
-        <% else %>
-            <h3 class='widgetHeaderTitle'>Nessun mio notebook</h3>
-        <% end %>
         <div class='widgetHeaderTools'>
-            <p class='collapse'><a class='<%= cl %>' href='#' title='Collapse'>Collapse</a></p>
+            <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
     	</div>
     </div>
-    <div class='widgetContent <%= cl %>'>
+    <div class='widgetContent expanded'>
         <% if my.length > 0 %>
             <%= render :partial => '/bookmarks/notebook_and_bookmarks.html', :object => my %>
         <% end %>
     </div>
+<% end %>
 
-
-<% 
-    if subscribed.length > 0 
-        cl = 'expanded'
-    else
-        cl = 'collapsed'
-    end
-%>
-
+<% if subscribed.length > 0 %>
     <div class='widgetHeader'>
-        <% if subscribed.length > 0 %>
             <h3 class='widgetHeaderTitle'>Altri notebook</h3>
-        <% else %>
-            <h3 class='widgetHeaderTitle'>Nessun notebook di altri autori</h3>
-        <% end %>
         <div class='widgetHeaderTools'>
-            <p class='collapse'><a class='<%= cl %>' href='#' title='Collapse'>Collapse</a></p>
+            <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
     	</div>
     </div>
-    <div class='widgetContent <%= cl %>'>
+    <div class='widgetContent expanded'>
         <% if subscribed.length > 0 %>
             <%= render :partial => '/bookmarks/notebook_and_bookmarks.html', :object => subscribed %>
         <% end %>
     </div>
+<% end %>
 
 </div>
