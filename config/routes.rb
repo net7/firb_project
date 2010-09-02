@@ -9,8 +9,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/import/:action', :controller => 'admin/import'
   map.connect '/admin/talia_sources/:action/:id', :controller => 'admin/talia_sources'
 
-
-
   map.connect '/bookmarks/:action.:format', :controller => 'bookmarks'
   
   
@@ -47,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Default semantic dispatch
   map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',
-    :requirements => { :dispatch_uri => /[^\.]+/ }
+    :requirements => { :dispatch_uri => /[^\.\/]+/ }
 
 
 
