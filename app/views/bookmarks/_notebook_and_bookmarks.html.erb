@@ -11,6 +11,11 @@
                     <ul>
                         <li>Data: <%= b['date'] %></li>
                         <li>Nota: <%= b['note'] %></li>
+
+                        <% if nb['author'] == @talia_user.name %>
+                            <li><a class='myDoni' href="boxView.php?method=myDoniGetBookmarkDialogFromUri&uri=<%= b['uri'] %>">Modifica nota</a></li>
+                            <li><a class='myDoni' href="boxView.php?method=myDoniDeleteBookmark&nb_uri=<%= nb['uri'] %>&uri=<%= b['uri'] %>&qstring=<%= Base64.encode64s(b['qstring']) %>">Elimina nota</a></li>
+                        <% end %>
                     </ul>
                 <% end %>
                 </li>

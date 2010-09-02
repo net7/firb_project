@@ -25,7 +25,8 @@
                     <% if @talia_user.name != notebook_widget.owner.name %>
                         <li>Author: <%= notebook_widget.owner.name %></li>
                     <% else %>
-                        <li><a class='myDoni' href="boxView.php?method=myDoniGetBookmarkDialogFromUri&uri=<%= b.uri %>">Modifica</a></li>
+                        <li><a class='myDoni' href="boxView.php?method=myDoniGetBookmarkDialogFromUri&uri=<%= b.uri %>">Modifica nota</a></li>
+                        <li><a class='myDoni' href="boxView.php?method=myDoniDeleteBookmark&nb_uri=<%= notebook_widget.uri %>&uri=<%= b.uri %>&qstring=<%= Base64.encode64s(b.qstring) %>">Elimina nota</a></li>
                     <% end%>
                     <li><a class='resource' href="<%= b.qstring %>">Apri</a></li>
                 </ul>

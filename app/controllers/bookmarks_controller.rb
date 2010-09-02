@@ -250,7 +250,7 @@ class BookmarksController < ApplicationController
              'box' => 'MyDoni :)',
              'data' => {
                 'prefs' => {
-                    'name' => @user.name,
+                    'name' => @talia_user.name,
                     'resizemeImagesMaxWidth' => '600',
                     'animations' => 1,
                     'useCookie' => true
@@ -266,13 +266,13 @@ class BookmarksController < ApplicationController
   # Deletes a bookmark in a notebook
   # needs both notebook and bookmark URIs, passed in :notebook and :bookmark params
   def delete_bookmark
-    notebook = BookmarkController.find(params[:notebook])
-    bookmark = TaliaBookmark.find(params[:bookmark])
+    notebook = BookmarkCollection.find(params[:nb_uri])
+    bookmark = TaliaBookmark.find(params[:uri])
 
-    notebook.detach_bookmark(params[:bookmark])
+    notebook.detach_bookmark(params[:uri])
     bookmark.destroy
 
-    html = 'deleted'
+    html = notebook.uri.to_s
     data = {}
     render_json(html, data, 0)
   end
