@@ -2,10 +2,15 @@ require "base64"
 class BookmarksController < ApplicationController
   hobo_controller
 
-  before_filter :basic_auth, :except => :my_doni_login_box
-  before_filter :get_talia_user, :except => :my_doni_login_box
-  before_filter :get_bookmark_collections, :except => :my_doni_login_box
+  before_filter :basic_auth, :except => [:my_doni_login_box, :get_user_signup_dialog]
+  before_filter :get_talia_user, :except => [:my_doni_login_box, :get_user_signup_dialog]
+  before_filter :get_bookmark_collections, :except => [:my_doni_login_box, :get_user_signup_dialog]
 
+    def get_user_signup_dialog
+        html = render_to_string :partial => '/bookmarks/user_signup.html'
+        data = {:error => 0, :html => html}
+        render_json(html, data, 0)
+    end
 
     def get_notebook_dialog
         load_notebooks_vars

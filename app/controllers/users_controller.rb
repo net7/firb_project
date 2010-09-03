@@ -7,22 +7,18 @@ class UsersController < ApplicationController
   def base_url
     (ActionController::Base.relative_url_root || "") + '/admin/'
   end
-
-
   
   def json_signup
-    error = 0
-    data = ''
     html = ''
     @user = User.find_by_email_address(params[:user][:email_address])
     if @user
       # return the user already exists json
-      html = 'Utente o Password esistenti'
+      html = 'Utente o indirizzo email già registrati'
       # no we can't have a common render at the bottom of file,
       # the things inside do_creator_action would try to render something else
-      render :json => {'error' => error,
+      render :json => {'error' => 0,
         'html' => html,
-        'data' => data
+        'data' => { :signup_error => 1 }
       } and return
     else
       do_creator_action :signup do
@@ -30,9 +26,9 @@ class UsersController < ApplicationController
           # success, return some json
           html =  'Utente creato con successo'
           # we must render it now or hobo/rails will render something on their own
-          render :json => {'error' => error,
+          render :json => {'error' => 0,
             'html' => html,
-            'data' => data
+            'data' => { :signup_error => 0 }
           } and return
         else
           # we have some errors
@@ -41,11 +37,10 @@ class UsersController < ApplicationController
             html = "#{html} <li> #{error.to_s} </li>"
           end
           html = "#{html} </ul>"
-          error = 1
           # we must render it now or hobo/rails will render something on their own
-          render :json => {'error' => error,
+          render :json => {'error' => 0,
             'html' => html,
-            'data' => data
+            'data' => { :signup_error => 1 }
           } and return
 
         end
