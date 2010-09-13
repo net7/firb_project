@@ -2,20 +2,45 @@
     <% notebook_index.each do |nb| %>
     <% b64uri = Base64.encode64s(nb['uri']) %>
     <div class='widgetField'>
-        <span class='field_title collapsed'>Title: <%= nb.title %></span>
+		<span class='field_title collapsed notebook_title'><%= nb.title %></span>
         <div class='field_content collapsed'>
+            
+            <div class="notebook_note">
+            	<%= nb.notes %>
+            </div>
+            
+            <% if @talia_user.name != nb.owner.name %>
+                <div class="notebook_author"><span>Author:</span> <%= nb.owner.name %></div>
+            <% end %>
+            
+			<div class="notebook_info">
+            	<span>Subscribers:</span> <%= nb.followers.count %>, <span>Bookmarks:</span> <%= nb.elements.count %> <% if @talia_user.name == nb.owner.name %>, <span>Public:</span> <%= if nb.public then "Si" else "No" end %>
+                <% end %> 
+            </div>
+            
+            <div class="notebook_links">
+            	 <% if @talia_user.name == nb.owner.name %><a class='myDoni edit_notebook' href="boxViewer.php?method=myDoniEditNotebook&lang=it&uri=<%= b64uri %>">Modifica</a> | <a class='myDoni delete_notebook' href="boxViewer.php?method=myDoniDeleteNotebook&lang=it&uri=<%= b64uri %>">Cancella</a><% else %><a class='myDoni' href="boxViewer.php?method=myDoniUnfollowNotebook&lang=it&uri=<%= b64uri %>">Togli dai tuoi preferiti</a><% end %>
+				<a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= b64uri %>"> | Apri</a>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            <!--
             <ul>
-
-                <% if @talia_user.name != nb.owner.name %>
+				<% if @talia_user.name != nb.owner.name %>
                     <li>Author: <%= nb.owner.name %></li>
                 <% end %>
 
-                <li>Notebook note: <%= nb.notes %></li>
-                <li>Subscribers #: <%= nb.followers.count %></li>
-                <li>Bookmarks #: <%= nb.elements.count %></li>
+                <li><span>Note:</span> <%= nb.notes %></li>
+                <li><span>Subscribers:</span> <%= nb.followers.count %></li>
+                <li><span>Bookmarks:</span> <%= nb.elements.count %></li>
 
                 <% if @talia_user.name == nb.owner.name %>
-                    <li>Public: <%= if nb.public then "Si" else "No" end %> </li>
+                    <li><span>Public:</span> <%= if nb.public then "Si" else "No" end %> </li>
                 <% end %>    
                 
                 <% if @talia_user.name == nb.owner.name %>
@@ -27,6 +52,7 @@
 
                 <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= b64uri %>">Apri questo notebook</a></li>
             </ul>
+            -->
         </div>
     </div>
     <%  end %>    

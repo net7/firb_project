@@ -6,7 +6,7 @@
 <h3>Modifica la nota in <%= nb['title'] %>, <%= bm['date'] %>
 </h3>
 <div class='editbm_form'>
-    <ul>
+    <ul class="form">
 
         <input type='hidden' class='bm_qstring' value='<%= bm['qstring'] %>'>
         <input type='hidden' class='bm_uri' value='<%= bm['uri'] %>'>
@@ -23,10 +23,15 @@
             </ul>
         </li>
 
-        <li><textarea cols='50' rows='5' class='bm_note'><%= bm['note'] %></textarea></li>
-
-        <li><button class='bm_save_button'>Salva</button></li>
+		<li><textarea cols='50' rows='5' class='bm_note'><%= bm['note'] %></textarea></li>
+		
+    </ul>    
+        
+    <ul class="buttons">
+    	<li><button class='bm_save_button'>SALVA</button></li>
+	    <li><a href="javascript:;" onclick="$('#bookmarkDialog').dialog('close');">CHIUDI</a></li>
     </ul>
+
 </div>
 
 <% 

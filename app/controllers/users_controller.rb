@@ -8,6 +8,17 @@ class UsersController < ApplicationController
     (ActionController::Base.relative_url_root || "") + '/admin/'
   end
   
+
+  def json_forgot_password
+    do_creator_action :forgot_password do
+      if valid?
+        render :text => 'andata'
+      else
+        render :text => this.error.messages.to_s
+      end
+    end
+  end
+
   def json_signup
     html = ''
     @user = User.find_by_email_address(params[:user][:email_address])

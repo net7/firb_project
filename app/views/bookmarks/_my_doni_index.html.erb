@@ -25,10 +25,10 @@
             <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
         </div>
     </div>
-    <div class='widgetContent'>
+    <div class='widgetContent myNotebooksList'>
         <%= render :partial => '/bookmarks/notebook_index.html', :object => @my_notebooks %>
 
-        <p><a class='myDoni' href='boxViewer.php?method=myDoniCreateNotebook'>Crea un notebook</a></p>
+        <p class="createNotebook"><a class='myDoni' href='boxViewer.php?method=myDoniCreateNotebook'>Crea un notebook</a></p>
     </div>
     
     <div class='widgetHeader'>
@@ -37,8 +37,8 @@
             <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
         </div>
     </div>
-    <div class='widgetContent'>
-        <p>Aggiungi un notebook: </p>
+    <div class='widgetContent myFavouritesNotebooksList'>
+        <p class="addNotebook">Aggiungi un notebook: </p>
         <p><input class='my_doni_notebook_title' placeholder='nome del notebook'></p>
     
         <%= render :partial => '/bookmarks/notebook_index.html', :object => @subscribed_notebooks %>

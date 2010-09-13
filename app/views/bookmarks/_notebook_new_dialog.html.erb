@@ -5,14 +5,28 @@
         Modifica Notebook
     <% end %>
 </h3>
+
 <div class='newnb_form'>
-    <ul>
+    <ul class="form">
         <% if (!nb.nil?) %>
             <input type='hidden' class='nb_uri' value='<%= nb.uri %>'>
         <% end %>
-        <li><input type='text' class='nb_title' placeholder='Titolo del nuovo notebook ..' value='<%= if (!nb.nil?); nb.title; end %>'></li>
-        <li><input type='checkbox' class='nb_public' <%= if (!nb.nil? && nb.public); "CHECKED" ; end %>>Pubblico</li>
-        <li><textarea cols='40' rows='3' class='nb_note' placeholder="Nota del nuovo notebook .. "><%= if (!nb.nil?); nb.notes; end %></textarea></li>
-        <li><button class='nb_save_button'>Salva</button></li>
+        <li>
+        	<label for="title">Nome notebook</label>
+        	<input name="title" type='text' class='nb_title' placeholder='Titolo del nuovo notebook ..' value='<%= if (!nb.nil?); nb.title; end %>'>
+        </li>
+        <li>
+        	<label for="public">Pubblico</label>
+			<input type='checkbox' class='nb_public' <%= if (!nb.nil? && nb.public); "CHECKED" ; end %>>
+		</li>
+		
+        <li>
+        	<label for="note">Nota</label>
+        	<textarea name="note" cols='40' rows='3' class='nb_note' placeholder="Nota del nuovo notebook .. "><%= if (!nb.nil?); nb.notes; end %></textarea></li>
+	</ul>
+	
+	<ul class="buttons">
+        <li><button class='nb_save_button'>SALVA</button></li>
+        <li><a href="javascript:;" onclick="$('#notebookDialog').dialog('close');">CHIUDI</a></li>
     </ul>
 </div>

@@ -1,27 +1,29 @@
 <div>
     <% notebook_and_bookmarks.each do |nb| %>
     <div class='widgetField'>
-        <span class='field_title collapsed'>Da <%= nb['title'] %>, note di <%= nb['author']%></span>
+        <!-- <span class='field_title collapsed'>Da <%= nb['title'] %>, note di <%= nb['author']%></span> -->
+        <span class='field_title collapsed notebook_title'><%= nb['title'] %></span>
         <div class='field_content collapsed'>
-            <ul>
-                <li><%= nb['note'] %></li>
-                <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= Base64.encode64s(nb['uri']) %>">Apri il notebook</a></li>
-                <li>
+            
+                <!-- <li><%= nb['note'] %></li> -->
+                <!-- <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= Base64.encode64s(nb['uri']) %>">Apri il notebook</a></li>-->
+                
                 <% nb['bookmarks'].each do |b| %>
-                    <ul>
-                        <li>Data: <%= b['date'] %></li>
-                        <li>Nota: <%= b['note'] %></li>
-
-                        <% if nb['author'] == @talia_user.name %>
-                            <li><a class='myDoni' href="boxView.php?method=myDoniGetBookmarkDialogFromUri&uri=<%= b['uri'] %>">Modifica nota</a></li>
-                            <li><a class='myDoni' href="boxView.php?method=myDoniDeleteBookmark&nb_uri=<%= nb['uri'] %>&uri=<%= b['uri'] %>&qstring=<%= Base64.encode64s(b['qstring']) %>">Elimina nota</a></li>
-                        <% end %>
-                    </ul>
+                    <div class="single_note">
+	                    <div class="note_date"><span>Data:</span> <%= b['date'] %></div>
+	                    
+	                    <div class="note_text"><%= b['note'] %></div>
+	                    
+	                   <% if nb['author'] == @talia_user.name %>
+						<div class="note_links"><a class='myDoni' href="boxView.php?method=myDoniGetBookmarkDialogFromUri&uri=<%= b['uri'] %>">Modifica nota</a> | <a class='myDoni' href="boxView.php?method=myDoniDeleteBookmark&nb_uri=<%= nb['uri'] %>&uri=<%= b['uri'] %>&qstring=<%= Base64.encode64s(b['qstring']) %>">Elimina nota</a></div>
+	                    <% end %>
+                   </div>
                 <% end %>
-                </li>
-            </ul>
+                
         </div>
     </div>
     <%  end %>    
-
+	
+	<p class="createNote"><a class="myDoni" href="http://www.google.com">AGGIUNGI UNA NOTA</a></p>
+	
 </div>
