@@ -250,14 +250,15 @@ class BookmarksController < ApplicationController
     #        preference save action
     # notebooks: contains all the notebooks this user is subscribed to/owner of
     # login_panel_html: html code for the my doni box
-    
+
+
+    # add 'animations' => 1, under 'prefs' to activate animations again
     json = { 'error' => 0, 
              'box' => 'MyDoni :)',
              'data' => {
                 'prefs' => {
                     'name' => @talia_user.name,
                     'resizemeImagesMaxWidth' => '600',
-                    'animations' => 1,
                     'useCookie' => true
                     },
                 'notebooks' => notebooks,
