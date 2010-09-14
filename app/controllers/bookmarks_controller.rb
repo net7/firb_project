@@ -30,20 +30,21 @@ class BookmarksController < ApplicationController
     qstring = Base64.decode64(params[:qstring])
 
     # TODO: move this html to a view or another partial ..
-    html = "<div class='dialog_accordion'>"
+    # html = "<div class='dialog_accordion'>"
 
     # Insert the standard 'new' bookmark part
     bm = {:qstring => qstring, :title => params[:title], :resourceType => params[:resourceType], :resourceTypeString => params[:resourceTypeString]}
-    html += render_to_string :partial => '/bookmarks/bookmark_new_dialog.html', :locals => { :bm => bm }
+    html = render_to_string :partial => '/bookmarks/bookmark_new_dialog.html', :locals => { :bm => bm }
 
     # Use my notebooks to render the edit forms
     # TODO: need to filter @my_notebooks to get out only those having a bm which refers to params[:qstring]
 
-    @my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
-    html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified } unless @my_jsonified.empty?
+    # Removed the accordion to edit all of my bookmark for this box at once
+    #@my_jsonified = jsonify_and_filter_notebook_by_qstring(@my_notebooks, qstring)
+    #html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified } unless @my_jsonified.empty?
     
     # TODO: remove this html as before
-    html += "</div>"
+    # html += "</div>"
 
     data = {:error => 0, :html => html}
     render_json(html, data, 0)
@@ -54,9 +55,9 @@ class BookmarksController < ApplicationController
       @my_jsonified = jsonify_and_filter_notebook_by_uri(@my_notebooks, params[:uri])
 
       # TODO: move this html elsewhere !
-      html = "<div class='dialog_accordion'>"
-      html += render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified } unless @my_jsonified.empty?
-      html += "</div>"
+      #html = "<div class='dialog_accordion'>"
+      html = render_to_string :partial => '/bookmarks/bookmark_edit_dialog.html', :locals => { :my => @my_jsonified } unless @my_jsonified.empty?
+      #html += "</div>"
 
       data = {:error => 0, :html => html}
       render_json(html, data, 0)

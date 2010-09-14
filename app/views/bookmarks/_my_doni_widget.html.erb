@@ -1,6 +1,5 @@
 <div class='widget myDoni'>
 
-<% if my.length > 0 %>
     <div class='widgetHeader'>
             <h3 class='widgetHeaderTitle'>I miei notebook</h3>
         <div class='widgetHeaderTools'>
@@ -11,8 +10,8 @@
         <% if my.length > 0 %>
             <%= render :partial => '/bookmarks/notebook_and_bookmarks.html', :object => my %>
         <% end %>
+        <p class="createNote"><a class="myDoni" href='boxViewer.php?method=myDoniCreateBookmark'>AGGIUNGI UNA NOTA</a></p>
     </div>
-<% end %>
 
 <% if subscribed.length > 0 %>
     <div class='widgetHeader'>
