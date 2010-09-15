@@ -136,7 +136,7 @@ class BookmarksController < ApplicationController
         else
             bookmark = TaliaBookmark.find(params[:uri])
             bookmark.notes = params[:notes]
-#            bookmark.date = Time.now
+            bookmark.updated_at = Time.now
             bookmark.save!
 
             # Let's see if the user has changed this bookmark's notebook
