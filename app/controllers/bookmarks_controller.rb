@@ -136,7 +136,7 @@ class BookmarksController < ApplicationController
         else
             bookmark = TaliaBookmark.find(params[:uri])
             bookmark.notes = params[:notes]
-            bookmark.date = Time.now
+#            bookmark.date = Time.now
             bookmark.save!
 
             # Let's see if the user has changed this bookmark's notebook
@@ -380,12 +380,13 @@ class BookmarksController < ApplicationController
     res = []
     notebook.elements.each do |bookmark|
       bookmark = bookmark.becomes(TaliaBookmark)
+      date = Time.parse(bookmark.updated_at.to_s)
       res << {'uri' => "#{bookmark.uri}",
         'title' => "#{bookmark.title}",
         'qstring' => "#{bookmark.qstring}",
         'resourceType' => "#{bookmark.resource_type}",
         'note' => "#{bookmark.notes}",
-        'date' => "#{bookmark.date}" }
+        'date' => "#{date.strftime("%x %X")}" }
     end
     res
   end

@@ -41,7 +41,8 @@
 		    </span>
 		        
 		    <div class='field_content collapsed'>
-		    	<div class="note_date"><span>Data:</span> <%= b.date %></div>
+                       <% time = Time.parse(b.updated_at.to_s) %>
+		    	<div class="note_date"><span>Data:</span> <%= "#{time.strftime("%x %X")}"%></div>
 		        <div class="note_text"><%= b.notes %></div>
 
 				
