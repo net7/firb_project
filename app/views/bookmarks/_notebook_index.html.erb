@@ -10,49 +10,24 @@
             </div>
             
             <% if @talia_user.name != nb.owner.name %>
-                <div class="notebook_author"><span>Author:</span> <%= nb.owner.name %></div>
+                <div class="notebook_author"><span>Autore:</span> <%= nb.owner.name %></div>
             <% end %>
             
 			<div class="notebook_info">
-            	<span>Subscribers:</span> <%= nb.followers.count %>, <span>Bookmarks:</span> <%= nb.elements.count %> <% if @talia_user.name == nb.owner.name %>, <span>Public:</span> <%= if nb.public then "Si" else "No" end %>
+            	<span>Subscribers:</span> <%= nb.followers.count %>, <span>Bookmarks:</span> <%= nb.elements.count %><% if @talia_user.name == nb.owner.name %>, <span>Public:</span> <%= if nb.public then "Si" else "No" end %>
                 <% end %> 
             </div>
             
             <div class="notebook_links">
-            	 <% if @talia_user.name == nb.owner.name %><a class='myDoni edit_notebook' href="boxViewer.php?method=myDoniEditNotebook&lang=it&uri=<%= b64uri %>">Modifica</a> | <a class='myDoni delete_notebook' href="boxViewer.php?method=myDoniDeleteNotebook&lang=it&uri=<%= b64uri %>">Cancella</a><% else %><a class='myDoni' href="boxViewer.php?method=myDoniUnfollowNotebook&lang=it&uri=<%= b64uri %>">Togli dai tuoi preferiti</a><% end %>
-				<a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= b64uri %>"> | Apri</a>
+            <% if @talia_user.name == nb.owner.name %>
+                <a class='myDoni edit_notebook' href="boxViewer.php?method=myDoniEditNotebook&lang=it&uri=<%= b64uri %>">Modifica</a> | 
+                <a class='myDoni delete_notebook' href="boxViewer.php?method=myDoniDeleteNotebook&lang=it&uri=<%= b64uri %>">Cancella</a> 
+            <% else %>
+                <a class='myDoni' href="boxViewer.php?method=myDoniUnfollowNotebook&lang=it&uri=<%= b64uri %>">Togli dai tuoi preferiti</a>
+            <% end %>  
+			    | <a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= b64uri %>">Apri</a>
             </div>
             
-            
-            
-            
-            
-            
-            
-            <!--
-            <ul>
-				<% if @talia_user.name != nb.owner.name %>
-                    <li>Author: <%= nb.owner.name %></li>
-                <% end %>
-
-                <li><span>Note:</span> <%= nb.notes %></li>
-                <li><span>Subscribers:</span> <%= nb.followers.count %></li>
-                <li><span>Bookmarks:</span> <%= nb.elements.count %></li>
-
-                <% if @talia_user.name == nb.owner.name %>
-                    <li><span>Public:</span> <%= if nb.public then "Si" else "No" end %> </li>
-                <% end %>    
-                
-                <% if @talia_user.name == nb.owner.name %>
-                    <li><a class='myDoni edit_notebook' href="boxViewer.php?method=myDoniEditNotebook&lang=it&uri=<%= b64uri %>">Modifica</a></li>
-                    <li><a class='myDoni delete_notebook' href="boxViewer.php?method=myDoniDeleteNotebook&lang=it&uri=<%= b64uri %>">Cancella</a></li>
-                <% else %>
-                    <li><a class='myDoni' href="boxViewer.php?method=myDoniUnfollowNotebook&lang=it&uri=<%= b64uri %>">Togli dai tuoi preferiti</a></li>
-                <% end %>
-
-                <li><a class='myDoni' href="boxViewer.php?method=myDoniGetNotebook&lang=it&resource=<%= b64uri %>">Apri questo notebook</a></li>
-            </ul>
-            -->
         </div>
     </div>
     <%  end %>    

@@ -1,5 +1,23 @@
 <div class='widget'>
     <div class='widgetHeader'>
+        <h3 class='widgetHeaderTitle'>Informazioni</h3>
+        <div class='widgetHeaderTools'>
+            <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
+            
+    	</div>
+    </div>
+    <div class='widgetContent'>
+		<div class="note_author">Autore: <%= notebook_widget.owner.name %></div>
+        <div class="note_text">Nota: <%= notebook_widget.notes %></div>
+
+    	
+		<div class="notebook_info">
+        	<span>Subscribers:</span> <%= notebook_widget.followers.count %>, <span>Bookmarks:</span> <%= notebook_widget.elements.count %><% if @talia_user.name == notebook_widget.owner.name %>, <span>Public:</span> <%= if notebook_widget.public then "Si" else "No" end %>
+            <% end %> 
+        </div>
+        
+    </div>
+    <div class='widgetHeader'>
         <h3 class='widgetHeaderTitle'>Bookmarks in questo notebook</h3>
         <div class='widgetHeaderTools'>
             <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
@@ -25,15 +43,12 @@
 		    <div class='field_content collapsed'>
 		    	<div class="note_date"><span>Data:</span> <%= b.date %></div>
 		        <div class="note_text"><%= b.notes %></div>
+
 				
-				<% if @talia_user.name != notebook_widget.owner.name %>
-					<div class="note_author">Author: <%= notebook_widget.owner.name %></div>
-					<div>
-				<% else %>
-				
-					<div class="note_links">
-						<a class='myDoni' href="boxView.php?method=myDoniGetBookmarkDialogFromUri&uri=<%= b.uri %>">Modifica nota</a> | <a class='myDoni' href="boxView.php?method=myDoniDeleteBookmark&nb_uri=<%= notebook_widget.uri %>&uri=<%= b.uri %>&qstring=<%= Base64.encode64s(b.qstring) %>">Elimina nota</a> | 
-					
+				<div class="note_links">
+				<% if @talia_user.name == notebook_widget.owner.name %>
+					<a class='myDoni' href="boxView.php?method=myDoniGetBookmarkDialogFromUri&uri=<%= b.uri %>">Modifica nota</a> | 
+					<a class='myDoni' href="boxView.php?method=myDoniDeleteBookmark&nb_uri=<%= notebook_widget.uri %>&uri=<%= b.uri %>&qstring=<%= Base64.encode64s(b.qstring) %>">Elimina nota</a> | 
 				<% end %>
 				
 				<a class='resource' href="<%= b.qstring %>">Apri</a></div>
