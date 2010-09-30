@@ -4,3 +4,4 @@ vendor/
 config/talia_core.yml
 config/database.yml
 config/rdfstore.yml
+
