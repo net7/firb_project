@@ -14,7 +14,7 @@ class BaseCard < TaliaCore::Source
   extend RandomId
 
   # Anastatica page it links to
-  singular_property :anastatica, N::DCT.isPartOf, :force_relation => true
+  singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
 
   # Author of the elment
   singular_property :author, N::DCT.creator

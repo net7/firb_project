@@ -3,13 +3,13 @@ class VtHandwrittenTextCard < TextCard
   hobo_model
   include StandardPermissions
   
-  singular_property :anastatica, N::DCT.isPartOf, :force_relation => true
+  singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title
-  multi_property :image_zones, N::DCT.isFormatOf, :force_relation => true
+  multi_property :image_zones, N::DCT.isFormatOf, :type => TaliaCore::ActiveSource
 
   # Link a trascrizione diplomatica e trascrizione versione a stampa
-  rdf_property :transc_diplomatic, N::TALIA.transcription_diplomatic, :force_relation => true
-  rdf_property :transc_printed, N::TALIA.transcription_printed, :force_relation => true
+  rdf_property :transc_diplomatic, N::TALIA.transcription_diplomatic, :type => TaliaCore::ActiveSource
+  rdf_property :transc_printed, N::TALIA.transcription_printed, :type => TaliaCore::ActiveSource
   
   # Segnatura
   rdf_property :signature, N::TALIA.signature
@@ -39,7 +39,7 @@ class VtHandwrittenTextCard < TextCard
   rdf_property :date, N::DCT.date
 
   # Bibliografia
-  multi_property :bibliography_items, N::TALIA.hasBibliography, :force_relation => true
+  multi_property :bibliography_items, N::TALIA.hasBibliography, :type => TaliaCore::ActiveSource
   
   
   fields do

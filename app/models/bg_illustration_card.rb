@@ -6,8 +6,8 @@ class BgIllustrationCard < IllustrationCard
   autofill_uri :force => true
 
   # Fonti dell'immagine (in) ed usi successivi (out)
-  multi_property :related_source_in, N::TALIA.related_source_in, :force_relation => true
-  multi_property :related_source_out, N::TALIA.related_source_out, :force_relation => true
+  multi_property :related_source_in, N::TALIA.related_source_in, :type => TaliaCore::ActiveSource
+  multi_property :related_source_out, N::TALIA.related_source_out, :type => TaliaCore::ActiveSource
 
   # Segnatura
   rdf_property :signature, N::TALIA.signature
@@ -16,7 +16,7 @@ class BgIllustrationCard < IllustrationCard
   rdf_property :technical_notes, N::TALIA.techical_notes, :type => 'text'
     
   # Edizione di riferimento
-  rdf_property :edition, N::TALIA.edition, :force_relation => true
+  rdf_property :edition, N::TALIA.edition, :type => TaliaCore::ActiveSource
 
   # Motto, lingua e traduzione
   rdf_property :motto, N::TALIA.motto, :type => 'text'

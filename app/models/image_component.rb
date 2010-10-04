@@ -7,6 +7,6 @@ class ImageComponent < TaliaCore::Source
   
   rdf_property :name, N::TALIA.name
   rdf_property :zone_type, N::DCT.type
-  rdf_property :image_zone, N::TALIA.image_zone, :force_relation => true
+  rdf_property :image_zone, N::TALIA.image_zone, :type => TaliaCore::ActiveSource
   
 end

@@ -14,10 +14,10 @@ it:
         model_name_plural: "Libri"
         empty_message: "Nessun libro da visualizzare"
         collection:
-            count: "Ci sono {{count}} libri"
+            count: "Ci sono %{count} libri"
             empty_message: "Nessun libro da visualizzare"
         side_collection:
-            count: "Contiene {{count}} elementi"
+            count: "Contiene %{count} elementi"
         actions:
             new: "Crea un nuovo libro"
             create: "Salva questo libro"
@@ -32,7 +32,7 @@ it:
         model_name: "Anastatica"
         model_name_plural: "Anastatiche" 
         collection:
-            count: "Ci sono {{count}} pagine anastatiche"
+            count: "Ci sono %{count} pagine anastatiche"
             empty_message: "Nessuna pagina anastatica da visualizzare"
         actions:
             new: "Crea una nuova pagina anastatica"
@@ -58,7 +58,7 @@ it:
         model_name: "Illustrazione"
         model_name_plural: "Illustrazioni"
         collection:
-            count: "Ci sono {{count}} illustrazioni"
+            count: "Ci sono %{count} illustrazioni"
             empty_message: "Nessuna illustrazione da visualizzare"
         actions:
             new: "Crea una nuova illustrazione"
@@ -76,7 +76,7 @@ it:
         model_name: "Termine iconclass"
         model_name_plural: "Termini iconclass"
         collection:
-            count: "Ci sono {{count}} termini iconclass"
+            count: "Ci sono %{count} termini iconclass"
             empty_message: "Nessun termine iconclass da visualizzare"
         actions:
             new: "Crea un nuovo termine iconclass"
@@ -97,7 +97,7 @@ it:
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono {{count}} schede di testo"
+            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -110,7 +110,7 @@ it:
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono {{count}} schede di testo"
+            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -134,7 +134,7 @@ it:
         new: 
             heading: "Nuova scheda illustrazione"
         collection:
-            count: "Ci sono {{count}} schede illustrazione"
+            count: "Ci sono %{count} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         actions:
             new: "Crea una nuova scheda illustrazione"
@@ -176,7 +176,7 @@ it:
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono {{count}} schede di testo"
+            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -195,7 +195,7 @@ it:
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono {{count}} schede di testo"
+            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -222,7 +222,7 @@ it:
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono {{count}} schede di testo"
+            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -242,7 +242,7 @@ it:
         model_name: "Elemento Bibliografico"
         model_name_plural: "Elementi Bibliografici"
         collection:
-            count: "Ci sono {{count}} elementi bibliografici"
+            count: "Ci sono %{count} elementi bibliografici"
             empty_message: "Nessun elemento bibliografico da visualizzare"
         actions:
             new: "Crea un nuovo elemento bibliografico"
@@ -269,7 +269,7 @@ it:
         published_in: "Pubblicato in"
         external_url: "URL alla risorsa"
         collection:
-          count: "Ci sono {{count}} elementi bibliografici"
+          count: "Ci sono %{count} elementi bibliografici"
 
     pi_illustrated_md_cards:
         model_name: "Scheda di immagine di memoria illustrata"
@@ -277,7 +277,7 @@ it:
         messages:
             create_success: "La nuova scheda di immagine di memoria illustrata è stata salvata."
         collection:
-            count: "Ci sono {{count}} schede immagine di memoria"
+            count: "Ci sono %{count} schede immagine di memoria"
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
             create: "Salva questa scheda di immagine di memoria"
@@ -313,7 +313,7 @@ it:
         messages:
             create_success: "La nuova scheda capolettera è stata salvata."
         collection:
-            count: "Ci sono {{count}} schede capolettera"
+            count: "Ci sono %{count} schede capolettera"
             empty_message: "Nessuna capolettera da visualizzare"
         actions:
             create: "Salva questa capolettera"
@@ -349,7 +349,7 @@ it:
             new: "Crea una nuova scheda illustrazione"
             delete: "Cancella questa scheda illustrazione"
         collection:
-            count: "Ci sono {{count}} schede illustrazione"
+            count: "Ci sono %{count} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         new:
             heading: "Nuova scheda illustrazione"
@@ -400,7 +400,7 @@ it:
             delete: "Cancella scheda"
             edit: "Modifica {{name}}"
         collection:
-            count: "Ci sono {{count}} schede di questa tipologia"
+            count: "Ci sono %{count} schede di questa tipologia"
             empty_message: "Nessuna scheda di questa tipologia da visualizzare"
         collocation: "Collocazione"
         non_illustrated_memory_depiction_link: "Scheda di immagine di memoria non illustrata"

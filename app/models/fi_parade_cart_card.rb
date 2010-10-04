@@ -7,9 +7,9 @@ class FiParadeCartCard < IllustrationCard
   common_properties
   autofill_uri :force => true
   
-  singular_property :vehicle, N::TALIA.vehicle, :force_relation => true
-  singular_property :deity, N::TALIA.deity, :force_relation => true
-  singular_property :throne, N::TALIA.throne, :force_relation => true
-  multi_property :animals, N::TALIA.animal, :force_relation => true
+  singular_property :vehicle, N::TALIA.vehicle, :type => TaliaCore::ActiveSource
+  singular_property :deity, N::TALIA.deity, :type => TaliaCore::ActiveSource
+  singular_property :throne, N::TALIA.throne, :type => TaliaCore::ActiveSource
+  multi_property :animals, N::TALIA.animal, :type => TaliaCore::ActiveSource
   
 end

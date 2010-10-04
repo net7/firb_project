@@ -6,7 +6,7 @@ class BgTextCard < TextCard
   rdf_property :title, N::DCNS.title
 
   # Link all'anastatica
-  singular_property :anastatica, N::DCT.isPartOf, :force_relation => true
+  singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
 
   # Numero carta
   rdf_property :page_position, N::TALIA.position
@@ -15,7 +15,7 @@ class BgTextCard < TextCard
   rdf_property :comment, N::TALIA.comment, :type => 'string'
 
   # Bibliografia
-  multi_property :bibliography_items, N::TALIA.hasBibliography, :force_relation => true
+  multi_property :bibliography_items, N::TALIA.hasBibliography, :type => TaliaCore::ActiveSource
 
   # Libro a cui appartiene
   manual_property :book

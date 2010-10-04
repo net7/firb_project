@@ -4,8 +4,8 @@ module FiCardsCommonFields
     
     def common_properties
       rdf_property :transcription, N::TALIA.transcription, :type => :text
-      singular_property :baldini_text, N::TALIA.baldini, :force_relation => true
-      singular_property :cini_text, N::TALIA.cini, :force_relation => true
+      singular_property :baldini_text, N::TALIA.baldini, :type => TaliaCore::ActiveSource
+      singular_property :cini_text, N::TALIA.cini, :type => TaliaCore::ActiveSource
       manual_property :procession
       manual_property :note
       
