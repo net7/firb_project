@@ -67,17 +67,17 @@
         <post-bibliography:>
             <field-row field="parent_card" />
             <field-row field="parent_code">
-                <view:><%= this_parent.parent_card && this.parent_card.code %></view:>
+                <view:><%= @base_card.parent_card && @base_card.parent_card.code %></view:>
             </field-row>
             <field-row field="parent_collocation">
-                <view:><%= this_parent.parent_card && this.parent_card.collocation %></view:>
+                <view:><%= @base_card.parent_card && @base_card.parent_card.collocation %></view:>
             </field-row>
         </post-bibliography:>
         <post-description:>
             <field-row field="textual_source" />
             <field-row field="transcription_text" />
             <field-row field="parent_iconclass">
-                <view:><%= this_parent.parent_card && this.parent_card.iconclass_terms.collect { |term| term.term }.join(", ") %></view:>
+                <view:><%= @base_card.parent_card && @base_card.parent_card.iconclass_terms.collect { |term| term.term }.join(", ") %></view:>
             </field-row>
             <field-row field="iconclass_terms" />
         </post-description:>
