@@ -51,7 +51,7 @@
             <field-row field="iconclass_terms" />
             <field-row field="iconclass_children">
                 <view:>
-                    <repeat with="&this.child_cards" join=", ">
+                    <repeat with="&@base_card.child_cards" join=" -- ">
                         <repeat with="&this.try.iconclass_terms" join=", ">
                             <base-card-link />
                         </repeat>

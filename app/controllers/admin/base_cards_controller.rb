@@ -18,6 +18,10 @@ class Admin::BaseCardsController < Admin::AdminSiteController
   def edit
     @base_card = BaseCard.find(params[:id], :prefetch_relations => true)
   end
+
+  def show
+    @base_card = BaseCard.find(params[:id], :prefetch_relations => true)
+  end
   
   def destroy
     hobo_destroy { redirect_to :controller => :base_cards, :action => :index }

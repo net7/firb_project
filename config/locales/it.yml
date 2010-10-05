@@ -369,7 +369,6 @@ it:
         transcription_text: "Trascrizione"
         image_zone: "Zona di immagine"
         textual_source: "Scheda testo collegata"
-        inherited_iconclass: "Termini iconclass ereditati dalle 'figlie'"
         iconclass_terms: "Termini Iconclass"
         bibliography: "Bibliografia"
         children: "Figlie"
@@ -379,26 +378,26 @@ it:
         actions:
             new: "Crea nuova scheda"
             delete: "Cancella scheda"
-            edit: "Modifica {{name}}"
+            edit: "Modifica %{name}"
             
     fi_character_cards:
         actions:
             new: "Crea nuova scheda"
             delete: "Cancella scheda"
-            edit: "Modifica {{name}}"
+            edit: "Modifica %{name}"
 
     # Firb cards
     base_cards:
         model_name: "Scheda"
         model_name_plural: "Schede"
         edit:
-            heading: "Modifica {{name}}"
+            heading: "Modifica %{name}"
         new:
             heading: "Crea una nuova scheda"
         actions:
             new: "Crea nuova scheda"
             delete: "Cancella scheda"
-            edit: "Modifica {{name}}"
+            edit: "Modifica %{name}"
         collection:
             count: "Ci sono %{count} schede di questa tipologia"
             empty_message: "Nessuna scheda di questa tipologia da visualizzare"
@@ -489,7 +488,7 @@ it:
       model_name_plural: "Cortei"
       errors:
         too_many_carts: "Non posso aggiungere più di un carro a un corteo."
-        illegal_type: "Un elemento del typo {{type}} no può essere parte di un corteo."
+        illegal_type: "Un elemento del tipo %{type} no può far parte di un corteo."
 
     image_components:
       model_name: "Componenti"

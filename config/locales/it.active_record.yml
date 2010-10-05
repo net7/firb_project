@@ -23,11 +23,11 @@ it:
         less_than_or_equal_to: "deve essere più piccolo o uguale a %{count}"
         odd: "deve essere dispari"
         even: "deve essere pari"
-        record_invalid: "Convalida fallita: {{errors}}"
+        record_invalid: "Convalida fallita: %{errors}"
         # Append your own errors here or at the model/attributes scope.
 
       full_messages:
-        format: "{{attribute}} {{message}}"
+        format: "%{attribute} %{message}"
 
       # You can define own errors for models or model attributes.
       # The values :model, :attribute and :value are always available for interpolation.
@@ -35,7 +35,7 @@ it:
       # For example,
       #   models:
       #     user:
-      #       blank: "This is a custom blank message for {{model}}: {{attribute}}"
+      #       blank: "This is a custom blank message for %{model}: %{attribute}"
       #       attributes:
       #         login:
       #           blank: "This is a custom blank message for User login"

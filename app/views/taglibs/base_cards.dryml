@@ -130,8 +130,14 @@
             </after-completed:>
             <after-bibliography:>
                 <field-row field="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
-                <field-row field="inherited_iconclass">
-                    <view:><repeat with="&this.inherited_iconclasses" join=", "><%= this.term %></repeat></view:>
+                <field-row field="iconclass_children">
+                    <view:>
+                        <repeat with="&@base_card.child_cards" join=" -- ">
+                            <repeat with="&this.try.iconclass_terms" join=", ">
+                                <base-card-link />
+                            </repeat>
+                        </repeat>
+                    </view:>
                 </field-row>
                 <field-row field="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
@@ -429,7 +435,7 @@
 
 <def tag="firb-notes-edit">
     <div id="firb-notes">
-        <repeat with="&this.notes">
+        <repeat with="&@base_card.notes">
             <div class='firb-note'>
                 <textarea rows="4" cols="50" name='<%= @full_type_name %>[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
                 <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
