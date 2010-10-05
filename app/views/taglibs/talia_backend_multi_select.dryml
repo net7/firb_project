@@ -11,7 +11,7 @@
         populate_ul_id = id+"_list"
         select_id = id+"_select"
         add_button_id = id+"_add"
-        existing = this.collect {|x| [x.try_call.to_list_s || x.try_call.name || x.to_uri.local_name, x.uri.to_s]}
+        existing = this.nil? ? [] : this.collect {|x| [x.try_call.to_list_s || x.try_call.name || x.to_uri.local_name, x.uri.to_s]}
     %>
     <ul id="<%=h populate_ul_id %>"></ul>
     <talia-single-select id="&select_id" name="&select_id" merge />
