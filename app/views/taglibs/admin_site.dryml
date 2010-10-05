@@ -32,7 +32,6 @@
 </def>
 
 <def tag="image-zone-select">
-    <% puts "667 #{this.inspect}" %>
     <talia-input field="image_zone" selectoptions="&image_zone_select_uri" merge />
 </def>
 
