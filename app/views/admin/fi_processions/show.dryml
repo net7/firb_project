@@ -1,4 +1,4 @@
-<% can_edit_stuff = @procession.updatable_by?(current_user) %>
+<% can_edit_stuff = @fi_procession.updatable_by?(current_user) %>
 <show-page>
 	<content-body: >
 		<field-list fields="title" />	
@@ -10,7 +10,7 @@
 			<empty-message:>This collection is empty</empty-message:>
 		</collection>
 		<%= if Hobo::Dryml.last_if
-		        opts = { :url => { :controller => 'processions', :action => 'reorder', :id => @procession.to_uri.safe_encoded},
+		        opts = { :url => { :controller => 'fi_processions', :action => 'reorder', :id => @fi_procession.to_uri.safe_encoded},
 		                 :constraint => :vertical,
 		                 :overlap => :vertical,
 		                 :scroll => :window,

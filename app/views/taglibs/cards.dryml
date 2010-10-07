@@ -477,9 +477,9 @@
     </header:>
     <body:>
 
-      <ht key="parades.collection.count" count="&this.size">
-			Contains
-      </ht>
+    <ht key="parades.collection.count" count="&this.elements.size">
+			Contains <%= this.elements.size %> processions
+    </ht>
 
     </body:>
   </card>
@@ -492,8 +492,8 @@
     </header:>
     <body:>
 
-      <ht key="parades.collection.count" count="&this.size">
-			Contains
+      <ht key="processions.collection.count" count="&this.elements.size">
+  			Contains <%= this.elements.size %> elements
       </ht>
 
     </body:>

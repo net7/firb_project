@@ -14,7 +14,8 @@ module FiCardsCommonFields
     end
     
   end
-  
+
+  # Manual property procession getter and setter
   def procession
     @procession ||= fetch_procession
   end
@@ -24,24 +25,9 @@ module FiCardsCommonFields
     @procession_new = true
     @procession << self
   end
-  
-  def note
-    qry = ActiveRDF::Query.new(Note).select(:note).distinct
-    qry.where(:note, N::DCT.isPartOf, self)
-    qry.execute
-  end
-  
-  def notes
-    note
-  end
-  
-  def note=(value)
-    if(self.new_record?)
-      return unless(self.save)
-    end
-    Note.replace_notes(value, self)
-  end
-  
+
+  # If there's errors validating the procession, add these errors to this
+  # object's errors and return false
   def validate_procession
     if(!procession_valid?)
       @procession.errors.each_full { |msg| errors.add('procession', msg) }
@@ -58,9 +44,27 @@ module FiCardsCommonFields
   def fetch_procession
     FiProcession.find(:first, :find_through => [N::DCT.hasPart, self.uri])
   end
-  
+
   def procession_valid?
     @procession ? @procession.valid? : true
+  end
+
+  # Manual property Note getter and setter
+  def note
+    qry = ActiveRDF::Query.new(Note).select(:note).distinct
+    qry.where(:note, N::DCT.isPartOf, self)
+    qry.execute
+  end
+  
+  def notes
+    note
+  end
+  
+  def note=(value)
+    if(self.new_record?)
+      return unless(self.save)
+    end
+    Note.replace_notes(value, self)
   end
   
 end

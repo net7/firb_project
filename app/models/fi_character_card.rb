@@ -1,5 +1,6 @@
-# Represents a character in the FIRB FI parade. A character may or may not be related
-# to a cart
+# Represents a character in the FIRB FI parade. A character may or may not be following
+# a cart. Cart+following characters build a procession. A book is an ordered list of
+# processions.
 class FiCharacterCard < IllustrationCard
   
   autofill_uri
