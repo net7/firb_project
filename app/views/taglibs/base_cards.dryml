@@ -211,7 +211,8 @@
   <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
-      <image-zone-link />
+      <p><image-zone-link /></p>
+      <p><procession-link /></p>
     </header:>
   </card>
 </def>
@@ -220,7 +221,8 @@
   <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
-      <image-zone-link />
+      <p><image-zone-link /></p>
+      <p><procession-link /></p>
     </header:>
   </card>
 </def>
@@ -353,6 +355,15 @@
 
 <def tag="card-link">
     <%= link_to((this.name || this.uri.local_name), :controller => :base_cards, :action => :show, :id => this.id) %>
+</def>
+
+<def tag="procession-link">
+    <if test="&this.procession.blank?">
+        <ht key="base_cards.no_procession">Nessuna Processione collegata</ht>
+    </if>
+    <else>
+        <a with="&this.procession"><ht key="base_cards.cart_card.procession">Processione</ht>: <%= this.name %></a>
+    </else>
 </def>
 
 <def tag="anastatica-link">

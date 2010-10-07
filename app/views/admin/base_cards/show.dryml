@@ -39,7 +39,6 @@
     </table>
 </def>
 
-
 <def tag="field-table" for="PiIllustrationCard">
     <field-table merge>
         <post-bibliography:>
