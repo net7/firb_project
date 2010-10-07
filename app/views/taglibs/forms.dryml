@@ -321,9 +321,8 @@
     	</p>
 	<% end %>
 
-	<% parades_hash = {} ; this.unattached_parades.each { |b| parades_hash[b.name] = b.to_uri } %>
+	<% parades_hash = {"Don't attach" => ''}; this.unattached_parades.each { |b| parades_hash[b.name] = b.to_uri } %>
 	<unless test="&parades_hash.empty?">
-		<% parades_hash["Don't attach"] = '' %>
         <field-row field="parade">
             <view:><select-menu options="&parades_hash" id="parade" name="fi_procession[parade]" /></view:>
         </field-row>

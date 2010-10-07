@@ -510,9 +510,9 @@
         <p>
             <unless test="&this.parade.nil?">
                 <ht key="processions.belongs_to_parade">Belongs to parade </ht> 
-                    <a href="&url_for(:controller => :fi_parades, :action => :show, :id => this.parade)">
-                        <%= this.parade.title || this.parade.to_uri.local_name %>
-                    </a>
+                <a href="&url_for(:controller => :fi_parades, :action => :show, :id => this.parade)">
+                    <%= this.parade.title || this.parade.to_uri.local_name %>
+                </a>
             </unless>
         </p>
 

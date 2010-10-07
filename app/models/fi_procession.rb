@@ -21,14 +21,14 @@ class FiProcession < TaliaCore::Collection
   
   def parades
     return [] if(new_record?)
-    parade
+    [parade]
   end
 
   def unattached_parades
     p = FiParade.all
-    return p if(new_record?)
-    attached = parades || []
-    p.reject { |att| attached.include?(att) }
+    return p if (new_record?)
+    attached = parade
+    p.reject { |att| attached.to_uri == att.to_uri }
   end
   
   def parade=(value)

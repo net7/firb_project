@@ -1,7 +1,7 @@
 <% can_edit_stuff = @fi_procession.updatable_by?(current_user) %>
 <show-page>
 	<content-body: >
-		<field-list fields="title" />	
+		<field-list fields="title, parade" />	
 		<collection id="collection_order">
 			<item: id="item_#{this.id}">
 		      <div class="ordering-handle" if="&can_edit_stuff">&uarr;<br/>&darr;</div>
