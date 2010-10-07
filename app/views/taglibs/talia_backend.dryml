@@ -77,6 +77,7 @@ defined in the class, it will use the standard input tag for that type
     options = this_parent.try_call.property_options_for(this_field) || {}
     my_type = talia_type(this_parent, this_field)
     single = options[:singular_property].true?
+    multi = options[:multi_property].true?
   %>
   <if test="&my_type.nil?">
       <input name="#{this_parent.class.name.underscore}[#{this_field}]"  merge />
@@ -85,9 +86,13 @@ defined in the class, it will use the standard input tag for that type
       <if test="&single">
           <input merge name="#{this_parent.class.name.underscore}[#{this_field}]" for-type="&my_type" />
       </if>
-      <else>
+      <if test="&multi">
           <talia-multi-input merge />
-      </else>
+      </if>
+      <!-- TODO: using single-select if neither singular or multi property are set -->
+      <if test="&!(multi || single)">
+          <talia-single-select merge name="#{this_parent.class.name.underscore}[#{this_field}]" for-type="&my_type" />
+      </if>
   </else>
 </def>
 
