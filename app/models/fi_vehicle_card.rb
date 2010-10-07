@@ -1,5 +1,7 @@
 # Represents the vehicle that is part of a whole cart in the
 # FIRB FI parade. 
 class FiVehicleCard < IllustrationCard
-  # TODO: Each vehicle can have one or more episodes (episodi) - usually four
+
+  multi_property :episodes, N::TALIA.episode, :type => TaliaCore::ActiveSource
+
 end

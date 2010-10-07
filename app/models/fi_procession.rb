@@ -12,6 +12,8 @@ class FiProcession < TaliaCore::Collection
 
   declare_attr_type :name, :string
   declare_attr_type :title, :string
+
+  # A procession belongs to one and only one parade
   manual_property :parade
 
   # Manual property procession getter and setter
@@ -19,22 +21,20 @@ class FiProcession < TaliaCore::Collection
     @parade ||= fetch_parade
   end
   
-  def parades
-    return [] if(new_record?)
-    [parade]
-  end
-
-  def unattached_parades
-    p = FiParade.all
-    return p if (new_record?)
-    attached = parade
-    p.reject { |att| attached.to_uri == att.to_uri }
-  end
-  
   def parade=(value)
-    @parade = (value.is_a?(FiParade) ? value : FiParade.find(value))
-    @parade_new = true
-    @parade << self
+    if (!value.empty?)
+      @parade = (value.is_a?(FiParade) ? value : FiParade.find(value))
+      @parade_new = true
+
+      # This shouldnt be needed, since there will be one and only one parade... !
+      if (self.parade.to_uri != @parade.to_uri)
+        foo = self.parade
+        foo.delete(self)
+        foo.save
+      end
+
+      @parade << self
+    end
   end
 
   # If there's errors validating the parade, add these errors to this

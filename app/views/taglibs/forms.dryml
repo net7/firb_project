@@ -310,23 +310,11 @@
     <error-messages param/>
     <field-list fields="title" param/>
 
-	<% parades = this.parades %>
-	<% unless(parades.nil? || parades.empty?) %>
-	    <h3><ht key="parades.attached_to_parades">Attached to parades (check to remove)</ht></h3>
-    	<p>
-    	    <% for attached_parade in parades %>
-    		    <input name="delete_parade[#{attached_parade.id}]" type='checkbox' value='@#{attached_parade.to_uri}' />
-    		    <%= attached_parade.title || attached_parade.name %><br/>
-    	    <% end %>
-    	</p>
-	<% end %>
-
-	<% parades_hash = {"Don't attach" => ''}; this.unattached_parades.each { |b| parades_hash[b.name] = b.to_uri } %>
+	<% parade=this.parade; parades_hash = {}; FiParade.all.each { |b| parades_hash[b.name] = b.to_uri } %>
 	<unless test="&parades_hash.empty?">
         <field-row field="parade">
             <view:><select-menu options="&parades_hash" id="parade" name="fi_procession[parade]" /></view:>
         </field-row>
-
 	</unless>
 
     <div param="actions">
