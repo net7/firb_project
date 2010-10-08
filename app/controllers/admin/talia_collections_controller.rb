@@ -1,8 +1,14 @@
 class Admin::TaliaCollectionsController < Admin::AdminSiteController
 
   hobo_model_controller
-
   auto_actions :all
+
+  def index
+    @talia_collections = TaliaCollection.paginate(:page => params[:page], :prefetch_relations => true)
+    exclude = FiParade.all + FiProcession.all
+    exclude.collect! { |c| c.uri }
+    @talia_collections.reject! { |col| exclude.include?(col.uri) }
+  end
 
   # Will create a new Image, with some automatic zones automagically added
   def create
