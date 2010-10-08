@@ -10,7 +10,7 @@
 			<empty-message:>This collection is empty</empty-message:>
 		</collection>
 		<%= if Hobo::Dryml.last_if
-		        opts = { :url => { :controller => 'fi_parades', :action => 'reorder', :id => this.to_uri.safe_encoded},
+		        opts = { :url => { :controller => 'talia_collections', :action => 'reorder', :id => this.to_uri.safe_encoded},
 		                 :constraint => :vertical,
 		                 :overlap => :vertical,
 		                 :scroll => :window,
