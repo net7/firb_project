@@ -78,13 +78,21 @@ defined in the class, it will use the standard input tag for that type
     my_type = talia_type(this_parent, this_field)
     single = options[:singular_property].true?
     multi = options[:multi_property].true?
+    string = (my_type.to_s == "String")
+    hobo_type = this_parent.class.attr_type(this_field)
   %>
+  
   <if test="&my_type.nil?">
-      <input name="#{this_parent.class.name.underscore}[#{this_field}]"  merge />
+      <input name="#{this_parent.class.name.underscore}[#{this_field}]" merge/>
   </if>
   <else>
       <if test="&single">
-          <input merge name="#{this_parent.class.name.underscore}[#{this_field}]" for-type="&my_type" />
+          <if test="&string">
+              <input name="#{this_parent.class.name.underscore}[#{this_field}]" for-type="&hobo_type" merge />
+          </if>
+          <else>
+              <input merge name="#{this_parent.class.name.underscore}[#{this_field}]" for-type="&my_type" for="&hobo_type" />
+          </else>
       </if>
       <if test="&multi">
           <talia-multi-input merge />
@@ -102,6 +110,15 @@ This is the default situation
 <def tag="input" for="TaliaCore::ActiveSource">
     <talia-single-select merge />
 </def>
+
+<!--
+    TODO: This shouldnt be needed .. but sometimes (why?? when??) in the edit action
+    the :text fields just get rendered as input text... 
+    
+<def tag="input" for="HoboFields::Text" merge>
+    <textarea></textarea>
+</def>
+-->
 
 <def tag="talia-single-select" attrs="id, name, fieldtype, selectoptions">
     <% type = fieldtype || talia_type(this_parent, this_field) || this_type || ActiveSource %>

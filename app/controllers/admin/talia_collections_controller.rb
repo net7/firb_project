@@ -10,7 +10,6 @@ class Admin::TaliaCollectionsController < Admin::AdminSiteController
     @talia_collections.reject! { |col| exclude.include?(col.uri) }
   end
 
-  # Will create a new Image, with some automatic zones automagically added
   def create
     @talia_collection = TaliaCollection.create_collection(params[:talia_collection])
     if(save_created(@talia_collection))
