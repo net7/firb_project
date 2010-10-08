@@ -13,6 +13,7 @@
                 <field-edit-row field="procession" fieldtype="FiProcession" />
                 <field-edit-row field="name" />
                 <field-edit-row field="code"  />
+                <field-edit-row field="collocation" />
                 <field-edit-row field="author" />
                 <field-edit-row field="tecnique" />
                 <field-edit-row field="measure" />
@@ -43,6 +44,7 @@
                 <field-edit-row field="procession" fieldtype="FiProcession" />
                 <field-edit-row field="name" />
                 <field-edit-row field="code"  />
+                <field-edit-row field="collocation" />
                 <field-edit-row field="author" />
                 <field-edit-row field="tecnique" />
                 <field-edit-row field="measure" />
