@@ -7,18 +7,18 @@
     	</div>
     </div>
     <div class='widgetContent'>
-		<div class="note_author">Autore: <%= notebook_widget.owner.name %></div>
-        <div class="note_text">Nota: <%= notebook_widget.notes %></div>
+		<div class="note_author"><span>Autore:</span> <%= notebook_widget.owner.name %></div>
+        
+        <div class="note_text"><%= notebook_widget.notes %></div>
 
-    	
-		<div class="notebook_info">
-        	<span>Subscribers:</span> <%= notebook_widget.followers.count %>, <span>Bookmarks:</span> <%= notebook_widget.elements.count %><% if @talia_user.name == notebook_widget.owner.name %>, <span>Public:</span> <%= if notebook_widget.public then "Si" else "No" end %>
+    	<div class="notebook_info">
+        	<span>Subscribers:</span> <%= notebook_widget.followers.count %>, <span>Note:</span> <%= notebook_widget.elements.count %><% if @talia_user.name == notebook_widget.owner.name %>, <span>Public:</span> <%= if notebook_widget.public then "Si" else "No" end %>
             <% end %> 
         </div>
         
     </div>
     <div class='widgetHeader'>
-        <h3 class='widgetHeaderTitle'>Bookmarks in questo notebook</h3>
+        <h3 class='widgetHeaderTitle'>Note in questo notebook</h3>
         <div class='widgetHeaderTools'>
             <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
             
@@ -27,7 +27,7 @@
     <div class='widgetContent'>
 
         <% if notebook_widget.elements.empty? %>
-            <p>Non ci sono bookmark in questo notebook.</p>
+            <p>Non ci sono note in questo notebook.</p>
         <% end %>
 
         <% 

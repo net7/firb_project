@@ -14,7 +14,7 @@
             <% end %>
             
 			<div class="notebook_info">
-            	<span>Subscribers:</span> <%= nb.followers.count %>, <span>Bookmarks:</span> <%= nb.elements.count %><% if @talia_user.name == nb.owner.name %>, <span>Public:</span> <%= if nb.public then "Si" else "No" end %>
+            	<span>Subscribers:</span> <%= nb.followers.count %>, <span>Note:</span> <%= nb.elements.count %><% if @talia_user.name == nb.owner.name %>, <span>Public:</span> <%= if nb.public then "Si" else "No" end %>
                 <% end %> 
             </div>
             

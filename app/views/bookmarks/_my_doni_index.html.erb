@@ -7,8 +7,8 @@
     	</div>
     </div>
     <div class='widgetContent expanded'>
-        Ciao <%= @talia_user.name %> <br>
-        <a class='logout' href="#">Logout</button>
+        <p>Ciao <strong><%= @talia_user.name %></strong></p>
+        <a class='logout' href="#">Logout</a>
     </div>
     
     <div class='widgetHeader'>
@@ -32,16 +32,15 @@
     </div>
     
     <div class='widgetHeader'>
-        <h3 class='widgetHeaderTitle'>Altri Notebook</h3>
+        <h3 class='widgetHeaderTitle'>Notebook Preferiti</h3>
         <div class='widgetHeaderTools'>
             <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
         </div>
     </div>
-    <div class='widgetContent myFavouritesNotebooksList'>
-        <p class="addNotebook">Aggiungi un notebook: </p>
-        <p><input class='my_doni_notebook_title' placeholder='nome del notebook'></p>
-    
-        <%= render :partial => '/bookmarks/notebook_index.html', :object => @subscribed_notebooks %>
+	<div class='widgetContent myFavouritesNotebooksList'>
+		<%= render :partial => '/bookmarks/notebook_index.html', :object => @subscribed_notebooks %>
+         
+		<p class="addNotebook">Aggiungi un notebook: </p>
+		<p><input class='my_doni_notebook_title' placeholder='nome del notebook'></p>
     </div>
-
 </div>

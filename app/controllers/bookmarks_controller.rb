@@ -215,7 +215,7 @@ class BookmarksController < ApplicationController
   # First request for a login box, not authenticated
   def my_doni_login_box
       html = render_to_string :partial => '/bookmarks/my_doni_login_box.html'
-      data = {:error => 0, :html => html, :box => "myDoni :)"}
+      data = {:error => 0, :html => html, :box => "myDoni"}
       render_json(html, data, 0)
   end
 
@@ -224,7 +224,7 @@ class BookmarksController < ApplicationController
       load_notebooks_vars
       html = render_to_string :partial => '/bookmarks/my_doni_index.html', :locals => { :my => @my_notebooks, :subscribed => @subscribed_notebooks }
 
-      data = {:error => 0, :html => html, :box => "myDoni :)"}
+      data = {:error => 0, :html => html, :box => "myDoni"}
       render_json(html, data, 0)
   end
 
@@ -255,7 +255,7 @@ class BookmarksController < ApplicationController
 
     # add 'animations' => 1, under 'prefs' to activate animations again
     json = { 'error' => 0, 
-             'box' => 'MyDoni :)',
+             'box' => 'MyDoni',
              'data' => {
                 'prefs' => {
                     'name' => @talia_user.name,
