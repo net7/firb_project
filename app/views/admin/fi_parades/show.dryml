@@ -19,6 +19,6 @@
 		                }
 		        sortable_element 'collection_order', opts
 		      end # FIXME: Make unobstrusive
-		   %>
+		%>
 	</content-body>
 </show-page>

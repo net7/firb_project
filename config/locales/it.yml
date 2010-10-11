@@ -386,6 +386,37 @@ it:
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
 
+    fi_episode_cards:
+        actions:
+            new: "Crea nuova scheda"
+            delete: "Cancella scheda"
+            edit: "Modifica %{name}"
+
+    fi_deity_cards:
+        actions:
+            new: "Crea nuova scheda"
+            delete: "Cancella scheda"
+            edit: "Modifica %{name}"
+
+    fi_animal_cards:
+        actions:
+            new: "Crea nuova scheda"
+            delete: "Cancella scheda"
+            edit: "Modifica %{name}"
+
+    fi_throne_episode_cards:
+        actions:
+            new: "Crea nuova scheda"
+            delete: "Cancella scheda"
+            edit: "Modifica %{name}"
+
+    fi_vehicle_episode_cards:
+        actions:
+            new: "Crea nuova scheda"
+            delete: "Cancella scheda"
+            edit: "Modifica %{name}"
+
+
     # Firb cards
     base_cards:
         model_name: "Scheda"
@@ -408,7 +439,12 @@ it:
         pi_illustration_card_link: "Illustrazione"
         fi_parade_cart_card_link: "Carro"
         fi_character_card_link: "Personaggio"
-        bg_illustration_card_link: "Illustrazione"
+        fi_episode_card_link: "Episodio"
+        fi_deity_card_link: "Divinità"
+        fi_animal_card_link: "Animale"
+        fi_throne_card_link: "Trono"
+        fi_vehicle_card_link: "Veicolo"
+        bg_illustration_card_link: "Illustrazione"  
         new_link: "Crea"
         position: "Carta"
         name: "Nome di riferimento"
