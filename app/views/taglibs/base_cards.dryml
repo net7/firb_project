@@ -24,6 +24,9 @@
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
                 <field-edit-row field="study_notes" />
+                <field-row field="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
@@ -56,6 +59,9 @@
                 <!-- TODO: Iconclass Figlie -->
                 <!-- TODO: Cini and baldini +iconclass -> Sources? -->
                 <field-edit-row field="study_notes" />
+                <field-row field="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
