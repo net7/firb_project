@@ -2,6 +2,6 @@
 # FIRB FI parade. 
 class FiVehicleCard < IllustrationCard
 
-  multi_property :episodes, N::TALIA.episode, :type => TaliaCore::ActiveSource
+  single_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
 
 end

@@ -10,7 +10,6 @@ class FiCharacterCard < IllustrationCard
   
   common_properties
   
-  singular_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
   rdf_property :character_qualities, N::TALIA.character_qualities, :type => :text
   
 end
