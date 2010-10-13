@@ -41,11 +41,12 @@ li {margin-left: 20px;}
 
 a {
 	border-bottom: 1px dotted #ccc;
-	color: #222; background: #fafafa;
+	color: #222; 
+	background: #fafafa;
 	text-decoration: none; 
 }
 a:hover {
-	border-bottom: 1px dotted #aaa;
+	border-bottom: 1px solid black;
 	color: black; background: #f2f2f2; 
 }
 h1 a, h2 a, h3 a {border: none; background: none;}
