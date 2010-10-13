@@ -507,6 +507,17 @@
     		    Contains <%= this.elements.size %> elements
             </ht>
         </p>
+
+        <unless test="&this.elements.empty?">
+            <p>
+            <repeat with="&this.elements" join=", ">
+                <a href="&url_for(:controller => :base_cards, :action => :show, :id => this, :type => this.class.name.underscore)">
+                    <%= this.name || this.to_uri.local_name %>
+                </a>
+            </repeat>
+            </p>
+        </unless>
+
         <p>
             <unless test="&this.parade.nil?">
                 <ht key="processions.belongs_to_parade">Belongs to parade </ht> 
