@@ -15,7 +15,6 @@ module Admin::BaseCardsHelper
 
   def vehicle_child_cards(vehicle)
     foo = FiEpisodeCard.all
-    puts foo.inspect
     foo.select { |c| !c.vehicle.nil? && c.vehicle.uri == vehicle.uri }
   end
 

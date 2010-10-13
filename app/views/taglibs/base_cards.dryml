@@ -406,7 +406,7 @@
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <p><image-zone-link /></p>
       <p> 
-          <ht key="base_cards.fi_vehicle_card_link" /> :
+          <ht key="base_cards.fi_episode_card_link" />:
           <if test="&vehicle_child_cards(this).blank?">
               <ht key="base_cards.nessuna_scheda" />
           </if>
@@ -414,6 +414,54 @@
               <repeat with="&vehicle_child_cards(this)" join=", "> <base-card-link /> </repeat>
           </else>
       </p>
+      <p><cart-link /></p>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FiEpisodeCard">
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <p><image-zone-link /></p>
+      <if test="&!this.vehicle.nil?">
+          <ht key="base_card.belongs_to_vehicle" /> 
+          <a href="&url_for(:controller => :fi_base_card, :action => :show, :id => this.vehicle, :type => 'FiVehicleCard' )">
+              <%= this.vehicle.name || this.vehicle.to_uri.local_name %>
+          </a>
+      </if>
+      <else>
+          <ht key="base_card.not_attached_to_vehicle" /> 
+      </else>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FiDeityCard">
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <p><image-zone-link /></p>
+      <p><cart-link /></p>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FiAnimalCard">
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <p><image-zone-link /></p>
+      <p><cart-link /></p>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="FiThroneCard">
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <p><image-zone-link /></p>
       <p><cart-link /></p>
     </header:>
   </card>
@@ -578,7 +626,7 @@
         <ht key="base_cards.no_procession" />
     </if>
     <else>
-        <ht key="base_cards.cart_card.procession" />: <a with="&this.procession"><%= this.name %></a>
+        <ht key="base_cards.belongs_to_procession" />: <a with="&this.procession"><%= this.name %></a>
     </else>
 </def>
 
