@@ -7,7 +7,12 @@ it:
             cancel: "Annulla"
             save: "Salva"
         collections: "collezioni"
-    
+        messages:
+            confirm: "Sei sicuro?"
+
+    talia:
+        select_one: "Seleziona dall'elenco..."
+
     # Model names
     talia_collections:
         model_name: "Libro"
@@ -166,6 +171,30 @@ it:
         related_source_out: "Usi successivi"
         related_source_in: "Fonti dell'immagine"
 
+    generic_field_names:
+        anastatica: "Anastatica"
+        image_zone: "Illustrazione"
+        image_zones: "Zone di immagine"
+        signature: "Segnatura"
+        measure: "Misure"
+        code: "Codice"
+        collocation: "Collocazione"
+        name: "Nome di riferimento"
+        author: "Autore"
+        tecnique: "Tecniche"
+        procession: "Processione"
+        description: "Descrizione"
+        descriptive_notes: "Note descrittive"
+        study_notes: "Note di studio"
+        baldini_text: "Scheda testo Baldini"
+        cini_text: "Scheda testo Cini"
+        iconclass_terms: "Termini iconclass"
+        bibliography_items: "Elementi bibliografici"
+        character_qualities: "Qualità del personaggio"
+        notes: "Note"
+        vehicle: "Veicolo"
+        cart: "Carro"
+        
     text_card:
         model_name: "Scheda di testo"
         model_name_plural: "Schede di testo"
@@ -376,45 +405,66 @@ it:
     
     fi_parade_cart_cards:
         actions:
-            new: "Crea nuova scheda"
+            new: "Crea nuova scheda Carro"
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
+        heading: "Schede carro"
+        count: "Ci sono %{count} schede Carro"
+        back_to_index_link: "Torna all'indice delle schede Carro"
             
     fi_character_cards:
         actions:
-            new: "Crea nuova scheda"
+            new: "Crea nuova scheda Personaggio"
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
+        heading: "Schede Personaggio"
+        count: "Ci sono %{count} schede Personaggio"
+        back_to_index_link: "Torna all'indice delle schede Personaggio"
 
     fi_episode_cards:
         actions:
-            new: "Crea nuova scheda"
+            new: "Crea nuova scheda Episodio"
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
+        heading: "Schede Episodio"
+        count: "Ci sono %{count} schede Episodio"
+        back_to_index_link: "Torna all'indice delle schede Episodio"
 
     fi_deity_cards:
         actions:
-            new: "Crea nuova scheda"
+            new: "Crea nuova scheda Divinità"
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
+        heading: "Schede Divinità"
+        count: "Ci sono %{count} schede Divinità"
+        back_to_index_link: "Torna all'indice delle schede Divinità"
 
     fi_animal_cards:
         actions:
-            new: "Crea nuova scheda"
+            new: "Crea nuova scheda Animale"
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
+        heading: "Schede Animale"
+        count: "Ci sono %{count} schede Animale"
+        back_to_index_link: "Torna all'indice delle schede Animale"
 
-    fi_throne_episode_cards:
+    fi_throne_cards:
         actions:
-            new: "Crea nuova scheda"
+            new: "Crea nuova scheda Trono"
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
+        heading: "Schede Trono"
+        count: "Ci sono %{count} schede Trono"
+        back_to_index_link: "Torna all'indice delle schede Trono"
 
-    fi_vehicle_episode_cards:
+    fi_vehicle_cards:
         actions:
-            new: "Crea nuova scheda"
+            new: "Crea nuova scheda Veicolo"
             delete: "Cancella scheda"
             edit: "Modifica %{name}"
+        heading: "Schede Veicolo"
+        count: "Ci sono %{count} schede Veicolo"
+        back_to_index_link: "Torna all'indice delle schede Veicolo"
 
 
     # Firb cards
@@ -427,7 +477,7 @@ it:
             heading: "Crea una nuova scheda"
         actions:
             new: "Crea nuova scheda"
-            delete: "Cancella scheda"
+            delete: "Cancella questa scheda"
             edit: "Modifica %{name}"
         collection:
             count: "Ci sono %{count} schede di questa tipologia"
@@ -469,6 +519,12 @@ it:
         errors:
           create_card: "Errore durante la creazione della scheda"
         nessuna_scheda: "Nessuna scheda collegata"
+        belongs_to_procession: "Appartiene alla Processione"
+        belongs_to_vehicle: "Appartiene al Veicolo"
+        not_attached_to_vehicle: "Non appartiene ad alcun Veicolo"
+        belongs_to_cart: "Appartiene al Carro"
+        not_attached_to_cart: "Non appartiene a nessun Carro"
+        no_image_zone: "Nessuna Illustrazione collegata"
         
     # Used in new.dryml
     new_image:

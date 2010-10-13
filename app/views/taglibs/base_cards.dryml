@@ -3,6 +3,23 @@
     <h2>You shouldn't see this</h2>
 </def>
 
+<def tag="new-page" for="BaseCard">
+  <page merge title="#{ht 'base_cards.new.title', :default=>[' New Scheda'] }">
+    <body: class="new-page base-card" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading"><ht key="#{@full_type_name.pluralize}.actions.new" /></h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'base_cards.actions.create', :default=>['Create Scheda']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
 
 <def tag="form" for="FiParadeCartCard">
     <form merge param="default" action="&base_card_action">
@@ -425,13 +442,13 @@
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <p><image-zone-link /></p>
       <if test="&!this.vehicle.nil?">
-          <ht key="base_card.belongs_to_vehicle" /> 
+          <ht key="base_cards.belongs_to_vehicle" /> 
           <a href="&url_for(:controller => :fi_base_card, :action => :show, :id => this.vehicle, :type => 'FiVehicleCard' )">
               <%= this.vehicle.name || this.vehicle.to_uri.local_name %>
           </a>
       </if>
       <else>
-          <ht key="base_card.not_attached_to_vehicle" /> 
+          <ht key="base_cards.not_attached_to_vehicle" /> 
       </else>
     </header:>
   </card>
@@ -611,13 +628,13 @@
 
 <def tag="cart-link">
     <if test="&!this.cart.nil?">
-        <ht key="base_card.belongs_to_cart" /> 
+        <ht key="base_cards.belongs_to_cart" /> 
         <a href="&url_for(:controller => :fi_base_card, :action => :show, :id => this.cart, :type => 'FiParadeCartCard' )">
             <%= this.cart.name || this.cart.to_uri.local_name %>
         </a>
     </if>
     <else>
-        <ht key="base_card.not_attached_to_cart" /> 
+        <ht key="base_cards.not_attached_to_cart" /> 
     </else>
 </def>
 

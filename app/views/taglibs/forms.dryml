@@ -3,7 +3,7 @@
     <error-messages param/>
     <image-zone-select />
     <field-list fields="page_position, title" param/>
-	<label for="select_list"><ht key="anastaticas.page_to_book">Attach to book</ht></label>
+	<label for="select_list"><ht key="anastaticas.page_to_book" /></label>
 	<removeable-books />
 	<% book_hash = {} ; this.unattached_books.each { |b| book_hash[b.name] = b.to_uri.safe_encoded } %>
 	<unless test="&book_hash.empty?">
@@ -276,7 +276,7 @@
 <def tag="removeable-books">
 	<% books = this.attached_to_books %>
 	<% unless(books.empty?) %>
-	<h3><ht key="anastaticas.attached_to_books">Attached to books (check to remove)</ht></h3>
+	<h3><ht key="anastaticas.attached_to_books" /></h3>
 	<% end %>
 	<p>
 	<% for attached_book in this.attached_to_books %>

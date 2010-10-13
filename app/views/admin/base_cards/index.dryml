@@ -1,20 +1,18 @@
 <index-page>
 
-    <heading: >
-        <ht key="#{@full_type_name.pluralize}.index.heading">
-          Schede
-        </ht>
+    <heading:>
     </heading:>
 
 	<before-content-header:>
 		<card-type-selector />
 	</before-content-header:>
 	
-	<new-link: replace><%= link_to I18n.t("#{@full_type_name.pluralize}.actions.new"), url_for(:action => :new) %></new-link:>
+	<new-link: replace>
+	    <% s = I18n.t("#{@full_type_name.pluralize}.actions.new") %>
+	    <%= link_to "<img src='/images/icons/page_add.png'> #{s}", url_for(:action => :new) %>
+	</new-link:>
 
     <count:>
-        <ht key="#{@full_type_name.pluralize}.collection.count" count="&this.total_entries">
-          There <count prefix="are"/>
-        </ht>
+        <img src='/images/icons/page_white_stack.png' /> <ht key="#{@full_type_name.pluralize}.count" count="&this.total_entries" />
     </count:>
 </index-page>
