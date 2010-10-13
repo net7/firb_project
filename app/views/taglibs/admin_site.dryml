@@ -107,7 +107,7 @@
 </def>
 
 <def tag="delete-icon">
-    <delete-button image='/images/icons/cross.png' class="button-float" />
+    <delete-button image='icons/cross.png' class="button-float" />
 </def>
 
 <def tag="prop-language">
