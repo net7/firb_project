@@ -333,10 +333,11 @@
       <anastatica-link /> |
       <image-zone-link /> |
       <if test="&this.parent_card.blank?">
-          <ht key="base_cards.no_parent">Nessuna Scheda Madre</ht>
+          <ht key="base_cards.no_parent" />
       </if>
       <else>
-          <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.parent_card, :type => 'pi_illustration_card')"><ht key="pi_illustration_page.model_name">Scheda Madre</ht>: <%= this.parent_card.name %></a>
+          <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.parent_card, :type => 'pi_illustration_card')">
+              <ht key="pi_illustration_page.model_name" />: <%= this.parent_card.name %></a>
       </else>
     </header:>
   </card>
@@ -359,9 +360,9 @@
       <anastatica-link /> |
       <image-zone-link />
       <div>
-          <ht key="base_cards.children">Figlie</ht>:
+          <ht key="base_cards.children" />:
           <if test="&this.child_cards.blank?">
-              <ht key="base_cards.no_child">Nessuna Figlia</ht>
+              <ht key="base_cards.no_child" />
           </if>
           <else>
                <ul>
@@ -399,6 +400,25 @@
   </card>
 </def>
 
+<def tag="card" for="FiVehicleCard">
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><card-link /><delete-card-icon /></h4>
+      <p><image-zone-link /></p>
+      <p> 
+          <ht key="base_cards.fi_vehicle_card_link" /> :
+          <if test="&vehicle_child_cards(this).blank?">
+              <ht key="base_cards.nessuna_scheda" />
+          </if>
+          <else>
+              <repeat with="&vehicle_child_cards(this)" join=", "> <base-card-link /> </repeat>
+          </else>
+      </p>
+      <p><cart-link /></p>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="BgIllustrationCard">
   <card class="base-card" param="default" merge>
     <header: param>
@@ -407,14 +427,14 @@
 
     <div class="text-file">
       <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file">Nessun file</ht>
+        <ht key="text_page.no_file" />
       </if>
       <else>
         <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)">
-            <ht key="text_cards.show_file">Mostra file</ht></a>
+            <ht key="text_cards.show_file" /></a>
         <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
           <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)">
-             <ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+             <ht key="text_cards.show_annotation_file" /></a>
         </if>
       </else>
     </div>
@@ -432,7 +452,7 @@
             <ht key="base_cards.nessuna_scheda" />
         </if>
         <else>
-            <repeat with="&cart_child_cards(type, this)"> <base-card-link /> </repeat>
+            <repeat with="&cart_child_cards(type, this)" join=", "> <base-card-link /> </repeat>
         </else>
     </p>
 </def>
@@ -497,9 +517,9 @@
 </def>
 
 <def tag='or-cancel-link'>
-  <if test='&this.new_record?'><ht key='hobo.support.or'>or</ht> <%= link_to(I18n.t('hobo.actions.cancel'), :action => :index) %></if>
+  <if test='&this.new_record?'><ht key='hobo.support.or' /> <%= link_to(I18n.t('hobo.actions.cancel'), :action => :index) %></if>
   <else>
-    <ht key='hobo.support.or'>or</ht> <%= link_to(I18n.t('hobo.actions.cancel'), :action => :show, :id => this.id) %>
+    <ht key='hobo.support.or' /> <%= link_to(I18n.t('hobo.actions.cancel'), :action => :show, :id => this.id) %>
   </else>
 </def>
 
@@ -541,35 +561,47 @@
     <%= link_to((this.name || this.uri.local_name), :controller => :base_cards, :action => :show, :id => this.id) %>
 </def>
 
-<def tag="procession-link">
-    <if test="&this.procession.blank?">
-        <ht key="base_cards.no_procession">Nessuna Processione collegata</ht>
+<def tag="cart-link">
+    <if test="&!this.cart.nil?">
+        <ht key="base_card.belongs_to_cart" /> 
+        <a href="&url_for(:controller => :fi_base_card, :action => :show, :id => this.cart, :type => 'FiParadeCartCard' )">
+            <%= this.cart.name || this.cart.to_uri.local_name %>
+        </a>
     </if>
     <else>
-        <ht key="base_cards.cart_card.procession">Processione</ht>: <a with="&this.procession"><%= this.name %></a>
+        <ht key="base_card.not_attached_to_cart" /> 
+    </else>
+</def>
+
+<def tag="procession-link">
+    <if test="&this.procession.blank?">
+        <ht key="base_cards.no_procession" />
+    </if>
+    <else>
+        <ht key="base_cards.cart_card.procession" />: <a with="&this.procession"><%= this.name %></a>
     </else>
 </def>
 
 <def tag="anastatica-link">
     <if test="&this.anastatica.blank?">
-        <ht key="base_cards.no_anastatica">Nessuna Anastatica collegata</ht>
+        <ht key="base_cards.no_anastatica" />
     </if>
     <else>
-        <ht key="anastatica_page.model_name">Anastatica</ht>: <a with="&this.anastatica"><%= this.name %></a>
+        <ht key="anastatica_page.model_name" />: <a with="&this.anastatica"><%= this.name %></a>
     </else>
 </def>
 
 <def tag="image-zone-link">
     <if test="&this.image_zone.blank?">
-        <ht key="base_cards.no_image_zone">Nessuna Zona/Illustrazione collegata</ht>
+        <ht key="base_cards.no_image_zone" />
     </if>
     <else>
-        <a with="&this.image_zone.get_image_parent"><ht key="image.model_name">Illustrazione</ht>: <%= this.name %></a>
+        <ht key="images.model_name" />: <a with="&this.image_zone.get_image_parent"><%= this.name %></a>
     </else>
 </def>
 
 <def tag="component-list">
-    <h2 param="header"><ht key="base_cards.components">Componenti</ht></h2>
+    <h2 param="header"><ht key="base_cards.components" /></h2>
     <ul param="list">
     <repeat with="&this.image_components">
         <li>

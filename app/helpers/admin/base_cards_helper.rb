@@ -10,7 +10,13 @@ module Admin::BaseCardsHelper
 
   def cart_child_cards(type, cart)
     foo = type.constantize.find(:all)
-    foo.select { |c| c.cart.uri == cart.uri }
+    foo.select { |c| !c.cart.nil? && c.cart.uri == cart.uri }
+  end
+
+  def vehicle_child_cards(vehicle)
+    foo = FiEpisodeCard.all
+    puts foo.inspect
+    foo.select { |c| !c.vehicle.nil? && c.vehicle.uri == vehicle.uri }
   end
 
 end

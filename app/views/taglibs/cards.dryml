@@ -137,12 +137,13 @@
 
     <div class="firb-text-page-file">
       <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file">Nessun file</ht>
+        <ht key="text_page.no_file" />
       </if>
       <else>
-        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file">Mostra file</ht></a>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file" /></a>
         <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)">
+              <ht key="text_cards.show_annotation_file" /></a>
         </if>
       </else>
     </div>
@@ -204,12 +205,12 @@
 
     <div class="firb-text-page-file">
       <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file">Nessun file</ht>
+        <ht key="text_page.no_file" />
       </if>
       <else>
-        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file">Mostra file</ht></a>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file" /></a>
         <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file" /></a>
         </if>
       </else>
     </div>
@@ -271,12 +272,12 @@
 
     <div class="firb-text-page-file">
       <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file">Nessun file</ht>
+        <ht key="text_page.no_file" />
       </if>
       <else>
-        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file">Mostra file</ht></a>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file" /></a>
         <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file" /></a>
         </if>
       </else>
     </div>
@@ -296,12 +297,12 @@
 
     <div class="firb-text-page-file">
       <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file">Nessun file</ht>
+        <ht key="text_page.no_file" />
       </if>
       <else>
-        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file">Mostra file</ht></a>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file" /></a>
         <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file" /></a>
         </if>
       </else>
     </div>
@@ -341,12 +342,12 @@
 
     <div class="firb-text-page-file">
       <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file">Nessun file</ht>
+        <ht key="text_page.no_file" />
       </if>
       <else>
-        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file">Mostra file</ht></a>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file" /></a>
         <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file">File per annotazioni</ht></a>
+          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file" /></a>
         </if>
       </else>
     </div>
@@ -380,10 +381,10 @@
     </header:>
     <body: param>
       <p>
-        <b><ht key="iconclass_terms.alt_label">Alt label:</ht></b> <%= this.alt_label %> |
+        <b><ht key="iconclass_terms.alt_label" />:</b> <%= this.alt_label %> |
       </p>
       <p>
-        <b><ht key="iconclass_terms.note">Note</ht>:</b> <%= this.note %>
+        <b><ht key="iconclass_terms.note" />:</b> <%= this.note %>
       </p>
       </body>
   </card>
@@ -396,31 +397,31 @@
     </header:>
     <body: param>
         <p>
-          <b><ht key="bibliography_items.title">Title</ht>:</b> <%= this.title %>
+          <b><ht key="bibliography_items.title" />:</b> <%= this.title %>
         </p>
         <p>
-          <b><ht key="bibliography_items.curator">Curator</ht>:</b> <%= this.curator %>
+          <b><ht key="bibliography_items.curator" />:</b> <%= this.curator %>
         </p>
         <p>
-          <b><ht key="bibliography_items.translator">Translator</ht>:</b> <%= this.translator %>
+          <b><ht key="bibliography_items.translator" />:</b> <%= this.translator %>
         </p>
       <p>
-        <b><ht key="bibliography_items.date">Date</ht>:</b> <%= this.date %>
+        <b><ht key="bibliography_items.date" />:</b> <%= this.date %>
       </p>
       <p>
-        <b><ht key="bibliography_items.pages">Pages:</ht></b> <%= this.pages %>
+        <b><ht key="bibliography_items.pages" />:</b> <%= this.pages %>
       </p>
       <p>
-        <b><ht key="bibliography_items.publisher">Published by:</ht></b> <%= this.publisher %> |
-        <b><ht key="bibliography_items.published_in">Published in:</ht></b> <%= this.published_in %>
+        <b><ht key="bibliography_items.publisher" />:</b> <%= this.publisher %> |
+        <b><ht key="bibliography_items.published_in" />:</b> <%= this.published_in %>
       </p>
       <p>
-        <b><ht key="bibliography_items.external_url">External URL:</ht></b> <%= this.external_url %>
+        <b><ht key="bibliography_items.external_url" />:</b> <%= this.external_url %>
       </p>
       <p>
-        <b><ht key="bibliography_items.doi">DOI:</ht></b> <%= this.doi %> |
-        <b><ht key="bibliography_items.isbn">ISBN:</ht></b> <%= this.isbn %> |
-        <b><ht key="bibliography_items.issn">ISSN:</ht></b> <%= this.issn %>
+        <b><ht key="bibliography_items.doi" />:</b> <%= this.doi %> |
+        <b><ht key="bibliography_items.isbn" />:</b> <%= this.isbn %> |
+        <b><ht key="bibliography_items.issn" />:</b> <%= this.issn %>
       </p>
       </body>
   </card>
@@ -444,7 +445,7 @@
     </div>
 
     <div class="firb-image-zones">
-      <h4><%= this.zone_count %> <ht key='image.zones'>zones</ht>:</h4>
+      <h4><%= this.zone_count %> <ht key='image.zones' />:</h4>
       <ul>
         <li repeat="&this.zones">
         <imagezone parentimageid="image_#{@imageid}"/>
@@ -520,7 +521,7 @@
 
         <p>
             <unless test="&this.parade.nil?">
-                <ht key="processions.belongs_to_parade">Belongs to parade </ht> 
+                <ht key="processions.belongs_to_parade" />
                 <a href="&url_for(:controller => :fi_parades, :action => :show, :id => this.parade)">
                     <%= this.parade.title || this.parade.to_uri.local_name %>
                 </a>
@@ -537,7 +538,7 @@
       <h4 param="heading"><a><name/></a><delete-icon /></h4>
     </header:>
     <body:>
-      <div><ht key="anastaticas.page_position">Position</ht>: <%= this.page_position %></div>
+      <div><ht key="anastaticas.page_position" />: <%= this.page_position %></div>
       <source-collections />
     </body:>
   </card>
