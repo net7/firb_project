@@ -73,6 +73,70 @@
     </form>
 </def>
 
+<def tag="form" for="FiVehicleCard">
+    <form merge param="default" action="&base_card_action">
+        <card-form-common>
+            <content:>
+                <field-edit-row field="anastatica" fieldtype="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
+                <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
+                <field-edit-row field="cart" fieldtype="BaseCard" selectoptions="&base_cards_select('FiParadeCartCard')" />
+                <field-edit-row field="name" />
+                <field-edit-row field="code"  />
+                <field-edit-row field="collocation" />
+                <field-edit-row field="author" />
+                <field-edit-row field="tecnique" />
+                <field-edit-row field="measure" />
+                <field-edit-row field="descriptive_notes" />
+                <field-edit-row field="description" />
+                <field-edit-row field="baldini_text" fieldtype="FiTextCard" />
+                <field-edit-row field="cini_text" fieldtype="FiTextCard" />
+                <field-edit-row field="study_notes" />
+                <field-row field="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
+                <field-row field="bibliography_items" param="bibliography" >
+                    <view:><bibliography-items-edit /></view:>
+                </field-row>
+                <field-row field="notes" param="notes" >
+                    <view:><firb-notes-edit /></view:>
+                </field-row>
+            </content:>
+        </card-form-common>
+    </form>
+</def>
+
+<def tag="form" for="FiEpisodeCard">
+    <form merge param="default" action="&base_card_action">
+        <card-form-common>
+            <content:>
+                <field-edit-row field="anastatica" fieldtype="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
+                <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
+                <field-edit-row field="vehicle" fieldtype="BaseCard" selectoptions="&base_cards_select('FiVehicleCard')" />
+                <field-edit-row field="name" />
+                <field-edit-row field="code"  />
+                <field-edit-row field="collocation" />
+                <field-edit-row field="author" />
+                <field-edit-row field="tecnique" />
+                <field-edit-row field="measure" />
+                <field-edit-row field="descriptive_notes" />
+                <field-edit-row field="description" />
+                <field-edit-row field="baldini_text" fieldtype="FiTextCard" />
+                <field-edit-row field="cini_text" fieldtype="FiTextCard" />
+                <field-edit-row field="study_notes" />
+                <field-row field="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
+                <field-row field="bibliography_items" param="bibliography" >
+                    <view:><bibliography-items-edit /></view:>
+                </field-row>
+                <field-row field="notes" param="notes" >
+                    <view:><firb-notes-edit /></view:>
+                </field-row>
+            </content:>
+        </card-form-common>
+    </form>
+</def>
+
 <def tag="form" for="PiLetterIllustrationCard">
     <form merge param="default" action="&base_card_action">
         <card-form-common-pi>
@@ -231,9 +295,28 @@
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
       <p><image-zone-link /></p>
       <p><procession-link /></p>
+      <cart-children-card-links type='FiVehicleCard' />
+      <cart-children-card-links type='FiDeityCard' />
+      <cart-children-card-links type='FiAnimalCard' />
+      <cart-children-card-links type='FiThroneCard' />
+
     </header:>
   </card>
 </def>
+
+<def tag="cart-children-card-links" attrs='type'>
+    <p> 
+        <ht key="base_cards.#{type.underscore}_link" /> :
+        <if test="&cart_child_cards(type, this).blank?">
+            <ht key="base_cards.nessuna_scheda" />
+        </if>
+        <else>
+            <repeat with="&cart_child_cards(type, this)"> <base-card-link /> </repeat>
+        </else>
+    </p>
+
+</def>
+
 
 <def tag="card" for="BgIllustrationCard">
   <card class="base-card" param="default" merge>
@@ -370,7 +453,7 @@
         <ht key="base_cards.no_procession">Nessuna Processione collegata</ht>
     </if>
     <else>
-        <a with="&this.procession"><ht key="base_cards.cart_card.procession">Processione</ht>: <%= this.name %></a>
+        <ht key="base_cards.cart_card.procession">Processione</ht>: <a with="&this.procession"><%= this.name %></a>
     </else>
 </def>
 
@@ -379,7 +462,7 @@
         <ht key="base_cards.no_anastatica">Nessuna Anastatica collegata</ht>
     </if>
     <else>
-        <a with="&this.anastatica"><ht key="anastatica_page.model_name">Anastatica</ht>: <%= this.name %></a>
+        <ht key="anastatica_page.model_name">Anastatica</ht>: <a with="&this.anastatica"><%= this.name %></a>
     </else>
 </def>
 

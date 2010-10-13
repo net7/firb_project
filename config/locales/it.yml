@@ -468,6 +468,7 @@ it:
         on_card_save: "Impostato quando la scheda viene registrata"
         errors:
           create_card: "Errore durante la creazione della scheda"
+        nessuna_scheda: "Nessuna scheda collegata"
         
     # Used in new.dryml
     new_image:
