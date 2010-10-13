@@ -6,9 +6,6 @@ html, body {color: #193440; background: url(../images/300-ACD3E6-fff.png) repeat
 .page-header .navigation.main-nav li.current a {
   color: #222;
   background: url(../images/30-DBE1E5-FCFEF5.png) repeat-x #FCFEF5;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
 }
 .page-header .navigation.main-nav a:hover {background: #193440;}
 .section.content {background: #FCFFF5;}
