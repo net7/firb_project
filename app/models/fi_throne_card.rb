@@ -2,6 +2,6 @@
 # the FIRB FI parade
 class FiThroneCard < IllustrationCard
 
-  single_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
+  singular_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
   
 end
