@@ -1,7 +1,15 @@
 <% can_edit_stuff = this.updatable_by?(current_user) %>
 <show-page>
+    <edit-link: replace>
+    	<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
+    		<img src='/images/icons/page_white_edit.png' /> <ht key="#{model.name.pluralize.tableize}.actions.edit" name="&this.respond_to?(:name) ? this.name : ''" />
+    	</a>
+    </edit-link:>
 	<content-body: >
 		<field-list fields="title" />	
+		<br />
+        <h4><ht key="#{model.name.pluralize.tableize}.belonging_to_this_parade" />:</h4>
+        <p>(<ht key="hobo.drag_drop_to_order" />)</p>
 		<collection id="collection_order">
 			<item: id="item_#{this.id}">
 		      <div class="ordering-handle" if="&can_edit_stuff">&uarr;<br/>&darr;</div>

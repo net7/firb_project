@@ -521,7 +521,7 @@
 
         <p>
             <unless test="&this.parade.nil?">
-                <ht key="processions.belongs_to_parade" />
+                <ht key="fi_processions.belongs_to_parade" />
                 <a href="&url_for(:controller => :fi_parades, :action => :show, :id => this.parade)">
                     <%= this.parade.title || this.parade.to_uri.local_name %>
                 </a>

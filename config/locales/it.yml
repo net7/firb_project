@@ -9,6 +9,7 @@ it:
         collections: "collezioni"
         messages:
             confirm: "Sei sicuro?"
+        drag_drop_to_order: "Trascinale dalla maniglia con le frecce a sinistra per ordinarle"
 
     talia:
         select_one: "Seleziona dall'elenco..."
@@ -421,6 +422,27 @@ it:
         model_name: "Parata"
         nav_item: "Parate"
         model_name_plural: "Parate"
+        count: "Ci sono %{count} Parate"
+        actions:
+            new: "Crea una nuova Parata"
+            create: "Salva"
+            edit: "Modifica %{name}"
+            delete: "Elimina questa Parata"
+        new:
+            heading: "Nuova Parata"
+        edit:
+            heading: "Modifica la Parata"
+        title: "Nome di riferimento"
+        belonging_to_this_parade: "Appartengono a questa parata"
+
+    fi_processions:
+        model_name: "Corteo"
+        nav_item: "Cortei"
+        model_name_plural: "Cortei"
+        errors:
+            too_many_carts: "Non posso aggiungere più di un carro a un corteo."
+            illegal_type: "Un elemento del tipo %{type} no può far parte di un corteo."
+        belongs_to_parade: "Appartiene alla Parata"
 
     fi_parade_cart_cards:
         actions:
@@ -596,14 +618,6 @@ it:
         actions:
           delete: "Cancella questa scheda testo"
           
-    fi_processions:
-      model_name: "Corteo"
-      nav_item: "Cortei"
-      model_name_plural: "Cortei"
-      errors:
-        too_many_carts: "Non posso aggiungere più di un carro a un corteo."
-        illegal_type: "Un elemento del tipo %{type} no può far parte di un corteo."
-
     image_components:
       model_name: "Componenti"
       image_zone: "Zona"
