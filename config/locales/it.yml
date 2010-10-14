@@ -198,7 +198,7 @@ it:
         title: "Nome di riferimento"
         author: "Autore"
         tecnique: "Tecniche"
-        procession: "Processione"
+        procession: "Corteo"
         description: "Descrizione"
         descriptive_notes: "Note descrittive"
         study_notes: "Note di studio"
@@ -470,6 +470,8 @@ it:
         parade: "Parata"
         belongs_to_parade: "Appartiene alla Parata"
         belonging_to_this_procession: "Appartengono a questo Corteo"
+        element_count: "Contiene %{count} elementi"
+        no_elements: "Non contiene alcun elemento."
 
     fi_parade_cart_cards:
         actions:
@@ -588,7 +590,7 @@ it:
         errors:
           create_card: "Errore durante la creazione della scheda"
         nessuna_scheda: "Nessuna scheda collegata"
-        belongs_to_procession: "Appartiene alla Processione"
+        belongs_to_procession: "Appartiene al Corteo"
         belongs_to_vehicle: "Appartiene al Veicolo"
         not_attached_to_vehicle: "Non appartiene ad alcun Veicolo"
         belongs_to_cart: "Appartiene al Carro"

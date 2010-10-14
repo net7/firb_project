@@ -505,9 +505,12 @@
     <body:>
 
         <p>
-            <ht key="processions.collection.count" count="&this.elements.size">
-    		    Contains <%= this.elements.size %> elements
-            </ht>
+            <if test="&!this.elements.empty?">
+                <ht key="fi_processions.element_count" count="&this.elements.size" />:
+            </if>
+            <else>
+                <ht key="fi_processions.no_elements" />
+            </else>
         </p>
 
         <unless test="&this.elements.empty?">
@@ -520,14 +523,14 @@
             </p>
         </unless>
 
-        <p>
             <unless test="&this.parade.nil?">
-                <ht key="fi_processions.belongs_to_parade" />
-                <a href="&url_for(:controller => :fi_parades, :action => :show, :id => this.parade)">
-                    <%= this.parade.title || this.parade.to_uri.local_name %>
-                </a>
+                <p>
+                    <ht key="fi_processions.belongs_to_parade" />
+                    <a href="&url_for(:controller => :fi_parades, :action => :show, :id => this.parade)">
+                        <%= this.parade.title || this.parade.to_uri.local_name %>
+                    </a>
+                </p>
             </unless>
-        </p>
 
     </body:>
   </card>
