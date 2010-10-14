@@ -1,0 +1,12 @@
+<edit-page>
+    <delete-button: replace>
+        <%= if (can_delete?)
+            label = ht("#{model.name.pluralize.tableize}.actions.delete")
+            confirm = ht("hobo.messages.confirm") 
+            url = url_for(:action => :destroy, :id => this.id)
+            "<a href='#{url}' class='delete-button' onclick=\"Hobo.removeButton(this, '#{url}', #{js_updates(nil)}, {fade:true, confirm: '#{confirm}'})\"> 
+                <img src='/images/icons/cross.png' /> #{label} 
+            </a>"
+          end %>
+    </delete-button:>
+</edit-page>

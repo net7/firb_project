@@ -292,15 +292,17 @@ it:
         model_name: "Elemento Bibliografico"
         nav_item: "Elementi Bibliografici"
         model_name_plural: "Elementi Bibliografici"
+        count: "Ci sono %{count} elementi bibliografici"
         collection:
-            count: "Ci sono %{count} elementi bibliografici"
             empty_message: "Nessun elemento bibliografico da visualizzare"
         actions:
             new: "Crea un nuovo elemento bibliografico"
-            create: "Salva questo elemento bibliografico"
+            create: "Salva"
             cancel: "Annulla"
             edit: "Modifica questo elemento bibliografico"
             delete: "Cancella questo elemento bibliografico"
+        edit:
+            heading: "Modifica %{name}"
         new:
             heading: "Nuovo elemento bibliografico"
         succesfully_created: "L'elemento bibliografico è stato creato con successo"
