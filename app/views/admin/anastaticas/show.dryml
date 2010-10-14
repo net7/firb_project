@@ -10,15 +10,22 @@
 
 
 <show-page>
+    <edit-link: replace>
+    	<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
+    		<img src='/images/icons/page_white_edit.png' /><ht key="base_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''" />
+    	</a>
+    </edit-link:>
     <content-body:>
         <div class='page-position'>
             <h3><ht key="anastaticas.page_position">Page position</ht>: <%= this.page_position %></h3>
         </div>
+        <br /><br />
         <h3><ht key="talia_collections.model_name_plural">Collections</ht>:</h3>
         <% source_uri = this.to_uri.safe_encoded %>
         <repeat with="&TaliaCore::Collection.find(:all, :find_through => [N::DCT.hasPart, this.to_uri])" join=", ">
             <%= this.title || this.to_uri.local_name %> 
         </repeat>
+        <br /><br />
         <h3><ht key="anastaticas.parts_of_this_source">Parts of this source</ht></h3>
         <% parts = this.parts_by_class %>
         <% part_list = parts.keys.sort %>

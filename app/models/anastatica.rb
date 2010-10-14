@@ -28,9 +28,10 @@ class Anastatica < TaliaCore::Source
   
   def unattached_books
     collections = TaliaCollection.all
-    return collections if(new_record?)
     attached = attached_to_books
-    collections.reject { |col| attached.include?(col) }
+    exclude = FiParade.all + FiProcession.all
+    exclude.collect! { |c| c.uri }
+    collections.reject { |col| attached.include?(col) || exclude.include?(col.uri) }
   end
   
   def parts

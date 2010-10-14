@@ -43,11 +43,11 @@ it:
             empty_message: "Nessuna pagina anastatica da visualizzare"
         actions:
             new: "Crea una nuova pagina anastatica"
-            create: "Salva questa pagina anastatica"
+            create: "Salva"
             cancel: "Annulla"
             save: "Salva"
-            edit: "Modifica questa pagina anastatica"
-            delete: "Cancella questa pagina anastatica"
+            edit: "Modifica"
+            delete: "Elimina questa Anastatica"
         new:
             heading: "Nuova pagina anastatica"
             title: "Nuova pagina anastatica"
@@ -60,6 +60,7 @@ it:
         page_to_book: "Inserisci nel libro"
         page_position: "Carta"
         title: "Nome di riferimento"
+        attached_to_books: "Questa anastatica fa parte dei seguenti Libri (seleziona per rimuovere il collegamento)"
 
     images:
         model_name: "Illustrazione"
@@ -322,7 +323,7 @@ it:
             count: "Ci sono %{count} schede immagine di memoria"
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
-            create: "Salva questa scheda di immagine di memoria"
+            create: "Salva"
             new: "Crea una nuova scheda di immagine di memoria"
             delete: "Cancella questa scheda di immagine di memoria"
         new:
@@ -358,7 +359,7 @@ it:
             count: "Ci sono %{count} schede capolettera"
             empty_message: "Nessuna capolettera da visualizzare"
         actions:
-            create: "Salva questa capolettera"
+            create: "Salva"
             new: "Crea una nuova scheda capolettera"
             delete: "Cancella questa capolettera"
         new:
@@ -387,7 +388,7 @@ it:
         messages:
             create_success: "La nuova scheda illustrazione è stata salvata"
         actions:
-            create: "Salva questa scheda illustrazione"
+            create: "Salva"
             new: "Crea una nuova scheda illustrazione"
             delete: "Cancella questa scheda illustrazione"
         collection:
