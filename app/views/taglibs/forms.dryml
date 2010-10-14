@@ -191,13 +191,10 @@
             <content:>
 
             <field-edit-row field="title" />
-
             <field-row field="transcription_file">
                 <view:><input type="file" name="fi_text_card[file]"/></view:>
             </field-row>
-
-            <field-edit-row field="edition" type="BibliographyItem" />
-
+            <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
             <field-edit-row field="page_position" />
 
             </content:>

@@ -286,28 +286,29 @@
 </def>
 
 <def tag="card" for="FiTextCard">
-  <card class="firb-text-card" param="default" merge>
-
-    <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
-    
-    <div class="firb-text-page-content">
-        <%= this.edition %> <br /> 
-        <%= this.page_position %>
-    </div>
-
-    <div class="firb-text-page-file">
-      <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file" />
-      </if>
-      <else>
-        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_cards.show_file" /></a>
-        <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)"><ht key="text_cards.show_annotation_file" /></a>
-        </if>
-      </else>
-    </div>
-
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a action="show"><%= this.name || this.title %> </a><delete-card-icon /></h4>
+    </header:>
+    <body:>
+        <xml-file-links />
+    </body:>
   </card>
+</def>
+
+<def tag="xml-file-links">
+    <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
+      <ht key="text_page.no_file" />
+    </if>
+    <else>
+        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)">
+        <ht key="text_card.show_xml_file" /></a>
+        <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
+            <br/>
+            <a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)">
+            <ht key="text_card.show_annotation_file" /></a>
+        </if>
+    </else>
 </def>
 
 <def tag="card" for="BgTextCard">

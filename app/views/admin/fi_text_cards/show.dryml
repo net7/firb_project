@@ -1,0 +1,12 @@
+<show-page>
+    <edit-link: replace>
+    	<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
+    		<img src='/images/icons/table_edit.png' /> <ht key="text_card.actions.edit" name="&this.respond_to?(:name) ? this.name : ''" />
+    	</a>
+    </edit-link:>
+    <content-body:>
+
+        <field-list fields="page_position, edition" />
+
+    </content-body:>
+</show-page>

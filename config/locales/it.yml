@@ -190,6 +190,7 @@ it:
         code: "Codice"
         collocation: "Collocazione"
         name: "Nome di riferimento"
+        title: "Nome di riferimento"
         author: "Autore"
         tecnique: "Tecniche"
         procession: "Processione"
@@ -205,11 +206,18 @@ it:
         vehicle: "Veicolo"
         cart: "Carro"
         parade: "Parata"
+        transcription_file: "File XML della trascrizione"
+        edition: "Edizione"
+        page_position: "Pagine di riferimento"
         
     text_card:
         model_name: "Scheda di testo"
         nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"
+        show_xml_file: "Scarica il sorgente XML"
+        show_annotation_file: "Accedi alla pagina per le annotazioni"
+        actions:
+            edit: "Modifica %{name}"
 
     fi_text_cards:
         model_name: "Scheda di testo"
@@ -217,8 +225,8 @@ it:
         model_name_plural: "Schede di testo"
         new: 
             heading: "Nuova scheda di testo"
+        count: "Ci sono %{count} schede di testo"
         collection:
-            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -226,9 +234,7 @@ it:
             create: "Salva"
         edit:
             heading: "Modifica questa scheda di testo"
-        title: "Nome di riferimento"
-        transcription_file: "File XML della trascrizione"
-        edition: "Edizione di riferimento"
+        edition: "Edizione"
         page_position: "Pagine di riferimento"
 
     vt_handwritten_text_cards:
@@ -629,6 +635,7 @@ it:
         non_ill_mem_dep: "Immagini di memoria non illustrate"
         transcription_file: "File XML della trascrizione"
         image_zones: "Zone di immagine"
+        no_file: "Nessun file XML collegato"
         actions:
           delete: "Cancella questa scheda testo"
           

@@ -8,7 +8,6 @@
     </else>
 </def>
 
-
 <show-page>
     <edit-link: replace>
     	<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
