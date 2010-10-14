@@ -1,6 +1,14 @@
 <index-page>
+
 	<content: replace>
 		<sidebared-content>
+            <count:>
+                <img src='/images/icons/images.png' /> <ht key="anastaticas.collection.count" count="&this.total_entries" />
+            </count:>
+            <new-link: replace>
+                <% s = I18n.t("anastaticas.actions.new") %>
+                <%= link_to "<img src='/images/icons/page_add.png'> #{s}", url_for(:action => :new) %>
+            </new-link:>
 			<collection:>
 				<item:>
 					<card-with-drag-handle />
@@ -11,9 +19,5 @@
 			</aside:>
 		</sidebared-content>
 	</content:>
-	<count:>
-        <ht key="anastaticas.collection.count" count="&this.total_entries">
-          There <count prefix="are"/>
-        </ht>
-    </count:>
+
 </index-page>
