@@ -16,6 +16,7 @@ it:
     # Model names
     talia_collections:
         model_name: "Libro"
+        nav_item: "Libri"
         model_name_plural: "Libri"
         empty_message: "Nessun libro da visualizzare"
         collection:
@@ -35,6 +36,7 @@ it:
 
     anastaticas:
         model_name: "Anastatica"
+        nav_item: "Anastatiche"
         model_name_plural: "Anastatiche" 
         collection:
             count: "Ci sono %{count} pagine anastatiche"
@@ -61,6 +63,7 @@ it:
 
     images:
         model_name: "Illustrazione"
+        nav_item: "Illustrazioni"
         model_name_plural: "Illustrazioni"
         collection:
             count: "Ci sono %{count} illustrazioni"
@@ -75,10 +78,12 @@ it:
 
     users:
         model_name: "Utente"
+        nav_item: "Utenti"
         model_name_plural: "Utenti"
 
     iconclass_terms:
         model_name: "Termine iconclass"
+        nav_item: "Termini Iconclass"
         model_name_plural: "Termini iconclass"
         collection:
             count: "Ci sono %{count} termini iconclass"
@@ -98,6 +103,7 @@ it:
 
     pi_text_cards:
         model_name: "Scheda di testo"
+        nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"    
         new: 
             heading: "Nuova scheda di testo"
@@ -111,6 +117,7 @@ it:
 
     bg_text_cards:
         model_name: "Scheda di testo"
+        nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"
         new: 
             heading: "Nuova scheda di testo"
@@ -135,6 +142,7 @@ it:
 
     bg_illustration_cards:
         model_name: "Illustrazione"
+        nav_item: "Illustrazioni"
         model_name_plural: "Illustrazione"
         new: 
             heading: "Nuova scheda illustrazione"
@@ -197,10 +205,12 @@ it:
         
     text_card:
         model_name: "Scheda di testo"
+        nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"
 
     fi_text_cards:
         model_name: "Scheda di testo"
+        nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"
         new: 
             heading: "Nuova scheda di testo"
@@ -220,6 +230,7 @@ it:
 
     vt_handwritten_text_cards:
         model_name: "Scheda manoscritto"
+        nav_item: "Schede manoscritto"
         model_name_plural: "Schede manoscritto"
         new: 
             heading: "Nuova scheda di testo"
@@ -247,6 +258,7 @@ it:
 
     vt_printed_text_cards:
         model_name: "Scheda stampa"
+        nav_item: "Schede stampa"
         model_name_plural: "Schede stampa"
         new: 
             heading: "Nuova scheda di testo"
@@ -269,6 +281,7 @@ it:
         
     bibliography_items:
         model_name: "Elemento Bibliografico"
+        nav_item: "Elementi Bibliografici"
         model_name_plural: "Elementi Bibliografici"
         collection:
             count: "Ci sono %{count} elementi bibliografici"
@@ -403,6 +416,11 @@ it:
         children: "Figlie"
         iconclass_children: "Iconclass delle figlie"
     
+    fi_parades:
+        model_name: "Parata"
+        nav_item: "Parate"
+        model_name_plural: "Parate"
+
     fi_parade_cart_cards:
         actions:
             new: "Crea nuova scheda Carro"
@@ -470,6 +488,7 @@ it:
     # Firb cards
     base_cards:
         model_name: "Scheda"
+        nav_item: "Schede"
         model_name_plural: "Schede"
         edit:
             heading: "Modifica %{name}"
@@ -578,6 +597,7 @@ it:
           
     fi_processions:
       model_name: "Corteo"
+      nav_item: "Cortei"
       model_name_plural: "Cortei"
       errors:
         too_many_carts: "Non posso aggiungere più di un carro a un corteo."

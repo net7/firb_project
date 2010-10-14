@@ -36,7 +36,7 @@
 </def>
 
 <def tag="collection-sidebar">
-	<h2><ht key="talia_collections.model_name_plural">Collections</ht></h2>
+	<h2><ht key="talia_collections.model_name_plural" /></h2>
 	<collection>
 		<item:>
 			<div id="#{this.to_uri.safe_encoded}">
@@ -52,7 +52,7 @@
 				) %>
 			</if>
 		</after-item:>
-		<empty-message:><ht key="talia_collections.empty_message">No collections found</ht></empty-message>
+		<empty-message:><ht key="talia_collections.empty_message" /></empty-message>
 	</collection>
 </def>
 
@@ -87,7 +87,7 @@
 
 <def tag="img-not-ready">
     <div class="img-not-ready">
-        <img src='/images/icons/hourglass.png' /> <ht key='image.image_not_ready'>Image not ready yet</ht>
+        <img src='/images/icons/hourglass.png' /> <ht key='image.image_not_ready' />
     </div>
 </def>
 
@@ -162,21 +162,17 @@
 		<section param="main-content">
 			<header param="content-header">
 				<h2 param="heading">
-         				<ht key="#{model.name.tableize}.index.heading">
-						<%= model.name.titleize.pluralize %>
-         				</ht>
+         				<ht key="#{model.name.tableize}.index.heading" />
        			</h2>
 
 				<p param="count" if>
-					<ht key="#{model.name.tableize}.collection.count" count="&this.size">
-						There <count prefix="are"/>
-					</ht>
+					<ht key="#{model.name.tableize}.collection.count" count="&this.size" />
 				</p>
 			</header>
 
 			<section param="content-body">
 				<a action="new" to="&model" param="new-link">
-					<ht key="#{model.name.tableize}.actions.new">New <%= model.name.titleize %></ht>
+					<ht key="#{model.name.tableize}.actions.new" />
 				</a>
 
 				<page-nav param="top-page-nav"/>
@@ -195,7 +191,7 @@
     <nav-item href="#{base_url}/admin">Home</nav-item>
     <% models = Hobo::Model.all_models.select { |m| linkable?(m, :index) && not_hidden?(m) }.sort_by &:name -%>
     <repeat with="&models">
-      <nav-item><ht key="#{this.name.tableize}.nav_item"><%= this.view_hints.model_name_plural %></ht></nav-item>
+      <nav-item><ht key="#{this.name.tableize}.nav_item" /></nav-item>
     </repeat>
   </navigation>
 </def>
