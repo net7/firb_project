@@ -1,7 +1,6 @@
 class Admin::IconclassTermsController < Admin::AdminSiteController
 
   hobo_model_controller
-  
 
   auto_actions :all
   
@@ -16,9 +15,9 @@ class Admin::IconclassTermsController < Admin::AdminSiteController
   def create
     @iconclass_term = IconclassTerm.create_term(params[:iconclass_term])
     if(save_created(@iconclass_term))
-      flash[:notice] = "Iconclass term successfully created"
+      flash[:notice] = I18n.t("#{model.name.pluralize.tableize}.messages.new_success") 
     else
-      flash[:notice] = "Error creating term"
+      flash[:notice] = I18n.t("#{model.name.pluralize.tableize}.messages.new_error") 
     end
     redirect_to :action => 'index'
   end

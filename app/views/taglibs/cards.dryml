@@ -378,16 +378,16 @@
 <def tag="card" for="IconclassTerm">
   <card class="iconclass-term" param="default" merge>
     <header: param>
-      <h4 param="heading"><a action="edit"><name/></a> - <%= this.pref_label %><delete-icon /></h4>
+      <h4 param="heading"><a action="edit"><name/> - <%= this.pref_label %></a><delete-icon /></h4>
     </header:>
     <body: param>
-      <p>
-        <b><ht key="iconclass_terms.alt_label" />:</b> <%= this.alt_label %> |
-      </p>
-      <p>
-        <b><ht key="iconclass_terms.note" />:</b> <%= this.note %>
-      </p>
-      </body>
+        <unless test="&this.alt_label.blank?">
+            <p><b><ht key="iconclass_terms.alt_label" />:</b> <%= this.alt_label %></p>
+        </unless>
+        <unless test="&this.note.blank?">
+            <p><b><ht key="iconclass_terms.note" />:</b> <%= this.note %></p>
+        </unless>
+    </body:>
   </card>
 </def>
 

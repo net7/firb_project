@@ -87,16 +87,21 @@ it:
         model_name: "Termine iconclass"
         nav_item: "Termini Iconclass"
         model_name_plural: "Termini iconclass"
+        count: "Ci sono %{count} termini iconclass"
         collection:
-            count: "Ci sono %{count} termini iconclass"
             empty_message: "Nessun termine iconclass da visualizzare"
         actions:
             new: "Crea un nuovo termine iconclass"
-            create: "Crea il termine"
+            create: "Salva"
             edit: "Modifica questo termine"
             delete: "Cancella questo termine"
         new:
             heading: "Nuovo termine iconclass"
+        edit:
+            heading: "Modifica termine iconclass"
+        messages:
+            update_success: "Il Termine modificato è stato salvato."
+            new_success: "Il termine è stato creato."
         term: "Codice iconclass"
         pref_label: "Descrizione primaria"
         alt_label: "Descrizione secondaria"
