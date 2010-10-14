@@ -8,11 +8,11 @@
 	</before-content-header:>
 	
 	<new-link: replace>
-	    <% s = I18n.t("#{@full_type_name.pluralize}.actions.new") %>
-	    <%= link_to "<img src='/images/icons/page_add.png'> #{s}", url_for(:action => :new) %>
+	    <% s = I18n.t("#{@full_type_name.pluralize}.actions.new"); i=image_path('/images/icons/page_add.png') %>
+	    <%= link_to "<img src='#{i}'> #{s}", url_for(:action => :new) %>
 	</new-link:>
 
     <count:>
-        <img src='/images/icons/page_white_stack.png' /> <ht key="#{@full_type_name.pluralize}.count" count="&this.total_entries" />
+        <img src="&image_path('/images/icons/page_white_stack.png')" /> <ht key="#{@full_type_name.pluralize}.count" count="&this.total_entries" />
     </count:>
 </index-page>

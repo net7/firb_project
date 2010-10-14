@@ -11,7 +11,7 @@
 <show-page>
     <edit-link: replace>
     	<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
-    		<img src='/images/icons/page_white_edit.png' /><ht key="base_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''" />
+    		<img src="&image_path('/images/icons/page_white_edit.png')" /> <ht key="base_cards.actions.edit" name="&this.respond_to?(:name) ? this.name : ''" />
     	</a>
     </edit-link:>
     <content-body:>

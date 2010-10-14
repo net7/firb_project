@@ -17,7 +17,7 @@
 
 <input type='text' name='<%= input_text_id %>' id='<%= input_text_id %>' />
 <span style="display: none;" id='<%= indicator_id %>'>
-      <img alt="Working..." src="/images/icons/ajax-loader.gif">
+      <img alt="Working..." src='<% image_path("/images/icons/ajax-loader.gif") %>'>
 </span>
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 <div id='<%= populate_autocomplete_div_id %>' class="autocomplete"></div>

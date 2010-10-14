@@ -553,7 +553,7 @@
 
 <def tag='delete-card-icon'><%=
   if (can_delete?)
-    attributes = { :type => "image", :src => "#{base_url}/images/icons/cross.png" }
+    attributes = { :type => "image", :src => image_path('/images/icons/cross.png') }
     label = ht("hobo.actions.remove", :default=>"Remove") 
     confirm = ht("hobo.messages.confirm", :default=>"Are you sure?") 
     

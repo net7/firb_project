@@ -11,7 +11,7 @@
 <% if !autocomplete_url.blank? %>
     <input type='text' size='50' id='<%= param_name %>-autocomplete-input' />
     <span id="<%= param_name %>-indicator" style="display: none">
-      <img src="/images/icons/ajax-loader.gif" alt="Working..." />
+      <img src='<%= image_path("/images/icons/ajax-loader.gif") %>' alt="Working..." />
     </span>
     <input type="button" name="<%= param_name %>-add" id="<%= param_name %>-add" class="button" value="<%= I18n.t('general.add') %>" />
     <div id='<%= param_name %>-autocomplete-values' class="autocomplete"></div>

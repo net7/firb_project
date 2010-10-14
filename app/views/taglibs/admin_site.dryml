@@ -87,23 +87,22 @@
 
 <def tag="img-not-ready">
     <div class="img-not-ready">
-        <img src='/images/icons/hourglass.png' /> <ht key='image.image_not_ready' />
+        <img src="&image_path('/images/icons/hourglass.png')" /> <ht key='image.image_not_ready' />
     </div>
 </def>
 
 
 <def tag="link-imt-edit">
-    <%= link_to "<img src='/images/icons/vector_add.png'> #{I18n.t("image.draw_in_editor")}", {:action => :edit, :controller => :images, :id => this.id}, :title => I18n.t("image.draw_in_editor") %>
+    <a action="edit" controller="images" id="&this.id"> <img src="&image_path('/images/icons/vector_add.png')" /> <ht key="image.draw_in_editor" /> </a>
 </def>
-
 <def tag="link-add-to-image">
-    <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone", :controller => :images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("image.zone_add") %>
+    <%= link_to "<img src='#{image_path('/images/icons/layout_add.png')}' />", {:action => "add_zone", :controller => :images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("image.zone_add") %>
 </def>
 <def tag="link-add-to-zone">
-    <%= link_to "<img src='/images/icons/layout_add.png'>", {:action => "add_zone",  :controller => :image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("image.zone_add") %>
+    <%= link_to "<img src='#{image_path('/images/icons/layout_add.png')}' />", {:action => "add_zone",  :controller => :image_zones, :id => this.id}, :class => "link-add", :title => I18n.t("image.zone_add") %>
 </def>
 <def tag="link-del-zone">
-    <%= link_to "<img src='/images/icons/cross.png'>", {:action => "remove_zone", :controller => :image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("image.zone_del"), :confirm => I18n.t("image.confirm_zone_del")  %>
+    <%= link_to "<img src='#{image_path('/images/icons/cross.png')}' />", {:action => "remove_zone", :controller => :image_zones, :id => this.id}, :class=> "link-del", :title => I18n.t("image.zone_del"), :confirm => I18n.t("image.confirm_zone_del")  %>
 </def>
 
 <def tag="delete-icon">
