@@ -204,6 +204,7 @@ it:
         notes: "Note"
         vehicle: "Veicolo"
         cart: "Carro"
+        parade: "Parata"
         
     text_card:
         model_name: "Scheda di testo"
@@ -433,7 +434,7 @@ it:
         edit:
             heading: "Modifica la Parata"
         title: "Nome di riferimento"
-        belonging_to_this_parade: "Appartengono a questa parata"
+        belonging_to_this_parade: "Appartengono a questa Parata"
 
     fi_processions:
         model_name: "Corteo"
@@ -442,7 +443,20 @@ it:
         errors:
             too_many_carts: "Non posso aggiungere più di un carro a un corteo."
             illegal_type: "Un elemento del tipo %{type} no può far parte di un corteo."
+        count: "Ci sono %{count} Cortei"
+        actions:
+            new: "Crea un nuovo Corteo"
+            create: "Salva"
+            edit: "Modifica %{name}"
+            delete: "Elimina questo Corteo"
+        new:
+            heading: "Nuovo Corteo"
+        edit:
+            heading: "Modifica il Corteo"
+        title: "Nome di riferimento"
+        parade: "Parata"
         belongs_to_parade: "Appartiene alla Parata"
+        belonging_to_this_procession: "Appartengono a questo Corteo"
 
     fi_parade_cart_cards:
         actions:
