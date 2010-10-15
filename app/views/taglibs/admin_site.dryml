@@ -199,8 +199,9 @@
   <% body = parameters.default 
      body = h(this.to_s) if body.blank?
      name ||= body.gsub(/<.*?>/, '').strip
+     m = model.name.downcase rescue m = scope.current_navigation.downcase
      -%>
-  <li class='#{&apos;current&apos; if model.name.downcase == name.downcase}' merge-attrs='&amp;attributes - (attrs_for(:a)+[&apos;target&apos;])'>
+  <li class='#{&apos;current&apos; if m == name.downcase}' merge-attrs='&amp;attributes - (attrs_for(:a)+[&apos;target&apos;])'>
     <a merge-attrs='&amp;attributes &amp; (attrs_for(:a)+[&apos;target&apos;])'><%= body %></a>
   </li>
 </def>
