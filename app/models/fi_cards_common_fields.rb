@@ -23,6 +23,7 @@ module FiCardsCommonFields
   def procession=(value)
     @procession = (value.is_a?(FiProcession) ? value : FiProcession.find(value))
     @procession_new = true
+    remove_from_all_processions(self)
     @procession << self
   end
 
@@ -33,6 +34,15 @@ module FiCardsCommonFields
       @procession.errors.each_full { |msg| errors.add('procession', msg) }
     end
     procession_valid?
+  end
+  
+  def remove_from_all_processions(item)
+    FiProcession.all.each do |p|
+      if (p.include?(item))
+        p.delete(item)
+        p.save!
+      end
+    end
   end
   
   def save_procession

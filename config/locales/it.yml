@@ -446,6 +446,9 @@ it:
             heading: "Nuova Parata"
         edit:
             heading: "Modifica la Parata"
+        messages:
+            update_success: "La Parata modificata è stata salvata."
+            new_success: "La Parata è stata creata."
         title: "Nome di riferimento"
         belonging_to_this_parade: "Appartengono a questa Parata"
 
@@ -453,6 +456,9 @@ it:
         model_name: "Corteo"
         nav_item: "Cortei"
         model_name_plural: "Cortei"
+        messages:
+            update_success: "Il Corteo modificato è stato salvato."
+            new_success: "Il Corteo è stato creato."
         errors:
             too_many_carts: "Non posso aggiungere più di un carro a un corteo."
             illegal_type: "Un elemento del tipo %{type} no può far parte di un corteo."
@@ -481,6 +487,9 @@ it:
         heading: "Schede carro"
         count: "Ci sono %{count} schede Carro"
         back_to_index_link: "Torna all'indice delle schede Carro"
+        messages:
+            update_success: "La scheda Carro modificata è stata salvata."
+            new_success: "La scheda Carro è stata creata."
             
     fi_character_cards:
         actions:
@@ -490,6 +499,9 @@ it:
         heading: "Schede Personaggio"
         count: "Ci sono %{count} schede Personaggio"
         back_to_index_link: "Torna all'indice delle schede Personaggio"
+        messages:
+            update_success: "La scheda Personaggio modificata è stata salvata."
+            new_success: "La scheda Personaggio è stata creata."
 
     fi_episode_cards:
         actions:
@@ -499,6 +511,9 @@ it:
         heading: "Schede Episodio"
         count: "Ci sono %{count} schede Episodio"
         back_to_index_link: "Torna all'indice delle schede Episodio"
+        messages:
+            update_success: "La scheda Episodio modificata è stata salvata."
+            new_success: "La scheda Episodio è stata creata."
 
     fi_deity_cards:
         actions:
@@ -508,6 +523,9 @@ it:
         heading: "Schede Divinità"
         count: "Ci sono %{count} schede Divinità"
         back_to_index_link: "Torna all'indice delle schede Divinità"
+        messages:
+            update_success: "La scheda Divinità modificata è stata salvata."
+            new_success: "La scheda Divinità è stata creata."
 
     fi_animal_cards:
         actions:
@@ -517,6 +535,9 @@ it:
         heading: "Schede Animale"
         count: "Ci sono %{count} schede Animale"
         back_to_index_link: "Torna all'indice delle schede Animale"
+        messages:
+            update_success: "La scheda Animale modificata è stata salvata."
+            new_success: "La scheda Animale è stata creata."
 
     fi_throne_cards:
         actions:
@@ -526,6 +547,9 @@ it:
         heading: "Schede Trono"
         count: "Ci sono %{count} schede Trono"
         back_to_index_link: "Torna all'indice delle schede Trono"
+        messages:
+            update_success: "La scheda Trono modificata è stata salvata."
+            new_success: "La scheda Trono è stata creata."
 
     fi_vehicle_cards:
         actions:
@@ -535,6 +559,9 @@ it:
         heading: "Schede Veicolo"
         count: "Ci sono %{count} schede Veicolo"
         back_to_index_link: "Torna all'indice delle schede Veicolo"
+        messages:
+            update_success: "La scheda Veicolo modificata è stata salvata."
+            new_success: "La scheda Veicolo è stata creata."
 
 
     # Firb cards
