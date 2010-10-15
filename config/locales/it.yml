@@ -29,8 +29,8 @@ it:
             new: "Crea un nuovo libro"
             create: "Salva questo libro"
             save: "Salva"
-            edit: "Modifica questo libro"
-            delete: "Cancella questo libro"
+            edit: "Modifica libro"
+            delete: "Cancella libro"
         new:
             heading: "Crea un nuovo libro"
         title: "Nome di riferimento"
@@ -48,7 +48,7 @@ it:
             cancel: "Annulla"
             save: "Salva"
             edit: "Modifica"
-            delete: "Elimina questa Anastatica"
+            delete: "Elimina Anastatica"
         new:
             heading: "Nuova pagina anastatica"
             title: "Nuova pagina anastatica"
@@ -72,7 +72,7 @@ it:
             empty_message: "Nessuna illustrazione da visualizzare"
         actions:
             new: "Crea una nuova illustrazione"
-            delete: "Cancella questa illustrazione"
+            delete: "Cancella illustrazione"
         new: 
             heading: "Nuova illustrazione"
         edit:
@@ -93,8 +93,8 @@ it:
         actions:
             new: "Crea un nuovo termine iconclass"
             create: "Salva"
-            edit: "Modifica questo termine"
-            delete: "Cancella questo termine"
+            edit: "Modifica termine"
+            delete: "Cancella termine"
         new:
             heading: "Nuovo termine iconclass"
         edit:
@@ -119,7 +119,7 @@ it:
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
-            delete: "Cancella questa scheda di testo"
+            delete: "Cancella scheda di testo"
             create: "Salva"
 
     bg_text_cards:
@@ -133,10 +133,10 @@ it:
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
-            delete: "Cancella questa scheda di testo"
+            delete: "Cancella scheda di testo"
             create: "Salva"
         edit:
-            heading: "Modifica questa scheda di testo"
+            heading: "Modifica scheda di testo"
         book: "Collezione di riferimento"
         title: "Nome di riferimento"
         transcription_file: "File XML della trascrizione"
@@ -158,10 +158,10 @@ it:
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         actions:
             new: "Crea una nuova scheda illustrazione"
-            delete: "Cancella questa scheda illustrazione"
+            delete: "Cancella scheda illustrazione"
             create: "Salva"
         edit:
-            heading: "Modifica questa scheda illustrazione"
+            heading: "Modifica scheda illustrazione"
         messages:
             create_success: "Scheda illustrazione creata con successo."
         name: "Nome di riferimento"
@@ -221,6 +221,8 @@ it:
         conservation_status: "Stato di conservazione"
         autography: "Autografia"
         date: "Data"
+        transc_handwritten: "Scheda manoscritto"
+        letter_number: "Lettera"
         
     text_card:
         model_name: "Scheda di testo"
@@ -242,10 +244,10 @@ it:
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
-            delete: "Cancella questa scheda di testo"
+            delete: "Cancella scheda di testo"
             create: "Salva"
         edit:
-            heading: "Modifica questa scheda di testo"
+            heading: "Modifica scheda di testo"
         edition: "Edizione"
         page_position: "Pagine di riferimento"
 
@@ -253,22 +255,21 @@ it:
         model_name: "Scheda manoscritto"
         nav_item: "Schede manoscritto"
         model_name_plural: "Schede manoscritto"
+        count: "Ci sono %{count} schede manoscritto"
         messages:
             update_success: "La scheda manoscritto è stata aggiornata e salvata."
             new_success: "La scheda manoscritto è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono %{count} schede di testo"
-            empty_message: "Nessuna scheda di testo da visualizzare"
+            empty_message: "Nessuna scheda manoscritto da visualizzare"
         actions:
-            new: "Crea una nuova scheda di testo"
-            delete: "Cancella questa scheda di testo"
+            new: "Crea una nuova scheda manoscritto"
+            delete: "Cancella scheda manoscritto"
             create: "Salva"
         edit:
-            heading: "Modifica questa scheda di testo"
+            heading: "Modifica scheda manoscritto"
         title: "Nome di riferimento"
-        image_zones: "Zone di immagine"
         signature: "Segnatura"
         measure: "Misure"
         bibliography_items: "Elementi bibliografici"
@@ -277,24 +278,20 @@ it:
         model_name: "Scheda stampa"
         nav_item: "Schede stampa"
         model_name_plural: "Schede stampa"
+        count: "Ci sono %{count} schede stampa"
+        messages:
+            update_success: "La scheda stampa è stata aggiornata e salvata."
+            new_success: "La scheda stampa è stata creata."
         new: 
-            heading: "Nuova scheda di testo"
+            heading: "Nuova scheda stampa"
         collection:
-            count: "Ci sono %{count} schede di testo"
-            empty_message: "Nessuna scheda di testo da visualizzare"
+            empty_message: "Nessuna scheda stampa da visualizzare"
         actions:
-            new: "Crea una nuova scheda di testo"
-            delete: "Cancella questa scheda di testo"
+            new: "Crea una nuova scheda stampa"
+            delete: "Cancella scheda stampa"
             create: "Salva"
         edit:
-            heading: "Modifica questa scheda di testo"
-        title: "Nome di riferimento"
-        image_zones: "Zone di immagine"
-        transcr_handwritten: "Scheda di testo (manoscritto)"
-        page_position: "Numero pagina"
-        letter_number: "Numero della lettera"
-        collocation: "Collocazione"
-        edition: "Edizione"
+            heading: "Modifica scheda di stampa"
         
     bibliography_items:
         model_name: "Elemento Bibliografico"
@@ -307,8 +304,8 @@ it:
             new: "Crea un nuovo elemento bibliografico"
             create: "Salva"
             cancel: "Annulla"
-            edit: "Modifica questo elemento bibliografico"
-            delete: "Cancella questo elemento bibliografico"
+            edit: "Modifica elemento bibliografico"
+            delete: "Cancella elemento bibliografico"
         edit:
             heading: "Modifica %{name}"
         new:
@@ -343,7 +340,7 @@ it:
         actions:
             create: "Salva"
             new: "Crea una nuova scheda di immagine di memoria"
-            delete: "Cancella questa scheda di immagine di memoria"
+            delete: "Cancella scheda di immagine di memoria"
         new:
             heading: "Nuova scheda di immagine di memoria illustrata"
         index:
@@ -379,7 +376,7 @@ it:
         actions:
             create: "Salva"
             new: "Crea una nuova scheda capolettera"
-            delete: "Cancella questa capolettera"
+            delete: "Cancella capolettera"
         new:
             heading: "Nuova capolettera"
         index:
@@ -408,7 +405,7 @@ it:
         actions:
             create: "Salva"
             new: "Crea una nuova scheda illustrazione"
-            delete: "Cancella questa scheda illustrazione"
+            delete: "Cancella scheda illustrazione"
         collection:
             count: "Ci sono %{count} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
@@ -444,7 +441,7 @@ it:
             new: "Crea una nuova Parata"
             create: "Salva"
             edit: "Modifica %{name}"
-            delete: "Elimina questa Parata"
+            delete: "Elimina Parata"
         new:
             heading: "Nuova Parata"
         edit:
@@ -551,7 +548,7 @@ it:
             heading: "Crea una nuova scheda"
         actions:
             new: "Crea nuova scheda"
-            delete: "Cancella questa scheda"
+            delete: "Cancella scheda"
             edit: "Modifica %{name}"
         collection:
             count: "Ci sono %{count} schede di questa tipologia"
@@ -599,6 +596,7 @@ it:
         belongs_to_cart: "Appartiene al Carro"
         not_attached_to_cart: "Non appartiene a nessun Carro"
         no_image_zone: "Nessuna Illustrazione collegata"
+        no_anastatica: "Nessuna Anastatica collegata"
         
     # Used in new.dryml
     new_image:
@@ -618,8 +616,8 @@ it:
         zones: "Zone"
         original_name: "Nome originale"
         zone_add: "Aggiungi una zona"
-        zone_del: "Cancella questa zona"
-        image_del: "Cancella questa illustrazione"
+        zone_del: "Cancella zona"
+        image_del: "Cancella illustrazione"
         draw_in_editor: "Apri nell'editor"
         confirm_zone_del: "Vuoi davvero cancellare questa zona e tutte le sue sottozone?"
         confirm_image_del: "Vuoi davvero cancellare questa immagine e tutte le sue zone?"
@@ -637,10 +635,10 @@ it:
     text_page:
         parafrasi: "Parafrasi"
         select_one: "Scegline uno..."
-        no_anastatica_associated: "Nessuna anastatica associata a questa pagina di testo"
-        edit: "Modifica questa pagina di testo"
-        remove: "Elimina questa pagina di testo"
-        remove_note: "Elimina questa nota"
+        no_anastatica_associated: "Nessuna anastatica collegata"
+        edit: "Modifica pagina di testo"
+        remove: "Elimina pagina di testo"
+        remove_note: "Elimina nota"
         no_notes_associated: "Nessuna nota associata a questa pagina di testo"
         text_page: "Scheda testo"
         title: "Nome di riferimento"
@@ -649,7 +647,7 @@ it:
         image_zones: "Zone di immagine"
         no_file: "Nessun file XML collegato"
         actions:
-          delete: "Cancella questa scheda testo"
+          delete: "Cancella scheda testo"
           
     image_components:
       model_name: "Componenti"

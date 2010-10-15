@@ -652,7 +652,7 @@
         <ht key="base_cards.no_anastatica" />
     </if>
     <else>
-        <ht key="anastatica_page.model_name" />: <a with="&this.anastatica"><%= this.name %></a>
+        <ht key="anastaticas.model_name" />: <a with="&this.anastatica"><%= this.name %></a>
     </else>
 </def>
 

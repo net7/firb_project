@@ -77,9 +77,7 @@
                 <view:><input type="file" name="vt_handwritten_text_card[file]"/></view:>
             </field-row>
 
-            <field-row field="anastatica" param="anastatica" >
-                <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
-            </field-row>
+            <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica" />
 
             <field-edit-row field="signature" />
             <field-edit-row field="measure" />

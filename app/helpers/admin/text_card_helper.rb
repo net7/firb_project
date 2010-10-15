@@ -31,11 +31,11 @@ module Admin::TextCardHelper
   end
   
   def vt_handwritten_textcards_select
-    VtHandwrittenTextCard.all.collect { |b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] }.sort
+    VtHandwrittenTextCard.all.collect { |b| [ "#{b.title}", b.uri.to_s ] }.sort
   end
 
   def vt_printed_textcards_select
-    VtPrintedTextCard.all.collect { |b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] }.sort
+    VtPrintedTextCard.all.collect { |b| [ "#{b.title}", b.uri.to_s ] }.sort
   end
   
   def bibliography_select
