@@ -55,8 +55,8 @@ it:
         edit:
             heading: "Modifica pagina anastatica"
         index:
-            title: "Pagine anastatiche"
-            heading: "Pagine anastatiche"
+            title: "Anastatiche"
+            heading: "Anastatiche"
         parts_of_this_source: "Elementi collegati a questa pagina anastatica"
         page_to_book: "Inserisci nel libro"
         page_position: "Carta"

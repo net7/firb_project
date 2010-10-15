@@ -13,7 +13,7 @@
 
 <set-theme name="clean"/>
 
-<def tag="app-name">Talia Admin Panel</def>
+<def tag="app-name"><%= TaliaCore::CONFIG['site_name'] || "Talia Admin Panel" %></def>
 
 <def tag="single-connection" attrs="typename, attribute, type, options">
     <% typename ||= (this.class.name.underscore || type.underscore) %>
@@ -190,9 +190,19 @@
     <nav-item href="#{base_url}/admin">Home</nav-item>
     <% models = Hobo::Model.all_models.select { |m| linkable?(m, :index) && not_hidden?(m) }.sort_by &:name -%>
     <repeat with="&models">
-      <nav-item><ht key="#{this.name.tableize}.nav_item" /></nav-item>
+      <nav-item name='&this.name'><ht key="#{this.name.tableize}.nav_item" /></nav-item>
     </repeat>
   </navigation>
+</def>
+
+<def attrs='name' tag='nav-item'>
+  <% body = parameters.default 
+     body = h(this.to_s) if body.blank?
+     name ||= body.gsub(/<.*?>/, '').strip
+     -%>
+  <li class='#{&apos;current&apos; if model.name.downcase == name.downcase}' merge-attrs='&amp;attributes - (attrs_for(:a)+[&apos;target&apos;])'>
+    <a merge-attrs='&amp;attributes &amp; (attrs_for(:a)+[&apos;target&apos;])'><%= body %></a>
+  </li>
 </def>
 
 <extend tag="page">
