@@ -460,7 +460,7 @@ it:
             update_success: "Il Corteo modificato è stato salvato."
             new_success: "Il Corteo è stato creato."
         errors:
-            too_many_carts: "Non posso aggiungere più di un carro a un corteo."
+            too_many_carts: "Non posso aggiungere più di un carro ad un corteo."
             illegal_type: "Un elemento del tipo %{type} no può far parte di un corteo."
         count: "Ci sono %{count} Cortei"
         actions:

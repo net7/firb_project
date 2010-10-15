@@ -74,13 +74,16 @@ class FiProcession < TaliaCore::Collection
 
   def only_carts_and_characters
     cart_seen = false
+    puts "VALIDATING PROCESSION -------"
     ordered_objects.each do |element|
       if(element.is_a?(FiParadeCartCard))
+        puts "FiParadeCartCard: #{element.inspect}"
         # We can allow at most one cart in the procession
-        cart_seen ? errors.add_to_base(I18n.t('procession.errors.too_many_carts')) : (cart_seen = true)
+        cart_seen ? errors.add_to_base(I18n.t('fi_procession.errors.too_many_carts')) : (cart_seen = true)
       else
+        puts "NOT a FiParadeCartCard: #{element.inspect}"
         # If we don't have a cart, it should be a character
-        errors.add_to_base(I18n.t('procession.errors.illegal_type', :type => element.class.name )) unless(element.is_a?(FiCharacterCard))
+        errors.add_to_base(I18n.t('fi_procession.errors.illegal_type', :type => element.class.name )) unless(element.is_a?(FiCharacterCard))
       end
     end
   end
