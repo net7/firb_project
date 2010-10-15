@@ -18,11 +18,11 @@
 <def tag="single-connection" attrs="typename, attribute, type, options">
     <% typename ||= (this.class.name.underscore || type.underscore) %>
     <% options ||= type.constantize.all.collect { |el| [ "#{el.name}", el.uri.to_s ] }.sort %>
-    <% attribute_el       = this.send(attribute.to_sym) %>
+    <% attribute_el = this.nil? ? "" : this.send(attribute.to_sym) %>
     <if test              = "&attribute_el.blank?">
         <select-menu name = "#{typename}[#{attribute}]"
             options       = "&options"
-            first-option  = "&I18n.t('text_page.select_one')" />
+            first-option  = "&I18n.t('talia.select_one')" />
     </if>
     <else>
         <select-menu name = "#{typename}[#{attribute}]"

@@ -214,6 +214,13 @@ it:
         transcription_file: "File XML della trascrizione"
         edition: "Edizione"
         page_position: "Pagine di riferimento"
+        watermark: "Filigrana"
+        cartulation: "Cartulazione"
+        technical_notes: "Note tecniche"
+        handwritten_notes: "Note manoscritte"
+        conservation_status: "Stato di conservazione"
+        autography: "Autografia"
+        date: "Data"
         
     text_card:
         model_name: "Scheda di testo"
@@ -246,6 +253,9 @@ it:
         model_name: "Scheda manoscritto"
         nav_item: "Schede manoscritto"
         model_name_plural: "Schede manoscritto"
+        messages:
+            update_success: "La scheda manoscritto è stata aggiornata e salvata."
+            new_success: "La scheda manoscritto è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
@@ -261,13 +271,6 @@ it:
         image_zones: "Zone di immagine"
         signature: "Segnatura"
         measure: "Misure"
-        watermark: "Filigrana"
-        cartulation: "Cartulazione"
-        technical_notes: "Note tecniche"
-        handwritten_notes: "Note manoscritte"
-        conservation_status: "Stato di conservazione"
-        autography: "Autografia"
-        date: "Data"
         bibliography_items: "Elementi bibliografici"
 
     vt_printed_text_cards:

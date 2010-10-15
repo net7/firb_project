@@ -81,10 +81,6 @@
                 <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
             </field-row>
 
-            <field-row field="image_zones" param="image_zones" >
-                <view:><image-zones-edit /></view:>
-            </field-row>
-
             <field-edit-row field="signature" />
             <field-edit-row field="measure" />
             <field-edit-row field="watermark" />
@@ -134,21 +130,15 @@
                 <view:><input type="file" name="vt_printed_text_card[file]"/></view:>
             </field-row>
 
-            <field-row field="anastatica" param="anastatica" >
-                <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
-            </field-row>
+            <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica" />
 
-            <field-edit-row field="transc_handwritten" type="VtHandwrittenTextCard" />
-
-            <field-row field="image_zones" param="image_zones" >
-                <view:><image-zones-edit /></view:>
-            </field-row>
-
+            <field-edit-row field="transc_handwritten" type="VtHandwrittenTextCard" selectoptions="&vt_handwritten_textcards_select" param="transc_handwritten" />
+    
             <field-edit-row field="page_position" />
             <field-edit-row field="letter_number" />
             <field-edit-row field="collocation" />
 
-            <field-edit-row field="edition" type="BibliographyItem" />
+            <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
 
             </content:>
         </field-edit-table>
@@ -252,9 +242,7 @@
 
             <field-edit-row field="title" />
 
-            <field-row field="anastatica" param="anastatica" >
-                <view:><single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" /></view:>
-            </field-row>
+            <field-edit-row field="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
 
             <field-edit-row field="book" type="TaliaCollection" />
 

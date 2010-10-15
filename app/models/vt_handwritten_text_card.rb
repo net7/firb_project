@@ -5,7 +5,6 @@ class VtHandwrittenTextCard < TextCard
   
   singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title
-  multi_property :image_zones, N::DCT.isFormatOf, :type => TaliaCore::ActiveSource
 
   # Link a trascrizione diplomatica e trascrizione versione a stampa
   rdf_property :transc_diplomatic, N::TALIA.transcription_diplomatic, :type => TaliaCore::ActiveSource
