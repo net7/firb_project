@@ -9,7 +9,7 @@
     <nav-item with="&BaseCard"><ht key="base_cards.nav_item">Schede</ht></nav-item>
     <nav-item with="&BgTextCard"><ht key="bg_text_cards.nav_item">Schede di testo</ht></nav-item>
     <nav-item with="&BibliographyItem"><ht key="bibliography_items.nav_item">Elementi Bibliografici</ht></nav-item>
-    <nav-item with="&FiParade"><ht key="fi_parades.nav_item">Fi Parades</ht></nav-item>
+    <nav-item with="&FiParade"><ht key="fi_parades.nav_item">Parate</ht></nav-item>
   </navigation>
 </def>
 
@@ -610,14 +610,14 @@
 <!-- ====== FiParade Pages ====== -->
 
 <def tag="index-page" for="FiParade">
-  <page merge title="#{ht 'fi_parades.index.title', :default=>['Fi Parades'] }">
+  <page merge title="#{ht 'fi_parades.index.title', :default=>['Parate'] }">
     <body: class="index-page fi-parade" param/>
 
     <content: param>
       <header param="content-header">
         <h2 param="heading">
           <ht key="fi_parades.index.heading">
-            Fi Parades
+            Parate
           </ht>
         </h2>
 
@@ -630,7 +630,7 @@
 
       <section param="content-body">
         <a action="new" to="&model" param="new-link">
-          <ht key="fi_parades.actions.new">New Fi Parade</ht>
+          <ht key="fi_parades.actions.new">New Parata</ht>
         </a>
 
         <page-nav param="top-page-nav"/>
@@ -647,21 +647,21 @@
 
 
 <def tag="new-page" for="FiParade">
-  <page merge title="#{ht 'fi_parades.new.title', :default=>[' New Fi Parade'] }">
+  <page merge title="#{ht 'fi_parades.new.title', :default=>[' New Parata'] }">
     <body: class="new-page fi-parade" param/>
 
     <content: param>
       <section param="content-header">
         <h2 param="heading">
           <ht key="fi_parades.new.heading">
-            New Fi Parade
+            New Parata
           </ht>
         </h2>
       </section>
 
       <section param="content-body">
         <form param>
-          <submit: label="#{ht 'fi_parades.actions.create', :default=>['Create Fi Parade']}"/>
+          <submit: label="#{ht 'fi_parades.actions.create', :default=>['Create Parata']}"/>
         </form>
       </section>
     </content:>
@@ -670,7 +670,7 @@
 
 
 <def tag="show-page" for="FiParade">
-  <page merge title="#{ht 'fi_parades.show.title', :default=>['Fi Parade'] }">
+  <page merge title="#{ht 'fi_parades.show.title', :default=>['Parata'] }">
 
     <body: class="show-page fi-parade" param/>
 
@@ -686,7 +686,7 @@
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="fi_parades.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Fi Parade
+                Edit Parata
               </ht>
             </a>
           </header>
@@ -700,7 +700,7 @@
 
 
 <def tag="edit-page" for="FiParade">
-  <page merge title="#{ht 'fi_parades.edit.title', :default=>['Edit Fi Parade'] }">
+  <page merge title="#{ht 'fi_parades.edit.title', :default=>['Edit Parata'] }">
 
     <body: class="edit-page fi-parade" param/>
 
@@ -711,7 +711,7 @@
             Edit <type-name/>
           </ht>
         </h2>
-        <delete-button label="#{ht 'fi_parades.actions.delete', :default=>['Remove This Fi Parade']}" param/>
+        <delete-button label="#{ht 'fi_parades.actions.delete', :default=>['Remove This Parata']}" param/>
       </section>
 
       <section param="content-body">
