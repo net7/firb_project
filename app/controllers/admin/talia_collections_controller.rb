@@ -31,7 +31,7 @@ class Admin::TaliaCollectionsController < Admin::AdminSiteController
     collection.clear
     order.each do |ordered|
       element = element_hash[ordered]
-      raise(ArgumentError, "Order contained an element that wasn't in the original collection") if(element.blank?)
+      raise(ArgumentError, "Order contained an element that wasn't in the original collection. Id #{ordered}, element #{element_hash[ordered]}") if(element.to_s.blank?)
       collection << element
     end
     collection.save!

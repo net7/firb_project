@@ -381,9 +381,7 @@
     </header:>
     <body:>
 
-    <ht key="parades.collection.count" count="&this.elements.size">
-			Contains <%= this.elements.size %> processions
-    </ht>
+    <ht key="fi_processions.count" count="&this.elements.size" />:
 
     <unless test="&this.elements.empty?">
         <p>

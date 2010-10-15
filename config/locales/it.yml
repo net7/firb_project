@@ -624,6 +624,7 @@ it:
         not_attached_to_cart: "Non appartiene a nessun Carro"
         no_image_zone: "Nessuna Illustrazione collegata"
         no_anastatica: "Nessuna Anastatica collegata"
+        no_procession: "Nessun Corteo collegato"
         
     # Used in new.dryml
     new_image:
