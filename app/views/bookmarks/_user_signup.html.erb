@@ -1,9 +1,24 @@
 <div class='signup_form'>
     <ul class="form">
-        <li>Username: <input type='text' class='signup_username' placeholder='Username'></li>
-        <li>Indirizzo email: <input type='text' class='signup_email' placeholder='indirizzo@email.it'></li>
-        <li>Password: <input type='password' class='signup_password' placeholder='Password'></li>
-        <li>Conferma la password: <input type='password' class='signup_password_confirmation' placeholder='Conferma password'></li>
-        <li><button class='signup_save_button'>Crea</button></li>
+        <li>
+        	<label for="username">Username:</label>
+        	<input type='text' class='signup_username' placeholder='Username' id="username">
+        </li>
+        <li>
+        	<label for="mail">Indirizzo email:</label>
+        	<input type='text' class='signup_email' placeholder='indirizzo@email.it' id="mail">
+        </li>
+        <li>
+        	<label for="password">Password:</label>
+        	<input type='password' class='signup_password' placeholder='Password' id="password">
+        </li>
+        <li>
+        	<label for="password-confirm">Conferma la password:</label>
+        	<input type='password' class='signup_password_confirmation' placeholder='Conferma password' id="password-confirm">
+        </li>
+    </ul>
+    <ul class="buttons">
+    	<li><button class='signup_save_button'>Crea</button></li>
+    	<li><button onClick="$('#signupDialog').dialog('close')" >Chiudi</button></li>
     </ul>
 </div>
