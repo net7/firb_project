@@ -41,7 +41,7 @@ class Admin::VtPrintedTextCardsController < Admin::TextCardsController
   end
 
   def destroy
-    hobo_destroy { redirect_to :controller => :vt_printed_text_card, :action => :index }
+    hobo_destroy { redirect_to :controller => :vt_printed_text_cards, :action => :index }
   end
 
   def update
@@ -55,7 +55,7 @@ class Admin::VtPrintedTextCardsController < Admin::TextCardsController
       updated_source.attach_file(file)
       updated_source.save!
       
-      redirect_to :controller => :vt_printed_text_card, :action => :index
+      redirect_to :controller => :vt_printed_text_cards, :action => :index
     end
   end
 
