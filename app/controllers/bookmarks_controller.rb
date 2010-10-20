@@ -100,7 +100,7 @@ class BookmarksController < ApplicationController
             notebook = BookmarkCollection.find(params[:uri])
             notebook.title = params[:title]
             notebook.notes = params[:notes]
-            notebook.public = (params[:public] == "true");
+            notebook.public = params[:public];
             notebook.save!
         end
 
