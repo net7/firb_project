@@ -691,7 +691,7 @@
     <%= 
         render :partial => 'shared/non_illustrated_memory_depictions',
         :locals => { :main_name => 'pi_text_card', :param_name => 'non_illustrated_memory_depictions', 
-        :existing => this.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.depiction_type})", ic.uri.to_s]} }
+        :existing => this_parent.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.depiction_type})", ic.uri.to_s]} }
     %>
 </def>
 
@@ -707,7 +707,7 @@
 <def tag="image-zones-edit">
     <%= render :partial => 'shared/select', 
                :locals => { :main_name => (@full_type_name || controller.my_name) , :param_name => 'image_zones', :options => image_zone_select_uri, :autocomplete_url => '',
-                            :existing => this.image_zones.collect {|z| [ z.name, z.uri.to_s ] } } 
+                            :existing => this_parent.image_zones.collect {|z| [ z.name, z.uri.to_s ] } } 
     %>
 </def>
 

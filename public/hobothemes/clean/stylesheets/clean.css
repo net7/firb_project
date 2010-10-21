@@ -111,13 +111,12 @@ form .actions input { margin: 0; }
 
 table.field-list { border:0px; }
 table.field-list td, table.field-list th { 
-    border-top: 3px solid #5B8BA0;
-    padding: 0px; margin: 20px;
+    padding: 0px; 
 	-webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
 table.field-list th span.field_label { 
     text-align: right;
-    padding: 5px; 
+    padding: 5px 10px 5px 25px; 
     margin: 0px; 
     display: block; 
     background: #5B8BA0; 
@@ -127,15 +126,23 @@ table.field-list th span.field_label {
 table.field-list td {
     padding: 12px;
     background: rgb(240,240,240); 
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 6px 6px 6px;
 	-webkit-box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
 }
 table.field-list td.spacer {
     background: rgba(0,0,0,0);
     border: 0px;
+    padding: 4px;
     border-radius: 0px;
 	-webkit-box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.0);
 }
+table.field-list tr:hover th span {
+    background: #666;
+    color: #ddd;
+}
+table.field-list tr:hover td { background: #ccc;}
+table.field-list tr:hover td.spacer {background: rgba(0,0,0,0);}
+
 .field-list th {width: 120px; white-space: nowrap;}
 .field-list td {width: auto; }
 .field-list .input-help { color: #888;}

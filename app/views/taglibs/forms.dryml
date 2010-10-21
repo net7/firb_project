@@ -28,39 +28,49 @@
 <def tag="form" for="PiTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
-        
-        <%= I18n.t("text_page.title") %>: <input type="text" name="pi_text_card[title]" value="&this.title"/><br />
-        <br />
-        <%= I18n.t("text_page.transcription_file") %>: <input type="file" name="pi_text_card[file]"/><br />
-        <br />
-        <%= I18n.t("anastaticas.model_name") %>: <single-connection attribute="anastatica" type="Anastatica" options="&anastatiche_select" />
-        <br />
-        <%= I18n.t("text_page.image_zones") %> :
-        <image-zones-edit />
-        <br />
-        <div id="non-illustrated-memory-depictions">
-            <%= I18n.t("text_page.non_ill_mem_dep") %> :
-            <pi-non-illustrated-md-card-edit />
-        </div>
-        <br />
-        <div id="firb-notes">
 
-            <if test="&this.has_notes?">
-                <repeat with="&this.notes">
-                    <div class='firb-note'>
-                        <textarea rows="4" cols="50" name='pi_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                        <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
-                    </div>
-                </repeat>
-            </if>
-        </div>
+        <field-edit-table>
+            <content:>
 
-        <span id="firb-add-note" onclick="textPageAddNote('pi_text_card')">Add a note</span>
+                <field-edit-row field="title" />
 
-        <input:parafrasi for='text' value='&this.parafrasi' />
-        <label for='pi_text_card[parafrasi]'><%= I18n.t("firb.parafrasi") %> </label><br />
+                <field-row field="transcription_file">
+                    <view:><input type="file" name="pi_text_card[file]"/></view:>
+                </field-row>
+
+                <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica" />
+
+                <field-edit-row field="parafrasi" />
+    
+                <field-edit-row field="note">
+                    <view:>
+                        <div id="firb-notes">
+                            <if test="&this_parent.has_notes?">
+                                <repeat with="&this_parent.notes">
+                                    <div class='firb-note'>
+                                        <textarea rows="4" cols="50" name='pi_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                                        <span class='firb-remove-note'><%= I18n.t("general.remove_note") %></span>
+                                    </div>
+                                </repeat>
+                            </if>
+                        </div>
+                        <span id="firb-add-note" onclick="textPageAddNote('pi_text_card')"><ht key="general.add_note" /></span>
+                    </view:>
+                </field-edit-row>
+                
+                <field-row field="image_zones">
+                    <view:><image-zones-edit /></view:>
+                </field-row>
+                
+                <field-row field="non_illustrated_memory_depictions">
+                    <view:><pi-non-illustrated-md-card-edit /></view:>
+                </field-row>
+    
+            </content:>
+        </field-edit-table>
 
         <submit label="Save" /><or-cancel with="&PiTextCard" />
+
     </form>
 </def>
 

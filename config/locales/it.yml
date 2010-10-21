@@ -257,7 +257,9 @@ it:
         related_source_out: "Usi successivi"
         related_source_in: "Fonti dell'immagine"
         comment: "Commento"
-
+        parafrasi: "Parafrasi"
+        note: "Note"
+        non_illustrated_memory_depictions: "Immagini di memoria non illustrate"
         
     text_card:
         model_name: "Scheda di testo"
@@ -370,8 +372,8 @@ it:
         count: "Ci sono %{count} schede immagine di memoria"
         back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
-            update_success: "La scheda immagine di memoria illustrata è stata aggiornata e salvata."
-            new_success: "La scheda immagine di memoria illustrata è stata creata."
+            update_success: "La Parata modificata è stata salvata."
+            new_success: "La Parata è stata creata."
         collection:
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
@@ -735,6 +737,8 @@ it:
         add: "Aggiungi"
         'true': "vero"
         'false': "falso"
+        add_note: "Aggiungi una nota"
+        remove_note: "Cancella nota"
 
     # Used all over: technical terms 
     firb:
