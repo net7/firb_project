@@ -1,0 +1,15 @@
+<index-page>
+
+    <heading:>
+        <h3><ht key="#{model.name.pluralize.tableize}.model_name_plural" /></h3>
+    </heading:>
+	
+	<new-link: replace>
+	    <% s = I18n.t("#{model.name.pluralize.tableize}.actions.new"); i=image_path('/images/icons/table_add.png') %>
+	    <%= link_to "<img src='#{i}'> #{s}", url_for(:action => :new) %>
+	</new-link:>
+
+    <count:>
+        <img src="&image_path('/images/icons/table_multiple.png')" /> <ht key="#{model.name.pluralize.tableize}.count" count="&this.total_entries" />
+    </count:>
+</index-page>

@@ -187,9 +187,9 @@
             <content:>
                 <field-edit-row field="name" />
 
-                <field-edit-row field="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
-                <field-edit-row field="image_zone" type="ImageZone" options="&image_zone_select_uri" />
-                <field-edit-row field="book" type="TaliaCollection" options="&bg_books_select" />
+                <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
+                <field-edit-row field="image_zone" type="ImageZone" selectoptions="&image_zone_select_uri" />
+                <field-edit-row field="book" type="TaliaCollection" selectoptions="&bg_books_select" />
 
                 <field-edit-row field="signature" />
                 <field-edit-row field="collocation" />
@@ -197,18 +197,18 @@
                 <field-edit-row field="measure" />
                 <field-edit-row field="technical_notes" />
 
-                <field-edit-row field="edition" type="BibliographyItem" />
+                <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
 
                 <field-row field="description_file">
                     <view:><input type="file" name="bg_illustration_card[file]"/></view:>
                 </field-row>
 
                 <field-row field="related_source_out">
-                    <view:><bg-related-sources-edit field='related_source_out'/></view:>
+                    <view:><bg-related-sources-edit fieldname='related_source_out'/></view:>
                 </field-row>
 
                 <field-row field="related_source_in">
-                    <view:><bg-related-sources-edit field='related_source_in'/></view:>
+                    <view:><bg-related-sources-edit fieldname='related_source_in'/></view:>
                 </field-row>
 
                 <field-edit-row field="study_notes" />
@@ -240,9 +240,9 @@
 
             <field-edit-row field="title" />
 
-            <field-edit-row field="anastatica" type="Anastatica" options="&anastatiche_select" param="anastatica"/>
+            <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
 
-            <field-edit-row field="book" type="TaliaCollection" />
+            <field-edit-row field="book" type="TaliaCollection" selectoptions="&bg_books_select" />
 
             <field-row field="transcription_file">
                 <view:><input type="file" name="bg_text_card[file]"/></view:>

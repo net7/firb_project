@@ -347,15 +347,17 @@
   <card class="base-card" param="default" merge>
     <header: param>
       <h4 param="heading"><card-link /><delete-card-icon /></h4>
-      <anastatica-link /> |
-      <image-zone-link /> |
-      <if test="&this.parent_card.blank?">
-          <ht key="base_cards.no_parent" />
-      </if>
-      <else>
-          <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.parent_card, :type => 'pi_illustration_card')">
-              <ht key="pi_illustration_page.model_name" />: <%= this.parent_card.name %></a>
-      </else>
+      <p><anastatica-link /> |
+      <image-zone-link /> </p>
+      <p>
+          <if test="&this.parent_card.blank?">
+              <ht key="base_cards.no_parent" />
+          </if>
+          <else>
+              <a href="&url_for(:controller => :base_cards, :action => :show, :id => this.parent_card, :type => 'pi_illustration_card')">
+                  <ht key="pi_illustrated_md_cards.parent_card" />: <%= this.parent_card.name %></a>
+          </else>
+      </p>
     </header:>
   </card>
 </def>
@@ -377,13 +379,13 @@
       <anastatica-link /> |
       <image-zone-link />
       <div>
-          <ht key="base_cards.children" />:
+          <ht key="pi_illustration_cards.child_cards" />:
           <if test="&this.child_cards.blank?">
               <ht key="base_cards.no_child" />
           </if>
           <else>
                <ul>
-                    <repeat with="&this.child_cards" join=", ">
+                    <repeat with="&this.child_cards">
                         <li><a href="&url_for(:controller => :base_cards, :action => :show, :id => this.id, :type => 'pi_illustrated_md_card')"><%= this.name || this.to_uri.local_name %></a></li>
                     </repeat>
                 </ul>
@@ -681,7 +683,7 @@
     <%= 
         render :partial => 'shared/select', 
             :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => fieldname, :options => bg_related_sources_select,
-            :existing => this.send(fieldname).collect {|s| [ s.name, s.uri.to_s ] } } 
+            :existing => this_parent.send(fieldname).collect {|s| [ s.name, s.uri.to_s ] } } 
     %>
 </def>
 
@@ -721,7 +723,7 @@
     <%= 
         render :partial => 'shared/autocompleter',
         :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
-        :action => :autocomplete), :existing => this_parent.iconclass_terms.collect {|ic| [ thi, ic.uri.to_s ]} }
+        :action => :autocomplete), :existing => this_parent.iconclass_terms.collect {|ic| [ this, ic.uri.to_s ]} }
     %>
 </def>
 

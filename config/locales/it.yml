@@ -112,10 +112,13 @@ it:
         model_name: "Scheda di testo"
         nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"    
+        count: "Ci sono %{count} schede di testo"
+        messages:
+            update_success: "La scheda testo è stata aggiornata e salvata."
+            new_success: "La scheda testo è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -126,10 +129,13 @@ it:
         model_name: "Scheda di testo"
         nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"
+        count: "Ci sono %{count} schede di testo"
+        messages:
+            update_success: "La scheda di testo è stata aggiornata e salvata."
+            new_success: "La scheda di testo è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -151,10 +157,14 @@ it:
         model_name: "Illustrazione"
         nav_item: "Illustrazioni"
         model_name_plural: "Illustrazione"
+        count: "Ci sono %{count} schede illustrazione"
+        back_to_index_link: "Torna all'indice delle schede illustrazione"
+        messages:
+            update_success: "La scheda illustrazione è stata aggiornata e salvata."
+            new_success: "La scheda illustrazione è stata creata."
         new: 
             heading: "Nuova scheda illustrazione"
         collection:
-            count: "Ci sono %{count} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         actions:
             new: "Crea una nuova scheda illustrazione"
@@ -223,6 +233,31 @@ it:
         date: "Data"
         transc_handwritten: "Scheda manoscritto"
         letter_number: "Lettera"
+        position: "Posizione"
+        completed: "Completata"
+        image_components: "Componenti"
+        parent_card: "Scheda madre"
+        parent_code: "Codice della madre"
+        parent_collocation: "Collocazione della madre"
+        transcription_text: "Trascrizione"
+        textual_source: "Scheda Testo"
+        parent_iconclass: "Iconclass della madre"
+        short_description: "Descrizione breve"
+        child_cards: "Schede figlie"
+        iconclass_children: "Iconclass ereditati dalle schede figlie"
+        book: "Libro"
+        description_file: "File XML della descrizione"
+        motto: "Motto"
+        motto_language: "Lingua del motto"
+        motto_translation: "Traduzione del motto"
+        owner: "Possessore dell'impresa"
+        original_meaning: "Significato originale"
+        contextual_meaning: "Significato contestuale"
+        copyright_notes: "Note sul copyright"
+        related_source_out: "Usi successivi"
+        related_source_in: "Fonti dell'immagine"
+        comment: "Commento"
+
         
     text_card:
         model_name: "Scheda di testo"
@@ -332,10 +367,12 @@ it:
     pi_illustrated_md_cards:
         model_name: "Scheda di immagine di memoria illustrata"
         model_name_plural: "Schede di immagini di memoria illustrate"
+        count: "Ci sono %{count} schede immagine di memoria"
+        back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
-            create_success: "La nuova scheda di immagine di memoria illustrata è stata salvata."
+            update_success: "La scheda immagine di memoria illustrata è stata aggiornata e salvata."
+            new_success: "La scheda immagine di memoria illustrata è stata creata."
         collection:
-            count: "Ci sono %{count} schede immagine di memoria"
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
             create: "Salva"
@@ -364,14 +401,16 @@ it:
         parent_code: "Codice (della madre)"
         parent_collocation: "Collocazione (della madre)"
         bibliography: "Bibliografia"
+        parent_card: "Scheda illustrazione madre"
         
     pi_letter_illustration_cards:
         model_name: "Scheda capolettera"
         model_name_plural: "Schede capolettera"
+        count: "Ci sono %{count} schede capolettera"
         messages:
-            create_success: "La nuova scheda capolettera è stata salvata."
+            update_success: "La scheda capolettera è stata aggiornata e salvata."
+            new_success: "La scheda capolettera è stata creata."
         collection:
-            count: "Ci sono %{count} schede capolettera"
             empty_message: "Nessuna capolettera da visualizzare"
         actions:
             create: "Salva"
@@ -400,14 +439,16 @@ it:
     pi_illustration_cards:
         model_name: "Scheda illustrazione"
         model_name_plural: "Schede illustrazione"
+        count: "Ci sono %{count} schede illustrazione"
+        back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
-            create_success: "La nuova scheda illustrazione è stata salvata"
+            update_success: "La scheda illustrazione è stata aggiornata e salvata."
+            new_success: "La scheda illustrazione è stata creata."
         actions:
             create: "Salva"
             new: "Crea una nuova scheda illustrazione"
             delete: "Cancella scheda illustrazione"
         collection:
-            count: "Ci sono %{count} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         new:
             heading: "Nuova scheda illustrazione"
@@ -429,7 +470,7 @@ it:
         textual_source: "Scheda testo collegata"
         iconclass_terms: "Termini Iconclass"
         bibliography: "Bibliografia"
-        children: "Figlie"
+        child_cards: "Schede figlie"
         iconclass_children: "Iconclass delle figlie"
     
     fi_parades:
@@ -625,6 +666,7 @@ it:
         no_image_zone: "Nessuna Illustrazione collegata"
         no_anastatica: "Nessuna Anastatica collegata"
         no_procession: "Nessun Corteo collegato"
+        components: "Componenti"
         
     # Used in new.dryml
     new_image:
