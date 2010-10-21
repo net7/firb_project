@@ -41,7 +41,7 @@ class Admin::VtHandwrittenTextCardsController < Admin::TextCardsController
   end
 
   def destroy
-    hobo_destroy { redirect_to :controller => :vt_handwritten_text_card, :action => :index }
+    hobo_destroy { redirect_to :controller => :vt_handwritten_text_cards, :action => :index }
   end
 
   def update
