@@ -33,7 +33,9 @@ class Note < TaliaCore::Source
     old_notes_uris.each { |old| 
       if (!new_notes_uris.include?(old))
         note = Note.find(old)
-        note[N::DCT.isPartOf].remove(text_card)
+# TODO: the next line gives error, sine the .remove method doesn't exist
+#       do we really need something like that? isn't the following destroy enough?
+#        note[N::DCT.isPartOf].remove(text_card)
         note.destroy
       end
     }
@@ -59,7 +61,9 @@ class Note < TaliaCore::Source
     qry.where(:note, N::DCT.isPartOf, text_card)
     old_notes = qry.execute
     old_notes.each { |n| 
-        n[N::DCT.isPartOf].remove(text_card)
+# TODO: the next line gives error, sine the .remove method doesn't exist
+#       do we really need something like that? isn't the following destroy enough?
+#        n[N::DCT.isPartOf].remove(text_card)
         n.destroy
     }
   end

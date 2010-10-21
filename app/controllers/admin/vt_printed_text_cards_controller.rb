@@ -42,6 +42,7 @@ class Admin::VtPrintedTextCardsController < Admin::TextCardsController
 
   def destroy
     hobo_destroy { redirect_to :controller => :vt_printed_text_cards, :action => :index }
+    #    hobo_destroy { redirect_to :controller => :vt_printed_text_cards }
   end
 
   def update
@@ -50,6 +51,8 @@ class Admin::VtPrintedTextCardsController < Admin::TextCardsController
     hobo_source_update do |updated_source|
       if (notes) 
         Note.replace_notes(notes, updated_source)
+      else
+        Note.delete_all_notes(updated_source)
       end
       
       updated_source.attach_file(file)

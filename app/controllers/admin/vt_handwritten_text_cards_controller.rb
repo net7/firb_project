@@ -50,6 +50,8 @@ class Admin::VtHandwrittenTextCardsController < Admin::TextCardsController
     hobo_source_update do |updated_source|
       if (notes) 
         Note.replace_notes(notes, updated_source)
+      else
+        Note.delete_all_notes(updated_source)
       end
       
       updated_source.attach_file(file)
