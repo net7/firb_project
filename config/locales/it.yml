@@ -113,6 +113,9 @@ it:
         nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"    
         count: "Ci sono %{count} schede di testo"
+        messages:
+            update_success: "La scheda testo è stata aggiornata e salvata."
+            new_success: "La scheda testo è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
@@ -126,10 +129,13 @@ it:
         model_name: "Scheda di testo"
         nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"
+        count: "Ci sono %{count} schede di testo"
+        messages:
+            update_success: "La scheda di testo è stata aggiornata e salvata."
+            new_success: "La scheda di testo è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
-            count: "Ci sono %{count} schede di testo"
             empty_message: "Nessuna scheda di testo da visualizzare"
         actions:
             new: "Crea una nuova scheda di testo"
@@ -151,10 +157,14 @@ it:
         model_name: "Illustrazione"
         nav_item: "Illustrazioni"
         model_name_plural: "Illustrazione"
+        count: "Ci sono %{count} schede illustrazione"
+        back_to_index_link: "Torna all'indice delle schede illustrazione"
+        messages:
+            update_success: "La scheda illustrazione è stata aggiornata e salvata."
+            new_success: "La scheda illustrazione è stata creata."
         new: 
             heading: "Nuova scheda illustrazione"
         collection:
-            count: "Ci sono %{count} schede illustrazione"
             empty_message: "Nessuna scheda illustrazione da visualizzare"
         actions:
             new: "Crea una nuova scheda illustrazione"
@@ -235,6 +245,19 @@ it:
         short_description: "Descrizione breve"
         child_cards: "Schede figlie"
         iconclass_children: "Iconclass ereditati dalle schede figlie"
+        book: "Libro"
+        description_file: "File XML della descrizione"
+        motto: "Motto"
+        motto_language: "Lingua del motto"
+        motto_translation: "Traduzione del motto"
+        owner: "Possessore dell'impresa"
+        original_meaning: "Significato originale"
+        contextual_meaning: "Significato contestuale"
+        copyright_notes: "Note sul copyright"
+        related_source_out: "Usi successivi"
+        related_source_in: "Fonti dell'immagine"
+        comment: "Commento"
+
         
     text_card:
         model_name: "Scheda di testo"
@@ -347,7 +370,8 @@ it:
         count: "Ci sono %{count} schede immagine di memoria"
         back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
-            create_success: "La nuova scheda di immagine di memoria illustrata è stata salvata."
+            update_success: "La scheda immagine di memoria illustrata è stata aggiornata e salvata."
+            new_success: "La scheda immagine di memoria illustrata è stata creata."
         collection:
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
@@ -384,7 +408,8 @@ it:
         model_name_plural: "Schede capolettera"
         count: "Ci sono %{count} schede capolettera"
         messages:
-            create_success: "La nuova scheda capolettera è stata salvata."
+            update_success: "La scheda capolettera è stata aggiornata e salvata."
+            new_success: "La scheda capolettera è stata creata."
         collection:
             empty_message: "Nessuna capolettera da visualizzare"
         actions:
@@ -417,7 +442,8 @@ it:
         count: "Ci sono %{count} schede illustrazione"
         back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
-            create_success: "La nuova scheda illustrazione è stata salvata"
+            update_success: "La scheda illustrazione è stata aggiornata e salvata."
+            new_success: "La scheda illustrazione è stata creata."
         actions:
             create: "Salva"
             new: "Crea una nuova scheda illustrazione"

@@ -683,7 +683,7 @@
     <%= 
         render :partial => 'shared/select', 
             :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => fieldname, :options => bg_related_sources_select,
-            :existing => this.send(fieldname).collect {|s| [ s.name, s.uri.to_s ] } } 
+            :existing => this_parent.send(fieldname).collect {|s| [ s.name, s.uri.to_s ] } } 
     %>
 </def>
 
