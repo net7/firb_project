@@ -79,77 +79,17 @@
 
 
 <def tag="card" for="PiTextCard">
-  <card class="firb-text-card" param="default" merge>
-
-    <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
-    
-    <div class="firb-image-picture" id="image_container_#{this.id}">
-        
-        <%= I18n.t("text_page.image_zones") %>:
-        <ul>
-        <repeat with="&this.image_zones">
-            <li class='firb-text-card-image-zones'><%= this.name %></li>
-        </repeat>
-        </ul>
-    </div>
-    <div class="firb-text-page-content">
-      <div class='firb-text-page-anastatica'>
-        <if test="&this.has_anastatica_page?">
-          <h5><%= I18n.t("firb.anastatica") %>:</h5>
-          <span><%= anastatica_pretty_title(this.anastatica) %></span>
-        </if>
-        <unless test="&this.has_anastatica_page?">
-          <h5><%= I18n.t("text_page.no_anastatica_associated") %></h5>
-        </unless>
-
-      </div>
-
-      <div class='firb-text-page-parafrasi'>
-        <h5><%= I18n.t("firb.parafrasi") %>:</h5>
-        <span><%= this.parafrasi %></span>
-      </div>
-      
-      <div class='firb-text-page-notes-container'>
-
-        <if test="&this.has_notes?">
-          <h5><%= this.notes_count %> <%= I18n.t("firb.notes") %> : </h5>
-          <ul>
-            <repeat with="&this.notes">
-              <li>
-                <div class='firb-text-page-note'>
-                  <%= if (this.content.length > 80)
-                    this.content.slice(0,80) + " ...."
-                  else
-                    this.content
-                  end
-                %>
-                </div>
-              </li>
-            </repeat>
-          </ul>
-        </if>
-        <unless test="&this.has_notes?">
-          <h5><%= I18n.t("text_page.no_notes_associated") %></h5>
-        </unless>
-      </div>
-
-    </div>
-
-    <div class="firb-text-page-file">
-      <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-        <ht key="text_page.no_file" />
-      </if>
-      <else>
-        <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','data.xml').id)"><ht key="text_card.show_file" /></a>
-        <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-          <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)">
-              <ht key="text_card.show_annotation_file" /></a>
-        </if>
-      </else>
-    </div>
-
+  <card class="base-card" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a action="edit"><%= this.name || this.title %> </a><delete-card-icon /></h4>
+    </header:>
+    <body:>
+        <p><anastatica-link /></p>
+        <p><xml-file-links /></p>
+    </body:>
   </card>
 </def>
+
 
 <def tag="card" for="VtHandwrittenTextCard">
     <card class="firb-text-card" param="default" merge>
@@ -167,21 +107,8 @@
 
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
 
-    <anastatica-link />
-
-    <p>
-        <if test="&this.data_records('TaliaCore::DataTypes::XmlData').blank?">
-            <ht key="text_page.no_file" />
-        </if>
-        <else>
-            <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'data.xml').id)">
-            <ht key="text_card.show_xml_file" /></a>
-            <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
-                <br/><a href="&url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id)">
-                <ht key="text_card.show_annotation_file" /></a>
-            </if>
-        </else>
-    </p>
+    <p><anastatica-link /></p>
+    <p><xml-file-links /></p>
 
   </card>
 </def>
