@@ -69,7 +69,9 @@
             </content:>
         </field-edit-table>
 
-        <submit label="Save" /><or-cancel with="&PiTextCard" />
+        <div param="actions">
+            <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel with="&PiTextCard" />
+        </div>
 
     </form>
 </def>
@@ -121,7 +123,9 @@
 
         <span id="firb-add-note" onclick="textPageAddNote('vt_handwritten_text_card')">Add a note</span>
 
-        <submit label="Save" /><or-cancel with="&VtHandwrittenTextCard" />
+        <div param="actions">
+            <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel with="&VtHandwrittenTextCard" />
+        </div>
     </form>
 </def>
 
@@ -166,7 +170,9 @@
 
         <span id="firb-add-note" onclick="textPageAddNote('vt_printed_text_card')">Add a note</span>
 
-        <submit label="Save" /><or-cancel with="&VtPrintedTextCard" />
+        <div param="actions">
+            <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel with="&VtPrintedTextCard" />
+        </div>
     </form>
 </def>
 
@@ -187,7 +193,9 @@
             </content:>
         </field-edit-table>
 
-        <submit label="Save" /><or-cancel with="&FiTextCard" />
+        <div param="actions">
+            <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel with="&FiTextCard" />
+        </div>
     </form>
 </def>
 
@@ -268,7 +276,9 @@
             </content:>
         </field-edit-table>
 
-        <submit label="Save" /><or-cancel with="&BgTextCard" />
+        <div param="actions">
+            <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel with="&BgTextCard" />
+        </div>
     </form>
 </def>
 
