@@ -59,10 +59,12 @@
     <form merge param="default" action="&base_card_action">
         <card-form-common>
             <content:>
+                <field-edit-row field="name" />
                 <field-edit-row field="anastatica" fieldtype="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
                 <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
                 <field-edit-row field="procession" fieldtype="FiProcession" />
-                <field-edit-row field="name" />
+
+                <h3>A</h3>
                 <field-edit-row field="code"  />
                 <field-edit-row field="collocation" />
                 <field-edit-row field="author" />
@@ -70,7 +72,11 @@
                 <field-edit-row field="measure" />
                 <field-edit-row field="descriptive_notes" />
                 <field-edit-row field="description" />
-                <field-edit-row field="character_qualities" />
+
+                <field-edit-row field="qualities_gender" />
+                <field-edit-row field="qualities_age" />
+                <field-edit-row field="qualities_profession" />
+                
                 <field-edit-row field="baldini_text" fieldtype="FiTextCard" />
                 <field-edit-row field="cini_text" fieldtype="FiTextCard" />
                 <!-- TODO: Iconclass Figlie -->

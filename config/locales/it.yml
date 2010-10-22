@@ -260,6 +260,9 @@ it:
         parafrasi: "Parafrasi"
         note: "Note"
         non_illustrated_memory_depictions: "Immagini di memoria non illustrate"
+        qualities_age: "Qualità: età"
+        qualities_gender: "Qualità: sesso"
+        qualities_profession: "Qualità: professione"
         
     text_card:
         model_name: "Scheda di testo"

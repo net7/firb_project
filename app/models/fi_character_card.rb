@@ -10,6 +10,8 @@ class FiCharacterCard < IllustrationCard
   
   common_properties
   
-  rdf_property :character_qualities, N::TALIA.character_qualities, :type => :text
+  rdf_property :qualities_age, N::TALIA.qualities_age, :type => :string
+  rdf_property :qualities_gender, N::TALIA.qualities_gender, :type => :string
+  rdf_property :qualities_profession, N::TALIA.qualities_profession, :type => :string
   
 end
