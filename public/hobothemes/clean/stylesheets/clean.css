@@ -109,12 +109,12 @@ form .actions input { margin: 0; }
 	color: white;
 }
 
-table.field-list { border:0px; }
-table.field-list td, table.field-list th { 
+body.edit-page table.field-list { border:0px; }
+body.edit-page table.field-list td, body.edit-page table.field-list th { 
     padding: 0px; 
 	-webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
-table.field-list th span.field_label { 
+body.edit-page table.field-list th span.field_label { 
     text-align: right;
     padding: 5px 10px 5px 25px; 
     margin: 0px; 
@@ -123,25 +123,25 @@ table.field-list th span.field_label {
     border-radius: 0px 0px 0px 15px;
 	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-table.field-list td {
+body.edit-page table.field-list td {
     padding: 12px;
     background: rgb(240,240,240); 
     border-radius: 0px 3px 3px 3px;
 	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.4);
 }
-table.field-list td.spacer {
+body.edit-page table.field-list td.spacer {
     background: rgba(0,0,0,0);
     border: 0px;
     padding: 4px;
     border-radius: 0px;
 	-webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0);
 }
-table.field-list tr:hover th span {
+body.edit-page table.field-list tr:hover th span {
     background: #193440;
     color: #ddd;
 }
-table.field-list tr:hover td { background: #ccc;}
-table.field-list tr:hover td.spacer {background: rgba(0,0,0,0);}
+body.edit-page table.field-list tr:hover td { background: #ccc;}
+body.edit-page table.field-list tr:hover td.spacer {background: rgba(0,0,0,0);}
 
 .field-list th {width: 120px; white-space: nowrap;}
 .field-list td {width: auto; }
