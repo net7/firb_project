@@ -91,6 +91,10 @@
     </div>
 </def>
 
+<def tag="imt-thumb" attrs="img, zonelist">
+    <div class="imt-thumb"><imt-viewer id="image_#{img.id}" b64="#{thumb_xml(img, zonelist)}"/></div>
+</def>
+
 
 <def tag="link-imt-edit">
     <a action="edit" controller="images" id="&this.id"> <img src="&image_path('/images/icons/vector_add.png')" /> <ht key="image.draw_in_editor" /> </a>

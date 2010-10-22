@@ -332,11 +332,12 @@
 <def tag="card" for="Anastatica">
   <card class="talia-source" param="default" merge>
     <header: param>
-      <h4 param="heading"><a><name/></a><delete-icon /></h4>
+        <imt-thumb img="&this.image_zone.get_parent" zonelist="&[this.image_zone.uri]" />
+        <h4 param="heading"><a><name/></a><delete-icon /></h4>
     </header:>
     <body:>
-      <div><ht key="anastaticas.page_position" />: <%= this.page_position %></div>
-      <source-collections />
+        <div><ht key="anastaticas.page_position" />: <%= this.page_position %></div>
+        <source-collections />
     </body:>
   </card>
 </def>
