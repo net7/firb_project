@@ -362,14 +362,22 @@ table.app-summary { border: 1px solid; border-collapse: collapse; }
 table.app-summary td { padding: 2px;  border: 1px dotted #bbb; }
 table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3e6; }
 
-
+body.edit-page div.firb-image-edit-container div.firb-image-zones {
+    border: 1px solid green;
+    display: inline;
+}
 .imt-thumb {
-    width: 100px;
-    height: 100px;
-    margin: 0px 20px 0px 0px;
+    width: 120px;
+    height: 120px;
+    margin: 20px;
     background: white;
     padding: 5px;
+    border: 1px solid #5B8BA0;
     border-radius: 5px;
+}
+.firb-image-edit-container {
+    border: 1px solid red;
+    display: block;
     position: relative;
-    float: left;
+    clear: both;
 }

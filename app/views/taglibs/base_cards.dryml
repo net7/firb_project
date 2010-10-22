@@ -64,7 +64,6 @@
                 <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
                 <field-edit-row field="procession" fieldtype="FiProcession" />
 
-                <h3>A</h3>
                 <field-edit-row field="code"  />
                 <field-edit-row field="collocation" />
                 <field-edit-row field="author" />

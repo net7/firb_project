@@ -59,7 +59,9 @@
 <!-- Shows an image zone, if there's children, shows them as well -->
 <def tag="imagezone" attrs="parentimageid">
     <span onmouseover="getFlashObject('<%= parentimageid %>').setPolygonHighlighted(true, '<%= this.id.to_s %>');"
-        onmouseout="getFlashObject('<%= parentimageid %>').setPolygonHighlighted(false, '<%= this.id.to_s %>');" id="image_zone_#{this.id}" class="single-zone"><editor:name /></span>: <link-add-to-zone /> <link-del-zone />
+        onmouseout="getFlashObject('<%= parentimageid %>').setPolygonHighlighted(false, '<%= this.id.to_s %>');" id="image_zone_#{this.id}" class="single-zone">
+        <editor:name />
+    </span>: <link-add-to-zone /> <link-del-zone />
     <% if this.zone_count > 0 %>
         <ul>
             <li repeat="&this.zones"> <imagezone parentimageid="#{parentimageid}"/> </li>
@@ -97,7 +99,8 @@
 
 
 <def tag="link-imt-edit">
-    <a action="edit" controller="images" id="&this.id"> <img src="&image_path('/images/icons/vector_add.png')" /> <ht key="image.draw_in_editor" /> </a>
+    <%= link_to "<img src='#{image_path('/images/icons/vector_add.png')}' /> #{I18n.t('image.draw_in_editor')}", 
+        {:action => "imtedit", :controller => "images", :controller => "images",  :id => this.id } %>
 </def>
 <def tag="link-add-to-image">
     <%= link_to "<img src='#{image_path('/images/icons/layout_add.png')}' />", {:action => "add_zone", :controller => :images, :id => this.id}, :class => "link-add button-float", :title => I18n.t("image.zone_add") %>

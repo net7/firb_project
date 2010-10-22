@@ -225,7 +225,7 @@
 
 <def tag="card" for="Image">
   <card class="image" param="default" merge>
-    <h4 param="heading"><editor:name /> <span><delete-icon /><link-add-to-image /></span></h4>
+    <h4 param="heading"><a action="edit"><%= this.name %></a><span><delete-icon /><link-add-to-image /></span></h4>
 
     <% @imageid = this.id %>
     <div class="firb-image-picture" id="image_container_#{this.id}">
@@ -251,6 +251,38 @@
 
   </card>
 </def>
+
+<def tag="form" for="Image">
+  <form merge param="default">
+        <error-messages param/>
+
+        <h4 param="heading"><editor:name for="string" /> <span><delete-icon /><link-add-to-image /></span></h4>
+
+
+        <editor:name for="string">
+            <view:>Ma cu cazz</view:>
+        </editor:name>
+
+        <% @imageid = this.id %>
+        <div class="firb-image-edit-container">
+            <imt-thumb img="&this" />
+
+            <div class="firb-image-zones">
+              <h4><%= this.zone_count %> <ht key='image.zones' />:</h4>
+              <ul>
+                <li repeat="&this.zones">
+                    <imagezone parentimageid="image_#{@imageid}"/>
+                </li>
+              </ul>
+            </div>
+        </div>
+
+        <div param="actions">
+          <submit label="#{ht 'images.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+        </div>
+  </form>
+</def>
+
 
 <def tag="card" for="TaliaCollection">
   <card class="talia-collection" param="default" merge>

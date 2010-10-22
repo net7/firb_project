@@ -15,6 +15,11 @@ class Admin::ImagesController < Admin::AdminSiteController
     @image = Image.find(params[:id], :prefetch_relations => true)
   end
 
+  def imtedit
+    @image = Image.find(params[:id], :prefetch_relations => true)
+  end
+
+
   # Will create a new Image, with some automatic zones automagically added
   def create
     # Check this before the real creation TODO: Bit of a hack
