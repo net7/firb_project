@@ -241,6 +241,10 @@
 
                 <field-edit-row field="copyright_notes" />
 
+                <field-row field="iconclass_terms">
+                    <view:><iconclass-terms-edit /></view:>
+                </field-row>
+
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
