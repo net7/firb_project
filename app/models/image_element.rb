@@ -20,7 +20,7 @@ class ImageElement < TaliaCore::Source
     self.name || self.uri.local_name
   end
 
-  # Returns the ImageZone sources which is part of this object
+  # Returns the ImageZone sources which are part of this object
   def zones
     qry = ActiveRDF::Query.new(ImageZone).select(:zone).distinct
     qry.where(self, N::TALIA.hasSubZone, :zone)

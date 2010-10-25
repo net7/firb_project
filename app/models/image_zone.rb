@@ -3,14 +3,12 @@ class ImageZone < ImageElement
   include StandardPermissions
   
   attr_accessor :image
-
   singular_property :coordinates, N::TALIA.hasCoordinates
+  declare_attr_type :name, :string
   
   fields do
     uri :string
   end
-
-  declare_attr_type :name, :string
   
   # Creates a new zone. You must pass in the image object to which this zone will 
   # be connected. Optionally, you may also pass in a parent zone
@@ -23,8 +21,7 @@ class ImageZone < ImageElement
   end
   
   # Removes the zone and all of its children
-  def remove
-    
+  def remove    
     # Remove all of its subzones
     zones.each{|z| z.remove }
     

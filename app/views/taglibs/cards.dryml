@@ -258,11 +258,6 @@
 
         <h4 param="heading"><editor:name for="string" /> <span><delete-icon /><link-add-to-image /></span></h4>
 
-
-        <editor:name for="string">
-            <view:>Ma cu cazz</view:>
-        </editor:name>
-
         <% @imageid = this.id %>
         <div class="firb-image-edit-container">
             <imt-thumb img="&this" />
@@ -282,7 +277,6 @@
         </div>
   </form>
 </def>
-
 
 <def tag="card" for="TaliaCollection">
   <card class="talia-collection" param="default" merge>

@@ -192,6 +192,8 @@
 	</section-group>
 </def>
 
+
+<!-- Little fix for the menu: highlight them by model name and not translation   -->
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/admin">Home</nav-item>
@@ -212,6 +214,13 @@
     <a merge-attrs='&amp;attributes &amp; (attrs_for(:a)+[&apos;target&apos;])'><%= body %></a>
   </li>
 </def>
+
+<!-- New PropertyString type are now editable in place as normal Strings -->
+<def tag='editor' for='TaliaCore::PropertyString'>
+    <%= attributes['class'] = 'string'
+        in_place_editor(attributes, this) %>
+</def>
+
 
 <extend tag="page">
   <old-page merge without-live-search>

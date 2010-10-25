@@ -9,6 +9,7 @@
             </a>"
           end %>
     </delete-button:>
+<!-- 
     <content-body: replace>
     <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
     				codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" name="ImageMapper" width="100%" height="650"
@@ -33,4 +34,5 @@
     </script>
     
     </content-body:>
+-->
 </edit-page>

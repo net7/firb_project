@@ -1106,6 +1106,9 @@
       </header>
 
       <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="image_zones.actions.new">New Image Zone</ht>
+        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -1157,6 +1160,12 @@
             </h2>
 
             <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="image_zones.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Image Zone
+              </ht>
+            </a>
           </header>
 
           <section param="content-body">

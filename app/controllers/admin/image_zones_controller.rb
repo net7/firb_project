@@ -2,7 +2,7 @@ class Admin::ImageZonesController < Admin::AdminSiteController
 
   hobo_model_controller
   
-  auto_actions :none
+  auto_actions :all
 
   # Removes a zone and all of its children
   def remove_zone

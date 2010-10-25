@@ -144,6 +144,9 @@ body.edit-page table.field-list tr:hover th span, body.new-page table.field-list
 body.edit-page table.field-list tr:hover td, body.new-page table.field-list tr:hover td { background: #ccc;}
 body.edit-page table.field-list tr:hover td.spacer, body.new-page table.field-list tr:hover td.spacer {background: rgba(0,0,0,0);}
 
+span.in-place-edit:hover { background: #fc0; cursor: pointer;}
+
+
 .field-list th {width: 120px; white-space: nowrap;}
 .field-list td {width: auto; }
 .field-list .input-help { color: #888;}
@@ -363,8 +366,6 @@ table.app-summary td { padding: 2px;  border: 1px dotted #bbb; }
 table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3e6; }
 
 body.edit-page div.firb-image-edit-container div.firb-image-zones {
-    border: 1px solid green;
-    display: inline;
 }
 .imt-thumb {
     width: 120px;
@@ -372,12 +373,7 @@ body.edit-page div.firb-image-edit-container div.firb-image-zones {
     margin: 20px;
     background: white;
     padding: 5px;
-    border: 1px solid #5B8BA0;
     border-radius: 5px;
 }
 .firb-image-edit-container {
-    border: 1px solid red;
-    display: block;
-    position: relative;
-    clear: both;
 }
