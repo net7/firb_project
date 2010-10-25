@@ -23,7 +23,7 @@ module Admin::TextCardHelper
         parent = parent.get_parent
       end
       breadcrumbs = parent.name_label + " > " + breadcrumbs unless parent.nil?
-      breadcrumbs += a.name
+      breadcrumbs += a.name.nil? ? I18n.t("text_card.no_name_zone") : a.name
       
       [breadcrumbs, a.uri.to_s]
     end

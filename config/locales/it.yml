@@ -272,6 +272,7 @@ it:
         show_annotation_file: "Accedi alla pagina per le annotazioni"
         actions:
             edit: "Modifica %{name}"
+        no_name_zone: "(Zona senza nome)"
 
     fi_text_cards:
         model_name: "Scheda di testo"

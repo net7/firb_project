@@ -4,7 +4,7 @@ class ImageZone < ImageElement
   
   attr_accessor :image
   singular_property :coordinates, N::TALIA.hasCoordinates
-  declare_attr_type :name, :string
+  ## declare_attr_type :name, :string
   
   fields do
     uri :string
