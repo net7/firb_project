@@ -358,7 +358,9 @@
 <def tag="card" for="Anastatica">
   <card class="talia-source" param="default" merge>
     <header: param>
+      <if test="&!this.image_zone.nil?">
         <imt-thumb img="&this.image_zone.get_parent" zonelist="&[this.image_zone.uri]" />
+      </if>
         <h4 param="heading"><a><name/></a><delete-icon /></h4>
     </header:>
     <body:>
