@@ -332,6 +332,9 @@
                 <field-row field="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit selectoptions="&pi_memory_depiction_types" /></view:>
+                </field-row>
             </after-bibliography:>
         </card-form-common-pi>
     </form>
