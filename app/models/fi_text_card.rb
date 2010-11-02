@@ -11,6 +11,9 @@ class FiTextCard < TextCard
   # Numero pagina
   rdf_property :page_position, N::TALIA.position
 
+  # Bibliografia
+  multi_property :bibliography_items, N::TALIA.hasBibliography, :type => TaliaCore::ActiveSource
+
   fields do
     uri :string
   end

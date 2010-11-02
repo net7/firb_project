@@ -190,6 +190,10 @@
             <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
             <field-edit-row field="page_position" />
 
+            <field-row field="bibliography_items" param="bibliography" >
+                <view:><bibliography-items-edit /></view:>
+            </field-row>
+
             </content:>
         </field-edit-table>
 
