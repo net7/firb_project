@@ -90,6 +90,9 @@
                 <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
                 </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit /></view:>
+                </field-row>
             </content:>
         </card-form-common>
     </form>
@@ -121,6 +124,9 @@
                 </field-row>
                 <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
+                </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit /></view:>
                 </field-row>
             </content:>
         </card-form-common>
@@ -154,6 +160,9 @@
                 <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
                 </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit /></view:>
+                </field-row>
             </content:>
         </card-form-common>
     </form>
@@ -185,6 +194,9 @@
                 </field-row>
                 <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
+                </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit /></view:>
                 </field-row>
             </content:>
         </card-form-common>
@@ -218,6 +230,9 @@
                 <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
                 </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit /></view:>
+                </field-row>
             </content:>
         </card-form-common>
     </form>
@@ -249,6 +264,9 @@
                 </field-row>
                 <field-row field="notes" param="notes" >
                     <view:><firb-notes-edit /></view:>
+                </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit /></view:>
                 </field-row>
             </content:>
         </card-form-common>
