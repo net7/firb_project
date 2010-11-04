@@ -12,6 +12,9 @@ class VtLetter < TaliaCore::Collection
   
   rdf_property :introduction, N::TALIA.introduction, :type => :text
   rdf_property :letter_number, N::TALIA.letter_number, :type => :string
+  rdf_property :date_string, N::TALIA.date_string, :type => :string
+  rdf_property :printed_collocation, N::TALIA.printed_collocation, :type => :string
+  rdf_property :handwritten_collocation, N::TALIA.handwritten_collocation, :type => :string
   
   def name
     title.blank? ? uri.local_name : title

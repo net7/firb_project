@@ -86,6 +86,9 @@
             <field-edit-row field="title" />
             <field-edit-row field="introduction" />
             <field-edit-row field="letter_number" />
+            <field-edit-row field="printed_collocation" />
+            <field-edit-row field="handwritten_collocation" />
+            <field-edit-row field="date_string" />
 
         </content:>
     </field-edit-table>
@@ -121,7 +124,6 @@
             <field-edit-row field="handwritten_notes" />
             <field-edit-row field="conservation_status" />
             <field-edit-row field="autography" />
-            <field-edit-row field="date" />
 
             <field-row field="bibliography_items" param="bibliography_items" >
                 <view:><bibliography-items-edit /></view:>
@@ -159,7 +161,6 @@
             <content:>
 
             <field-edit-row field="title" />
-
             <field-edit-row field="letter" type="TaliaCollection" selectoptions="&vt_letters_select" />
 
             <field-row field="transcription_file">
@@ -167,11 +168,7 @@
             </field-row>
 
             <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica" />
-
             <field-edit-row field="transc_handwritten" type="VtHandwrittenTextCard" selectoptions="&vt_handwritten_textcards_select" param="transc_handwritten" />
-    
-            <field-edit-row field="collocation" />
-
             <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
 
             </content:>
