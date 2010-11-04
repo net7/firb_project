@@ -2,7 +2,7 @@
 <show-page>
     <edit-link: replace>
     	<a href="&url_for(:action => :edit, :id => this.id)" if="&can_edit?">
-    		<img src="&image_path('/images/icons/page_white_edit.png')" /> <ht key="#{model.name.pluralize.tableize}.actions.edit" name="&this.respond_to?(:name) ? this.name : ''" />
+    		<img src="&image_path('/images/icons/email_edit.png')" /> <ht key="#{model.name.pluralize.tableize}.actions.edit" name="&this.respond_to?(:name) ? this.name : ''" />
     	</a>
     </edit-link:>
 	<content-body: >
