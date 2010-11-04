@@ -610,6 +610,26 @@ it:
             update_success: "La scheda Veicolo modificata è stata salvata."
             new_success: "La scheda Veicolo è stata creata."
 
+    vt_letters:
+        nav_item: "Lettere"
+        model_name: "Lettera"
+        model_name_plural: "Lettere"
+        messages:
+            update_success: "La lettera modificata è stata salvata."
+            new_success: "La lettera è stata creata."
+        count: "Ci sono %{count} Lettere"
+        items_count: "Contiene %{count} schede"
+        actions:
+            new: "Crea una nuova Lettera"
+            create: "Salva"
+            edit: "Modifica %{name}"
+            delete: "Elimina questa Lettera"
+        new:
+            heading: "Nuova Lettera"
+        edit:
+            heading: "Modifica la Lettera"
+        title: "Nome di riferimento"
+        introduction: "Cappello introduttivo"
 
     # Firb cards
     base_cards:

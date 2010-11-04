@@ -341,6 +341,18 @@
   </form>
 </def>
 
+<def tag="form" for="VtLetter">
+  <form merge param="default">
+    <error-messages param/>
+
+    <field-list fields="title, introduction, letter_number" param/>
+
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
 <def tag="form" for="IconclassTerm">
   <form merge param="default">
     <error-messages param/>

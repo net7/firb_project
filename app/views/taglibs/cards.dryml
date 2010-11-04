@@ -293,6 +293,32 @@
   </card>
 </def>
 
+<def tag="card" for="VtLetter">
+  <card class="talia-collection" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><%= this.title %></a><delete-icon /></h4>
+    </header:>
+    <body:>
+
+    <p>
+      <b><ht key="vt_letters.introduction" />:</b> <%= this.introduction %>
+    </p>
+    <p>
+        <ht key="vt_letters.items_count" count="&this.elements.size" />:
+    </p>
+
+    <unless test="&this.elements.empty?">
+        <p>
+        <repeat with="&this.elements" join=", ">
+                <%= this.title || this.to_uri.local_name %>
+        </repeat>
+        </p>
+    </unless>
+
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="FiParade">
   <card class="talia-collection" param="default" merge>
     <header: param>
