@@ -265,6 +265,8 @@ it:
         qualities_profession: "Qualità: professione"
         letter: "Lettera"
         no_letter: "Non appartiene ad alcuna lettera."
+        introduction: "Cappello introduttivo"
+        letter_number: "Numero della lettera"
         
     text_card:
         model_name: "Scheda di testo"
@@ -632,6 +634,7 @@ it:
             heading: "Modifica la Lettera"
         title: "Nome di riferimento"
         introduction: "Cappello introduttivo"
+        belonging_to_this_letter: "Appartengono a questa lettera"
 
     # Firb cards
     base_cards:

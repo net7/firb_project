@@ -316,17 +316,14 @@
     <p>
       <b><ht key="vt_letters.introduction" />:</b> <%= this.introduction %>
     </p>
+
     <p>
         <ht key="vt_letters.items_count" count="&this.elements.size" />:
-    </p>
 
     <unless test="&this.elements.empty?">
-        <p>
-        <repeat with="&this.elements" join=", ">
-                <%= this.title || this.to_uri.local_name %>
-        </repeat>
-        </p>
+        <repeat with="&this.elements" join=", "><a with="&this"><%= this.title || this.to_uri.local_name %></a></repeat>
     </unless>
+    </p>
 
     </body:>
   </card>
