@@ -131,23 +131,24 @@
                 <view:><bibliography-items-edit /></view:>
             </field-row>
 
+            <field-edit-row field="note">
+                <view:>
+                    <div id="firb-notes">
+                        <if test="&this_parent.has_notes?">
+                            <repeat with="&this_parent.notes">
+                                <div class='firb-note'>
+                                    <textarea rows="4" cols="50" name='vt_handwritten_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                                    <span class='firb-remove-note'><%= I18n.t("general.remove_note") %></span>
+                                </div>
+                            </repeat>
+                        </if>
+                    </div>
+                    <span id="firb-add-note" onclick="textPageAddNote('vt_handwritten_text_card')"><ht key="general.add_note" /></span>
+                </view:>
+            </field-edit-row>
+
             </content:>
         </field-edit-table>
-
-        <br />
-        <div id="firb-notes">
-
-            <if test="&this.has_notes?">
-                <repeat with="&this.notes">
-                    <div class='firb-note'>
-                        <textarea rows="4" cols="50" name='vt_handwritten_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                        <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
-                    </div>
-                </repeat>
-            </if>
-        </div>
-
-        <span id="firb-add-note" onclick="textPageAddNote('vt_handwritten_text_card')">Add a note</span>
 
         <div param="actions">
             <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel with="&VtHandwrittenTextCard" />
@@ -173,23 +174,24 @@
             <field-edit-row field="transc_handwritten" type="VtHandwrittenTextCard" selectoptions="&vt_handwritten_textcards_select" param="transc_handwritten" />
             <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
 
+            <field-edit-row field="note">
+                <view:>
+                    <div id="firb-notes">
+                        <if test="&this_parent.has_notes?">
+                            <repeat with="&this_parent.notes">
+                                <div class='firb-note'>
+                                    <textarea rows="4" cols="50" name='vt_printed_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
+                                    <span class='firb-remove-note'><%= I18n.t("general.remove_note") %></span>
+                                </div>
+                            </repeat>
+                        </if>
+                    </div>
+                    <span id="firb-add-note" onclick="textPageAddNote('vt_printed_text_card')"><ht key="general.add_note" /></span>
+                </view:>
+            </field-edit-row>
+
             </content:>
         </field-edit-table>
-
-        <br />
-        <div id="firb-notes">
-
-            <if test="&this.has_notes?">
-                <repeat with="&this.notes">
-                    <div class='firb-note'>
-                        <textarea rows="4" cols="50" name='vt_printed_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                        <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
-                    </div>
-                </repeat>
-            </if>
-        </div>
-
-        <span id="firb-add-note" onclick="textPageAddNote('vt_printed_text_card')">Add a note</span>
 
         <div param="actions">
             <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel with="&VtPrintedTextCard" />

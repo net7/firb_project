@@ -40,14 +40,14 @@ class VtHandwrittenTextCard < TextCard
   # Bibliografia
   multi_property :bibliography_items, N::TALIA.hasBibliography, :type => TaliaCore::ActiveSource
   
-  fields do
-    uri :string
-  end
-
   # Lettera a cui appartiene
   manual_property :letter
   before_validation :validate_letter
   after_save :save_letter
+
+  fields do
+    uri :string
+  end
 
   def letter
     @letter ||= fetch_letter
