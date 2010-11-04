@@ -6,7 +6,7 @@
     	</a>
     </edit-link:>
 	<content-body: >
-		<field-list fields="title, introduction" />
+		<field-list fields="title, introduction, date" />
 		<br />
         <h4><ht key="#{model.name.pluralize.tableize}.belonging_to_this_letter" />:</h4>
         <p>(<ht key="hobo.drag_drop_to_order" />)</p>

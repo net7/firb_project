@@ -79,7 +79,7 @@
 <def tag="form" for="VtLetter">
   <form merge param="default">
     <error-messages param/>
-
+ <%= javascript_include_tag 'calendarDateInput.js' %>
     <field-edit-table>
         <content:>
 
@@ -88,8 +88,10 @@
             <field-edit-row field="letter_number" />
             <field-edit-row field="printed_collocation" />
             <field-edit-row field="handwritten_collocation" />
-            <field-edit-row field="date_string" />
-
+ 
+        <field-row fieldname="date">
+          <view:><script>DateInput('date', true, 'YYYY-MM-DD' <%= ",'#{this.date.to_s}'" unless this.date.nil? %> )</script></view:>
+        </field-row>
         </content:>
     </field-edit-table>
 
