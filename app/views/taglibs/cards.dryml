@@ -96,6 +96,12 @@
 
         <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
     
+        <if test="&this.letter.blank?">
+            <ht key="generic_field_names.no_letter" />
+        </if>
+        <else>
+            <ht key="generic_field_names.letter" />: <a with="&this.letter"><%= this.name %></a>
+        </else>
         <p><anastatica-link /></p>
         <p><xml-file-links /></p>
 
@@ -106,6 +112,13 @@
   <card class="firb-text-card" param="default" merge>
 
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
+
+    <if test="&this.letter.blank?">
+        <ht key="generic_field_names.no_letter" />
+    </if>
+    <else>
+        <ht key="generic_field_names.letter" />: <a with="&this.letter"><%= this.name %></a>
+    </else>
 
     <p><anastatica-link /></p>
     <p><xml-file-links /></p>
