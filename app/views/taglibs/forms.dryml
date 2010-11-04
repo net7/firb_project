@@ -76,6 +76,26 @@
     </form>
 </def>
 
+<def tag="form" for="VtLetter">
+  <form merge param="default">
+    <error-messages param/>
+
+    <field-edit-table>
+        <content:>
+
+            <field-edit-row field="title" />
+            <field-edit-row field="introduction" />
+            <field-edit-row field="letter_number" />
+
+        </content:>
+    </field-edit-table>
+
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save'}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
 <def tag="form" for="VtHandwrittenTextCard">
     <form merge param="default" multipart="true">
         <error-messages param/>
@@ -150,8 +170,6 @@
 
             <field-edit-row field="transc_handwritten" type="VtHandwrittenTextCard" selectoptions="&vt_handwritten_textcards_select" param="transc_handwritten" />
     
-            <field-edit-row field="page_position" />
-            <field-edit-row field="letter_number" />
             <field-edit-row field="collocation" />
 
             <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
@@ -313,26 +331,6 @@
     <field-list fields="title" param/>
     <div param="actions">
       <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-<def tag="form" for="VtLetter">
-  <form merge param="default">
-    <error-messages param/>
-
-    <field-edit-table>
-        <content:>
-
-            <field-edit-row field="title" />
-            <field-edit-row field="introduction" />
-            <field-edit-row field="letter_number" />
-
-        </content:>
-    </field-edit-table>
-
-    <div param="actions">
-      <submit label="#{ht 'talia_collections.actions.save'}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

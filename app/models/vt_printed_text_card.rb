@@ -14,9 +14,6 @@ class VtPrintedTextCard < TextCard
   # Numero pagina
   rdf_property :page_position, N::TALIA.position
   
-  # Numero lettera
-  rdf_property :letter_number, N::TALIA.letter_number
-
   # Collocazione
   rdf_property :collocation, N::TALIA.provenance
   
