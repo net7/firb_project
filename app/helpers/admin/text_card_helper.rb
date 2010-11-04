@@ -64,6 +64,11 @@ module Admin::TextCardHelper
     foo.sort
   end
 
+  # Limits the dropdown menu to TaliaCore::Collection items
+  def vt_letters_select
+    VtLetter.all.collect! { |a| ["#{a.title}", a.uri.to_s]}.sort
+  end
+
   # Placeholder for something more appropriate: something which gathers the real 
   # types from an ontology or some db thingie
   def fi_character_qualities

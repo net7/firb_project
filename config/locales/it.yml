@@ -263,6 +263,7 @@ it:
         qualities_age: "Qualità: età"
         qualities_gender: "Qualità: sesso"
         qualities_profession: "Qualità: professione"
+        letter: "Lettera"
         
     text_card:
         model_name: "Scheda di testo"

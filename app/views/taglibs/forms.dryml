@@ -85,6 +85,8 @@
 
             <field-edit-row field="title" />
 
+            <field-edit-row field="letter" type="TaliaCollection" selectoptions="&vt_letters_select" />
+
             <field-row field="transcription_file">
                 <view:><input type="file" name="vt_handwritten_text_card[file]"/></view:>
             </field-row>
@@ -137,6 +139,8 @@
             <content:>
 
             <field-edit-row field="title" />
+
+            <field-edit-row field="letter" type="TaliaCollection" selectoptions="&vt_letters_select" />
 
             <field-row field="transcription_file">
                 <view:><input type="file" name="vt_printed_text_card[file]"/></view:>
@@ -334,18 +338,6 @@
             <view:><select-menu options="&parades_hash" id="parade" name="fi_procession[parade]" /></view:>
         </field-row>
 	</unless>
-
-    <div param="actions">
-      <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-<def tag="form" for="VtLetter">
-  <form merge param="default">
-    <error-messages param/>
-
-    <field-list fields="title, introduction, letter_number" param/>
 
     <div param="actions">
       <submit label="#{ht 'talia_collections.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
