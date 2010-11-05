@@ -753,10 +753,11 @@
     %>
 </def>
 
-<def tag="notes-edit">
+<def tag="notes-edit" attrs="withname,withzoneimage">
     <% puts "1111111111111" + this.inspect + " :: " + this_parent.inspect %>
     <%= render :partial => 'shared/notes', 
                :locals => { :main_name => (@full_type_name || controller.my_name) , :param_name => 'notes', :options => image_zone_select_uri,
+                            :with_name => (withname || false), :with_zone_image => (withzoneimage || false), 
                             :existing => (this.has_notes?) ? this.notes.collect {|z| [ z.name, z.to_s ] } : [] } 
     %>
 </def>
