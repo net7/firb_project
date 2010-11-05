@@ -41,29 +41,13 @@
                 <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica" />
 
                 <field-edit-row field="parafrasi" />
-    
-                <field-row fieldname="note">
-                    <view:>
-                        <div id="firb-notes">
-                            <if test="&this.has_notes?">
-                                <repeat with="&this_parent.notes">
-                                    <div class='firb-note'>
-                                        <textarea rows="4" cols="50" name='pi_text_card[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                                        <span class='firb-remove-note'><%= I18n.t("general.remove_note") %></span>
-                                    </div>
-                                </repeat>
-                            </if>
-                        </div>
-                        <span id="firb-add-note" onclick="textPageAddNote('pi_text_card')"><ht key="general.add_note" /></span>
-                    </view:>
-                </field-row>
-        
+
                 <field-row field="image_zones">
                     <view:><image-zones-edit /></view:>
                 </field-row>
 
                 <field-row fieldname="note">
-                    <view:><notes-edit /></view:>
+                    <view:><notes-edit withname="true" withzoneimage="true"/></view:>
                 </field-row>
                 
                 <field-row field="non_illustrated_memory_depictions">

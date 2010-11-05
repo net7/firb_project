@@ -1,15 +1,16 @@
 class Note < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
+  extend RdfProperties
 
   singular_property :text_card, N::DCT.isPartOf
-  singular_property :content, N::TALIA.content
+  rdf_property :content, N::TALIA.content, :type => :text
+  rdf_property :name, N::TALIA.name, :type => :string
+  rdf_property :image_zone, N::TALIA.image_zone, :type => TaliaCore::ActiveSource
 
   fields do
     uri :string
   end
-
-  declare_attr_type :content, :text
 
   def self.create_note(content, text_card)
     n = Note.new(N::LOCAL + 'note/' + ImageElement.random_id)
