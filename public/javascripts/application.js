@@ -76,8 +76,6 @@ function populate_with_item(populate_ul, display_string, values_array) {
     var rand_id = "id_" + Math.floor(Math.random()*99999),
         markup = "";
 
-    // console.log("# Called pop with "+populate_ul+", "+display_string+" "+values_array+" id: "+rand_id);
-        
     markup += "<li id='"+rand_id+"'>";
     markup += "<span class='display_string'>"+display_string+"</span>";
 

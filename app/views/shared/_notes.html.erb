@@ -20,7 +20,7 @@
 
 <% if (with_zone_image) %>
     <%= I18n.t('general.note_image_zone') %>: <br />
-    <%= select_tag "#{ImageZone}[note_image_zone]", options_for_select(image_zone_select_uri), {:id => 'zone_image_id'} %>
+    <%= select_tag "#{ImageZone}[note_image_zone]", options_for_select(image_zone_select_uri), {:id => '', :class => 'image_zone_url'} %>
     <br /><br />
 <% end %>
 
@@ -46,7 +46,25 @@ function textPageAddNote(model_name) {
 }
 
 
+function add_note(id, field_name, uri, name, content, image_zone) {
+    var rand_id = "id_"+Math.floor(Math.random()*99999),
+        markup = "";
+        
+    markup += "<li id='"+rand_id+"'>";
+    markup += "<input type='text' name='"+field_name+"[name]' value='"+name+"'>";
+    markup += "<textarea rows='4' name='"+field_name+"[content]'>"+content+"</textarea>";
+    markup += "<input type='hidden' name='"+field_name+"[uri]' value='"+uri+"'>";
+    
+    var rem = 'remove_group("'+rand_id+'")';
+    markup += "<span class='remove_button' onClick='"+rem+"'>X</span>"
+    markup += "</li>";
 
+    $(id).insert({bottom: markup});
+    var foo = $$('.image_zone_url')[0].cloneNode(true);
+    $(rand_id).insert({top: foo});
+
+
+}
 (function() {
     var param_name = "<%= param_name %>",
         add_button_id = "<%= add_button_id %>",
@@ -55,16 +73,44 @@ function textPageAddNote(model_name) {
     
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
-        <% existing.each do |name, value|
-           field_name = "#{main_name}[#{param_name}][][uri]"
+        <% 
+            puts "UOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO "
+            puts existing.inspect
+            existing.each do |name, uri, content, image_zone|
+            
+            puts name +" -- "+uri+" ---- "+content+" ----- > "+image_zone.uri.to_s
+            image_zone = (image_zone.nil?) ? "" : image_zone.uri.to_s
+            
         %>
-            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+            add_note(populate_ul_id, "<%= "#{main_name}[#{param_name}][]" %>", "<%= uri %>", "<%= name %>", "<%= content %>", "<%= image_zone %>");
+            
+            $$('.image_zone_url')[0].writeAttribute("name", "<%= "#{main_name}[#{param_name}][]" %>[image_zone]");
+            for (var i = $$('.image_zone_url')[0].length - 1; i >= 0; i--){
+                if ($$('.image_zone_url')[0][i].value == "<%= image_zone %>") 
+                    $$('.image_zone_url')[0].selectedIndex = i;
+            };
+            $$('.image_zone_url')[0].removeClassName('image_zone_url');
+
+            // TODO : hide image_zone select if there's no need for it :| (with_image_zone)
+
         <% end %>
     });
     
     // Click on add button: populate our list with the selected item
     $(add_button_id).observe('click', function() {
         
+        add_note(populate_ul_id, 
+                "<%= "#{main_name}[#{param_name}][]" %>", 
+                'new_'+Math.floor(Math.random()*9999),
+                $('note_name').value,
+                $('note_content').value,
+                $$('.image_zone_url')[0][$$('.image_zone_url')[0].selectedIndex].value);
+
+        // .image_zone_url[0] is still the select we just added, select the right item, set the name, remove the class
+        $$('.image_zone_url')[0].selectedIndex = $$('.image_zone_url')[1].selectedIndex;
+        $$('.image_zone_url')[0].writeAttribute("name", "<%= "#{main_name}[#{param_name}][]" %>[image_zone]");
+        $$('.image_zone_url')[0].removeClassName('image_zone_url');
+        return;
         var n, display_string = "", v, hidden_hash = [];
 
         <% if (with_name) %>
@@ -74,7 +120,6 @@ function textPageAddNote(model_name) {
             display_string = v + ": ";
             hidden_hash.push({name: n, value: v});
         <% end %>
-
 
         <% if (with_zone_image) %>
             // Note image zone 
@@ -96,7 +141,8 @@ function textPageAddNote(model_name) {
         n = main_name+"["+param_name+"][][uri]";
         hidden_hash.push({name: n, value: ""});
         
-        populate_with_item(populate_ul_id, display_string, hidden_hash);
+        // add_note(populate_ul_id, display_string, hidden_hash);
+        // populate_with_item(populate_ul_id, display_string, hidden_hash);
     });
     
 })();

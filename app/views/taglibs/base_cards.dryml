@@ -757,7 +757,7 @@
     <%= render :partial => 'shared/notes', 
                :locals => { :main_name => (@full_type_name || controller.my_name) , :param_name => 'note', :options => image_zone_select_uri,
                             :with_name => (withname), :with_zone_image => (withzoneimage), 
-                            :existing => (this.has_notes?) ? this.notes.collect {|z| [ z.name.to_s + z.content.to_s, z.uri.to_s ] } : [] } 
+                            :existing => (this.has_notes?) ? this.notes.collect {|z| [z.name, z.uri.to_s, z.content, z.image_zone] } : [] } 
     %>
 </def>
 
