@@ -770,6 +770,10 @@ it:
         add: "Aggiungi"
         'true': "vero"
         'false': "falso"
+        notes: "Note"
+        note_name: "Nome di riferimento"
+        note_image_zone: "Zona di immagine"
+        note_content: "Contenuto della nota"
         add_note: "Aggiungi una nota"
         remove_note: "Cancella nota"
 

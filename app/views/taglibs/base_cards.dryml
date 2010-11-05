@@ -753,6 +753,14 @@
     %>
 </def>
 
+<def tag="notes-edit">
+    <% puts "1111111111111" + this.inspect + " :: " + this_parent.inspect %>
+    <%= render :partial => 'shared/notes', 
+               :locals => { :main_name => (@full_type_name || controller.my_name) , :param_name => 'notes', :options => image_zone_select_uri,
+                            :existing => (this.has_notes?) ? this.notes.collect {|z| [ z.name, z.to_s ] } : [] } 
+    %>
+</def>
+
 <def tag="firb-notes-edit">
     <div id="firb-notes">
         <repeat with="&@base_card.notes">
@@ -762,5 +770,5 @@
             </div>
         </repeat>
     </div>
-    <span id="firb-add-note" onclick="textPageAddNote('<%= @full_type_name %>')">Add a note</span>
+    <span id="firb-add-note" onclick="textPageAddNote('<%= @full_type_name %>')"><%= I18n.t("text_page.add_note") %></span>
 </def>

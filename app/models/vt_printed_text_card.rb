@@ -23,6 +23,8 @@ class VtPrintedTextCard < TextCard
   # Bibliografia
   multi_property :bibliography_items, N::TALIA.hasBibliography, :type => TaliaCore::ActiveSource
   
+  manual_property :notes
+
   # Lettera a cui appartiene
   manual_property :letter
   before_validation :validate_letter

@@ -1,0 +1,94 @@
+<%
+    # Parameters to pass in: 
+    # main_name: name of the model (eg: BibliographyItem)
+    # param_name: name of the field (eg: author)
+    # existing: hash of already existing items of this kind, to add right away
+    # options: options array to show (if nil no type will be displayed)
+    
+    populate_ul_id = param_name+"_list"
+    add_button_id = param_name+"_add"
+
+%>
+
+<ul id="<%= populate_ul_id %>"></ul>
+
+<%= I18n.t('general.note_name') %>: <input type='text' id='note_name'>
+<br /><br />
+
+<%= I18n.t('general.note_image_zone') %>: <br />
+<%= select_tag "#{ImageZone}[note_image_zone]", options_for_select(image_zone_select_uri), {:id => 'zone_image_id'} %>
+<br /><br />
+
+
+<%= I18n.t('general.note_content') %>:
+<textarea rows='4' cols='50' id='note_content'></textarea>
+<br />
+
+<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
+
+<script>
+
+/*
+// Adds dynamically a note to the bottom of the #firb-notes div, 
+// uses the same markup as in views/admin/text_cards/new.dryml
+// Used in that same dryml template
+// Fixme: Needs refactoring
+function textPageAddNote(model_name) {
+    var rand = Math.floor(Math.random()*9999),
+        markup = "<div class='firb-note'><textarea rows='4' cols='50' name='"+model_name+"[note][new_"+rand+"]'></textarea>"+
+            "<span class='firb-remove-note'><%= I18n.t('general.remove_note') %></span></div>";
+    $$('#firb-notes')[0].insert({bottom: markup});
+}
+
+*/
+
+(function() {
+    var param_name = "<%= param_name %>",
+        add_button_id = "<%= add_button_id %>",
+        populate_ul_id = "<%= populate_ul_id %>",
+        main_name = "<%= main_name %>";
+    
+    // Load all existing data as soon as the window is ready
+    Event.observe(window, 'load', function() {
+        <% existing.each do |name, value|
+           field_name = "#{main_name}[#{param_name}][][uri]"
+        %>
+            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+        <% end %>
+    });
+    
+    // Click on add button: populate our list with the selected item
+    $(add_button_id).observe('click', function() {
+        
+        var n, display_string, v, hidden_hash = [];
+
+        // Note name
+        v = $('note_name').value;
+        n = main_name+"["+param_name+"][][name]";
+        display_string = v;
+        hidden_hash.push({name: n, value: v});
+
+        // Note image zone 
+        foo = $('zone_image_id').options[$('zone_image_id').selectedIndex];
+        n = main_name+"["+param_name+"][][image_zone]";
+        v = foo.value;
+        display_string += " ("+ foo.text +")";
+        hidden_hash.push({name: n, value: v});
+
+        // Note content
+        v = $('note_content').value;
+        n = main_name+"["+param_name+"][][content]";
+        display_string += ": " + v;
+        hidden_hash.push({name: n, value: v});
+        
+        // Empty uri, must be last here to be the first element
+        // in the list
+        n = main_name+"["+param_name+"][][uri]";
+        hidden_hash.push({name: n, value: ""});
+        
+        populate_with_item(populate_ul_id, display_string, hidden_hash);
+    });
+    
+})();
+
+</script>

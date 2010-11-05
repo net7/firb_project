@@ -3,6 +3,8 @@ class TextCard < TaliaCore::Source
   extend RandomId
   extend RdfProperties
   include FileAttached
+
+  manual_property :note
   
   fields do
     uri :string
