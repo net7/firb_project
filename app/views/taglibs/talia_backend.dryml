@@ -19,9 +19,10 @@ first column, `label`, will contain the label, which can be translated using a
 key of the form "my_models.field". The second column, `view` will contain
 the value of the field, which will use the appropriate `field-value` tag.
 -->
-<def tag="field-row">
+<def tag="field-row" attrs="fieldname">
+    <% name = this_field.nil? ? fieldname : this_field %>
     <tr>
-        <th class="#{this_field}-label" param="label"><span class='field_label'><ht key="generic_field_names.#{this_field}" /></span></th>
+        <th class="#{this_field}-label" param="label"><span class='field_label'><ht key="generic_field_names.#{name}" /></span></th>
         <td class="#{this_field}-view" param="view"><talia-field-value /></td>
     </tr>
     <tr><td colspan="2" class="spacer"></td></tr>

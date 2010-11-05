@@ -267,7 +267,8 @@ it:
         no_letter: "Non appartiene ad alcuna lettera."
         introduction: "Cappello introduttivo"
         letter_number: "Numero della lettera"
-        date_string: "Data in formato umano"
+        date_string: "Data da visualizzare"
+        date: "Data"
         printed_collocation: "Collocazione dell'esemplare a stampa"
         handwritten_collocation: "Collocazione dell'esemplare manoscritto"
         
