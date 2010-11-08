@@ -47,7 +47,7 @@
                 </field-row>
 
                 <field-row fieldname="note">
-                    <view:><notes-edit withname="true" withzoneimage="true"/></view:>
+                    <view:><notes-edit /></view:>
                 </field-row>
                 
                 <field-row field="non_illustrated_memory_depictions">
