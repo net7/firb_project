@@ -543,8 +543,8 @@ it:
         count: "Ci sono %{count} schede Carro"
         back_to_index_link: "Torna all'indice delle schede Carro"
         messages:
+            create_success: "La scheda Carro è stata creata."
             update_success: "La scheda Carro modificata è stata salvata."
-            new_success: "La scheda Carro è stata creata."
             
     fi_character_cards:
         actions:

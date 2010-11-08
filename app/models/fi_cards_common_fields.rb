@@ -76,5 +76,9 @@ module FiCardsCommonFields
     end
     Note.replace_notes(value, self)
   end
+
+  def has_notes?
+    !new_record? && (notes.count > 0)
+  end
   
 end

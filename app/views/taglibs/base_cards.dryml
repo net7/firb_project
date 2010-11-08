@@ -47,9 +47,11 @@
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row field="notes" param="notes" >
-                    <view:><firb-notes-edit /></view:>
+
+                <field-row fieldname="note">
+                    <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
+
             </content:>
         </card-form-common>
     </form>
@@ -87,8 +89,8 @@
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row field="notes" param="notes" >
-                    <view:><firb-notes-edit /></view:>
+                <field-row fieldname="note">
+                    <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
                 <field-row field="image_components">
                     <view:><image-components-edit /></view:>
@@ -759,16 +761,4 @@
                             :with_name => (withname), :with_zone_image => (withzoneimage), 
                             :existing => (this.has_notes?) ? this.notes.collect {|z| [z.name, z.uri.to_s, z.content, z.image_zone] } : [] } 
     %>
-</def>
-
-<def tag="firb-notes-edit">
-    <div id="firb-notes">
-        <repeat with="&@base_card.notes">
-            <div class='firb-note'>
-                <textarea rows="4" cols="50" name='<%= @full_type_name %>[note][<%= this.uri %>]'><%= "#{this.content}" %></textarea>
-                <span class='firb-remove-note'><%= I18n.t("text_page.remove_note") %></span>
-            </div>
-        </repeat>
-    </div>
-    <span id="firb-add-note" onclick="textPageAddNote('<%= @full_type_name %>')"><%= I18n.t("text_page.add_note") %></span>
 </def>
