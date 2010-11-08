@@ -375,5 +375,11 @@ body.edit-page div.firb-image-edit-container div.firb-image-zones {
     padding: 5px;
     border-radius: 5px;
 }
-.firb-image-edit-container {
+
+ul#note_list li {
+    margin: 0px 0px 30px 0px;
+    padding: 5px;
+    list-style: none;
+    border: 1px dashed #666;
 }
+
