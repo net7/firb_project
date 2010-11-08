@@ -124,8 +124,8 @@
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row field="notes" param="notes" >
-                    <view:><firb-notes-edit /></view:>
+                <field-row fieldname="note">
+                    <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
                 <field-row field="image_components">
                     <view:><image-components-edit /></view:>
@@ -159,8 +159,8 @@
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row field="notes" param="notes" >
-                    <view:><firb-notes-edit /></view:>
+                <field-row fieldname="note">
+                    <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
                 <field-row field="image_components">
                     <view:><image-components-edit /></view:>
@@ -194,8 +194,8 @@
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row field="notes" param="notes" >
-                    <view:><firb-notes-edit /></view:>
+                <field-row fieldname="note">
+                    <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
                 <field-row field="image_components">
                     <view:><image-components-edit /></view:>
@@ -229,8 +229,8 @@
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row field="notes" param="notes" >
-                    <view:><firb-notes-edit /></view:>
+                <field-row fieldname="note">
+                    <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
                 <field-row field="image_components">
                     <view:><image-components-edit /></view:>
@@ -264,8 +264,8 @@
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><bibliography-items-edit /></view:>
                 </field-row>
-                <field-row field="notes" param="notes" >
-                    <view:><firb-notes-edit /></view:>
+                <field-row fieldname="note">
+                    <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
                 <field-row field="image_components">
                     <view:><image-components-edit /></view:>
