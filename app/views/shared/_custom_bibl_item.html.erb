@@ -1,0 +1,110 @@
+<%
+    # Parameters to pass in: 
+    # main_name: name of the model (eg: BibliographyItem)
+    # param_name: name of the field (eg: author)
+    # existing: hash of already existing items of this kind, to add right away
+    # options: options array to show (if nil no type will be displayed)
+
+    # Used by dryml tag image-components-edit
+    
+    populate_ul_id = param_name+"_list"
+    add_button_id = param_name+"_add"
+
+%>
+
+<ul id="<%= populate_ul_id %>"></ul>
+
+
+<% if !options.nil? %>
+    <%= I18n.t('bibliography_items.model_name') %>: 
+    <%= select_tag "#{CustomBibliographyItem}[bibliography_item]", options_for_select(options), {:id => 'bibliography_item'} %>
+    <a href='#' class='show_bibliography_customization'><%= I18n.t('bibliography_items.customize') %></a>
+    <br />
+<% end %>
+
+<div id='bibliography_item_customization'>
+    <%= I18n.t('bibliography_items.ref_name') %>: <input type='text' id='bibliography_item_name'>
+    <br />
+
+    <%= I18n.t('bibliography_items.pages') %>: 
+    <input type='text' id='bibliography_item_pages'>
+</div>
+
+<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
+
+<script>
+
+    document.observe('click', function(e) {
+        // Toggle customization panel
+        if (e.element().match('.show_bibliography_customization')) {
+            $(bibliography_item_customization).toggle();
+            e.stop();
+        }
+    });
+
+    $(bibliography_item_customization).hide();
+
+
+(function() {
+    var param_name = "<%= param_name %>",
+        add_button_id = "<%= add_button_id %>",
+        populate_ul_id = "<%= populate_ul_id %>",
+        main_name = "<%= main_name %>";
+    
+    // Load all existing data as soon as the window is ready
+    Event.observe(window, 'load', function() {
+        <% existing.each do |name, value|
+           field_name = "#{main_name}[#{param_name}][][uri]"
+        %>
+            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+        <% end %>
+    });
+    
+    // Click on add button: populate our list with the selected item
+    $(add_button_id).observe('click', function() {
+
+        <% if options.nil? %>
+            return;
+        <% end %>
+        
+        var n, display_string="", v, hidden_hash = [];
+
+        // Bibliography Item name
+        n = main_name+"["+param_name+"][][name]";
+        v = $('bibliography_item_name').value;
+        if (v != "") 
+            display_string = v+": ";
+        hidden_hash.push({name: n, value: v});
+
+        <% if !options.nil? %>
+            // Bibliography Item
+            foo = $('bibliography_item').options[$('bibliography_item').selectedIndex];
+            v = foo.value;
+            n = main_name+"["+param_name+"][][bibliography_item]";
+            display_string += " "+foo.innerHTML+" ";
+            hidden_hash.push({name: n, value: v});
+        <% end %>
+
+        // Pages
+        n = main_name+"["+param_name+"][][pages]";
+        v = $('bibliography_item_pages').value;
+        if (v != "")
+            display_string += v;
+        hidden_hash.push({name: n, value: v});
+        
+        // Empty uri, must be last here to be the first element
+        // in the list
+        n = main_name+"["+param_name+"][][uri]";
+        hidden_hash.push({name: n, value: ""});
+        
+        populate_with_item(populate_ul_id, display_string, hidden_hash);
+
+        $(bibliography_item_customization).hide();
+        $('bibliography_item_name').value = '';
+        $('bibliography_item_pages').value = '';
+        
+    });
+    
+})();
+
+</script>

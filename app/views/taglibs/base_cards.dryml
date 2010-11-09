@@ -355,6 +355,9 @@
                 <field-row field="image_components">
                     <view:><image-components-edit selectoptions="&pi_memory_depiction_types" /></view:>
                 </field-row>
+                <field-row field="bibliography_items">
+                    <view:><custom-bibl-items-edit selectoptions="&pi_memory_depiction_types" /></view:>
+                </field-row>
             </after-bibliography:>
         </card-form-common-pi>
     </form>
@@ -736,6 +739,14 @@
     <%= render :partial => 'shared/select', 
                :locals => { :main_name => (@full_type_name || controller.my_name) , :param_name => 'image_zones', :options => image_zone_select_uri, :autocomplete_url => '',
                             :existing => this_parent.image_zones.collect {|z| [ z.name, z.uri.to_s ] } } 
+    %>
+</def>
+
+<def tag="custom-bibl-items-edit">
+    <%= 
+        render :partial => 'shared/custom_bibl_item', 
+            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select,
+            :existing => this_parent.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
     %>
 </def>
 

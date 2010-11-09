@@ -359,6 +359,7 @@ it:
             heading: "Modifica %{name}"
         new:
             heading: "Nuovo elemento bibliografico"
+        customize: "Personalizza..."
         succesfully_created: "L'elemento bibliografico è stato creato con successo"
         error_creating: "ERRORE: ci sono stati dei problemi e l'elemento bibliografico non è stato creato"
         ref_name: "Nome di riferimento"
