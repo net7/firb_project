@@ -30,6 +30,21 @@ class IllustrationCard < BaseCard
 
   # TODO: Hacks superclass internal behaviour
   def self.split_attribute_hash(options)
+    unless(options[:bibliography_items].blank?)
+      options[:bibliography_items].collect! do |bibl|
+        if(bibl.is_a?(CustomBibliographyItem))
+          bibl
+        elsif(bibl.is_a?(BibliographyItem))
+          bibl
+        elsif(bibl[:uri].blank?)
+          new_custom_bibl = CustomBibliographyItem.new(bibl)
+          new_custom_bibl.save!
+          new_custom_bibl
+        else
+          CustomBibliographyItem.find(bibl[:uri])
+        end
+      end
+    end
     unless(options[:image_components].blank?)
       options[:image_components].collect! do |comp_options|
         if(comp_options.is_a?(ImageComponent))

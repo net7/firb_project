@@ -42,6 +42,25 @@ module Admin::TextCardHelper
     BibliographyItem.all.collect { |b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] }.sort
   end
 
+  def custom_bibliography_select
+    CustomBibliographyItem.all.collect { |b|
+        name = (b.name.nil?) ? "" : b.name+": "
+        ["#{name} (#{b.bibliography_item.author}: #{b.bibliography_item.title}) #{b.pages}", b.uri.to_s] 
+    }.sort
+  end
+
+  def custom_bibliography_select_for(source)
+    # TODO: this should expire sometime soon, when we deploy the new bibl-store
+    source.bibliography_items.collect do |b|
+      if (b.is_a?(BibliographyItem))
+        ["#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s] 
+      elsif (b.is_a?(CustomBibliographyItem))
+        name = (b.name.nil?) ? "" : b.name+": "
+        ["#{name} (#{b.bibliography_item.author}: #{b.bibliography_item.title}) #{b.pages}", b.uri.to_s] 
+      end
+    end 
+  end
+
   def iconclass_select
     IconclassTerm.all.collect { |ic| [ "#{ic.term}", ic.uri.to_s ] }.sort
   end

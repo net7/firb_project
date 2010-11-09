@@ -4,33 +4,44 @@
     # param_name: name of the field (eg: author)
     # existing: hash of already existing items of this kind, to add right away
     # options: options array to show (if nil no type will be displayed)
+    # custom_options: option array to show (containing custom bibl items)
 
     # Used by dryml tag image-components-edit
     
     populate_ul_id = param_name+"_list"
     add_button_id = param_name+"_add"
+    add_existing_button_id = param_name+"_add_existing"
 
 %>
 
 <ul id="<%= populate_ul_id %>"></ul>
 
+<div style='border: 1px dashed #666;  margin-top: 20px; padding: 5px;'>
+    <% if !options.nil? %>
+        <%= I18n.t('bibliography_items.model_name') %>: <br />
+        <%= select_tag "#{CustomBibliographyItem}[bibliography_item]", options_for_select(options), {:id => 'bibliography_item'} %>
+        <a href='#' class='show_bibliography_customization'><%= I18n.t('bibliography_items.customize') %></a>
+        <br />
+    <% end %>
 
-<% if !options.nil? %>
-    <%= I18n.t('bibliography_items.model_name') %>: 
-    <%= select_tag "#{CustomBibliographyItem}[bibliography_item]", options_for_select(options), {:id => 'bibliography_item'} %>
-    <a href='#' class='show_bibliography_customization'><%= I18n.t('bibliography_items.customize') %></a>
-    <br />
+    <div id='bibliography_item_customization'>
+        <%= I18n.t('bibliography_items.ref_name') %>: <input type='text' id='bibliography_item_name'>
+        <br />
+
+        <%= I18n.t('bibliography_items.pages') %>: 
+        <input type='text' id='bibliography_item_pages'>
+    </div>
+
+    <input type='button' class='button' value="<%= I18n.t('general.add_new') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
+</div>
+<% if !custom_options.nil? %>
+    <div style='border: 1px dashed #666; margin-top: 20px; padding: 5px'>
+        <%= I18n.t('bibliography_items.custom_bibl_items') %>: <br />
+        <%= select_tag "#{CustomBibliographyItem}[custom_bibliography_item]", options_for_select(custom_options), {:id => 'custom_bibliography_item'} %>
+        <br /><input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_existing_button_id %>' />
+    </div>
 <% end %>
 
-<div id='bibliography_item_customization'>
-    <%= I18n.t('bibliography_items.ref_name') %>: <input type='text' id='bibliography_item_name'>
-    <br />
-
-    <%= I18n.t('bibliography_items.pages') %>: 
-    <input type='text' id='bibliography_item_pages'>
-</div>
-
-<input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 
 <script>
 
@@ -44,7 +55,6 @@
 
     $(bibliography_item_customization).hide();
 
-
 (function() {
     var param_name = "<%= param_name %>",
         add_button_id = "<%= add_button_id %>",
@@ -56,7 +66,7 @@
         <% existing.each do |name, value|
            field_name = "#{main_name}[#{param_name}][][uri]"
         %>
-            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+            populate_with_item(populate_ul_id, "<%= name %>", [{name: "<%= field_name %>", value: "<%= value %>"}]);
         <% end %>
     });
     

@@ -650,7 +650,8 @@
             <field-edit-row field="completed" param="completed"/>
             <field-edit-row field="description" param="description"/>
             <field-edit-row field="study_notes" param="studynotes" />
-            <field-edit-row field="bibliography_items" param="bibliography" />
+            <!-- <field-edit-row field="bibliography_items" param="bibliography" /> -->
+            <div param="bibliography"> Ailo ? </div>
         </content:>
     </card-form-common>
 </def>
@@ -745,16 +746,17 @@
 <def tag="custom-bibl-items-edit">
     <%= 
         render :partial => 'shared/custom_bibl_item', 
-            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select,
-            :existing => this_parent.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
+            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items',
+                :options => bibliography_select, :custom_options => custom_bibliography_select,
+                :existing => custom_bibliography_select_for(this_parent) }
     %>
 </def>
 
 <def tag="bibliography-items-edit">
     <%= 
         render :partial => 'shared/select', 
-            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select,
-            :existing => this_parent.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
+            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select, 
+                :existing => this_parent.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
     %>
 </def>
 

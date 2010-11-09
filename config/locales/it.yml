@@ -360,6 +360,7 @@ it:
         new:
             heading: "Nuovo elemento bibliografico"
         customize: "Personalizza..."
+        custom_bibl_items: "Già personalizzati"
         succesfully_created: "L'elemento bibliografico è stato creato con successo"
         error_creating: "ERRORE: ci sono stati dei problemi e l'elemento bibliografico non è stato creato"
         ref_name: "Nome di riferimento"
@@ -458,7 +459,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
             update_success: "La scheda illustrazione è stata aggiornata e salvata."
-            new_success: "La scheda illustrazione è stata creata."
+            create_success: "La scheda illustrazione è stata creata."
         actions:
             create: "Salva"
             new: "Crea una nuova scheda illustrazione"
@@ -769,6 +770,7 @@ it:
     general:
         cancel: "Annulla"
         add: "Aggiungi"
+        add_new: "Aggiungi nuovo elemento"
         'true': "vero"
         'false': "falso"
         notes: "Note"
