@@ -355,9 +355,11 @@
                 <field-row field="image_components">
                     <view:><image-components-edit selectoptions="&pi_memory_depiction_types" /></view:>
                 </field-row>
+                <!-- FIXME TODO remove me  ... im in the common-pi tag
                 <field-row field="bibliography_items">
-                    <view:><custom-bibl-items-edit selectoptions="&pi_memory_depiction_types" /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
+                -->
             </after-bibliography:>
         </card-form-common-pi>
     </form>
@@ -650,8 +652,14 @@
             <field-edit-row field="completed" param="completed"/>
             <field-edit-row field="description" param="description"/>
             <field-edit-row field="study_notes" param="studynotes" />
+            <field-edit-row field="bibliography_items" param="bibliography">
+                <view:><custom-bibl-items-edit /></view:>
+            </field-edit-row>
+            
+            <!-- TODO FIXME DEBUG OHMAGAD: remove this or remove all the after-bibliography thingies.. :| -->
             <!-- <field-edit-row field="bibliography_items" param="bibliography" /> -->
-            <div param="bibliography"> Ailo ? </div>
+            <!-- ><div param="bibliography"></div> -->
+
         </content:>
     </card-form-common>
 </def>

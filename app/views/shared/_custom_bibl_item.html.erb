@@ -34,6 +34,7 @@
 
     <input type='button' class='button' value="<%= I18n.t('general.add_new') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 </div>
+
 <% if !custom_options.nil? %>
     <div style='border: 1px dashed #666; margin-top: 20px; padding: 5px'>
         <%= I18n.t('bibliography_items.custom_bibl_items') %>: <br />
@@ -58,6 +59,7 @@
 (function() {
     var param_name = "<%= param_name %>",
         add_button_id = "<%= add_button_id %>",
+        add_existing_button_id = "<%= add_existing_button_id %>",
         populate_ul_id = "<%= populate_ul_id %>",
         main_name = "<%= main_name %>";
     
@@ -68,6 +70,22 @@
         %>
             populate_with_item(populate_ul_id, "<%= name %>", [{name: "<%= field_name %>", value: "<%= value %>"}]);
         <% end %>
+    });
+
+    $(add_existing_button_id).observe('click', function() {
+        <% if custom_options.nil? %>
+            return;
+        <% end %>
+        var n, display_string="", v, hidden_hash = [];
+
+        // Bibliography Item
+        foo = $('custom_bibliography_item').options[$('custom_bibliography_item').selectedIndex];
+        v = foo.value;
+        n = main_name+"["+param_name+"][][uri]";
+        display_string = foo.innerHTML;
+        hidden_hash.push({name: n, value: v});
+        populate_with_item(populate_ul_id, display_string, hidden_hash);
+
     });
     
     // Click on add button: populate our list with the selected item
@@ -86,14 +104,12 @@
             display_string = v+": ";
         hidden_hash.push({name: n, value: v});
 
-        <% if !options.nil? %>
-            // Bibliography Item
-            foo = $('bibliography_item').options[$('bibliography_item').selectedIndex];
-            v = foo.value;
-            n = main_name+"["+param_name+"][][bibliography_item]";
-            display_string += " "+foo.innerHTML+" ";
-            hidden_hash.push({name: n, value: v});
-        <% end %>
+        // Bibliography Item
+        foo = $('bibliography_item').options[$('bibliography_item').selectedIndex];
+        v = foo.value;
+        n = main_name+"["+param_name+"][][bibliography_item]";
+        display_string += " "+foo.innerHTML+" ";
+        hidden_hash.push({name: n, value: v});
 
         // Pages
         n = main_name+"["+param_name+"][][pages]";

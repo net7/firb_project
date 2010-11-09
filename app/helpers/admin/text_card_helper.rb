@@ -53,7 +53,7 @@ module Admin::TextCardHelper
     # TODO: this should expire sometime soon, when we deploy the new bibl-store
     source.bibliography_items.collect do |b|
       if (b.is_a?(BibliographyItem))
-        ["#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s] 
+        ["[[ CANCELLAMI ]] #{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s] 
       elsif (b.is_a?(CustomBibliographyItem))
         name = (b.name.nil?) ? "" : b.name+": "
         ["#{name} (#{b.bibliography_item.author}: #{b.bibliography_item.title}) #{b.pages}", b.uri.to_s] 
