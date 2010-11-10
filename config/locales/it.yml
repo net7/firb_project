@@ -386,8 +386,8 @@ it:
         count: "Ci sono %{count} schede immagine di memoria"
         back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
-            update_success: "La Parata modificata è stata salvata."
-            new_success: "La Parata è stata creata."
+            update_success: "La scheda di immagine di memoria modificata è stata salvata."
+            new_success: "La scheda di immagine di memoria è stata creata."
         collection:
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:

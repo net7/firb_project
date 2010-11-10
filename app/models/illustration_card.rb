@@ -34,13 +34,16 @@ class IllustrationCard < BaseCard
       options[:bibliography_items].collect! do |bibl|
         if(bibl.is_a?(CustomBibliographyItem))
           bibl
-        elsif(bibl.is_a?(BibliographyItem))
+        elsif (bibl.is_a?(BibliographyItem))
           bibl
-        elsif(bibl[:uri].blank?)
+        elsif (bibl[:uri].blank?)
           new_custom_bibl = CustomBibliographyItem.new(bibl)
           new_custom_bibl.save!
           new_custom_bibl
-        else
+        # TODO: this shouldnt be needed when we deploy the new bibl-store
+        elsif (BibliographyItem.exists?(bibl[:uri]))
+          BibliographyItem.find(bibl[:uri])
+        elsif (CustomBibliographyItem.exists?(bibl[:uri]))
           CustomBibliographyItem.find(bibl[:uri])
         end
       end
