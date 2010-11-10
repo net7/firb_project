@@ -771,8 +771,9 @@
 <def tag="iconclass-terms-edit">
     <%= 
         render :partial => 'shared/autocompleter',
-        :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'iconclass_terms', :autocomplete_url => url_for(:controller => 'iconclass_terms',
-        :action => :autocomplete), :existing => this_parent.iconclass_terms.collect {|ic| [ this, ic.uri.to_s ]} }
+        :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'iconclass_terms', 
+            :autocomplete_url => url_for(:controller => 'iconclass_terms', :action => :autocomplete), 
+            :existing => this_parent.iconclass_terms.collect {|ic| [ "#{ic.pref_label} #{ic.name}", ic.uri.to_s ]} }
     %>
 </def>
 

@@ -65,13 +65,13 @@
     
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
-        <% existing.each do |name, value|
-           field_name = "#{main_name}[#{param_name}][][uri]"
-        %>
-            populate_with_item(populate_ul_id, "<%= name %>", [{name: "<%= field_name %>", value: "<%= value %>"}]);
+        <% existing.each do |name, value| %>
+            populate_with_item(populate_ul_id, "<%= name %>", [{name: "<%= "#{main_name}[#{param_name}][][uri]" %>", value: "<%= value %>"}]);
         <% end %>
     });
 
+    // Click on add existing button: just add the string and and hidden field with
+    // the given URI
     $(add_existing_button_id).observe('click', function() {
         <% if custom_options.nil? %>
             return;
