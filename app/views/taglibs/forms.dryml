@@ -116,7 +116,7 @@
             <field-edit-row field="autography" />
 
             <field-row field="bibliography_items" param="bibliography_items" >
-                <view:><bibliography-items-edit /></view:>
+                <view:><custom-bibl-items-edit /></view:>
             </field-row>
 
             <field-row fieldname="note">
@@ -178,7 +178,7 @@
             <field-edit-row field="page_position" />
 
             <field-row field="bibliography_items" param="bibliography" >
-                <view:><bibliography-items-edit /></view:>
+                <view:><custom-bibl-items-edit /></view:>
             </field-row>
 
             </content:>
@@ -237,7 +237,7 @@
                 </field-row>
 
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
             </content:>
         </card-form-common>

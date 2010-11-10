@@ -14,7 +14,6 @@ class TextCard < TaliaCore::Source
   
   # Creates a page initialazing it with a paraphrase and anastatica_page id
   def self.create_card(options)
-    options.delete(:custom_bibliography_item)
     new_url =  (N::LOCAL + 'text_card/' + random_id).to_s
     options[:uri] = new_url
     self.new(options) # Check if it attaches :image_zone and :anastatica
