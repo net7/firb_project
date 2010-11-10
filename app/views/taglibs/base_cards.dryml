@@ -45,7 +45,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
 
                 <field-row fieldname="note">
@@ -87,7 +87,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
                 <field-row fieldname="note">
                     <view:><notes-edit withzoneimage='true' withname='true' /></view:>
@@ -122,7 +122,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
                 <field-row fieldname="note">
                     <view:><notes-edit withzoneimage='true' withname='true' /></view:>
@@ -157,7 +157,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
                 <field-row fieldname="note">
                     <view:><notes-edit withzoneimage='true' withname='true' /></view:>
@@ -192,7 +192,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
                 <field-row fieldname="note">
                     <view:><notes-edit withzoneimage='true' withname='true' /></view:>
@@ -227,7 +227,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
                 <field-row fieldname="note">
                     <view:><notes-edit withzoneimage='true' withname='true' /></view:>
@@ -262,7 +262,7 @@
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
-                    <view:><bibliography-items-edit /></view:>
+                    <view:><custom-bibl-items-edit /></view:>
                 </field-row>
                 <field-row fieldname="note">
                     <view:><notes-edit withzoneimage='true' withname='true' /></view:>
@@ -355,11 +355,6 @@
                 <field-row field="image_components">
                     <view:><image-components-edit selectoptions="&pi_memory_depiction_types" /></view:>
                 </field-row>
-                <!-- FIXME TODO remove me  ... im in the common-pi tag
-                <field-row field="bibliography_items">
-                    <view:><custom-bibl-items-edit /></view:>
-                </field-row>
-                -->
             </after-bibliography:>
         </card-form-common-pi>
     </form>
@@ -655,11 +650,6 @@
             <field-edit-row field="bibliography_items" param="bibliography">
                 <view:><custom-bibl-items-edit /></view:>
             </field-edit-row>
-            
-            <!-- TODO FIXME DEBUG OHMAGAD: remove this or remove all the after-bibliography thingies.. :| -->
-            <!-- <field-edit-row field="bibliography_items" param="bibliography" /> -->
-            <!-- ><div param="bibliography"></div> -->
-
         </content:>
     </card-form-common>
 </def>
@@ -757,15 +747,6 @@
             :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items',
                 :options => bibliography_select, :custom_options => custom_bibliography_select,
                 :existing => custom_bibliography_select_for(this_parent) }
-    %>
-</def>
-
-<!-- TODO this shouldnt be needed anymore when we deploy the new bibl-store -->
-<def tag="bibliography-items-edit">
-    <%= 
-        render :partial => 'shared/select', 
-            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items', :options => bibliography_select, 
-                :existing => this_parent.bibliography_items.collect {|b| [ "#{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s ] } } 
     %>
 </def>
 
