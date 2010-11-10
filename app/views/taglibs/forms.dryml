@@ -265,7 +265,7 @@
             <field-edit-row field="comment" />
 
             <field-row field="bibliography_items" param="bibliography" >
-                <view:><bibliography-items-edit /></view:>
+                <view:><custom-bibl-items-edit /></view:>
             </field-row>
 
             </content:>

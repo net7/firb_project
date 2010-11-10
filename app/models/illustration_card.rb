@@ -29,6 +29,7 @@ class IllustrationCard < BaseCard
   end
 
   # TODO: Hacks superclass internal behaviour
+  # TODO: Simone 10nov - do we need to check also deleted entries here??
   def self.split_attribute_hash(options)
     unless(options[:bibliography_items].blank?)
       options[:bibliography_items].collect! do |bibl|

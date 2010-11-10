@@ -760,6 +760,7 @@
     %>
 </def>
 
+<!-- TODO this shouldnt be needed anymore when we deploy the new bibl-store -->
 <def tag="bibliography-items-edit">
     <%= 
         render :partial => 'shared/select', 
