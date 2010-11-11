@@ -25,18 +25,28 @@ class FiProcession < TaliaCore::Collection
     if (!value.empty?)
       @parade = (value.is_a?(FiParade) ? value : FiParade.find(value))
       @parade_new = true
+      
+      old_parade = fetch_parade
+      if !old_parade.nil? && old_parade.to_uri != @parade.to_uri
+        # FIXME: ? the following line will not work for some reasons
+        # the thing is that you can use delete only passing to it an element retrieved from the collection itself...
+#       old_parade.delete self
+        old_parade.each do |el|
+          if el.uri == self.uri
+            old_parade.delete el
+            break
+          end
+        end
 
-      # This shouldnt be needed, since there will be one and only one parade... !
-      if (self.parade.to_uri != @parade.to_uri)
-        foo = self.parade
-        foo.delete(self)
-        foo.save
+        old_parade.save
+
+        @parade << self
+      elsif old_parade.nil?
+        @parade << self
       end
-
-      @parade << self
     end
   end
-
+  
   # If there's errors validating the parade, add these errors to this
   # object's errors and return false
   def validate_parade
@@ -53,7 +63,7 @@ class FiProcession < TaliaCore::Collection
   end
   
   def fetch_parade
-    FiParade.find(:first, :find_through => [N::DCT.hasPart, self.uri])
+    ActiveRDF::Query.new(FiParade).select(:parade).where(:parade, N::DCT.hasPart, self).execute.first
   end
 
   def parade_valid?
