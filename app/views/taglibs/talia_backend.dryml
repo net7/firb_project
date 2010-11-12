@@ -38,7 +38,7 @@ the value of the field, which will use the appropriate `field-value` tag.
         <field-value merge for-type="&type"/>
     </if>
     <else>
-        <repeat join=", "><field-value for-type="&type" /></repeat>        
+        <repeat join="<br />"><field-value for-type="&type" /></repeat>
     </else>
 </def>
 
@@ -47,14 +47,21 @@ overloaded to give a different rendering for different values. Unlinke the `card
 is meant for simple, one-line representations of the value. The base implementation
 just prints the current object as a string -->
 <def tag="field-value" polymorphic>
-    <%= this.to_s %>
+    <%= this.to_s %> aa
 </def>
 
 <!-- For an ActiveRecord, the value will be a normal link to the record's show page.
 See the Rapid `a` tag -->
 <def tag="field-value" for="ActiveRecord::Base">
-    <a />
+    <if test="&this.is_a?(CustomBibliographyItem)">
+        <%= this.name.nil? ? "" : "("+this.name+") "%><%= this.bibliography_item.author %>: 
+        <%= this.bibliography_item.author %><%= this.pages.nil? ? "" : " ("+this.pages+")" %>
+    </if>
+    <else>
+        <a />
+    </else>
 </def>
+
 
 <!-- 
 Works like the `field-row`, but instead of the value of the field this will contain
