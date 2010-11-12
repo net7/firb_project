@@ -56,6 +56,65 @@ namespace :talia_model do
 end
 
 namespace :firb do
+
+  desc ""
+  task :custom_bibl => 'talia_core:init' do
+    
+    puts " Running on " + BibliographyItem.all.count.to_s + " BibliographyItems :"
+    BibliographyItem.all.each do |b|
+
+      puts "@@ BibliographyItem "+b.id.to_s+" (ref_name: "+b.author.to_s+", title: "+b.title+", author: "+b.author+")"
+
+      cards = ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:card).where(:card, N::TALIA.hasBibliography, b).execute
+      if (cards.empty?)
+        puts "--- NO CARDS USING THIS BIBLIOGRAPHIC ITEM! .. no replacement needed."
+      else
+
+        new_cb = nil
+        # Look for a custom bibliography item with no name and pages using b
+        CustomBibliographyItem.all.each do |cb| 
+          if (cb.bibliography_item.uri == b.uri && cb.name.to_s.empty? && cb.pages.to_s.empty?)
+            new_cb = cb
+            puts "-- [ Found a suitable replacement: id " + new_cb.id.to_s + " ["+new_cb.name.to_s+"]["+new_cb.pages.to_s+"] ]"
+            break
+          end
+        end
+
+        # If we havent found a custom bibl item to replace b, create a new one
+        if new_cb.nil?
+          new_cb = CustomBibliographyItem.new
+          new_cb.bibliography_item = b
+          new_cb.save!
+          puts "-- [ Created a new custom bibl: id " + new_cb.id.to_s + " "+new_cb.uri.to_s+" ["+new_cb.name.to_s+"]["+new_cb.pages.to_s+"] ]"
+        end
+        
+        puts "-- [ Cards using this bibl item: ]"
+        cards.each do |c|
+          puts "---- " + c.inspect
+          puts "- Bibl items before treatment: " + c.bibliography_items.count.to_s
+
+          # TODO: workaround for remove(b) bug: remove all of the bibl items and attach 
+          # all but b again
+          #c.bibliography_items.remove(b)
+        
+          foo = c.bibliography_items.reject { |foo_b| foo_b == b }
+          c.bibliography_items.remove
+          foo.each do |old_b|
+            c.bibliography_items << old_b
+            puts "- OLD : "+ old_b.inspect 
+          end
+
+          c.bibliography_items << new_cb
+          puts "- Replacement: " + new_cb.inspect
+          puts "- Bibl items after treatment: " + c.bibliography_items.count.to_s
+
+          c.save!
+        end # if cards.empty?
+      end
+
+    end
+  end
+
   desc "Rename FirbImage, FirbImageZone active sources to Image, ImageZone"
   task :images_rename => 'talia_core:init' do
     ENV = ENV.merge({'old' => 'FirbImage', 'new' => 'Image'})
