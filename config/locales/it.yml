@@ -104,7 +104,7 @@ it:
             heading: "Modifica termine iconclass"
         messages:
             update_success: "Il Termine modificato è stato salvato."
-            new_success: "Il termine è stato creato."
+            create_success: "Il termine è stato creato."
         term: "Codice iconclass"
         pref_label: "Descrizione primaria"
         alt_label: "Descrizione secondaria"
@@ -118,7 +118,7 @@ it:
         count: "Ci sono %{count} schede di testo"
         messages:
             update_success: "La scheda testo è stata aggiornata e salvata."
-            new_success: "La scheda testo è stata creata."
+            create_success: "La scheda testo è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
@@ -135,7 +135,7 @@ it:
         count: "Ci sono %{count} schede di testo"
         messages:
             update_success: "La scheda di testo è stata aggiornata e salvata."
-            new_success: "La scheda di testo è stata creata."
+            create_success: "La scheda di testo è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
@@ -164,7 +164,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede illustrazione"
         messages:
             update_success: "La scheda illustrazione è stata aggiornata e salvata."
-            new_success: "La scheda illustrazione è stata creata."
+            create_success: "La scheda illustrazione è stata creata."
         new: 
             heading: "Nuova scheda illustrazione"
         collection:
@@ -310,7 +310,7 @@ it:
         count: "Ci sono %{count} schede manoscritto"
         messages:
             update_success: "La scheda manoscritto è stata aggiornata e salvata."
-            new_success: "La scheda manoscritto è stata creata."
+            create_success: "La scheda manoscritto è stata creata."
         new: 
             heading: "Nuova scheda di testo"
         collection:
@@ -333,7 +333,7 @@ it:
         count: "Ci sono %{count} schede stampa"
         messages:
             update_success: "La scheda stampa è stata aggiornata e salvata."
-            new_success: "La scheda stampa è stata creata."
+            create_success: "La scheda stampa è stata creata."
         new: 
             heading: "Nuova scheda stampa"
         collection:
@@ -393,7 +393,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede di memoria illustrate"
         messages:
             update_success: "La scheda di immagine di memoria modificata è stata salvata."
-            new_success: "La scheda di immagine di memoria è stata creata."
+            create_success: "La scheda di immagine di memoria è stata creata."
         collection:
             empty_message: "Nessuna scheda immagine di memoria da visualizzare"
         actions:
@@ -431,7 +431,7 @@ it:
         count: "Ci sono %{count} schede capolettera"
         messages:
             update_success: "La scheda capolettera è stata aggiornata e salvata."
-            new_success: "La scheda capolettera è stata creata."
+            creat_success: "La scheda capolettera è stata creata."
         collection:
             empty_message: "Nessuna capolettera da visualizzare"
         actions:
@@ -511,7 +511,7 @@ it:
             heading: "Modifica la Parata"
         messages:
             update_success: "La Parata modificata è stata salvata."
-            new_success: "La Parata è stata creata."
+            create_success: "La Parata è stata creata."
         title: "Nome di riferimento"
         belonging_to_this_parade: "Appartengono a questa Parata"
 
@@ -521,7 +521,7 @@ it:
         model_name_plural: "Cortei"
         messages:
             update_success: "Il Corteo modificato è stato salvato."
-            new_success: "Il Corteo è stato creato."
+            create_success: "Il Corteo è stato creato."
         errors:
             too_many_carts: "Non posso aggiungere più di un carro ad un corteo."
             illegal_type: "Un elemento del tipo %{type} no può far parte di un corteo."
@@ -564,7 +564,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede Personaggio"
         messages:
             update_success: "La scheda Personaggio modificata è stata salvata."
-            new_success: "La scheda Personaggio è stata creata."
+            create_success: "La scheda Personaggio è stata creata."
 
     fi_episode_cards:
         actions:
@@ -576,7 +576,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede Episodio"
         messages:
             update_success: "La scheda Episodio modificata è stata salvata."
-            new_success: "La scheda Episodio è stata creata."
+            create_success: "La scheda Episodio è stata creata."
 
     fi_deity_cards:
         actions:
@@ -588,7 +588,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede Divinità"
         messages:
             update_success: "La scheda Divinità modificata è stata salvata."
-            new_success: "La scheda Divinità è stata creata."
+            create_success: "La scheda Divinità è stata creata."
 
     fi_animal_cards:
         actions:
@@ -600,7 +600,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede Animale"
         messages:
             update_success: "La scheda Animale modificata è stata salvata."
-            new_success: "La scheda Animale è stata creata."
+            create_success: "La scheda Animale è stata creata."
 
     fi_throne_cards:
         actions:
@@ -612,7 +612,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede Trono"
         messages:
             update_success: "La scheda Trono modificata è stata salvata."
-            new_success: "La scheda Trono è stata creata."
+            create_success: "La scheda Trono è stata creata."
 
     fi_vehicle_cards:
         actions:
@@ -624,7 +624,7 @@ it:
         back_to_index_link: "Torna all'indice delle schede Veicolo"
         messages:
             update_success: "La scheda Veicolo modificata è stata salvata."
-            new_success: "La scheda Veicolo è stata creata."
+            create_success: "La scheda Veicolo è stata creata."
 
     vt_letters:
         nav_item: "Lettere"
