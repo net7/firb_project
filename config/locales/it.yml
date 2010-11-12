@@ -692,6 +692,7 @@ it:
         iconclass_children: "Iconclass delle figlie"
         study_notes: "Note di studio"
         bibliography_items: "Elementi Bibliografici"
+        no_parent: "Nessuna scheda madre assegnata"
         parent_code: "Codice (della madre)"
         parent_collocation: "Collocazione (della madre)"
         image_components: "Componenti"

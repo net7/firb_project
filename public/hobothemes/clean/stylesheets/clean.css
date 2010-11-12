@@ -382,4 +382,18 @@ ul#note_list li {
     list-style: none;
     border: 1px dashed #666;
 }
+.show-page div.firb-image-picture .imt-viewer { height: 290px; }
+.show-page div.firb-image-picture span { 
+    display:block;
+    margin: 8px;
+    text-align: center;
+}
 
+.show-page div.firb-image-picture {
+    position: relative;
+    width: 300px;
+    height: 325px;
+    border: 1px solid #999;
+    padding: 2px;
+    margin: 5px;
+}
