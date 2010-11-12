@@ -57,6 +57,9 @@ it:
         index:
             title: "Anastatiche"
             heading: "Anastatiche"
+        messages:
+            update_success: "L'anastatica è stata aggiornata e salvata."
+            create_success: "L'anastatica è stata creata."
         parts_of_this_source: "Elementi collegati a questa pagina anastatica"
         page_to_book: "Inserisci nel libro"
         page_position: "Carta"
@@ -359,6 +362,9 @@ it:
             heading: "Modifica %{name}"
         new:
             heading: "Nuovo elemento bibliografico"
+        messages:
+            update_success: "L'elemento bibliografico è stato aggiornato e salvato."
+            create_success: "L'elemento bibliografico è stato creato."
         customize: "Personalizza..."
         custom_bibl_items: "Già personalizzati"
         succesfully_created: "L'elemento bibliografico è stato creato con successo"
@@ -626,7 +632,7 @@ it:
         model_name_plural: "Lettere"
         messages:
             update_success: "La lettera modificata è stata salvata."
-            new_success: "La lettera è stata creata."
+            create_success: "La lettera è stata creata."
         count: "Ci sono %{count} Lettere"
         items_count: "Contiene %{count} schede"
         actions:

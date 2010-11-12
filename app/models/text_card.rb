@@ -8,6 +8,10 @@ class TextCard < TaliaCore::Source
 
   manual_property :note
   
+  fields do
+    uri :string
+  end  
+
   def name
     title || "#{I18n.t('text_card.model_name')} #{self.id}"
   end
