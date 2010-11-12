@@ -55,7 +55,7 @@ See the Rapid `a` tag -->
 <def tag="field-value" for="ActiveRecord::Base">
     <if test="&this.is_a?(CustomBibliographyItem)">
         <%= this.name.nil? ? "" : "("+this.name+") "%><%= this.bibliography_item.author %>: 
-        <%= this.bibliography_item.author %><%= this.pages.nil? ? "" : " ("+this.pages+")" %>
+        <%= this.bibliography_item.title %><%= this.pages.nil? ? "" : " ("+this.pages+")" %>
     </if>
     <else>
         <a />
