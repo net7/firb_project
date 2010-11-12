@@ -65,7 +65,7 @@
 </def>
 
 <def tag="form" for="VtLetter">
-  <form merge param="default">
+  <form merge param="default" multipart="true">
     <%= javascript_include_tag 'calendarDateInput.js' %>
     <error-messages param/>
     <field-edit-table>
@@ -73,6 +73,9 @@
 
             <field-edit-row field="title" />
             <field-edit-row field="introduction" />
+            <field-row field="pdf_file">
+                <view:><input type="file" name="vt_letter[file]"/></view:>
+            </field-row>
             <field-edit-row field="letter_number" />
             <field-edit-row field="printed_collocation" />
             <field-edit-row field="handwritten_collocation" />

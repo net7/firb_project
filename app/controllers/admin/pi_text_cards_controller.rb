@@ -25,7 +25,7 @@ class Admin::PiTextCardsController < Admin::TextCardsController
       flash[:notice] = "Error creating the page"
     end
 
-    foo = txt.attach_file(file)
+    foo = txt.attach_xml_file(file)
     flash[:notice] += "<br><br>" + foo if (foo)
       
     if (notes)
@@ -49,7 +49,7 @@ class Admin::PiTextCardsController < Admin::TextCardsController
         Note.delete_all_notes(updated_source)
       end
       
-      updated_source.attach_file(file)
+      updated_source.attach_xml_file(file)
       updated_source.save!
       
       redirect_to :controller => :pi_text_cards, :action => :index

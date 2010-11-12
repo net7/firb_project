@@ -29,7 +29,7 @@ class Admin::FiTextCardsController < Admin::TextCardsController
       flash[:notice] = "Error creating the page"
     end
 
-    foo = txt.attach_file(file)
+    foo = txt.attach_xml_file(file)
     flash[:notice] += "<br><br>" + foo if (foo)
 
     redirect_to :controller => :fi_text_cards, :action => :index
@@ -43,7 +43,7 @@ class Admin::FiTextCardsController < Admin::TextCardsController
     file = params[:fi_text_card].delete(:file)
     hobo_source_update do |updated_source|
       
-      updated_source.attach_file(file)
+      updated_source.attach_xml_file(file)
       updated_source.save!
       
       redirect_to :controller => :fi_text_cards, :action => :index

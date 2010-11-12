@@ -30,7 +30,7 @@ class Admin::BaseCardsController < Admin::AdminSiteController
   def create
     file = card_params.delete(:file)
     hobo_source_create(:params => card_params, :class_name => @card_type.name) do |card|
-      foo = card.attach_file(file) if (file && card.respond_to?(:attach_file))
+      foo = card.attach_xml_file(file) if (file && card.respond_to?(:attach_file))
       flash[:notice] += foo if (foo)
       redirect_to :action => :index
     end

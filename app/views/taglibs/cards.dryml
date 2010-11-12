@@ -153,6 +153,20 @@
     </else>
 </def>
 
+<def tag="pdf-file-link">
+    <if test="&this.data_records('TaliaCore::DataTypes::PdfData').blank?">
+      <ht key="text_page.no_pdf_file" />
+    </if>
+    <else>
+        <repeat with="&this.data_records('TaliaCore::DataTypes::PdfData')">
+            <p>
+                <ht key="text_page.show_pdf_file" />:
+                <a href="&url_for(:controller => '/source_data', :action => :show, :id => this.id)"><%= this.location %></a>
+            </p>
+        </repeat>
+    </else>
+</def>
+
 <def tag="card" for="BgTextCard">
   <card class="firb-text-card" param="default" merge>
 
@@ -315,6 +329,10 @@
 
     <p>
       <b><ht key="vt_letters.introduction" />:</b> <%= this.introduction %>
+    </p>
+
+    <p>
+        <pdf-file-link />
     </p>
 
     <p>

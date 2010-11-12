@@ -759,6 +759,8 @@ it:
         transcription_file: "File XML della trascrizione"
         image_zones: "Zone di immagine"
         no_file: "Nessun file XML collegato"
+        no_pdf_file: "Nessun file PDF collegato"
+        show_pdf_file: "File PDF collegato"
         actions:
           delete: "Cancella scheda testo"
           

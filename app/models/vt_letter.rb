@@ -3,6 +3,7 @@ class VtLetter < TaliaCore::Collection
   hobo_model # Don't put anything above this
 
   include StandardPermissions
+  include FileAttached
   extend RdfProperties
 
   autofill_uri :force => true

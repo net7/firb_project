@@ -1,7 +1,7 @@
 module FileAttached 
 
   # Will return false if everything is ok, else an error string with some hints on the XML
-  def attach_file(file)
+  def attach_xml_file(file)
     if(file)
       xml_string = file.read
       doc = Nokogiri::XML(xml_string)
@@ -34,6 +34,13 @@ module FileAttached
         return error_string
       end
     end
+  end
+
+  def attach_pdf_file(file)
+    puts "--------- ATTACHING "+file.inspect
+    self.attach_files(:url => file.path, :options => {:mime_type => file.content_type.to_s, :location => file.original_filename})
+    puts "Called attach_files .."
+    puts "DIN DON DONE"
   end
 
 end

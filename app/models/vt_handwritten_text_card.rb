@@ -3,7 +3,7 @@ class VtHandwrittenTextCard < TextCard
   hobo_model
   include StandardPermissions
   
-  singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
+  rdf_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title
 
   # Link a trascrizione diplomatica e trascrizione versione a stampa
