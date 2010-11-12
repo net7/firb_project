@@ -47,7 +47,7 @@ overloaded to give a different rendering for different values. Unlinke the `card
 is meant for simple, one-line representations of the value. The base implementation
 just prints the current object as a string -->
 <def tag="field-value" polymorphic>
-    <%= this.to_s %> aa
+    <%= this.to_s %>
 </def>
 
 <!-- For an ActiveRecord, the value will be a normal link to the record's show page.
