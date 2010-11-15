@@ -49,12 +49,12 @@
     document.observe('click', function(e) {
         // Toggle customization panel
         if (e.element().match('.show_bibliography_customization')) {
-            $(bibliography_item_customization).toggle();
+            $('bibliography_item_customization').toggle();
             e.stop();
         }
     });
 
-    $(bibliography_item_customization).hide();
+    $('bibliography_item_customization').hide();
 
 (function() {
     var param_name = "<%= param_name %>",
@@ -125,7 +125,7 @@
         
         populate_with_item(populate_ul_id, display_string, hidden_hash);
 
-        $(bibliography_item_customization).hide();
+        $('bibliography_item_customization').hide();
         $('bibliography_item_name').value = '';
         $('bibliography_item_pages').value = '';
         
