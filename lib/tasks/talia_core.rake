@@ -63,7 +63,7 @@ namespace :firb do
     puts " Running on " + BibliographyItem.all.count.to_s + " BibliographyItems :"
     BibliographyItem.all.each do |b|
 
-      puts "@@ BibliographyItem "+b.id.to_s+" (ref_name: "+b.author.to_s+", title: "+b.title+", author: "+b.author+")"
+      puts "@@ BibliographyItem "+b.id.to_s+" (ref_name: "+b.ref_name.to_s+", title: "+b.title.to_s+", author: "+b.author.to_s+", pages: "+b.pages.to_s+") "
 
       cards = ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:card).where(:card, N::TALIA.hasBibliography, b).execute
       if (cards.empty?)
@@ -71,11 +71,11 @@ namespace :firb do
       else
 
         new_cb = nil
-        # Look for a custom bibliography item with no name and pages using b
+        # Look for a custom bibliography item with using b and matching pages
         CustomBibliographyItem.all.each do |cb| 
-          if (cb.bibliography_item.uri == b.uri && cb.name.to_s.empty? && cb.pages.to_s.empty?)
+          if (cb.bibliography_item.uri == b.uri && cb.pages.to_s == b.pages.to_s)
             new_cb = cb
-            puts "-- [ Found a suitable replacement: id " + new_cb.id.to_s + " ["+new_cb.name.to_s+"]["+new_cb.pages.to_s+"] ]"
+            puts "-- [ Found a suitable replacement: id " + new_cb.id.to_s + " (ref_name: "+new_cb.name.to_s+", pages: "+new_cb.pages.to_s+") ]"
             break
           end
         end
@@ -84,8 +84,10 @@ namespace :firb do
         if new_cb.nil?
           new_cb = CustomBibliographyItem.new
           new_cb.bibliography_item = b
+          new_cb.pages = b.pages
+          new_cb.name = b.ref_name.to_s + " (" + b.pages.to_s + ")"
           new_cb.save!
-          puts "-- [ Created a new custom bibl: id " + new_cb.id.to_s + " "+new_cb.uri.to_s+" ["+new_cb.name.to_s+"]["+new_cb.pages.to_s+"] ]"
+          puts "-- [ Created a new custom bibl: id " + new_cb.id.to_s + " "+new_cb.uri.to_s+" (ref_name: "+new_cb.name.to_s+", pages: "+new_cb.pages.to_s+") ]"
         end
         
         puts "-- [ Cards using this bibl item: ]"
