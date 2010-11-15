@@ -344,7 +344,7 @@
 <def tag="form" for="BibliographyItem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="ref_name, title, abstract, publisher, author, curator, translator, date, doi, isbn, issn, pages, published_in, external_url" param/>
+    <field-list fields="ref_name, title, abstract, publisher, author, curator, translator, date, doi, isbn, issn, published_in, external_url" param/>
     <div param="actions">
       <submit label="#{ht 'iconclass_terms.actions.save', :default=>['Save']}" param/><or-cancel with="&BibliographyItem" param="cancel"/>
     </div>
