@@ -17,6 +17,17 @@ class Admin::PiTextCardsController < Admin::TextCardsController
   def create
     notes = params[:pi_text_card].delete(:note)
     file = params[:pi_text_card].delete(:file)
+    hobo_source_create do |card|
+      foo = card.attach_xml_file(file) if (file)
+      Note.create_notes(card, notes) if (notes)
+      flash[:notice] += foo if (foo)
+      redirect_to :action => :index
+    end
+  end
+
+  def create_old
+    notes = params[:pi_text_card].delete(:note)
+    file = params[:pi_text_card].delete(:file)
     txt = PiTextCard.create_card(params[:pi_text_card])
 
     if(save_created(txt))

@@ -35,6 +35,14 @@
   </card>
 </def>
 
+<def tag="card" for="CustomBibliographyItem">
+  <card class="custom-bibliography-item" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="CustomTemplate">
   <card class="custom-template" param="default" merge>
     <header: param>
@@ -104,6 +112,9 @@
 
 <def tag="card" for="Note">
   <card class="note" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
     <body: param>
       <view:content param="description"/>
     </body:>

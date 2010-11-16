@@ -1,6 +1,7 @@
 class PiTextCard < TextCard
   hobo_model
   include StandardPermissions
+  autofill_uri :force => true
     
   singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title
