@@ -295,6 +295,9 @@ it:
         count: "Ci sono %{count} schede di testo"
         collection:
             empty_message: "Nessuna scheda di testo da visualizzare"
+        messages:
+            update_success: "La scheda testo è stata aggiornata e salvata."
+            create_success: "La scheda testo è stata creata."
         actions:
             new: "Crea una nuova scheda di testo"
             delete: "Cancella scheda di testo"

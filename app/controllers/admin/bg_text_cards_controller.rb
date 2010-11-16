@@ -21,18 +21,11 @@ class Admin::BgTextCardsController < Admin::TextCardsController
 
   def create
     file = params[:bg_text_card].delete(:file)
-    txt = BgTextCard.create_card(params[:bg_text_card])
-
-    if(save_created(txt))
-      flash[:notice] = "Text page succesfully created"
-    else
-      flash[:notice] = "Error creating the page"
+    hobo_source_create do |card|
+      foo = card.attach_xml_file(file) if (file)
+      flash[:notice] += foo if (foo)
+      redirect_to :action => :index
     end
-
-    foo = txt.attach_xml_file(file)
-    flash[:notice] += "<br><br>" + foo if (foo)
-
-    redirect_to :controller => :bg_text_cards, :action => :index
   end
 
   def destroy

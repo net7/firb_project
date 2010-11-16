@@ -2,6 +2,7 @@ class FiTextCard < TextCard
 
   hobo_model
   include StandardPermissions
+  autofill_uri :force => true
 
   rdf_property :title, N::DCNS.title
 
