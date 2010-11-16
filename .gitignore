@@ -4,7 +4,3 @@ vendor/
 config/talia_core.yml
 config/database.yml
 config/rdfstore.yml
-app/views/taglibs/auto/admin/rapid/cards.dryml
-app/views/taglibs/auto/admin/rapid/forms.dryml
-app/views/taglibs/auto/admin/rapid/pages.dryml
-app/views/taglibs/auto/rapid/cards.dryml
