@@ -51,6 +51,9 @@
                 <field-row fieldname="note">
                     <view:><notes-edit withzoneimage='true' withname='true' /></view:>
                 </field-row>
+                <field-row field="image_components">
+                    <view:><image-components-edit /></view:>
+                </field-row>
 
             </content:>
         </card-form-common>
