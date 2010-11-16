@@ -91,7 +91,7 @@ module Admin::TextCardHelper
   # Placeholder for something more appropriate: something which gathers the real 
   # types from an ontology or some db thingie
   def fi_character_qualities
-    ["età","sesso","professione"].collect{ |t| [t, t] }
+    ["età","sesso","professione", "etnia"].collect{ |t| [t, t] }
   end
 
   # Placeholder for something more appropriate: something which gathers the real 
