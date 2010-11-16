@@ -52,9 +52,9 @@
 #  the user's email address and password
 class SwickyNotebooksController < ApplicationController
   
-  before_filter :get_user, :except => [:annotated_fragments, :annotations]
-  before_filter :basic_auth, :except => [:annotated_fragments, :annotations]
-  before_filter :get_notebook, :except => [:index, :create, :annotated_fragments, :annotations]
+  before_filter :get_user, :except => [:annotated_fragments, :annotations, :related_topic]
+  before_filter :basic_auth, :except => [:annotated_fragments, :annotations, :related_topic]
+  before_filter :get_notebook, :except => [:index, :create, :annotated_fragments, :annotations, :related_topic]
   skip_before_filter :verify_authenticity_token
 
   rescue_from NativeException, :with => :rescue_native_error
@@ -120,6 +120,10 @@ class SwickyNotebooksController < ApplicationController
       format.html { render :text => TaliaUtil::Xml::RdfBuilder.xml_string_for_triples(notes_triples) }
       format.json { render :text => Swicky::ExhibitJson::ItemCollection.new(notes_triples, params[:xpointer] || params[:uri]).to_json }
     end
+  end
+  
+  def related_topic
+    render :text => "TODO: put something here :)"
   end
   
   private
