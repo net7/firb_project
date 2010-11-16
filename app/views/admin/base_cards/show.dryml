@@ -28,7 +28,6 @@
         <field-row field="tecnique" />
         <field-row field="measure" />
         <field-row field="descriptive_notes" />
-        <field-row field="study_notes" />
         <field-row field="description" />
         <do param="post-description" />
         <field-row field="study_notes" />
