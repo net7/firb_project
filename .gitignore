@@ -1,5 +1,4 @@
 nbproject
-log/*
 vendor/
 config/talia_core.yml
 config/database.yml
