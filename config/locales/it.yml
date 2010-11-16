@@ -266,6 +266,7 @@ it:
         qualities_age: "Qualità: età"
         qualities_gender: "Qualità: sesso"
         qualities_profession: "Qualità: professione"
+        qualities_ethnic_group: "Qualità: etnia"
         letter: "Lettera"
         no_letter: "Non appartiene ad alcuna lettera."
         introduction: "Cappello introduttivo"

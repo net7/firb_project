@@ -80,6 +80,7 @@
                 <field-edit-row field="qualities_gender" />
                 <field-edit-row field="qualities_age" />
                 <field-edit-row field="qualities_profession" />
+                <field-edit-row field="qualities_ethnic_group" />
                 
                 <field-edit-row field="baldini_text" fieldtype="FiTextCard" />
                 <field-edit-row field="cini_text" fieldtype="FiTextCard" />

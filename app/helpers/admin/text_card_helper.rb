@@ -90,6 +90,8 @@ module Admin::TextCardHelper
 
   # Placeholder for something more appropriate: something which gathers the real 
   # types from an ontology or some db thingie
+  # TODO: FIXME: DEBUG: BUG: WHATEVER: the fi_character_card model have fixed fields for
+  # these qualities ..
   def fi_character_qualities
     ["età","sesso","professione", "etnia"].collect{ |t| [t, t] }
   end
