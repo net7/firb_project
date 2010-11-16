@@ -312,6 +312,8 @@ it:
         messages:
             update_success: "La scheda manoscritto è stata aggiornata e salvata."
             create_success: "La scheda manoscritto è stata creata."
+        errors:
+            create_error: "C'è stato un errore salvando la scheda manoscritto."
         new: 
             heading: "Nuova scheda di testo"
         collection:

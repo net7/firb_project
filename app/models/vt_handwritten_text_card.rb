@@ -2,6 +2,7 @@ class VtHandwrittenTextCard < TextCard
 
   hobo_model
   include StandardPermissions
+  autofill_uri :force => true
   
   rdf_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title

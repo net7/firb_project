@@ -22,22 +22,12 @@ class Admin::VtPrintedTextCardsController < Admin::TextCardsController
   def create
     notes = params[:vt_printed_text_card].delete(:note)
     file = params[:vt_printed_text_card].delete(:file)
-    txt = VtPrintedTextCard.create_card(params[:vt_printed_text_card])
-
-    if(save_created(txt))
-      flash[:notice] = "Text page succesfully created"
-    else
-      flash[:notice] = "Error creating the page"
+    hobo_source_create do |card|
+      foo = card.attach_xml_file(file) if (file)
+      Note.create_notes(card, notes) if (notes)
+      flash[:notice] += foo if (foo)
+      redirect_to :action => :index
     end
-
-    foo = txt.attach_xml_file(file)
-    flash[:notice] += "<br><br>" + foo if (foo)
-
-    if (notes)
-      Note.create_notes(notes.values, txt)
-    end
-
-    redirect_to :controller => :vt_printed_text_cards, :action => :index
   end
 
   def destroy

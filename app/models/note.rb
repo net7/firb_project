@@ -23,8 +23,8 @@ class Note < TaliaCore::Source
   end
 
   def self.create_notes(source_uri, notes)
-    notes.each { |n| 
-      new_note = Note.create_note(source_uri, n)
+    notes.each { |note| 
+      new_note = Note.create_note(source_uri, note[:content], note[:name], note[:image_zone])
       new_note.save!
     }
   end

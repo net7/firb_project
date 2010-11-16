@@ -37,10 +37,7 @@ module FileAttached
   end
 
   def attach_pdf_file(file)
-    puts "--------- ATTACHING "+file.inspect
     self.attach_files(:url => file.path, :options => {:mime_type => file.content_type.to_s, :location => file.original_filename})
-    puts "Called attach_files .."
-    puts "DIN DON DONE"
   end
 
 end
