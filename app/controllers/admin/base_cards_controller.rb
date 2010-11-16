@@ -37,7 +37,12 @@ class Admin::BaseCardsController < Admin::AdminSiteController
   end
   
   def update
+    file = card_params.delete(:file)
     hobo_source_update(:params => card_params) do |card|
+      if (file)
+        card.attach_xml_file(file)
+        card.save!
+      end
       redirect_to :action => :show, :id => card.id
     end
   end

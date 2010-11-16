@@ -21,6 +21,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/bg_text_cards/:action/:id', :controller => 'admin/bg_text_cards'
   map.connect '/admin/pi_illustrated_md_cards/:action/:id', :controller => 'admin/pi_illustrated_md_cards'
   map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms'
+
+  map.connect '/admin/base_cards/show_annotable/:id', :controller => 'admin/text_cards', :action => 'show_annotable'
   
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'
   map.resources :swicky_notebooks, :path_prefix => 'users/:user_name'

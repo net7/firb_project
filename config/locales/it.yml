@@ -175,8 +175,6 @@ it:
             create: "Salva"
         edit:
             heading: "Modifica scheda illustrazione"
-        messages:
-            create_success: "Scheda illustrazione creata con successo."
         name: "Nome di riferimento"
         image_zone: "Zona di immagine" 
         book: "Collezione di riferimento"

@@ -2,6 +2,7 @@
     <title></title>
     <stylesheet name="annotable.css"/> 
 </head>
+<link rel='foaf:topic' href='&@source_url' />
 <body>
 <%= @content %>
 </body></html>
