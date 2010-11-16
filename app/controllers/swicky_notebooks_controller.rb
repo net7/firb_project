@@ -122,8 +122,19 @@ class SwickyNotebooksController < ApplicationController
     end
   end
   
+  # TODO : fix related_topic action
+  # Will render a rdf with all the useful sources connected to the given topic.
+  # The topic is a valid URI, for example a source uri.
+  # TODO: find a nice way to get data from each one of the possible models .. put something in file_attached.rb ? 
   def related_topic
-    render :text => "TODO: put something here :)"
+    record = TaliaCore::ActiveSource.find(params[:topic])
+    
+    text = "<hr>"+record.uri.to_s+" : "+record.type
+
+    respond_to do |format|
+      format.rdf { render :text => "TODO: FIX RDF" }
+      format.html { render :text => "TODO: FIX HTML "+text }
+    end
   end
   
   private
