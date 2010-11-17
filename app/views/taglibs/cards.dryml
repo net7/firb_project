@@ -96,7 +96,7 @@
 
         <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
     
-        <if test="&this.letter.blank?">
+        <if test="&(this.letter.nil? || this.letter.blank?)">
             <ht key="generic_field_names.no_letter" />
         </if>
         <else>
@@ -113,7 +113,7 @@
 
     <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
 
-    <if test="&this.letter.blank?">
+    <if test="&(this.letter.nil? || this.letter.blank?)">
         <ht key="generic_field_names.no_letter" />
     </if>
     <else>

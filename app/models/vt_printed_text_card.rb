@@ -59,7 +59,9 @@ class VtPrintedTextCard < TextCard
   end
   
   def fetch_letter
-    letter = ActiveRDF::Query.new(TaliaCollection).select(:letter).where(:letter, N::DCT.hasPart, self).execute.first
+    # TODO: why this commented ActiveRDF query fails??!?
+    #letter = ActiveRDF::Query.new(TaliaCollection).select(:letter).where(:letter, N::DCT.hasPart, self.uri).execute.first
+    letter = TaliaCollection.find(:first, :find_through => [N::DCT.hasPart, self.uri]) 
     letter ? letter.real_source : nil
   end
   
