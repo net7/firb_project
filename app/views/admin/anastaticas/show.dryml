@@ -25,7 +25,7 @@
             <%= this.title || this.to_uri.local_name %> 
         </repeat>
         <br /><br />
-        <h3><ht key="anastaticas.parts_of_this_source">Parts of this source</ht></h3>
+        <h3><ht key="anastaticas.parts_of_this_source" /></h3>
         <% parts = this.parts_by_class %>
         <% part_list = parts.keys.sort %>
         <repeat with="&part_list">
