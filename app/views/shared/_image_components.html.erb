@@ -67,7 +67,7 @@
         foo = $('zone_image_id').options[$('zone_image_id').selectedIndex];
         n = main_name+"["+param_name+"][][image_zone]";
         v = foo.value;
-        display_string += foo.text;
+        display_string += " -- " + foo.text;
         hidden_hash.push({name: n, value: v});
         
         // Empty uri, must be last here to be the first element
