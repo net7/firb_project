@@ -369,8 +369,8 @@ it:
         messages:
             update_success: "L'elemento bibliografico è stato aggiornato e salvato."
             create_success: "L'elemento bibliografico è stato creato."
-        customize: "Personalizza..."
-        custom_bibl_items: "Già personalizzati"
+        customize: "Personalizza un elemento bibliografico"
+        custom_bibl_items: "Elementi bibliografici"
         succesfully_created: "L'elemento bibliografico è stato creato con successo"
         error_creating: "ERRORE: ci sono stati dei problemi e l'elemento bibliografico non è stato creato"
         ref_name: "Nome di riferimento"

@@ -16,25 +16,6 @@
 
 <ul id="<%= populate_ul_id %>"></ul>
 
-<div style='border: 1px dashed #666;  margin-top: 20px; padding: 5px;'>
-    <% if !options.nil? %>
-        <%= I18n.t('bibliography_items.model_name') %>: <br />
-        <%= select_tag "", options_for_select(options), {:id => 'bibliography_item'} %>
-        <a href='#' class='show_bibliography_customization'><%= I18n.t('bibliography_items.customize') %></a>
-        <br />
-    <% end %>
-
-    <div id='bibliography_item_customization'>
-        <%= I18n.t('bibliography_items.ref_name') %>: <input type='text' id='bibliography_item_name'>
-        <br />
-
-        <%= I18n.t('bibliography_items.pages') %>: 
-        <input type='text' id='bibliography_item_pages'>
-    </div>
-
-    <input type='button' class='button' value="<%= I18n.t('general.add_new') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
-</div>
-
 <% if !custom_options.nil? %>
     <div style='border: 1px dashed #666; margin-top: 20px; padding: 5px'>
         <%= I18n.t('bibliography_items.custom_bibl_items') %>: <br />
@@ -43,6 +24,23 @@
     </div>
 <% end %>
 
+<div style='border: 1px dashed #666;  margin-top: 20px; padding: 5px;'>
+    <a href='#' class='show_bibliography_customization'><%= I18n.t('bibliography_items.customize') %></a> <br/>
+    <div id='bibliography_item_customization'>
+        <% if !options.nil? %>
+            <%= I18n.t('bibliography_items.model_name') %>: <br />
+            <%= select_tag "", options_for_select(options), {:id => 'bibliography_item'} %>
+            <br />
+        <% end %>
+
+        <%= I18n.t('bibliography_items.ref_name') %>: <input type='text' id='bibliography_item_name'>
+        <br />
+
+        <%= I18n.t('bibliography_items.pages') %>: 
+        <input type='text' id='bibliography_item_pages'>
+        <input type='button' class='button' value="<%= I18n.t('general.add_new') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
+    </div>
+</div>
 
 <script>
 
