@@ -74,7 +74,7 @@ class VtHandwrittenTextCard < TextCard
   end
   
   def fetch_letter
-    letter = TaliaCollection.find(:first, :find_through => [N::DCT.hasPart, self.uri])    
+    letter = ActiveRDF::Query.new(TaliaCollection).select(:letter).where(:letter, N::DCT.hasPart, self).execute.first
     letter ? letter.real_source : nil
   end
   

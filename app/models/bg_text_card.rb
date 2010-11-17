@@ -51,7 +51,7 @@ class BgTextCard < TextCard
   end
   
   def fetch_book
-    book = TaliaCollection.find(:first, :find_through => [N::DCT.hasPart, self.uri])    
+    book = ActiveRDF::Query.new(TaliaCollection).select(:book).where(:book, N::DCT.hasPart, self).execute.first
     book ? book.real_source : nil
   end
   

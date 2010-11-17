@@ -52,7 +52,7 @@ module FiCardsCommonFields
   end
   
   def fetch_procession
-    FiProcession.find(:first, :find_through => [N::DCT.hasPart, self.uri])
+    ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute.first
   end
 
   def procession_valid?
