@@ -60,6 +60,24 @@ class ImageZone < ImageElement
     parent
   end
   
+  # Produces an hash to be passed to an input (select_for) format
+  # with all of our ImageZones
+  def self.get_all_zones_array
+    foo = ImageZone.all.collect do |a|
+      parent = a.get_parent
+      breadcrumbs = ""
+      while(parent.class.to_s != "Image" && !parent.nil?)
+        breadcrumbs = parent.name + " > " + breadcrumbs 
+        parent = parent.get_parent
+      end
+      breadcrumbs = parent.name_label + " > " + breadcrumbs unless parent.nil?
+      breadcrumbs += a.name.nil? ? I18n.t("text_card.no_name_zone") : a.name
+      
+      [breadcrumbs, a.uri.to_s]
+    end
+    foo.sort
+  end
+
   
   def self.find_by_name(name)
     ActiveRDF::Query.new(ImageZone).select(:zone).where(:zone).where(:zone, N::TALIA.name, name).execute.first
