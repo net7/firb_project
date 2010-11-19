@@ -42,6 +42,79 @@ class BgIllustrationCard < IllustrationCard
     uri :string
   end
 
+  # Produces an array of triples, where a triple is an array subject - predicate - object
+  # meant to be used with rdf_builder's prepare_triples
+  def get_related_topic_descriptions
+    triples = []
+    # For each image_zone add:
+    # self - 'related_image' - image_zone
+    # image_zone - 'type' - ImageZone
+    # image_zone - 'label' - image_zone.name
+    ImageZone.get_all_zones_array.collect do |name, uri|
+      triples.push [self.uri.to_s, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#related_image', uri]
+      triples.push [uri, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'ImageZone']
+      triples.push [uri, 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', name]
+    end
+    # 'related_image' - 'label' - '..'
+    triples.push ['http://www.w3.org/1999/02/22-rdf-syntax-ns#related_image', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'Zone di immagine associabili']
+
+    # self - 'type' - self.type
+    # self - 'label' - self.name
+    triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#type', self.type.to_s]
+    triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', self.name.to_s]
+
+    # 'is_depicted_in' - 'rdf:range' - ImageZone
+    # 'is_depicted_in' - 'label' - '..'
+    triples.push ['http://www.w3.org/1999/02/22-rdf-syntax-ns#is_depicted_in', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#range', 'ImageZone']
+    triples.push ['http://www.w3.org/1999/02/22-rdf-syntax-ns#is_depicted_in', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'è rappresentata in']
+    
+    triples
+  end
+
+  # TODO: this method rendered the RDF description using direct xml 
+  # manipulation. If we keep using the other wrapper, this is useless and
+  # probably out of date :)
+  def get_related_topic_descriptions_direct_xml
+
+    xml = Builder::XmlMarkup.new(:indent => 2)
+    xml.rdf :RDF do
+      
+      # Output all the triples with this source as subject
+      xml.rdf :Description, 'rdf:about' => self.uri.to_s do
+        ImageZone.get_all_zones_array.collect do |x|
+          xml.talia :related_image do
+            xml.rdf :Description, 'rdf:about' => x[1]
+          end
+        end
+      end # xml.rdf
+    
+      # Then describe all of our image_zones
+      ImageZone.get_all_zones_array.collect do |x|
+        xml.rdf :Description, 'rdf:about' => self.uri.to_s do
+          xml.rdf :label do 
+            xml.text!(x[0]) 
+          end
+          xml.rdf :type do 
+            xml.text!('image_zone_type_uri????') 
+          end
+        end
+      end # ImageZone.get_all_zones_array
+
+      # Describe the relations
+      xml.rdf :Description, 'rdf:about' => "talia:related_image" do
+        xml.text!('Zone di immagine associabili al testo') 
+      end
+      xml.rdf :Description, 'rdf:about' => "talia:is_depicted_in" do
+        xml.rdf :range do 
+          xml.text!('image_zone_type_uri????') 
+        end
+      end
+
+    end #xml.rdf :RDF
+
+    xml.target!
+  end
+
   def book
     @book ||= fetch_book
   end
@@ -74,6 +147,5 @@ class BgIllustrationCard < IllustrationCard
   def book_valid?
     @book ? @book.valid? : true
   end
-
   
 end
