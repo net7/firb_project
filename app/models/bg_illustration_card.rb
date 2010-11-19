@@ -71,50 +71,6 @@ class BgIllustrationCard < IllustrationCard
     triples
   end
 
-  # TODO: this method rendered the RDF description using direct xml 
-  # manipulation. If we keep using the other wrapper, this is useless and
-  # probably out of date :)
-  def get_related_topic_descriptions_direct_xml
-
-    xml = Builder::XmlMarkup.new(:indent => 2)
-    xml.rdf :RDF do
-      
-      # Output all the triples with this source as subject
-      xml.rdf :Description, 'rdf:about' => self.uri.to_s do
-        ImageZone.get_all_zones_array.collect do |x|
-          xml.talia :related_image do
-            xml.rdf :Description, 'rdf:about' => x[1]
-          end
-        end
-      end # xml.rdf
-    
-      # Then describe all of our image_zones
-      ImageZone.get_all_zones_array.collect do |x|
-        xml.rdf :Description, 'rdf:about' => self.uri.to_s do
-          xml.rdf :label do 
-            xml.text!(x[0]) 
-          end
-          xml.rdf :type do 
-            xml.text!('image_zone_type_uri????') 
-          end
-        end
-      end # ImageZone.get_all_zones_array
-
-      # Describe the relations
-      xml.rdf :Description, 'rdf:about' => "talia:related_image" do
-        xml.text!('Zone di immagine associabili al testo') 
-      end
-      xml.rdf :Description, 'rdf:about' => "talia:is_depicted_in" do
-        xml.rdf :range do 
-          xml.text!('image_zone_type_uri????') 
-        end
-      end
-
-    end #xml.rdf :RDF
-
-    xml.target!
-  end
-
   def book
     @book ||= fetch_book
   end
