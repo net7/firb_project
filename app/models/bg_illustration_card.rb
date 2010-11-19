@@ -51,22 +51,22 @@ class BgIllustrationCard < IllustrationCard
     # image_zone - 'type' - ImageZone
     # image_zone - 'label' - image_zone.name
     ImageZone.get_all_zones_array.collect do |name, uri|
-      triples.push [self.uri.to_s, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#related_image', uri]
+      triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#related_image', uri]
       triples.push [uri, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'ImageZone']
       triples.push [uri, 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', name]
     end
     # 'related_image' - 'label' - '..'
-    triples.push ['http://www.w3.org/1999/02/22-rdf-syntax-ns#related_image', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'Zone di immagine associabili']
+    triples.push ['http://talia.discovery-project.eu/wiki/TaliaInternal#related_image', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'Zone di immagine associabili']
 
     # self - 'type' - self.type
     # self - 'label' - self.name
     triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#type', self.type.to_s]
     triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', self.name.to_s]
 
-    # 'is_depicted_in' - 'rdf:range' - ImageZone
+    # 'is_depicted_in' - 'range' - ImageZone
     # 'is_depicted_in' - 'label' - '..'
-    triples.push ['http://www.w3.org/1999/02/22-rdf-syntax-ns#is_depicted_in', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#range', 'ImageZone']
-    triples.push ['http://www.w3.org/1999/02/22-rdf-syntax-ns#is_depicted_in', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'è rappresentata in']
+    triples.push ['http://talia.discovery-project.eu/wiki/TaliaInternal#is_depicted_in', 'http://talia.discovery-project.eu/wiki/TaliaInternal#range', 'ImageZone']
+    triples.push ['http://talia.discovery-project.eu/wiki/TaliaInternal#is_depicted_in', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'è rappresentata in']
     
     triples
   end
