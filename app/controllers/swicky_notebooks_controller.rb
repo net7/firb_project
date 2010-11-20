@@ -129,6 +129,7 @@ class SwickyNotebooksController < ApplicationController
   # TODO: see ontologies_controller and its show view, a good example at how to use a builder and let him
   # do some work
   def related_topic
+    render :text => ImageZone.get_all_zones_array2.inspect + " \n\n\n " + ImageZone.get_all_zones_array.inspect
     record = TaliaCore::ActiveSource.find(params[:topic])
     
     # TODO: add some kind of list of allowed types, or use method responds_to(:whatever)

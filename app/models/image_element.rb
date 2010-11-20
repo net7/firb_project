@@ -107,5 +107,20 @@ class ImageElement < TaliaCore::Source
       save_zone_data(subzone_xml)
     end
   end
+  
+  def self.get_all_zones_array
+    zones = []
+    Image.all.each { |image| image.recurse_zone_names(zones, "") }
+    zones.sort
+  end
+  
+  # If there's no subzones it's a leaf, add it's url and name to the
+  # container. Otherwise: add self.name to the name string, add this item
+  # to the container and recurse into each subzone
+  def recurse_zone_names(container, name)
+    name = (name.blank?) ? self.name : name+" > "+self.name
+    container.push [name, self.uri.to_s] unless self.is_a?(Image)
+    self.zones.each { |z| z.recurse_zone_names(container, name) } if (self.has_zones?)
+  end
 
 end

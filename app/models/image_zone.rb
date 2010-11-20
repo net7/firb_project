@@ -60,9 +60,10 @@ class ImageZone < ImageElement
     parent
   end
   
+  # TODO: delete this method if the new implementation in image_element is working fine
   # Produces an hash to be passed to an input (select_for) format
   # with all of our ImageZones
-  def self.get_all_zones_array
+  def self.get_all_zones_array_old
     foo = ImageZone.all.collect do |a|
       parent = a.get_parent
       breadcrumbs = ""
