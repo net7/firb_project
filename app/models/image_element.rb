@@ -107,11 +107,17 @@ class ImageElement < TaliaCore::Source
       save_zone_data(subzone_xml)
     end
   end
-  
+
+  # Will return the cached result if there's one. So views who uses 2+ times
+  # this, will use the cache
   def self.get_all_zones_array
-    zones = []
-    Image.all.each { |image| image.recurse_zone_names(zones, "") }
-    zones.sort
+    if (@zones) 
+      @zones
+    else
+      @zones = []
+      Image.all.each { |image| image.recurse_zone_names(@zones, "") }
+      @zones.sort
+    end
   end
   
   # If there's no subzones it's a leaf, add it's url and name to the
