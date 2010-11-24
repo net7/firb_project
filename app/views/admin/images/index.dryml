@@ -1,7 +1,5 @@
 <index-page>
     <count:>
-        <ht key="images.collection.count" count="&this.total_entries">
-          There <count prefix="are"/>
-        </ht>
+        <ht key="images.collection.count" count="&this.total_entries"/>
     </count:>
 </index-page>
