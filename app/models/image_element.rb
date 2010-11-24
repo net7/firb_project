@@ -124,7 +124,8 @@ class ImageElement < TaliaCore::Source
   # container. Otherwise: add self.name to the name string, add this item
   # to the container and recurse into each subzone
   def recurse_zone_names(container, name)
-    name = (name.blank?) ? self.name : name+" > "+self.name
+    foo = (self.name.nil?) ? I18n.t('text_card.no_name_zone') : self.name.to_s
+    name = (name.blank?) ? foo : name + " > " + foo
     container.push [name, self.uri.to_s] unless self.is_a?(Image)
     self.zones.each { |z| z.recurse_zone_names(container, name) } if (self.has_zones?)
   end
