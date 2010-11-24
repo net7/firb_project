@@ -32,9 +32,23 @@ class BgTextCard < TextCard
   end
   
   def book=(value)
+    old_book = book
     @book = (value.is_a?(TaliaCollection) ? value : TaliaCollection.find(value)).real_source
     @book_new = true
-    @book << self
+
+    if !old_book.nil? && old_book.to_uri != @book.to_uri
+      old_book.each do |el|
+        if el.uri == self.uri
+          old_book.delete el
+          break
+        end
+      end
+
+      old_book.save
+      @book << self
+    elsif old_book.nil?
+      @book << self
+    end
   end
   
   def validate_book
@@ -51,8 +65,9 @@ class BgTextCard < TextCard
   end
   
   def fetch_book
-    book = ActiveRDF::Query.new(TaliaCollection).select(:book).where(:book, N::DCT.hasPart, self).execute.first
-    book ? book.real_source : nil
+    book = TaliaCollection.find(:first, :find_through => [N::DCT.hasPart, self.uri])
+    # we need to re-find it because it would be read-only otherwise (!?)
+    book ? TaliaCore::Collection.find(book.real_source.uri) : nil
   end
   
   def book_valid?
