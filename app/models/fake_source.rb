@@ -27,6 +27,11 @@ module FakeSource
     end
     
     def new(*args)
+
+      if (args.count == 1) && (args.first.is_a? String)
+        args = [{:uri => (args.first)}]
+      end
+
       new_thing = super(*args)
       new_thing[:type] = real_class.name
       new_thing.real_source = real_class.new("http://#{rand Time.now.to_i}.x")
