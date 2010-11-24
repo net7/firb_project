@@ -10,17 +10,16 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/talia_sources/:action/:id', :controller => 'admin/talia_sources'
   map.connect '/admin/talia_collections/:action/:id', :controller => 'admin/talia_collections'
   
-
-  map.connect '/test/:action/:id', :controller => 'test'
-  map.connect '/admin/images/:action/:id', :controller => 'admin/images'
-  map.connect '/admin/image_zones/:action/:id', :controller => 'admin/image_zones'
-  map.connect '/admin/pi_text_cards/:action/:id', :controller => 'admin/pi_text_cards'
-  map.connect '/admin/fi_text_cards/:action/:id', :controller => 'admin/fi_text_cards'
-  map.connect '/admin/vt_handwritten_text_cards/:action/:id', :controller => 'admin/vt_handwritten_text_cards'
-  map.connect '/admin/vt_printed_text_cards/:action/:id', :controller => 'admin/vt_printed_text_cards'
-  map.connect '/admin/bg_text_cards/:action/:id', :controller => 'admin/bg_text_cards'
-  map.connect '/admin/pi_illustrated_md_cards/:action/:id', :controller => 'admin/pi_illustrated_md_cards'
-  map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms'
+  map.connect '/test/:action/:id', :controller => 'test', :id => nil
+  map.connect '/admin/images/:action/:id', :controller => 'admin/images', :id => nil
+  map.connect '/admin/image_zones/:action/:id', :controller => 'admin/image_zones', :id => nil
+  map.connect '/admin/pi_text_cards/:action/:id', :controller => 'admin/pi_text_cards', :id => nil
+  map.connect '/admin/fi_text_cards/:action/:id', :controller => 'admin/fi_text_cards', :id => nil
+  map.connect '/admin/vt_handwritten_text_cards/:action/:id', :controller => 'admin/vt_handwritten_text_cards', :id => nil
+  map.connect '/admin/vt_printed_text_cards/:action/:id', :controller => 'admin/vt_printed_text_cards', :id => nil
+  map.connect '/admin/bg_text_cards/:action/:id', :controller => 'admin/bg_text_cards', :id => nil
+  map.connect '/admin/pi_illustrated_md_cards/:action/:id', :controller => 'admin/pi_illustrated_md_cards', :id => nil
+  map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms', :id => nil
 
   map.connect '/admin/base_cards/show_annotable/:id', :controller => 'admin/text_cards', :action => 'show_annotable'
   

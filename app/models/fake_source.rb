@@ -27,7 +27,13 @@ module FakeSource
     end
     
     def new(*args)
-      new_thing = super(*args)
+
+      if args.count > 0
+        new_args = [{:uri => (args.delete(args.first))}]
+        new_args = new_args | args
+      end
+
+      new_thing = super(*new_args)
       new_thing[:type] = real_class.name
       new_thing.real_source = real_class.new("http://#{rand Time.now.to_i}.x")
       new_thing.real_source.add_additional_rdf_types
