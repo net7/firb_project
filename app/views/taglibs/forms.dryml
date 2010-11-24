@@ -5,19 +5,20 @@
     <field-list fields="page_position, title" param/>
     <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
     <br /><br />
-	<p>
+	<unless test="&not_hidden?(BgTextCard)">
+          <p>
 	    <label for="select_list"><ht key="anastaticas.page_to_book" /></label>
 	    <removeable-books />
-	</p>
+ 	  </p>
 
-	<% book_hash = {} ; this.unattached_books.each { |b| book_hash[b.name] = b.to_uri.safe_encoded } %>
-	<unless test="&book_hash.empty?">
-        <p>
+  	  <% book_hash = {} ; this.unattached_books.each { |b| book_hash[b.name] = b.to_uri.safe_encoded } %>
+	  <unless test="&book_hash.empty?">
+            <p>
 		    <% book_hash["Don't attach"] = '' %>
 		    <select-menu options="&book_hash" id="anastatica_page_attach" name="attach_book" />
-		</p>
+	    </p>
+	  </unless>
 	</unless>
-
     <div param="actions">
 		<submit label="#{ht 'anastaticas.actions.save'}" param/><or-cancel param="cancel"/>
     </div>
