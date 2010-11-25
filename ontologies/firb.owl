@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:scho="http://discovery-project.eu/ontologies/scholar/0.1/"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:firb="http://purl.oclc.org/firb/swn_ontology#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://purl.oclc.org/firb/swn_ontology">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/"/>
+  </owl:Ontology>
+  <rdfs:Class rdf:ID="Reuse">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Riuso</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="Phenomenon"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Illustrated">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="MemoryDepiction"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Note">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nota</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Innuendo">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Allusione</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Phenomenon"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Plagiarism">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Plagio</rdfs:label>
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:about="#Phenomenon"/>
+    </rdfs:subClassOf>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Place">
+    <rdfs:subClassOf>
+      <rdfs:Class rdf:ID="TextElement"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Luogo</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:about="#Phenomenon">
+    <rdfs:subClassOf rdf:resource="#TextElement"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="BibliographyItem">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elementi Bibliografici</rdfs:label>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="Person">
+    <rdfs:subClassOf rdf:resource="#TextElement"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="NonIllustrated">
+    <rdfs:subClassOf rdf:resource="#MemoryDepiction"/>
+  </rdfs:Class>
+  <rdfs:Class rdf:ID="ImageZone">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ImageZone</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >a resource representing a zone of an image</rdfs:comment>
+  </rdfs:Class>
+  <owl:ObjectProperty rdf:ID="keywordForImageZone">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Parole chiave</rdfs:label>
+    <rdfs:range rdf:resource="#ImageZone"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedImageZone">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Firb PI.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ImageZone correlate</rdfs:label>
+    <rdfs:range rdf:resource="#ImageZone"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="instanceOf">
+    <rdfs:range rdf:resource="#TextElement"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Usato per evidenziare Luoghi, Persone, ecc nel testo</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasImageZone">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Firb PI</rdfs:comment>
+    <rdfs:range rdf:resource="#ImageZone"/>
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Collegamento con Zona Immagine</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedMemoryDepiction">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Immagine di memoria correlata</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasNote">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Collegamento con Nota</rdfs:label>
+    <rdfs:range rdf:resource="#Note"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedNote">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Nota correlata</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedBibliographyItem">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elementi Bibliografici correlati</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasMemoryDepiction">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Collegamento con immagini di memoria</rdfs:label>
+    <rdfs:range rdf:resource="#MemoryDepiction"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasBibliographyItem">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fonte</rdfs:label>
+    <rdfs:range rdf:resource="#BibliographyItem"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="EvolvedIn">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Evoluzione del testo</rdfs:label>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.4, Build 579)  http://protege.stanford.edu -->
