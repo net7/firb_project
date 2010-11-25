@@ -45,7 +45,7 @@ class BgIllustrationCard < IllustrationCard
 
   # Produces an array of triples, where a triple is an array subject - predicate - object
   # meant to be used with rdf_builder's prepare_triples
-  # TextFragement > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
+  # TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
   def get_related_topic_descriptions
     triples = []
 
@@ -53,7 +53,7 @@ class BgIllustrationCard < IllustrationCard
     triples.push [self.uri.to_s, N::RDFS.type, self.type.to_s]
     triples.push [self.uri.to_s, N::RDFS.label, self.name.to_s]
 
-    # TextFragement > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
+    # TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
     ImageZone.get_all_zones_array.each do |name, uri|
       triples.push [self.uri.to_s, N::FIRBSWN.relatedImageZone, uri]
       triples.push [uri, N::RDFS.type, N::FIRBSWN.ImageZone]

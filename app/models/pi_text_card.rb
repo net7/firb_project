@@ -31,7 +31,7 @@ class PiTextCard < TextCard
   # Produces an array of triples, where a triple is an array subject - predicate - object
   # meant to be used with rdf_builder's prepare_triples
   # 1 TextFragment > hasNote > Note, for each note: self > relatedNote > note
-  # 2 TextFragement > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
+  # 2 TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
   # 3 TextFragment > hasMemoryDepiction > MemoryDepiction, for each md (ill+not ill): self > relatedMemoryDepiction > md
   def get_related_topic_descriptions
     triples = []
@@ -47,7 +47,7 @@ class PiTextCard < TextCard
       triples.push [n.uri.to_s, N::RDFS.label, n.name+": "+n.content]
     end
 
-    # 2 TextFragement > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
+    # 2 TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
     ImageZone.get_all_zones_array.each do |name, uri|
       triples.push [self.uri.to_s, N::FIRBSWN.relatedImageZone, uri]
       triples.push [uri, N::RDFS.type, N::FIRBSWN.ImageZone]
