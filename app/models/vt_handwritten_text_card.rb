@@ -83,5 +83,25 @@ class VtHandwrittenTextCard < TextCard
   def letter_valid?
     @letter ? @letter.valid? : true
   end
+    
+  # Produces an array of triples, where a triple is an array subject - predicate - object
+  # meant to be used with rdf_builder's prepare_triples
+  # TextFragment > hasNote > Note, for each note: self > relatedNote > note
+  def get_related_topic_descriptions
+    triples = []
+
+    # self > type+tabel
+    triples.push [self.uri.to_s, N::RDFS.type, self.type.to_s]
+    triples.push [self.uri.to_s, N::RDFS.label, self.name.to_s]
+
+    # TextFragment > hasNote > Note, for each note: self > relatedNote > note
+    Note.all.each do |n|
+      triples.push [self.uri.to_s, N::FIRBSWN.relatedNote, n.uri.to_s]
+      triples.push [n.uri.to_s, N::RDFS.type, N::FIRBSWN.Note]
+      triples.push [n.uri.to_s, N::RDFS.label, n.name+": "+n.content]
+    end
+
+    triples
+  end
 
 end

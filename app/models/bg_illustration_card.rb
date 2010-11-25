@@ -45,29 +45,20 @@ class BgIllustrationCard < IllustrationCard
 
   # Produces an array of triples, where a triple is an array subject - predicate - object
   # meant to be used with rdf_builder's prepare_triples
+  # TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
   def get_related_topic_descriptions
     triples = []
-    # For each image_zone add:
-    # self - 'related_image' - image_zone
-    # image_zone - 'type' - ImageZone
-    # image_zone - 'label' - image_zone.name
-    ImageZone.get_all_zones_array.collect do |name, uri|
-      triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#related_image', uri]
-      triples.push [uri, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'ImageZone']
-      triples.push [uri, 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', name]
+
+    # self > type+tabel
+    triples.push [self.uri.to_s, N::RDFS.type, self.type.to_s]
+    triples.push [self.uri.to_s, N::RDFS.label, self.name.to_s]
+
+    # TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
+    ImageZone.get_all_zones_array.each do |name, uri|
+      triples.push [self.uri.to_s, N::FIRBSWN.relatedImageZone, uri]
+      triples.push [uri, N::RDFS.type, N::FIRBSWN.ImageZone]
+      triples.push [uri, N::RDFS.label, name]
     end
-    # 'related_image' - 'label' - '..'
-    triples.push ['http://talia.discovery-project.eu/wiki/TaliaInternal#related_image', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'Zone di immagine associabili']
-
-    # self - 'type' - self.type
-    # self - 'label' - self.name
-    triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#type', self.type.to_s]
-    triples.push [self.uri.to_s, 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', self.name.to_s]
-
-    # 'is_depicted_in' - 'range' - ImageZone
-    # 'is_depicted_in' - 'label' - '..'
-    triples.push ['http://talia.discovery-project.eu/wiki/TaliaInternal#is_depicted_in', 'http://talia.discovery-project.eu/wiki/TaliaInternal#range', 'ImageZone']
-    triples.push ['http://talia.discovery-project.eu/wiki/TaliaInternal#is_depicted_in', 'http://talia.discovery-project.eu/wiki/TaliaInternal#label', 'è rappresentata in']
     
     triples
   end

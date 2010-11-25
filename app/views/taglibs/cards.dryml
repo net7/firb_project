@@ -258,7 +258,7 @@
     <div class="firb-image-picture" id="image_container_#{this.id}">
 
       <if test="&this.file_status == 'OK'">
-        <imt-viewer id="image_#{@imageid}" b64="#{thumb_xml(this)}"/>
+        <imt-viewer id="image_#{@imageid}" b64="#{thumb_xml(this)}" size="200" />
       </if>
       <unless test="&this.file_status == 'OK'">
         <img-not-ready />
@@ -271,7 +271,7 @@
       <h4><%= this.zone_count %> <ht key='image.zones' />:</h4>
       <ul>
         <li repeat="&this.zones">
-        <imagezone parentimageid="image_#{@imageid}"/>
+            <imagezone parentimageid="image_#{@imageid}"/>
         </li>
       </ul>
     </div>

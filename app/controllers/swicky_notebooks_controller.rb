@@ -122,24 +122,16 @@ class SwickyNotebooksController < ApplicationController
     end
   end
   
-  # TODO : fix related_topic action
-  # Will render a rdf with all the useful sources connected to the given topic.
-  # The topic is a valid URI, for example a source uri.
-  # TODO: find a nice way to get data from each one of the possible models .. put something in file_attached.rb ? 
-  # TODO: see ontologies_controller and its show view, a good example at how to use a builder and let him
-  # do some work
+  # Will render an RDF with all the useful sources connected to the given topic
   def related_topic
     record = TaliaCore::ActiveSource.find(params[:topic])
     
-    # TODO: add some kind of list of allowed types, or use method responds_to(:whatever)
     if (record.respond_to?(:get_related_topic_descriptions))
       @triples = record.get_related_topic_descriptions
+    else
+      raise(ActiveRecord::RecordNotFound, "No related topics for #{params[:topic]}")
     end
 
-    #respond_to do |format|
-    #  format.rdf { render :text => text}
-    #  format.html { render :text => "TODO: FIX HTML #{record.uri.to_s} #{record.type} <br><textarea rows='50' cols='100'>"+text+"</textarea>" }
-    #end
   end
   
   private
