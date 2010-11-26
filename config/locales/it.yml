@@ -223,6 +223,7 @@ it:
         cart: "Carro"
         parade: "Parata"
         transcription_file: "File XML della trascrizione"
+        already_added_file: "File XML gia' collegati"
         edition: "Edizione"
         page_position: "Pagine di riferimento"
         watermark: "Filigrana"

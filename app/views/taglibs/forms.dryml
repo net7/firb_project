@@ -35,6 +35,10 @@
 
                 <field-edit-row field="title" />
 
+                <field-row fieldname="already_added_file">
+                    <view:><xml-file-links /></view:>
+                </field-row>
+
                 <field-row field="transcription_file">
                     <view:><input type="file" name="pi_text_card[file]"/></view:>
                 </field-row>
@@ -104,6 +108,10 @@
 
             <field-edit-row field="letter" type="TaliaCollection" selectoptions="&vt_letters_select" />
 
+            <field-row fieldname="already_added_file">
+                <view:><xml-file-links /></view:>
+            </field-row>
+
             <field-row field="transcription_file">
                 <view:><input type="file" name="vt_handwritten_text_card[file]"/></view:>
             </field-row>
@@ -146,6 +154,10 @@
             <field-edit-row field="title" />
             <field-edit-row field="letter" type="TaliaCollection" selectoptions="&vt_letters_select" />
 
+            <field-row fieldname="already_added_file">
+                <view:><xml-file-links /></view:>
+            </field-row>
+
             <field-row field="transcription_file">
                 <view:><input type="file" name="vt_printed_text_card[file]"/></view:>
             </field-row>
@@ -175,6 +187,11 @@
             <content:>
 
             <field-edit-row field="title" />
+
+            <field-row fieldname="already_added_file">
+                <view:><xml-file-links /></view:>
+            </field-row>
+
             <field-row field="transcription_file">
                 <view:><input type="file" name="fi_text_card[file]"/></view:>
             </field-row>
@@ -260,6 +277,10 @@
             <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica"/>
 
             <field-edit-row field="book" type="TaliaCollection" selectoptions="&bg_books_select" />
+
+            <field-row fieldname="already_added_file">
+                <view:><xml-file-links /></view:>
+            </field-row>
 
             <field-row field="transcription_file">
                 <view:><input type="file" name="bg_text_card[file]"/></view:>
