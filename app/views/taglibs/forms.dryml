@@ -78,6 +78,9 @@
 
             <field-edit-row field="title" />
             <field-edit-row field="introduction" />
+            <field-row fieldname="already_added_file">
+                <view:><pdf-file-link /></view:>
+            </field-row>
             <field-row field="pdf_file">
                 <view:><input type="file" name="vt_letter[file]"/></view:>
             </field-row>
