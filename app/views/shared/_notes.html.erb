@@ -48,8 +48,11 @@ function add_note(id, field_name, uri, name, content, image_zone) {
 
     $(id).insert({bottom: markup});
 
-    // If there's an image_zone, clone the select item and set select's name
+    $('note_content').value = '';
+    $('note_name').value = '';
+
     <% if (with_zone_image) %>
+        // If there's an image_zone, clone the select item and set select's name
         var foo = $$('.image_zone_url')[0].cloneNode(true);
         $(rand_id).insert({top: foo});
         $$('.image_zone_url')[0].writeAttribute("name", "<%= "#{main_name}[#{param_name}][]" %>[image_zone]");
@@ -68,7 +71,7 @@ function add_note(id, field_name, uri, name, content, image_zone) {
             existing.each do |name, uri, content, image_zone|
             image_zone = (image_zone.nil?) ? "" : image_zone.uri.to_s
         %>
-            add_note(populate_ul_id, "<%= "#{main_name}[#{param_name}][]" %>", "<%= uri %>", "<%= name %>", "<%= content %>", "<%= image_zone %>");
+            add_note(populate_ul_id, "<%= "#{main_name}[#{param_name}][]" %>", "<%= uri %>", "<%= name %>", "<%= content.gsub(/["]/, '\"').gsub(/[\n\r]/, "\\n") %>", "<%= image_zone %>");
     
             // If there's an image zone, select the right option and remove the class name
             <% if (with_zone_image) %>
