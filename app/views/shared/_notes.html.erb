@@ -70,8 +70,9 @@ function add_note(id, field_name, uri, name, content, image_zone) {
         <% 
             existing.each do |name, uri, content, image_zone|
             image_zone = (image_zone.nil?) ? "" : image_zone.uri.to_s
+            content = (content.nil?) ? "" : content.gsub(/["]/, '\"').gsub(/[\n\r]/, "\\n")
         %>
-            add_note(populate_ul_id, "<%= "#{main_name}[#{param_name}][]" %>", "<%= uri %>", "<%= name %>", "<%= content.gsub(/["]/, '\"').gsub(/[\n\r]/, "\\n") %>", "<%= image_zone %>");
+            add_note(populate_ul_id, "<%= "#{main_name}[#{param_name}][]" %>", "<%= uri %>", "<%= name %>", "<%= content %>", "<%= image_zone %>");
     
             // If there's an image zone, select the right option and remove the class name
             <% if (with_zone_image) %>
