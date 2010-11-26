@@ -167,7 +167,7 @@
 
             <field-edit-row field="anastatica" type="Anastatica" selectoptions="&anastatiche_select" param="anastatica" />
             <field-edit-row field="transc_handwritten" type="VtHandwrittenTextCard" selectoptions="&vt_handwritten_textcards_select" param="transc_handwritten" />
-            <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
+            <field-edit-row field="edition" type="BibliographyItem" selectoptions="&custom_bibliography_select" />
 
             <field-row fieldname="note">
                 <view:><notes-edit withname='true' /></view:>
@@ -198,7 +198,7 @@
             <field-row field="transcription_file">
                 <view:><input type="file" name="fi_text_card[file]"/></view:>
             </field-row>
-            <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
+            <field-edit-row field="edition" type="BibliographyItem" selectoptions="&custom_bibliography_select" />
             <field-edit-row field="page_position" />
 
             <field-row field="bibliography_items" param="bibliography" >
@@ -230,7 +230,7 @@
                 <field-edit-row field="measure" />
                 <field-edit-row field="technical_notes" />
 
-                <field-edit-row field="edition" type="BibliographyItem" selectoptions="&bibliography_select" />
+                <field-edit-row field="edition" type="BibliographyItem" selectoptions="&custom_bibliography_select" />
 
                 <field-row field="description_file">
                     <view:><input type="file" name="bg_illustration_card[file]"/></view:>
