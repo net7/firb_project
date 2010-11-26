@@ -21,7 +21,7 @@ module FileAttached
         # to add semantic notes to the text.
         # the XSLT needs the source_uri parameter to fill some THCTag with it, we pass it in the 
         # "options" hash
-        options = {"source_uri" => self.to_uri.local_name}
+        options = {"source_uri" => self.uri.to_s}
         xsl_file = 'xslt/HTML1.xsl'
         xml_file = xml_data.full_filename
         html1 = Simplyx::XsltProcessor::perform_transformation(xsl_file, xml_file, options)
