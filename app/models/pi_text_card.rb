@@ -44,7 +44,7 @@ class PiTextCard < TextCard
     Note.all.each do |n|
       triples.push [self.uri.to_s, N::FIRBSWN.relatedNote, n.uri.to_s]
       triples.push [n.uri.to_s, N::RDFS.type, N::FIRBSWN.Note]
-      triples.push [n.uri.to_s, N::RDFS.label, n.name+": "+n.content]
+      triples.push [n.uri.to_s, N::RDFS.label, ((n.name.nil?) ? "" : n.name)+": "+((n.content.nil?) ? "" : n.content)]
     end
 
     # 2 TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
