@@ -37,34 +37,34 @@ class PiTextCard < TextCard
     triples = []
 
     # self > type+tabel
-    triples.push [self.uri.to_s, N::RDFS.type, self.type.to_s]
-    triples.push [self.uri.to_s, N::RDFS.label, self.name.to_s]
+    triples.push [self.uri, N::RDFS.type, self.type.to_s]
+    triples.push [self.uri, N::RDFS.label, self.name.to_s]
 
     # 1 TextFragment > hasNote > Note, for each note: self > relatedNote > note
     Note.all.each do |n|
-      triples.push [self.uri.to_s, N::FIRBSWN.relatedNote, n.uri.to_s]
-      triples.push [n.uri.to_s, N::RDFS.type, N::FIRBSWN.Note]
-      triples.push [n.uri.to_s, N::RDFS.label, ((n.name.nil?) ? "" : n.name)+": "+((n.content.nil?) ? "" : n.content)]
+      triples.push [self.uri, N::FIRBSWN.relatedNote, n.uri]
+      triples.push [n.uri, N::RDFS.type, N::FIRBSWN.Note]
+      triples.push [n.uri, N::RDFS.label, ((n.name.nil?) ? "" : n.name)+": "+((n.content.nil?) ? "" : n.content)]
     end
 
     # 2 TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
     ImageZone.get_all_zones_array.each do |name, uri|
-      triples.push [self.uri.to_s, N::FIRBSWN.relatedImageZone, uri]
+      triples.push [self.uri, N::FIRBSWN.relatedImageZone, uri]
       triples.push [uri, N::RDFS.type, N::FIRBSWN.ImageZone]
       triples.push [uri, N::RDFS.label, name]
     end
 
     # 3 TextFragment > hasMemoryDepiction > MemoryDepiction, for each md (ill+not ill): self > relatedMemoryDepiction > md
     self.non_illustrated_memory_depictions.each do |md|
-      triples.push [self.uri.to_s, N::FIRBSWN.relatedMemoryDepiction, md.uri.to_s]
-      triples.push [md.uri.to_s, N::RDFS.type, N::FIRBSWN.NonIllustrated]
-      triples.push [md.uri.to_s, N::RDFS.label, "("+md.depiction_type+") " + md.short_description]
+      triples.push [self.uri, N::FIRBSWN.relatedMemoryDepiction, md.uri]
+      triples.push [md.uri, N::RDFS.type, N::FIRBSWN.NonIllustrated]
+      triples.push [md.uri, N::RDFS.label, "("+md.depiction_type+") " + md.short_description]
     end
 
     PiIllustratedMdCard.find(:all, :find_through => [N::TALIA.attachedText, self.uri]).each do |md|
-      triples.push [self.uri.to_s, N::FIRBSWN.relatedMemoryDepiction, md.uri.to_s]
-      triples.push [md.uri.to_s, N::RDFS.type, N::FIRBSWN.Illustrated]
-      triples.push [md.uri.to_s, N::RDFS.label, md.short_description]
+      triples.push [self.uri, N::FIRBSWN.relatedMemoryDepiction, md.uri]
+      triples.push [md.uri, N::RDFS.type, N::FIRBSWN.Illustrated]
+      triples.push [md.uri, N::RDFS.label, md.short_description]
     end 
 
         

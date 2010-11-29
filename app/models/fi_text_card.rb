@@ -26,14 +26,14 @@ class FiTextCard < TextCard
     triples = []
 
     # self > type+tabel
-    triples.push [self.uri.to_s, N::RDFS.type, self.type.to_s]
-    triples.push [self.uri.to_s, N::RDFS.label, self.name.to_s]
+    triples.push [self.uri, N::RDFS.type, self.type.to_s]
+    triples.push [self.uri, N::RDFS.label, self.name.to_s]
 
     # TextFragment > hasBibliographyItem > BibliographyItem, for each cbi: self > relatedBibliographyItem > cbi
     CustomBibliographyItem.all.each do |cbi|
-      triples.push [self.uri.to_s, N::FIRBSWN.relatedBibliographyItem, cbi.uri.to_s]
-      triples.push [cbi.uri.to_s, N::RDFS.type, N::FIRBSWN.BibliographyItem]
-      triples.push [cbi.uri.to_s, N::RDFS.label, "#{cbi.name} (#{cbi.bibliography_item.author}: #{cbi.bibliography_item.title}) #{cbi.pages}"]
+      triples.push [self.uri, N::FIRBSWN.relatedBibliographyItem, cbi.uri]
+      triples.push [cbi.uri, N::RDFS.type, N::FIRBSWN.BibliographyItem]
+      triples.push [cbi.uri, N::RDFS.label, "#{cbi.name} (#{cbi.bibliography_item.author}: #{cbi.bibliography_item.title}) #{cbi.pages}"]
     end
     
     triples

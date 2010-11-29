@@ -50,12 +50,12 @@ class BgIllustrationCard < IllustrationCard
     triples = []
 
     # self > type+tabel
-    triples.push [self.uri.to_s, N::RDFS.type, self.type.to_s]
-    triples.push [self.uri.to_s, N::RDFS.label, self.name.to_s]
+    triples.push [self.uri, N::RDFS.type, self.type.to_s]
+    triples.push [self.uri, N::RDFS.label, self.name.to_s]
 
     # TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
     ImageZone.get_all_zones_array.each do |name, uri|
-      triples.push [self.uri.to_s, N::FIRBSWN.relatedImageZone, uri]
+      triples.push [self.uri, N::FIRBSWN.relatedImageZone, uri]
       triples.push [uri, N::RDFS.type, N::FIRBSWN.ImageZone]
       triples.push [uri, N::RDFS.label, name]
     end
