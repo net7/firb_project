@@ -13,6 +13,19 @@
 
 <set-theme name="clean"/>
 
+<def tag="publish">
+    <div part="foo" id="publish-#{typed_id}">
+        <if test="&this.is_public?">
+            Siamo pubblici: <%= ":#{this.published_by}: :#{this.published_on}:" %>
+        </if>
+        <else>
+            Non sono mica pubblico <%= ":#{this.published_by}: :#{this.published_on}:" %>
+        </else>
+        <form action="/admin/publish/#{this.id}" update="publish-#{typed_id}">  <submit label="Go!"/></form>
+    </div>
+</def>
+
+
 <def tag="app-name"><%= TaliaCore::CONFIG['site_name'] || "Talia Admin Panel" %></def>
 
 <def tag="single-connection" attrs="typename, attribute, type, options">

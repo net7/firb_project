@@ -84,6 +84,7 @@
       <h4 param="heading"><a action="edit"><%= this.name || this.title %> </a><delete-card-icon /></h4>
     </header:>
     <body:>
+        <p><publish /></p>
         <p><anastatica-link /></p>
         <p><xml-file-links /></p>
     </body:>

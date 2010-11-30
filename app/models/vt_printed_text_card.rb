@@ -76,13 +76,13 @@ class VtPrintedTextCard < TextCard
     triples = []
 
     # self > type+tabel
-    triples.push [self.uri, N::RDFS.type, self.type.to_s]
+    triples.push [self.uri, N::RDF.type, self.type.to_s]
     triples.push [self.uri, N::RDFS.label, self.name.to_s]
 
     # TextFragment > hasNote > Note, for each note: self > relatedNote > note
     Note.all.each do |n|
       triples.push [self.uri, N::FIRBSWN.relatedNote, n.uri]
-      triples.push [n.uri, N::RDFS.type, N::FIRBSWN.Note]
+      triples.push [n.uri, N::RDF.type, N::FIRBSWN.Note]
       triples.push [n.uri, N::RDFS.label, ((n.name.nil?) ? "" : n.name)+": "+((n.content.nil?) ? "" : n.content)]
     end
 
