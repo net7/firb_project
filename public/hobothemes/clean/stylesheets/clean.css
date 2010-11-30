@@ -397,3 +397,27 @@ ul#note_list li {
     padding: 2px;
     margin: 5px;
 }
+
+.index-page div.publish-div {
+    padding: 3px;
+    text-align: center;
+    color: black;
+    background: white;
+}
+.index-page div.publish-div span {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.index-page div.publish-div input.button {
+    width: 100%;
+    margin: 0px;
+    padding: 2px;
+}
+.index-page div.publish-div p { padding: 3px; }
+.index-page div.publish-div p.published {
+    background: #acd3e6;
+}
+.index-page div.publish-div p.not_published {
+    background: #900;
+    color: white;
+}

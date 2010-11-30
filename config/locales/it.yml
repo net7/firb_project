@@ -10,6 +10,10 @@ it:
         messages:
             confirm: "Sei sicuro?"
         drag_drop_to_order: "Trascinale dalla maniglia con le frecce a sinistra per ordinarle"
+        publish: "Pubblica adesso"
+        unpublish: "Rendi privata"
+        published: "Pubblicata"
+        not_published: "Privata"
 
     talia:
         select_one: "Seleziona dall'elenco..."

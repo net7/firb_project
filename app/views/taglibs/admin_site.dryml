@@ -14,14 +14,21 @@
 <set-theme name="clean"/>
 
 <def tag="publish">
-    <div part="foo" id="publish-#{typed_id}">
+    <div id="publish-#{typed_id}" part="xyz" class="button-float publish-div">
         <if test="&this.is_public?">
-            Siamo pubblici: <%= ":#{this.published_by}: :#{this.published_on}:" %>
+            <p class='published'>
+                <span><ht key="hobo.published"/></span><br />
+                <%= "#{l Time.parse(this.published_on), :format => :long}: #{this.published_by}" %>
+            </p>
+                <form update="self" spinner-next-to="publish-#{typed_id}" action="/admin/publish/#{this.id}"><submit label="&I18n.t('hobo.unpublish')"/></form>
         </if>
         <else>
-            Non sono mica pubblico <%= ":#{this.published_by}: :#{this.published_on}:" %>
+            <p class='not_published'>
+                <span><ht key="hobo.not_published"/></span><br />
+                <%= "#{l Time.parse(this.published_on), :format => :long}: #{this.published_by}" %>
+            </p>
+                <form update="self" spinner-next-to="publish-#{typed_id}" action="/admin/publish/#{this.id}"><submit label="&I18n.t('hobo.publish')"/></form>
         </else>
-        <form action="/admin/publish/#{this.id}" update="publish-#{typed_id}">  <submit label="Go!"/></form>
     </div>
 </def>
 
