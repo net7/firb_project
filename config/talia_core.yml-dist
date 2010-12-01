@@ -1,13 +1,15 @@
---- 
+---
 site_name: Talia 2.3.
 rdf_connection_file: rdfstore
 ardf_log_level: 0
 local_uri: http://localhost:5000/
+jaxer_url: http://localhost:8081/test/test3.html
 default_namespace_uri: http://default.dummy/
-iip_root_directory_location: 
+iip_root_directory_location: /path/to/iip
+data_directory_location: /path/to/data
 standalone_db: true
 db_file: database
-namespaces: 
+namespaces:
   dcns: http://purl.org/dc/elements/1.1/
   dct: http://purl.org/dc/terms/
   dcmit: http://purl.org/dc/dcmitype/
@@ -22,18 +24,12 @@ namespaces:
   discovery: http://discovery-project.eu/ontologies/scholar/0.1/
   marcont: http://www.marcont.org/ontology/2.1/
   demo: http://ontologies.muruca.org/demo3/
-thumb_options: 
-  height: "200"
-  width: "200"
-base_card_types:
-  - pi_illustrated_md_card 
-  - pi_letter_illustration_card 
-  - pi_illustration_card
-  - fi_parade_cart_card
-  - fi_character_card
-  - bg_illustration_card
+  firbswn: http://purl.oclc.org/firb/swn_ontology#
+thumb_options:
+  height: "500"
+  width: "500"
+# the list of shown tabs, edit it as desired
 shown_tabs:
-#  - 'talia_sources'
   - 'base_cards'
   - 'images'
   - 'anastaticas'
@@ -41,12 +37,32 @@ shown_tabs:
   - 'users'
   - 'iconclass_terms'
   - 'bibliography_items'
-  - 'vt_handwritten_text_cards'
-  - 'vt_printed_text_cards'
   - 'bg_text_cards'
+  - 'fi_parades'
   - 'fi_text_cards'
   - 'fi_parade_cart_cards'
   - 'fi_processions'
   - 'fi_character_card'
   - 'pi_text_cards'
-  
+  - 'vt_handwritten_text_cards'
+  - 'vt_printed_text_cards'
+  - 'vt_letters'
+# the list of subtypes of "base_card"s edit it as desired
+base_card_types:
+  - bg_illustration_card
+  - pi_illustrated_md_card 
+  - pi_letter_illustration_card 
+  - pi_illustration_card
+  - fi_parade_cart_card
+  - fi_character_card
+  - fi_episode_card
+  - fi_deity_card
+  - fi_animal_card
+  - fi_throne_card
+  - fi_vehicle_card
+iip_server_uri: http://localhost/fcgi-bin/iipsrv.fcgi
+vips_command: /usr/bin/vips
+convert_command: /usr/bin/convert
+# configure apache for using it to serve images if needed, then uncomment and
+# configure the next line
+# static_data_prefix: http://localhost/static
