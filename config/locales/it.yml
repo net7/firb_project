@@ -14,6 +14,7 @@ it:
         unpublish: "Rendi privata"
         published: "Pubblicata"
         not_published: "Privata"
+        published_preview_link: "(anteprima)"
 
     talia:
         select_one: "Seleziona dall'elenco..."

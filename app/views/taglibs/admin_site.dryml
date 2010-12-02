@@ -17,7 +17,12 @@
     <div id="publish-#{typed_id}" part="xyz" class="button-float publish-div">
         <if test="&this.is_public?">
             <p class='published'>
-                <span><ht key="hobo.published"/></span><br />
+                <span><ht key="hobo.published"/></span>
+                <unless test="&this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html2.html').nil?">
+                  <a href="&url_for(:action => :show_preview, :controller => :text_cards, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html2.html').id)">
+                     <ht key="hobo.published_preview_link" /></a>
+                </unless>
+                <br />
                 <%= "#{l Time.parse(this.published_on), :format => :long}: #{this.published_by}" unless (this.published_on.nil?) %>
             </p>
                 <form update="self" spinner-next-to="publish-#{typed_id}" action="&url_for(:controller => 'admin/publish', :action => 'toggle', :id => this.id)">

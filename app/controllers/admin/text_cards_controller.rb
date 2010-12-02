@@ -12,4 +12,10 @@ class Admin::TextCardsController < Admin::AdminSiteController
     render :template => 'admin/shared/show_annotable.dryml'
   end
 
+  def show_preview
+    record = TaliaCore::DataTypes::DataRecord.find(params[:id])
+    @content = record.content_string
+    render :template => 'admin/shared/show_preview.dryml'
+  end
+
 end

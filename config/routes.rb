@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms', :id => nil
 
   map.connect '/admin/base_cards/show_annotable/:id', :controller => 'admin/text_cards', :action => 'show_annotable'
+  map.connect '/admin/text_cards/show_preview/:id', :controller => 'admin/text_cards', :action => 'show_preview'
 
   map.connect '/admin/publish/toggle/:id', :controller => 'admin/publish', :action => "toggle"
   

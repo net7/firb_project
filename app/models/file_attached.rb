@@ -36,6 +36,13 @@ module FileAttached
     end
   end
 
+  def attach_html2(content)
+    html2_data = TaliaCore::DataTypes::XmlData.new
+    html2_data.create_from_data('html2.html', content, :options => { :mime_type => 'text/xml' })
+    self.data_records << html2_data
+    self.save!
+  end
+
   def attach_pdf_file(file)
     self.attach_files(:url => file.path, :options => {:mime_type => file.content_type.to_s, :location => file.original_filename})
   end
