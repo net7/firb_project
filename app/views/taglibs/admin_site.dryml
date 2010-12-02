@@ -20,14 +20,18 @@
                 <span><ht key="hobo.published"/></span><br />
                 <%= "#{l Time.parse(this.published_on), :format => :long}: #{this.published_by}" unless (this.published_on.nil?) %>
             </p>
-                <form update="self" spinner-next-to="publish-#{typed_id}" action="/admin/publish/#{this.id}"><submit label="&I18n.t('hobo.unpublish')"/></form>
+                <form update="self" spinner-next-to="publish-#{typed_id}" action="&url_for(:controller => 'admin/publish', :action => 'toggle', :id => this.id)">
+                    <submit label="&I18n.t('hobo.unpublish')"/>
+                </form>
         </if>
         <else>
             <p class='not_published'>
                 <span><ht key="hobo.not_published"/></span><br />
                 <%= "#{l Time.parse(this.published_on), :format => :long}: #{this.published_by}" unless (this.published_on.nil?) %>
             </p>
-                <form update="self" spinner-next-to="publish-#{typed_id}" action="/admin/publish/#{this.id}"><submit label="&I18n.t('hobo.publish')"/></form>
+                <form update="self" spinner-next-to="publish-#{typed_id}" action="&url_for(:controller => 'admin/publish', :action => 'toggle', :id => this.id)">
+                    <submit label="&I18n.t('hobo.publish')"/>
+                </form>
         </else>
     </div>
 </def>
