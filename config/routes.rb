@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/text_cards/show_preview/:id', :controller => 'admin/text_cards', :action => 'show_preview'
 
   map.connect '/admin/publish/toggle/:id', :controller => 'admin/publish', :action => "toggle"
-  
+ 
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'
   map.resources :swicky_notebooks, :path_prefix => 'users/:user_name'
 
@@ -50,8 +50,16 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sources, :requirements => { :id => /.+/  }
 
   # Default semantic dispatch
-  map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',
+#  map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',
+#    :requirements => { :dispatch_uri => /[^\.]+/ }
+
+  map.connect ':dispatch_uri.:format', :controller => 'boxView', :action => 'dispatch',
     :requirements => { :dispatch_uri => /[^\.]+/ }
+
+  map.connect '/boxView', :controller => 'boxView', :action => 'index'
+  map.connect '/boxView/dispatch', :controller => 'boxView', :action => 'dispatch'
+  map.connect '/boxView/graph_xml/:id', :controller => 'boxView', :action => 'graph_xml'
+ 
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -86,7 +94,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
-
+  map.root :controller => "boxView", :action => 'index'
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
