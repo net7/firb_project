@@ -29,11 +29,9 @@ class BoxViewController < ApplicationController
 
     case params[:method]
     when 'getIntro'
-#      html = render_to_string :intro
-#      data = {'box' => "welcome"}
-
+      #html = render_to_string :intro
+      #data = {'box' => "welcome"}
       render_source and return
-
     when 'getMenu'
       render_menu and return
     when 'getSource'
@@ -43,6 +41,7 @@ class BoxViewController < ApplicationController
     else
       error_code = ERROR_UNKNOWN_METHOD
       html = "Unable to fulfil the request! (Unknown method: #{params[:method]}"
+      data = {'box' => 'error'}
     end
 
     render_json(error_code, html, data)
@@ -74,15 +73,17 @@ class BoxViewController < ApplicationController
   # We deal with it here, and display an appropriate box
   def render_source
 
-    @fi_character = FiCharacterCard.find('http://mascherata-firb.ctl.sns.it/fi_character_cards/727614855')
-#    @fi_character = FiCharacterCard.find(:first)
-    @image = fi_character.anastatica.image_zone.get_image_parent
-    
-
-    html = render_to_string :firb_fi
-    data = {'box' => 'Pleiadi'}
-
-
+    character_uri = 'http://mascherata-firb.ctl.sns.it/fi_character_cards/727614855'
+    @fi_character = if  FiCharacterCard.exists?(character_uri)
+                      FiCharacterCard.find(character_uri)
+                    else
+                      FiCharacterCard.find(:first)
+                    end
+    unless @fi_character.nil?
+      @image = @fi_character.anastatica.image_zone.get_image_parent 
+      html = render_to_string :firb_fi
+      data = {'box' => 'Pleiadi'}
+    end
 
     # source_uri = Base64.decode64(params[:resource])
     # @source = TaliaCore::ActiveSource.find(source_uri)
