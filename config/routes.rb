@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/bg_text_cards/:action/:id', :controller => 'admin/bg_text_cards', :id => nil
   map.connect '/admin/pi_illustrated_md_cards/:action/:id', :controller => 'admin/pi_illustrated_md_cards', :id => nil
   map.connect '/admin/iconclass_terms/:action/:id', :controller => 'admin/iconclass_terms', :id => nil
+  map.connect '/admin/base_cards/:action/:id', :controller => 'admin/base_cards', :action => 'index', :id => nil
 
   map.connect '/admin/base_cards/show_annotable/:id', :controller => 'admin/text_cards', :action => 'show_annotable'
   map.connect '/admin/text_cards/show_preview/:id', :controller => 'admin/text_cards', :action => 'show_preview'
