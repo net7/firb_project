@@ -1,10 +1,12 @@
 <index-page>
 
 	<content: replace>
+
 		<sidebared-content>
-            <count:>
-                <img src="&image_path('/images/icons/images.png')" /> <ht key="anastaticas.collection.count" count="&this.total_entries" />
-            </count:>
+
+ 	         <count:>
+                   <img src="&image_path('/images/icons/images.png')" /> <ht key="anastaticas.collection.count" count="&this.total_entries" />
+                </count:>
             <new-link: replace>
                 <% s = I18n.t("anastaticas.actions.new"); i=image_path('/images/icons/page_add.png') %>
                 <%= link_to "<img src='#{i}'> #{s}", url_for(:action => :new) %>
@@ -14,10 +16,16 @@
 					<card-with-drag-handle />
 				</item:>
 			</collection:>
-			<aside:>
-				<collection-sidebar with="&all_collections" />
-			</aside:>
+
+			
+			  <aside:>
+			     <unless test="&not_hidden?(VtPrintedTextCard)">
+			      <collection-sidebar with="&all_collections" />
+                 	</unless>	
+		  </aside:>
+	
 		</sidebared-content>
+
 	</content:>
 
 </index-page>

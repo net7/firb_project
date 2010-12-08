@@ -77,7 +77,7 @@ class BoxViewController < ApplicationController
     @fi_character = if  FiCharacterCard.exists?(character_uri)
                       FiCharacterCard.find(character_uri)
                     else
-                      FiCharacterCard.find(:first)
+                      FiCharacterCard.find(:first) # returns nil if there's none
                     end
     unless @fi_character.nil?
       @image = @fi_character.anastatica.image_zone.get_image_parent 

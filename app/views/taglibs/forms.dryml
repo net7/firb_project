@@ -5,7 +5,7 @@
     <field-list fields="page_position, title" param/>
     <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
     <br /><br />
-	<unless test="&not_hidden?(BgTextCard)">
+	<unless test="&not_hidden?(VtPrintedTextCard)">
           <p>
 	    <label for="select_list"><ht key="anastaticas.page_to_book" /></label>
 	    <removeable-books />
