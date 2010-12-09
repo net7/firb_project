@@ -50,16 +50,17 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'sources/:action/:id', :controller => 'sources'
   map.resources :sources, :requirements => { :id => /.+/  }
 
-  # Default semantic dispatch
-#  map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',
-#    :requirements => { :dispatch_uri => /[^\.]+/ }
-
-  map.connect ':dispatch_uri.:format', :controller => 'boxView', :action => 'dispatch',
-    :requirements => { :dispatch_uri => /[^\.]+/ }
 
   map.connect '/boxView', :controller => 'boxView', :action => 'index'
   map.connect '/boxView/dispatch', :controller => 'boxView', :action => 'dispatch'
   map.connect '/boxView/graph_xml/:id', :controller => 'boxView', :action => 'graph_xml'
+
+  # Default semantic dispatch
+  map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',
+    :requirements => { :dispatch_uri => /[^\.]+/ }
+
+#  map.connect ':dispatch_uri.:format', :controller => 'boxView', :action => 'dispatch',
+#    :requirements => { :dispatch_uri => /[^\.]+/ }
  
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -95,7 +96,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
-  map.root :controller => "boxView", :action => 'index'
+#  map.root :controller => "boxView", :action => 'index'
+  map.root :controller => "sources", :action => 'index'
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
