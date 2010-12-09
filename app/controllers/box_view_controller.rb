@@ -73,6 +73,9 @@ class BoxViewController < ApplicationController
   # We deal with it here, and display an appropriate box
   def render_source
 
+
+    @id = rand Time.now.to_i
+
     character_uri = 'http://mascherata-firb.ctl.sns.it/fi_character_cards/727614855'
     @fi_character = if  FiCharacterCard.exists?(character_uri)
                       FiCharacterCard.find(character_uri)
@@ -84,6 +87,32 @@ class BoxViewController < ApplicationController
       html = render_to_string :firb_fi
       data = {'box' => 'Pleiadi'}
     end
+
+    illustration_uri = 'http://memoria-firb.ctl.sns.it/pi_illustration_cards/1073268919'
+    @pi_illustration = if  PiIllustrationCard.exists?(illustration_uri)
+                         PiIllustrationCard.find(illustration_uri)
+                    else
+                      PiIllustrationCard.find(:first) # returns nil if there's none
+                    end
+    unless @pi_illustration.nil?
+      @image = @pi_illustration.image_zone.get_image_parent
+
+      @anastatica = @pi_illustration.anastatica
+      qry = ActiveRDF::Query.new(PiTextCard).select(:ptc).distinct
+      qry.where(:ptc, N::DCT.isPartOf, @anastatica.uri)
+      pi_text_cards = qry.execute
+
+      unless pi_text_cards.empty?
+        pi_text_cards.each do |ptc|
+          @non_illustrated_md = ptc.non_illustrated_memory_depictions 
+        end
+
+      end
+      html = render_to_string :firb_pi
+      data = {'box' => 'Illustrazione'}
+    end
+
+
 
     # source_uri = Base64.decode64(params[:resource])
     # @source = TaliaCore::ActiveSource.find(source_uri)

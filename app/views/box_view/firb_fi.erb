@@ -1,56 +1,30 @@
 <div class='widget'>
 
-<div class='widgetHeader metadata'>
-    <h3 class='widgetHeaderTitle'>Immagine</h3>
-    <div class='widgetHeaderTools'>
-    <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-    </div>
+<%= render :partial => 'widget_header', :locals => {:title => 'Immagine'} %>
+<%= render :partial => 'image_viewer_widget' %>
+
 </div>
-  <div class='widgetContent expanded metadata'>
-  
-    <div class="imt-viewer">
-        <object class="IMTViewer" b64="<%=image_xml(@image)%>" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="<%=@id%>" width="400" height="400" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
-            <param name="movie" value="<%=image_path('ImageMapperViewer.swf?js_prefix=jsapi_')%>" />
-            <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
-            <param name="allowScriptAccess" value="always" />
-            <embed src="<%=image_path('ImageMapperViewer.swf?js_prefix=jsapi_')%>&oid=<%=@id%>" quality="high" bgcolor="#ffffff" width="400" height="400" name="<%=@id%>" align="middle" play="true" loop="false" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" b64="<%=image_xml(@image)%>"></embed>
-        </object>
-    </div>
-  </div>
-
-
 
 <div class='widget'>
-    <div class='widgetHeader text'>
-        <h3 class='widgetHeaderTitle'>Scheda</h3>
-        <div class='widgetHeaderTools'>
-            <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-    	</div>
-    </div>
+   <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
+
     <div class='widgetContent expanded text'>
     	<p>Codice: <%= @fi_character.code %><br/>
     	Collocazione: <%= @fi_character.collocation %><br/>
     	Autore: <%= @fi_character.author %><br/>
         Tecnica e misure: <%= @fi_character.tecnique %>, <%= @fi_character.measure %><br/>
     	Note Descrittive: <%= @fi_character.descriptive_notes %><br/>
-    	Autore: <%= @fi_character.author %></p>
     </div>
 </div>
 
 
 <div class='widget'>
-    <div class='widgetHeader text'>
-        <h3 class='widgetHeaderTitle'>Studio</h3>
-        <div class='widgetHeaderTools'>
-            <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-    	</div>
-    </div>
-    <div class='widgetContent expanded text'>
-    	<p>Descrizione: <%= @fi_character.description %><br/>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
+
+    <div class='widgetContent expanded text'> 
+   	<p>Descrizione: <%= @fi_character.description %><br/>
     	Qualita': <%= @fi_character.qualities_age %>, <%= @fi_character.qualities_gender %>, <%= @fi_character.qualities_profession %>, <%= @fi_character.qualities_ethnic_group %><br/>
-    	
-	Trascizione delle note: <%= @fi_character.transcription %>
+	Trascizione delle note: <%= @fi_character.transcription %> <br/>
 	<% unless @fi_character.baldini_text.nil? and @fi_character.cini_text.nil? %>
    	   Testi Correlati : 
 	   <% unless (baldini=@fi_character.baldini_text).nil?%> <%=baldini.title%> <%end %>
@@ -71,7 +45,7 @@
 <% end %>
 
 <% unless (iconclass = @fi_character.iconclass_terms).empty? %>
-	Componenti: <% iconclass.each do |c| %> <%= c.name %> <% end %>
+        Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
 	<br/>
 <% end %>
    Note di studio: <%= @fi_character.study_notes %>
@@ -79,13 +53,10 @@
 </div>
 
 
+
+
 <div class='widget'>
-    <div class='widgetHeader text'>
-        <h3 class='widgetHeaderTitle'>Elementi correlati</h3>
-        <div class='widgetHeaderTools'>
-            <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
-    	</div>
-    </div>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Elementi Correlati'} %>
     <div class='widgetContent expanded text'>
     	<p>Carro: <%= @fi_character.procession.cart %><br/>
 	Personaggi correlati: <% @fi_character.procession.characters.each do |c| %> <%= c.name unless c.uri == @fi_character.uri %> <% end %>
@@ -96,5 +67,3 @@
 
 
 
-
-</div>

@@ -1,0 +1,69 @@
+<div class='widget'>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Immagine'} %>
+  <%= render :partial => 'image_viewer_widget' %>
+</div>
+
+<div class='widget'>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
+  <div class='widgetContent expanded metadata'>
+    <p> 
+      Codice: <%= @pi_illustration.code %> <br/>
+      Collocazione: <%= @pi_illustration.collocation %><br/>
+      Tecnica e misure: <%= @pi_illustration.tecnique %>, <%= @pi_illustration.measure %><br/>
+      Posizione: <%= @pi_illustration.position %><br/>
+      Note Descrittive: <%= @pi_illustration.descriptive_notes %><br/>
+    </p>
+   
+  </div>  
+</div>
+
+<div class='widget'>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
+  <div class='widgetContent expanded metadata'>
+    <p> 
+      Descrizione: <%= @pi_illustration.description %> <br/>
+ <% unless @pi_illustration.textual_source.nil? %>
+       Fonte Testuale: <%= @pi_illustration.textual_source.name %>
+<% end %>
+   Immagini di memoria:
+   
+<% unless (child_cards =  @pi_illustration.child_cards).empty? %>
+   <% child_cards.each do |dc| %>
+       <%= dc.name %>, 
+   <% end %>
+<% end %>
+
+<% unless @non_illustrated_md.nil? %>
+   <% @non_illustrated_md.each do |nimd| %>
+     <%= nimd.name %>,  
+   <% end %>
+<% end %>
+<br/>
+
+<!--
+TODO: componenti
+-->
+
+
+<% unless (iconclass = @pi_illustration.iconclass_terms).empty? %>
+        Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
+
+	<% unless child_cards.empty? %>
+	   <% child_cards.each do |c| %>
+	     <% c.iconclass.each do |ic| %> <%= ic.name %> <% end %>
+	   <% end %>
+  	<% end %>
+
+	<br/>
+
+<% end %>
+
+   Note di studio: <%= @pi_illustration.study_notes %> <br/>
+
+ </p>
+   
+
+
+
+  </div>  
+</div>
