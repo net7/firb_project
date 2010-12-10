@@ -27,7 +27,7 @@ class VtLetter < TaliaCore::Collection
   end
 
   def printed_cards
-    ordered_objects.find { |el| el.is_a?(VtPrintedTextCard) }
+    ordered_objects.find_all { |el| el.is_a?(VtPrintedTextCard) }
   end
 
 end
