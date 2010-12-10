@@ -1,0 +1,80 @@
+<div class='widget'>
+
+  <%= render :partial => 'widget_header', :locals => {:title => 'Immagine'} %>
+  <%= render :partial => 'image_viewer_widget', :locals => {:image => @image, :id => @id} %>
+
+</div>
+
+
+<div class='widget'>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
+  <div class='widgetContent expanded metadata'>
+    <p> 
+      Segnatura: <%= @source.signature %> <br/>
+      Collocazione: <%= @source.collocation %><br/>
+      Tecnica e misure: <%= @source.tecnique %>, <%= @source.measure %><br/>
+      Posizione: <%= @source.position%><br/>
+      Note Descrittive: <%= @source.descriptive_notes %><br/>
+
+<!--
+
+#TODO: anno, autore, editore, luogo di edizione 
+-->
+    </p>
+   
+  </div>  
+</div>
+
+
+<div class='widget'>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
+  <div class='widgetContent expanded metadata'>
+    <p> 
+      Descrizione: <%= @source.description %> <br/>
+
+<!--
+#TODO: parole chiave e link nella descrizione ^^^^^^^
+-->
+      <% unless (iconclass = @source.iconclass_terms).empty? %>
+        Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
+
+	<% unless @source.child_cards.empty? %>
+	   <% @source.child_cards.each do |c| %>
+	     <% c.iconclass.each do |ic| %> <%= ic.name %> <% end %>
+	   <% end %>
+  	<% end %>
+
+	<br/>
+
+      <% end %>
+      Note di studio: <%= @source.study_notes %> <br/>
+      Motto: <%= @source.motto %> <br/>
+      Possessore dell'impresa: <%= @source.owner %> <br/>
+
+
+      
+      <% unless (fonti = @source.related_source_in).empty? %>
+        Fonti dell'immagine: 				   
+	<% fonti.each do |f| %> 
+          <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(f.uri.to_s)%>&type=<%=f.class%>'><%=f.name%></a>
+        <% end %>
+	<br/>
+      <% end %>
+
+      
+      <% unless (usi = @source.related_source_out).empty? %>
+        Usi successivi: <% usi.each do |u| %> 
+          <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(u.uri.to_s)%>&type=<%=u.class%>'><%=u.name%></a>
+	      <% end %>
+	<br/>
+      <% end %>
+
+
+
+
+      Significato originale: <%= @source.original_meaning %> <br/>
+      Significato contestuale: <%= @source.contextual_meaning %> <br/>
+    </p>
+   
+  </div>  
+</div>

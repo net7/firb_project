@@ -1,17 +1,17 @@
 <div class='widget'>
   <%= render :partial => 'widget_header', :locals => {:title => 'Immagine'} %>
-  <%= render :partial => 'image_viewer_widget' %>
+  <%= render :partial => 'image_viewer_widget', :locals => {:image => @image, :id => @id} %>
 </div>
 
 <div class='widget'>
   <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
   <div class='widgetContent expanded metadata'>
     <p> 
-      Codice: <%= @pi_illustration.code %> <br/>
-      Collocazione: <%= @pi_illustration.collocation %><br/>
-      Tecnica e misure: <%= @pi_illustration.tecnique %>, <%= @pi_illustration.measure %><br/>
-      Posizione: <%= @pi_illustration.position %><br/>
-      Note Descrittive: <%= @pi_illustration.descriptive_notes %><br/>
+      Codice: <%= @source.code %> <br/>
+      Collocazione: <%= @source.collocation %><br/>
+      Tecnica e misure: <%= @source.tecnique %>, <%= @source.measure %><br/>
+      Posizione: <%= @source.position %><br/>
+      Note Descrittive: <%= @source.descriptive_notes %><br/>
     </p>
    
   </div>  
@@ -21,13 +21,13 @@
   <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
   <div class='widgetContent expanded metadata'>
     <p> 
-      Descrizione: <%= @pi_illustration.description %> <br/>
- <% unless @pi_illustration.textual_source.nil? %>
-       Fonte Testuale: <%= @pi_illustration.textual_source.name %>
+      Descrizione: <%= @source.description %> <br/>
+ <% unless @source.textual_source.nil? %>
+       Fonte Testuale: <%= @source.textual_source.name %>
 <% end %>
    Immagini di memoria:
    
-<% unless (child_cards =  @pi_illustration.child_cards).empty? %>
+<% unless (child_cards =  @source.child_cards).empty? %>
    <% child_cards.each do |dc| %>
        <%= dc.name %>, 
    <% end %>
@@ -45,7 +45,7 @@ TODO: componenti
 -->
 
 
-<% unless (iconclass = @pi_illustration.iconclass_terms).empty? %>
+<% unless (iconclass = @source.iconclass_terms).empty? %>
         Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
 
 	<% unless child_cards.empty? %>
@@ -58,7 +58,7 @@ TODO: componenti
 
 <% end %>
 
-   Note di studio: <%= @pi_illustration.study_notes %> <br/>
+   Note di studio: <%= @source.study_notes %> <br/>
 
  </p>
    

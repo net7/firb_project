@@ -1,0 +1,40 @@
+<div class='widget'>
+
+<%= render :partial => 'widget_header', :locals => {:title => 'Lettera'} %>
+
+ <% @handwritten_images.each do |image| %>
+  <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => @id} %>
+ <% end %>
+
+ <% @printed_images.each do |image| %>
+  <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => @id} %>
+ <% end %>
+
+  <div class='widgetContent expanded metadata'>
+
+ <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(@source.uri.to_s)%>&type=<%=@source.class%>&mode=CriticalTranscription'>Trascrizione Critica</a><br/>
+ <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(@source.uri.to_s)%>&type=<%=@source.class%>&mode=DiplomaticTranscription'>Trascrizione Diplomatica</a><br/>
+ </div>   
+
+</div>
+
+
+
+
+<div class='widget'>
+  <%= render :partial => 'widget_header', :locals => {:title => 'Informazioni tecniche'} %>
+  <div class='widgetContent expanded metadata'>
+    <p> 
+
+
+    <%#= render :partial => 'onliner', :locals => {:title => 'Edizione di riferimento', :value => @source.edition} %>
+
+<!--
+
+#TODO: anno, autore, editore, luogo di edizione 
+-->
+    </p>
+   
+  </div>  
+</div>
+

@@ -1,7 +1,7 @@
 <div class='widget'>
 
 <%= render :partial => 'widget_header', :locals => {:title => 'Immagine'} %>
-<%= render :partial => 'image_viewer_widget' %>
+<%= render :partial => 'image_viewer_widget', :locals => {:image => @image, :id => @id} %>
 
 </div>
 
@@ -9,11 +9,11 @@
    <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
 
     <div class='widgetContent expanded text'>
-    	<p>Codice: <%= @fi_character.code %><br/>
-    	Collocazione: <%= @fi_character.collocation %><br/>
-    	Autore: <%= @fi_character.author %><br/>
-        Tecnica e misure: <%= @fi_character.tecnique %>, <%= @fi_character.measure %><br/>
-    	Note Descrittive: <%= @fi_character.descriptive_notes %><br/>
+    	<p>Codice: <%= @source.code %><br/>
+    	Collocazione: <%= @source.collocation %><br/>
+    	Autore: <%= @source.author %><br/>
+        Tecnica e misure: <%= @source.tecnique %>, <%= @source.measure %><br/>
+    	Note Descrittive: <%= @source.descriptive_notes %><br/>
     </div>
 </div>
 
@@ -22,33 +22,33 @@
   <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
 
     <div class='widgetContent expanded text'> 
-   	<p>Descrizione: <%= @fi_character.description %><br/>
-    	Qualita': <%= @fi_character.qualities_age %>, <%= @fi_character.qualities_gender %>, <%= @fi_character.qualities_profession %>, <%= @fi_character.qualities_ethnic_group %><br/>
-	Trascizione delle note: <%= @fi_character.transcription %> <br/>
-	<% unless @fi_character.baldini_text.nil? and @fi_character.cini_text.nil? %>
+   	<p>Descrizione: <%= @source.description %><br/>
+    	Qualita': <%= @source.qualities_age %>, <%= @source.qualities_gender %>, <%= @source.qualities_profession %>, <%= @source.qualities_ethnic_group %><br/>
+	Trascizione delle note: <%= @source.transcription %> <br/>
+	<% unless @source.baldini_text.nil? and @source.cini_text.nil? %>
    	   Testi Correlati : 
-	   <% unless (baldini=@fi_character.baldini_text).nil?%> <%=baldini.title%> <%end %>
-           <% unless (cini=@fi_character.cini_text).nil?%>
+	   <% unless (baldini=@source.baldini_text).nil?%> <%=baldini.title%> <%end %>
+           <% unless (cini=@source.cini_text).nil?%>
               <% unless baldini.nil?%>, <%end%> 
               <%= cini.title%>
 	   <%end%>
 	<% end %>
 	<br/>
 
-<!--	Fonti: <%# @fi_character.bibliography_item.each do |b| %>
+<!--	Fonti: <%# @source.bibliography_item.each do |b| %>
 	       <%#= b.title %>, 
 	<%# end %> -->
 
-<% unless (components = @fi_character.image_components).empty? %>
+<% unless (components = @source.image_components).empty? %>
 	Componenti: <% components.each do |c| %> <%= c.name %> <% end %>
 	<br/>
 <% end %>
 
-<% unless (iconclass = @fi_character.iconclass_terms).empty? %>
+<% unless (iconclass = @source.iconclass_terms).empty? %>
         Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
 	<br/>
 <% end %>
-   Note di studio: <%= @fi_character.study_notes %>
+   Note di studio: <%= @source.study_notes %>
     </div>
 </div>
 
@@ -58,8 +58,12 @@
 <div class='widget'>
   <%= render :partial => 'widget_header', :locals => {:title => 'Elementi Correlati'} %>
     <div class='widgetContent expanded text'>
-    	<p>Carro: <%= @fi_character.procession.cart %><br/>
-	Personaggi correlati: <% @fi_character.procession.characters.each do |c| %> <%= c.name unless c.uri == @fi_character.uri %> <% end %>
+    	<p>Carro: <%= @source.procession.cart %><br/>
+	Personaggi correlati: <% @source.procession.characters.each do |c| %> 
+	<% unless c.uri == @source.uri %>
+          <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(c.uri.to_s)%>&type=<%=c.class%>'><%=c.name%></a>
+	  <% end %>
+	<% end %>
 </p>
     </div>
 </div>

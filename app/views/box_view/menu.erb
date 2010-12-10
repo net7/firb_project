@@ -3,33 +3,51 @@
 
 
 <ul>
+<% if BgIllustrationCard.count > 0 %>
   <li class='menu_item'>
-    <a class='menu collapsed' href='#'>Sanctuaries</a>
+    <a class='menu collapsed' href='#'>Illustrazioni</a>
     <ul style='display: none;'>
-	  <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Sanctuary', :label => 'All'}) %>
-      <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Mosque', :label => 'Mosques'}) %>
+    <% BgIllustrationCard.all.each do |i| %>
+        <li class='menu_subitem'><a class='indexLink' href='/boxView?method=getSource&resource=<%=Base64.encode64s(i.uri.to_s)%>&type=<%=i.class%>'><%= i.name %></a></li>
+    <% end %>
     </ul>
   </li>
+<% end %>
 
+<% if PiIllustrationCard.count > 0 %>
   <li class='menu_item'>
-    <a class='menu collapsed' href='#'>Places</a>
+    <a class='menu collapsed' href='#'>Illustrazioni</a>
     <ul style='display: none;'>
-      <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+City', :label => 'Cities'}) %>
-      <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Historical_place', :label => 'Historical Places'}) %>
+    <% PiIllustrationCard.all.each do |i| %>
+        <li class='menu_subitem'><a class='indexLink' href='/boxView?method=getSource&resource=<%=Base64.encode64s(i.uri.to_s)%>&type=<%=i.class%>'><%= i.name %></a></li>
+    <% end %>
     </ul>
   </li>
+<% end %>
 
+<% if FiCharacterCard.count > 0 %>
   <li class='menu_item'>
-    <a class='menu collapsed' href='#'>Persons</a>
+    <a class='menu collapsed' href='#'>Personaggi</a>
     <ul style='display: none;'>
-      <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Artist', :label => 'Artists'}) %>
-      <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Caliph', :label => 'Caliphs'}) %>
-      <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Person', :label => 'All Person'}) %>
+    <% FiCharacterCard.all.each do |i| %>
+        <li class='menu_subitem'><a class='indexLink' href='/boxView?method=getSource&resource=<%=Base64.encode64s(i.uri.to_s)%>&type=<%=i.class%>'><%= i.name %></a></li>
+    <% end %>
     </ul>
   </li>
+<% end %>
 
-  <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Event', :label => 'Events'}) %>
-  <%= render(:partial => 'menu_entry', :locals => {:type => 'foaf+Organization', :label => 'Organizations'}) %>
-  <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Transcription', :label => 'Transcriptions'}) %>
-  <%= render(:partial => 'menu_entry', :locals => {:type => 'demo+Manuscript', :label => 'Manuscripts'}) %>
+<% if VtLetter.count > 0 %>
+  <li class='menu_item'>
+    <a class='menu collapsed' href='#'>Lettere</a>
+    <ul style='display: none;'>
+    <% VtLetter.all.each do |i| %>
+        <li class='menu_subitem'><a class='indexLink' href='/boxView?method=getSource&resource=<%=Base64.encode64s(i.uri.to_s)%>&type=<%=i.class%>'><%= i.name %></a></li>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
+
+
+
+
 </ul>
