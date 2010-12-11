@@ -55,9 +55,11 @@ class VtHandwrittenTextCard < TextCard
   end
   
   def letter=(value)
-    @letter = (value.is_a?(TaliaCollection) ? value : TaliaCollection.find(value)).real_source
-    @letter_new = true
-    @letter << self
+    unless value.empty?
+      @letter = (value.is_a?(TaliaCollection) ? value : TaliaCollection.find(value)).real_source
+      @letter_new = true
+      @letter << self
+    end
   end
   
   def validate_letter
