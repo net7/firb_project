@@ -117,7 +117,7 @@ class BoxViewController < ApplicationController
           @transcription_html = ''
           hwc.each do |h|
             file = h.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html')
-            @transcription_html += file.content unless file.nil?
+            @transcription_html += file.all_text unless file.nil?
           end
         end
 
