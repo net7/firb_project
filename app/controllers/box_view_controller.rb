@@ -124,7 +124,6 @@ class BoxViewController < ApplicationController
         html = render_to_string :firb_vt_critical
         data = {'box' => 'Trascrizione Critica'}
         
-
       when 'DiplomaticTranscription'
         # we need to show the PDF file related to the whole letter
       else        
