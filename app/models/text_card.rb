@@ -60,6 +60,24 @@ class TextCard < TaliaCore::Source
         end
       end
     end
+    unless(options[:edition].blank?)
+      options[:edition].collect! do |bibl|
+        if(bibl.is_a?(CustomBibliographyItem))
+          bibl
+        elsif (bibl.is_a?(BibliographyItem))
+          bibl
+        elsif (bibl[:uri].blank?)
+          new_custom_bibl = CustomBibliographyItem.new(bibl)
+          new_custom_bibl.save!
+          new_custom_bibl
+        # TODO: this shouldnt be needed when we deploy the new bibl-store
+        elsif (BibliographyItem.exists?(bibl[:uri]))
+          BibliographyItem.find(bibl[:uri])
+        elsif (CustomBibliographyItem.exists?(bibl[:uri]))
+          CustomBibliographyItem.find(bibl[:uri])
+        end
+      end
+    end
     super(options)
   end
 

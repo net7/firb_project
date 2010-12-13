@@ -745,12 +745,12 @@
     %>
 </def>
 
-<def tag="custom-bibl-items-edit">
+<def tag="custom-bibl-items-edit" attrs="name">
     <%= 
         render :partial => 'shared/custom_bibl_item', 
-            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'bibliography_items',
+            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => (name || "bibliography_items"),
                 :options => bibliography_select, :custom_options => custom_bibliography_select,
-                :existing => custom_bibliography_select_for(this_parent) }
+                :existing => (name.nil? ? custom_bibliography_select_for(this_parent) : custom_edition_select_for(this_parent)) }
     %>
 </def>
 

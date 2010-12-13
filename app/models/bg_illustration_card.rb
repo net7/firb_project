@@ -17,7 +17,7 @@ class BgIllustrationCard < IllustrationCard
   rdf_property :technical_notes, N::TALIA.techical_notes, :type => 'text'
     
   # Edizione di riferimento
-  rdf_property :edition, N::TALIA.edition, :type => TaliaCore::ActiveSource
+  multi_property :edition, N::TALIA.edition, :type => TaliaCore::ActiveSource
 
   # Motto, lingua e traduzione
   rdf_property :motto, N::TALIA.motto, :type => 'text'

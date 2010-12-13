@@ -19,7 +19,7 @@ class VtPrintedTextCard < TextCard
   rdf_property :collocation, N::TALIA.provenance
   
   # Edizione di riferimento
-  rdf_property :edition, N::TALIA.edition, :type => TaliaCore::ActiveSource
+  multi_property :edition, N::TALIA.edition, :type => TaliaCore::ActiveSource
 
   # Bibliografia
   multi_property :bibliography_items, N::TALIA.hasBibliography, :type => TaliaCore::ActiveSource

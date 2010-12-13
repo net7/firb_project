@@ -11,7 +11,11 @@
     populate_ul_id = param_name+"_list"
     add_button_id = param_name+"_add"
     add_existing_button_id = param_name+"_add_existing"
-
+    custom_bibl_select_id = param_name+"custom_bibl_item" # was custom_bibliography_item
+    bibl_select_id = param_name+"bibl_item" # was bibliography_item
+    item_customization_id = param_name+"item_customization" # was bibliography_item_customization
+    custom_name_id = param_name+"item_name" # was bibliography_item_name
+    custom_pages_id = param_name+"item_pages" # was bibliography_item_pages
 %>
 
 <ul id="<%= populate_ul_id %>"></ul>
@@ -19,25 +23,25 @@
 <% if !custom_options.nil? %>
     <div style='border: 1px dashed #666; margin-top: 20px; padding: 5px'>
         <%= I18n.t('bibliography_items.custom_bibl_items') %>: <br />
-        <%= select_tag "", options_for_select(custom_options), {:id => 'custom_bibliography_item'} %>
+        <%= select_tag "", options_for_select(custom_options), {:id => custom_bibl_select_id} %>
         <br /><input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_existing_button_id %>' />
     </div>
 <% end %>
 
 <div style='border: 1px dashed #666;  margin-top: 20px; padding: 5px;'>
     <a href='#' class='show_bibliography_customization'><%= I18n.t('bibliography_items.customize') %></a> <br/>
-    <div id='bibliography_item_customization'>
+    <div id='<%= item_customization_id %>'>
         <% if !options.nil? %>
             <%= I18n.t('bibliography_items.model_name') %>: <br />
-            <%= select_tag "", options_for_select(options), {:id => 'bibliography_item'} %>
+            <%= select_tag "", options_for_select(options), {:id => bibl_select_id} %>
             <br />
         <% end %>
 
-        <%= I18n.t('bibliography_items.ref_name') %>: <input type='text' id='bibliography_item_name'>
+        <%= I18n.t('bibliography_items.ref_name') %>: <input type='text' id='<%= custom_name_id %>'>
         <br />
 
         <%= I18n.t('bibliography_items.pages') %>: 
-        <input type='text' id='bibliography_item_pages'>
+        <input type='text' id='<%= custom_pages_id %>'>
         <input type='button' class='button' value="<%= I18n.t('general.add_new') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
     </div>
 </div>
@@ -47,19 +51,22 @@
     document.observe('click', function(e) {
         // Toggle customization panel
         if (e.element().match('.show_bibliography_customization')) {
-            $('bibliography_item_customization').toggle();
+            $('<%= item_customization_id %>').toggle();
             e.stop();
         }
     });
 
-    $('bibliography_item_customization').hide();
+    $('<%= item_customization_id %>').hide();
 
 (function() {
     var param_name = "<%= param_name %>",
         add_button_id = "<%= add_button_id %>",
         add_existing_button_id = "<%= add_existing_button_id %>",
         populate_ul_id = "<%= populate_ul_id %>",
-        main_name = "<%= main_name %>";
+        main_name = "<%= main_name %>",
+        custom_bibl = "<%= custom_bibl_select_id %>",
+        bibl_select = "<%= bibl_select_id %>";
+    
     
     // Load all existing data as soon as the window is ready
     Event.observe(window, 'load', function() {
@@ -77,7 +84,7 @@
         var n, display_string="", v, hidden_hash = [];
 
         // Bibliography Item
-        foo = $('custom_bibliography_item').options[$('custom_bibliography_item').selectedIndex];
+        foo = $(custom_bibl).options[$(custom_bibl).selectedIndex];
         v = foo.value;
         n = main_name+"["+param_name+"][][uri]";
         display_string = foo.innerHTML;
@@ -95,23 +102,23 @@
         
         var n, display_string="", v, hidden_hash = [];
 
-        // Bibliography Item name
-        n = main_name+"["+param_name+"][][name]";
-        v = $('bibliography_item_name').value;
-        if (v != "") 
-            display_string = v+": ";
-        hidden_hash.push({name: n, value: v});
-
         // Bibliography Item
-        foo = $('bibliography_item').options[$('bibliography_item').selectedIndex];
+        foo = $(bibl_select).options[$(bibl_select).selectedIndex];
         v = foo.value;
         n = main_name+"["+param_name+"][][bibliography_item]";
         display_string += " "+foo.innerHTML+" ";
         hidden_hash.push({name: n, value: v});
 
+        // Bibliography Item name
+        n = main_name+"["+param_name+"][][name]";
+        v = $('<%= custom_name_id %>').value;
+        if (v != "") 
+            display_string += v+": ";
+        hidden_hash.push({name: n, value: v});
+
         // Pages
         n = main_name+"["+param_name+"][][pages]";
-        v = $('bibliography_item_pages').value;
+        v = $('<%= custom_pages_id %>').value;
         if (v != "")
             display_string += v;
         hidden_hash.push({name: n, value: v});
@@ -123,9 +130,9 @@
         
         populate_with_item(populate_ul_id, display_string, hidden_hash);
 
-        $('bibliography_item_customization').hide();
-        $('bibliography_item_name').value = '';
-        $('bibliography_item_pages').value = '';
+        $('<%= item_customization_id %>').hide();
+        $('<%= custom_name_id %>').value = '';
+        $('<%= item_customization_id %>').value = '';
         
     });
     
