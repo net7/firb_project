@@ -3,11 +3,11 @@
 <%= render :partial => 'widget_header', :locals => {:title => 'Lettera'} %>
 
  <% @handwritten_images.each do |image| %>
-  <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => "#{image.uri.to_s}"} %>
+  <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => "#{rand Time.now.to_i}"} %>
  <% end %>
 
  <% @printed_images.each do |image| %>
-  <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => "#{image.uri.to_s}"} %>
+  <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => "#{rand Time.now.to_i}"} %>
  <% end %>
 
   <div class='widgetContent expanded metadata'>
