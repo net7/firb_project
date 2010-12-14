@@ -50,9 +50,10 @@
 	<% end %>
 	<br/>
 
-	<b>Fonti:</b> <%# @source.bibliography_item.each do |b| %>
-	       <%#= b.name %>  
-	<%# end %> 
+	
+	<b>Fonti:</b> <% @source.bibliography_item.each do |b| %>
+	       <%= b.name %>  
+	<% end %> 
 
     	<b>Qualit&agrave;:</b> <%= @source.qualities_age %>, <%= @source.qualities_gender %>, <%= @source.qualities_profession %>, <%= @source.qualities_ethnic_group %><br/>
 
