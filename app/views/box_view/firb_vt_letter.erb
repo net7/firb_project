@@ -2,6 +2,9 @@
 
 <%= render :partial => 'widget_header', :locals => {:title => 'Lettera'} %>
 
+
+  <div class='widgetContent expanded'>
+
  <% @handwritten_images.each do |image| %>
   <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => "#{rand Time.now.to_i}"} %>
  <% end %>
@@ -10,6 +13,7 @@
   <%= render :partial => 'image_viewer_widget', :locals => {:image => image, :id => "#{rand Time.now.to_i}"} %>
  <% end %>
 
+ </div>
   <div class='widgetContent expanded metadata'>
 
  <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(@source.uri.to_s)%>&type=<%=@source.class%>&mode=CriticalTranscription'>Trascrizione Critica</a><br/>

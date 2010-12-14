@@ -24,7 +24,19 @@
     <div class='widgetContent expanded text'> 
    	<p>Descrizione: <%= @source.description %><br/>
     	Qualita': <%= @source.qualities_age %>, <%= @source.qualities_gender %>, <%= @source.qualities_profession %>, <%= @source.qualities_ethnic_group %><br/>
-	Trascizione delle note: <%= @source.transcription %> <br/>
+	
+	<% unless (notes = @source.notes).empty? %>
+	Trascizione delle note:<br/>
+	 <% notes.each do |n| %>
+	 	    <span onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= n.image_zone.id.to_s %>');"
+        onmouseout="getFlashObject('<%= @id %>').setPolygonHighlighted(false, '<%= n.image_zone.id.to_s %>');" id="image_zone_#{n.image_zone.id}" class="single-zone">
+	 <%= n.content %>
+        
+            </span>
+	 <br/>
+	 <% end %>
+	<% end %>
+
 	<% unless @source.baldini_text.nil? and @source.cini_text.nil? %>
    	   Testi Correlati : 
 	   <% unless (baldini=@source.baldini_text).nil?%> <%=baldini.title%> <%end %>
@@ -40,7 +52,15 @@
 	<%# end %> -->
 
 <% unless (components = @source.image_components).empty? %>
-	Componenti: <% components.each do |c| %> <%= c.name %> <% end %>
+	Componenti: 
+	<% components.each do |c| %> 
+
+	 	    <span onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= c.image_zone.id.to_s %>');"
+        onmouseout="getFlashObject('<%= @id %>').setPolygonHighlighted(false, '<%= c.image_zone.id.to_s %>');" id="image_zone_#{c.image_zone.id}" class="single-zone">
+	   <%= c.name %> 
+
+	   </span>
+	<% end %>
 	<br/>
 <% end %>
 
