@@ -10,11 +10,11 @@
   <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
   <div class='widgetContent expanded metadata'>
     <p> 
-      Segnatura: <%= @source.signature %> <br/>
-      Collocazione: <%= @source.collocation %><br/>
-      Tecnica e misure: <%= @source.tecnique %>, <%= @source.measure %><br/>
-      Posizione: <%= @source.position%><br/>
-      Note Descrittive: <%= @source.descriptive_notes %><br/>
+      <b>SegnaturaL</b> <%= @source.signature %> <br/>
+      <b>Collocazione:</b> <%= @source.collocation %><br/>
+      <b>Tecnica e misure:</b> <%= @source.tecnique %>, <%= @source.measure %><br/>
+      <b>Posizione:</b> <%= @source.position%><br/>
+      <b>Note Descrittive:</b> <%= @source.descriptive_notes %><br/>
 
 <!--
 
@@ -30,13 +30,13 @@
   <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
   <div class='widgetContent expanded metadata'>
     <p> 
-      Descrizione: <%= @source.description %> <br/>
+      <b>Descrizione:</b> <%= @source.description %> <br/>
 
 <!--
 #TODO: parole chiave e link nella descrizione ^^^^^^^
 -->
       <% unless (iconclass = @source.iconclass_terms).empty? %>
-        Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
+        <b>Iconclass:</b> <% iconclass.each do |c| %> <%= c.name %> <% end %>
 
 	<% unless @source.child_cards.empty? %>
 	   <% @source.child_cards.each do |c| %>
@@ -47,14 +47,14 @@
 	<br/>
 
       <% end %>
-      Note di studio: <%= @source.study_notes %> <br/>
-      Motto: <%= @source.motto %> <br/>
-      Possessore dell'impresa: <%= @source.owner %> <br/>
+      <b>Note di studio:</b> <%= @source.study_notes %> <br/>
+      <b>Motto:</b> <%= @source.motto %> <br/>
+      <b>Possessore dell'impresa:</b> <%= @source.owner %> <br/>
 
 
       
       <% unless (fonti = @source.related_source_in).empty? %>
-        Fonti dell'immagine: 				   
+        <b>Fonti dell'immagine:</b> 				   
 	<% fonti.each do |f| %> 
           <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(f.uri.to_s)%>&type=<%=f.class%>'><%=f.name%></a>
         <% end %>
@@ -63,7 +63,7 @@
 
       
       <% unless (usi = @source.related_source_out).empty? %>
-        Usi successivi: <% usi.each do |u| %> 
+        <b>Usi successivi:</b> <% usi.each do |u| %> 
           <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(u.uri.to_s)%>&type=<%=u.class%>'><%=u.name%></a>
 	      <% end %>
 	<br/>
@@ -72,8 +72,9 @@
 
 
 
-      Significato originale: <%= @source.original_meaning %> <br/>
-      Significato contestuale: <%= @source.contextual_meaning %> <br/>
+      <b>Significato originale:</b> <%= @source.original_meaning %> <br/>
+      <b>Significato contestuale:</b> <%= @source.contextual_meaning %> <br/>
+
     </p>
    
   </div>  

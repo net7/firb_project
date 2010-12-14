@@ -9,7 +9,7 @@
 
 <% unless @next_page.nil? %>
     <p class="next">
-    <a class="inBoxNavigation next" href="boxViewer.php?method=getSource&resource=<%=Base64.encode64s(@next_page.uri.to_s)%>" title="">
+    <a class="inBoxNavigation next" href="foo?method=getSource&resource=<%=Base64.encode64s(@next_page.uri.to_s)%>" title="">
     Next
     </a>
     </p>	
@@ -18,7 +18,7 @@
 
 <% unless @prev_page.nil? %>
     <p class="previous">
-    <a class="inBoxNavigation prev" href="boxViewer.php?method=getSource&resource=<%=Base64.encode64s(@prev_page.uri.to_s)%>" title="">
+    <a class="inBoxNavigation prev" href="foo?method=getSource&resource=<%=Base64.encode64s(@prev_page.uri.to_s)%>" title="">
     Previous
     </a>
     </p>

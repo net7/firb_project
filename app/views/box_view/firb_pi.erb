@@ -7,11 +7,11 @@
   <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
   <div class='widgetContent expanded metadata'>
     <p> 
-      Codice: <%= @source.code %> <br/>
-      Collocazione: <%= @source.collocation %><br/>
-      Tecnica e misure: <%= @source.tecnique %>, <%= @source.measure %><br/>
-      Posizione: <%= @source.position %><br/>
-      Note Descrittive: <%= @source.descriptive_notes %><br/>
+      <b>Codice:</b> <%= @source.code %> <br/>
+      <b>Collocazione:</b> <%= @source.collocation %><br/>
+      <b>Tecnica e misure:</b> <%= @source.tecnique %>, <%= @source.measure %><br/>
+      <b>Posizione:</b> <%= @source.position %><br/>
+      <b>Note Descrittive:</b> <%= @source.descriptive_notes %><br/>
     </p>
    
   </div>  
@@ -21,11 +21,11 @@
   <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
   <div class='widgetContent expanded metadata'>
     <p> 
-      Descrizione: <%= @source.description %> <br/>
+      <b>Descrizione:</b> <%= @source.description %> <br/>
  <% unless @source.textual_source.nil? %>
-       Fonte Testuale: <%= @source.textual_source.name %>
+       <b>Fonte Testuale:</b> <%= @source.textual_source.name %>
 <% end %>
-   Immagini di memoria:
+   <b>Immagini di memoria:</b>
    
 <% unless (child_cards =  @source.child_cards).empty? %>
    <% child_cards.each do |dc| %>
@@ -40,13 +40,24 @@
 <% end %>
 <br/>
 
-<!--
-TODO: componenti
--->
+
+<% unless (components = @source.image_components).empty? %>
+	<b>Componenti:</b> 
+	<% components.each do |c| %> 
+
+	 	    <span onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= c.image_zone.id.to_s %>');"
+        onmouseout="getFlashObject('<%= @id %>').setPolygonHighlighted(false, '<%= c.image_zone.id.to_s %>');" id="image_zone_#{c.image_zone.id}" class="single-zone">
+	   <%= c.name %> 
+
+	   </span>
+	<% end %>
+	<br/>
+<% end %>
+
 
 
 <% unless (iconclass = @source.iconclass_terms).empty? %>
-        Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
+        <b>Iconclass:</b> <% iconclass.each do |c| %> <%= c.name %> <% end %>
 
 	<% unless child_cards.empty? %>
 	   <% child_cards.each do |c| %>
@@ -58,7 +69,7 @@ TODO: componenti
 
 <% end %>
 
-   Note di studio: <%= @source.study_notes %> <br/>
+   <b>Note di studio:</b> <%= @source.study_notes %> <br/>
 
  </p>
    

@@ -9,11 +9,11 @@
    <%= render :partial => 'widget_header', :locals => {:title => 'Scheda'} %>
 
     <div class='widgetContent expanded text'>
-    	<p>Codice: <%= @source.code %><br/>
-    	Collocazione: <%= @source.collocation %><br/>
-    	Autore: <%= @source.author %><br/>
-        Tecnica e misure: <%= @source.tecnique %>, <%= @source.measure %><br/>
-    	Note Descrittive: <%= @source.descriptive_notes %><br/>
+    	<p><b>Codice:</b> <%= @source.code %><br/>
+    	<b>Collocazione:</b> <%= @source.collocation %><br/>
+    	<b>Autore:</b> <%= @source.author %><br/>
+        <b>Tecnica e misure:</b> <%= @source.tecnique %>, <%= @source.measure %><br/>
+    	<b>Note Descrittive:</b> <%= @source.descriptive_notes %><br/>
     </div>
 </div>
 
@@ -22,23 +22,26 @@
   <%= render :partial => 'widget_header', :locals => {:title => 'Studio'} %>
 
     <div class='widgetContent expanded text'> 
-   	<p>Descrizione: <%= @source.description %><br/>
-    	Qualita': <%= @source.qualities_age %>, <%= @source.qualities_gender %>, <%= @source.qualities_profession %>, <%= @source.qualities_ethnic_group %><br/>
+   	<p><b>Descrizione:</b> <%= @source.description %><br/>
 	
 	<% unless (notes = @source.notes).empty? %>
-	Trascizione delle note:<br/>
+	<b>Trascrizione delle note:</b><br/>
+
 	 <% notes.each do |n| %>
-	 	    <span onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= n.image_zone.id.to_s %>');"
+
+	 *	    <span class="resource"onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= n.image_zone.id.to_s %>');"
         onmouseout="getFlashObject('<%= @id %>').setPolygonHighlighted(false, '<%= n.image_zone.id.to_s %>');" id="image_zone_#{n.image_zone.id}" class="single-zone">
 	 <%= n.content %>
         
             </span>
-	 <br/>
+
+	 <br/> 
 	 <% end %>
+
 	<% end %>
 
 	<% unless @source.baldini_text.nil? and @source.cini_text.nil? %>
-   	   Testi Correlati : 
+   	   <b>Testi Correlati:</b> 
 	   <% unless (baldini=@source.baldini_text).nil?%> <%=baldini.title%> <%end %>
            <% unless (cini=@source.cini_text).nil?%>
               <% unless baldini.nil?%>, <%end%> 
@@ -47,12 +50,14 @@
 	<% end %>
 	<br/>
 
-<!--	Fonti: <%# @source.bibliography_item.each do |b| %>
+	<b>Fonti:</b> <%# @source.bibliography_item.each do |b| %>
 	       <%#= b.title %>, 
-	<%# end %> -->
+	<%# end %> 
+
+    	<b>Qualit&agrave;:</b> <%= @source.qualities_age %>, <%= @source.qualities_gender %>, <%= @source.qualities_profession %>, <%= @source.qualities_ethnic_group %><br/>
 
 <% unless (components = @source.image_components).empty? %>
-	Componenti: 
+	<b>Componenti:</b> 
 	<% components.each do |c| %> 
 
 	 	    <span onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= c.image_zone.id.to_s %>');"
@@ -65,10 +70,10 @@
 <% end %>
 
 <% unless (iconclass = @source.iconclass_terms).empty? %>
-        Iconclass: <% iconclass.each do |c| %> <%= c.name %> <% end %>
+        <b>Iconclass:</b> <% iconclass.each do |c| %> <%= c.name %> <% end %>
 	<br/>
 <% end %>
-   Note di studio: <%= @source.study_notes %>
+   <b>Note di studio:</b> <%= @source.study_notes %>
     </div>
 </div>
 
@@ -78,8 +83,8 @@
 <div class='widget'>
   <%= render :partial => 'widget_header', :locals => {:title => 'Elementi Correlati'} %>
     <div class='widgetContent expanded text'>
-    	<p>Carro: <%= @source.procession.cart %><br/>
-	Personaggi correlati: <% @source.procession.characters.each do |c| %> 
+    	<p><b>Carro:</b> <%= @source.procession.cart %><br/>
+	<b>Personaggi correlati:</b> <% @source.procession.characters.each do |c| %> 
 	<% unless c.uri == @source.uri %>
           <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(c.uri.to_s)%>&type=<%=c.class%>'><%=c.name%></a>
 	  <% end %>
