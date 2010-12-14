@@ -15,9 +15,16 @@
 
  </div>
   <div class='widgetContent expanded metadata'>
+<% unless @first_handwritten_card.nil? %>
 
- <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(@source.uri.to_s)%>&type=<%=@source.class%>&mode=CriticalTranscription'>Trascrizione Critica</a><br/>
- <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(@source.uri.to_s)%>&type=<%=@source.class%>&mode=DiplomaticTranscription'>Trascrizione Diplomatica</a><br/>
+ <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(@first_handwritten_card.uri.to_s)%>&type=<%=@source.class%>&mode=ManuscriptCriticalTranscription'>Trascrizione Critica Lettera Manoscritta</a><br/>
+
+<% end %>
+
+<% unless @first_printed_card.nil? %>
+
+ <a class='resource' href='/boxView?method=getSource&resource=<%=Base64.encode64s(@first_printed_card.uri.to_s)%>&type=<%=@source.class%>&mode=PrintedCriticalTranscription'>Trascrizione Critical Lettera a Stampa</a><br/>
+<% end %>
  </div>   
 
 </div>

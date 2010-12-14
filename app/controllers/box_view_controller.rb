@@ -81,74 +81,117 @@ class BoxViewController < ApplicationController
     if @source.is_a? BgIllustrationCard
       # Imprese - FIRB_BG
       @image = @source.anastatica.image_zone.get_image_parent 
-        html = render_to_string :firb_bg
-        data = {'box' => 'Illustrazione'}
+      html = render_to_string :firb_bg
+      data = {'box' => 'Illustrazione'}
       
     elsif @source.is_a? PiIllustrationCard
       # Memoria - FIRB_PI
-        @image = @source.image_zone.get_image_parent
+      @image = @source.image_zone.get_image_parent
         
-        @anastatica = @source.anastatica
-        qry = ActiveRDF::Query.new(PiTextCard).select(:ptc).distinct
-        qry.where(:ptc, N::DCT.isPartOf, @anastatica.uri)
-        pi_text_cards = qry.execute
+      @anastatica = @source.anastatica
+      qry = ActiveRDF::Query.new(PiTextCard).select(:ptc).distinct
+      qry.where(:ptc, N::DCT.isPartOf, @anastatica.uri)
+      pi_text_cards = qry.execute
         
-        unless pi_text_cards.empty? 
-          pi_text_cards.each do |ptc|
-            @non_illustrated_md = ptc.non_illustrated_memory_depictions 
-          end
+      unless pi_text_cards.empty?
+        pi_text_cards.each do |ptc|
+          @non_illustrated_md = ptc.non_illustrated_memory_depictions
         end
-        html = render_to_string :firb_pi
-        data = {'box' => 'Illustrazione'}
+      end
+      html = render_to_string :firb_pi
+      data = {'box' => 'Illustrazione'}
       
     elsif @source.is_a? FiCharacterCard
       # Mascherata - FIRB_FI
-        @image = @source.anastatica.image_zone.get_image_parent 
-        html = render_to_string :firb_fi
-        data = {'box' => 'Personaggio'}
+      @image = @source.anastatica.image_zone.get_image_parent
+      html = render_to_string :firb_fi
+      data = {'box' => 'Personaggio'}
 
 
     elsif @source.is_a? VtLetter
       # Aretino - FIRB_VT
       case params[:mode]
-      when 'CriticalTranscription'
-        # we want to show the transcriptions (XML files) of each of the handwritten cards related to the letter
-        unless (hwc = @source.handwritten_cards.uniq).nil?
-          @transcription_html = ''
-          hwc.each do |h|
-            file = h.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html')
-            @transcription_html += file.all_text unless file.nil?
-          end
-        end
 
-        html = render_to_string :firb_vt_critical
-        data = {'box' => 'Trascrizione Critica'}
-        
+      
       when 'DiplomaticTranscription'
         # we need to show the PDF file related to the whole letter
       else        
-       
+
+        # we show the letter itself
         @handwritten_images = []
         @printed_images = []
-        unless (hwc = @source.handwritten_cards).nil? 
+        unless (hwc = @source.handwritten_cards).empty? 
           hwc.uniq.each do |h|
             @handwritten_images << h.anastatica.image_zone.get_image_parent
           end
+
+          @first_handwritten_card = hwc.first
         end
         
-        unless (pc = @source.printed_cards).nil? 
+        unless (pc = @source.printed_cards).empty? 
           pc.uniq.each do |p|
             @printed_images << p.anastatica.image_zone.get_image_parent
           end
+          @first_printed_card = pc.first
         end
+
+        
         
         html = render_to_string :firb_vt_letter
         data = {'box' => 'Lettera'}
       end
+   
+    elsif @source.is_a? VtHandwrittenTextCard
+    
+      letter = @source.letter
+      unless (hwc = letter.handwritten_cards.uniq).nil?
+        if (curr_index = hwc.index @source) > 0
+          @prev_page = hwc[curr_index - 1]
+        end
+        if (curr_index < (hwc.count - 1))
+          @next_page = hwc[curr_index + 1]
+        end
+
+        @transcription_html = ''
+      
+        file = @source.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html')
+        @transcription_html = file.all_text unless file.nil?
+      
+
+        @image = @source.anastatica.image_zone.get_image_parent
+
+
+        html = render_to_string :firb_vt_transcription
+        data = {'box' => 'Trascrizione Critica Manoscritto'}
+      
+      
+      end
+
+    elsif @source.is_a? VtPrintedTextCard
+
+      letter = @source.letter
+      unless (pc = letter.printed_cards.uniq).nil?
+        if (curr_index = pc.index @source) > 0
+          @prev_page = c[curr_index - 1]
+        end
+        if (curr_index < (pc.count - 1))
+          @next_page = pc[curr_index + 1]
+        end
+
+        @transcription_html = ''
+      
+        file = @source.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html')
+        @transcription_html = file.all_text unless file.nil?
+
+        @image = @source.anastatica.image_zone.get_image_parent
+
+        html = render_to_string :firb_vt_transcription
+        data = {'box' => 'Trascrizione Critica Stampa'}
+      
+      
+      end
+
     end
- 
-
-
              
     # types = ActiveRDF::Query.new(N::URI).select(:type).distinct.where(@source, N::RDF.type, :type).execute
     # if  N::DEMO.Person.in? types
@@ -158,7 +201,7 @@ class BoxViewController < ApplicationController
     # else
     #   html = render_to_string :source
     # end
-#    data = {'box' => TaliaCore::ActiveSource.find(source_uri).uri.to_uri.local_name.to_s.gsub('_', ' ')}
+    #    data = {'box' => TaliaCore::ActiveSource.find(source_uri).uri.to_uri.local_name.to_s.gsub('_', ' ')}
 
     render_json(0, html, data)
   end
