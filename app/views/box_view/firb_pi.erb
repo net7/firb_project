@@ -28,8 +28,13 @@
    <b>Immagini di memoria:</b>
    
 <% unless (child_cards =  @source.child_cards).empty? %>
-   <% child_cards.each do |dc| %>
-       <%= dc.name %>, 
+   <% child_cards.each do |c| %>
+      <span onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= c.image_zone.id.to_s %>');"
+        onmouseout="getFlashObject('<%= @id %>').setPolygonHighlighted(false, '<%= c.image_zone.id.to_s %>');" id="image_zone_#{c.image_zone.id}" class="single-zone">
+	   <%= c.name %> 
+
+	   </span>
+
    <% end %>
 <% end %>
 
