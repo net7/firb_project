@@ -172,7 +172,7 @@ class BoxViewController < ApplicationController
       letter = @source.letter
       unless (pc = letter.printed_cards.uniq).nil?
         if (curr_index = pc.index @source) > 0
-          @prev_page = c[curr_index - 1]
+          @prev_page = pc[curr_index - 1]
         end
         if (curr_index < (pc.count - 1))
           @next_page = pc[curr_index + 1]
