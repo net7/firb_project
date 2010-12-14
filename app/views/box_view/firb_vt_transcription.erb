@@ -5,13 +5,6 @@
     <div class='widgetHeaderTools'>
     <p class='collapse'><a class='expanded' href='#' title='Collapse'>Collapse</a></p>
 
-<% unless @prev_page.nil? %>
-    <p class="previous">
-    <a class="inBoxNavigation prev" href="boxViewer.php?method=getSource&resource=<%=Base64.encode64s(@prev_page.uri.to_s)%>" title="">
-    Previous
-    </a>
-    </p>
-<% end %>
 
 
 <% unless @next_page.nil? %>
@@ -22,6 +15,15 @@
     </p>	
 
 <% end %>
+
+<% unless @prev_page.nil? %>
+    <p class="previous">
+    <a class="inBoxNavigation prev" href="boxViewer.php?method=getSource&resource=<%=Base64.encode64s(@prev_page.uri.to_s)%>" title="">
+    Previous
+    </a>
+    </p>
+<% end %>
+
 
 
     </div>
