@@ -52,9 +52,9 @@
 
 	
 	<b>Fonti:</b> <% @source.bibliography_items.each do |b| %>
-	       <%= b.name %>  
+	       <%= b.name %> (<%= b.bibliography_item.title %>)  
 	<% end %> 
-
+	<br/>
     	<b>Qualit&agrave;:</b> <%= @source.qualities_age %>, <%= @source.qualities_gender %>, <%= @source.qualities_profession %>, <%= @source.qualities_ethnic_group %><br/>
 
 <% unless (components = @source.image_components).empty? %>
