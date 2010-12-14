@@ -29,7 +29,7 @@
 
 	 <% notes.each do |n| %>
 
-	 *	    <span class="resource"onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= n.image_zone.id.to_s %>');"
+	     <span class="resource"onmouseover="getFlashObject('<%= @id %>').setPolygonHighlighted(true, '<%= n.image_zone.id.to_s %>');"
         onmouseout="getFlashObject('<%= @id %>').setPolygonHighlighted(false, '<%= n.image_zone.id.to_s %>');" id="image_zone_#{n.image_zone.id}" class="single-zone">
 	 <%= n.content %>
         
