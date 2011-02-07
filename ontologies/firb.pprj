@@ -1,4 +1,4 @@
-; Wed Dec 01 15:49:29 CET 2010
+; Mon Feb 07 10:29:07 CET 2011
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[firb_ProjectKB_Class76]
-		[firb_ProjectKB_Class77]
-		[firb_ProjectKB_Class78]
-		[firb_ProjectKB_Class79]
-		[firb_ProjectKB_Class80]))
+		[firb_ProjectKB_Class66]
+		[firb_ProjectKB_Class67]
+		[firb_ProjectKB_Class68]
+		[firb_ProjectKB_Class69]
+		[firb_ProjectKB_Class70]))
 
 ([CLSES_TAB] of  Widget
 
@@ -287,74 +287,74 @@
 ([firb_ProjectKB_Class65] of  Property_List
 )
 
-([firb_ProjectKB_Class7] of  Property_List
-)
-
-([firb_ProjectKB_Class76] of  String
+([firb_ProjectKB_Class66] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([firb_ProjectKB_Class77] of  String
+([firb_ProjectKB_Class67] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([firb_ProjectKB_Class78] of  String
+([firb_ProjectKB_Class68] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([firb_ProjectKB_Class79] of  String
+([firb_ProjectKB_Class69] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([firb_ProjectKB_Class8] of  Widget
+([firb_ProjectKB_Class7] of  Property_List
+)
 
-	(is_hidden TRUE)
-	(property_list [firb_ProjectKB_Class9])
-	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
-
-([firb_ProjectKB_Class80] of  String
+([firb_ProjectKB_Class70] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([firb_ProjectKB_Class81] of  Map_Entry
+([firb_ProjectKB_Class71] of  Map_Entry
 
 	(key "show_collaboration_panel")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.Boolean"))
 
-([firb_ProjectKB_Class82] of  Map_Entry
+([firb_ProjectKB_Class72] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([firb_ProjectKB_Class83] of  Map_Entry
+([firb_ProjectKB_Class73] of  Map_Entry
 
 	(key "chaoProject")
 	(key_class "java.lang.String")
 	(value "annotation_firb.pprj")
 	(value_class "java.lang.String"))
 
-([firb_ProjectKB_Class84] of  Map_Entry
+([firb_ProjectKB_Class74] of  Map_Entry
 
 	(key "edu.stanford.smi.protege.collab.annotation.gui.panel.ChatPanel")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([firb_ProjectKB_Class85] of  Map_Entry
+([firb_ProjectKB_Class75] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "true")
 	(value_class "java.lang.String"))
+
+([firb_ProjectKB_Class8] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [firb_ProjectKB_Class9])
+	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
 
 ([firb_ProjectKB_Class9] of  Property_List
 )
@@ -1077,11 +1077,11 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[firb_ProjectKB_Class81]
-		[firb_ProjectKB_Class82]
-		[firb_ProjectKB_Class83]
-		[firb_ProjectKB_Class84]
-		[firb_ProjectKB_Class85]))
+		[firb_ProjectKB_Class71]
+		[firb_ProjectKB_Class72]
+		[firb_ProjectKB_Class73]
+		[firb_ProjectKB_Class74]
+		[firb_ProjectKB_Class75]))
 
 ([KB_325529_Class4] of  String
 
@@ -1092,6 +1092,9 @@
 
 	(name "SwitchableClassDefinitionType")
 	(string_value "edu.stanford.smi.protegex.owl.ui.cls.PropertiesClassDefinitionWidgetType"))
+
+([KB_461433_Class5] of  Map
+)
 
 ([KB_465546_Instance_567] of  Widget
 
@@ -1280,9 +1283,6 @@
 	(property_list [KB_635552_Instance_9]))
 
 ([KB_635552_Instance_9] of  Property_List
-)
-
-([KB_656452_Class5] of  Map
 )
 
 ([KB_691299_Instance_398] of  Widget
