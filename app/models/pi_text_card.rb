@@ -62,13 +62,13 @@ class PiTextCard < TextCard
     # 3 TextFragment > hasMemoryDepiction > MemoryDepiction, for each md (ill+not ill): self > relatedMemoryDepiction > md
     self.non_illustrated_memory_depictions.each do |md|
       triples.push [self.uri, N::FIRBSWN.relatedMemoryDepiction, md.uri]
-      triples.push [md.uri, N::RDF.type, N::FIRBSWN.NonIllustrated]
+      triples.push [md.uri, N::RDF.type, N::FIRBSWN.NonIllustratedMemoryDepiction]
       triples.push [md.uri, N::RDFS.label, "("+md.depiction_type+") " + md.short_description]
     end
 
     PiIllustratedMdCard.find(:all, :find_through => [N::TALIA.attachedText, self.uri]).each do |md|
       triples.push [self.uri, N::FIRBSWN.relatedMemoryDepiction, md.uri]
-      triples.push [md.uri, N::RDF.type, N::FIRBSWN.Illustrated]
+      triples.push [md.uri, N::RDF.type, N::FIRBSWN.IllustratedMemoryDepiction]
       triples.push [md.uri, N::RDFS.label, md.short_description]
     end 
         
