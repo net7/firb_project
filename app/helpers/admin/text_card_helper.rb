@@ -47,10 +47,13 @@ module Admin::TextCardHelper
       elsif (b.is_a?(CustomBibliographyItem))
         name = (b.name.nil?) ? "" : b.name+": "
         bi_uri = b.bibliography_item.uri.to_s
-        if (cache[bi_uri].nil?) 
-          cache[bi_uri] = "(#{b.bibliography_item.author}: #{b.bibliography_item.title})"
-        end
-        ["#{name} #{cache[bi_uri]} #{b.pages}", b.uri.to_s] 
+        # TODO: this little cache trick gets an error "cant covert Integer to String", maybe
+        # trying to index the cache array with a string? 
+        #if (cache[bi_uri].nil?) 
+        #  cache[bi_uri] = "(#{b.bibliography_item.author}: #{b.bibliography_item.title})"
+        #end
+        #["#{name} #{cache[bi_uri]} #{b.pages}", b.uri.to_s] 
+        ["#{name} (#{b.bibliography_item.author}: #{b.bibliography_item.title}) #{b.pages}", b.uri.to_s] 
       end
     end 
   end
@@ -91,6 +94,10 @@ module Admin::TextCardHelper
   # Limits the dropdown menu to TaliaCore::Collection items
   def vt_letters_select
     VtLetter.all.collect! { |a| ["#{a.title}", a.uri.to_s]}.sort
+  end
+
+  def pi_text_card_select
+    PiTextCard.all.collect! { |a| ["#{a.title}", a.uri.to_s]}.sort
   end
 
   # Placeholder for something more appropriate: something which gathers the real 
