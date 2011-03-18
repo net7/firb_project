@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module Admin::TextCardHelper
   
   # Produces an hash to be passed to an input (select_for format)
@@ -110,7 +111,7 @@ module Admin::TextCardHelper
   # Placeholder for something more appropriate: something which gathers the real 
   # types from an ontology or some db thingie
   def letter_component_types
-    ["floreale", "vegetale", "umano"].collect{ |t| [t, t] }
+    ["animale", "floreale", "vegetale", "umano"].collect{ |t| [t, t] }
   end
 
 end
