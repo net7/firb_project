@@ -76,6 +76,46 @@
     <rdfs:range rdf:resource="#ImageZone"/>
     <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedImageZoneToKeyword">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >relazione parole chiave immagini</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedText">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >zona di testo correlata</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedMemoryDepiction">
+    <rdfs:label xml:lang="it">Immagine di memoria correlata</rdfs:label>
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedNote">
+    <rdfs:label xml:lang="it">Nota correlata</rdfs:label>
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedBibliographyItem">
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
+    <rdfs:label xml:lang="it">Elementi Bibliografici correlati</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="evolvedIn">
+    <rdfs:label xml:lang="it">Evoluzione del testo</rdfs:label>
+    <rdfs:range rdf:resource="http://discovery-project.eu/ontologies/philoSpace/TextFragment"/>
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/philoSpace/TextFragment"/>
+    <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasMemoryDepiction">
+    <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
+    <rdfs:label xml:lang="it">Collegamento con immagini di memoria</rdfs:label>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdfs:Class rdf:about="#MemoryDepiction"/>
+          <rdfs:Class rdf:about="#IllustratedMemoryDepiction"/>
+          <rdfs:Class rdf:about="#NonIllustratedMemoryDepiction"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="relatedImageZone">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Firb PI.</rdfs:comment>
@@ -91,10 +131,6 @@
     <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
     <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="relatedData">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Represents the resource related to the web page shown. Useful for Swickynotes</rdfs:comment>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasImageZone">
     <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -103,9 +139,9 @@
     <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
     <rdfs:label xml:lang="it">Collegamento con Zona Immagine</rdfs:label>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="relatedMemoryDepiction">
-    <rdfs:label xml:lang="it">Immagine di memoria correlata</rdfs:label>
-    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
+  <owl:ObjectProperty rdf:ID="relatedData">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Represents the resource related to the web page shown. Useful for Swickynotes</rdfs:comment>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasNote">
     <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
@@ -113,31 +149,11 @@
     <rdfs:range rdf:resource="#Note"/>
     <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="relatedNote">
-    <rdfs:label xml:lang="it">Nota correlata</rdfs:label>
-    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="relatedBibliographyItem">
-    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
-    <rdfs:label xml:lang="it">Elementi Bibliografici correlati</rdfs:label>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasMemoryDepiction">
-    <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
-    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
-    <rdfs:label xml:lang="it">Collegamento con immagini di memoria</rdfs:label>
-    <rdfs:range rdf:resource="#MemoryDepiction"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasBibliographyItem">
     <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
     <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
     <rdfs:label xml:lang="it">Fonte</rdfs:label>
     <rdfs:range rdf:resource="#BibliographyItem"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="evolvedIn">
-    <rdfs:label xml:lang="it">Evoluzione del testo</rdfs:label>
-    <rdfs:range rdf:resource="http://discovery-project.eu/ontologies/philoSpace/TextFragment"/>
-    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/philoSpace/TextFragment"/>
-    <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
   </owl:ObjectProperty>
 </rdf:RDF>
 

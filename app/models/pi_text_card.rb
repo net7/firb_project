@@ -46,7 +46,7 @@ class PiTextCard < TextCard
     triples.push [self.uri, N::RDFS.label, self.name.to_s]
 
     # 1 TextFragment > hasNote > Note, for each note: self > relatedNote > note
-    Note.all.each do |n|
+    self.notes.each do |n|
       triples.push [self.uri, N::FIRBSWN.relatedNote, n.uri]
       triples.push [n.uri, N::RDF.type, N::FIRBSWN.Note]
       triples.push [n.uri, N::RDFS.label, ((n.name.nil?) ? "" : n.name)+": "+((n.content.nil?) ? "" : n.content)]
@@ -54,7 +54,7 @@ class PiTextCard < TextCard
 
     # 2 TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
     ImageZone.get_all_zones_array.each do |name, uri|
-      triples.push [self.uri, N::FIRBSWN.relatedImageZone, uri]
+      triples.push [self.uri, N::FIRBSWN.relatedImageZone, N::URI.new(uri)]
       triples.push [uri, N::RDF.type, N::FIRBSWN.ImageZone]
       triples.push [uri, N::RDFS.label, name]
     end
@@ -62,13 +62,13 @@ class PiTextCard < TextCard
     # 3 TextFragment > hasMemoryDepiction > MemoryDepiction, for each md (ill+not ill): self > relatedMemoryDepiction > md
     self.non_illustrated_memory_depictions.each do |md|
       triples.push [self.uri, N::FIRBSWN.relatedMemoryDepiction, md.uri]
-      triples.push [md.uri, N::RDF.type, N::FIRBSWN.NonIllustrated]
+      triples.push [md.uri, N::RDF.type, N::FIRBSWN.NonIllustratedMemoryDepiction]
       triples.push [md.uri, N::RDFS.label, "("+md.depiction_type+") " + md.short_description]
     end
 
     PiIllustratedMdCard.find(:all, :find_through => [N::TALIA.attachedText, self.uri]).each do |md|
       triples.push [self.uri, N::FIRBSWN.relatedMemoryDepiction, md.uri]
-      triples.push [md.uri, N::RDF.type, N::FIRBSWN.Illustrated]
+      triples.push [md.uri, N::RDF.type, N::FIRBSWN.IllustratedMemoryDepiction]
       triples.push [md.uri, N::RDFS.label, md.short_description]
     end 
         
