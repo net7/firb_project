@@ -311,7 +311,9 @@
                 <field-row field="parent_collocation"><view:><%= this_parent.parent_card.nil? ? I18n.t('base_cards.on_card_save') : this_parent.parent_card.collocation %></view:></field-row>
             </collocation:>
             <after-completed:>
-                <field-edit-row field="textual_source" fieldtype="PiTextCard" />
+                <field-row fieldname="textual_source" fieldtype="PiTextCard">
+                    <view:><pi-text-cards-edit selectoptions="&pi_text_card_select" /></view:>
+                </field-row>
                 <field-edit-row field="short_description" />
                 <field-edit-row field="transcription_text" />
             </after-completed:>
@@ -340,7 +342,9 @@
                 <field-edit-row field="image_zone" fieldtype="ImageZone" selectoptions="&image_zone_select_uri" />
             </before-anastatica:>
             <after-completed:>
-                <field-edit-row field="textual_source" fieldtype="PiTextCard" />
+                <field-row fieldname="textual_source" fieldtype="PiTextCard">
+                    <view:><pi-text-cards-edit selectoptions="&pi_text_card_select" /></view:>
+                </field-row>
             </after-completed:>
             <after-bibliography:>
                 <field-row field="child_cards" hrefatt="&{:controller => :base_cards, :action => :show, :type => 'pi_illustrated_md_card'}" />
@@ -728,6 +732,16 @@
         :existing => this_parent.non_illustrated_memory_depictions.collect {|ic| [ "#{ic.short_description} (#{ic.depiction_type})", ic.uri.to_s]} }
     %>
 </def>
+
+<def tag="pi-text-cards-edit" attrs="selectoptions">
+    <%= 
+        render :partial => 'shared/select',
+        :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => 'textual_source' ,
+        :options => (selectoptions || nil),
+        :existing => this.textual_source.collect {|i| [ "#{i.title}", i.uri.to_s]} }
+    %>
+</def>
+
 
 <def tag="image-components-edit" attrs="selectoptions">
     <%= 

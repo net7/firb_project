@@ -1,7 +1,7 @@
 class IllustrationCard < BaseCard
 
   singular_property :image_zone, N::DCT.isFormatOf, :type => TaliaCore::ActiveSource
-  singular_property :textual_source, N::TALIA.attachedText, :type => TaliaCore::ActiveSource
+  multi_property :textual_source, N::TALIA.attachedText, :type => TaliaCore::ActiveSource
   multi_property :iconclass_terms, N::DCT.subject, :type => TaliaCore::ActiveSource
   multi_property :image_components, N::TALIA.image_component, :type => TaliaCore::ActiveSource, :dependent => :destroy
 
