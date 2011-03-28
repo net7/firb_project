@@ -110,14 +110,16 @@ class ImageElement < TaliaCore::Source
 
   # Will return the cached result if there's one. So views who uses 2+ times
   # this, will use the cache
+# EDIT: this breaks the updating of the select, getting rid of it
+# TODO: find a better way? or maybe it's not that slow actually?
   def self.get_all_zones_array
-    if (@zones) 
-      @zones
-    else
+#    if (@zones) 
+#      @zones
+#    else
       @zones = []
       Image.all.each { |image| image.recurse_zone_names(@zones, "") }
       @zones.sort
-    end
+#    end
   end
   
   # If there's no subzones it's a leaf, add it's url and name to the
