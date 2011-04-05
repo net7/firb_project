@@ -98,7 +98,7 @@
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="evolvedIn">
     <rdfs:label xml:lang="it">Evoluzione del testo</rdfs:label>
-    <rdfs:range rdf:resource="http://discovery-project.eu/ontologies/philoSpace/TextFragment"/>
+    <rdfs:range rdf:resource="http://discovery-project.eu/ontologies/philoSpace/Bookmark"/>
     <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/philoSpace/TextFragment"/>
     <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
   </owl:ObjectProperty>
