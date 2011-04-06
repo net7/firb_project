@@ -4,6 +4,13 @@ class Admin::ImageZonesController < Admin::AdminSiteController
   
   auto_actions :all
 
+  def update
+    if (params[:image_zone][:name].empty?)
+        params[:image_zone][:name] = I18n.t("image_components.insert_zone_name")
+    end
+    hobo_update
+  end
+
   # Removes a zone and all of its children
   def remove_zone
     zone = ImageZone.find(params[:id])

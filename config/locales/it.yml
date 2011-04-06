@@ -781,6 +781,7 @@ it:
     image_components:
       model_name: "Componenti"
       image_zone: "Zona"
+      insert_zone_name: "INSERISCI UN NOME PER QUESTA ZONA"
       name: "Nome"
       zone_type: "Tipo della Zona"
       component_type: "Tipo del componente"

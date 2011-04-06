@@ -89,7 +89,11 @@
 <def tag="imagezone" attrs="parentimageid">
     <span onmouseover="getFlashObject('<%= parentimageid %>').setPolygonHighlighted(true, '<%= this.id.to_s %>');"
         onmouseout="getFlashObject('<%= parentimageid %>').setPolygonHighlighted(false, '<%= this.id.to_s %>');" id="image_zone_#{this.id}" class="single-zone">
+
+        <!-- Check: if the image_zone.name is empty/null, <editor> will fail -->
+        <% this.name = I18n.t("image_components.insert_zone_name") if (this.name.nil?) %>
         <editor:name />
+
     </span>: <link-add-to-zone /> <link-del-zone />
     <% if this.zone_count > 0 %>
         <ul>
