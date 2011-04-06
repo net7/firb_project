@@ -4,9 +4,15 @@ class ImageElement < TaliaCore::Source
   
   before_destroy :remove_zones
 
+  after_update :reset_cached_zones
+  after_create :reset_cached_zones
+  after_destroy :reset_cached_zones
+
   singular_property :name, N::TALIA.name
   
   extend RandomId
+  
+  class << self; attr_accessor :cached_zones end
 
   # Returns the number of zones directly linked to this object
   def zone_count
@@ -110,16 +116,14 @@ class ImageElement < TaliaCore::Source
 
   # Will return the cached result if there's one. So views who uses 2+ times
   # this, will use the cache
-# EDIT: this breaks the updating of the select, getting rid of it
-# TODO: find a better way? or maybe it's not that slow actually?
   def self.get_all_zones_array
-#    if (@zones) 
-#      @zones
-#    else
-      @zones = []
-      Image.all.each { |image| image.recurse_zone_names(@zones, "") }
-      @zones.sort
-#    end
+    if (ImageElement.cached_zones) 
+      ImageElement.cached_zones
+    else
+      ImageElement.cached_zones = []
+      Image.all.each { |image| image.recurse_zone_names(ImageElement.cached_zones, "") }
+      ImageElement.cached_zones.sort
+    end
   end
   
   # If there's no subzones it's a leaf, add it's url and name to the
@@ -130,6 +134,12 @@ class ImageElement < TaliaCore::Source
     name = (name.blank?) ? foo : name + " > " + foo
     container.push [name, self.uri.to_s] unless self.is_a?(Image)
     self.zones.each { |z| z.recurse_zone_names(container, name) } if (self.has_zones?)
+  end
+
+  # used in images controllers to reset @cached_zones var so the image_zone drop-down menu will be 
+  # reloaded after tinkering with images and zones
+  def reset_cached_zones
+   ImageElement.cached_zones = nil
   end
 
 end
