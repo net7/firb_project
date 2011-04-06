@@ -280,6 +280,8 @@ it:
         date: "Data"
         printed_collocation: "Collocazione dell'esemplare a stampa"
         handwritten_collocation: "Collocazione dell'esemplare manoscritto"
+        item_type: "Tipo dell'elemento"
+        used_types: "Tipi già utilizzati"
         
     text_card:
         model_name: "Scheda di testo"
@@ -823,3 +825,12 @@ it:
         parent_card: "Immagine madre"
         textual_source: "Testo correlato"    
     
+
+    dictionary_items:
+        nav_item: "Dizionario"
+        model_name_plural: "Termini del dizionario"
+        model_name: "Termine del dizionario"
+        count: "Ci sono %{count} termini del dizionario"
+        actions:
+            new: "Crea un nuovo termine"
+        

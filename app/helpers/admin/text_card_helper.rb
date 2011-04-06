@@ -126,4 +126,9 @@ module Admin::TextCardHelper
     ["animale", "floreale", "vegetale", "umano"].collect{ |t| [t, t] }
   end
 
+  def dictionary_item_types
+    DictionaryItem.all.collect { |a| [a.item_type.to_s] }.uniq.sort
+  end
+
+
 end

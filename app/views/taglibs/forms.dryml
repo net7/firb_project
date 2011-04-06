@@ -381,3 +381,30 @@
     </div>
   </form>
 </def>
+
+<def tag="form" for="DictionaryItem">
+  <form merge param="default">
+    <error-messages param/>
+
+    <field-edit-table>
+        <content:>
+
+        <field-edit-row field="name" />
+        <field-edit-row field="comment" />
+        <field-edit-row field="item_type" />
+        <field-row field="used_types">
+            <view:>
+                <% dictionary_item_types.each do |e| %>
+                    <%= "<a href='#' onclick=\"$('dictionary_item_item_type').value=\'#{e}\';return false;\"> #{e} </a> &nbsp;&nbsp;" %>
+                <% end %>
+            </view:>
+        </field-row>
+
+        </content:>
+    </field-edit-table>
+    
+    <div param="actions">
+      <submit label="#{ht 'talia_collections.actions.save'}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
