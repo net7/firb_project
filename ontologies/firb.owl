@@ -70,6 +70,7 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >a resource representing a zone of an image</rdfs:comment>
   </rdfs:Class>
+  <owl:Class rdf:ID="DictionaryItem"/>
   <owl:ObjectProperty rdf:ID="keywordForImageZone">
     <rdfs:label xml:lang="it">Parole chiave</rdfs:label>
     <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
@@ -148,6 +149,9 @@
     <rdfs:label xml:lang="it">Collegamento con Nota</rdfs:label>
     <rdfs:range rdf:resource="#Note"/>
     <rdfs:subPropertyOf rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/userAnnotationProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="relatedDictionaryItem">
+    <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasBibliographyItem">
     <rdfs:domain rdf:resource="http://discovery-project.eu/ontologies/scholar/0.1/Source"/>
