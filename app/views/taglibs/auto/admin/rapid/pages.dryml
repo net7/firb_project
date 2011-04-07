@@ -9,7 +9,7 @@
     <nav-item with="&BaseCard"><ht key="base_cards.nav_item">Schede</ht></nav-item>
     <nav-item with="&BgTextCard"><ht key="bg_text_cards.nav_item">Schede di testo</ht></nav-item>
     <nav-item with="&BibliographyItem"><ht key="bibliography_items.nav_item">Elementi Bibliografici</ht></nav-item>
-    <nav-item with="&FiParade"><ht key="fi_parades.nav_item">Parate</ht></nav-item>
+    <nav-item with="&DictionaryItem"><ht key="dictionary_items.nav_item">Termini del dizionario</ht></nav-item>
   </navigation>
 </def>
 
@@ -593,6 +593,125 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'custom_templates.actions.delete', :default=>['Remove This Template']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== DictionaryItem Pages ====== -->
+
+<def tag="index-page" for="DictionaryItem">
+  <page merge title="#{ht 'dictionary_items.index.title', :default=>['Termini del dizionario'] }">
+    <body: class="index-page dictionary-item" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="dictionary_items.index.heading">
+            Termini del dizionario
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="dictionary_items.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="dictionary_items.actions.new">New Termine del dizionario</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="DictionaryItem">
+  <page merge title="#{ht 'dictionary_items.new.title', :default=>[' New Termine del dizionario'] }">
+    <body: class="new-page dictionary-item" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="dictionary_items.new.heading">
+            New Termine del dizionario
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'dictionary_items.actions.create', :default=>['Create Termine del dizionario']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="DictionaryItem">
+  <page merge title="#{ht 'dictionary_items.show.title', :default=>['Termine del dizionario'] }">
+
+    <body: class="show-page dictionary-item" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="dictionary_items.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="dictionary_items.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Termine del dizionario
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="DictionaryItem">
+  <page merge title="#{ht 'dictionary_items.edit.title', :default=>['Edit Termine del dizionario'] }">
+
+    <body: class="edit-page dictionary-item" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="dictionary_items.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'dictionary_items.actions.delete', :default=>['Remove This Termine del dizionario']}" param/>
       </section>
 
       <section param="content-body">
