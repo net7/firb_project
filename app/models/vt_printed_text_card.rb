@@ -74,6 +74,7 @@ class VtPrintedTextCard < TextCard
   # Produces an array of triples, where a triple is an array subject - predicate - object
   # meant to be used with rdf_builder's prepare_triples
   # TextFragment > hasNote > Note, for each note: self > relatedNote > note
+  # TextFragment > VariousRelations > DictionaryItem
   def get_related_topic_descriptions
     triples = []
 
@@ -86,6 +87,13 @@ class VtPrintedTextCard < TextCard
       triples.push [self.uri, N::FIRBSWN.relatedNote, n.uri]
       triples.push [n.uri, N::RDF.type, N::FIRBSWN.Note]
       triples.push [n.uri, N::RDFS.label, ((n.name.nil?) ? "" : n.name)+": "+((n.content.nil?) ? "" : n.content)]
+    end
+
+    # TextFragment > VariousRelations > DictionaryItem
+    DictionaryItem.all.each do |di|
+      triples.push [self.uri, N::FIRBSWN.relatedDictionaryItem, di.uri]
+      triples.push [di.uri, N::RDF.type, N::FIRBSWN.DictionaryItem]
+      triples.push [di.uri, N::RDFS.label, di.name + di.item_type.to_uri.local_name]
     end
 
     triples

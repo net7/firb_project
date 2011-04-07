@@ -38,6 +38,7 @@ class PiTextCard < TextCard
   # 1 TextFragment > hasNote > Note, for each note: self > relatedNote > note
   # 2 TextFragment > keywordForImageZone > ImageZone, for each imgz: self > relatedImageZone > imgz
   # 3 TextFragment > hasMemoryDepiction > MemoryDepiction, for each md (ill+not ill): self > relatedMemoryDepiction > md
+  # 4 TextFragment > VariousRelations > DictionaryItem
   def get_related_topic_descriptions
     triples = []
 
@@ -71,6 +72,13 @@ class PiTextCard < TextCard
       triples.push [md.uri, N::RDF.type, N::FIRBSWN.IllustratedMemoryDepiction]
       triples.push [md.uri, N::RDFS.label, md.short_description]
     end 
+
+    # 4 TextFragment > VariousRelations > DictionaryItem
+    DictionaryItem.all.each do |di|
+      triples.push [self.uri, N::FIRBSWN.relatedDictionaryItem, di.uri]
+      triples.push [di.uri, N::RDF.type, N::FIRBSWN.DictionaryItem]
+      triples.push [di.uri, N::RDFS.label, di.name + di.item_type.to_uri.local_name]
+    end
         
     triples
   end

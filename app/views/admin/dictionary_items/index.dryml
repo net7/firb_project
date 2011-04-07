@@ -2,11 +2,11 @@
     <% item_types = dictionary_item_types %>
     <ht key="dictionary_items.type_count" count="&item_types.count" />
     <ul class="type-selector">
-        <% item_types.each do |type| %>
-            <% if (params[:type] == type.to_uri.to_local) %>
-                <li class="selected"><%= type %></li>
+        <% item_types.each do |ty| %>
+            <% if (params[:type] == ty) %>
+                <li class="selected"><%= ty %></li>
             <% else %>
-                <li><%= link_to type, url_for(:action => :index, :type => type) %></li>
+                <li><%= link_to "#{ty}", url_for(:action => :index, :type => ty) %></li>
             <% end %>
         <% end %>
     </ul>
