@@ -832,6 +832,11 @@ it:
         model_name_plural: "Termini del dizionario"
         model_name: "Termine del dizionario"
         count: "Ci sono %{count} termini del dizionario"
+        type_count: "di %{count} tipi diversi: "
         actions:
             new: "Crea un nuovo termine"
+            delete: "Cancella"
+        messages:
+            update_success: "Il termine è stato salvato."
+            create_success: "Il termine è stato creato."
         

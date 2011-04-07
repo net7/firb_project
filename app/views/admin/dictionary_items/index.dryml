@@ -1,3 +1,17 @@
+<def tag="dictionary-type-selector">
+    <% item_types = dictionary_item_types %>
+    <ht key="dictionary_items.type_count" count="&item_types.count" />
+    <ul class="type-selector">
+        <% item_types.each do |type| %>
+            <% if (params[:type] == type) %>
+                <li class="selected"><%= type %></li>
+            <% else %>
+                <li><%= link_to type, url_for(:action => :index, :type => type) %></li>
+            <% end %>
+        <% end %>
+    </ul>
+</def>
+
 <index-page>
 
     <heading:>
@@ -11,5 +25,8 @@
 
     <count:>
         <img src="&image_path('/images/icons/email_open.png')" /> <ht key="#{model.name.pluralize.tableize}.count" count="&this.total_entries" />
+
+        <dictionary-type-selector />
     </count:>
+
 </index-page>

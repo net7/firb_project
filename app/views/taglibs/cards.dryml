@@ -452,3 +452,14 @@
     </if>
   </repeat>
 </def>
+
+<def tag="card" for="DictionaryItem">
+  <card class="talia-collection" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a action="edit"><%= this.name %></a> (<%= this.item_type %>)<delete-icon /></h4>
+    </header:>
+    <body:>
+        <p><%= this.comment %></p>
+    </body:>
+  </card>
+</def>
