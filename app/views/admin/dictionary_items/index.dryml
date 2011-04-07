@@ -3,7 +3,7 @@
     <ht key="dictionary_items.type_count" count="&item_types.count" />
     <ul class="type-selector">
         <% item_types.each do |type| %>
-            <% if (params[:type] == type) %>
+            <% if (params[:type] == type.to_uri.to_local) %>
                 <li class="selected"><%= type %></li>
             <% else %>
                 <li><%= link_to type, url_for(:action => :index, :type => type) %></li>

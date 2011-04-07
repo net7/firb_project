@@ -127,7 +127,7 @@ module Admin::TextCardHelper
   end
 
   def dictionary_item_types
-    DictionaryItem.all.collect { |a| [a.item_type.to_s] }.uniq.sort
+    DictionaryItem.all.collect { |a| a.item_type.to_uri.local_name }.uniq.sort
   end
 
 
