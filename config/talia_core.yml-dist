@@ -48,6 +48,7 @@ shown_tabs:
   - 'vt_handwritten_text_cards'
   - 'vt_printed_text_cards'
   - 'vt_letters'
+  - 'dictionary_items'
 # the list of subtypes of "base_card"s edit it as desired
 base_card_types:
   - bg_illustration_card
