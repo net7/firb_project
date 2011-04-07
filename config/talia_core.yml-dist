@@ -25,6 +25,7 @@ namespaces:
   marcont: http://www.marcont.org/ontology/2.1/
   demo: http://ontologies.muruca.org/demo3/
   firbswn: http://purl.oclc.org/firb/swn_ontology#
+  firbclassification: http://purl.oclc.org/firb/classification#
 thumb_options:
   height: "500"
   width: "500"
