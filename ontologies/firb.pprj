@@ -1,4 +1,4 @@
-; Thu Apr 07 12:26:51 CEST 2011
+; Fri Apr 08 10:44:11 CEST 2011
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -560,9 +560,6 @@
 	(y 0))
 
 ([KB_024013_Instance_5] of  Property_List
-)
-
-([KB_036325_Class0] of  Map
 )
 
 ([KB_100699_Instance_0] of  Widget
@@ -3362,6 +3359,9 @@
 	(name "http://www.w3.org/2000/01/rdf-schema#Class")
 	(property_list [XY_Instance_409])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
+
+([KB_880396_Class0] of  Map
+)
 
 ([KB_886778_Instance_12] of  Property_List
 )
