@@ -125,7 +125,7 @@
     <rdfs:range rdf:resource="#ImageZone"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="instanceOf">
-    <rdfs:range rdf:resource="#TextElement"/>
+    <rdfs:range rdf:resource="#DictionaryItem"/>
     <rdfs:label xml:lang="it">Instanza di</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Usato per evidenziare Luoghi, Persone, ecc nel testo</rdfs:comment>
