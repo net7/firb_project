@@ -31,7 +31,9 @@
 </p>
 </xsl:template>-->
 
-<xsl:template match="tei:lb"><span class="line"><xsl:apply-templates select="following::text()[1]"/></span><xsl:if test="string-length(translate(substring(following::text()[1],string-length(following::text()[1])),'-','')) != 0"><xsl:text> </xsl:text></xsl:if></xsl:template>
+<!--<xsl:template match="tei:lb"><span class="line"><xsl:apply-templates select="translate(substring(following::text()[1],string-length(following::text()[1])),'&#xA;','')"/></span><xsl:if test="string-length(translate(substring(following::text()[1],string-length(following::text()[1])),'-','')) != 0"><xsl:text> </xsl:text></xsl:if></xsl:template>-->
+
+<xsl:template match="tei:lb"><span class="line"><xsl:value-of select="translate(normalize-space(following::text()[1]),'&#xA;','')"/></span><xsl:if test="string-length(translate(substring(following::text()[1],string-length(following::text()[1])),'-','')) != 0"><xsl:text> </xsl:text></xsl:if></xsl:template>
 
  
 <xsl:template match="tei:graphic">
@@ -39,6 +41,10 @@
   <img class="source_img" src="../../../images/illustration.jpg" about="{$source_uri}_img_{$pos}"/><xsl:apply-templates/>
 </xsl:template>
 
+<!--<xsl:template match="*">
+  <xsl:copy-of select="translate(.,'&#xA;','')"/>
+</xsl:template>
+-->
 
 </xsl:stylesheet>
 
