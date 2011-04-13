@@ -93,7 +93,7 @@ class VtPrintedTextCard < TextCard
     DictionaryItem.all.each do |di|
       triples.push [self.uri, N::FIRBSWN.relatedDictionaryItem, di.uri]
       triples.push [di.uri, N::RDF.type, N::FIRBSWN.DictionaryItem]
-      triples.push [di.uri, N::RDFS.label, di.name + di.item_type.to_uri.local_name]
+      triples.push [di.uri, N::RDFS.label, "#{di.name} (#{di.item_type.to_uri.local_name})"]
     end
 
     triples
