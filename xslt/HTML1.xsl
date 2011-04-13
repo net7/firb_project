@@ -32,7 +32,7 @@
 </xsl:template>-->
 
 
-<xsl:template match="tei:lb"><span class="line"><xsl:apply-templates select="following::text()[1]"/></span><xsl:if test="string-length(translate(substring(following::text()[1],string-length(following::text()[1])),'-','')) != 0"><xsl:text> </xsl:text></xsl:if></xsl:template>
+<xsl:template match="tei:lb"><span class="line"><xsl:apply-templates select="following::text()[1]"/></span><xsl:if test="string-length(translate(substring(normalize-space(following::text()[1]),string-length(normalize-space(following::text()[1]))),'-','')) != 0"><xsl:text> </xsl:text></xsl:if></xsl:template>
 
 <!--<xsl:template match="tei:lb"><span class="line"><xsl:value-of select="translate(normalize-space(following::text()[1]),'&#xA;','')"/></span><xsl:if test="string-length(translate(substring(following::text()[1],string-length(following::text()[1])),'-','')) != 0"><xsl:text> </xsl:text></xsl:if></xsl:template>-->
 
