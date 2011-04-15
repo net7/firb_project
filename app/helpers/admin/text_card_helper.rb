@@ -111,7 +111,7 @@ module Admin::TextCardHelper
   # Placeholder for something more appropriate: something which gathers the real 
   # types from an ontology or some db thingie
   def pi_component_types
-    ["luoghi", "numeri", "lettere dell'alfabeto", "persone", "oggetti"].collect{ |t| [t, t] }
+    ["animali", "luoghi", "numeri", "lettere dell'alfabeto", "persone", "oggetti"].collect{ |t| [t, t] }
   end
 
   # Placeholder for something more appropriate: something which gathers the real 
