@@ -55,10 +55,29 @@ class VtHandwrittenTextCard < TextCard
   end
   
   def letter=(value)
+
     unless value.empty?
       @letter = (value.is_a?(TaliaCollection) ? value : TaliaCollection.find(value)).real_source
       @letter_new = true
-      @letter << self
+      
+      old_letter = fetch_letter
+      if !old_letter.nil? && old_letter.to_uri != @letter.to_uri
+        # FIXME: ? the following line will not work for some reasons
+        # the thing is that you can use delete only passing to it an element retrieved from the collection itself...
+#       old_letter.delete self
+        old_letter.each do |el|
+          if el.uri == self.uri
+            old_letter.delete el
+            break
+          end
+        end
+
+        old_letter.save
+
+        @letter << self
+      elsif old_letter.nil?
+        @letter << self
+      end
     end
   end
   
