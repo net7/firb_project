@@ -201,7 +201,7 @@
                 <view:><input type="file" name="fi_text_card[file]"/></view:>
             </field-row>
             <field-row field="edition" name="edition">
-                <view:><custom-bibl-items-edit /></view:>
+                <view:><custom-bibl-items-edit name="edition" /></view:>
             </field-row>
             <field-edit-row field="page_position" />
 
