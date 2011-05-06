@@ -392,7 +392,7 @@
         <field-edit-row field="name" />
         <field-edit-row field="comment" />
 
-        <% x = this.item_type.to_uri.local_name %>
+        <% x = this.item_type.to_uri.local_name if this.item_type %>
         <field-row field="item_type">
             <view:><input type="text" id="dictionary_item_item_type" name="dictionary_item[item_type]" value="&x" /></view:>
         </field-row>
