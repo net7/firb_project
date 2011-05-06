@@ -391,7 +391,12 @@
 
         <field-edit-row field="name" />
         <field-edit-row field="comment" />
-        <field-edit-row field="item_type" />
+
+        <% x = this.item_type.to_uri.local_name %>
+        <field-row field="item_type">
+            <view:><input type="text" id="dictionary_item_item_type" name="dictionary_item[item_type]" value="&x" /></view:>
+        </field-row>
+        
         <field-row field="used_types">
             <view:>
                 <% dictionary_item_types.each do |e| %>
