@@ -81,7 +81,7 @@
 <def tag="card" for="PiTextCard">
   <card class="base-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><a action="edit"><%= this.name || this.title %> </a><delete-card-icon /></h4>
+      <h4 param="heading"><a action="edit"><%= this.name || this.title %> </a><delete-icon /></h4>
     </header:>
     <body:>
         <p><publish /></p>
@@ -131,7 +131,7 @@
 <def tag="card" for="FiTextCard">
   <card class="base-card" param="default" merge>
     <header: param>
-      <h4 param="heading"><a action="show"><%= this.name || this.title %> </a><delete-card-icon /></h4>
+      <h4 param="heading"><a action="show"><%= this.name || this.title %> </a><delete-icon /></h4>
     </header:>
     <body:>
         <xml-file-links />
