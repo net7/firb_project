@@ -1,11 +1,13 @@
 class Admin::BaseCardsController < Admin::AdminSiteController
-
   hobo_model_controller
   
   auto_actions :all
 
   before_filter :set_card_type, :uri_params
-  
+
+  include Admin::AnnotableController
+
+
   def index
     @base_cards = @card_type.paginate(:page => params[:page], :prefetch_relations => true)
   end
