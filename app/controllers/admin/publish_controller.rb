@@ -16,5 +16,18 @@ class Admin::PublishController < Admin::AdminSiteController
     @source.toggle_published_by(current_user.name)
     hobo_ajax_response if request.xhr?
    end
-  
+
+   def post_annotated
+     html2 = params[:annotated_content] || ""
+     annotations = params[:annotations] || ""
+
+     @source = TaliaCore::ActiveSource.find(params[:id])
+     if (@source) then       
+       @source.attach_html2("<div class='a'>"+html2 + annotations+"</div>");
+       @source.save!
+     end
+
+     render :text => "ok"
+   end
+    
 end

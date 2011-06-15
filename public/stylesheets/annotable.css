@@ -7,7 +7,7 @@ span.number {
     margin: 10px; 
 }
 img.source_img { 
-    border: 0px; margin: 20px; width: 100px; height: 114px;
+    border: 5px solid #fff; margin: 20px; width: 100px; height: 114px;
     background-image: url('/images/polaroid_frame.jpg');
     background-repeat: no-repeat; 
 }

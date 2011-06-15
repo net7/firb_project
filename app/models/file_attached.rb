@@ -39,6 +39,7 @@ module FileAttached
   def attach_html2(content)
     html2_data = TaliaCore::DataTypes::XmlData.new
     html2_data.create_from_data('html2.html', content, :options => { :mime_type => 'text/xml' })
+    self.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html2.html').destroy()
     self.data_records << html2_data
     self.save!
   end

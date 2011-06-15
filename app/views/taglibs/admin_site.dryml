@@ -38,6 +38,28 @@
                     <submit label="&I18n.t('hobo.publish')"/>
                 </form>
         </else>
+        
+        <if test="&!this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').nil?">
+        
+        
+        <% 
+
+            jaxer_url = TaliaCore::CONFIG['jaxer_url']
+            page_url = url_for(:action => :show_annotable, :id => this.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData','html1.html').id, :only_path => false)
+            url = URI.parse(jaxer_url + "?id="+this.id.to_s+"&uri=" + page_url)
+            j = 'annotate("' + url.to_s + '")'
+        
+        %>
+        <script>
+            function annotate(url) {
+                var myW = window.open(url, 'mywin', 'left=20,top=20,width=500,height=500,toolbar=0,resizable=0');
+                return false;
+            }
+        </script>
+
+        <a href="#" onClick="&j">clicca questo bottone</a>
+        </if>
+            
     </div>
 </def>
 

@@ -26,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/text_cards/show_preview/:id', :controller => 'admin/text_cards', :action => 'show_preview'
 
   map.connect '/admin/publish/toggle/:id', :controller => 'admin/publish', :action => "toggle"
+  map.connect '/admin/publish/post_annotated', :controller => 'admin/publish', :action => "post_annotated"
  
   map.connect 'swicky_notebooks/context/:action', :controller => 'swicky_notebooks'
   map.resources :swicky_notebooks, :path_prefix => 'users/:user_name'
