@@ -173,6 +173,7 @@
 
       <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
   
+      <p><publish /></p>
       <p><anastatica-link /></p>
       <p><xml-file-links /></p>
 
