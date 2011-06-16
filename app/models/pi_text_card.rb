@@ -6,7 +6,6 @@ class PiTextCard < TextCard
   include Publish
   extend Publish::PublishProperties
   setup_publish_properties
-
     
   singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title

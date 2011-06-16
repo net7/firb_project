@@ -134,7 +134,8 @@
       <h4 param="heading"><a action="show"><%= this.name || this.title %> </a><delete-icon /></h4>
     </header:>
     <body:>
-        <xml-file-links />
+        <p><publish /></p>
+        <p><xml-file-links /></p>
     </body:>
   </card>
 </def>
