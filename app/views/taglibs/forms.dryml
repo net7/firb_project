@@ -400,7 +400,7 @@
         <field-row field="used_types">
             <view:>
                 <% dictionary_item_types.each do |e| %>
-                    <%= "<a href='#' onclick=\"$('dictionary_item_item_type').value=\'#{e}\';return false;\"> #{e} </a> &nbsp;&nbsp;" %>
+                    <%= "<a href='#' onclick=\"$('dictionary_item_item_type').value=\'#{e.gsub(/'/,"\\\\'")}\';return false;\"> #{e} </a> &nbsp;&nbsp;" %>
                 <% end %>
             </view:>
         </field-row>
