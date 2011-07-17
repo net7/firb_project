@@ -1,0 +1,19 @@
+<% js_prefix = "anastatica_#{@resource.id}" %>
+<%= boxview_widget Anastatica, 'anastatic' do |w|
+  content = render :partial => '/boxview/shared/imageviewer', 
+           :locals => {:id => rand(Time.now.to_i), 
+                       :base64 => anastatica_image_xml(@image, @resource.showable_zones),
+                       :js_prefix => js_prefix}
+
+  content << "<script>
+      function #{js_prefix}_initializeIMW(id) {
+        jsapi_initializeIMW(id);
+      }
+
+      function #{js_prefix}_mouseClick(fid, ki) {
+        /* HERE */
+      }
+    </script>"
+
+  w.content content_tag(:div, content, :class => 'picture')
+end %>

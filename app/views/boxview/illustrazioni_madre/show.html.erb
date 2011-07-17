@@ -1,0 +1,28 @@
+<% js_prefix = "illustrazione_madre_#{@resource.id}" %>
+<% anastatica_title = "#{@resource.anastatica.title}, #{@resource.anastatica.page_position}" %>
+
+<%= boxview_widget 'Illustrazione', 'image' do |w|
+  content = render :partial => '/boxview/shared/imageviewer', 
+           :locals => {:id => rand(Time.now.to_i), 
+                       :base64 => image_xml(@image),
+                       :js_prefix => js_prefix}
+
+  right_icons = content_tag(:a, 'Anastatica', :href => "#", :id => "box_anastatica_#{@resource.id}", :title => 'Anastatica')
+  right_icons << %[<script type="text/javascript">
+         $("#box_anastatica_#{@resource.id}").live("click", function(e) {
+           e.preventDefault();
+           myBoxView.addBoxFromAjax(
+             {qstring: '#{boxview_anastatica_url(@resource.anastatica.id)}',
+             title: '#{anastatica_title}',
+             verticalTitle: '#{anastatica_title}',
+             resId: '#{@resource.anastatica.id}',
+             type: 'anastatic',
+             collapsed: false}
+           );
+         });
+       </script>]
+
+  w.right_icons right_icons
+
+  w.content content_tag(:div, content, :class => 'picture')
+end %>

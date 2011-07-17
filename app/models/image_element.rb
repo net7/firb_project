@@ -142,4 +142,22 @@ class ImageElement < TaliaCore::Source
    ImageElement.cached_zones = nil
   end
 
+  # BY RIK
+  # Modified version of zones_xml for anastatica images.
+  def anastatica_zones_xml(image_url, zones)
+    xml = Builder::XmlMarkup.new(:indent => 2)
+    xml.dctl_ext_init{
+      xml.img{
+        xml.a(:r => self.id.to_s, :s => self.uri.to_s, :l => self.name, :u => image_url)
+      }
+      xml.xml{
+        zones.each do |z|
+          xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{self.uri}@#{z.coordinates}")
+        end
+      }
+      xml.cb(:u => nil, :p => "base64xml")
+    }
+    base64 = Base64.encode64(xml.target!)
+    base64.gsub(/\s/, '')
+  end
 end

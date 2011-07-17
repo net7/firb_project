@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <title>Boxview | <%= TaliaCore::CONFIG['site_name'] %></title>
+    <link href="/stylesheets/frontend-boxview/firb-common.css" media="screen" type="text/css" rel="stylesheet"/>
+    <link href="/stylesheets/frontend-boxview/<%= TaliaCore::CONFIG['firb']['theme'] || 'pi'%>/firb.css" media="screen" type="text/css" rel="stylesheet"/>
+    <link href="http://fonts.googleapis.com/css?family=OFL+Sorts+Mill+Goudy+TT" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+
+    <div style="display: none;" id="loadingDialog">
+      <!-- FIXME -->
+      <!-- <img src="css/images/loader/ajax_loader.gif" alt="Caricamento in corso"/> -->
+      <p>Caricamento in corso</p>
+    </div>  
+  
+    <div id="pageExt">
+      <div id="pageHeader">
+        <h1><%= TaliaCore::CONFIG['site_name'] %></h1>
+        <p><%= TaliaCore::CONFIG['firb']['site_subtitle'] %></p>
+        <div id="header_preferences_wrapper">
+          <div id="header_preferences">
+            <ul>
+              <li><a href="boxViewer.php?method=getIntro" id="pref_intro" title="Introduzione">Introduzione</a></li>
+              <li><a href="boxViewer.php?method=getAiuto" id="pref_help" title="Help">Help</a></li>
+              <li><a href="#" id="pref_history" title="Check your navigation history!">History</a></li>
+              <li><a href="#" id="pref_link" title="Copia il link a questa pagina">Link</a></li>
+              <li><a href="boxViewer.php?method=getMyDoni" id="pref_notebooks" title="Notebook personali">Notebooks</a></li>
+              <li><a href="#" id="pref_settings" title="Modifica le tue preferenze">Preferenze</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="pageContent">
+        <a id="illustrazione1" href="#">Illustrazione f.8v</a> | 
+        <a id="anastatica1" href="#">Anastatica otto_verso, f.8v</a>
+      </div>
+    </div>
+    <script src="/_boxview/src/tools.js"></script>
+    <script>
+      var bs = new BoxStrapper('../_boxview/', '../boxview_config.js');
+      function onInitDone() {
+        // Sets boxview's height to match the height of the page.
+        $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+        $(window).resize(function(){
+          $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+        });
+
+        $("#illustrazione1").click(function(e){
+          e.preventDefault();
+          myBoxView.addBoxFromAjax(
+            {qstring: '<%= boxview_illustrazione_madre_url(1404) %>',
+             title: 'f. 8v', 
+             verticalTitle: 'f. 8v',
+             resId: '1404',
+             type: 'image',
+             collapsed: false}
+          );
+        });
+
+        $("#anastatica1").click(function(e){
+          e.preventDefault();
+          myBoxView.addBoxFromAjax(
+            {qstring: '<%= boxview_anastatica_url(1365) %>',
+             title: 'otto_verso, f.8v', 
+             verticalTitle: 'otto_verso, f.8v',
+             resId: '1365',
+             type: 'anastatic',
+             collapsed: false}
+          );
+        });
+
+	      myBoxView.openHistoryBox();
+      }
+
+      
+      function getFlashObject(movieName) {
+        if (navigator.appName.indexOf("Microsoft") != -1) {
+        return window[movieName];
+        } else {
+          var obj = document[movieName];
+          if (obj.length != 'undefined') {
+            for(var i=0;i<obj.length;i++) { 
+              if(obj[i].tagName.toLowerCase() == 'embed') return obj[i]; 
+            }
+          }
+          return obj;
+         }
+       }
+
+      // Initialization: IMT will call this when it's ready to load an image
+      function jsapi_initializeIMW(id) {7
+        var new_b64;
+        if (navigator.appName.indexOf("Microsoft") != -1) new_b64 = $("#"+id).attr('b64');
+        else new_b64 = $('#'+id+" embed").attr('b64');
+        getFlashObject(id).initialize(new_b64, 1);
+      } // jsapi_initializeIMW()
+
+      function jsapi_mouseOver(fid, ki) {	
+        $("#image_zone_"+ki).toggleClass('highlighted');
+      }
+
+      function jsapi_mouseOut(fid, ki) {
+        $("#image_zone_"+ki).toggleClass('highlighted');
+      }
+
+/*
+      function jsapi_mouseClick(fid, ki) {
+      }
+*/
+    </script>
+  </body>
+</html>

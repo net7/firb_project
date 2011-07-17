@@ -52,9 +52,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sources, :requirements => { :id => /.+/  }
 
 
+  # Old box view (Deprecated, soon to be removed)
   map.connect '/boxView', :controller => 'boxView', :action => 'index'
   map.connect '/boxView/dispatch', :controller => 'boxView', :action => 'dispatch'
   map.connect '/boxView/graph_xml/:id', :controller => 'boxView', :action => 'graph_xml'
+
+  # New boxview
+  # map.connect '/boxview', :controller => 'boxview', :action => 'index'
+  map.boxview '/boxview', :controller => 'boxview/base', :action => 'index'
+  map.boxview_anastatica '/boxview/anastatiche/:id', :controller => 'boxview/anastatiche', :action => 'show'
+  map.boxview_illustrazione_madre '/boxview/illustrazioni_madre/:id', :controller => 'boxview/illustrazioni_madre', :action => 'show'
+  
 
   # Default semantic dispatch
   map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',

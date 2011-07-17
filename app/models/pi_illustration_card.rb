@@ -1,7 +1,8 @@
 # Pi illustration Card: scheda illustrazione (Firb Pi)
 class PiIllustrationCard < IllustrationCard
-  
+
   include StandardPermissions
+  extend Mixin::ShownInAnastatica
   
   autofill_uri :force => true
   
@@ -13,6 +14,4 @@ class PiIllustrationCard < IllustrationCard
   fields do
     uri :string
   end  
-
-  
 end

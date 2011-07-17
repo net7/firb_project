@@ -1,6 +1,8 @@
 class PiTextCard < TextCard
   hobo_model
   include StandardPermissions
+  extend Mixin::ShownInAnastatica
+
   autofill_uri :force => true
 
   include Publish

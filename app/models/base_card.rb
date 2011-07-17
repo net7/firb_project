@@ -83,6 +83,4 @@ class BaseCard < TaliaCore::Source
   def self.create_card_with_permission_check(options = {})
     card = new(options).create_permission_check!
   end
-
-
 end
