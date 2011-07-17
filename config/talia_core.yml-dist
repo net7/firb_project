@@ -1,4 +1,7 @@
 ---
+firb:
+  theme: pi
+  site_subtitle: Paris, Bibliothèque Sainte-Geneviève, ms. 3368
 site_name: Talia 2.3.
 rdf_connection_file: rdfstore
 ardf_log_level: 0
