@@ -1,0 +1,90 @@
+/* Outer container */
+#pageExt {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: left;
+	top: 0;
+	width: 100%;
+}
+
+html, body {
+	border: 0 none;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	text-align:justify;
+	width: 100%;
+	font-size: 12pt;
+}
+
+#pageHeader {
+	background: #30261d;
+	height: 100px;
+	margin: 0 0 0;
+	width: 100%;
+    color: white;
+}
+
+#pageHeader a.visited, #pageHeader a {
+    text-decoration: none;
+    color: #fc0;
+}
+#pageHeader a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+/* DEBUG: MOVE THIS INTO THE TOOLBOX CSS */
+#loadingDialog {
+	position: absolute;
+	padding: 0 30px 0 60px;
+	height: 33px;
+	right: 276px;
+	top: 35px;
+	z-index: 10;
+	line-height: 33px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+#loadingDialog img {
+	position: absolute;
+	top: 8px;
+	left:  30px;
+}
+
+/* DEBUG: MOVE THIS INTO TOOLBOX CSS */ 
+#startupScreenContainer { margin: 10px; padding: 0px 20px; }
+#startupScreenContainer div { border-bottom: 1px dashed #ccc; }
+#startupScreenContainer .fade0 { font-size: 1.1em; color: #333; }
+#startupScreenContainer .fade1 { opacity: 0.8; }
+#startupScreenContainer .fade2 { opacity: 0.6; }
+#startupScreenContainer .fade3 { opacity: 0.4; }
+#startupScreenContainer .fade4 { opacity: 0.2; }
+#startupScreenContainer .fade5 { opacity: 0.1; }
+#startupScreenContainer .fade6 { display: none; }
+
+#startupProgress { font-size: 1.5em; margin: 10px; text-align: center; }
+#startupProgress .loaded { color: #f00; }
+#startupProgress .total { color: #000; }
+#startupProgress .done { color: #090; }
+
+/* Example box coloring */
+
+/* Yellow */
+.boxViewContainer div.box.yellow div.boxHeader, 
+.boxViewContainer div.box.yellow.collapsed,
+.boxViewContainer div.box.collapsed.yellow div.boxCollapsedContent {
+	/* background-color: #e9bf5d; */
+}
+
+/* Orange */
+.boxViewContainer div.box.orange div.boxHeader, 
+.boxViewContainer div.box.orange.collapsed,
+.boxViewContainer div.box.collapsed.orange div.boxCollapsedContent {
+	/* background-color: #d78134; */
+}
+
+

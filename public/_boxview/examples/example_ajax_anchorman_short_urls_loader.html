@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title> BoxView Example: Ajax provided widgeted data, with BoxStrapped AnchorMan and shortened URLs</title>
+
+    <link href="examples.css" media="screen" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+	<div id="pageExt">
+		<div id="pageHeader">
+			<a href="#" id="addbox">Dog breeds index</a> --
+			<a class="indexLink" href="data_providers/ajax_provider.php?what=dog&id=6">Explicit and fixed link to Labrador!</a> --
+			<a id="urlShortenerLink" href="">Create a short url for this page</a>
+		</div>
+		<div id="pageContent"></div>
+	</div>
+
+    <script src="../src/tools.js"></script>
+	<script>
+
+    // Use the BoxStrapper to boot the boxview and all of its components.
+    // The first paramenter is the relative path, from this page, to the
+    // boxview directory. The second parameter is a relative path, from
+    // this page, of an user's supplied configuration which will
+    // overwrite boxview defaults and theme configurations.
+    var bs = new BoxStrapper('../');
+
+    function onInitDone() {
+		
+	    // External visualizer (used in the links coming from ajax)
+		var visualizer = "visualizer.php",
+            // Real data provider path, relative to the visualizer
+		    data_provider = "data_providers/ajax_provider.php";
+		    		
+		// Sets boxview's height to match the height of the page.
+		$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+		$(window).resize(function(){
+			$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+		});
+
+		// Add a static listener for a fixed link inside the page
+		$('#addbox').click(function() {
+	        var opts = {qstring: data_provider+'?what=breeds', title: 'Breeds A-Z', verticalTitle: 'Index: Breeds A-Z',
+                        resId: 'breeds_index', type: 'index', collapsed: false};
+            myBoxView.addBoxFromAjax(opts);
+            return false;
+		});
+		
+		// Generic listener for all .indexLink A tags, those coming from
+		// ajax included too
+		$('a.indexLink').live("click", function() {
+
+		    // The url to be called through ajax must be corrected, using the data_provider
+            var href = $(this).attr('href').replace(visualizer, data_provider),
+                breed = $(this).text(),
+		        opts = {qstring: href, title: breed, verticalTitle: "Breed: "+breed,
+                        resId: 'dog_'+href, type: 'orange', collapsed: false};
+
+            myBoxView.addBoxFromAjax(opts);
+            return false;
+
+        }); // (a.indexLink).live(click)
+
+	}	
+	</script>
+
+</body>
+</html>

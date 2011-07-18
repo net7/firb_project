@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta name="Format" content="complete" />
+	</head>
+<body>
+<h1 id="myfirstboxview">My first BoxView    </h1>
+
+<h2 id="whatsaboxview">What’s a BoxView</h2>
+
+<p>What’s a BoxView</p>
+
+<h2 id="boxviewscomponents">BoxView’s components</h2>
+
+<p>BoxView jquery plugin, widgets, providers, bla bla, some nice drawing with thrilling captions.</p>
+
+<h2 id="whatyouneed">What you need</h2>
+
+<p>The BoxView itself doesnt need anything special, but your browser.</p>
+
+<p>In order to run all the examples, the tests and the related components of the BoxView family thought, you will need a <em>PHP</em> interpreter <strong>((VERSION?))</strong> installed on your server, with <em>SQLiteDatabase</em> extension to use the given demo data. For example on Ubuntu systems and alikes just make sure you have the <em>php5-sqlite</em> package installed.</p>
+
+<h2 id="getthecode">Get the code</h2>
+
+<p>If you already have git just:</p>
+
+<blockquote>
+  <p><code>git clone git@codebasehq.com:net7/libraries/boxview.git boxview</code></p>
+</blockquote>
+
+<p>if not, install it from http://git-scm.com/download (on Ubuntus etc just install the git-core package). </p>
+
+<p>To manually download the latest release (or any other given tag/release) in a compressed archive, surf to https://net7.codebasehq.com/libraries/boxview/tree/master, and click “Download Archive”.  Some authorization might be needed.</p>
+
+<p>A public repository with BoxView compressed releases can be found on <strong>((SI FA UNA PAGINA SU MURUCA.ORG O NEI DINTORNI?))</strong></p>
+
+<h2 id="runtheexamples">Run the examples</h2>
+
+<p>Explode or move the downloaded code to a directory served by your web server (eg. <code>/var/www/boxview/</code>, <code>/Library/WebServer</code>, or a link to your home will do), and open the <code>/examples/example_simple.html</code> page (<code>http://localhost/boxview/examples/example_simple.html</code>, if the served directory is public under the name of <code>boxview</code>).</p>
+
+<p>More examples can be found in the <code>/examples/</code> directory:</p>
+
+<ul>
+<li><code>example_simple.html</code>: a very simple boxview example, with a link adding a box with a static content.</li>
+<li><code>example_simple_widgets.html</code>: using the <code>widgets.js</code> javascript plugin, some links adding a default widget, a customized one and multiple customized widgets into a box.</li>
+<li><code>example_ajax_php.html</code>: a simple <code>PHP</code> provider who answers to some Ajax calls about dog breeds. A link will open the index of all breeds, where links to individual dog sheets will open more boxes.</li>
+<li><code>example_ajax_anchorman.html</code>:</li>
+<li><code>example_ajax_anchorman_short_urls.html</code>:</li>
+<li><code>example_ajax_anchorman_short_urls_loader.html</code>:</li>
+</ul>
+
+<p><strong>((FOR MORE INFORMATIONS ON THE EXAMPLES READ SOMETHING SOMEWHERE BLABLA))</strong></p>
+
+<h2 id="buildyourveryownfirstboxviewin1lineofcode">Build your very own first BoxView in 1 line of code!</h2>
+
+<p>Let’s start with an HTML only BoxView, with some placeholder data, just to get it running. In a few we will add widgets too.</p>
+
+<p>Assuming we have boxview’s <code>css/</code>, and <code>src/</code> directories in the current path, and the jquery files in <code>jq/</code> (just copy the given <code>/jq</code> in the boxview package!) create a file named <code>example.html</code>. </p>
+
+<p>First of all include the needed javascript and css files:</p>
+
+<pre><code>&lt;link href="css/boxview.css" media="screen" type="text/css" rel="stylesheet"&gt;
+</code></pre>
+
+<p>and </p>
+
+<pre><code>&lt;script src="jq/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="jq/jquery-ui.js"&gt;&lt;/script&gt;
+&lt;script src="src/boxview.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>We will create a default container for BoxView with inside an header, containing some links, and a content part with BoxView. </p>
+
+<p>So define a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code> part and set some fixed heights for the containers:   </p>
+
+<pre><code>&lt;style&gt;
+    #pageExt { height: 100%; }
+    #pageHeader { height: 10%; }
+    #pageContent { height: 90%; }
+&lt;/style&gt;
+</code></pre>
+
+<p>The HTML code in the <code>&lt;body&gt;</code> can then look like this:</p>
+
+<pre><code>&lt;div id="pageExt"&gt;
+    &lt;div id="pageHeader"&gt;
+        &lt;a href="#" id="addBox"&gt;Click me!&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="pageContent"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Finally, inside a <code>&lt;script&gt;</code> tag at the bottom part of the page, let’s setup BoxView in the <code>#pageContent</code> (to use a css selector) <code>&lt;div&gt;</code> element, without any option yet:</p>
+
+<pre><code>var myBoxView = new $.boxView($('#pageContent'));
+</code></pre>
+
+<p>and a default click function for the <code>#addBox</code> <code>&lt;a&gt;</code> tag, to just add a default box with some content:</p>
+
+<pre><code>$('#addBox').click(function() {
+    myBoxView.addBox("Some content?");
+});
+</code></pre>
+
+<p>The page should look like this now:</p>
+
+<pre><code>&lt;html&gt;&lt;head&gt;
+&lt;link href="css/boxview.css" media="screen" type="text/css" rel="stylesheet"&gt;
+    &lt;script src="jq/jquery.js"&gt;&lt;/script&gt;
+    &lt;script src="jq/jquery-ui.js"&gt;&lt;/script&gt;
+    &lt;script src="src/boxview.js"&gt;&lt;/script&gt;
+    &lt;style&gt;
+        #pageExt { height: 100%; }
+        #pageHeader { height: 10%; }
+        #pageContent { height: 90%; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="pageExt"&gt;
+        &lt;div id="pageHeader"&gt;
+            &lt;a href="#" id="addbox"&gt;Click me!&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id="pageContent"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;script&gt;
+    var myBoxView = new $.boxView($('#pageContent'));
+    $('#addbox').click(function() {
+        myBoxView.addBox("Some content?");
+    });
+&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+
+<p>To get this in one line of code as advertised, just remove every new line from the page source! Hey, it’s one line.</p>
+
+<h2 id="addingwidgets">Adding widgets</h2>
+
+<p>To add widgets we just need to include the needed files in the HTML page, and call the right javascript functions.</p>
+
+<p>In the <code>&lt;head&gt;</code> part add:</p>
+
+<pre><code>&lt;link href="css/widgets.css" media="screen" type="text/css" rel="stylesheet"&gt;
+&lt;script src="src/widgets.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>We can now initialize the widgets helper object, inside the javascript <code>&lt;script&gt;</code> tag:</p>
+
+<pre><code>var myWidgets = new $.widgets();
+</code></pre>
+
+<p>then modify the <code>#addbox</code> <code>click()</code> function to call <code>widgetify()</code> which returns a simple string with a widget’s HTML code. For example let’s put two widgets in the <code>content</code> variable:</p>
+
+<pre><code>var content = myWidgets.widgetify("Title", "And content");
+content += myWidgets.widgetify("Another title", "Another content!");
+myBoxView.addBox(content);
+</code></pre>
+
+<h2 id="customizeandconfigureboxview">Customize and configure BoxView</h2>
+
+<p>Many BoxView aspects can be set both at startup and run time. In the startup call we will use an object to pass parameters in:</p>
+
+<pre><code>myBoxView = new $.boxView($('#pageContent'), { animations: true, boxMargin: 10 });
+</code></pre>
+
+<p>this way we are enabling all the animations and setting a margin of 10 pixels to space boxes apart.</p>
+
+<p>Here is the full list of options available for the boxView configuration object:</p>
+
+<h3 id="animations">Animations</h3>
+
+<p>BoxView can use some animation to soften the movements like when a box is closed or
+when it&#8217;s dragged. You can either choose to set all of the animation on or off at once 
+with the <code>animations</code> option or build your preferred combination of the other 
+<code>animate*</code> options.</p>
+
+<ul>
+<li><p><strong>animateAdd</strong> : (true/false) </p>
+
+<p>The boxview will add new boxes using an animation. </p></li>
+<li><p><strong>animateRemove</strong> : (true/false)</p>
+
+<p>The boxview will remove a box using an animation.</p></li>
+<li><p><strong>animateCollapse</strong> : (true/false)</p>
+
+<p>The boxview will collapse and expand boxes using an animation.</p></li>
+<li><p><strong>animateResize</strong> : (true/false) </p>
+
+<p>The boxview will resize, for example after a window resize, boxes using an animation.</p></li>
+<li><p><strong>animations</strong> :(true/false/&#8217;string&#8217;)</p>
+
+<p>Shortcut to set all of the animations at once, overriding any other 
+given <code>animate*</code> parameter. If set to a string will use the animate*
+parameters individually.</p></li>
+<li><p><strong>animationLength</strong> : (milliseconds)</p>
+
+<p>Boxview&#8217;s animations length </p></li>
+</ul>
+
+<h3 id="boxdefaults">Box defaults</h3>
+
+<ul>
+<li><p><strong>collapsed</strong> : (true/false)</p>
+
+<p>Set this to true if you want boxes to get added collapsed.</p></li>
+<li><p><strong>title</strong> : (&#8216;string&#8217;)</p>
+
+<p>Default title for titleless boxes</p></li>
+<li><p><strong>verticalTitle</strong> : (&#8216;string&#8217;) </p>
+
+<p>Default vertical title for verticaltitleless boxes</p></li>
+</ul>
+
+<h3 id="widthsandheights">Widths and heights</h3>
+
+<p>Various aspects of the boxes need to be configured as options and not through css rules.
+The margin to space boxes apart, headers heights and widths and more.</p>
+
+<ul>
+<li><p><strong>collapsedWidth</strong> : (pixels)</p>
+
+<p>Box width when collapsed </p></li>
+<li><p><strong>collapsedHeaderHeight</strong> : (pixels)</p>
+
+<p>Box header&#8217;s height when collapsed, usually contains tools like 
+close/expand </p></li>
+<li><p><strong>headerHeight</strong> : (pixels)</p>
+
+<p>Box header&#8217;s height when expanded, contains tools and title (pixels)</p></li>
+<li><p><strong>boxMargin</strong> : (pixels)</p>
+
+<p>Space between boxes </p></li>
+</ul>
+
+<h3 id="cssclassnames">CSS class names</h3>
+
+<p>Every box created by the Boxview is a <code>&lt;div&gt;</code> container, classed by default
+with the <code>box</code> classname. Using a css selector <code>div.box</code> will apply on 
+every box in every configuration: collapsed, expanded or while getting dragged
+and more.</p>
+
+<p>Each one of these actions, will make one or more boxes gain or lose one or 
+more additional css classnames. For example while it is collapsed, the box 
+will have a class, different from the one applied when expanded, and vice-versa.</p>
+
+<p>The following options lets the user configure these names, thought the defaults
+usually work fine.</p>
+
+<p>The type of a box is just yet another classname applied to a box, exactly the type
+you pass to <code>addBox()</code> or <code>addBoxFromAjax()</code> functions to add new boxes. Say you 
+have boxes for different sports, you could use a type &#8216;volley&#8217; and then
+in your css stylesheet define rules like <code>div.box.volley</code> to apply that sport 
+backgrounds or more personalizations.</p>
+
+<ul>
+<li><p><strong>collapsedClass</strong> : (&#8216;string&#8217;)</p>
+
+<p>Css class added to the box when collapsed</p></li>
+<li><p><strong>expandedClass</strong> : (&#8216;string&#8217;)</p>
+
+<p>Css class added to the box when expanded</p></li>
+<li><p><strong>loadingClass</strong> : (&#8216;string&#8217;)</p>
+
+<p>Css class added while the box is loading</p></li>
+<li><p><strong>type</strong> : (&#8216;string&#8217;)
+Default type for typeless boxes (every type is used as box css class
+in the HTML markup)</p></li>
+</ul>
+
+<h3 id="imagesresizehandling">Images resize handling</h3>
+
+<p>BoxView will handle automatically every <code>&lt;image&gt;</code> tag that is classed with
+<code>resizeme</code> classname (<code>img.resizeme</code>, if you want). The following values will
+be used on automatic resizes, for example on removing or adding boxes. A 
+margin is added to the handled images. For example if you want to fit a 
+vertical scroll bar in the box, a value around 15 is enough to always have
+the image visible in its full width.</p>
+
+<ul>
+<li><p><strong>resizemeImagesForceMaxHeight</strong> : (true/false)</p>
+
+<p>Enforce max width for images with .resizeme </p></li>
+<li><p><strong>resizemeImagesMinHeight</strong> : (pixels) </p>
+
+<p>Minimum height for the .resizeme elements </p></li>
+<li><p><strong>resizemeImagesMaxHeight</strong> : (pixels)</p>
+
+<p>Maximum height for the .resizeme elements</p></li>
+<li><p><strong>resizemeImagesMargin</strong> :  (pixels)</p>
+
+<p>Margin for .resizeme images</p></li>
+</ul>
+
+<h3 id="anchorman-boxviewintegration">AnchorMan - BoxView integration</h3>
+
+<p>AnchorMan is a suite&#8217;s plugin that saves various information about your
+boxes into the URL your browser is currently visiting. So if you bookmark 
+or share it, the next time you visit it the boxview will read the saved
+informations and use them to load exactly that saved configuration of
+boxes (see AnchorMan manual for more informations). </p>
+
+<p>To do this, it just saves the fields you pass in an <code>addBox()</code> or 
+<code>addBoxFromAjax()</code> calls. </p>
+
+<p>It&#8217;s easier to see with an example: say we want a box for each sport, 
+coming from our Ajax provider. The id of the volley box is 5, to get
+its box we call <code>addBoxFromAjax()</code> passing an object like:</p>
+
+<pre><code>{ 
+  qstring: 'http://site.com/id=5',
+  title: 'Sport: Volley', 
+  resId: 5, 
+  type: 'volley',
+  collapsed: false
+}
+</code></pre>
+
+<p>We want to save all of those fields but collapsed in AnchorMan so we define:</p>
+
+<pre><code>anchorManDescription: ['qstring', 'title', 'id', 'type'],
+</code></pre>
+
+<p>an array with the just field names. When the box opens AnchorMan 
+will store those selected fields, for every opened box in the current URL. Say
+we open fishing, alpine skiing and sailing boxes and call the current page URL1. </p>
+
+<p>When someone opens direclty URL1 (say clicking on a friend&#8217;s link) BoxView will
+restore the saved configuration in that URL, opening again every box with the 
+saved types, titles and ids. </p>
+
+<p>We decided not to save the <code>collapsed</code> field in AnchorMan. This means
+that even if you collapse every box of your boxview and share the link, that
+URL will show every box expanded, and not collapsed. To change this behaviour 
+and save the collapsed state of your boxes, just add a &#8216;collapsed&#8217; item to
+<code>anchorManDescription</code> option.</p>
+
+<p>The following field names are meaningful to boxview:</p>
+
+<ul>
+<li><code>qstring</code> : the URL to get box contents from </li>
+<li><code>title</code> : box title when expanded</li>
+<li><code>verticalTitle</code> : box title when collapsed, displayed vertically</li>
+<li><code>id</code> : box id, intended as a whole with its content.</li>
+<li><code>type</code> : box type, used as classname (see Css class names section for more
+informations)</li>
+<li><code>collapsed</code> : is the box collapsed?</li>
+</ul>
+
+<p>Other than that, you can add your own fields, as many as you like, passing
+them into the <code>addBoxFromAjax()</code> object and adding them in the 
+<code>anchorManDescription</code> configuration field.</p>
+
+<p>If you need to use some strange character in your own fields 
+(for example check AnchorManConfig separators!), prepend &#8220;encode&#8221; to
+your veryImportantField name, like: </p>
+
+<pre><code>encodeveryImportantField: true
+</code></pre>
+
+<ul>
+<li><p><strong>anchorManDescription</strong> : (array of strings) </p>
+
+<p>Box fields to be saved into AnchorMan, for example </p>
+
+<pre><code>['id', 'type', 'qstring', 'title'],
+</code></pre></li>
+<li><p><strong>encode*</strong> : (true/false)</p>
+
+<p>will encode the content of the * field with Base64. For example
+if you&#8217;re using characters which collide with AnchorMan separators
+you can encode title with: </p>
+
+<pre><code>encodetitle: true,
+</code></pre></li>
+</ul>
+
+<h3 id="callbacks">Callbacks</h3>
+
+<p>If you need some custom function to be called on a certain boxview event, set it
+here or use the <code>onRemoveAddCallBack()</code>, <code>onSortAddCallBack()</code> etc functions on 
+the boxView object. These will add a callback even at run-time, so you can bind 
+as many functions as you want to each action separately. An example function
+can be bound to every remove like this:</p>
+
+<pre><code>onRemove: function() {
+    alert("A box has been removed!");
+}
+</code></pre>
+
+<ul>
+<li><p><strong>onRemove</strong> : (function)</p>
+
+<p>Will be called when a box is removed</p></li>
+<li><p><strong>onSort</strong> : (function)</p>
+
+<p>Will be called when the boxes are sorted</p></li>
+<li><p><strong>onAdd</strong> : (function)</p>
+
+<p>Will be called when a box is added to the boxview</p></li>
+<li><p><strong>onCollapse</strong> : (function)</p>
+
+<p>Will be called when a box is collapsed</p></li>
+<li><p><strong>onExpand</strong> : (function)</p>
+
+<p>Will be called when a box is expanded</p></li>
+<li><p><strong>onReplace</strong> : (function)</p>
+
+<p>Will be called when the content of a box is replaced</p></li>
+</ul>
+
+<h3 id="advancedsettings">Advanced settings?</h3>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<ul>
+<li><p><strong>debug</strong> : (true/false)</p>
+
+<p>Shows some VERY verbose output about boxview behaviours using
+browser&#8217;s console.log or adding a div to the dom.</p></li>
+</ul>
+
+<p>To configure coloring, font styles and other CSS-related aspects of the result you want to get,  build your own stylesheets, following some easy rules.</p>
+
+<p><strong>((REGOLE CSS PER CONFIGURARE HEADER,ICONE,ECCECC OPPURE “RTFM” O GUARDATEVI I CSS IN EXAMPLES/ ?))</strong></p>
+</body>
+</html>

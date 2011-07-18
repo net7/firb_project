@@ -1,0 +1,199 @@
+/*
+This CSS defines the structure of the Boxes of the BoxView UI.
+The Cosmetic is defined by the style.css in the selected Theme folder
+
+This CSS must not be changed to customize the BoxView UI.
+Instead, you can modify the style.css in the Theme folder
+
+Where CSS instructions in this file needs some modifications, 
+please don't make modifications here and over-write them in 
+the Theme style file.
+*/
+
+/* ***************************** */
+/* Generic main BoxView elements */
+.boxViewContainer * { 
+    padding: 0px; 
+    margin: 0px; 
+    border: 0; 
+}
+
+.boxViewContainer .box {
+	position: absolute;
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.boxViewContainer .box .boxContent {
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 0;
+}
+
+.boxViewContainer .boxDragHandle {
+    cursor: move;
+    border: 0;
+    z-index: 1000;
+}
+
+
+/* ***************************** */
+/* BOX EXPANDED */
+/* Box content Header expanded */
+.boxViewContainer .box.expanded .boxHeader {
+	position: relative;
+	overflow: hidden;
+}
+
+/* Box Header elements */
+/* Icons on the left and on the right */
+.boxViewContainer .box.expanded .boxHeader .leftIcons {
+	position: absolute;
+	left: 0px;
+	top: 0;
+}
+
+.boxViewContainer .box.expanded .boxHeader .rightIcons {
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.boxViewContainer .box.expanded .boxHeader ul {
+	list-style: none;
+	float: left;
+}
+
+.boxViewContainer .box.expanded .boxHeader ul li {
+	list-style: none;
+	display: block;
+	float: left;
+	cursor: pointer;
+}
+
+.boxViewContainer .box.expanded .boxHeader ul li a {
+	display: block;
+	text-indent: -9999px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+/* Icons positioning. Class is changhed via Javascript */
+.boxViewContainer .box.expanded .boxHeader ul li a.alignTop {
+	background-position: center top;
+}
+
+.boxViewContainer .box.expanded .boxHeader ul li a.alignMiddle {
+	background-position: center center;
+}
+
+.boxViewContainer .box.expanded .boxHeader ul li a.alignBottom {
+	background-position: center bottom;
+}
+
+/* ***************************** */
+/* BOX COLLAPSED */
+.boxViewContainer .box.collapsed .boxHeader {
+	position: relative;
+	border-bottom: 0;
+}
+
+.boxViewContainer .box.collapsed .boxCollapsedContent {
+	position: relative;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+.boxViewContainer .box.collapsed .boxCollapsedContent .verticalContainer {
+	display: block;
+	/* Rotation */
+	-moz-transform-origin: top left;
+	-webkit-transform-origin: top left;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);	
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	position: absolute;
+	overflow: hidden;
+}
+
+/* Box Header elements */
+.boxViewContainer .box.collapsed .boxHeader ul {
+	list-style: none;
+}
+
+.boxViewContainer .box.collapsed .boxHeader ul li {
+	list-style: none;
+	display: block;
+}
+
+.boxViewContainer .box.collapsed .boxHeader ul li a {
+	display: block;
+	text-indent: -9999px;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.boxViewContainer .box.collapsed .boxHeader .title {
+	display: none;
+}
+
+/* Icons positioning. Class is changhed via Javascript */
+.boxViewContainer .box.collapsed .boxHeader ul li a.alignTop {
+	background-position: left center;
+}
+
+.boxViewContainer .box.collapsed .boxHeader ul li a.alignMiddle {
+	background-position: center center;
+}
+
+.boxViewContainer .box.collapsed .boxHeader ul li a.alignBottom {
+	background-position: right center;
+}
+
+/* Box while loading */ 
+.boxViewContainer .box.expanded.loadingContent .boxContent { 
+	opacity: 0.5; 
+}
+
+
+/* Display settings, for both expanded and collapsed status */ 
+.box.collapsed .boxCollapsedHeader, 
+.box.collapsed .boxCollapsedContent,
+.box.expanded .boxContent,
+.box.expanded span.boxHeaderTitle {
+	display: block;
+}
+
+.box.expanded .boxCollapsedHeader, 
+.box.expanded .boxCollapsedContent,
+.box.collapsed .boxContent,
+.box.collapsed h3.boxHeaderTitle {
+	display: none;
+}
+
+
+/* History Box */
+.boxViewContainer .box.history .history_item {
+    padding: 7px;
+    margin: 1px;
+    border: 0px;
+}
+
+.boxViewContainer .box.history .history_item span.history_status {
+    border: 0px;
+    width: 17px;
+    height: 13px;
+    margin-right: 7px;
+    float: left;
+}
+
+.boxViewContainer .box.history .history_item span.history_action {
+    margin-left: 10px;
+    float: right;
+}
+
+.boxViewContainer .box.history .history_item span.history_action:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

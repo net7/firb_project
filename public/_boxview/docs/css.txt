@@ -1,0 +1,88 @@
+My first BoxView | How to create and customize a theme    
+================
+
+Introduction and main structure
+----------------
+The BoxView is organized in **Boxes** and **Widgets**.
+The **Boxes** are the main elements that build the BoxView, they represent a single well defined content.
+Boxes are vertical units placed side by side. When the content of the box exceeds the vertical available space it can be scrolled vertically.
+Boxes can be collapsed (clicking on the icon or double clicking on the box-header) and can be dragged horizontally to change their position.
+Inside the boxes the content is organized in Widgets.
+The **Widgets** represent how the same content is divided on a semantic basis.
+The widgets can be collapsed and expanded (clicking on the icon) and can be dragged vertically to change their position.
+
+
+File structure and theme selection
+----------------
+The BoxView themes can be found in the *themes* folder.  
+These folders contain all the css and image files need to change the aspect of the BoxView.  
+To select a theme you should edit the parameter
+
+> `BoxViewSuiteConfig.theme = "name-of-the-folder-of-the-theme";`
+
+in *confg.js* in the root.
+
+Inside the theme you'll find:  
+- *config.js*: allows to do some GUI configurations that requires javascript;
+- *css*: folder containing *style.css* that's the main file for triggering the graphics and the image resources inside the images folder;
+- *jquery-ui*: contains the files to customize the jquery UI elements. These can be configured on the JQuery web site.
+
+
+Other CSS files
+-------------
+Beyond the *style.css* inside the theme folder, there are two main css files that define the structure of the BoxView:  
+- *boxview.css*: defines the structure and the basic features of the boxes of the BoxView 
+- *widgets.css*: defines the structure and the basic features of the widgets of the BoxView
+Since these files are outside the BoxView theme, avoid modifying them: if you'll need to change some of their css statements you can overwrite them in the *style.css* file of the theme. It's a good practice to limit this kind of intervention.
+
+
+Create your own Theme
+-------------
+The best way to create your own is by duplicating an existing Theme folder. 
+We suggest to duplicate the *demo* folder which is a very complete theme.
+
+
+Modify *config.js*	
+-------------
+This javascript allows you to modify some features of the BoxView that need to be controlled by Javascript.
+Here the details of all the configuration parameters:
+> `BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight = true;`
+> `BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight = 100;`
+> `BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight = 400;`
+> `BoxViewSuiteConfig.boxViewConfig.headerHeight = 30;`
+> `BoxViewSuiteConfig.boxViewConfig.collapsedWidth = 30;`
+> `BoxViewSuiteConfig.boxViewConfig.animations = false; // :)`
+
+> `BoxViewSuiteConfig.boxViewConfig.iconSize = 18;`
+> `BoxViewSuiteConfig.boxViewConfig.headerTitleMargin = 6;`
+> `BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin = 8;`
+> `BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin = 8;`
+> `BoxViewSuiteConfig.boxViewConfig.boxMargin = 2;`
+
+> `BoxViewSuiteConfig.widgetsConfig.iconSize = 24;`
+> `BoxViewSuiteConfig.widgetsConfig.headerTitleMargin = 6;`
+> `BoxViewSuiteConfig.widgetsConfig.iconSlotsHorizontalMarginLeft = 5;`
+> `BoxViewSuiteConfig.widgetsConfig.iconSlotsHorizontalMarginRight = 0;`
+
+
+Modify *style.css*	
+-------------
+This css files controls the look of the BoxView. You will find detailed css comments inside the file itself.
+
+Images	
+-------------
+Most of the images used by css file are organized in css-sprites. This is made to reduce the http requests on the server. You can customize the look of the BoxView also changing these image files.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

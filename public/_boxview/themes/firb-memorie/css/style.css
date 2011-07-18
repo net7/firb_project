@@ -1,0 +1,352 @@
+/* BoxView Firb Memorie Theme */
+
+/* *********************************** */
+/* Box */
+/* *********************************** */
+
+/* Generic font used by the boxview */
+.boxViewContainer * { 
+    font-family: Helvetica, Arial, sans-serif; 
+    font-size: 10pt;
+}
+
+/* Bg for the whole boxview */
+.boxViewContainer {
+	background: #ebebeb;
+}
+
+/* Default Colors for Box Content */
+.boxViewContainer .box .boxContent {
+	background-color: #fff;
+	color: #535353;
+}
+
+/* Collapsed box */
+.boxViewContainer .box.collapsed {
+	background-color: #717171;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+	
+/* Box header expanded */
+.boxViewContainer .box.expanded .boxHeader {
+	background: #717171 url(images/box-header-default.gif) center left repeat-x;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+/* Box header expanded title */
+.boxViewContainer .box.expanded .boxHeader .title h3.boxHeaderTitle {
+	font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
+	color: #fff;
+	font-weight: normal;
+	padding-top: 2px;
+	font-size: 16px;
+	line-height: 16px;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+}
+
+/* Box content Header collapsed title */
+.boxViewContainer .box.collapsed .boxCollapsedContent .verticalContainer p {
+	font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
+	color: #fff;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 18px;
+	text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.50);
+}
+
+/* Box collapsed icons */
+.boxViewContainer .box.collapsed .boxHeader .leftIcons ul li, .boxViewContainer .box.collapsed .boxHeader .rightIcons ul li {
+	margin-bottom: 8px;
+}
+
+.boxViewContainer div.box div.boxHeader ul li a {
+	background: transparent url(images/boxes/box_icon_sprite.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+/* Box tools and buttons, both for expanded and collapsed status */ 
+.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool {
+	background-position: 0px 6px;
+}
+.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool {
+	background-position: -30px -36px;
+}
+.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool {
+	background-position: -72px -66px;
+}
+.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool {
+	background-position: -66px -72px;
+}
+.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool:hover {
+	background-position: -18px -12px;
+}
+.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool:hover {
+	background-position: -48px -54px;
+}
+.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool:hover {
+	background-position: -90px -84px;
+}
+.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool:hover {
+	background-position: -84px -90px;
+}
+
+.boxViewContainer .box.collapsed .boxCollapsedContent {
+}
+
+
+
+/* Classified Boxes (Welcome, Home, History, etc etc ) */
+
+/* Index Box */
+.boxViewContainer .box.index .boxHeader, 
+.boxViewContainer .box.index.collapsed,
+.boxViewContainer .box.index.collapsed .boxCollapsedContent {
+}
+
+.boxViewContainer .box.index.expanded .boxHeader { background: #717171 url(images/box-header-index.gif) center left repeat-x; }
+.boxViewContainer .box.index.collapsed { background: #717171 url(images/box-header-index-collapsed.gif) center left repeat-y; }
+
+/* Anastatic Box */
+.boxViewContainer .box.anastatic.expanded .boxHeader { background: #717171 url(images/box-header-anastatic.gif) center left repeat-x; }
+.boxViewContainer .box.anastatic.collapsed { background: #717171 url(images/box-header-anastatic-collapsed.gif) center left repeat-y; }
+
+/* Illustration Box */
+.boxViewContainer .box.image.expanded .boxHeader { background: #717171 url(images/box-header-image.gif) center left repeat-x; }
+.boxViewContainer .box.image.collapsed { background: #717171 url(images/box-header-image-collapsed.gif) center left repeat-y; }
+
+/* Notebooks Box */
+.boxViewContainer .box.notebooks.expanded .boxHeader { background: #717171 url(images/box-header-notebooks.gif) center left repeat-x; }
+.boxViewContainer .box.notebooks.collapsed { background: #717171 url(images/box-header-notebooks-collapsed.gif) center left repeat-y; }
+
+/* Transcription Box */
+.boxViewContainer .box.transcription.expanded .boxHeader { background: #717171 url(images/box-header-transcription.gif) center left repeat-x; }
+.boxViewContainer .box.transcription.collapsed { background: #717171 url(images/box-header-transcription-collapsed.gif) center left repeat-y; }
+
+/* History Box */
+.boxViewContainer .box.history .boxHeader, 
+.boxViewContainer .box.history.collapsed,
+.boxViewContainer .box.history.collapsed .boxCollapsedContent {
+}
+
+.boxViewContainer .box.history.expanded .boxHeader { background: #717171 url(images/box-header-history.gif) center left repeat-x; }
+.boxViewContainer .box.history.collapsed { background: #717171 url(images/box-header-history-collapsed.gif) center left repeat-y; }
+
+.boxViewContainer .box.history .history_item {
+	background: transparent url(images/box-header-default.gif) center left repeat-x;
+    
+    font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
+	font-weight: normal;
+	font-size: 14px;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+	color: white;
+
+	height: 28px;
+	line-height: 28px;
+	overflow: hidden;
+	margin: 0 0 2px 0; padding: 0 0 0 10px;
+	
+    -moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	-moz-border-radius-bottomleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	-webkit-border-bottom-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+.boxViewContainer .box.history .history_item.history{ background: transparent url(images/box-header-history.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.transcription{ background: transparent url(images/box-header-transcription.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.anastatic{ background: transparent url(images/box-header-anastatic.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.image{ background: transparent url(images/box-header-image.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.notebooks{ background: transparent url(images/box-header-notebooks.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.index{ background: transparent url(images/box-header-index.gif) center left repeat-x; }
+
+.boxViewContainer .box.history .history_item span.history_status { display: none; }
+
+.boxViewContainer .box.history .history_item span.history_action {
+	display: block;
+	width: 28px;
+	height: 28px;
+	background: transparent url(images/history_icons.png) 0 0 no-repeat;
+	text-indent: -9999px;
+	margin: 0;
+}
+
+.boxViewContainer .box.history .history_item span.history_action.close { background-position: -84px 0; }
+.boxViewContainer .box.history .history_item span.history_action.close:hover { background-position: -84px -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.collapse {	background-position: -56px 0; }
+.boxViewContainer .box.history .history_item span.history_action.collapse:hover {	background-position: -56px -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.open { background-position: -28px 0; }
+.boxViewContainer .box.history .history_item span.history_action.open:hover { background-position: -28px -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.expand {	background-position: 0 0; }
+.boxViewContainer .box.history .history_item span.history_action.expand:hover {	background-position: 0 -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.maximize {	display: none; }
+
+
+
+
+
+
+/* *********************************** */
+/* Widget - Header */
+/* *********************************** */
+.boxViewContainer .box .widgetHeader {
+	/* border-bottom: 1px solid #FFF; */
+	background: #b8b5b1 url(images/widget_bg.gif) center left repeat-x;
+	
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	-moz-border-radius-bottomleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	-webkit-border-bottom-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+.boxViewContainer .box .widget:first-child .widgetHeader {
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+/* 
+Height of the widget Header
+The widget header height involves the height of the div itself, the list elements that contains icons, the h4 containing the title	
+ */
+.boxViewContainer .box .widgetHeader, .boxViewContainer .box .widgetHeader li, .boxViewContainer .box .widgetHeader li a, .boxViewContainer .box .widgetHeader h4 {
+	height: 24px;
+}
+
+/* Line height of the h4 text, compared to the widget header height, suggest how the text will be positioned */
+.boxViewContainer .box .widgetHeader h4 {
+	line-height: 27px;
+}
+
+.boxViewContainer .box .widgetHeader h4 {
+	font-weight: normal;
+	color: #555555;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+}
+
+/* Generic Content widget style */
+.boxViewContainer .box .widget {
+	background-color: #fff;
+}
+
+.widget.ui-sortable-helper {
+	/* IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+	/* IE 5-7 */
+	filter: alpha(opacity=65);
+	/* Netscape */
+	-moz-opacity: 0.65;
+	/* Safari 1.x */
+	-khtml-opacity: 0.65;
+	/* Good browsers */
+	opacity: 0.65;
+}
+
+.widget.ui-sortable-placeholder {
+	background-color: #000;
+	visibility: visible !important;
+}
+
+.boxViewContainer .box .widgetContent {
+	font-size: 12px;
+	line-height: 20px;
+}
+	
+/* Theme custom Widget's icons */
+/* Widget's icons */
+/* Icons on the left side of the H4 title */
+.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.expanded {
+	background: transparent url(images/widget/widget_icon_expanded.png) top left no-repeat;
+	background-position: center 5px;
+	background-repeat: no-repeat;
+}
+.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.expanded:hover {
+	background: transparent url(images/widget/widget_icon_expanded_ro.png) top left no-repeat;
+	background-position: center 5px;
+	background-repeat: no-repeat;
+}	
+.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.collapsed {
+	background: transparent url(images/widget/widget_icon_collapsed.png) top left no-repeat;
+	background-position: center 5px;
+	background-repeat: no-repeat;
+}
+.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.collapsed:hover {
+	background: transparent url(images/widget/widget_icon_collapsed_ro.png) top left no-repeat;
+	background-position: center 5px;
+	background-repeat: no-repeat;
+}
+
+/* Icons on the right side of the H4 title */
+.boxViewContainer .box .widgetHeader .rightIcons li a {
+	border-left: 1px solid #9d9d9d;
+}
+.boxViewContainer .box .widgetHeader .rightIcons li.previous a {
+	background: transparent url(images/widget/widget_icon_back.png) top left no-repeat;
+}
+.boxViewContainer .box .widgetHeader .rightIcons li.next a {
+	background: transparent url(images/widget/widget_icon_forward.png) top left no-repeat;
+}
+.boxViewContainer .box .widgetHeader .rightIcons li.zoom a {
+	background: transparent url(images/widget/widget_icon_zoom.png) top left no-repeat;
+}
+.boxViewContainer .box .widgetHeader .rightIcons li.drag a {
+	background: transparent url(images/widget/widget_icon_drag.png) top left no-repeat;
+}
+
+/* Widgeted Index */
+.boxViewContainer .box .widget ul li {
+	border-bottom: 1px solid #d3d3d3;
+}
+.boxViewContainer .box .widget ul li a {
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+	text-decoration: none;
+	/* color: #535353; */
+	font-size: 14px;
+}
+.boxViewContainer .box .widget ul li a:hover {
+	text-decoration: underline;
+}
+/* Icon used for this index item */
+.boxViewContainer .box .widget ul li img {
+    height: 35px;
+    border: 1px solid #d3d3d3;
+}
+
