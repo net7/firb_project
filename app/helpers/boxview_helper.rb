@@ -40,6 +40,11 @@ module BoxviewHelper
     content << builder.render_contents
   end
 
+  def boxview_imt_viewer(id, &block)
+    yield (builder = ImtViewerBuilder.new(id))
+    render :partial => '/boxview/shared/imageviewer', :locals => {:builder => builder}
+  end
+
   class WidgetBuilder
     include ActionView::Helpers::TagHelper
 
@@ -91,6 +96,18 @@ module BoxviewHelper
 
     def render_classes(classes)
       classes.map {|o| o.to_s}.join ' '
+    end
+  end
+
+  class ImtViewerBuilder
+    attr_accessor :id, :base64, :js_prefix, :init, :click, :over, :out
+
+    def initialize(id)
+      @id = id
+    end
+
+    def js_prefix
+      @js_prefix || @id
     end
   end
 end

@@ -1,0 +1,355 @@
+/* BoxView Demo Theme */
+
+/* *********************************** */
+/* Generic html Tags */
+/* *********************************** */
+
+.boxViewContainer p {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #555;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+/* h3 and h4 are used for titles of boxes and widgets */
+.boxViewContainer h5 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #4d90d4;
+	font-size: 14px;
+	font-weight: normal;
+	margin-bottom: 0;
+}
+
+.boxViewContainer h6 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #4d90d4;
+	font-size: 12px;
+	font-weight: normal;
+	margin-bottom: 0;
+}
+
+.boxViewContainer a {
+	color: #992000;
+	text-decoration: none;
+}
+	
+	.boxViewContainer a:hover {
+		color: #992000;
+		text-decoration: underline;
+	}
+	
+	.boxViewContainer a:focus, .boxViewContainer a:active { 
+	    outline: none; 
+	}
+
+
+/* *********************************** */
+/* BoxView */
+/* *********************************** */
+
+/* Generic font used by the boxview */
+.boxViewContainer * { 
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* Bg for the whole boxview */
+.boxViewContainer {
+	background: #ebebeb;
+}
+
+/* *********************************** */
+/* Box */
+/* *********************************** */
+
+/* Box content */
+.boxViewContainer .box .boxContent {
+	margin-top: 2px;
+	color: #555;
+}
+
+/* Collapsed box */
+.boxViewContainer .box.collapsed {
+	background-color: #717171;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+/* Box header expanded */
+.boxViewContainer .box.expanded .boxHeader {
+	background: #717171 url(images/box-header-default.gif) center left repeat-x; /* Change */
+	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+	/* Box header expanded title */
+	.boxViewContainer .box.expanded .boxHeader .title h3.boxHeaderTitle {
+		font-family: 'Nunito', Helvetica, Arial, sans-serif; 
+		color: #fff;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 16px;
+		text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.75);
+	}
+
+/* Box content Header collapsed title */
+.boxViewContainer .box.collapsed .boxCollapsedContent .verticalContainer p {
+	font-family: 'Nunito', Helvetica, Arial, sans-serif; 
+	color: #fff;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 18px;
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.75);
+}
+
+/* Box collapsed icons - bottom margin*/
+.boxViewContainer .box.collapsed .boxHeader .leftIcons ul li, .boxViewContainer .box.collapsed .boxHeader .rightIcons ul li {
+	margin-bottom: 8px;
+}
+
+/* Box header icons - uses css sprite - icons are changed by moving the background*/
+.boxViewContainer div.box div.boxHeader ul li a {
+	background: transparent url(images/boxes/box_icon_sprite.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool {
+		background-position: 0px 6px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool {
+		background-position: -30px -36px;
+	}
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool {
+		background-position: -72px -66px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool {
+		background-position: -66px -72px;
+	}
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool:hover {
+		background-position: -18px -12px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool:hover {
+		background-position: -48px -54px;
+	}
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool:hover {
+		background-position: -90px -84px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool:hover {
+		background-position: -84px -90px;
+	}
+
+/* Classified Boxes (Green, Red, History...) */
+
+/* Blue Box */
+.boxViewContainer .box.blue.expanded .boxHeader { background: #4d90d4 url(images/box-header-blue.gif) center left repeat-x; }
+.boxViewContainer .box.blue.collapsed { background: #4d90d4 url(images/box-header-blue-collapsed.gif) center left repeat-y; }
+/* Green Box */
+.boxViewContainer .box.green.expanded .boxHeader { background: #a9ce37 url(images/box-header-green.gif) center left repeat-x; }
+.boxViewContainer .box.green.collapsed { background: #a9ce37 url(images/box-header-green-collapsed.gif) center left repeat-y; }
+/* Orange Box */
+.boxViewContainer .box.orange.expanded .boxHeader { background: #f7941d url(images/box-header-orange.gif) center left repeat-x; }
+.boxViewContainer .box.orange.collapsed { background: #f7941d url(images/box-header-orange-collapsed.gif) center left repeat-y; }
+/* Yellow Box */
+.boxViewContainer .box.yellow.expanded .boxHeader { background: #f7bf1d url(images/box-header-yellow.gif) center left repeat-x; }
+.boxViewContainer .box.yellow.collapsed { background: #f7bf1d url(images/box-header-yellow-collapsed.gif) center left repeat-y; }
+/* Red Box */
+.boxViewContainer .box.red.expanded .boxHeader { background: #f74a1d url(images/box-header-red.gif) center left repeat-x; }
+.boxViewContainer .box.red.collapsed { background: #f74a1d url(images/box-header-red-collapsed.gif) center left repeat-y; }
+/* History Box */
+.boxViewContainer .box.history.expanded .boxHeader { background: #a23cd7 url(images/box-header-violet.gif) center left repeat-x; }
+.boxViewContainer .box.history.collapsed { background: #a23cd7 url(images/box-header-violet-collapsed.gif) center left repeat-y; }
+
+.boxViewContainer .box.history .history_item {
+	background: transparent url(images/box-header-default.gif) center left repeat-x;
+    
+    font-family: 'Nunito', Helvetica, Arial, sans-serif; 
+	font-weight: normal;
+	font-size: 14px;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.75);
+	color: white;
+
+	height: 28px;
+	line-height: 28px;
+	overflow: hidden;
+	margin: 0 0 2px 0; padding: 0 0 0 10px;
+	
+    -moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	-moz-border-radius-bottomleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	-webkit-border-bottom-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+.boxViewContainer .box.history .history_item.history{ background: #a23cd7 url(images/box-header-violet.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.blue{ background: #4d90d4 url(images/box-header-blue.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.green{ background: #a9ce37 url(images/box-header-green.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.orange{ background: #f7941d url(images/box-header-orange.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.yellow{ background: #f7bf1d url(images/box-header-yellow.gif) center left repeat-x; }
+.boxViewContainer .box.history .history_item.red{ background: #f74a1d url(images/box-header-red.gif) center left repeat-x; }
+
+.boxViewContainer .box.history .history_item span.history_status { display: none; }
+
+.boxViewContainer .box.history .history_item span.history_action {
+	display: block;
+	width: 28px;
+	height: 28px;
+	background: transparent url(images/history_icons.png) 0 0 no-repeat;
+	text-indent: -9999px;
+	margin: 0;
+}
+
+.boxViewContainer .box.history .history_item span.history_action.close { background-position: -84px 0; }
+.boxViewContainer .box.history .history_item span.history_action.close:hover { background-position: -84px -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.collapse {	background-position: -56px 0; }
+.boxViewContainer .box.history .history_item span.history_action.collapse:hover {	background-position: -56px -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.open { background-position: -28px 0; }
+.boxViewContainer .box.history .history_item span.history_action.open:hover { background-position: -28px -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.expand {	background-position: 0 0; }
+.boxViewContainer .box.history .history_item span.history_action.expand:hover {	background-position: 0 -28px; }
+
+.boxViewContainer .box.history .history_item span.history_action.maximize {	display: none; }
+
+
+
+
+/* *********************************** */
+/* Widget */
+/* *********************************** */
+
+/* Widget */
+.boxViewContainer .box .widget {
+	margin-bottom: 2px;
+}
+
+/* Defines the whole widget while dragged */
+.widget.ui-sortable-helper {
+	/* IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+	/* IE 5-7 */
+	filter: alpha(opacity=65);
+	/* Netscape */
+	-moz-opacity: 0.65;
+	/* Safari 1.x */
+	-khtml-opacity: 0.65;
+	/* Good browsers */
+	opacity: 0.65;
+}
+
+/* Defines the destination placeholder for the dragged widget */
+.widget.ui-sortable-placeholder {
+	border: 3px dashed #999999;
+	background-color: #FFF;
+	visibility: visible !important;
+}
+
+/* Widget header */
+.boxViewContainer .box .widgetHeader {
+	background: #b8b5b1 url(images/widget_bg.gif) center left repeat-x;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+	border-top-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+	/* 
+	Height of the widget Header
+	The widget header height involves the height of the div itself, the list elements that contains icons, the h4 containing the title	
+	 */
+	.boxViewContainer .box .widgetHeader, .boxViewContainer .box .widgetHeader li, .boxViewContainer .box .widgetHeader li a, .boxViewContainer .box .widgetHeader h4 {
+		height: 24px;
+	}
+	
+	/* Line height of the h4 text, compared to the widget header height, suggests how the text will be positioned */
+	.boxViewContainer .box .widgetHeader h4 {
+		line-height: 26px;
+	}
+	
+	/* Title of teh widgetm inside widget header */
+	.boxViewContainer .box .widgetHeader h4 {
+		font-weight: normal;
+		color: #FFF;
+		font-family: 'Nunito', Helvetica, Arial, sans-serif; 
+		font-size: 12px;
+		text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.75);
+	}
+
+	/* Theme custom Widget's icons */
+	/* Widget's icons */
+	/* Icons on the left side of the H4 title - use a sprite - icon is changed by moving the background image */
+	.boxViewContainer .box .widgetHeader .leftIcons li a {
+		background: transparent url(images/widget/widget_icons_left_sprite) top left no-repeat;
+		background-repeat: no-repeat;
+	}
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.expanded {
+		background-position: 0px 0px;
+	}
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.expanded:hover {
+		background-position: -24px 0px;
+	}	
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.collapsed {
+		background-position: -48px 0px;
+	}
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.collapsed:hover {
+		background-position: -72px 0px;
+	}
+	
+	/* Icons on the right side of the H4 title - use a sprite - icon is changed by moving the background image  */
+	.boxViewContainer .box .widgetHeader .rightIcons li a {
+		background: transparent url(images/widget/widget_icons_right_sprite) top left no-repeat;
+		background-repeat: no-repeat;
+	}
+	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a {
+		background-position: 0px 0px;
+	}
+	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a:hover {
+		background-position: -25px 0px;
+	}
+
+
+
+/* Widget content */
+.boxViewContainer .box .widgetContent {
+	font-size: 12px;
+	line-height: 20px;
+	background-color: #FFF;
+	margin-top: -5px;
+	padding-top: 15px;
+}
+	
+
+
+/* Widgeted Index */
+.boxViewContainer .box .widget ul li {
+	border-bottom: 1px solid #d3d3d3;
+}
+.boxViewContainer .box .widget ul li a {
+}
+.boxViewContainer .box .widget ul li a:hover {
+	text-decoration: underline;
+}
+
+/* Icon used for this index item */
+.boxViewContainer .box .widget ul li img {
+    height: 35px;
+    border: 1px solid #d3d3d3;
+}
+

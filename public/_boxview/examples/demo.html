@@ -1,0 +1,89 @@
+<html>
+<head>
+	<title> BoxView Example: Ajax provided widgeted data, with BoxStrapped AnchorMan and shortened URLs</title>
+
+    <link href="examples.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="stylesheets/frontend-boxview/firb-common.css" media="screen" type="text/css" rel="stylesheet">
+    
+    <!-- Cambiare "pi" nel percorso in base all'archivio firb (pi, vi, fi....) -->
+    <link href="stylesheets/frontend-boxview/pi/firb.css" media="screen" type="text/css" rel="stylesheet">
+    <!-- Cambiare "pi" nel percorso in base all'archivio firb (pi, vi, fi....) -->
+    
+    <link href='http://fonts.googleapis.com/css?family=Nunito:light,regular,bold&v1' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+<div style="display: none;" id="loadingDialog">
+	<img src="css/images/loader/ajax_loader.gif" alt="Caricamento in corso">
+	<p>Caricamento in corso</p>
+</div>	
+	
+	<div id="pageExt">
+		<div id="pageContent"></div>
+	</div>
+
+    <script src="../src/tools.js"></script>
+	<script>
+
+    // Use the BoxStrapper to boot the boxview and all of its components.
+    // The first paramenter is the relative path, from this page, to the
+    // boxview directory. The second parameter is a relative path, from
+    // this page, of an user's supplied configuration which will
+    // overwrite boxview defaults and theme configurations.
+    var bs = new BoxStrapper('../');
+
+    function onInitDone() {
+		// External visualizer (used in the links coming from ajax)
+		var visualizer = "visualizer.php",
+            // Real data provider path, relative to the visualizer
+		    data_provider = "data_providers/ajax_provider.php";
+		    		
+		// Sets boxview's height to match the height of the page.
+		$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+		$(window).resize(function(){
+			$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+		});
+
+		// Add a static listener for a fixed link inside the page
+		$('#addbox').click(function() {
+	        var opts = {qstring: data_provider+'?what=breeds', title: 'Breeds A-Z', verticalTitle: 'Index: Breeds A-Z',
+                        resId: 'breeds_index', type: 'index', collapsed: false};
+            myBoxView.addBoxFromAjax(opts);
+            return false;
+		});
+		
+		// Generic listener for all .indexLink A tags, those coming from
+		// ajax included too
+		$('a.indexLink').live("click", function() {
+
+		    // The url to be called through ajax must be corrected, using the data_provider
+            var href = $(this).attr('href').replace(visualizer, data_provider),
+                breed = $(this).text(),
+		        opts = {qstring: href, title: breed, verticalTitle: "Breed: "+breed,
+                        resId: 'dog_'+href, type: 'orange', collapsed: false};
+
+            myBoxView.addBoxFromAjax(opts);
+            return false;
+
+        }); // (a.indexLink).live(click)
+        
+		myBoxView.addBoxFromAjax({qstring: data_provider+'?what=breeds', title: 'Blue Box', verticalTitle: 'Blue Box', resId: '1', type: 'blue', collapsed: false});
+		myBoxView.addBoxFromAjax({qstring: data_provider+'?what=breeds', title: 'Green Box', verticalTitle: 'Green Box', resId: '2', type: 'green', collapsed: false});
+		myBoxView.addBoxFromAjax({qstring: data_provider+'?what=breeds', title: 'Orange Box', verticalTitle: 'Orange Box', resId: '3', type: 'orange', collapsed: false});
+		
+		myBoxView.addBoxFromAjax({qstring: data_provider+'?what=breeds', title: 'Yellow Box', verticalTitle: 'Yellow Box', resId: '4', type: 'yellow', collapsed: false});
+		
+		var transcriptionContent = "<div class='transcription_text'><div class='transcription_text_content'><div class='transcription'><span class='highlight verbfig_dream'><span class='tr_num_pag'><br>c. 99r</span><br><span class='highlight func_character' title='Pazzo Academico Peregrino (Person)'>Pa.</span> Ancor questa &egrave; una bella cosa, et l'uomo si trova fuori d'un gran travaglio. <br>Ma dimmi: come facesti tu a sognar tante cose? <br><span class='highlight func_character' title='Savio Academico Peregrino (Person)'>Sa.</span> E' mi pareva essere un di coloro et vi stetti un tempo, par-<br>ve a me. <br><span class='highlight func_character' title='Pazzo Academico Peregrino (Person)'>Pa.</span> Chi eri tu, o che facevi?<br /><br /><a title='Mostra limmagine' class='transcription_image_icon'>SHOW IMAGE</a><span class='transcription_img_wrapper'><img src='images/image.jpg' alt='Image!' /><a title='Apri in un bel box' class='transcription_open_icon'>APRI IN BOX</a><a title='Chiudi' class='transcription_close_icon'>CHIUDI</a></span><br /><br /><span class='highlight func_character' title='Savio Academico Peregrino (Person)'>Sa.</span> Fui un di quei del tempio. <br><span class='highlight func_character' title='Pazzo Academico Peregrino (Person)'>Pa.</span> Tu dovevi aver poca faccenda. <br><span class='highlight func_character' title='Savio Academico Peregrino (Person)'>Sa.</span> Ogni mattina mi conveniva amaestrar la mia contrada et <br>insegnare. <br><span class='highlight func_character' title='Pazzo Academico Peregrino (Person)'>Pa.</span> Che accadeva insegnare? L'uso era buon maestro. <br><span class='highlight func_character' title='Savio Academico Peregrino (Person)'>Sa.</span> Insegnavo a conoscere <span class='highlight other_name' title='Dio (Person)'>Dio</span> et ringratiarlo di tanto dono, et che <br>s'amassino l'uno l'altro. <br><span class='highlight func_character' title='Pazzo Academico Peregrino (Person)'>Pa.</span> Fa' punto, fa' pausa, che questa è stata la migliore che tu abbi detta: conosce-<br>re <span class='highlight other_name' title='Dio(Person)'>Dio</span>, ringratiarlo et amare il prossimo. Et per ora di cotesto tuo sogno <br>non ne voglio più. Io ho inteso in che forma era la città et la principal <br>parte del reggimento di sé medesimo, un'altra volta dirai tutto il restante.</span><br><span class='highlight func_character' title='Savio Academico Peregrino (Person)'>Sa.</span> Sì, se mi verrà bene; pure anch'io son stracco. A <span class='highlight other_name' title='Dio (Person)'>Dio</span>. <br><span class='highlight func_character' title='Pazzo Academico Peregrino (Person)'>Pa.</span> Non aver per male che io <span class='highlight syntexp_idiomatic selected'>mozzi il tuo ragionamento, come si dice, fra le due <br>terre</span>, perché i pazzi non son tenuti a fare se non quanto porta il cervello et <br>la lor bizzaria. </div><br /><br /><a class='transcription_letter_icon'>SHOW LETTER</a><br /><span class='transcription_img_wrapper'><img src='images/letter.jpg' alt='Letter!' /><a class='transcription_open_icon'>APRI IN BOX</a><a class='transcription_close_icon'>CHIUDI</a></span><br /><br /><p class='tr_head'><br><span class='highlight func_character' title='Momus (Person)'>MOMO</span> ET <span class='highlight func_character' title='Iuppiter (Person)'>GIOVE</span>. <br><span class='highlight func_character' title='Pazzo Academico Peregrino (Person)'>PAZZO</span> ET <span class='highlight func_character' title='Savio Academico Peregrino (Person)'>SAVIO</span>.</p><div class='transcription'><br>[<span class='highlight func_character' title='Momus (Person)'>Momo</span>] Veramente ciascuno avrà che dire un <br>pezzo, or pensando chi noi siamo, ora cre-<br>dendo di saperlo: pensa se la sono per indovinar <br>mai. Chi crederebbe che <span class='highlight other_name' title='Iuppiter(Person)'>Giove</span> fossi mai venu-<br>to in terra et preso forma umana et abito di Pellegrino? <br>Mai sarà creduto, se si saprà, et pur è vero; et se egli si crede-<br>rà sapendosi, bisognerà crederlo in un certo modo che pare im-<br>possibile a crederlo, sapendo di saperlo certo.</div></div></div><div class='transcription_notes'><a class='transcription_close_icon'>CHIUDI</a><div class='transcription_notes_content'><div class='note closed' id='note001'><p class='open'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<a href='' title='Apri in box!' class='transcription_open_icon'>APRI IN BOX</a> ciao ciao ciao...</p><p class='closed'>Sed ut perspiciatis unde...</p></div><div class='note open' id='note002'><p class='open'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<a href='' title='Apri in box!' class='transcription_open_icon'>APRI IN BOX</a> ciao ciao ciao...</p><p class='closed'>Sed ut perspiciatis unde...</p></div></div>";
+		
+		myBoxView.addBox(myWidgetsHelper.widgetify("ciao ciao", transcriptionContent), {qstring: data_provider+'?what=breeds21456', title: 'Trascrizione', verticalTitle: 'Trascrizione', resId: '4521456', type: 'transcription', collapsed: false});	
+		
+		myBoxView.addBoxFromAjax({qstring: data_provider+'?what=breeds', title: 'Red Box', verticalTitle: 'Red Box', resId: '5', type: 'red', collapsed: false});
+		// myBoxView.addBoxFromAjax({qstring: data_provider+'?what=breeds', title: 'Notebooks', verticalTitle: 'Notebooks', resId: '6', type: 'notebooks', collapsed: false});
+		
+		myBoxView.openHistoryBox();
+	}	
+	</script>
+
+</body>
+</html>

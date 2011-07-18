@@ -1,28 +1,74 @@
-<% js_prefix = local_assigns[:js_prefix] || 'jsapi'%>
+<%
+##
+# IMT Viewer partial
+#
+# Parameters:
+#   id
+#   base64
+#   js_prefix
+#   initializer
+#   click
+#   over
+#   out
+# OR
+#   builder: an object that has all the previous parameters as attributes.
+
+params = Hash[[:id, :base64, :js_prefix, :init, :click, :over, :out].map do |param|
+   [param, defined?(builder) ? builder.send(param) : local_assigns[param]]
+end]
+params[:js_prefix] ||= 'jsapi_'
+params[:id]        ||= rand(Time.now.to_i)
+%>
+
 <div class="imt-viewer">
   <object class="IMTViewer" 
           classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-          id="<%= id %>" 
+          id="<%= params[:id] %>" 
           width="90%" 
           height="90%"
-          b64="<%= base64 %>"
+          b64="<%= params[:base64] %>"
           codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
-    <param name="movie" value="<%= image_path("ImageMapperViewer.swf?js_prefix=#{js_prefix}_") %>" />
+    <param name="movie" value="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_") %>" />
     <param name="quality" value="high" />
     <param name="bgcolor" value="#ffffff" />
     <param name="allowScriptAccess" value="always" />
-    <embed src="<%= image_path("ImageMapperViewer.swf?js_prefix=#{js_prefix}_&oid=#{id}")%>"
+    <embed src="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_&oid=#{params[:id]}")%>"
            quality="high"
            bgcolor="#ffffff"
            width="90%"
            height="90%"
-           name="<%= id %>"
+           name="<%= params[:id] %>"
            align="middle"
            play="true"
            loop="false"
            allowscriptaccess="always"
            type="application/x-shockwave-flash"
            pluginspage="http://www.adobe.com/go/getflashplayer" 
-           b64="<%= base64 %>"></embed>
+           b64="<%= params[:base64] %>"></embed>
   </object>
+
+<% if params[:init] or params[:over] or params[:out] or params[:click]%>
+  <script type="text/javascript">
+<%   if params[:init] %>
+    function <%=params[:js_prefix]%>_initializeIMW(id) {
+      <%= params[:init] %>
+    }
+<%   end %>
+<%   if params[:over] %>
+    function <%=params[:js_prefix]%>_mouseOver(fid, ki) {
+      <%= params[:over] %>
+    }
+<%   end %>
+<%   if params[:out] %>
+    function <%=params[:js_prefix]%>_mouseOut(fid, ki) {
+      <%= params[:out] %>
+    }
+<%   end %>
+<%   if params[:click] %>
+    function <%=params[:js_prefix]%>_mouseClick(fid, ki) {
+      <%= params[:click] %>
+    }
+<%   end %>
+  </script>
+<% end %>
 </div>

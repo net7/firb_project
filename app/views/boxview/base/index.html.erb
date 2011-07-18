@@ -88,7 +88,7 @@
        }
 
       // Initialization: IMT will call this when it's ready to load an image
-      function jsapi_initializeIMW(id) {7
+      function jsapi_initializeIMW(id) {
         var new_b64;
         if (navigator.appName.indexOf("Microsoft") != -1) new_b64 = $("#"+id).attr('b64');
         else new_b64 = $('#'+id+" embed").attr('b64');

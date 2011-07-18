@@ -1,0 +1,113 @@
+/*
+This CSS defines the structure of the Widgets of the BoxView UI
+The Cosmetic is defined by the style.css in the selected Theme folder
+
+This CSS must not be changed to customize the BoxView UI
+Instead, you can modify the style.css in the Theme folder
+
+Where CSS instructions in this file needs some modifications, please don't 
+make modifications here and over-write them in the Theme style file.
+*/
+
+.boxViewContainer .box .widgetContent.collapsed { display: none; }
+.boxViewContainer .box .widgetContent.expanded { display: block; }
+
+.boxViewContainer .box .widgetContent {
+	padding: 10px;
+    overflow-x: auto;
+}
+
+/* Widgeted Index */
+.boxViewContainer .box .boxContent .widget ul li {
+    list-style-type: none;
+	padding: 0px 15px 0px 0px;
+	margin: 0px;
+	padding: 10px 0;
+}
+.boxViewContainer .box .boxContent .widget ul li a {
+	margin-bottom: 5px;
+    display: block;
+}
+
+/* Icon used for this index item */
+.boxViewContainer .box .boxContent .widget ul li .indexIcon {
+    padding: 0px;
+    width: 60px;
+    height: 40px;
+    border: 0px;
+    margin-right: 10px;
+    float: left;
+    clear: both;
+    text-align: center;
+}
+.boxViewContainer .box .boxContent .widget ul li img {
+    clear: both;
+}
+
+/* Widget Header */
+.boxViewContainer .box.expanded .widgetHeader {
+	position: relative;
+	overflow: hidden;
+}
+
+.boxViewContainer .box.expanded .widgetHeader .leftIcons {
+	position: absolute;
+	left: 0px;
+	top: 0;
+}
+
+.boxViewContainer .box.expanded .widgetHeader .rightIcons {
+	position: absolute;
+	right: 0px;
+	top: 0;
+}
+
+.boxViewContainer .box .widgetHeader h4 {
+	display: block;
+	overflow: hidden;
+}
+
+/* These lists contain widget header icons */
+.boxViewContainer .box.expanded .widgetHeader ul {
+	list-style: none;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+
+.boxViewContainer .box.expanded .widgetHeader ul li {
+	list-style: none;
+	display: block;
+	float: left;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+}
+
+.boxViewContainer .box.expanded .widgetHeader ul li a {
+	display: block;
+	text-indent: -9999px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+/* Icons positioning. Class is changhed via Javascript */
+.boxViewContainer .box.expanded .widget .widgetHeader ul li a.alignTop {
+	background-position: center 5px;
+}
+
+.boxViewContainer .box.expanded .widget .widgetHeader ul li a.alignMiddle, .boxViewContainer .box.expanded .widget .widgetHeader ul li a:hover.alignMiddle {
+	background-position: center center;
+}
+
+.boxViewContainer .box.expanded .widget .widgetHeader ul li a.alignBottom {
+	background-position: center bottom;
+}
+
+/* Box collapsed */
+.boxViewContainer .box.collapsed .widgetHeader {
+	position: relative;
+	border-bottom: 0;
+}
+
+
