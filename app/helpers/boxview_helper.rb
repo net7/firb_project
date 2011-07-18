@@ -41,7 +41,7 @@ module BoxviewHelper
   end
 
   def boxview_imt_viewer(id, &block)
-    yield (builder = ImtViewerBuilder.new(id))
+    yield(builder = ImtViewerBuilder.new(id))
     render :partial => '/boxview/shared/imageviewer', :locals => {:builder => builder}
   end
 
