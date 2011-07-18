@@ -62,6 +62,7 @@ ActionController::Routing::Routes.draw do |map|
   map.boxview '/boxview', :controller => 'boxview/base', :action => 'index'
   map.boxview_anastatica '/boxview/anastatiche/:id', :controller => 'boxview/anastatiche', :action => 'show'
   map.boxview_illustrazione_madre '/boxview/illustrazioni_madre/:id', :controller => 'boxview/illustrazioni_madre', :action => 'show'
+  map.boxview_pi_scheda_testo '/boxview/pi_scheda_testo/:id', :controller => 'boxview/pi_scheda_testo', :action => 'show'
   
 
   # Default semantic dispatch

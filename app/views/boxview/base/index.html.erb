@@ -33,6 +33,7 @@
       <div id="pageContent">
         <a id="illustrazione1" href="#">Illustrazione f.8v</a> | 
         <a id="anastatica1" href="#">Anastatica otto_verso, f.8v</a>
+        <a id="schedatesto1" href="#">Scheda testo PI</a>
       </div>
     </div>
     <script src="/_boxview/src/tools.js"></script>
@@ -68,6 +69,19 @@
              collapsed: false}
           );
         });
+
+        $("#schedatesto1").click(function(e){
+          e.preventDefault();
+          myBoxView.addBoxFromAjax(
+            {qstring: '<%= boxview_pi_scheda_testo_url(1704) %>',
+             title: 'Pi scheda testo 1704', 
+             verticalTitle: 'pi scheda testo',
+             resId: '1704',
+             type: 'transcription',
+             collapsed: false}
+          );
+        });
+
 
 	      myBoxView.openHistoryBox();
       }

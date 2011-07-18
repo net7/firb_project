@@ -1,0 +1,29 @@
+<% 
+    transcription_content = %[
+        <div class='transcription_text'>
+            #{@content}
+        </div>
+        <div class="transcription_notes">
+            <a class="transcription_close_icon">CHIUDI</a>
+            <div class="transcription_notes_content">
+                <div class="note closed" id="note001">
+                    <p class="open">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<a href="" title="Apri in box!" class="transcription_open_icon">APRI IN BOX</a> ciao ciao ciao...
+                    </p>
+                    <p class="closed">Sed ut perspiciatis unde...</p>
+                </div>
+                <div class="note open" id="note002">
+                    <p class="open">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi
+                    </p> 
+                    <p class="closed">Sed ut perspiciatis unde...</p>
+            </div>
+        </div
+        ]
+
+%>
+
+<%= boxview_widget 'Trascrizione', 'transcription' do |w|
+
+  w.content transcription_content
+
+end %>
