@@ -1,8 +1,11 @@
 class BgTextCard < TextCard
-
   hobo_model
   include StandardPermissions
   autofill_uri :force => true
+
+  include Publish
+  extend Publish::PublishProperties
+  setup_publish_properties
 
   rdf_property :title, N::DCNS.title
 

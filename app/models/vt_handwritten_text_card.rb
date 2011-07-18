@@ -1,8 +1,11 @@
 class VtHandwrittenTextCard < TextCard
-
   hobo_model
   include StandardPermissions
   autofill_uri :force => true
+
+  include Publish
+  extend Publish::PublishProperties
+  setup_publish_properties
   
   rdf_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title

@@ -1,8 +1,11 @@
 class VtPrintedTextCard < TextCard
-
   hobo_model
   include StandardPermissions
   autofill_uri :force => true
+
+  include Publish
+  extend Publish::PublishProperties
+  setup_publish_properties
 
   singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
 

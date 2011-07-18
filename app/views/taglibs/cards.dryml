@@ -103,6 +103,8 @@
         <else>
             <ht key="generic_field_names.letter" />: <a with="&this.letter"><%= this.name %></a>
         </else>
+
+        <p><publish /></p>
         <p><anastatica-link /></p>
         <p><xml-file-links /></p>
 
@@ -121,6 +123,7 @@
         <ht key="generic_field_names.letter" />: <a with="&this.letter"><%= this.name %></a>
     </else>
 
+    <p><publish /></p>
     <p><anastatica-link /></p>
     <p><xml-file-links /></p>
 
@@ -134,7 +137,8 @@
       <h4 param="heading"><a action="show"><%= this.name || this.title %> </a><delete-icon /></h4>
     </header:>
     <body:>
-        <xml-file-links />
+        <p><publish /></p>
+        <p><xml-file-links /></p>
     </body:>
   </card>
 </def>
@@ -173,6 +177,7 @@
 
       <h4 param="heading"><a action="edit"><%= this.title %> </a><delete-icon /></h4>
   
+      <p><publish /></p>
       <p><anastatica-link /></p>
       <p><xml-file-links /></p>
 
