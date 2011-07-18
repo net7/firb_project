@@ -13,31 +13,32 @@ module BoxviewHelper
   def boxview_widget(title, type=nil, options={}, &block)
     yield builder = WidgetBuilder.new
 
-    content = content_tag :div, :class => "widget widget_draggable" do
-      content_tag(:div, :class => "widgetHeader toBeResized") do
-        temp = content_tag :div, :class => "leftIcons" do
+    content_tag :div, :class => "widget widget_draggable" do
+
+      widget = content_tag(:div, :class => "widgetHeader toBeResized") do
+
+        widget_header = content_tag :div, :class => "leftIcons" do
           content_tag :ul do 
-            temp2 = content_tag :li, :class => "collapse" do
+            icons = content_tag :li, :class => "collapse" do
               content_tag :a, 'Collapse', :class => 'expanded', :href => '#',  :title => "Collapse"
             end
-            temp2 << builder.render_left_icons
+            icons << builder.render_left_icons
           end
         end
 
-        temp << content_tag(:div, content_tag(:h4, title, :class => "widgetHeaderTitle"), :class => "title")
+        widget_header << content_tag(:div, content_tag(:h4, title, :class => "widgetHeaderTitle"), :class => "title")
 
-        temp << content_tag(:div, :class => "rightIcons") do
+        widget_header << content_tag(:div, :class => "rightIcons") do
           content_tag :ul do 
-            temp2 = builder.render_right_icons
-            temp2 << content_tag(:li, :class => "drag") do
+            icons = builder.render_right_icons
+            icons << content_tag(:li, :class => "drag") do
               content_tag :a, 'Drag', :href => '#', :title => "Drag"
             end
           end
         end
       end
+      widget << builder.render_contents
     end
-
-    content << builder.render_contents
   end
 
   def boxview_imt_viewer(id, &block)
