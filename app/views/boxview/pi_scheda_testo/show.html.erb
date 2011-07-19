@@ -1,4 +1,23 @@
 <% 
+    notes = ''
+    @notes.each do |n|
+        notes << %[
+            <div class="note closed" id="note_#{n[:class]}">
+                <p class="open">
+                    #{n[:name]}<br>
+                    #{n[:content]}
+                </p>
+                <p class="closed">#{n[:name]}</p>
+            </div>
+            <script type="text/javascript">
+                $('#note_#{n[:class]}').click(function(){
+                    $(this).parents('div.box').find('div.note.open, #note_#{n[:class]}').toggleClass('open closed');
+                    $(this).parents('div.box').find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
+                });
+            </script>
+            ]
+    end
+
     transcription_content = %[
         <div class='transcription_text'>
             #{@content}
@@ -6,18 +25,20 @@
         <div class="transcription_notes">
             <a class="transcription_close_icon">CHIUDI</a>
             <div class="transcription_notes_content">
-                <div class="note closed" id="note001">
-                    <p class="open">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<a href="" title="Apri in box!" class="transcription_open_icon">APRI IN BOX</a> ciao ciao ciao...
-                    </p>
-                    <p class="closed">Sed ut perspiciatis unde...</p>
-                </div>
-                <div class="note open" id="note002">
-                    <p class="open">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi
-                    </p> 
-                    <p class="closed">Sed ut perspiciatis unde...</p>
+                #{notes}
             </div>
-        </div
+        </div>
+        
+        <script type="text/javascript">
+            function reposition_notes(id) {
+                $('#'+id+' div.transcription_notes_content div.note').each(function(i, e){
+                    var note_id = $(e).attr('id'),
+                        class = note_id.substr(5),
+                        top = $('#'+id+' .'+class+':first').offset().top;
+                    $(this).offset({top: top});
+                });
+            }
+        </script>
         ]
 
 %>
@@ -30,10 +51,23 @@
             <script type="text/javascript">
             $("#mostra_note_trascrizione_#{@resource.id}").click(function(e) {
                 e.preventDefault();
-                var w = $(this).parents('div.widget'), h;
-                w.find('div.widgetContent').toggleClass('notes-hidden notes-displayed');
-                h = w.find('div.widgetContent div.transcription_text').height();
-                w.find('div.widgetContent div.transcription_notes_content').height(h);
+                var w = $(this).parents('div.widget'), 
+                    wc = w.find('div.widgetContent'),
+                    bo = $(this).parents('div.box'),
+                    h;
+                wc.toggleClass('notes-hidden notes-displayed');
+                if (wc.hasClass('notes-displayed')) {
+                    // Set the notes column height
+                    h = w.find('div.widgetContent div.transcription_text').height();
+                    w.find('div.widgetContent div.transcription_notes_content').height(h);
+                    reposition_notes(bo.attr('id'));
+                    // Close all the open notes
+                    wc.find('div.note.open').toggleClass('open closed');
+                    
+                } else {
+                    // Remove any highlight
+                    bo.find('.highlighted').toggleClass('highlighted');
+                }
                 return false;
             });
             </script>]

@@ -75,6 +75,16 @@ Box Trascrizione > Widget Trascrizione > Note
 .transcription_text {
 	float: left;
 }
+
+/* Contenuto evidenziato all'interno della trascrizione (in relazione ad una nota o altro)*/
+.transcription_text .highlighted {
+	background-color: rgba(255, 175, 0, 0.75);
+}
+/* Una span.line rappresenta una linea della trascrizione.. deve mandare a capo */
+.transcription_text span.line {
+	display: block;
+}
+
 	/* Toggle larghezza colonna trascrizione */
 	.box.transcription .widgetContent.notes-hidden .transcription_text { width: 100%; }
 	.box.transcription .widgetContent.notes-displayed  .transcription_text { width: 70%; }
@@ -101,7 +111,7 @@ Box Trascrizione > Widget Trascrizione > Note
 	
 	.transcription_notes .transcription_notes_content {
 		padding: 10px;
-		height: 500px; /* Deve essere settato da JS uguale al widget che lo contiene - due volte il padding : H - (2 x 10) */
+		height: 500px; 
 	}
 	
 		.transcription_notes .transcription_notes_content .note p{
