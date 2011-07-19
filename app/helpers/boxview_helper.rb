@@ -73,10 +73,14 @@ module BoxviewHelper
 
     def render_contents
       content = ''
+      classes = ''
       @contents.each do |c|
-        content << content_tag(:div, c[:content], :class => "widgetContent #{render_classes(c[:classes])}")
+        content << c[:content]
+        classes << " #{render_classes(c[:classes])}"
       end
-      content
+      # TODO: expanded should be set to true by default, if set to false
+      # use the class collapsed
+      content_tag(:div, content, :class => "widgetContent #{classes}")
     end
 
     def render_left_icons
