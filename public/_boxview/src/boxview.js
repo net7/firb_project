@@ -441,7 +441,9 @@
 
 					if (this.options.animateAdd == true) {
 						box.css({width: '10px', left: (this.boxOptions[i].left + this.boxOptions[i].width)});
-						box.animate({width: this.boxOptions[i].width, left: this.boxOptions[i].left}, this.options.animationLength);
+						box.animate({width: this.boxOptions[i].width, left: this.boxOptions[i].left}, this.options.animationLength, function() {
+						    WidgetsHelper.resizeWidgets();
+						});
 					} else {
 
 					    // Added a micro animation of 10msecs to avoid IE's flaws when rendering
@@ -454,11 +456,19 @@
 				} else {
 
 					// Dont redraw the items which are being dragged!
-					if (!this.boxOptions[i].isBeingDragged)
-						if (this.options.animateResize == true)
-							box.stop().fadeTo(0, "1.0").animate({width: this.boxOptions[i].width, left: this.boxOptions[i].left}, this.options.animationLength);
-						else 
+					if (!this.boxOptions[i].isBeingDragged) 
+						if (this.options.animateResize == true) {
+							box.stop().fadeTo(0, "1.0")
+							    .animate({width: this.boxOptions[i].width, left: this.boxOptions[i].left}, 
+							        this.options.animationLength,
+							        function() { WidgetsHelper.resizeWidgets();
+        						});
+						} else {
 							box.css({width: this.boxOptions[i].width, left: this.boxOptions[i].left});
+							WidgetsHelper.resizeWidgets();
+						    
+						}
+					WidgetsHelper.resizeWidgets();
 
 				} // if isFirtShow()
 
