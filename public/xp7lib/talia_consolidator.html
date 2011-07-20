@@ -16,10 +16,15 @@
 
         $(document).ready(function() {
 
+            // DEBUG: using origin to know where talia is.. 
+            // If something goes wrong (deployed in some /folder/? .origin 
+            // compatibility?? IE?) just write down the right
+            // URLs to get to talia
+            var or = document.location.origin;
             co = new $.consolidator({
-                baseURLAnnotatedFragments: "http://trieste.netseven.it:3000/swicky_notebooks/context/annotated_fragments",
-        		baseURLAnnotations: "http://trieste.netseven.it:3000/swicky_notebooks/context/annotations",
-        		baseURLPost: 'http://trieste.netseven.it:3000/admin/publish/post_annotated',
+                baseURLAnnotatedFragments: or+"/swicky_notebooks/context/annotated_fragments",
+        		baseURLAnnotations: or+"/swicky_notebooks/context/annotations",
+        		baseURLPost: or+'/admin/publish/post_annotated',
                 debug: false
             });
             
