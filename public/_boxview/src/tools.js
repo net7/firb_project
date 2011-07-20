@@ -62,9 +62,10 @@ BoxStrapper.prototype = {
 
         self.loadCall(35, "User's custom config files", 
                     function() {
-                        self.loadScriptCheck(36, "User's configuration files config.js", 'config.js', 37);
-                        self.loadScriptCheck(36, "User's configuration files ../config.js", '../config.js', 37);
-                        if (typeof(self.userConfig) !== 'undefined')
+                        if (typeof(self.userConfig) === 'undefined') {
+                            self.loadScriptCheck(36, "User's configuration files config.js", 'config.js', 37);
+                            self.loadScriptCheck(36, "User's configuration files ../config.js", '../config.js', 37);
+                        } else 
                             self.loadScriptCheck(37, "User's configuration via BoxStrapper()", self.userConfig, 38);
                     });
 

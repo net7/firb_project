@@ -1,0 +1,79 @@
+span.line { 
+    display: block; 
+}
+div.THCContent span span.number { 
+    display: inline; 
+    color: red; 
+    margin: 10px; 
+}
+
+div.THCContent span span.number span {
+    background-color: #fff;
+} 
+
+.highlight {
+    background-color: #fc0;
+}
+
+img { 
+    border: 5px solid #fff; margin: 20px; width: 100px; height: 114px;
+    background-repeat: no-repeat; 
+}
+.highlight img.source_img {
+    border: 5px solid #fc0;
+}
+
+
+div.consolidatedAnnotationsContainer {
+    position: fixed;
+    right: 5px;
+    top: 5px;
+    width: 300px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px dashed #ccc;
+}
+
+div.consolidatedAnnotationsContainer div {
+    margin: 2px;
+    padding: 2px;
+}
+div.consolidatedAnnotationsContainer div:hover {
+    background: #ded;
+}
+
+div.consolidatedAnnotationsContainer span {
+    display: inline;
+    background: #edd;
+    margin: 2px;
+}
+
+div.consolidatedAnnotationsContainer div.subject {
+    background: #fc0;
+}
+div.consolidatedAnnotationsContainer div.predicate {
+    background: #f00;
+}
+div.consolidatedAnnotationsContainer div.object {
+    background: #0c0;
+}
+
+body {
+    overflow: hidden;
+}
+div.progressScreen {
+    border: 0px;
+    background: #666;
+    position: fixed;
+    top: 0px; left: 0px;
+    z-index: 10;
+    color: #fc0;
+}
+div.progressScreen span {
+    margin: 2px;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px dashed #fff;
+}
+

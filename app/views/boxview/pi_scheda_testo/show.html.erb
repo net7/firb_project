@@ -1,0 +1,188 @@
+<% 
+    notes = ''
+    num = 0
+    @notes.each do |n|
+        num = num+1
+        notes << %[
+            <div class="note closed" id="note_#{n[:class]}">
+                <p class="open">
+                    #{n[:name]}<br>
+                    #{n[:content]}
+                </p>
+                <p class="closed">#{n[:name]}</p>
+            </div>
+            <script type="text/javascript">
+                // Add the link after the last span of this class 
+                // DEBUG: make this using the 
+                $('.#{n[:class]}:last').after('<span class="note_link" id="note_link_#{n[:class]}">[#{num}] <a class="transcription_open_icon"></a></span>');
+
+                // Click on a note in the notes colum highlights the linked note
+                $('#note_#{n[:class]}').click(function(){
+                    var b = $(this).parents('div.box');
+                    b.find('div.note.open, #note_#{n[:class]}').toggleClass('open closed');
+                    b.find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
+                });
+
+                // Note link in the text: click opens the notes column
+                // and open the linked note; mouse over/out: highlights 
+                // the linked text portion
+                $('#note_link_#{n[:class]}').click(function() {
+                    var b = $(this).parents('div.box');
+                    if (b.find('div.widgetContent').hasClass('notes-hidden')) 
+                        $("#mostra_note_trascrizione_#{@resource.id}").click();
+                    
+                    // keep the note open clicking on the note link
+                    b.find('div.note.open').toggleClass('open closed');
+                    b.find('#note_#{n[:class]}').addClass('open').removeClass('closed');
+                    b.find('.highlighted').removeClass('highlighted');
+                    b.find('.#{n[:class]}').addClass('highlighted');
+                    
+                }).mouseover(function() {
+                    $(this).parents('div.box').find('.#{n[:class]}').addClass('highlighted');
+                }).mouseout(function() {
+                    if ($('#note_#{n[:class]}').hasClass('closed'))
+                        $(this).parents('div.box').find('.#{n[:class]}').removeClass('highlighted');
+                });
+                
+            </script>
+            ]
+    end
+
+    fenomeni = "<div class='fen_menu_panel hidden'><ul>"
+    last_type = ''
+    @fenomeni.each do |f|
+        
+        if (last_type != f[:item_type])
+            fenomeni += "</ul></li>" unless (last_type == '') 
+            fenomeni << %[
+                    <li class='phen_section' about='#{f[:fen_class]}'>#{f[:item_type]}</li>
+                    <li><ul>
+                ]
+            last_type = f[:item_type]
+        end
+        fenomeni << %[
+                <li class='phen_item' about='#{f[:class]}'>#{f[:name]}</li>
+            ]
+    end
+    fenomeni += "</ul></li></ul></div>"
+
+    transcription_content = %[
+        <div class='transcription_text'>
+            #{fenomeni}
+            #{@content}
+        </div>
+        <div class="transcription_notes">
+            <a class="transcription_close_icon">CHIUDI</a>
+            <div class="transcription_notes_content">
+                #{notes}
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+        
+            // DEBUG: MOVE THIS ELSEWHERE
+            function reposition_notes(id) {
+                $('#'+id+' div.transcription_notes_content div.note').each(function(i, e){
+                    var note_id = $(e).attr('id'),
+                        my_class = note_id.substr(5),
+                        top = $('#'+id+' .'+my_class+':first').offset().top;
+                    $(this).offset({top: top});
+                });
+            }
+
+            // Phen item: highlight the selected item
+            $('div.fen_menu_panel li.phen_item').click(function() {
+                var c = $(this).attr('about'),
+                    b = $(this).parents('div.box'),
+                    h = $(this).hasClass('highlighted');
+                    
+                // Close the menu panel
+                b.find('div.fen_menu_panel').toggleClass('hidden');
+
+                // TODO: if the parent section is highlighted, deselect all
+                // and force the selection of this content again
+                b.find('span.highlighted, li.highlighted, span.'+c).toggleClass('highlighted');
+                if (!h)
+                    $(this).addClass('highlighted');
+            });
+            
+            // Phen section: highlight all the items of this category
+            $('div.fen_menu_panel li.phen_section').click(function() {
+                var c = $(this).attr('about'),
+                    b = $(this).parents('div.box'),
+                    h = $(this).hasClass('highlighted');
+                
+                // Close the menu panel
+                b.find('div.fen_menu_panel').toggleClass('hidden');
+
+                // Remove all the highlights
+                b.find('span.highlighted, li.highlighted').removeClass('highlighted');
+
+                if (!h) {
+                    b.find('span.'+c).addClass('highlighted');
+                    $(this).addClass('highlighted');
+                    // Highlights this section and the subsections
+                    $(this).next().find('li.phen_item').addClass('highlighted');
+                }
+
+            });
+            
+            // Expands an image
+            $('.transcription_image_icon').live('click', function() {
+                $(this).next().removeClass('hidden');
+                reposition_notes($(this).parents('div.box').attr('id'));
+            });
+            // Collapses an image
+            $('.transcription_close_icon').live('click', function() {
+                $(this).parent().addClass('hidden');
+                reposition_notes($(this).parents('div.box').attr('id'));
+            });
+            
+        </script>
+        ]
+
+%>
+
+<%= 
+    boxview_widget 'Trascrizione', 'transcription' do |w|
+
+        mostra_note = content_tag(:a, 'Note', :class => "note", :href => "#", :id => "mostra_note_trascrizione_#{@resource.id}", :title => 'Mostra le note')
+        mostra_fenomeni = content_tag(:a, 'Fenomeni', :href => "#", :id => "mostra_fenomeni_#{@resource.id}", :title => 'Mostra i fenomeni')
+        mostra_fenomeni << %[
+            <script type="text/javascript">
+            $("#mostra_note_trascrizione_#{@resource.id}").click(function(e) {
+                e.preventDefault();
+                var w = $(this).parents('div.widget'), 
+                    wc = w.find('div.widgetContent'),
+                    bo = $(this).parents('div.box'),
+                    h;
+                wc.toggleClass('notes-hidden notes-displayed');
+                if (wc.hasClass('notes-displayed')) {
+                    // Set the notes column height
+                    h = w.find('div.widgetContent div.transcription_text').height();
+                    w.find('div.widgetContent div.transcription_notes_content').height(h);
+                    reposition_notes(bo.attr('id'));
+                    // Close all the open notes
+                    wc.find('div.note.open').toggleClass('open closed');
+                    
+                } else {
+                    // Remove any highlight, close open notes
+                    bo.find('.highlighted').toggleClass('highlighted');
+                    wc.find('div.note.open').toggleClass('open closed');
+                }
+                return false;
+            });
+
+            $("#mostra_fenomeni_#{@resource.id}").click(function(e) {
+                e.preventDefault();
+                $(this).parents('div.box').find('div.fen_menu_panel').toggleClass('hidden');
+                return false;
+            });
+            </script>]
+
+        w.right_icons mostra_note, {:class =>'note'}
+        w.right_icons mostra_fenomeni, {:class => 'fenomeni'}
+        w.content content_tag(:div, transcription_content, :id => "trascrizione_#{@resource.id}"), 'notes-hidden'
+    end 
+%>
+

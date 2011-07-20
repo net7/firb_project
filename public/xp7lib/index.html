@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:dc="http://purl.org/dc/elements/1.1/" > 
+  <head> 
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+	<title>Talia's jaxer powered HTML Annotator</title>
+
+    <script type="text/javascript" runat='both' src='jquery.js' autoload='true'></script>
+    <script type="text/javascript" runat='both' src='xp7Lib.js'></script>
+
+    <link href="annotable.css" media="screen" rel="stylesheet" type="text/css">
+
+	</head>
+    <body>
+
+
+		<script type="text/javascript" runat="both">
+
+
+        $(document).ready(function() {
+            
+        
+            // Add buttons to highlight the notes
+            for (var i=16; i>=0; i--) {
+                
+                $('div#debug_foo').prepend("<span id='cl"+i+"' style='border: 1px solid red; margin: 5px'>CL "+i+"</span>");
+                
+                $("span#cl"+i).click(function() {
+                    var cl = $(this).attr('id');
+
+                    $("span").removeClass('highlight');
+                    $("span."+cl).addClass('highlight');
+                })
+            } // for
+            
+            // Add button to show/hide the line numbers
+            $('div#debug_foo').prepend("<span id='line_num' style='border: 1px solid red; margin: 5px'>Toggle line numbers</span>");
+            $('span#line_num').click(function() { 
+                $('span.number').toggle();
+            });
+            
+        })
+        </script>
+        
+		<script type="text/javascript" runat="server">
+
+        // ServerLoad: fired when jaxer is done with loading the page
+        window.onserverload = function() {
+
+            // TODO: maybe more?
+            Jaxer.Callback.TIMEOUT = 300 * 1000;
+            
+            // Will return an array containing an associative array with key
+            // values
+            // TODO: guess Jaxer has some built-in method for this..
+            function getHashFromQString(string) {
+                // Get rid of the initial '?'
+                if (string.length > 1) string = string.substring(1, string.length);
+                ret = [];
+
+                // Split the entire string into k=v bits
+                var pairs = string.split('&');
+                for (var i = pairs.length - 1; i >= 0; i--){
+                    // Split key and value apart
+                    var kv = pairs[i].split('='),
+                        key = kv[0], val = kv[1];
+                    ret[key] = val;
+                };
+                return ret;
+            };
+
+
+            // TODO: is GET set in the stone? delete the POST part then..
+            debug = false;
+            if (Jaxer.request.method == "POST") {
+            	data = Jaxer.request.data;
+            	html1 = data["html1"];
+            } else {
+                qstring = document.location.search;
+                kv = getHashFromQString(qstring);
+                uri = unescape(kv['uri']);
+                debug = !(typeof kv['debug'] == "undefined");
+                html1 = Jaxer.Web.get(uri);
+            }
+
+		    var xp = new $.xp7Lib({debug: debug});
+            xp.log("debug is "+debug);
+
+            xp.log("## Annotable document HTML1 is "+html1.length+" bytes long, injecting it.");
+            $('body').prepend(html1);
+            
+            
+            // Replace the img src with a local placeholder
+            $('img').each(function(i, e){ $(e).attr('src', "polaroid_frame.jpg"); });
+
+		    var uris = xp.getContentURIs();
+
+            var uri_len = uris.length;
+            for (var i=0; i<uri_len; i++) {
+
+                var baseURL = "http://trieste.netseven.it:3000/swicky_notebooks/context/annotated_fragments",
+                    uri = escape(uris[i]), 
+                    url = baseURL + "?uri=" + uri;
+                var string = Jaxer.Web.get(url);
+
+                xp.log("# "+i+": "+ uris[i] + " <br>");
+
+                try { h = eval ("("+string+")"); } 
+                catch (e) { h = []; }
+
+                if (h.length == 0) {
+                    xp.log("# No fragments from "+url);
+                    return;
+                }
+
+                xp.log("# ("+(i+1)+"/"+uri_len+") Got "+h.length+" new fragments/xpointers from url "+url);
+
+                var h_len = h.length;
+                for (var j=h_len-1; j>=0; j--) {
+                    // j=h_len-3;
+                    var foo = "http://trieste.netseven.it:3000/swicky_notebooks/context/annotations?force_json=y&xpointer=" + escape(h[j].coordinates);
+                    
+                    var s = Jaxer.Web.get(foo);
+
+                    var annotations = eval("("+s+")"); 
+
+                    xp.addAnnotation(h[j].coordinates, annotations);
+                    xp.log(j+": "+s.length+" bytes read in the json<hr>");
+                }
+                
+                xp.highlightFromXPointers(h);
+                xp.stats();
+
+            } // for
+                	    
+		} // onserverload()
+
+		</script>
+
+    </body>
+</html>

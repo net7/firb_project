@@ -46,6 +46,7 @@ Definizione generica icone
 		background-position: -26px -13px;
 	}
 
+
 .transcription a.transcription_close_icon {
 	display: block;
 	width: 13px;
@@ -75,6 +76,89 @@ Box Trascrizione > Widget Trascrizione > Note
 .transcription_text {
 	float: left;
 }
+
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/*GIULIO LEGGIMI E RIMUOVIMI */
+/* Contenuto evidenziato all'interno della trascrizione (in relazione ad una nota o altro)*/
+.transcription_text .highlighted {
+	background-color: rgba(255, 175, 0, 0.75);
+}
+/* Una span.line rappresenta una linea della trascrizione.. deve mandare a capo */
+.transcription_text span.line {
+	display: block;
+}
+.transcription_notes_content .note:hover {
+    cursor: pointer;
+    background-color: rgba(100,100,100,0.1);
+}
+
+.transcription_text span.note_link {
+    padding: 0px 5px;
+    color: #f00;
+}
+.transcription_text span.note_link:hover {
+    cursor: pointer;
+}
+
+.transcription_text .transcription_img_wrapper.hidden {
+    display:none;
+}
+
+div.fen_menu_panel {
+    background-color: rgba(100,100,100,0.8);
+    border: 2px solid red;
+    position: absolute;
+    top: 60px;
+    right: 50px;
+    width: 250px;
+    /*DEBUG: sta roba andra' sopra al flash? boh .. */
+    z-index: 10;
+    display: block
+}
+div.fen_menu_panel.hidden {
+    display: none;
+}
+
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel ul,
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li {
+    padding: 0px; margin: 0px;
+    border: 0px;
+}
+div.fen_menu_panel li.phen_section {
+    background: #aaa;
+    font-size:1.2em;
+}
+.boxviewcontainer div.fen_menu_panel li.phen_item {
+    background: #ccc;
+    padding-left: 15px;
+}
+div.fen_menu_panel li.phen_section:hover,
+div.fen_menu_panel li.phen_item:hover,
+div.fen_menu_panel li.phen_section.highlighted:hover,
+div.fen_menu_panel li.phen_item.highlighted:hover {
+    background: #0fc;
+    cursor: pointer;
+}
+div.fen_menu_panel li.phen_section.highlighted,
+div.fen_menu_panel li.phen_item.highlighted {
+    background: #fc0;
+}
+
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+
+
 	/* Toggle larghezza colonna trascrizione */
 	.box.transcription .widgetContent.notes-hidden .transcription_text { width: 100%; }
 	.box.transcription .widgetContent.notes-displayed  .transcription_text { width: 70%; }
@@ -101,7 +185,7 @@ Box Trascrizione > Widget Trascrizione > Note
 	
 	.transcription_notes .transcription_notes_content {
 		padding: 10px;
-		height: 500px; /* Deve essere settato da JS uguale al widget che lo contiene - due volte il padding : H - (2 x 10) */
+		height: 500px; 
 	}
 	
 		.transcription_notes .transcription_notes_content .note p{
