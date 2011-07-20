@@ -42,30 +42,38 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       
     end
     
-    
+    # Handle consolidated annotations
     v.xpath(".//div[@class='consolidatedAnnotation']").each do |d|
       pred = d.xpath(".//div[@class='predicate']")[0]['about'];
       ca_class = d.xpath(".//span[@class='annotationClass']")[0].text
 
+      # Has Note
       if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasNote')
         n_name = d.xpath(".//div[@class='object']/span[@class='name']")[0].text
         n_content = d.xpath(".//div[@class='object']/span[@class='content']")[0].text
         @notes.push({:name => n_name, :content => n_content, :class => ca_class})
         d.remove
       end
-      
+
+      # Instance of
       if (pred == 'http://purl.oclc.org/firb/swn_ontology#instanceOf')
         di_id = d.xpath(".//div[@class='object']")[0]['about']
         di = DictionaryItem.find(di_id, :prefetch_relations => true)
         di_type = di.item_type.slice(41,100)
-        @fenomeni.push({:name => di.name, :item_type => di_type, :class => ca_class })
+        fen_class = Digest::MD5.hexdigest(di.item_type)
+        @fenomeni.push({:name => di.name, :fen_class => fen_class, :item_type => di_type, :class => ca_class})
+        v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
         d.remove
       end
-      
+
+      # Has image zone
       if (pred == "http://purl.oclc.org/firb/swn_ontology#hasImageZone")
-        
+        # TODO: all of this image zones should get added to the imt
+        # initialization of the parent image, if it's present in the
+        # page ..
       end
-      
+
+      # Has memory depiction (both illustrated and non illustrated)
       if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasMemoryDepiction')
         md_id = d.xpath(".//div[@class='object']")[0]['about']
 
@@ -74,7 +82,10 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
         rescue
           md = PiNonIllustratedMdCard.find(md_id, :prefetch_relations => true)
         else
-          @fenomeni.push({:name => md.short_description, :item_type => "Immagini di memoria"})
+          # DEBUG: just one class for both ill and non-ill MDs? 
+          fen_class = Digest::MD5.hexdigest(pred)
+          @fenomeni.push({:name => md.short_description, :fen_class => fen_class, :item_type => "Immagini di memoria", :class => ca_class})
+          v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
           d.remove
         end
           
@@ -82,6 +93,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       #d.remove
     end
 
+    # Sort fenomeni by type, name
     @fenomeni.sort! { |a,b| 
       if (a[:item_type].downcase == b[:item_type].downcase)
         a[:name].downcase <=> b[:name].downcase 
@@ -90,6 +102,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       end
     }
     
+    # The resulting modified HTML is the final content to display
     @content << v.to_s
     
   end
