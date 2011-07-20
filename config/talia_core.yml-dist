@@ -6,7 +6,7 @@ site_name: Talia 2.3.
 rdf_connection_file: rdfstore
 ardf_log_level: 0
 local_uri: http://localhost:5000/
-jaxer_url: http://localhost:8081/test/test3.html
+jaxer_url: http://localhost:5000/xp7lib/talia_consolidator.html
 default_namespace_uri: http://default.dummy/
 iip_root_directory_location: /path/to/iip
 data_directory_location: /path/to/data
