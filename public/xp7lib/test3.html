@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:dc="http://purl.org/dc/elements/1.1/" > 
+  <head> 
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+	<title>Annotation Consolidator</title>
+
+        <script type="text/javascript" src='jquery.js' autoload='true'></script>
+        <script type="text/javascript" src='xp7Lib.js'></script>
+        <script type="text/javascript" src='consolidator.js'></script>
+
+        <link href="temp_annotable.css" media="screen" rel="stylesheet" type="text/css">
+	</head>
+    <body>
+
+	<script type="text/javascript">
+        var co;
+
+        $(document).ready(function() {
+
+            co = new $.consolidator({debug: true, useStartupScreen: false});
+            var kv = getHashFromQString(document.location.search);
+            co.getAnnotableContentFrom(unescape(kv['uri']), kv['id'], kv['callback']);
+            
+		});
+
+        // Will return an array containing an associative array with key
+        // values
+        function getHashFromQString(string) {
+            // Get rid of the initial '?'
+            if (string.length > 1) string = string.substring(1, string.length);
+
+            var ret = [], pairs = string.split('&'), kv, key, val;
+
+            // Split the entire string into k=v bits
+            for (var i = pairs.length - 1; i >= 0; i--) {
+                // Split key and value apart
+                kv = pairs[i].split('=');
+                key = kv[0];
+                val = kv[1];
+                ret[key] = val;
+            };
+            return ret;
+        };
+	</script>
+
+    </body>
+</html>
