@@ -46,6 +46,7 @@ Definizione generica icone
 		background-position: -26px -13px;
 	}
 
+
 .transcription a.transcription_close_icon {
 	display: block;
 	width: 13px;
@@ -84,6 +85,23 @@ Box Trascrizione > Widget Trascrizione > Note
 .transcription_text span.line {
 	display: block;
 }
+.transcription_notes_content .note:hover {
+    cursor: pointer;
+    background-color: rgba(100,100,100,0.1);
+}
+
+.transcription_text span.note_link {
+    padding: 0px 5px;
+    color: #f00;
+}
+.transcription_text span.note_link:hover {
+    cursor: pointer;
+}
+
+.transcription_text .transcription_img_wrapper.hidden {
+    display:none;
+}
+
 
 	/* Toggle larghezza colonna trascrizione */
 	.box.transcription .widgetContent.notes-hidden .transcription_text { width: 100%; }

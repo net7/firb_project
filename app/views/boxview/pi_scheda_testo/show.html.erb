@@ -1,6 +1,8 @@
 <% 
     notes = ''
+    num = 0
     @notes.each do |n|
+        num = num+1
         notes << %[
             <div class="note closed" id="note_#{n[:class]}">
                 <p class="open">
@@ -10,16 +12,56 @@
                 <p class="closed">#{n[:name]}</p>
             </div>
             <script type="text/javascript">
+                $('.#{n[:class]}:last').after('<span class="note_link" id="note_link_#{n[:class]}">[#{num}] <a class="transcription_open_icon"></a></span>');
                 $('#note_#{n[:class]}').click(function(){
-                    $(this).parents('div.box').find('div.note.open, #note_#{n[:class]}').toggleClass('open closed');
-                    $(this).parents('div.box').find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
+                    var b = $(this).parents('div.box');
+                    b.find('div.note.open, #note_#{n[:class]}').toggleClass('open closed');
+                    b.find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
                 });
+                $('#note_link_#{n[:class]}').click(function() {
+                    var b = $(this).parents('div.box');
+                    if (b.find('div.widgetContent').hasClass('notes-hidden')) 
+                        $("#mostra_note_trascrizione_#{@resource.id}").click();
+                    
+                    // keep the note open clicking on the note link
+                    b.find('div.note.open').toggleClass('open closed');
+                    b.find('#note_#{n[:class]}').addClass('open').removeClass('closed');
+                    b.find('.highlighted').removeClass('highlighted');
+                    b.find('.#{n[:class]}').addClass('highlighted');
+                    
+                }).mouseover(function() {
+                    $(this).parents('div.box').find('.#{n[:class]}').addClass('highlighted');
+                }).mouseout(function() {
+                    if ($('#note_#{n[:class]}').hasClass('closed'))
+                        $(this).parents('div.box').find('.#{n[:class]}').removeClass('highlighted');
+                });
+                
             </script>
             ]
     end
 
+    fenomeni = "<div class='menu_panel'><ul>"
+    last_type = ''
+    @fenomeni.each do |f|
+        
+        if (last_type != f[:item_type])
+            fenomeni += "</ul></li>" unless (last_type == '') 
+            fenomeni << %[
+                    <li>SEZIONE #{f[:item_type]}</li>
+                    <li><ul>
+                ]
+            last_type = f[:item_type]
+        end
+        fenomeni << %[
+                <li>#{f[:name]} (#{f[:item_type]}, #{f[:class]})</li>
+            ]
+    end
+    fenomeni += "</ul></li></ul></div>"
+
     transcription_content = %[
         <div class='transcription_text'>
+            #{fenomeni}
+            <hr>
             #{@content}
         </div>
         <div class="transcription_notes">
@@ -30,6 +72,8 @@
         </div>
         
         <script type="text/javascript">
+        
+            // DEBUG: MOVE THIS ELSEWHERE
             function reposition_notes(id) {
                 $('#'+id+' div.transcription_notes_content div.note').each(function(i, e){
                     var note_id = $(e).attr('id'),
@@ -38,6 +82,17 @@
                     $(this).offset({top: top});
                 });
             }
+            
+            $('.transcription_image_icon').live('click', function() {
+                $(this).next().removeClass('hidden');
+                reposition_notes($(this).parents('div.box').attr('id'));
+            });
+            
+            $('.transcription_close_icon').live('click', function() {
+                $(this).parent().addClass('hidden');
+                reposition_notes($(this).parents('div.box').attr('id'));
+            });
+            
         </script>
         ]
 
@@ -65,8 +120,9 @@
                     wc.find('div.note.open').toggleClass('open closed');
                     
                 } else {
-                    // Remove any highlight
+                    // Remove any highlight, close open notes
                     bo.find('.highlighted').toggleClass('highlighted');
+                    wc.find('div.note.open').toggleClass('open closed');
                 }
                 return false;
             });
