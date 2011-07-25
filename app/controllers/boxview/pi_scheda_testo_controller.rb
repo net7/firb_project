@@ -88,7 +88,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       imt += "<span class='transcription_img_wrapper hidden'>"
       imt += render_to_string :partial => '/boxview/shared/imageviewer', 
                :locals => {:id => rand(Time.now.to_i), 
-                           :base64 => image.anastatica_zones_xml(image.uri, [z].concat(zones)),
+                           :base64 => image.anastatica_image_xml(image, [z].concat(zones)),
                            :js_prefix => 'jsapi'}
       imt += '<a title="Apri in un bel box" class="transcription_open_icon">APRI IN BOX</a>'
       imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
