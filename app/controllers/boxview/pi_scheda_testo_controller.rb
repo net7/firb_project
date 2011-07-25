@@ -129,6 +129,8 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
     
     # The resulting modified HTML is the final content to display
     @content << v.to_s
+    @non_ill_md = @resource.non_illustrated_memory_depictions
+    @ill_md = PiIllustratedMdCard.find(:all, :find_through => [N::TALIA.attachedText, @resource.uri])
     
   end
 end
