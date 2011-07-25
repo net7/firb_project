@@ -220,8 +220,9 @@
 
 
 <%
+    img_mem = ''
     unless (@non_ill_md.empty?)
-        img_mem = %[
+        img_mem << %[
             <div class="widgetField">
                 <span class="field_title expanded">Immagini di memoria non illustrate</span>
                 <div class="field_content expanded">
