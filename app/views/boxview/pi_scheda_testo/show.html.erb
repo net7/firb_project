@@ -190,3 +190,71 @@
     end 
 %>
 
+<%=
+    boxview_widget 'Parafrasi', 'parafrasi' do |w| 
+        w.content content_tag(:div, @resource.parafrasi)
+    end
+%>
+
+<%
+    notes_w = ''
+    @notes.each do |n|
+        notes_w << %[
+            <div class="note closed" id="note_#{n[:class]}">
+                <p class="open">
+                    #{n[:name]}<br>
+                    #{n[:content]}
+                </p>
+                <p class="closed">#{n[:name]}</p>
+            </div>
+        ]
+    end
+
+%>
+
+<%= 
+    boxview_widget 'Note', 'notes' do |w| 
+        w.content content_tag(:div, notes_w)
+    end
+%>
+
+
+<%
+    unless (@non_ill_md.empty?)
+        img_mem = %[
+            <div class="widgetField">
+                <span class="field_title expanded">Immagini di memoria non illustrate</span>
+                <div class="field_content expanded">
+            ]
+        @non_ill_md.each do |md|
+            img_mem += "(#{md.depiction_type}) #{md.short_description} <br/>"
+        end
+
+        img_mem << %[
+                </div>
+            </div>
+            ]
+    end
+
+    unless (@ill_md.empty?)
+        img_mem << %[
+            <div class="widgetField">
+                <span class="field_title expanded">Immagini di memoria illustrate</span>
+                <div class="field_content expanded">
+        ]
+
+        @ill_md.each do |md|
+            img_mem += "#{md.short_description} <br/>"
+        end 
+        img_mem << %[
+                </div>
+            </div>            
+        ]
+    end
+%>
+
+<%=
+    boxview_widget 'Immagini di memoria', 'immagini_memoria' do |w|
+        w.content content_tag(:div, img_mem)
+    end
+%>
