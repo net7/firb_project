@@ -106,7 +106,7 @@
         var new_b64;
         if (navigator.appName.indexOf("Microsoft") != -1) new_b64 = $("#"+id).attr('b64');
         else new_b64 = $('#'+id+" embed").attr('b64');
-        getFlashObject(id).initialize(new_b64, 1);
+        getFlashObject(id).initialize(new_b64, 2);
       } // jsapi_initializeIMW()
 
       function jsapi_mouseOver(fid, ki) {	
