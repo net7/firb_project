@@ -11,34 +11,18 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
     @content = ''
     @notes = []
     @fenomeni = []
+    imts = {}
+    zones = []
 
     v = Nokogiri::HTML.parse(@raw_content)
     
     # Replace a tagged <img> with an IMT container initalized with the 
     # given zones
     v.xpath(".//img[@class='source_img'][contains(@about, '/zones/')]").each do |d|
-      @z = ImageZone.find(d['about'], :prefetch_relations => true)
-      @image = @z.get_image_parent
+      z = ImageZone.find(d['about'], :prefetch_relations => true)
       
-      imt = "<div><a title='Mostra immagine' class='transcription_image_icon'>SHOW IMAGE</a>"
-      imt += "<span class='transcription_img_wrapper hidden'>"
-      imt += render_to_string :partial => '/boxview/shared/imageviewer', 
-               :locals => {:id => rand(Time.now.to_i), 
-                           :base64 => @image.zones_xml(@image.uri, [@z.uri.to_s]),
-                           :js_prefix => 'jsapi'}
-      imt += '<a title="Apri in un bel box" class="transcription_open_icon">APRI IN BOX</a>'
-      imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
-      imt += "</span></div>"
-
-      d.replace(Nokogiri::HTML.parse(imt).xpath(".//div")[0])
-      
-      # Find and remove the consolidated annotation with this image zone
-      v.xpath(".//div[@class='consolidatedAnnotation'][contains(@about, '#{d['about']}')]").each do |ca|
-        sub_lab = ca.xpath(".//div[@class='subject']/span[@class='label']")[0].text
-        if (sub_lab.include? '[image: illustration.jpg]')
-          ca.remove
-        end
-      end
+      imts[z.uri.to_s] = {'zones' => [z], 'node' => d}
+      zones.push(z)
       
     end
     
@@ -68,9 +52,11 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
 
       # Has image zone
       if (pred == "http://purl.oclc.org/firb/swn_ontology#hasImageZone")
-        # TODO: all of this image zones should get added to the imt
-        # initialization of the parent image, if it's present in the
-        # page ..
+        z_uri = d.xpath(".//div[@class='object']")[0]['about']
+        
+        z = ImageZone.find(z_uri, :prefetch_relations => true)
+        zones.push(z)
+        d.remove
       end
 
       # Has memory depiction (both illustrated and non illustrated)
@@ -90,8 +76,37 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
         end
           
       end
-      #d.remove
+      d.remove
     end
+
+    imts.each do |bounding_zone, values| 
+      
+      z = ImageZone.find(bounding_zone, :prefetch_relations => true)
+      image = z.get_image_parent
+      
+      imt = "<div><a title='Mostra immagine' class='transcription_image_icon'>SHOW IMAGE</a>"
+      imt += "<span class='transcription_img_wrapper hidden'>"
+      imt += render_to_string :partial => '/boxview/shared/imageviewer', 
+               :locals => {:id => rand(Time.now.to_i), 
+                           :base64 => image.anastatica_zones_xml(image.uri, [z].concat(zones)),
+                           :js_prefix => 'jsapi'}
+      imt += '<a title="Apri in un bel box" class="transcription_open_icon">APRI IN BOX</a>'
+      imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
+      imt += "</span></div>"
+
+      values['node'].replace(Nokogiri::HTML.parse(imt).xpath(".//div")[0])
+      
+      # Find and remove the consolidated annotation with this image zone
+      about = values['node']['about']
+      v.xpath(".//div[@class='consolidatedAnnotation'][contains(@about, '#{about}')]").each do |ca|
+        sub_lab = ca.xpath(".//div[@class='subject']/span[@class='label']")[0].text
+        if (sub_lab.include? '[image: illustration.jpg]')
+          ca.remove
+        end
+      end
+      
+    end
+
 
     # Sort fenomeni by type, name
     @fenomeni.sort! { |a,b| 
