@@ -1,6 +1,7 @@
 <% anastatica_title = "#{@resource.anastatica.title}, #{@resource.anastatica.page_position}" %>
 
-<%= boxview_widget 'Illustrazione', 'image' do |w|
+<% #=  boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w| %>
+<% boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
   content = render :partial => '/boxview/shared/imageviewer', 
            :locals => {:id => rand(Time.now.to_i), 
                        :base64 => image_xml(@image),
@@ -25,4 +26,33 @@
   w.right_icons right_icons
 
   w.content content_tag(:div, content, :class => 'picture')
+end %>
+
+<%= boxview_widget 'Scheda', :class => "TextWidget widget_draggable" do |w|
+  w.content boxview_widget_field('Codice', @resource.code)
+  w.content boxview_widget_field('Collocazione', @resource.collocation)
+  w.content boxview_widget_field('Tecnica e misure', "#{@resource.tecnique} - #{@resource.measure}")
+  w.content boxview_widget_field('Posizione', @resource.position)
+  w.content boxview_widget_field('Note descrittive', @resource.descriptive_notes)
+end %>
+
+<%= boxview_widget 'Studio', :class => "TextWidget widget_draggable" do |w|
+  w.content boxview_widget_field('Descrizione', @resource.description)
+
+  sources = content_tag :ul, (@resource.textual_source.map do |source|
+    %[<li><a id="textual_source_boxview" href="#">#{source.title}</a></li>]
+  end.join(''))
+  w.content boxview_widget_field('Fonti testuali', sources)
+
+  unless @children.size.zero?
+    children = content_tag :ul, (@children.map do |child|
+      %[<li><a id="illustration_boxview" href="#">#{child.short_description}</a></li>]
+    end.join(''))
+    w.content boxview_widget_field('Immagini di memoria', children)
+
+    w.content boxview_widget_field('Componenti immagini di memoria', 'TODO')
+  end
+
+
+  w.content boxview_widget_field('Note di studio', @resource.study_notes)
 end %>
