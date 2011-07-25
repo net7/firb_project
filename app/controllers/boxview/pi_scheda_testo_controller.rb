@@ -83,12 +83,17 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       
       z = ImageZone.find(bounding_zone, :prefetch_relations => true)
       image = z.get_image_parent
+      if (image.original_image.static_path.nil?)
+        image_url = url_for :controller => '/source_data', :action => 'show', :id => image.id, :only_path => false
+      else
+        image_url = image.original_image.static_path
+      end
       
       imt = "<div><a title='Mostra immagine' class='transcription_image_icon'>SHOW IMAGE</a>"
       imt += "<span class='transcription_img_wrapper hidden'>"
       imt += render_to_string :partial => '/boxview/shared/imageviewer', 
                :locals => {:id => rand(Time.now.to_i), 
-                           :base64 => anastatica_image_xml(image, [z].concat(zones)),
+                           :base64 => image.anastatica_zones_xml(image_url, [z].concat(zones)),
                            :js_prefix => 'jsapi'}
       imt += '<a title="Apri in un bel box" class="transcription_open_icon">APRI IN BOX</a>'
       imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
