@@ -13,8 +13,7 @@
             </div>
             <script type="text/javascript">
                 // Add the link after the last span of this class 
-                // DEBUG: make this using the 
-                $('.#{n[:class]}:last').after('<span class="note_link" id="note_link_#{n[:class]}">[#{num}] <a class="transcription_open_icon"></a></span>');
+                $('.#{n[:class]}:last').after('<span class="note_link" id="note_link_#{n[:class]}"><a class="transcription_open_icon"></a></span>');
 
                 // Click on a note in the notes colum highlights the linked note
                 $('#note_#{n[:class]}').click(function(){
@@ -37,12 +36,15 @@
                     b.find('.highlighted').removeClass('highlighted');
                     b.find('.#{n[:class]}').addClass('highlighted');
                     
-                }).mouseover(function() {
+                });
+                /*
+                .mouseover(function() {
                     $(this).parents('div.box').find('.#{n[:class]}').addClass('highlighted');
                 }).mouseout(function() {
                     if ($('#note_#{n[:class]}').hasClass('closed'))
                         $(this).parents('div.box').find('.#{n[:class]}').removeClass('highlighted');
                 });
+                */
                 
             </script>
             ]
@@ -72,7 +74,7 @@
             #{@content}
         </div>
         <div class="transcription_notes">
-            <a class="transcription_close_icon">CHIUDI</a>
+            <a class="transcription_close_icon" id="close_notes_#{@resource.id}">CHIUDI</a>
             <div class="transcription_notes_content">
                 #{notes}
             </div>
@@ -130,11 +132,13 @@
             // Expands an image
             $('.transcription_image_icon').live('click', function() {
                 $(this).next().removeClass('hidden');
+                $(this).addClass('hidden');
                 reposition_notes($(this).parents('div.box').attr('id'));
             });
             // Collapses an image
             $('.transcription_close_icon').live('click', function() {
                 $(this).parent().addClass('hidden');
+                $(this).parent().prev().removeClass('hidden');
                 reposition_notes($(this).parents('div.box').attr('id'));
             });
             
@@ -150,7 +154,7 @@
         mostra_fenomeni = content_tag(:a, 'Fenomeni', :href => "#", :id => "mostra_fenomeni_#{@resource.id}", :title => 'Mostra i fenomeni')
         mostra_fenomeni << %[
             <script type="text/javascript">
-            $("#mostra_note_trascrizione_#{@resource.id}").click(function(e) {
+            $("#mostra_note_trascrizione_#{@resource.id}, #close_notes_#{@resource.id}").click(function(e) {
                 e.preventDefault();
                 var w = $(this).parents('div.widget'), 
                     wc = w.find('div.widgetContent'),

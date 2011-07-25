@@ -106,7 +106,8 @@ Box Trascrizione > Widget Trascrizione > Note
     cursor: pointer;
 }
 
-.transcription_text .transcription_img_wrapper.hidden {
+.transcription_text .transcription_img_wrapper.hidden,
+.transcription_text .transcription_image_icon.hidden {
     display:none;
 }
 
