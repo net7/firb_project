@@ -24,6 +24,14 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       imts[z.uri.to_s] = {'zones' => [z], 'node' => d}
       zones.push(z)
       
+      # Find and remove the consolidated annotation with this image zone
+      v.xpath(".//div[@class='consolidatedAnnotation'][contains(@about, '#{d['about']}')]").each do |ca|
+        sub_lab = ca.xpath(".//div[@class='subject']/span[@class='label']")[0].text
+        if (sub_lab.include? '[image: illustration.jpg]')
+          ca.remove
+        end
+      end
+      
     end
     
     # Handle consolidated annotations
@@ -55,6 +63,11 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
         z_uri = d.xpath(".//div[@class='object']")[0]['about']
         
         z = ImageZone.find(z_uri, :prefetch_relations => true)
+        fen_class = Digest::MD5.hexdigest(pred)
+        z_name = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
+        @fenomeni.push({:name => z_name, :fen_class => fen_class, :item_type => "Zone di immagine", :class => ca_class})
+        v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
+        
         zones.push(z)
         d.remove
       end
@@ -101,14 +114,6 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
 
       values['node'].replace(Nokogiri::HTML.parse(imt).xpath(".//div")[0])
       
-      # Find and remove the consolidated annotation with this image zone
-      about = values['node']['about']
-      v.xpath(".//div[@class='consolidatedAnnotation'][contains(@about, '#{about}')]").each do |ca|
-        sub_lab = ca.xpath(".//div[@class='subject']/span[@class='label']")[0].text
-        if (sub_lab.include? '[image: illustration.jpg]')
-          ca.remove
-        end
-      end
       
     end
 
