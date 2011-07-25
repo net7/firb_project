@@ -56,8 +56,9 @@ class Anastatica < TaliaCore::Source
   end
 
   def showable_zones
-    showable_parts.values.flatten.map do |z|
+    zones = showable_parts.values.flatten.map do |z|
       z.respond_to?(:image_zones) ? z.image_zones.to_a : z.image_zone
     end.flatten
+    return [self.image_zone, zones].flatten
   end
 end

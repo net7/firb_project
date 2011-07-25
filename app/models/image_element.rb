@@ -144,16 +144,25 @@ class ImageElement < TaliaCore::Source
 
   # BY RIK
   # Modified version of zones_xml for anastatica images.
+  # it expects zones to be an array containing two elements:
+  #  - the anastatica zone (the outer box)
+  #  - an array with the list of zones to be shown
   def anastatica_zones_xml(image_url, zones)
+
+    # the first argument is the outer zone, used for zooming
+    outer_zone = zones.delete(zones.first)
+
     xml = Builder::XmlMarkup.new(:indent => 2)
     xml.dctl_ext_init{
       xml.img{
         xml.a(:r => self.id.to_s, :s => self.uri.to_s, :l => self.name, :u => image_url)
       }
       xml.xml{
-        zones.each do |z|
-          xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{self.uri}@#{z.coordinates}")
-        end
+        xml.a(:r => outer_zone.id.to_s, :s => outer_zone.uri.to_s, :l =>outer_zone.name, :t =>"#{self.uri}@#{outer_zone.coordinates}"){
+          zones.each do |z|
+            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{self.uri}@#{z.coordinates}")
+          end
+        }
       }
       xml.cb(:u => nil, :p => "base64xml")
     }
