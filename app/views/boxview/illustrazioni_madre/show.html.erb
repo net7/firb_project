@@ -1,9 +1,9 @@
+<% imt_id = "imt_illustrazione_madre_#{@resource.id}" %>
 <% anastatica_title = "#{@resource.anastatica.title}, #{@resource.anastatica.page_position}" %>
 
-<% #=  boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w| %>
-<% boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
+<%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
   content = render :partial => '/boxview/shared/imageviewer', 
-           :locals => {:id => rand(Time.now.to_i), 
+           :locals => {:id => imt_id, 
                        :base64 => image_xml(@image),
                        :js_prefix => 'jsapi'}
 
@@ -44,15 +44,23 @@ end %>
   end.join(''))
   w.content boxview_widget_field('Fonti testuali', sources)
 
-  unless @children.size.zero?
-    children = content_tag :ul, (@children.map do |child|
+  unless @resource.children.size.zero?
+    # TODO: order by appearence in text.
+    # SEE: ticket #216.
+    children = content_tag :ul, (@resource.children.map do |child|
       %[<li><a id="illustration_boxview" href="#">#{child.short_description}</a></li>]
     end.join(''))
     w.content boxview_widget_field('Immagini di memoria', children)
 
-    w.content boxview_widget_field('Componenti immagini di memoria', 'TODO')
-  end
+    contents = []
+    @resource.children_components_by_type.each do |type, components|
+      components.each do |component|
+        contents << boxview_imt_highlight(imt_id, "#{component.name} (#{type.to_s})", component.image_zone.id)
+      end
+    end
 
+    w.content boxview_widget_field('Componenti immagini di memoria', contents.join(', ')) unless contents.size.zero?
+  end
 
   w.content boxview_widget_field('Note di studio', @resource.study_notes)
 end %>

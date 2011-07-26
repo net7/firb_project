@@ -54,6 +54,15 @@ module BoxviewHelper
     render :partial => '/boxview/shared/imageviewer', :locals => {:builder => builder}
   end
 
+  def boxview_imt_highlight(id, text, zone)
+    content_tag :span, text, {
+      :onmouseover => "getFlashObject('#{id}').setPolygonHighlighted(true, '#{zone}');",
+      :onmouseout  => "getFlashObject('#{id}').setPolygonHighlighted(false, '#{zone}');",
+      :id          => "image_zone_#{zone}",
+      :class       => "single-zone"
+    }
+  end
+
   class WidgetBuilder
     include ActionView::Helpers::TagHelper
 
