@@ -20,7 +20,7 @@
             // If something goes wrong (deployed in some /folder/? .origin 
             // compatibility?? IE?) just write down the right
             // URLs to get to talia
-            var or = document.location.origin;
+            var or = document.location.protocol + "//" + document.location.host;
             co = new $.consolidator({
                 baseURLAnnotatedFragments: or+"/swicky_notebooks/context/annotated_fragments",
         		baseURLAnnotations: or+"/swicky_notebooks/context/annotations",
