@@ -20,7 +20,7 @@ params[:js_prefix] ||= 'jsapi_'
 params[:id]        ||= rand(Time.now.to_i)
 %>
 
-<div class="imt-viewer">
+<div class="imt-viewer resizeme">
   <object class="IMTViewer" 
           classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
           id="<%= params[:id] %>" 
