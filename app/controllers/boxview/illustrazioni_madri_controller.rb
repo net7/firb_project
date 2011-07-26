@@ -1,4 +1,4 @@
-class Boxview::IllustrazioniMadreController < Boxview::BaseController
+class Boxview::IllustrazioniMadriController < Boxview::BaseController
   def show
     @resource = PiIllustrationCard.find_by_id params[:id]
     @zone     = @resource.image_zone

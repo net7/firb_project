@@ -8,6 +8,32 @@ module BoxviewHelper
     image.anastatica_zones_xml(original_image_url(image), zones)
   end
 
+  ##
+  # Parameters:
+  #  url   - Url for the link
+  #  text  - Text for the link
+  #  title - Title for the new box
+  #  id    - Resource id (used by boxview somehow)
+  #  type  - Box type (used in styles)
+  #  options - not used yet
+  # Possible types:
+  #   firb-memorie:
+  #      box.index
+  #      anastatic
+  #      image
+  #      notebooks
+  #      transcription
+  #      history
+  #
+  def boxview_link(url, text, title, id, type, options={})
+    url_separator = url.include?('?') ? '&' : '?'
+    %[<a class="boxview_link"
+         href="#{url}#{url_separator}title=#{title}"
+         data-title="#{title}"
+         data-id="#{id}"
+         data-type="#{type.to_s}">#{text}</a>]
+  end
+
   # Options:
   #   * "class" html class for widget container
   def boxview_widget(title, options={}, &block)
