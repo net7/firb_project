@@ -148,7 +148,7 @@
 %>
 
 <%= 
-    boxview_widget 'Trascrizione', 'transcription' do |w|
+    boxview_widget 'Trascrizione', {:class => 'transcription widget_draggable'} do |w|
 
         mostra_note = content_tag(:a, 'Note', :class => "note", :href => "#", :id => "mostra_note_trascrizione_#{@resource.id}", :title => 'Mostra le note')
         mostra_fenomeni = content_tag(:a, 'Fenomeni', :href => "#", :id => "mostra_fenomeni_#{@resource.id}", :title => 'Mostra i fenomeni')
@@ -191,7 +191,7 @@
 %>
 
 <%=
-    boxview_widget 'Parafrasi', 'parafrasi' do |w| 
+    boxview_widget 'Parafrasi', {:class => 'parafrasi widget_draggable'} do |w| 
         w.content content_tag(:div, @resource.parafrasi)
     end
 %>
@@ -213,7 +213,7 @@
 %>
 
 <%= 
-    boxview_widget 'Note', 'notes' do |w| 
+    boxview_widget 'Note', {:class => 'notes widget_draggable'} do |w| 
         w.content content_tag(:div, notes_w)
     end
 %>
@@ -255,7 +255,7 @@
 %>
 
 <%=
-    boxview_widget 'Immagini di memoria', 'immagini_memoria' do |w|
+    boxview_widget 'Immagini di memoria', {:class => 'immagini_memoria widget_draggable'} do |w|
         w.content content_tag(:div, img_mem)
     end
 %>
