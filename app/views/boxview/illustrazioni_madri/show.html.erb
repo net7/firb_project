@@ -27,12 +27,11 @@ end %>
 <%= boxview_widget 'Studio', :class => "TextWidget widget_draggable" do |w|
   w.content boxview_widget_field('Descrizione', @resource.description)
 
-  sources = content_tag :ul, (@resource.textual_source.map do |source|
-    %[<li>
-        <a class="boxview_link" href="#">#{source.title}</a>
-      </li>
-     ]
-  end.join(''))
+  unless @resource.textual_source.size.zero?
+    sources = content_tag :ul, (@resource.textual_source.map do |source|
+      content_tag :li, boxview_link(boxview_pi_scheda_testo_url(source.id), source.title, source.title, source.id, :transcription)
+    end.join(''))
+  end
   w.content boxview_widget_field('Fonti testuali', sources)
 
   unless @resource.children.size.zero?
@@ -53,5 +52,17 @@ end %>
     w.content boxview_widget_field('Componenti immagini di memoria', contents.join(', ')) unless contents.size.zero?
   end
 
+  iconclasses = @resource.iconclasses.map! do |iconclass|
+    %[<a href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
+  end
+
+  w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
+
   w.content boxview_widget_field('Note di studio', @resource.study_notes)
+end %>
+
+<%= boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
+  w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
+      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    end.join('')))
 end %>

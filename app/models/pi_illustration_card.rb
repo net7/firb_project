@@ -35,4 +35,20 @@ class PiIllustrationCard < IllustrationCard
     end
     @children_components_by_type
   end
+
+  def iconclasses(sort=true, all=true)
+    iconclasses = self.iconclass_terms.map {|iconclass| iconclass}
+
+    self.children.each do |child|
+      child.iconclass_terms.each do |iconclass|
+        iconclasses << iconclass
+      end
+    end if all
+
+    iconclasses.sort! do |iconclass1, iconclass2|
+      iconclass1.label <=> iconclass2.label
+    end if sort
+
+    iconclasses
+  end
 end
