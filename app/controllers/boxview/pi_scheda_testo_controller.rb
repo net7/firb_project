@@ -108,7 +108,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
                :locals => {:id => "imt_image_#{z.id}", 
                            :base64 => image.anastatica_zones_xml(image_url, [z].concat(zones)),
                            :js_prefix => "t_img_#{z.id}",
-                           :init => 'jsapi_initializeIMW(id)'
+                           :init => 'jsapi_initializeIMW(id)',
                            :over => '$("."+ki).addClass("zone_highlighted")',
                            :out => '$("."+ki).removeClass("zone_highlighted")'
                 }
