@@ -23,13 +23,15 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       z = ImageZone.find(d['about'], :prefetch_relations => true)
       
       imts[z.uri.to_s] = {'zones' => [z], 'node' => d}
-      zones.push(z)
       
-      # Find and remove the consolidated annotation with this image zone
+      # Find and remove the consolidated annotation with this image zone.. otherwise
+      # it's not a tagged <img>, hence it's a zone tagged in the text
       v.xpath(".//div[@class='consolidatedAnnotation'][contains(@about, '#{d['about']}')]").each do |ca|
         sub_lab = ca.xpath(".//div[@class='subject']/span[@class='label']")[0].text
         if (sub_lab.include? '[image: illustration.jpg]')
           ca.remove
+        else
+          zones.push(z)
         end
       end
       
