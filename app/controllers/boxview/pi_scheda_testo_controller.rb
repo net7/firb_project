@@ -13,6 +13,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
     @fenomeni = []
     imts = {}
     zones = []
+    zid_annclass = []
 
     v = Nokogiri::HTML.parse(@raw_content)
     
@@ -68,6 +69,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
         @fenomeni.push({:name => z_name, :fen_class => fen_class, :item_type => "Zone di immagine", :class => ca_class})
         v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
         
+        zid_annclass.push({:zid =>"#{z.id}", :class => ca_class})
         zones.push(z)
         d.remove
       end
@@ -94,6 +96,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
 
     imts.each do |bounding_zone, values| 
       
+      # The image real URL is in its .static_path, if there's one
       z = ImageZone.find(bounding_zone, :prefetch_relations => true)
       image = z.get_image_parent
       if (image.original_image.static_path.nil?)
@@ -101,6 +104,12 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       else
         image_url = image.original_image.static_path
       end
+
+      # Map zone image ids to consolidated annotation classes (IMT use the id, the 
+      # annotated text uses the ca_classes): use a global array using this
+      # zone's id as name
+      zid_map = "zidc_#{z.id} = []; "
+      zid_annclass.each{ |foo| zid_map += "zidc_#{z.id}[#{foo[:zid]}] = '#{foo[:class]}';" }
       
       imt = "<div><a title='Mostra immagine' class='transcription_image_icon'>SHOW IMAGE</a>"
       imt += "<span class='transcription_img_wrapper hidden'>"
@@ -108,9 +117,9 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
                :locals => {:id => "imt_image_#{z.id}", 
                            :base64 => image.anastatica_zones_xml(image_url, [z].concat(zones)),
                            :js_prefix => "t_img_#{z.id}",
-                           :init => 'jsapi_initializeIMW(id)',
-                           :over => '$("."+ki).addClass("zone_highlighted")',
-                           :out => '$("."+ki).removeClass("zone_highlighted")'
+                           :init => "jsapi_initializeIMW(id); #{zid_map}",
+                           :over => "$('.'+zidc_#{z.id}[ki]).addClass('zone_highlighted')",
+                           :out => "$('.'+zidc_#{z.id}[ki]).removeClass('zone_highlighted')"
                 }
       imt += '<a title="Apri in un bel box" class="transcription_open_icon">APRI IN BOX</a>'
       imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
