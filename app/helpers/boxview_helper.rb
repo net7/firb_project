@@ -8,6 +8,20 @@ module BoxviewHelper
     image.anastatica_zones_xml(original_image_url(image), zones)
   end
 
+  def boxview_link_code
+    %[$(".boxview_link").live('click', function(e) {
+          e.preventDefault();
+          myBoxView.addBoxFromAjax(
+            {qstring: $(this).attr('href'),
+             title: $(this).data("title"), 
+             verticalTitle: $(this).data("title"),
+             resId: $(this).data("id"),
+             type: $(this).data("type"),
+             collapsed: false}
+          );
+        });]
+  end
+
   ##
   # Parameters:
   #  url   - Url for the link

@@ -47,17 +47,7 @@
           $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
         });
 
-        $(".boxview_link").live('click', function(e) {
-          e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: $(this).attr('href'),
-             title: $(this).data("title"), 
-             verticalTitle: $(this).data("title"),
-             resId: $(this).data("id"),
-             type: $(this).data("type"),
-             collapsed: false}
-          );
-        });
+        <%= boxview_link_code %>
 
         $("#illustrazione1").click(function(e){
           e.preventDefault();
