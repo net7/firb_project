@@ -97,7 +97,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       z = ImageZone.find(bounding_zone, :prefetch_relations => true)
       image = z.get_image_parent
       if (image.original_image.static_path.nil?)
-        image_url = url_for :controller => '/source_data', :action => 'show', :id => image.id, :only_path => false
+        image_url = url_for :controller => '/source_data', :action => 'show', :id => image.original_image.id, :only_path => false
       else
         image_url = image.original_image.static_path
       end
