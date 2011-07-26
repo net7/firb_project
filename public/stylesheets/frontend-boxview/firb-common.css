@@ -89,6 +89,10 @@ Box Trascrizione > Widget Trascrizione > Note
 .transcription_text .highlighted {
 	background-color: rgba(255, 175, 0, 0.75);
 }
+.transcription_text .zone_highlighted,
+.transcription_text .highlighted.zone_highlighted {
+	background-color: rgba(255, 0, 0, 0.75);
+}
 /* Una span.line rappresenta una linea della trascrizione.. deve mandare a capo */
 .transcription_text span.line {
 	display: block;

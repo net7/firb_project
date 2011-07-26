@@ -222,35 +222,19 @@
 <%
     img_mem = ''
     unless (@non_ill_md.empty?)
-        img_mem << %[
-            <div class="widgetField">
-                <span class="field_title expanded">Immagini di memoria non illustrate</span>
-                <div class="field_content expanded">
-            ]
+        foo = ''
         @non_ill_md.each do |md|
-            img_mem += "(#{md.depiction_type}) #{md.short_description} <br/>"
+            foo += "(#{md.depiction_type}) #{md.short_description} <br/>"
         end
-
-        img_mem << %[
-                </div>
-            </div>
-            ]
+        img_mem << boxview_widget_field('Immagini di memoria illustrate', foo)
     end
 
     unless (@ill_md.empty?)
-        img_mem << %[
-            <div class="widgetField">
-                <span class="field_title expanded">Immagini di memoria illustrate</span>
-                <div class="field_content expanded">
-        ]
-
+        foo = ''
         @ill_md.each do |md|
-            img_mem += "#{md.short_description} <br/>"
+            foo += "#{md.short_description} <br/>"
         end 
-        img_mem << %[
-                </div>
-            </div>            
-        ]
+        img_mem << boxview_widget_field('Immagini di memoria illustrate', foo)
     end
 %>
 

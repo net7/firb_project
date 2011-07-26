@@ -105,18 +105,19 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       imt = "<div><a title='Mostra immagine' class='transcription_image_icon'>SHOW IMAGE</a>"
       imt += "<span class='transcription_img_wrapper hidden'>"
       imt += render_to_string :partial => '/boxview/shared/imageviewer', 
-               :locals => {:id => rand(Time.now.to_i), 
+               :locals => {:id => "imt_image_#{z.id}", 
                            :base64 => image.anastatica_zones_xml(image_url, [z].concat(zones)),
-                           :js_prefix => 'jsapi'}
+                           :js_prefix => "t_img_#{z.id}",
+                           :init => 'jsapi_initializeIMW(id)'
+                           :over => '$("."+ki).addClass("zone_highlighted")',
+                           :out => '$("."+ki).removeClass("zone_highlighted")'
+                }
       imt += '<a title="Apri in un bel box" class="transcription_open_icon">APRI IN BOX</a>'
       imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
       imt += "</span></div>"
 
       values['node'].replace(Nokogiri::HTML.parse(imt).xpath(".//div")[0])
-      
-      
     end
-
 
     # Sort fenomeni by type, name
     @fenomeni.sort! { |a,b| 
@@ -129,6 +130,8 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
     
     # The resulting modified HTML is the final content to display
     @content << v.to_s
+    
+    # Illustrated and non-illustrated memory depictions
     @non_ill_md = @resource.non_illustrated_memory_depictions
     @ill_md = PiIllustratedMdCard.find(:all, :find_through => [N::TALIA.attachedText, @resource.uri])
     
