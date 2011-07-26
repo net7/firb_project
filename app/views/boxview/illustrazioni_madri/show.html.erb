@@ -41,7 +41,8 @@ end %>
     # TODO: order by appearence in text.
     # SEE: ticket #216.
     children = content_tag :ul, (@resource.children.map do |child|
-      content_tag :li, boxview_link(boxview_illustrazione_figlia_url(child.id), (child.short_description || child.name), child.name, child.id, :image)
+      title = child.short_description || child.name
+      content_tag :li, boxview_link(boxview_illustrazione_figlia_url(child.id), title, title, child.id, :image)
     end.join(''))
     w.content boxview_widget_field('Immagini di memoria', children)
 
