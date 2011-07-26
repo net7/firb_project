@@ -9,11 +9,13 @@ module BoxviewHelper
   end
 
   # Options:
-  #   * draggable
-  def boxview_widget(title, type=nil, options={}, &block)
+  #   * "class" html class for widget container
+  def boxview_widget(title, options={}, &block)
     yield builder = WidgetBuilder.new
+    klass = "widget"
+    klass << " #{options[:class]}" if options[:class]
 
-    content_tag :div, :class => "widget widget_draggable" do
+    content_tag :div, :class => klass do
 
       widget = content_tag(:div, :class => "widgetHeader toBeResized") do
 
@@ -39,6 +41,12 @@ module BoxviewHelper
       end
       widget << builder.render_contents
     end
+  end
+
+  def boxview_widget_field(name, value, html_class='')
+    title   = content_tag :span, name, :class => "field_title expanded"
+    content = content_tag :div, value, :class => "field_content expanded", :style => "display: block;"
+    content_tag :div, title + content, :class => "widgetField #{html_class}"
   end
 
   def boxview_imt_viewer(id, &block)
