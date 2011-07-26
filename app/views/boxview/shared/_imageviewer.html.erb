@@ -16,7 +16,7 @@
 params = Hash[[:id, :base64, :js_prefix, :init, :click, :over, :out].map do |param|
    [param, defined?(builder) ? builder.send(param) : local_assigns[param]]
 end]
-params[:js_prefix] ||= params[:id] || 'jsapi'
+params[:js_prefix] ||= 'jsapi'
 params[:id]        ||= rand(Time.now.to_i)
 %>
 
