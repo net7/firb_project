@@ -1,6 +1,5 @@
 <% imt_id = "imt_illustrazione_madre_#{@resource.id}" %>
 <% anastatica_title = "#{@resource.anastatica.title}, #{@resource.anastatica.page_position}" %>
-
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
   content = render :partial => '/boxview/shared/imageviewer', 
            :locals => {:id => imt_id, 
@@ -49,7 +48,7 @@ end %>
     contents = []
     @resource.children_components_by_type.each do |type, components|
       components.each do |component|
-        contents << boxview_imt_highlight(imt_id, "#{component.name} (#{type.to_s})", component.image_zone.id)
+        contents << imt_highlight(imt_id, "#{component.name} (#{type.to_s})", component.image_zone.id)
       end
     end
 
