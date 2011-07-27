@@ -124,8 +124,8 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
         zid_annclass.each do |foo| 
           zid_map += "zidc_#{z.id}[#{foo[:zid]}] = '#{foo[:class]}';"
           zid_map << %[
-            $('.transcription_text .highlighted.#{foo[:class]}').
-                mouseover(function(){ getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}'); }).
+            $('.transcription_text .#{foo[:class]}').
+                mouseover(function(){ if ($(this).hasClass('highlighted')) getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}'); }).
                 mouseout(function(){ getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(false, '#{foo[:zid]}'); });
             ]
         end
