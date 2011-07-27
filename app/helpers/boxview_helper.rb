@@ -12,7 +12,7 @@ module BoxviewHelper
     %[$(".boxview_link").live('click', function(e) {
           e.preventDefault();
           myBoxView.addBoxFromAjax(
-            {qstring: $(this).attr('href'),
+            {qstring: $(this).data('url'),
              title: $(this).data("title"), 
              verticalTitle: $(this).data("title"),
              resId: $(this).data("id"),
@@ -42,7 +42,8 @@ module BoxviewHelper
   def boxview_link(url, text, title, id, type, options={})
     url_separator = url.include?('?') ? '&' : '?'
     %[<a class="boxview_link #{options[:class]}"
-         href="#{url}#{url_separator}title=#{title}"
+         href="VISUALIZZATORE_SINGOLI_BOX?title=#{title}&type=#{type.to_s}&id=#{id}&url=#{URI.encode(url)}"
+         data-url="#{url}"
          data-title="#{title}"
          data-id="#{id}"
          data-type="#{type.to_s}">#{text}</a>]
