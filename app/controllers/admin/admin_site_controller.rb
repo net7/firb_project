@@ -55,6 +55,8 @@ class Admin::AdminSiteController < ApplicationController
     options.to_options!
     self.current_thing = find_instance(options[:find_options] || {})
     current_thing.updatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
+
+    #TODO: rewrite_attributes doesn't delete values when passing an empty array for multi_properties...
     if(current_thing.rewrite_attributes(options[:params] || attribute_parameters))
       flash[:notice] = I18n.t("#{my_name.pluralize}.messages.update_success")
       yield_or_redirect(&block)
