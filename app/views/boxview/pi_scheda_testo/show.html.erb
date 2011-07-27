@@ -130,13 +130,13 @@
             });
             
             // Expands an image
-            $('.transcription_image_icon').live('click', function() {
+            $('.transcription_image_icon, .transcription_letter_icon').live('click', function() {
                 $(this).next().removeClass('hidden');
                 $(this).addClass('hidden');
                 reposition_notes($(this).parents('div.box').attr('id'));
             });
             // Collapses an image
-            $('.transcription_close_icon').live('click', function() {
+            $('.transcription_close_icon, .transcription_letter_icon').live('click', function() {
                 $(this).parent().addClass('hidden');
                 $(this).parent().prev().removeClass('hidden');
                 reposition_notes($(this).parents('div.box').attr('id'));
