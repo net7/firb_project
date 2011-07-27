@@ -32,6 +32,7 @@
       </div>
       <div id="pageContent">
         <a id="illustrazione1" href="#">Illustrazione f.8v</a> | 
+        <a id="illustrazione2" href="#">Illustrazione trentotto_verso_i</a> | 
         <a id="anastatica1" href="#">Anastatica otto_verso, f.8v</a>
         <a id="schedatesto1" href="#">Scheda testo PI</a>
         <a id="schedatesto2" href="#">PI ZION LIVE</a>
@@ -56,6 +57,18 @@
              title: 'f. 8v', 
              verticalTitle: 'f. 8v',
              resId: '1404',
+             type: 'image',
+             collapsed: false}
+          );
+        });
+
+        $("#illustrazione2").click(function(e){
+          e.preventDefault();
+          myBoxView.addBoxFromAjax(
+            {qstring: '<%= boxview_illustrazione_madre_url(2968) %>',
+             title: 'trentotto_verso_i', 
+             verticalTitle: 'trentotto_verso_i',
+             resId: '2968',
              type: 'image',
              collapsed: false}
           );

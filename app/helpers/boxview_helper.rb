@@ -84,6 +84,7 @@ module BoxviewHelper
   end
 
   def boxview_widget_field(name, value, html_class='')
+    return '' if value.blank?
     title   = content_tag :span, name, :class => "field_title expanded"
     content = content_tag :div, value, :class => "field_content expanded", :style => "display: block;"
     content_tag :div, title + content, :class => "widgetField #{html_class}"
