@@ -22,7 +22,8 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
     v.xpath(".//img[@class='source_img'][contains(@about, '/zones/')]").each do |d|
       z = ImageZone.find(d['about'], :prefetch_relations => true)
       
-      imts[z.uri.to_s] = {'zones' => [z], 'node' => d}
+      capo = PiLetterIllustrationCard.find(:all, :find_through => [N::DCT.isFormatOf, z.uri]).empty?
+      imts[z.uri.to_s] = {'zones' => [z], 'node' => d, 'capolettera' => capo}
       
       # Find and remove the consolidated annotation with this image zone.. otherwise
       # it's not a tagged <img>, hence it's a zone tagged in the text
@@ -107,6 +108,14 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
         image_url = image.original_image.static_path
       end
 
+      # If it's a capolettera, dont include any extra zone, otherwise include
+      # all of the consolidated image zones
+      if (values['capolettera'])
+        imt_zones = [z]
+      else
+        imt_zones = [z].concat(zones)
+      end
+
       # Map zone image ids to consolidated annotation classes (IMT use the id, the 
       # annotated text uses the ca_classes): use a global array using this
       # zone's id as name
@@ -117,7 +126,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       imt += "<span class='transcription_img_wrapper hidden'>"
       imt += render_to_string :partial => '/boxview/shared/imageviewer', 
                :locals => {:id => "imt_image_#{z.id}", 
-                           :base64 => image.anastatica_zones_xml(image_url, [z].concat(zones)),
+                           :base64 => image.anastatica_zones_xml(image_url, imt_zones),
                            :js_prefix => "t_img_#{z.id}",
                            :init => "jsapi_initializeIMW(id); #{zid_map}",
                            :over => "$('.'+zidc_#{z.id}[ki]).addClass('zone_highlighted')",
