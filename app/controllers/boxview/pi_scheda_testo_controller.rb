@@ -126,11 +126,15 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
           zid_map << %[
             $('.transcription_text .#{foo[:class]}').
                 mouseover(function(){ 
-                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) 
-                        getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}'); 
+                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) {
+                        getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}');
+                        $(this).addClass('zone_highlighted');
+                    }
                 }).mouseout(function(){ 
-                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) 
+                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) {
                         getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(false, '#{foo[:zid]}'); 
+                        $(this).removeClass('zone_highlighted');
+                    }
                 });
             ]
         end
@@ -146,7 +150,8 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
                            :over => "$('.'+zidc_#{z.id}[ki]).addClass('zone_highlighted')",
                            :out => "$('.'+zidc_#{z.id}[ki]).removeClass('zone_highlighted')"
                 }
-      imt += '<a title="Apri in un bel box" class="transcription_open_icon">APRI IN BOX</a>'
+
+      imt += '<a title="Apri la scheda in un nuovo box" data-type="image" data-id="2967" data-title="" class="boview_link transcription_open_icon">APRI IN BOX</a>'
       imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
       imt += "</span></div>"
 

@@ -111,6 +111,7 @@ Box Trascrizione > Widget Trascrizione > Note
 }
 
 .transcription_text .transcription_img_wrapper.hidden,
+.transcription_text .transcription_letter_icon.hidden,
 .transcription_text .transcription_image_icon.hidden {
     display:none;
 }

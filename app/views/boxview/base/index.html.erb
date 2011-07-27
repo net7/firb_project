@@ -36,6 +36,7 @@
         <a id="anastatica1" href="#">Anastatica otto_verso, f.8v</a>
         <a id="schedatesto1" href="#">Scheda testo PI</a>
         <a id="schedatesto2" href="#">PI ZION LIVE</a>
+        <a id="indice_indici" href="#">Indice degli indici</a>
       </div>
     </div>
     <script src="/_boxview/src/tools.js"></script>
@@ -102,14 +103,28 @@
           e.preventDefault();
           myBoxView.addBoxFromAjax(
             {qstring: '<%= boxview_pi_scheda_testo_url(2480) %>',
-             title: 'Pi LIVE 2480', 
-             verticalTitle: 'pi scheda testo',
-             resId: '2480',
-             type: 'transcription',
+            title: 'Pi LIVE 2480', 
+            verticalTitle: 'pi scheda testo',
+            resId: '2480',
+            type: 'transcription',
              collapsed: false}
           );
         });
-	      myBoxView.openHistoryBox();
+
+        $("#indice_indici").click(function(e){
+          e.preventDefault();
+          myBoxView.addBoxFromAjax(
+            {qstring: '<%= url_for(:controller => "boxview/indici") %>',
+             title: 'Indice: indici!!', 
+             verticalTitle: 'Indice: indici!!',
+             resId: 'indexes_index',
+             type: 'index',
+             collapsed: false}
+          );
+        });
+
+
+	    //myBoxView.openHistoryBox();
       }
 
       function getFlashObject(movieName) {

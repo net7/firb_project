@@ -13,7 +13,7 @@ module BoxviewHelper
     %[$(".boxview_link").live('click', function(e) {
           e.preventDefault();
           myBoxView.addBoxFromAjax(
-            {qstring: $(this).attr('href'),
+            {qstring: $(this).data('url'),
              title: $(this).data("title"), 
              verticalTitle: $(this).data("title"),
              resId: $(this).data("id"),
@@ -28,12 +28,12 @@ module BoxviewHelper
   #  url   - Url for the link
   #  text  - Text for the link
   #  title - Title for the new box
-  #  id    - Resource id (used by boxview somehow)
+  #  id    - Resource id (used by boxview to avoid opening the same box twice)
   #  type  - Box type (used in styles)
   #  options - not used yet
   # Possible types:
   #   firb-memorie:
-  #      box.index
+  #      index
   #      anastatic
   #      image
   #      notebooks
@@ -42,8 +42,9 @@ module BoxviewHelper
   #
   def boxview_link(url, text, title, id, type, options={})
     url_separator = url.include?('?') ? '&' : '?'
-    %[<a class="boxview_link"
-         href="#{url}#{url_separator}title=#{title}"
+    %[<a class="boxview_link #{options[:class]}"
+         href="VISUALIZZATORE_SINGOLI_BOX?title=#{title}&type=#{type.to_s}&id=#{id}&url=#{URI.encode(url)}"
+         data-url="#{url}"
          data-title="#{title}"
          data-id="#{id}"
          data-type="#{type.to_s}">#{text}</a>]
