@@ -4,6 +4,7 @@ module BoxviewHelper
   include ActionView::Helpers::TagHelper
 
   # SEE: BoxViewHelper#image_xml
+  # DEPRECATED: use imt_image_b64 from imt_helper.rb
   def anastatica_image_xml(image, zones=[])
     image.anastatica_zones_xml(original_image_url(image), zones)
   end

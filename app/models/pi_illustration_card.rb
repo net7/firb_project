@@ -2,7 +2,8 @@
 class PiIllustrationCard < IllustrationCard
 
   include StandardPermissions
-  extend Mixin::ShownInAnastatica
+  extend Mixin::Showable
+  showable_in Anastatica
   
   autofill_uri :force => true
   

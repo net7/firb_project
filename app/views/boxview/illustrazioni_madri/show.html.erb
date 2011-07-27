@@ -3,7 +3,8 @@
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
   content = render :partial => '/boxview/shared/imageviewer', 
            :locals => {:id => imt_id, 
-                       :base64 => image_xml(@image),
+                       :base64 => imt_image_b64(@image, @resource.showable_zones),
+                       # :base64 => image_xml(@image),
                        :js_prefix => 'jsapi'}
 
   w.right_icons boxview_link(boxview_anastatica_url(@resource.anastatica.id), 
