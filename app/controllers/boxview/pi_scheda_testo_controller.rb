@@ -125,8 +125,13 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
           zid_map += "zidc_#{z.id}[#{foo[:zid]}] = '#{foo[:class]}';"
           zid_map << %[
             $('.transcription_text .#{foo[:class]}').
-                mouseover(function(){ if ($(this).hasClass('highlighted')) getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}'); }).
-                mouseout(function(){ getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(false, '#{foo[:zid]}'); });
+                mouseover(function(){ 
+                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) 
+                        getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}'); 
+                }).mouseout(function(){ 
+                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) 
+                        getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(false, '#{foo[:zid]}'); 
+                });
             ]
         end
         imt += "<script>#{zid_map}</script>";
