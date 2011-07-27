@@ -64,6 +64,9 @@ ActionController::Routing::Routes.draw do |map|
   map.boxview_illustrazione_madre '/boxview/illustrazioni_madri/:id', :controller => 'boxview/illustrazioni_madri', :action => 'show'
   map.boxview_illustrazione_figlia '/boxview/illustrazioni_figlie/:id', :controller => 'boxview/illustrazioni_figlie', :action => 'show'
   map.boxview_pi_scheda_testo '/boxview/pi_scheda_testo/:id', :controller => 'boxview/pi_scheda_testo', :action => 'show'
+  map.connect '/boxview/indici', :controller => 'boxview/indici', :action => "index" 
+  map.connect '/boxview/indici/:type', :controller => 'boxview/indici', :action => "show" 
+
 
   # Default semantic dispatch
   map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',

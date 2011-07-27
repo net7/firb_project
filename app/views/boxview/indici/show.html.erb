@@ -1,0 +1,17 @@
+<%= 
+boxview_widget 'Indice ', :class => "index widget_draggable" do |w|
+    w.content "<ul>"
+    @items.each do |i|
+        w.content %[
+            <li>
+                <div class="indexIcon"><a></a></div>
+                <div class="indexContent">
+                    <h5 class="indexItemTitle"><a>#{i.name}</a></h5>
+                    <p  class="indexItemDescription">Nice description is nice</p>
+                </div>
+            </li>
+        ]
+    end
+    w.content "</ul>"
+end
+%>
