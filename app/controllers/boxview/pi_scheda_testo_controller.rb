@@ -22,7 +22,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
     v.xpath(".//img[@class='source_img'][contains(@about, '/zones/')]").each do |d|
       z = ImageZone.find(d['about'], :prefetch_relations => true)
       
-      capo = PiLetterIllustrationCard.find(:all, :find_through => [N::DCT.isFormatOf, z.uri]).empty?
+      capo = !PiLetterIllustrationCard.find(:all, :find_through => [N::DCT.isFormatOf, z.uri]).empty?
       imts[z.uri.to_s] = {'zones' => [z], 'node' => d, 'capolettera' => capo}
       
       # Find and remove the consolidated annotation with this image zone.. otherwise
