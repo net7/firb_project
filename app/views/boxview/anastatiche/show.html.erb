@@ -1,6 +1,6 @@
 <% imt_id = "imt_anastatica_#{@resource.id}" %>
 <%= boxview_widget Anastatica, 'anastatic' do |w|
-  content = boxview_imt_viewer(imt_id) do |imt|
+  content = imt_viewer(imt_id) do |imt|
     imt.base64      = anastatica_image_xml(@image, @resource.showable_zones)
     imt.init        = "jsapi_initializeIMW(id);"
     imt.click       = "alert('click')"
