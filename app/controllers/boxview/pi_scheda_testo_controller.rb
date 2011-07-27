@@ -109,26 +109,35 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       end
 
       # If it's a capolettera, dont include any extra zone, otherwise include
-      # all of the consolidated image zones
+      # all of the consolidated image zones. Use a different icon for image/letter
       if (values['capolettera'])
         imt_zones = [z]
+        imt = "<div><a title='Mostra capolettera' class='transcription_letter_icon'>SHOW IMAGE</a>"
       else
         imt_zones = [z].concat(zones)
-      end
+        imt = "<div><a title='Mostra immagine' class='transcription_image_icon'>SHOW IMAGE</a>"
 
-      # Map zone image ids to consolidated annotation classes (IMT use the id, the 
-      # annotated text uses the ca_classes): use a global array using this
-      # zone's id as name
-      zid_map = "zidc_#{z.id} = []; "
-      zid_annclass.each{ |foo| zid_map += "zidc_#{z.id}[#{foo[:zid]}] = '#{foo[:class]}';" }
+        # Map zone image ids to consolidated annotation classes (IMT use the id, the 
+        # annotated text uses the ca_classes): use a global array using this
+        # zone's id as name
+        zid_map = "zidc_#{z.id} = []; "
+        zid_annclass.each do |foo| 
+          zid_map += "zidc_#{z.id}[#{foo[:zid]}] = '#{foo[:class]}';"
+          zid_map << %[
+            $('.transcription_text .highlighted.#{foo[:class]}').
+                mouseover(function(){ getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}'); }).
+                mouseout(function(){ getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(false, '#{foo[:zid]}'); });
+            ]
+        end
+        imt += "<script>#{zid_map}</script>";
+      end
       
-      imt = "<div><a title='Mostra immagine' class='transcription_image_icon'>SHOW IMAGE</a>"
       imt += "<span class='transcription_img_wrapper hidden'>"
       imt += render_to_string :partial => '/boxview/shared/imageviewer', 
                :locals => {:id => "imt_image_#{z.id}", 
                            :base64 => image.anastatica_zones_xml(image_url, imt_zones),
                            :js_prefix => "t_img_#{z.id}",
-                           :init => "jsapi_initializeIMW(id); #{zid_map}",
+                           :init => "jsapi_initializeIMW(id)",
                            :over => "$('.'+zidc_#{z.id}[ki]).addClass('zone_highlighted')",
                            :out => "$('.'+zidc_#{z.id}[ki]).removeClass('zone_highlighted')"
                 }
