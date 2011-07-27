@@ -126,11 +126,15 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
           zid_map << %[
             $('.transcription_text .#{foo[:class]}').
                 mouseover(function(){ 
-                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) 
-                        getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}'); 
+                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) {
+                        getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(true, '#{foo[:zid]}');
+                        $(this).addClass('zone_highlighted');
+                    }
                 }).mouseout(function(){ 
-                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) 
+                    if ($(this).hasClass('highlighted') && (typeof(getFlashObject('imt_image_#{z.id}').setPolygonHighlighted) === 'function')) {
                         getFlashObject('imt_image_#{z.id}').setPolygonHighlighted(false, '#{foo[:zid]}'); 
+                        $(this).removeClass('zone_highlighted');
+                    }
                 });
             ]
         end
