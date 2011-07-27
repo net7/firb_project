@@ -27,12 +27,12 @@ module BoxviewHelper
   #  url   - Url for the link
   #  text  - Text for the link
   #  title - Title for the new box
-  #  id    - Resource id (used by boxview somehow)
+  #  id    - Resource id (used by boxview to avoid opening the same box twice)
   #  type  - Box type (used in styles)
   #  options - not used yet
   # Possible types:
   #   firb-memorie:
-  #      box.index
+  #      index
   #      anastatic
   #      image
   #      notebooks
@@ -41,7 +41,7 @@ module BoxviewHelper
   #
   def boxview_link(url, text, title, id, type, options={})
     url_separator = url.include?('?') ? '&' : '?'
-    %[<a class="boxview_link"
+    %[<a class="boxview_link #{options[:class]}"
          href="#{url}#{url_separator}title=#{title}"
          data-title="#{title}"
          data-id="#{id}"
