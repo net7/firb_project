@@ -14,7 +14,7 @@ class PiLetterIllustrationCard < IllustrationCard
   def boxview_data
     desc = self.description.nil? ? "" : "#{self.description.slice(0, 80)}.."
     { :controller => 'boxview/illustrazioni_lettera', 
-      :title => "Capolettera #{desc}", 
+      :title => "Capolettera: #{self.anastatica.page_position}", 
       :description => desc,
       :res_id => "pi_letter_illustration_#{self.id}", 
       :box_type => 'image',

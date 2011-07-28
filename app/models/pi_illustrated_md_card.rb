@@ -18,7 +18,7 @@ class PiIllustratedMdCard < IllustrationCard
   def boxview_data
     desc = self.short_description.nil? ? "" : self.short_description
     { :controller => 'boxview/illustrazioni_figlie', 
-      :title => desc, 
+      :title => "Scheda immagine di memoria: #{desc}", 
       :description => desc,
       :res_id => "pi_illustration_#{self.id}", 
       :box_type => 'image',

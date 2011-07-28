@@ -59,7 +59,7 @@ class PiIllustrationCard < IllustrationCard
   def boxview_data
     desc = self.short_description.nil? ? "" : "#{self.short_description.slice(0, 80)}.."
     { :controller => 'boxview/illustrazioni_madri', 
-      :title => "Carta #{self.anastatica.page_position}", 
+      :title => "Illustrazione: #{self.anastatica.page_position}", 
       :description => desc,
       :res_id => "pi_illustration_#{self.id}", 
       :box_type => 'image',
