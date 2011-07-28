@@ -1,10 +1,10 @@
 <% imt_id = "imt_illustrazione_figlia_#{@resource.id}" %>
 <% anastatica_title = "#{@resource.anastatica.page_position} Anastatica" %>
-<% scheda_madre = @resource.image_zone.get_image_parent %>
+<% scheda_madre = @resource.image_zone.get_related_objects.first %>
 <% scheda_madre_title = @resource.anastatica.page_position %>
 
 <%= boxview_widget 'Descrizione', :class => "TextWidget widget_draggable" do |w|
-  w.content boxview_widget_field( @resource.short_description)
+  w.content boxview_widget_field( '', @resource.short_description)
 end %>
 
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
@@ -34,13 +34,14 @@ end %>
     w.content boxview_widget_field('Descrizione', @resource.description)
 
    #TODO: ordinare in base all'apparizione nel testo!
-    unless @resource.image_components.empty
-        sources = content_tag :ul, (@resource.image_components.each do |ic| 
-         content_tag :li, "#{ic.name} (#{ic.zone_type})"
-    end.join(''))
-    w.content boxview_widget_field('Componenti', )
+    unless @resource.image_components.empty?
+      sources = content_tag :ul, (@resource.image_components.each do |ic| 
+        content_tag :li, "#{ic.name} (#{ic.zone_type})"
+      end.join(''))
+    end
+    w.content boxview_widget_field('Componenti', sources)
 
- end
+ end %>
 
 #  unless @resource.textual_source.size.zero?
 #    sources = content_tag :ul, (@resource.textual_source.map do |source|
