@@ -91,5 +91,14 @@ class ImageZone < ImageElement
   # Set the polygon XML for this zone
   def polygon=(xml)
   end
+
+
+  # we've used two different predicate for the zones ...
+  # TODO: in the ontology make N::TALIA.image_zone a subclass of N::DCT.isFormatOf
+  def get_related_objects
+    res = self.inverse[N::DCT.isFormatOf]
+    return self.inverse[N::TALIA.image_zone] unless res
+    return res
+  end
   
 end
