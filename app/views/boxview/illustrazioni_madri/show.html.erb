@@ -30,7 +30,6 @@ end %>
     sources = content_tag :ul, (@resource.textual_source.map do |source|
         content_tag :li, boxview_link(boxview_pi_scheda_testo_url(source.id), source.anastatica.page_position, source.anastatica.page_position, source.id, :transcription)
       end.join(''))
-
     w.content boxview_widget_field('Fonti testuali', sources)
   end
 

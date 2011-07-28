@@ -30,8 +30,8 @@ end %>
     @resource.image_components.each do |component|
       components << imt_highlight(imt_id, "#{component.name} (#{component.zone_type.to_s})", component.image_zone.id)
     end
+    w.content boxview_widget_field('Componenti', components.join(', ')) unless components.size.zero?
   end
-  w.content boxview_widget_field('Componenti', components.join(', ')) unless components.size.zero?
 
 
   unless @resource.iconclass_terms.size.zero?
