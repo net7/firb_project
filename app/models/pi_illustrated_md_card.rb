@@ -30,4 +30,8 @@ class PiIllustratedMdCard < IllustrationCard
     true
   end
 
+  def parts_query
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::TALIA.image_zone,self)
+  end
+
 end

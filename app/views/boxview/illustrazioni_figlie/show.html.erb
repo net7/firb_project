@@ -8,10 +8,10 @@
 end %>
 
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
-  content = render :partial => '/boxview/shared/imageviewer', 
-           :locals => {:id => imt_id, 
-                       :base64 => imt_image_b64(@image, @resource.showable_zones),
-                       :js_prefix => 'jsapi'}
+  content = render :partial => '/boxview/shared/imageviewer',
+    :locals => {:id => imt_id,
+    :base64 => imt_image_b64(@image, @resource.showable_zones),
+    :js_prefix => 'jsapi'}
   w.right_icons boxview_link_for_object(@resource.anastatica)
   w.right_icons boxview_link_for_object(scheda_madre)
   w.content content_tag(:div, content, :class => 'picture')
@@ -30,24 +30,24 @@ end %>
 
 
 <%= boxview_widget 'Studio', :class => "TextWidget widget_draggable" do |w|
-    w.content boxview_widget_field('Descrizione', @resource.description)
+  w.content boxview_widget_field('Descrizione', @resource.description)
 
-   #TODO: ordinare in base all'apparizione nel testo!
-    unless @resource.image_components.empty?
-      components = []
-      @resource.image_components.each do |component|
-        components << imt_highlight(imt_id, "#{component.name} (#{component.zone_type.to_s})", component.image_zone.id)
-      end
+  #TODO: ordinare in base all'apparizione nel testo!
+  unless @resource.image_components.empty?
+    components = []
+    @resource.image_components.each do |component|
+      components << imt_highlight(imt_id, "#{component.name} (#{component.zone_type.to_s})", component.image_zone.id)
     end
-    w.content boxview_widget_field('Componenti', components.join(', ')) unless components.size.zero?
+  end
+  w.content boxview_widget_field('Componenti', components.join(', ')) unless components.size.zero?
 
   unless @resource.transcription_text.empty?
     if !@resource.textual_source.first.nil?
-     content = boxview_link(url_for(:controller => 'boxview/pi_scheda_testo', :action => "show", :id => @resource.textual_source.first.id), @resource.transcription_text, 'Trascrizione', "pi_text_card_#{@resource.textual_source.first.id}", 'transcription')
+      content = boxview_link(url_for(:controller => 'boxview/pi_scheda_testo', :action => "show", :id => @resource.textual_source.first.id), @resource.transcription_text, 'Trascrizione', "pi_text_card_#{@resource.textual_source.first.id}", 'transcription')
     else
-     content = @resource.transcription_text
+      content = @resource.transcription_text
     end
-     w.content boxview_widget_field('Trascrizione', content)
+    w.content boxview_widget_field('Trascrizione', content)
   end
 
 
@@ -62,10 +62,10 @@ end %>
 end %>
 
 <% unless @resource.bibliography_items.size.zero? %>
-<%= boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
-  w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
-      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-    end.join('')))
-end %>
+  <%= boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
+    w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
+          content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+        end.join('')))
+  end %>
 <% end %>
 
