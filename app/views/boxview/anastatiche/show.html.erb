@@ -4,8 +4,8 @@
     imt.base64 = imt_image_b64 @image, @resource.showable_zones
     imt.init   = "jsapi_initializeIMW(id);"
     imt.click  = "$('#ana_zone_'+ki).click();"
-    imt.over   = "$('#ana_zone_'+ki).addClass('zone_highlighted')",
-    imt.out    = "$('#ana_zone_'+ki).removeClass('zone_highlighted')"
+    imt.over   = "$('#ana_zone_'+ki).addClass('zone_highlighted');"
+    imt.out    = "$('#ana_zone_'+ki).removeClass('zone_highlighted');"
   end
 
   w.content content_tag(:div, content, :class => 'picture')
