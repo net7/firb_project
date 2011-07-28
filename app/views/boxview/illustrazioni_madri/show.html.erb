@@ -1,5 +1,5 @@
 <% imt_id = "imt_illustrazione_madre_#{@resource.id}" %>
-<% anastatica_title = "#{@resource.anastatica.title}, #{@resource.anastatica.page_position}" %>
+<% anastatica_title = "#{@resource.anastatica.page_position}" %>
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
   content = render :partial => '/boxview/shared/imageviewer', 
            :locals => {:id => imt_id, 
@@ -7,11 +7,7 @@
                        # :base64 => image_xml(@image),
                        :js_prefix => 'jsapi'}
 
-  w.right_icons boxview_link(boxview_anastatica_url(@resource.anastatica.id), 
-                             'Anastatica', 
-                             anastatica_title, 
-                             @resource.anastatica.id,
-                             :image)
+  w.right_icons boxview_link(@resource.anastatica)
 
   w.content content_tag(:div, content, :class => 'picture')
 end %>
