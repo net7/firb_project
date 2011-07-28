@@ -50,6 +50,11 @@ module BoxviewHelper
          data-type="#{type.to_s}">#{text}</a>]
   end
 
+  def boxview_link_for_object(o)
+    data = o.boxview_data()
+    boxview_link(url_for(:controller => data[:controller], :action => "show", :id => o.id), data[:title], data[:title], data[:res_id], data[:box_type]) 
+  end
+
   # Options:
   #   * "class" html class for widget container
   def boxview_widget(title, options={}, &block)

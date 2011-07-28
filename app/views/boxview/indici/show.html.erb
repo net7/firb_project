@@ -1,14 +1,11 @@
 <%= 
     boxview_widget 'Indice', :class => "index widget_draggable" do |w|
         w.content "<ul>"
-
         @items.each do |i|
             data = i.boxview_data()
-            link = boxview_link("/#{data[:controller]}/#{i.id}", data[:title], data[:title], data[:res_id], data[:box_type]) 
             w.content render :partial => '/boxview/shared/index_item', 
-                     :locals => {:title => link, :description => data[:description]}
+                     :locals => {:title => boxview_link_for_object(i), :description => data[:description]}
         end
-        
         w.content "</ul>"
     end
 %>

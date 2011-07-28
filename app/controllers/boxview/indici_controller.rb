@@ -6,6 +6,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def show
     @items = params[:type].camelcase.singularize.constantize.find(:all, :prefetch_relations => true)
+    @items = @items.select { |i| i.is_public? }
   end
 
 end
