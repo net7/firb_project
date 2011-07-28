@@ -26,4 +26,8 @@ class PiIllustratedMdCard < IllustrationCard
     }
   end
 
+  def is_public?
+    true
+  end
+
 end
