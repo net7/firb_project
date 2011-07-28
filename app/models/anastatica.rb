@@ -2,6 +2,10 @@ class Anastatica < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
   include Mixin::HasParts
+  include Mixin::Publish
+  extend RdfProperties
+  extend Mixin::Publish::PublishProperties
+  setup_publish_properties
   
   singular_property :title, N::DCNS.title
   declare_attr_type :title, :string
@@ -69,4 +73,16 @@ class Anastatica < TaliaCore::Source
   #   end.flatten
   #   return [self.image_zone] + zones
   # end
+
+  def boxview_data
+    desc = self.name.nil? ? "" : "#{self.name.slice(0, 80)}.."
+    { :controller => 'boxview/anastatiche', 
+      :title => "Carta #{self.page_position}", 
+      :description => desc,
+      :res_id => "anastatica_#{self.id}", 
+      :box_type => 'anastatic',
+      :thumb => nil
+    }
+  end
+
 end

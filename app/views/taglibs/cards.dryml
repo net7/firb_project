@@ -425,6 +425,7 @@
     </header:>
     <body:>
         <div><ht key="anastaticas.page_position" />: <%= this.page_position %></div>
+        <publish-simple />
         <source-collections />
     </body:>
   </card>

@@ -3,12 +3,9 @@ class PiTextCard < TextCard
   include StandardPermissions
   extend Mixin::Showable
   showable_in Anastatica
+  setup_publish_properties
 
   autofill_uri :force => true
-
-  include Publish
-  extend Publish::PublishProperties
-  setup_publish_properties
     
   singular_property :anastatica, N::DCT.isPartOf, :type => TaliaCore::ActiveSource
   rdf_property :title, N::DCNS.title

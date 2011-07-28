@@ -4,6 +4,9 @@ class TextCard < TaliaCore::Source
   extend RdfProperties
   include FileAttached
 
+  include Mixin::Publish
+  extend Mixin::Publish::PublishProperties
+
   autofill_uri :force => true
 
   manual_property :note

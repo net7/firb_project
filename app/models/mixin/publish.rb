@@ -1,4 +1,4 @@
-module Publish
+module Mixin::Publish
   
   module PublishProperties
     
