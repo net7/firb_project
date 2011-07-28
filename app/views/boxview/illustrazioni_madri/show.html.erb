@@ -1,11 +1,11 @@
 <% imt_id = "imt_illustrazione_madre_#{@resource.id}" %>
 <% anastatica_title = "#{@resource.anastatica.page_position}" %>
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
-  content = render :partial => '/boxview/shared/imageviewer', 
-           :locals => {:id => imt_id, 
-                       :base64 => imt_image_b64(@image, @resource.showable_zones),
-                       # :base64 => image_xml(@image),
-                       :js_prefix => 'jsapi'}
+  content = render :partial => '/boxview/shared/imageviewer',
+    :locals => {:id => imt_id,
+    :base64 => imt_image_b64(@image, @resource.showable_zones),
+    # :base64 => image_xml(@image),
+    :js_prefix => 'jsapi'}
 
   w.right_icons boxview_link_for_object(@resource.anastatica)
 
@@ -28,8 +28,8 @@ end %>
 
   unless @resource.textual_source.size.zero?
     sources = content_tag :ul, (@resource.textual_source.map do |source|
-      content_tag :li, boxview_link(boxview_pi_scheda_testo_url(source.id), source.anastatica.page_position, source.anastatica.page_position, source.id, :transcription)
-    end.join(''))
+        content_tag :li, boxview_link(boxview_pi_scheda_testo_url(source.id), source.anastatica.page_position, source.anastatica.page_position, source.id, :transcription)
+      end.join(''))
 
     w.content boxview_widget_field('Fonti testuali', sources)
   end
@@ -38,9 +38,9 @@ end %>
     # TODO: order by appearence in text.
     # SEE: ticket #216.
     children = content_tag :ul, (@resource.children.map do |child|
-      title = child.short_description || child.name
-      content_tag :li, boxview_link(boxview_illustrazione_figlia_url(child.id), title, title, child.id, :image)
-    end.join(''))
+        title = child.short_description || child.name
+        content_tag :li, boxview_link(boxview_illustrazione_figlia_url(child.id), title, title, child.id, :image)
+      end.join(''))
     w.content boxview_widget_field('Immagini di memoria', children)
 
     contents = []
@@ -64,9 +64,9 @@ end %>
 end %>
 
 <% unless @resource.bibliography_items.size.zero? %>
-<%= boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
-  w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
-      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-    end.join('')))
-end %>
+  <%= boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
+    w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
+          content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+        end.join('')))
+  end %>
 <% end %>
