@@ -4,6 +4,7 @@ class PiIllustrationCard < IllustrationCard
   include StandardPermissions
   extend Mixin::Showable
   showable_in Anastatica
+  include Mixin::HasParts
   include Mixin::Publish
   extend Mixin::Publish::PublishProperties
   setup_publish_properties

@@ -28,7 +28,8 @@ end %>
 
   unless @resource.textual_source.size.zero?
     sources = content_tag :ul, (@resource.textual_source.map do |source|
-        content_tag :li, boxview_link(boxview_pi_scheda_testo_url(source.id), source.anastatica.page_position, source.anastatica.page_position, source.id, :transcription)
+        #content_tag :li, boxview_link(boxview_link_for_object(source), source.anastatica.page_position, source.anastatica.page_position, source.id, :transcription)
+        content_tag :li, boxview_link_for_object(source) #, source.anastatica.page_position, source.anastatica.page_position, source.id, :transcription
       end.join(''))
     w.content boxview_widget_field('Fonti testuali', sources)
   end
@@ -38,7 +39,7 @@ end %>
     # SEE: ticket #216.
     children = content_tag :ul, (@resource.children.map do |child|
         title = child.short_description || child.name
-        content_tag :li, boxview_link(boxview_illustrazione_figlia_url(child.id), title, title, child.id, :image)
+        content_tag :li, boxview_link_for_object(child) #, title, title, child.id, :image)
       end.join(''))
     w.content boxview_widget_field('Immagini di memoria', children)
 
