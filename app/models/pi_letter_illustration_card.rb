@@ -22,4 +22,8 @@ class PiLetterIllustrationCard < IllustrationCard
     }
   end
 
+  def parts_query
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(self, N::TALIA.image_component,:part)
+  end
+  
 end
