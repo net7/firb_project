@@ -1,11 +1,32 @@
 require 'action_view/helpers/tag_helper'
+require "base64"
 
 module ImtHelper
   include ActionView::Helpers::TagHelper
 
-  # SEE: BoxViewHelper#image_xml
-  def anastatica_image_xml(image, zones=[])
-    image.anastatica_zones_xml(original_image_url(image), zones)
+  ##
+  #
+  # Uses AdminHelper.original_image_url.
+  def imt_image_b64(image, zones=[])
+    xml = Builder::XmlMarkup.new(:indent => 2)
+    xml.dctl_ext_init{
+      xml.img{
+        xml.a(:r => image.id.to_s, :s => image.uri.to_s, :l => image.name, :u => original_image_url(image))
+      }
+      xml.xml{
+      unless zones.size.zero?
+        # First zone is assumed as the one of main interest, where the image will focus (zoom to).
+        outer = zones.delete zones.first
+        xml.a(:r => outer.id.to_s, :s => outer.uri.to_s, :l =>outer.name, :t =>"#{image.uri}@#{outer.coordinates}"){
+          zones.each do |z|
+            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}")
+          end
+        }
+      end
+      }
+      xml.cb(:u => nil, :p => "base64xml")
+    }
+    Base64.encode64(xml.target!).gsub(/\s/, '')
   end
 
   def imt_viewer(id, &block)

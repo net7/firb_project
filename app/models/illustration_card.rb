@@ -7,6 +7,8 @@ class IllustrationCard < BaseCard
 
   autofill_uri :force => true
 
+  include Mixin::HasParts
+
   def self.remove_iconclass_terms(page)
     page.iconclass_terms.each do |t|
       page[N::DCT.subject].remove(t)
@@ -83,4 +85,7 @@ class IllustrationCard < BaseCard
     super(options)
   end
 
+  def parts_query
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::TALIA.parent_card,self)
+  end
 end

@@ -1,6 +1,7 @@
 class Anastatica < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
+  include Mixin::HasParts
   
   singular_property :title, N::DCNS.title
   declare_attr_type :title, :string
@@ -34,31 +35,38 @@ class Anastatica < TaliaCore::Source
     collections.reject { |col| attached.include?(col) || exclude.include?(col.uri) }
   end
 
-  def parts
-    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::DCT.isPartOf, self).execute
+  ##
+  # Needed to implement Mixin::HasParts
+  #
+  def parts_query
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::DCT.isPartOf, self)
   end
 
-  # Parts grouped by class
-  def parts_by_class
-    part_hash = {}
-    my_parts = parts
-    my_parts.each do |part|
-      part_hash[part.class.name] ||= []
-      part_hash[part.class.name] << part
-    end
-    part_hash
-  end
+  # def parts
+  #   ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::DCT.isPartOf, self).execute
+  # end
 
-  def showable_parts
-    @showable_parts ||= Hash[parts_by_class.select do |k,v|
-       v.first.class.respond_to? :shown_in_anastatica
-    end]
-  end
+  # # Parts grouped by class
+  # def parts_by_class
+  #   part_hash = {}
+  #   my_parts = parts
+  #   my_parts.each do |part|
+  #     part_hash[part.class.name] ||= []
+  #     part_hash[part.class.name] << part
+  #   end
+  #   part_hash
+  # end
 
-  def showable_zones
-    zones = showable_parts.values.flatten.map do |z|
-      z.respond_to?(:image_zones) ? z.image_zones.to_a : z.image_zone
-    end.flatten
-    return [self.image_zone, zones].flatten
-  end
+  # def showable_parts
+  #   @showable_parts ||= Hash[parts_by_class.select do |k,v|
+  #      v.first.class.respond_to? :shown_in_anastatica
+  #   end]
+  # end
+
+  # def showable_zones
+  #   zones = showable_parts.values.flatten.map do |z|
+  #     z.respond_to?(:image_zones) ? z.image_zones.to_a : z.image_zone
+  #   end.flatten
+  #   return [self.image_zone] + zones
+  # end
 end
