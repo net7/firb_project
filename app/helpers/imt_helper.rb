@@ -3,6 +3,7 @@ require "base64"
 
 module ImtHelper
   include ActionView::Helpers::TagHelper
+  include AdminHelper
 
   ##
   #
