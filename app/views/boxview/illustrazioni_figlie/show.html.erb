@@ -36,7 +36,7 @@ end %>
    #TODO: ordinare in base all'apparizione nel testo!
     unless @resource.image_components.empty
         sources = content_tag :ul, (@resource.image_components.each do |ic| 
-         content_tag :li, "#{ic,name} (#{ic.zone_type})"
+         content_tag :li, "#{ic.name} (#{ic.zone_type})"
     end.join(''))
     w.content boxview_widget_field('Componenti', )
 
