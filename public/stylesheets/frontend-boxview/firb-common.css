@@ -89,6 +89,7 @@ Box Trascrizione > Widget Trascrizione > Note
 .transcription_text .highlighted {
 	background-color: rgba(255, 175, 0, 0.75);
 }
+a.zone_highlighted,
 .transcription_text .zone_highlighted,
 .transcription_text .highlighted.zone_highlighted {
 	background-color: rgba(255, 0, 0, 0.75);
