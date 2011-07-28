@@ -85,7 +85,7 @@ class PiTextCard < TextCard
   def boxview_data
     desc = self.parafrasi.nil? ? "" : "#{self.parafrasi.slice(0, 80)}.."
     { :controller => 'boxview/pi_scheda_testo', 
-      :title => "Scheda testo #{self.title}", 
+      :title => "Scheda testo: #{self.anastatica.page_position}", 
       :description => desc,
       :res_id => "pi_text_card_#{self.id}", 
       :box_type => 'transcription',

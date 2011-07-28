@@ -77,7 +77,7 @@ class Anastatica < TaliaCore::Source
   def boxview_data
     desc = self.name.nil? ? "" : "#{self.name.slice(0, 80)}.."
     { :controller => 'boxview/anastatiche', 
-      :title => "Carta #{self.page_position}", 
+      :title => "Anastatica: #{self.page_position}", 
       :description => desc,
       :res_id => "anastatica_#{self.id}", 
       :box_type => 'anastatic',
