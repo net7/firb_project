@@ -13,7 +13,7 @@ class PiLetterIllustrationCard < IllustrationCard
 
   def boxview_data
     desc = self.description.nil? ? "" : "#{self.description.slice(0, 80)}.."
-    { :controller => 'boxview/illustrazioni_lettera', 
+    { :controller => 'boxview/capolettera',
       :title => "Capolettera: #{self.anastatica.page_position}", 
       :description => desc,
       :res_id => "pi_letter_illustration_#{self.id}", 
@@ -21,6 +21,11 @@ class PiLetterIllustrationCard < IllustrationCard
       :thumb => nil
     }
   end
+
+  def is_public?
+    true
+  end
+
 
   def parts_query
     ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(self, N::TALIA.image_component,:part)
