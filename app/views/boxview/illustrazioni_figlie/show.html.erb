@@ -43,7 +43,7 @@ end %>
 
   unless @resource.transcription_text.empty?
     if !@resource.textual_source.first.nil?
-     content = boxview_link(@resource.textual_source.first.uri, @resource.transcription_text, 'Trascrizione', "pi_text_card_#{@resource.textual_source.first.id}", 'transcription') 
+     content = boxview_link(url_for(:controller => 'boxview/pi_scheda_testo', :action => "show", :id => @resource.textual_source.first.id), @resource.transcription_text, 'Trascrizione', "pi_text_card_#{@resource.textual_source.first.id}", 'transcription')
     else
      content = @resource.transcription_text
     end
