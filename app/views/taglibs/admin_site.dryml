@@ -34,7 +34,6 @@
                 <submit label="&I18n.t('hobo.publish')"/>
             </form>
         </else>
-                    
     </div>
 </def>
 

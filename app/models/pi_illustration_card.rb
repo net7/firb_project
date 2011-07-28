@@ -4,6 +4,9 @@ class PiIllustrationCard < IllustrationCard
   include StandardPermissions
   extend Mixin::Showable
   showable_in Anastatica
+  include Mixin::Publish
+  extend Mixin::Publish::PublishProperties
+  setup_publish_properties
   
   autofill_uri :force => true
   
@@ -52,4 +55,16 @@ class PiIllustrationCard < IllustrationCard
 
     iconclasses
   end
+
+  def boxview_data
+    desc = self.short_description.nil? ? "" : "#{self.short_description.slice(0, 80)}.."
+    { :controller => 'boxview/illustrazioni_madri', 
+      :title => "Carta foo", 
+      :description => desc,
+      :res_id => "pi_illustration_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
+  
 end

@@ -428,6 +428,9 @@
           </else>
       </div>
     </header:>
+    <body:>
+        <publish-simple />
+    </body:>
   </card>
 </def>
 
