@@ -55,7 +55,7 @@ end %>
 
   unless @resource.iconclasses.size.zero?
     iconclasses = @resource.iconclasses.map! do |iconclass|
-      %[<a href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
+      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
     end
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
