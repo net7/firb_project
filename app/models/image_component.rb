@@ -2,7 +2,8 @@ class ImageComponent < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
   extend RdfProperties
-  
+  extend Mixin::Showable
+  showable_in PiIllustratedMdCard
   autofill_uri :force => true
   
   rdf_property :name, N::TALIA.name
