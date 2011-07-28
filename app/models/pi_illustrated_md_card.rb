@@ -14,4 +14,16 @@ class PiIllustratedMdCard < IllustrationCard
   declare_attr_type :transcription_text, :text
   singular_property :parent_card, N::TALIA.parent_card, :type => TaliaCore::ActiveSource
   singular_property :content_type, N::DCT.type
+
+  def boxview_data
+    desc = self.short_description.nil? ? "" : self.short_description
+    { :controller => 'boxview/illustrazioni_figlie', 
+      :title => desc, 
+      :description => desc,
+      :res_id => "pi_illustration_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
+
 end
