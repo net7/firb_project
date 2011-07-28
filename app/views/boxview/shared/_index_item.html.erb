@@ -1,0 +1,18 @@
+<%
+##
+# Index item partial
+#
+# Parameters:
+#   thumb: an image to display as thumb near the title
+#   title: usually a boxview_link created link)
+#   description
+
+    thumb ||= "<img />"
+%>
+<li>
+    <div class="indexIcon"><%= thumb %></div>
+    <div class="indexContent">
+        <h5 class="indexItemTitle"><%= title %></h5>
+        <p  class="indexItemDescription"><%= description %></p>
+    </div>
+</li>

@@ -1,23 +1,14 @@
-<%
-content = ''
-@items.each do |i|
-    data = i.boxview_data()
-    link = boxview_link("/#{data[:controller]}/#{i.id}", data[:title], data[:title], data[:res_id], data[:box_type]) 
-    content << %[
-        <li>
-            <div class="indexIcon"><a><img /></a></div>
-            <div class="indexContent">
-                <h5 class="indexItemTitle">#{link}</h5>
-                <p  class="indexItemDescription">#{data[:description]}</p>
-            </div>
-        </li>
-    ]
-end
-
-%>
-
 <%= 
-boxview_widget 'Indice ', :class => "index widget_draggable" do |w|
-    w.content "<ul>#{content}</ul>"
-end
+    boxview_widget 'Indice', :class => "index widget_draggable" do |w|
+        w.content "<ul>"
+
+        @items.each do |i|
+            data = i.boxview_data()
+            link = boxview_link("/#{data[:controller]}/#{i.id}", data[:title], data[:title], data[:res_id], data[:box_type]) 
+            w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => link, :description => data[:description]}
+        end
+        
+        w.content "</ul>"
+    end
 %>
