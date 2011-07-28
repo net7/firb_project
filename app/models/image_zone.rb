@@ -97,7 +97,7 @@ class ImageZone < ImageElement
   # TODO: in the ontology make N::TALIA.image_zone a subclass of N::DCT.isFormatOf
   def get_related_objects
     res = self.inverse[N::DCT.isFormatOf]
-    return self.inverse[N::TALIA.image_zone] unless res
+    return self.inverse[N::TALIA.image_zone] if res.empty?
     return res
   end
   
