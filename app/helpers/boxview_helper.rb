@@ -42,7 +42,8 @@ module BoxviewHelper
   #
   def boxview_link(url, text, title, id, type, options={})
     url_separator = url.include?('?') ? '&' : '?'
-    %[<a class="boxview_link #{options[:class]}"
+    link_id = "id='#{options[:link_id]}'" unless (options[:link_id].nil?)
+    %[<a #{link_id} class="boxview_link #{options[:class]}"
          href="VISUALIZZATORE_SINGOLI_BOX?title=#{title}&type=#{type.to_s}&id=#{id}&url=#{URI.encode(url)}"
          data-url="#{url}"
          data-title="#{title}"
@@ -50,9 +51,9 @@ module BoxviewHelper
          data-type="#{type.to_s}">#{text}</a>]
   end
 
-  def boxview_link_for_object(o)
+  def boxview_link_for_object(o, options={})
     data = o.boxview_data()
-    boxview_link(url_for(:controller => data[:controller], :action => "show", :id => o.id), data[:title], data[:title], data[:res_id], data[:box_type]) 
+    boxview_link(url_for(:controller => data[:controller], :action => "show", :id => o.id), data[:title], data[:title], data[:res_id], data[:box_type], options) 
   end
 
   # Options:

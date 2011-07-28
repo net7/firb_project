@@ -104,11 +104,6 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       # The image real URL is in its .static_path, if there's one
       z = ImageZone.find(bounding_zone, :prefetch_relations => true)
       image = z.get_image_parent
-      if (image.original_image.static_path.nil?)
-        image_url = url_for :controller => '/source_data', :action => 'show', :id => image.original_image.id, :only_path => false
-      else
-        image_url = image.original_image.static_path
-      end
 
       # If it's a capolettera, dont include any extra zone, otherwise include
       # all of the consolidated image zones. Use a different icon for image/letter
@@ -146,7 +141,6 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       imt += "<span class='transcription_img_wrapper hidden'>"
       imt += render_to_string :partial => '/boxview/shared/imageviewer', 
                :locals => {:id => "imt_image_#{z.id}", 
-#                           :base64 => image.anastatica_zones_xml(image_url, imt_zones),
                            :base64 => imt_image_b64(image, imt_zones),
                            :js_prefix => "t_img_#{z.id}",
                            :init => "jsapi_initializeIMW(id)",
