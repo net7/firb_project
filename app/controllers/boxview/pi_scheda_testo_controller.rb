@@ -1,6 +1,8 @@
 class Boxview::PiSchedaTestoController < Boxview::BaseController
 
   require 'nokogiri'
+  # included to have access to the imt_image_b64 helper
+  include ImtHelper
 
   def show
     @resource = PiTextCard.find(params[:id], :prefetch_relations => true)
@@ -144,7 +146,8 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       imt += "<span class='transcription_img_wrapper hidden'>"
       imt += render_to_string :partial => '/boxview/shared/imageviewer', 
                :locals => {:id => "imt_image_#{z.id}", 
-                           :base64 => image.anastatica_zones_xml(image_url, imt_zones),
+#                           :base64 => image.anastatica_zones_xml(image_url, imt_zones),
+                           :base64 => imt_image_b64(image, imt_zones),
                            :js_prefix => "t_img_#{z.id}",
                            :init => "jsapi_initializeIMW(id)",
                            :over => "$('.'+zidc_#{z.id}[ki]).addClass('zone_highlighted')",

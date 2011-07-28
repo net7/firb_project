@@ -147,6 +147,7 @@ class ImageElement < TaliaCore::Source
   # it expects zones to be an array containing two elements:
   #  - the anastatica zone (the outer box)
   #  - an array with the list of zones to be shown
+  # DEPRECATED: use imt_image_b64 from imt_helper.rb 
   def anastatica_zones_xml(image_url, zones)
 
     # the first argument is the outer zone, used for zooming
