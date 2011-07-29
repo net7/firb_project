@@ -97,15 +97,21 @@ class PiTextCard < TextCard
   def prev_card
     collection = self.anastatica.collections.first
     anastatica = self.anastatica
-    prev_anastatica = collection.prev(anastatica)
-    return prev_anastatica.inverse[N::DCT.isPartOf].first unless prev_anastatica.nil?    
+    begin
+      anastatica = collection.prev(anastatica)
+      prev_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
+    end while prev_card.class != self.class and !anastatica.nil?
+    return prev_card unless anastatica.nil?
   end
 
   def next_card
     collection = self.anastatica.collections.first
     anastatica = self.anastatica
-    next_anastatica = collection.next(anastatica)
-    return next_anastatica.inverse[N::DCT.isPartOf].first unless next_anastatica.nil?
+    begin
+      anastatica = collection.next(anastatica)
+      next_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
+    end while next_card.class != self.class and !anastatica.nil?
+    return next_card unless anastatica.nil?
   end
 
 
