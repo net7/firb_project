@@ -95,22 +95,27 @@ class PiTextCard < TextCard
 
 
   def prev_card
-    collection = self.anastatica.collections.first
     anastatica = self.anastatica
+    collection = anastatica.collections.first
     begin
       anastatica = collection.prev(anastatica)
-      prev_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
-    end while prev_card.class != self.class and !anastatica.nil? and !prev_card.is_public?
+      return nil if anastatica.nil?
+      prev_card = anastatica.inverse[N::DCT.isPartOf].first
+    end while prev_card.class != self.class and !prev_card.is_public?
+    return prev_card unless prev_card.class != self.class
   end
 
   def next_card
-    collection = self.anastatica.collections.first
     anastatica = self.anastatica
+    collection = anastatica.collections.first
     begin
       anastatica = collection.next(anastatica)
-      next_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
-    end while next_card.class != self.class and !anastatica.nil? and !next_card.is_public?
+      return nil if anastatica.nil?
+      next_card = anastatica.inverse[N::DCT.isPartOf].first
+    end while next_card.class != self.class and !next_card.is_public?
+    return next_card unless next_card.class != self.class
   end
+
 
 
   # @collection is a TaliaCore::Collection
