@@ -14,19 +14,19 @@
 <ul>
 
 <%# anastatica %>
-  m = @models[:anastatica]
+  <% m = @models[:anastatica] %>
   <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
 
 <%# illustrazioni %>
-  m = @models[:illustrazioni]
+  <% m = @models[:illustrazioni] %>
   <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
 
 <%# immagini di memoria %>
-  m = @models[:immagini_memoria]
+  <% m = @models[:immagini_memoria] %>
   <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
 
 <%# testo %>
-  m = @models[:schede_testo]
+  <% m = @models[:schede_testo] %>
   <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
 
 </ul>
