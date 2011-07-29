@@ -69,7 +69,7 @@
 
 /* Collapsed box */
 .boxViewContainer .box.collapsed {
-	background-color: #717171;
+	background: #717171 url(images/box-header-default-collapsed.gif) center left repeat-y;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-bottomright: 10px;
 	-webkit-border-top-left-radius: 10px;
@@ -80,7 +80,7 @@
 
 /* Box header expanded */
 .boxViewContainer .box.expanded .boxHeader {
-	background: #717171 url(images/box-header-default.gif) center left repeat-x; /* Change */
+	background: #717171 url(images/box-header-default.gif) center left repeat-x;
 	-moz-border-radius-bottomleft: 10px;
 	-moz-border-radius-topright: 10px;
 	-webkit-border-bottom-left-radius: 10px;
@@ -312,16 +312,24 @@
 		background-position: -72px 0px;
 	}
 	
-	/* Icons on the right side of the H4 title - use a sprite - icon is changed by moving the background image  */
-	.boxViewContainer .box .widgetHeader .rightIcons li a {
-		background: transparent url(images/widget/widget_icons_right_sprite) top left no-repeat;
+	/* Icons on the right side of the H4 title - uses a sprite - icon is changed by moving the background image  */
+	/* Generic icon, has a default icon */
+	.boxViewContainer .box .widget .widgetHeader .rightIcons ul li a, .boxViewContainer .box .widget .widgetHeader .rightIcons ul li a.alignMiddle {
+		background: transparent url(images/widget/widget_icons_right_sprite);
 		background-repeat: no-repeat;
-	}
-	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a {
 		background-position: 0px 0px;
 	}
-	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a:hover {
+	
+	.boxViewContainer .box .widget .widgetHeader .rightIcons ul li a:hover, .boxViewContainer .box .widget .widgetHeader .rightIcons ul li a.alignMiddle:hover {
 		background-position: -25px 0px;
+	}
+	
+	/* Drag Icon */
+	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a {
+		background-position: -50px 0px;
+	}
+	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a:hover {
+		background-position: -75px 0px;
 	}
 
 

@@ -14,7 +14,7 @@ BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin = 8;
 BoxViewSuiteConfig.boxViewConfig.boxMargin = 2;
 
 
-BoxViewSuiteConfig.widgetsConfig.iconSize = 16;
+BoxViewSuiteConfig.widgetsConfig.iconSize = 24;
 BoxViewSuiteConfig.widgetsConfig.headerTitleMargin = 6;
-BoxViewSuiteConfig.widgetsConfig.iconSlotsHorizontalMarginLeft = 8;
+BoxViewSuiteConfig.widgetsConfig.iconSlotsHorizontalMarginLeft = 5;
 BoxViewSuiteConfig.widgetsConfig.iconSlotsHorizontalMarginRight = 2;

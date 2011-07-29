@@ -69,37 +69,37 @@
 	margin-bottom: 8px;
 }
 
+/* Box header icons - uses css sprite - icons are changed by moving the background*/
 .boxViewContainer div.box div.boxHeader ul li a {
 	background: transparent url(images/boxes/box_icon_sprite.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 }
 
-/* Box tools and buttons, both for expanded and collapsed status */ 
-.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool {
-	background-position: 0px 6px;
-}
-.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool {
-	background-position: -30px -36px;
-}
-.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool {
-	background-position: -72px -66px;
-}
-.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool {
-	background-position: -66px -72px;
-}
-.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool:hover {
-	background-position: -18px -12px;
-}
-.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool:hover {
-	background-position: -48px -54px;
-}
-.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool:hover {
-	background-position: -90px -84px;
-}
-.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool:hover {
-	background-position: -84px -90px;
-}
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool {
+		background-position: 0px 6px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool {
+		background-position: -30px -36px;
+	}
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool {
+		background-position: -72px -66px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool {
+		background-position: -66px -72px;
+	}
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.collapseTool:hover {
+		background-position: -18px -12px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.collapseTool:hover {
+		background-position: -48px -54px;
+	}
+	.boxViewContainer div.box.expanded div.boxHeader ul li a.removeTool:hover {
+		background-position: -90px -84px;
+	}
+	.boxViewContainer div.box.collapsed div.boxHeader ul li a.removeTool:hover {
+		background-position: -84px -90px;
+	}
 
 .boxViewContainer .box.collapsed .boxCollapsedContent {
 }
@@ -289,46 +289,45 @@ The widget header height involves the height of the div itself, the list element
 	line-height: 20px;
 }
 	
-/* Theme custom Widget's icons */
-/* Widget's icons */
-/* Icons on the left side of the H4 title */
-.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.expanded {
-	background: transparent url(images/widget/widget_icon_expanded.png) top left no-repeat;
-	background-position: center 5px;
-	background-repeat: no-repeat;
-}
-.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.expanded:hover {
-	background: transparent url(images/widget/widget_icon_expanded_ro.png) top left no-repeat;
-	background-position: center 5px;
-	background-repeat: no-repeat;
-}	
-.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.collapsed {
-	background: transparent url(images/widget/widget_icon_collapsed.png) top left no-repeat;
-	background-position: center 5px;
-	background-repeat: no-repeat;
-}
-.boxViewContainer .box .widgetHeader .leftIcons li.collapse a.collapsed:hover {
-	background: transparent url(images/widget/widget_icon_collapsed_ro.png) top left no-repeat;
-	background-position: center 5px;
-	background-repeat: no-repeat;
-}
+	/* Theme custom Widget's icons */
+	/* Widget's icons */
+	/* Icons on the left side of the H4 title */
+	.boxViewContainer .box .widgetHeader .leftIcons li a {
+		background: transparent url(images/widget/widget_icons_left_sprite) top left no-repeat;
+		background-repeat: no-repeat;
+	}
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.expanded {
+		background-position: 0px 0px;
+	}
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.expanded:hover {
+		background-position: -24px 0px;
+	}	
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.collapsed {
+		background-position: -48px 0px;
+	}
+	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.collapsed:hover {
+		background-position: -72px 0px;
+	}
 
-/* Icons on the right side of the H4 title */
-.boxViewContainer .box .widgetHeader .rightIcons li a {
-	border-left: 1px solid #9d9d9d;
-}
-.boxViewContainer .box .widgetHeader .rightIcons li.previous a {
-	background: transparent url(images/widget/widget_icon_back.png) top left no-repeat;
-}
-.boxViewContainer .box .widgetHeader .rightIcons li.next a {
-	background: transparent url(images/widget/widget_icon_forward.png) top left no-repeat;
-}
-.boxViewContainer .box .widgetHeader .rightIcons li.zoom a {
-	background: transparent url(images/widget/widget_icon_zoom.png) top left no-repeat;
-}
-.boxViewContainer .box .widgetHeader .rightIcons li.drag a {
-	background: transparent url(images/widget/widget_icon_drag.png) top left no-repeat;
-}
+	/* Icons on the right side of the H4 title - uses a sprite - icon is changed by moving the background image  */
+	/* Generic icon, has a default icon */
+	.boxViewContainer .box .widget .widgetHeader .rightIcons ul li a, .boxViewContainer .box .widget .widgetHeader .rightIcons ul li a.alignMiddle {
+		background: transparent url(images/widget/widget_icons_right_sprite);
+		background-repeat: no-repeat;
+		background-position: 0px 0px;
+	}
+	
+	.boxViewContainer .box .widget .widgetHeader .rightIcons ul li a:hover, .boxViewContainer .box .widget .widgetHeader .rightIcons ul li a.alignMiddle:hover {
+		background-position: -25px 0px;
+	}
+	
+	/* Drag Icon */
+	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a {
+		background-position: -50px 0px;
+	}
+	.boxViewContainer .box.expanded .widget .widgetHeader .rightIcons ul li.drag a:hover {
+		background-position: -75px 0px;
+	}
 
 /* Widgeted Index */
 .boxViewContainer .box .widget ul li {
