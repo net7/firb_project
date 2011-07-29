@@ -93,6 +93,22 @@ class PiTextCard < TextCard
     }
   end
 
+
+  def prev_card
+    collection = self.anastatica.collections.first
+    anastatica = self.anastatica
+    prev_anastatica = collection.prev(anastatica)
+    return prev_anastatica.inverse[N::DCT.isPartOf].first unless prev_anastatica.nil?    
+  end
+
+  def next_card
+    collection = self.anastatica.collections.first
+    anastatica = self.anastatica
+    next_anastatica = collection.next(anastatica)
+    return next_anastatica.inverse[N::DCT.isPartOf].first unless next_anastatica.nil?
+  end
+
+
   # @collection is a TaliaCore::Collection
   # returns the ordered list of element to be shown in the menu list
   def self.menu_items_for(collection)
@@ -107,5 +123,6 @@ class PiTextCard < TextCard
     end
     result
   end
+
 
 end
