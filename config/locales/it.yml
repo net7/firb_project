@@ -41,6 +41,7 @@ it:
         title: "Nome di riferimento"
 
     anastaticas:
+        menu_item_name: "Pagine del libro"
         model_name: "Anastatica"
         nav_item: "Anastatiche"
         model_name_plural: "Anastatiche" 
@@ -117,6 +118,7 @@ it:
         iconclass_link: "Vedi questo termine su www.iconclass.org"
 
     pi_text_cards:
+        menu_item_name: "Schede di testo"
         model_name: "Scheda di testo"
         nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"    
@@ -400,6 +402,7 @@ it:
           count: "Ci sono %{count} elementi bibliografici"
 
     pi_illustrated_md_cards:
+        menu_item_name: "Schede immagini di memoria illustrate"
         model_name: "Scheda di immagine di memoria illustrata"
         model_name_plural: "Schede di immagini di memoria illustrate"
         count: "Ci sono %{count} schede immagine di memoria"
@@ -439,6 +442,7 @@ it:
         parent_card: "Scheda illustrazione madre"
         
     pi_letter_illustration_cards:
+        menu_item_name: "Schede capolettera"
         model_name: "Scheda capolettera"
         model_name_plural: "Schede capolettera"
         count: "Ci sono %{count} schede capolettera"
@@ -472,6 +476,7 @@ it:
         iconclass_terms: "Termini Iconclass"
 
     pi_illustration_cards:
+        menu_item_name: "Schede illustrazione"
         model_name: "Scheda illustrazione"
         model_name_plural: "Schede illustrazione"
         count: "Ci sono %{count} schede illustrazione"

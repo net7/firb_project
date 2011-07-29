@@ -1,0 +1,8 @@
+<ul>
+<% @models.each do |m| %>
+    <li><%= boxview_link("/boxview/indici/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
+<% end %>
+<li>Altra voce</li>
+<li>Altra voce numero due</li>
+<li>Pure la terza</li>
+</ul>

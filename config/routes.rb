@@ -66,6 +66,7 @@ ActionController::Routing::Routes.draw do |map|
   map.boxview_capolettera '/boxview/capolettera/:id', :controller => 'boxview/capolettera', :action => 'show'
   map.boxview_pi_scheda_testo '/boxview/pi_scheda_testo/:id', :controller => 'boxview/pi_scheda_testo', :action => 'show'
   map.connect '/boxview/indici', :controller => 'boxview/indici', :action => "index" 
+  map.connect '/boxview/indici/pi', :controller => 'boxview/indici', :action => "pi" 
   map.connect '/boxview/indici/:type', :controller => 'boxview/indici', :action => "show" 
 
 

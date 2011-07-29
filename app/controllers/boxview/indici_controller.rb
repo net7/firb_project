@@ -9,4 +9,8 @@ class Boxview::IndiciController < Boxview::BaseController
     @items = @items.select { |i| i.is_public? }
   end
 
+  def pi
+    @models = %w{Pi_Text_Card Pi_Illustration_Card Pi_Illustrated_Md_Card Pi_Letter_Illustration_Card Anastatica}
+  end
+
 end

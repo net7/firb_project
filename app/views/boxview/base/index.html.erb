@@ -32,6 +32,7 @@
       </div>
       <div id="pageContent">
         <a id="indice_indici" href="#">Indice degli indici</a>
+        <a id="indice_pi" href="#">Indice PISA</a>
       </div>
     </div>
     <script src="/_boxview/src/tools.js"></script>
@@ -59,6 +60,17 @@
           );
         });
 
+        $("#indice_pi").click(function(e){
+          e.preventDefault();
+          myBoxView.addBoxFromAjax(
+            {qstring: '<%= url_for(:controller => "boxview/indici/pi") %>',
+             title: 'Indice: Memorie Pisa', 
+             verticalTitle: 'Indice: Memorie Pisa',
+             resId: 'index_memorie',
+             type: 'index',
+             collapsed: false}
+          );
+        });
 
 	    //myBoxView.openHistoryBox();
       }
