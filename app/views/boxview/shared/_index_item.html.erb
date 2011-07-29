@@ -7,10 +7,11 @@
 #   title: usually a boxview_link created link)
 #   description
 
-    thumb ||= "<img />"
 %>
 <li>
+    <%= if thumb %>
     <div class="indexIcon"><%= thumb %></div>
+    <% end %>
     <div class="indexContent">
         <h5 class="indexItemTitle"><%= title %></h5>
         <p  class="indexItemDescription"><%= description %></p>

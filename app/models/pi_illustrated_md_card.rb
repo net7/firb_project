@@ -34,4 +34,13 @@ class PiIllustratedMdCard < IllustrationCard
     ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(self, N::TALIA.image_component,:part)
   end
 
+  # not really needed, TBH
+  def self.menu_items_for(collection)
+    result = []
+    cards = self.find(:all)
+    cards.each do |c|
+      result << c
+    end
+    result
+  end
 end
