@@ -122,6 +122,12 @@
             });
             </script>]
 
+        unless @resource.prev_card.nil? do
+          w.left_icons boxview_link_for_object(@resource.prev_card), {:class => 'prev'}
+        end
+        unless @resource.next_card.nil? do
+          w.left_icons boxview_link_for_object(@resource.next_card), {:class => 'next'}
+        end
         w.right_icons mostra_note, {:class =>'note'}
         w.right_icons mostra_fenomeni, {:class => 'fenomeni'}
         w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
