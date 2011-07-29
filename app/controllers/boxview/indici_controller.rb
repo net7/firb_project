@@ -5,12 +5,13 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def show
-    @items = params[:type].camelcase.singularize.constantize.find(:all, :prefetch_relations => true)
-    @items = @items.select { |i| i.is_public? }
+    collection = TaliaCore::Collection.find_by_id(params[:collection])
+    @items = params[:type].camelcase.singularize.constantize.menu_items_for(collection)
   end
 
   def pi
-    @models = %w{Pi_Text_Card Pi_Illustration_Card Pi_Illustrated_Md_Card Pi_Letter_Illustration_Card Anastatica}
+    collection_id = TaliaCore::Collection.find(:first).id
+    @models = [[collection_id, 'Pi_Text_Card'], [collection_id ,'Pi_Illustration_Card'], [collection_id, 'Pi_Illustrated_Md_Card'], [collection_id, 'Pi_Letter_Illustration_Card'], [collection_id, 'Anastatica']]
   end
 
 end

@@ -85,4 +85,18 @@ class Anastatica < TaliaCore::Source
     }
   end
 
+  # @collection is a TaliaCore::Collection
+  # returns the ordered list of element to be shown in the menu list
+  def self.menu_items_for(collection)
+    result = []
+    cards = self.find(:all)
+    cards.each do |c|
+      unless c.nil?
+        my_index = collection.index(c)
+        result[my_index] = c unless my_index.nil? or !c.is_public?
+      end
+    end
+    result
+  end
+
 end

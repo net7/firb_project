@@ -1,5 +1,5 @@
 <ul>
-<% @models.each do |m| %>
-    <li><%= boxview_link("/boxview/indici/#{m.tableize}", "Indice: "+I18n.t("#{m.tableize}.nav_item")+" (#{m.tableize})", "Indice "+I18n.t("#{m.tableize}.nav_item"), "index_#{m.tableize}", :index) %></li>
+<% @models.each do |c, m| %>
+    <li><%= boxview_link("/boxview/indici/#{c}/#{m.tableize}", "Indice: "+I18n.t("#{m.tableize}.nav_item")+" (#{m.tableize})", "Indice "+I18n.t("#{m.tableize}.nav_item"), "index_#{m.tableize}", :index) %></li>
 <% end %>
 </ul>
