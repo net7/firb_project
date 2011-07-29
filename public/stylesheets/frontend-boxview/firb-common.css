@@ -1,18 +1,18 @@
 /* Momentaneo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a.alignMiddle {
-	background: url(img/widget_icon_fenomeni.gif) center center no-repeat;
+	background: url(img/widget_icon_fenomeni.png) center center no-repeat;
 }
 
 div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a.alignMiddle {
-	background: url(img/widget_icon_anastatica.gif) center center no-repeat;
+	background: url(img/widget_icon_anastatica.png) center center no-repeat;
 }
 
 div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.previous a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.previous a.alignMiddle {
-	background: url(img/widget_icon_back.gif) center center no-repeat;
+	background: url(img/widget_icon_back.png) center center no-repeat;
 }
 
 div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a.alignMiddle {
-	background: url(img/widget_icon_forward.gif) center center no-repeat;
+	background: url(img/widget_icon_forward.png) center center no-repeat;
 }
 
 
