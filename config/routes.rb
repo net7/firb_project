@@ -68,6 +68,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici', :controller => 'boxview/indici', :action => "index" 
   map.connect '/boxview/indici/pi', :controller => 'boxview/indici', :action => "pi" 
   map.connect '/boxview/indici/:type', :controller => 'boxview/indici', :action => "show" 
+  map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
 
 
   # Default semantic dispatch
