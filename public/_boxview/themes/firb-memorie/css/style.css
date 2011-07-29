@@ -293,7 +293,7 @@ The widget header height involves the height of the div itself, the list element
 	/* Widget's icons */
 	/* Icons on the left side of the H4 title */
 	.boxViewContainer .box .widgetHeader .leftIcons li a {
-		background: transparent url(images/widget/widget_icons_left_sprite) top left no-repeat;
+		background: transparent url(images/widget/widget_icons_left_sprite.png) top left no-repeat;
 		background-repeat: no-repeat;
 	}
 	.boxViewContainer .box .widgetHeader .leftIcons ul li.collapse a.expanded {
@@ -312,7 +312,7 @@ The widget header height involves the height of the div itself, the list element
 	/* Icons on the right side of the H4 title - uses a sprite - icon is changed by moving the background image  */
 	/* Generic icon, has a default icon */
 	.boxViewContainer .box .widget .widgetHeader .rightIcons ul li a, .boxViewContainer .box .widget .widgetHeader .rightIcons ul li a.alignMiddle {
-		background: transparent url(images/widget/widget_icons_right_sprite);
+		background: transparent url(images/widget/widget_icons_right_sprite.png);
 		background-repeat: no-repeat;
 		background-position: 0px 0px;
 	}
