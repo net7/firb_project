@@ -36,7 +36,7 @@ class PiLetterIllustrationCard < IllustrationCard
     result = []
     cards = self.find(:all)
     cards.each do |c|
-      result << c  
+      result << c  unless c.nil?
     end
     result
   end

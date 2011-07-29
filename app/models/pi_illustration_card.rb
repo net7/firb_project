@@ -74,9 +74,11 @@ class PiIllustrationCard < IllustrationCard
     result = []
     cards = self.find(:all)
     cards.each do |c|
-      anastatica = c.anastatica
-      my_index = collection.index(anastatica)
-      result[my_index] = c unless my_index.nil? or !c.is_public?
+      unless c.nil?
+        anastatica = c.anastatica
+        my_index = collection.index(anastatica)
+        result[my_index] = c unless my_index.nil? or !c.is_public?
+      end
     end
     result
   end
