@@ -31,11 +31,6 @@
         </div>
       </div>
       <div id="pageContent">
-        <a id="illustrazione1" href="#">Illustrazione f.8v</a> | 
-        <a id="illustrazione2" href="#">Illustrazione trentotto_verso_i</a> | 
-        <a id="anastatica1" href="#">Anastatica otto_verso, f.8v</a>
-        <a id="schedatesto1" href="#">Scheda testo PI</a>
-        <a id="schedatesto2" href="#">PI ZION LIVE</a>
         <a id="indice_indici" href="#">Indice degli indici</a>
       </div>
     </div>
@@ -51,66 +46,7 @@
 
         <%= boxview_link_code %>
 
-        $("#illustrazione1").click(function(e){
-          e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: '<%= boxview_illustrazione_madre_url(1404) %>',
-             title: 'f. 8v', 
-             verticalTitle: 'f. 8v',
-             resId: '1404',
-             type: 'image',
-             collapsed: false}
-          );
-        });
-
-        $("#illustrazione2").click(function(e){
-          e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: '<%= boxview_illustrazione_madre_url(2968) %>',
-             title: 'trentotto_verso_i', 
-             verticalTitle: 'trentotto_verso_i',
-             resId: '2968',
-             type: 'image',
-             collapsed: false}
-          );
-        });
-
-        $("#anastatica1").click(function(e){
-          e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: '<%= boxview_anastatica_url(1365) %>',
-             title: 'otto_verso, f.8v', 
-             verticalTitle: 'otto_verso, f.8v',
-             resId: '1365',
-             type: 'anastatic',
-             collapsed: false}
-          );
-        });
-
-        $("#schedatesto1").click(function(e){
-          e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: '<%= boxview_pi_scheda_testo_url(1704) %>',
-             title: 'Pi scheda testo 1704', 
-             verticalTitle: 'pi scheda testo',
-             resId: '1704',
-             type: 'transcription',
-             collapsed: false}
-          );
-        });
-
-        $("#schedatesto2").click(function(e){
-          e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: '<%= boxview_pi_scheda_testo_url(2480) %>',
-            title: 'Pi LIVE 2480', 
-            verticalTitle: 'pi scheda testo',
-            resId: '2480',
-            type: 'transcription',
-             collapsed: false}
-          );
-        });
-
+  
         $("#indice_indici").click(function(e){
           e.preventDefault();
           myBoxView.addBoxFromAjax(
