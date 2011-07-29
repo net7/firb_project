@@ -52,26 +52,47 @@
 
             $("#indice_indici").click(function(e){
                 e.preventDefault();
-                myBoxView.addBoxFromAjax(
-                    {qstring: '<%= url_for(:controller => "boxview/indici") %>',
+                myBoxView.addBoxFromAjax({
+                    qstring: '<%= url_for(:controller => "boxview/indici") %>',
                     title: 'Indice: indici!!', 
                     verticalTitle: 'Indice: indici!!',
                     resId: 'indexes_index',
                     type: 'index',
-                    collapsed: false}
-                );
+                    collapsed: false
+                });
             });
 
             $("#pref_intro").click(function(e){
                 e.preventDefault();
-                myBoxView.addBoxFromAjax(
-                    {qstring: '<%= url_for(:controller => "boxview/indici/pi") %>',
-                    title: 'Indice: Memorie Pisa', 
-                    verticalTitle: 'Indice: Memorie Pisa',
-                    resId: 'index_memorie',
-                    type: 'index',
-                    collapsed: false}
-                );
+                myBoxView.addBoxFromAjax({
+                    qstring: '<%= url_for(:controller => "boxview/pagine_statiche/pi_introduzione") %>',
+                    title: 'Progetto Memorie: Introduzione', 
+                    verticalTitle: 'Progetto Memorie: Introduzione',
+                    resId: 'pi_intro',
+                    type: 'intro',
+                    collapsed: false
+                });
+            });
+
+            $("#pref_help").click(function(e){
+                e.preventDefault();
+                myBoxView.addBoxFromAjax({
+                    qstring: '<%= url_for(:controller => "boxview/pagine_statiche/pi_help") %>',
+                    title: 'Progetto Memorie: Help', 
+                    verticalTitle: 'Progetto Memorie: Help',
+                    resId: 'pi_help',
+                    type: 'help',
+                    collapsed: false
+                });
+            });
+
+            myBoxView.addBoxFromAjax({
+                qstring: '<%= url_for(:controller => "boxview/indici/pi") %>',
+                title: 'Indice: Memorie Pisa', 
+                verticalTitle: 'Indice: Memorie Pisa',
+                resId: 'index_memorie',
+                type: 'index',
+                collapsed: false
             });
 
             $("#pref_intro").click();

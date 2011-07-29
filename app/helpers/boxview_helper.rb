@@ -47,6 +47,7 @@ module BoxviewHelper
          href="VISUALIZZATORE_SINGOLI_BOX?title=#{title}&type=#{type.to_s}&id=#{id}&url=#{URI.encode(url)}"
          data-url="#{url}"
          data-title="#{title}"
+         title="#{title}"
          data-id="#{id}"
          data-type="#{type.to_s}">#{text}</a>]
   end
