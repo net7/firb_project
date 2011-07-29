@@ -1,8 +1,13 @@
+<%
+    theme = TaliaCore::CONFIG['firb']['theme'] || 'pi'
+    site_name = TaliaCore::CONFIG['site_name'] || 'Default site_name'
+%>
+
 <html>
   <head>
-    <title>Boxview | <%= TaliaCore::CONFIG['site_name'] %></title>
+    <title>Boxview | <%= site_name %></title>
     <link href="/stylesheets/frontend-boxview/firb-common.css" media="screen" type="text/css" rel="stylesheet"/>
-    <link href="/stylesheets/frontend-boxview/<%= TaliaCore::CONFIG['firb']['theme'] || 'pi'%>/firb.css" media="screen" type="text/css" rel="stylesheet"/>
+    <link href="/stylesheets/frontend-boxview/<%= theme %>/firb.css" media="screen" type="text/css" rel="stylesheet"/>
     <link href="http://fonts.googleapis.com/css?family=OFL+Sorts+Mill+Goudy+TT" rel="stylesheet" type="text/css"/>
   </head>
   <body>
@@ -15,7 +20,7 @@
   
     <div id="pageExt">
       <div id="pageHeader">
-        <h1><%= TaliaCore::CONFIG['site_name'] %></h1>
+        <h1><%= site_name %></h1>
         <p><%= TaliaCore::CONFIG['firb']['site_subtitle'] %></p>        
         <div id="header_preferences_wrapper">
           <div id="header_preferences">
@@ -23,113 +28,66 @@
               <li><a id="pref_intro" title="Introduzione">Introduzione</a></li>
               <li><a id="pref_help" title="Help">Help</a></li>
               <li><a id="pref_history" title="Check your navigation history!">History</a></li>
+<!--              
               <li><a id="pref_link" title="Copia il link a questa pagina">Link</a></li>
               <li><a id="pref_notebooks" title="Notebook personali">Notebooks</a></li>
               <li><a href="#" id="pref_settings" title="Modifica le tue preferenze">Preferenze</a></li>
+-->
             </ul>
           </div>
         </div>
       </div>
       <div id="pageContent"></div>
     </div>
+    <script src="/firb_common.js"></script>
     <script src="/_boxview/src/tools.js"></script>
     <script>
         var bs = new BoxStrapper('../_boxview/', '../boxview_config.js');
         function onInitDone() {
-            // Sets boxview's height to match the height of the page.
-            $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
-            $(window).resize(function(){
-                $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
-            });
 
             <%= boxview_link_code %>
 
-            $("#pref_history").click(function(e){
-                e.preventDefault();
-                myBoxView.openHistoryBox();
-            });
-
-
-            $("#indice_indici").click(function(e){
-                e.preventDefault();
-                myBoxView.addBoxFromAjax({
-                    qstring: '<%= url_for(:controller => "boxview/indici") %>',
-                    title: 'Indice: indici!!', 
-                    verticalTitle: 'Indice: indici!!',
-                    resId: 'indexes_index',
-                    type: 'index',
-                    collapsed: false
-                });
-            });
-
+            // Introduction
             $("#pref_intro").click(function(e){
                 e.preventDefault();
                 myBoxView.addBoxFromAjax({
-                    qstring: '<%= url_for(:controller => "boxview/pagine_statiche/pi_introduzione") %>',
-                    title: 'Progetto Memorie: Introduzione', 
-                    verticalTitle: 'Progetto Memorie: Introduzione',
-                    resId: 'pi_intro',
+                    qstring: '<%= url_for(:controller => "boxview/pagine_statiche/#{theme}_introduzione") %>',
+                    title: '<%= site_name %>: Introduzione', 
+                    verticalTitle: '<%= site_name %>: Introduzione',
+                    resId: '<%= theme %>_intro',
                     type: 'intro',
                     collapsed: false
                 });
             });
 
+            // Help
             $("#pref_help").click(function(e){
                 e.preventDefault();
                 myBoxView.addBoxFromAjax({
-                    qstring: '<%= url_for(:controller => "boxview/pagine_statiche/pi_help") %>',
-                    title: 'Progetto Memorie: Help', 
-                    verticalTitle: 'Progetto Memorie: Help',
-                    resId: 'pi_help',
+                    qstring: '<%= url_for(:controller => "boxview/pagine_statiche/#{theme}_help") %>',
+                    title: '<%= site_name %>: Help', 
+                    verticalTitle: '<%= site_name %>: Help',
+                    resId: '<%= theme %>_help',
                     type: 'help',
                     collapsed: false
                 });
             });
 
+            // Add the menu automatically
             myBoxView.addBoxFromAjax({
-                qstring: '<%= url_for(:controller => "boxview/indici/pi") %>',
-                title: 'Indice: Memorie Pisa', 
-                verticalTitle: 'Indice: Memorie Pisa',
-                resId: 'index_memorie',
+                qstring: '<%= url_for(:controller => "boxview/indici/#{theme}") %>',
+                title: '<%= site_name %>: Indice', 
+                verticalTitle: '<%= site_name %>: Indice',
+                resId: '<%= theme %>_index',
                 type: 'index',
                 collapsed: false
             });
 
-            $("#pref_intro").click();
+            // Add all the common listeners
+            init_firb_common();
 
         } // onInitDone()
 
-      function getFlashObject(movieName) {
-        if (navigator.appName.indexOf("Microsoft") != -1) {
-        return window[movieName];
-        } else {
-          var obj = document[movieName];
-          if (obj.length != 'undefined') {
-            for(var i=0;i<obj.length;i++) { 
-              if(obj[i].tagName.toLowerCase() == 'embed') return obj[i]; 
-            }
-          }
-          return obj;
-         }
-       }
-
-      // Initialization: IMT will call this when it's ready to load an image
-      function jsapi_initializeIMW(id) {
-        var new_b64;
-        if (navigator.appName.indexOf("Microsoft") != -1) new_b64 = $("#"+id).attr('b64');
-        else new_b64 = $('#'+id+" embed").attr('b64');
-        getFlashObject(id).initialize(new_b64, 2);
-      } // jsapi_initializeIMW()
-
-      function jsapi_mouseOver(fid, ki) {	
-        $("#image_zone_"+ki).toggleClass('highlighted');
-      }
-
-      function jsapi_mouseOut(fid, ki) {
-        $("#image_zone_"+ki).toggleClass('highlighted');
-      }
-
-      function jsapi_mouseClick(fid, ki) {}
     </script>
   </body>
 </html>
