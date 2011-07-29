@@ -16,7 +16,7 @@
     <div id="pageExt">
       <div id="pageHeader">
         <h1><%= TaliaCore::CONFIG['site_name'] %></h1>
-        <p><%= TaliaCore::CONFIG['firb']['site_subtitle'] %></p>
+        <p><%= TaliaCore::CONFIG['firb']['site_subtitle'] %></p>        
         <div id="header_preferences_wrapper">
           <div id="header_preferences">
             <ul>
@@ -30,10 +30,7 @@
           </div>
         </div>
       </div>
-      <div id="pageContent">
-        <a id="indice_indici" href="#">Indice degli indici</a>
-        <a id="indice_pi" href="#">Indice PISA</a>
-      </div>
+      <div id="pageContent"></div>
     </div>
     <script src="/_boxview/src/tools.js"></script>
     <script>
@@ -60,8 +57,8 @@
           );
         });
 
-        $("#indice_pi").click(function(e){
-          e.preventDefault();
+        //$("#indice_pi").click(function(e){
+        //  e.preventDefault();
           myBoxView.addBoxFromAjax(
             {qstring: '<%= url_for(:controller => "boxview/indici/pi") %>',
              title: 'Indice: Memorie Pisa', 
@@ -70,7 +67,7 @@
              type: 'index',
              collapsed: false}
           );
-        });
+        //});
 
 	    //myBoxView.openHistoryBox();
       }
