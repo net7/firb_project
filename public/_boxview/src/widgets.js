@@ -122,13 +122,17 @@
 			
             // RIGHT icons
             w += "<div class='rightIcons'><ul>";
+            
             if (options.prevnext)
                 w += "<li class='next'><a href='#' title='Next'>Next</a></li>"+
                     "<li class='previous'><a href='#' title='Previous'>Previous</a></li>";
+
             if (options.zoomable)
                 w += "<li class='zoom'><a href='#' title='Zoom'>Zoom</a></li>";
+
             if (options.draggable)
                 w += "<li class='drag'><a href='#' title='Drag'>Drag</a></li>";
+            
             w += "</ul></div>";
 
             // Widget CONTENT
