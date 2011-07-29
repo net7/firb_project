@@ -75,6 +75,19 @@ function init_firb_common(theme) {
     // Open intro automatically
     $("#pref_intro").click();
 
+    // Illustrated MD card into the MD widget
+    $('span.ill_md').live('mouseover', function() {
+        var c = $(this).attr('about'),
+            b = $(this).parents('div.box');
+        b.find('span.'+c).addClass('zone_highlighted');
+        $(this).addClass('zone_highlighted');
+    }).live('mouseout', function(){
+        var c = $(this).attr('about'),
+            b = $(this).parents('div.box');
+        b.find('span.'+c).removeClass('zone_highlighted');
+        $(this).removeClass('zone_highlighted');
+    });
+    
     // Phen item: highlight the selected item
     $('div.fen_menu_panel li.phen_item').live('click', function() {
         var c = $(this).attr('about'),
@@ -86,9 +99,11 @@ function init_firb_common(theme) {
 
         // TODO: if the parent section is highlighted, deselect all
         // and force the selection of this content again
-        b.find('span.highlighted, li.highlighted, span.'+c).toggleClass('highlighted');
-        if (!h)
+        b.find('span.highlighted, li.highlighted').toggleClass('highlighted');
+        if (!h) {
+            b.find('span.'+c).addClass('highlighted');
             $(this).addClass('highlighted');
+        }
     });
     
     // Phen section: highlight all the items of this category
