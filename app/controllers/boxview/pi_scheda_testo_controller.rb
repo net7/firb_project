@@ -3,6 +3,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
   require 'nokogiri'
   # included to have access to the imt_image_b64 helper
   include ImtHelper
+  include BoxviewHelper
 
   def show
     @resource = PiTextCard.find(params[:id], :prefetch_relations => true)
@@ -148,7 +149,14 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
                            :out => "$('.'+zidc_#{z.id}[ki]).removeClass('zone_highlighted')"
                 }
 
-      imt += '<a title="Apri la scheda in un nuovo box" data-type="image" data-id="2967" data-title="" class="boview_link transcription_open_icon">APRI IN BOX</a>'
+      # Clicking the arrow link over the IMT object, open the related box .. 
+      # DEBUG: is it safe to get the first related_object ?? Better look for
+      # PiIllustrationCard/PiLetterIllustrationCard explicitly??!
+      o = z.get_related_objects.first
+      data = o.boxview_data()
+      imt += boxview_link_for_object(o, {:class => "transcription_open_icon"})
+
+      # imt += '<a title="Apri la scheda in un nuovo box" data-type="image" data-id="2967" data-title="" class="boview_link transcription_open_icon">APRI IN BOX</a>'
       imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
       imt += "</span></div>"
 
