@@ -20,11 +20,11 @@
         <div id="header_preferences_wrapper">
           <div id="header_preferences">
             <ul>
-              <li><a href="boxViewer.php?method=getIntro" id="pref_intro" title="Introduzione">Introduzione</a></li>
-              <li><a href="boxViewer.php?method=getAiuto" id="pref_help" title="Help">Help</a></li>
-              <li><a href="#" id="pref_history" title="Check your navigation history!">History</a></li>
-              <li><a href="#" id="pref_link" title="Copia il link a questa pagina">Link</a></li>
-              <li><a href="boxViewer.php?method=getMyDoni" id="pref_notebooks" title="Notebook personali">Notebooks</a></li>
+              <li><a id="pref_intro" title="Introduzione">Introduzione</a></li>
+              <li><a id="pref_help" title="Help">Help</a></li>
+              <li><a id="pref_history" title="Check your navigation history!">History</a></li>
+              <li><a id="pref_link" title="Copia il link a questa pagina">Link</a></li>
+              <li><a id="pref_notebooks" title="Notebook personali">Notebooks</a></li>
               <li><a href="#" id="pref_settings" title="Modifica le tue preferenze">Preferenze</a></li>
             </ul>
           </div>
@@ -34,43 +34,49 @@
     </div>
     <script src="/_boxview/src/tools.js"></script>
     <script>
-      var bs = new BoxStrapper('../_boxview/', '../boxview_config.js');
-      function onInitDone() {
-        // Sets boxview's height to match the height of the page.
-        $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
-        $(window).resize(function(){
-          $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
-        });
+        var bs = new BoxStrapper('../_boxview/', '../boxview_config.js');
+        function onInitDone() {
+            // Sets boxview's height to match the height of the page.
+            $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+            $(window).resize(function(){
+                $('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+            });
 
-        <%= boxview_link_code %>
+            <%= boxview_link_code %>
 
-  
-        $("#indice_indici").click(function(e){
-          e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: '<%= url_for(:controller => "boxview/indici") %>',
-             title: 'Indice: indici!!', 
-             verticalTitle: 'Indice: indici!!',
-             resId: 'indexes_index',
-             type: 'index',
-             collapsed: false}
-          );
-        });
+            $("#pref_history").click(function(e){
+                e.preventDefault();
+                myBoxView.openHistoryBox();
+            });
 
-        //$("#indice_pi").click(function(e){
-        //  e.preventDefault();
-          myBoxView.addBoxFromAjax(
-            {qstring: '<%= url_for(:controller => "boxview/indici/pi") %>',
-             title: 'Indice: Memorie Pisa', 
-             verticalTitle: 'Indice: Memorie Pisa',
-             resId: 'index_memorie',
-             type: 'index',
-             collapsed: false}
-          );
-        //});
 
-	    //myBoxView.openHistoryBox();
-      }
+            $("#indice_indici").click(function(e){
+                e.preventDefault();
+                myBoxView.addBoxFromAjax(
+                    {qstring: '<%= url_for(:controller => "boxview/indici") %>',
+                    title: 'Indice: indici!!', 
+                    verticalTitle: 'Indice: indici!!',
+                    resId: 'indexes_index',
+                    type: 'index',
+                    collapsed: false}
+                );
+            });
+
+            $("#pref_intro").click(function(e){
+                e.preventDefault();
+                myBoxView.addBoxFromAjax(
+                    {qstring: '<%= url_for(:controller => "boxview/indici/pi") %>',
+                    title: 'Indice: Memorie Pisa', 
+                    verticalTitle: 'Indice: Memorie Pisa',
+                    resId: 'index_memorie',
+                    type: 'index',
+                    collapsed: false}
+                );
+            });
+
+            $("#pref_intro").click();
+
+        } // onInitDone()
 
       function getFlashObject(movieName) {
         if (navigator.appName.indexOf("Microsoft") != -1) {
