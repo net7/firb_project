@@ -1,3 +1,33 @@
+/* Momentaneo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a.alignMiddle {
+	background: url(img/widget_icon_fenomeni.gif) center center no-repeat;
+}
+
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a.alignMiddle {
+	background: url(img/widget_icon_anastatica.gif) center center no-repeat;
+}
+
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.previous a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.previous a.alignMiddle {
+	background: url(img/widget_icon_back.gif) center center no-repeat;
+}
+
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a.alignMiddle {
+	background: url(img/widget_icon_forward.gif) center center no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 Liberamente copiato da Doni, oh yeah!
 */
@@ -29,9 +59,40 @@ Page Sections
 }
 
 /*
-Box | Caratteristiche comuni ai box */
+
+*/
 .boxViewContainer .box .boxContent .widget .widgetContent {
 	padding: 10px;
+}
+
+.boxViewContainer .box .boxContent .widget {
+	clear: both;
+}
+
+/*
+Widget | Campi di descrizione e contenuto relativo (es. widget studio)
+*/
+.widgetContent .widgetField .field_title {
+    display:block;
+   	font-size: 12px;
+	line-height: 20px;
+	padding-left: 15px;
+	font-family:Arial, Helvetica, sans-serif;
+	color: #808080;
+	cursor: pointer;
+}
+
+/* Icona expand collapse dei titoli INTERNI ai widget */
+.widgetContent div span.field_title.expanded {
+	background-image: url(img/widget_inner_icon_expanded.png);
+	background-position: 0px 3px;
+	background-repeat: no-repeat;
+}
+
+.widgetContent div span.field_title.collapsed {
+	background-image: url(img/widget_inner_icon_collapsed.png);
+	background-position: 0px 3px;
+	background-repeat: no-repeat;
 }
 
 /*
@@ -146,20 +207,23 @@ a.zone_highlighted,
     display:none;
 }
 
+/*
+Pannello fenomeni
+*/
 div.fen_menu_panel {
-    background-color: rgba(100,100,100,0.8);
-    border: 2px solid red;
+    background-color: #ddd;
     position: absolute;
     top: 60px;
     right: 50px;
     width: 250px;
     /*DEBUG: sta roba andra' sopra al flash? boh .. */
     z-index: 10;
-    display: block
+    display: block;
+    padding: 8px;
 }
-div.fen_menu_panel.hidden {
-    display: none;
-}
+	div.fen_menu_panel.hidden {
+	    display: none;
+	}
 
 .boxviewcontainer .box .boxcontent .widget div.fen_menu_panel ul,
 .boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li {
@@ -167,23 +231,29 @@ div.fen_menu_panel.hidden {
     border: 0px;
 }
 div.fen_menu_panel li.phen_section {
-    background: #aaa;
-    font-size:1.2em;
+    font-size:11px;
+    font-weight: bold;
 }
 .boxviewcontainer div.fen_menu_panel li.phen_item {
-    background: #ccc;
-    padding-left: 15px;
+    margin-left: 8px;
+    font-size:10px;
 }
+
+/* Spostare in FIRB.css */
+.boxviewcontainer div.fen_menu_panel li.phen_item:hover {
+	color: #992000;
+}
+
 div.fen_menu_panel li.phen_section:hover,
 div.fen_menu_panel li.phen_item:hover,
 div.fen_menu_panel li.phen_section.highlighted:hover,
 div.fen_menu_panel li.phen_item.highlighted:hover {
-    background: #0fc;
+    /* background: #0fc; Chi ha messo sto background aluconogeno? */
     cursor: pointer;
 }
 div.fen_menu_panel li.phen_section.highlighted,
 div.fen_menu_panel li.phen_item.highlighted {
-    background: #fc0;
+    /* background: #fc0; Chi ha messo sto background aluconogeno? */
 }
 
 /**************************************************************************************************/
