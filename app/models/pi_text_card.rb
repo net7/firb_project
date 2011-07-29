@@ -100,8 +100,7 @@ class PiTextCard < TextCard
     begin
       anastatica = collection.prev(anastatica)
       prev_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
-    end while prev_card.class != self.class and !anastatica.nil?
-    return prev_card unless anastatica.nil?
+    end while prev_card.class != self.class and !anastatica.nil? and !prev_card.is_public?
   end
 
   def next_card
@@ -110,8 +109,7 @@ class PiTextCard < TextCard
     begin
       anastatica = collection.next(anastatica)
       next_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
-    end while next_card.class != self.class and !anastatica.nil?
-    return next_card unless anastatica.nil?
+    end while next_card.class != self.class and !anastatica.nil? and !next_card.is_public?
   end
 
 
