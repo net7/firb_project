@@ -15,11 +15,12 @@
                 // Add the link after the last span of this class 
                 $('.#{n[:class]}:last').after('<span class="note_link" id="note_link_#{n[:class]}"><a class="transcription_open_icon"></a></span>');
 
-                // Click on a note in the notes colum highlights the linked note
+                // Click on a note in the notes column highlights the linked note
                 $('#note_#{n[:class]}').click(function(){
                     var b = $(this).parents('div.box');
                     b.find('div.note.open, #note_#{n[:class]}').toggleClass('open closed');
                     b.find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
+                    reposition_notes(b.attr('id'));
                 });
 
                 // Note link in the text: click opens the notes column
@@ -35,6 +36,7 @@
                     b.find('#note_#{n[:class]}').addClass('open').removeClass('closed');
                     b.find('.highlighted').removeClass('highlighted');
                     b.find('.#{n[:class]}').addClass('highlighted');
+                    reposition_notes(b.attr('id'));
                     
                 });
                 /*
@@ -84,12 +86,26 @@
         
             // DEBUG: MOVE THIS ELSEWHERE
             function reposition_notes(id) {
+                var b = $('#'+id),
+                    w = b.find('div.widget.transcription'), 
+                    wc = w.find('div.widgetContent'),
+                    t = w.find('div.widgetContent div.transcription_text'),
+                    n = w.find('div.widgetContent div.transcription_notes_content'),
+                    maxH=0,
+                    t_top = t.offset().top;
+                
                 $('#'+id+' div.transcription_notes_content div.note').each(function(i, e){
                     var note_id = $(e).attr('id'),
                         my_class = note_id.substr(5),
                         top = $('#'+id+' .'+my_class+':first').offset().top;
                     $(this).offset({top: top});
+                    console.log("Tip top ", top, $(this).height(), maxH);
+                    if (top+$(this).height()-t_top > maxH)
+                        maxH = top + $(this).height() - t_top;
                 });
+
+                // Set the notes column height
+                n.height(Math.max(t.height(), maxH));
             }
 
             // Phen item: highlight the selected item
@@ -165,7 +181,6 @@
                     // Set the notes column height
                     h = w.find('div.widgetContent div.transcription_text').height();
                     w.find('div.widgetContent div.transcription_notes_content').height(h);
-                    reposition_notes(bo.attr('id'));
                     // Close all the open notes
                     wc.find('div.note.open').toggleClass('open closed');
                     
@@ -174,6 +189,7 @@
                     bo.find('.highlighted').toggleClass('highlighted');
                     wc.find('div.note.open').toggleClass('open closed');
                 }
+                reposition_notes(bo.attr('id'));
                 return false;
             });
 
