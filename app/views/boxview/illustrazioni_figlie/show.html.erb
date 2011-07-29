@@ -1,5 +1,5 @@
 <% imt_id = "imt_illustrazione_figlia_#{@resource.id}" %>
-<% scheda_madre = @resource.image_zone.get_related_objects.first %>
+<% scheda_madre = @resource.parent_card.image_zone.get_related_objects.first %>
 <% scheda_madre_title = @resource.anastatica.page_position %>
 
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
@@ -7,8 +7,8 @@
     :locals => {:id => imt_id,
     :base64 => imt_image_b64(@image, @resource.showable_zones),
     :js_prefix => 'jsapi'}
-  w.right_icons boxview_link_for_object(@resource.anastatica)
-  w.right_icons boxview_link_for_object(scheda_madre)
+  w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+  w.right_icons boxview_link_for_object(scheda_madre), {:class => 'illustrazione'}
   w.content content_tag(:div, content, :class => 'picture')
 end %>
 
