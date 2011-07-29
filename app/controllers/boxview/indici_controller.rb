@@ -10,7 +10,7 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def pi
-    collection_id = TaliaCollection.find(:first).id
+    collection_id = TaliaCore::Collection.find(:first).id
     @models = [[collection_id, 'Pi_Text_Card'], [collection_id ,'Pi_Illustration_Card'], [collection_id, 'Pi_Illustrated_Md_Card'], [collection_id, 'Pi_Letter_Illustration_Card'], [collection_id, 'Anastatica']]
   end
 

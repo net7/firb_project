@@ -101,7 +101,7 @@ class PiTextCard < TextCard
     cards.each do |c|
       anastatica = c.anastatica
       my_index = collection.index(anastatica)
-      result[my_index] = c unless collection.index(my_index).nil? or !c.is_public?
+      result[my_index] = c unless my_index.nil? #or !c.is_public?
     end
     result
   end
