@@ -1,32 +1,49 @@
-<ul>
+<%= 
+    boxview_widget 'TEMP DA RIMUOVERE', :class => "index widget_draggable" do |w|
+        w.content "<ul>"
+        @temp_models.each do |c,m|
+            w.content "<li>"
+            w.content boxview_link("/boxview/indici/#{c}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) 
+            w.content "</li>"
+        end 
+        w.content %[
+              <li>Altra voce</li>
+              <li>Altra voce numero due</li>
+              <li>Pure la terza</li>
+            </ul>
+        ]
+    end
+%>
 
 
+<%= 
+    boxview_widget 'Navigation', :class => "index widget_draggable" do |w|
+        w.content "<ul>"
 
-  <% @temp_models.each do |c,m| %>
-    <li><%= boxview_link("/boxview/indici/#{c}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
-  <% end %>
-  <li>Altra voce</li>
-  <li>Altra voce numero due</li>
-  <li>Pure la terza</li>
-</ul>
+        # anastatica 
+        m = @models[:anastatica]
+        w.content "<li>"
+        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
 
+        # illustrazioni 
+        m = @models[:illustrazioni]
+        w.content "<li>"
+        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
 
-<ul>
+        # immagini di memoria
+        m = @models[:immagini_memoria] 
+        w.content "<li>"
+        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
 
-<%# anastatica %>
-  <% m = @models[:anastatica] %>
-  <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
+        # testo
+        m = @models[:schede_testo]
+        w.content "<li>"
+        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
 
-<%# illustrazioni %>
-  <% m = @models[:illustrazioni] %>
-  <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
-
-<%# immagini di memoria %>
-  <% m = @models[:immagini_memoria] %>
-  <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
-
-<%# testo %>
-  <% m = @models[:schede_testo] %>
-  <li><%= boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) %></li>
-
-</ul>
+        w.content "</ul>"
+    end
+%>
