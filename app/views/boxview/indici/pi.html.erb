@@ -33,11 +33,12 @@
         w.content "</li>"
 
         # immagini di memoria
-        m = @models[:immagini_memoria] 
-        w.content "<li>"
-        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
-        w.content "</li>"
+        #m = @models[:immagini_memoria]
+        #w.content "<li>"
+        #w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        #w.content "</li>"
 
+        m = @models[:illustrazioni]
         w.content "<li>Immagini di memoria<ul><li>"
         types = ImageComponent.zone_types_for(PiIllustrationCard)
         types.each do |type|
