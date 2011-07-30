@@ -38,6 +38,15 @@
         w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
         w.content "</li>"
 
+        w.content "<li>Immagini di memoria<ul><li>"
+        types = ImageComponent.zone_types_for(PiIllustrationCard)
+        types.each do |type|
+          w.content "<li>"
+          w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+          w.content "</li>"
+        end
+        w.content "</li></ul></li>"
+
         # testo
         m = @models[:schede_testo]
         w.content "<li>"

@@ -83,5 +83,24 @@ class PiIllustrationCard < IllustrationCard
     result
   end
 
+  # @collection is a TaliaCore::Collection
+  # returns the ordered list of element to be shown in the menu list
+  def self.filtered_menu_items_for(collection, filter)
+    result = []
+    cards = ImageComponent.items_by_type_and_related_resource_class(:filter, self.class)
+    cards.each do |c|
+      unless c.nil?
+        anastatica = c.anastatica
+        my_index = collection.index(anastatica)
+        result[my_index] = c unless my_index.nil? or !c.is_public?
+      end
+    end
+    result
+  end
+
+
+
 
 end
+
+
