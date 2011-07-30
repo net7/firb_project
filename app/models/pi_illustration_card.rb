@@ -87,7 +87,7 @@ class PiIllustrationCard < IllustrationCard
   # returns the ordered list of element to be shown in the menu list
   def self.filtered_menu_items_for(collection, filter)
     result = []
-    cards = ImageComponent.items_by_type_and_related_resource_class(:filter, self.class)
+    cards = ImageComponent.items_by_type_and_related_resource_class(filter, PiIllustrationCard)
     cards.each do |c|
       unless c.nil?
         anastatica = c.anastatica

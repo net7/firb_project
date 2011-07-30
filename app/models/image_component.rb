@@ -21,7 +21,7 @@ class ImageComponent < TaliaCore::Source
   end
 
   def self.items_by_type_and_related_resource_class(type, resource_class)
-    qry = ActiveRDF::Query.new(self.class).select(:x).distinct
+    qry = ActiveRDF::Query.new(resource_class).select(:x).distinct
     qry.where(:x, N::TALIA.image_component, :ic)
     qry.where(:ic, N::DCT.type, :type)
     # teoretically we could use the type as the object of the above where clause,
