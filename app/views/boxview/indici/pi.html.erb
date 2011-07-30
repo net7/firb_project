@@ -43,7 +43,7 @@
         types = ImageComponent.zone_types_for(PiIllustrationCard)
         types.each do |type|
           w.content "<li>"
-          w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", I18n.t("#{m.type}.menu_item_name"), "Indice "+I18n.t("#{m.type}.menu_item_name"), "index_#{m.type}", :index)
+          w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", I18n.t("#{type}.menu_item_name"), "Indice "+I18n.t("#{type}.menu_item_name"), "index_#{type}", :index)
           w.content "</li>"
         end
         w.content "</li></ul></li>"
