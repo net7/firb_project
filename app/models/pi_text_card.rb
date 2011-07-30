@@ -94,44 +94,4 @@ class PiTextCard < TextCard
   end
 
 
-  def prev_card
-    anastatica = self.anastatica
-    collection = anastatica.collections.first
-    begin
-      anastatica = collection.prev(anastatica)
-      return nil if anastatica.nil?
-      prev_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
-    end while prev_card.class != self.class and !prev_card.is_public?
-    return prev_card unless prev_card.class != self.class
-  end
-
-  def next_card
-    anastatica = self.anastatica
-    collection = anastatica.collections.first
-    begin
-      anastatica = collection.next(anastatica)
-      return nil if anastatica.nil?
-      next_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
-    end while next_card.class != self.class and !next_card.is_public?
-    return next_card unless next_card.class != self.class
-  end
-
-
-
-  # @collection is a TaliaCore::Collection
-  # returns the ordered list of element to be shown in the menu list
-  def self.menu_items_for(collection)
-    result = []
-    cards = self.find(:all)
-    cards.each do |c|
-      unless c.nil?
-        anastatica = c.anastatica
-        my_index = collection.index(anastatica)
-        result[my_index] = c unless my_index.nil? or !c.is_public?
-      end
-    end
-    result
-  end
-
-
 end
