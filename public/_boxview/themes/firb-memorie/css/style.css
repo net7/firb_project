@@ -6,8 +6,8 @@
 
 /* Generic font used by the boxview */
 .boxViewContainer * { 
-    font-family: Helvetica, Arial, sans-serif; 
-    font-size: 10pt;
+    /* font-family: Helvetica, Arial, sans-serif; Crea troppi conflitti, la wildcard rompe! */
+	/* font-size: 10pt; */
 }
 
 /* Bg for the whole boxview */
@@ -23,13 +23,13 @@
 
 /* Collapsed box */
 .boxViewContainer .box.collapsed {
-	background-color: #717171;
+	background: #717171 url(images/box-header-default-collapsed.gif) center left repeat-y;
 	-moz-border-radius-topleft: 7px;
 	-moz-border-radius-topright: 7px;
 	-webkit-border-top-left-radius: 7px;
 	-webkit-border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
+	border-top-right-radius: 7px;	
 }
 	
 /* Box header expanded */
@@ -116,6 +116,10 @@
 
 .boxViewContainer .box.index.expanded .boxHeader { background: #717171 url(images/box-header-index.gif) center left repeat-x; }
 .boxViewContainer .box.index.collapsed { background: #717171 url(images/box-header-index-collapsed.gif) center left repeat-y; }
+
+/* Menu Box */
+.boxViewContainer .box.menu.expanded .boxHeader { background: #717171 url(images/box-header-menu.gif) center left repeat-x; }
+.boxViewContainer .box.menu.collapsed { background: #717171 url(images/box-header-menu-collpsed.gif) center left repeat-y; }
 
 /* Anastatic Box */
 .boxViewContainer .box.anastatic.expanded .boxHeader { background: #717171 url(images/box-header-anastatic.gif) center left repeat-x; }

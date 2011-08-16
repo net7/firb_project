@@ -9,10 +9,6 @@ a {
 	color: #992000;
 }
 
-.boxViewContainer * {
-	font-family: none;
-}
-
 /* Header */
 #pageHeader h1 {
 	font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
@@ -44,24 +40,20 @@ Definizione dei link dentro i campi dei descrizione dentro ai Widget
 /*
 Box Trascrizione > Widget Trascrizione
 */
-/* La sostituzione del font non funziona! */
-.boxViewContainer .box.transcription .widget .widgetContent .transcription_text {
-	font-family: Georgia, Times, “Times New Roman”, serif !important;
+.transcription_text {
+	font-family: Georgia, Times, Times New Roman, serif !important;
+	font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
 }
 
-.transcription_text, .transcription_notes {
-	font-family: Georgia, Times, “Times New Roman”, serif !important;
+
+.transcription_notes {
+	font-family:Arial, Helvetica, sans-serif;
 }
 
-.transcription {
-	font-family: Georgia, Times, “Times New Roman”, serif !important;
-}
 
-div.box.transcription div.boxContent div.widget div.widgetContent div.transcription_text {
-	font-family: Georgia, Times, “Times New Roman”, serif !important;
-}
 
 .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head span, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head span, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription a, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span a, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head a, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head span a, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head a, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head span a {
     color: #343434;
     font-family: Georgia,Times,Times New Roman,serif;
+    font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
 }

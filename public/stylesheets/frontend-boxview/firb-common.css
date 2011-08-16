@@ -1,42 +1,38 @@
-/* Momentaneo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a.alignMiddle {
-	background: url(img/widget_icon_fenomeni.png) center center no-repeat;
-}
+/* --- Table Of Contents
 
-div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a.alignMiddle {
-	background: url(img/widget_icon_anastatica.png) center center no-repeat;
-}
-
-div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.previous a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.previous a.alignMiddle {
-	background: url(img/widget_icon_back.png) center center no-repeat;
-}
-
-div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a.alignMiddle {
-	background: url(img/widget_icon_forward.png) center center no-repeat;
-}
-
-
-
-
-
-
-
-
-
+01. HTML TAGS 
+		1. .....
+02. PAGE STRUCTURE
+		1. Page Sections
+		2. Header
+03. HEADER
+		1. Main Header Attributes
+		2. Header Preferences
+04. BOX
+		1. Generic Box Features
+		2. Index Box
+		3. Trascription Box
+05. WIDGETS
+		1. Generic Widget Features
+		2. Collapsable Description Fields
+		3. Widget Right Icons Normal
+		4. Widget Right Icons Rollover
+06. MENU FENOMENI
+		1. Generic Menu Features
+GARBAGE
+--- */
 
 
+/* ________________________________________________________________________________________________________________
+	01. HTML TAGS
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. ... ------- */
 
 
-
-/*
-Liberamente copiato da Doni, oh yeah!
-*/
-
-/*
-******************************************
-Page Sections
-******************************************
-*/
+/* ________________________________________________________________________________________________________________
+	02. PAGE STRUCTURE
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. Page Sections ------- */
 #pageExt {
 	bottom:0;
 	left:0;
@@ -46,7 +42,6 @@ Page Sections
 	top:0;
 	width:100%;
 }
-
 #pageContent {
 	position: absolute;
 	margin: 0; padding: 0; border: 0;
@@ -58,68 +53,119 @@ Page Sections
 	overflow: hidden;
 }
 
-/*
-
-*/
-.boxViewContainer .box .boxContent .widget .widgetContent {
-	padding: 10px;
+/* ------- 2. Header ------- */
+#pageHeader {
+	height: 102px;
+	margin: 0;
+	width: 100%;
 }
 
-.boxViewContainer .box .boxContent .widget {
-	clear: both;
+/* ________________________________________________________________________________________________________________
+	03. HEADER
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. Main Header Attributes ------- */
+#pageHeader h1 {
+	display: block;
+	font-size: 44px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+#pageHeader p {
+	display: block;
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 10px;
+	top: 70px;
 }
 
-/*
-Widget | Campi di descrizione e contenuto relativo (es. widget studio)
-*/
-.widgetContent .widgetField .field_title {
-    display:block;
-   	font-size: 12px;
-	line-height: 20px;
-	padding-left: 15px;
+/* ------- 2. Header Preferences ------- */
+#header_preferences_wrapper {
+	position: absolute;
+	height: 34px; margin: 0; padding: 0 7px 0 0; 
+	top: 23px;
+	right: 10px;
+	background: url(pi/img/preferences_bg_right.png) no-repeat scroll right top transparent;
+}
+	#header_preferences {
+		height: 34px; 
+		margin: 0;
+		padding: 0 0 0 7px; 
+		background: url(pi/img/preferences_bg_left.png) no-repeat scroll left top transparent;
+	}
+		#header_preferences ul {
+			height: 34px; margin: 0; padding: 0; 
+			overflow: hidden;
+			background: url(pi/img/preferences_bg.png) repeat-x scroll left top transparent;
+			cursor: pointer;
+		}
+			#header_preferences ul li {
+				margin: 7px 0 5px 0;
+				padding: 0 4px 0 4px;
+				display: block;
+				width: 22px;
+				height: 22px; 
+				float: left;
+				background: url(pi/img/pref_icons.png) center right no-repeat;
+				background-position: 28px 0;
+				cursor: pointer;
+				text-indent: -9999px;
+			}
+			#header_preferences ul li:last-child {
+				background: none;
+			}
+			#header_preferences ul li a {
+				text-indent: -9999px;
+				display: block;
+				width: 20px;
+				height: 20px;
+				background: url(pi/img/pref_icons.png) center right no-repeat;
+				cursor: pointer;
+			}
+			#header_preferences #pref_intro {background-position: -2px 0;}
+			#header_preferences #pref_help {background-position: -22px 0;}
+			#header_preferences #pref_history {background-position: -42px 0;}
+			#header_preferences #pref_link {background-position: -62px 0;}
+			#header_preferences #pref_notebooks {background-position: -82px 0;}
+			#header_preferences #pref_settings {background-position: -102px 0;}
+			
+			#header_preferences #pref_intro:hover {background-position: -2px -20px;}
+			#header_preferences #pref_help:hover {background-position: -22px -20px;}
+			#header_preferences #pref_history:hover {background-position: -42px -20px;}
+			#header_preferences #pref_link:hover {background-position: -62px -20px;}
+			#header_preferences #pref_notebooks:hover {background-position: -82px -20px;}
+			#header_preferences #pref_settings:hover {background-position: -102px -20px;}
+			
+/* ________________________________________________________________________________________________________________
+	04. BOX
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. Generic Box Features ------- */
+ .boxViewContainer .boxContent {
 	font-family:Arial, Helvetica, sans-serif;
-	color: #808080;
-	cursor: pointer;
 }
 
-/* Icona expand collapse dei titoli INTERNI ai widget */
-.widgetContent div span.field_title.expanded {
-	background-image: url(img/widget_inner_icon_expanded.png);
-	background-position: 0px 3px;
-	background-repeat: no-repeat;
-}
-
-.widgetContent div span.field_title.collapsed {
-	background-image: url(img/widget_inner_icon_collapsed.png);
-	background-position: 0px 3px;
-	background-repeat: no-repeat;
-}
-
-/*
-Box Indice > Elementi della lista
-*/
+/* ------- 2. Index Box ------- */
 .box.index .widgetContent ul li .indexContent h5{
 	font-size: 13px;
 	line-height: 16px;
 }
-
 .box.index .widgetContent ul li .indexContent h5 a.boxview_link {
 	font-size: 13px;
 	line-height: 16px;
 	padding: 0;
 	margin: 0 0 3px 0;
 }
-
 .box.index .widgetContent ul li .indexContent p.indexItemDescription {
 	font-size: 11px;
 	line-height: 14px;
 }
 
-
-/*
-Box Trascrizione > Widget Trascrizione
-Definizione generica icone
-*/
+/* ------- 3. Trascription Box ------- */
+/* Da capire bene che fanno */
 .transcription a.transcription_open_icon {
 	display: inline-block; /* Occhio alla compatibilità */
 	width: 13px;
@@ -129,12 +175,9 @@ Definizione generica icone
 	background-position: -26px -0;
 	cursor: pointer;
 }
-	
-	.transcription a.transcription_open_icon:hover {
-		background-position: -26px -13px;
-	}
-
-
+.transcription a.transcription_open_icon:hover {
+	background-position: -26px -13px;
+}
 .transcription a.transcription_close_icon {
 	display: block;
 	width: 13px;
@@ -144,55 +187,30 @@ Definizione generica icone
 	background-position: -39px -0;
 	cursor: pointer;
 }
-
-	.transcription a.transcription_close_icon:hover {
-		background-position: -39px -13px;
-	}
-	
-/*
-Box Trascrizione > Widget Trascrizione > Note
-*/
+.transcription a.transcription_close_icon:hover {
+	background-position: -39px -13px;
+}
 .boxViewContainer .box.transcription .widgetHeader {
 	z-index: 1;
 }
-
 .boxViewContainer .box.transcription .widgetContent {
 	padding: 0;
 	overflow: visible;
 }
-
 .transcription_text {
 	float: left;
+	font-family:Arial, Helvetica, sans-serif;
 }
-
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/*GIULIO LEGGIMI E RIMUOVIMI */
-/* Contenuto evidenziato all'interno della trascrizione (in relazione ad una nota o altro)*/
-.transcription_text .highlighted {
-	background-color: rgba(255, 175, 0, 0.75);
-}
-
-span.ill_md.zone_highlighted,
-a.zone_highlighted,
-.transcription_text .zone_highlighted,
-.transcription_text .highlighted.zone_highlighted {
-	background-color: rgba(255, 0, 0, 0.75);
-}
-/* Una span.line rappresenta una linea della trascrizione.. deve mandare a capo */
-.transcription_text span.line {
+.transcription_text span.line { /* Manda a capo */
 	display: block;
+}
+.transcription_notes_content .note {
+    cursor: pointer;
 }
 .transcription_notes_content .note:hover {
     cursor: pointer;
-    background-color: rgba(100,100,100,0.1);
+    background-color: rgba(100,100,100,0.1); /* Nota: cambiare il colore - Spostare in firb.css? */
 }
-
 .transcription_text span.note_link {
     padding: 0px 5px;
     color: #f00;
@@ -200,70 +218,66 @@ a.zone_highlighted,
 .transcription_text span.note_link:hover {
     cursor: pointer;
 }
-
 .transcription_text .transcription_img_wrapper.hidden,
 .transcription_text .transcription_letter_icon.hidden,
 .transcription_text .transcription_image_icon.hidden {
     display:none;
 }
 
-/*
-Pannello fenomeni
-*/
-div.fen_menu_panel {
-    background-color: #ddd;
-    position: absolute;
-    top: 60px;
-    right: 50px;
-    width: 250px;
-    /*DEBUG: sta roba andra' sopra al flash? boh .. */
-    z-index: 10;
-    display: block;
-    padding: 8px;
-}
-	div.fen_menu_panel.hidden {
-	    display: none;
-	}
-
-.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel ul,
-.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li {
-    padding: 0px; margin: 0px;
-    border: 0px;
-}
-div.fen_menu_panel li.phen_section {
-    font-size:11px;
-    font-weight: bold;
-}
-.boxviewcontainer div.fen_menu_panel li.phen_item {
-    margin-left: 8px;
-    font-size:10px;
+.transcription_text .highlighted {
+	background-color: #FFFFFF;
+    border: 1px dotted #992000;
+    padding: 0 3px;
 }
 
-/* Spostare in FIRB.css */
-.boxviewcontainer div.fen_menu_panel li.phen_item:hover {
-	color: #992000;
+/* Box Trascrizione | Immagini dentro al testo */
+.transcription .transcription_img_wrapper {
+	display: inline-block; /* Occhio alla compatibilità */
+	border: 1px solid #CCCCCC;
+	position: relative;
 }
-
-div.fen_menu_panel li.phen_section:hover,
-div.fen_menu_panel li.phen_item:hover,
-div.fen_menu_panel li.phen_section.highlighted:hover,
-div.fen_menu_panel li.phen_item.highlighted:hover {
-    /* background: #0fc; Chi ha messo sto background aluconogeno? */
-    cursor: pointer;
+.transcription .transcription_img_wrapper embed{
+	width: 100% !important;
+	height: 100% !important	
 }
-div.fen_menu_panel li.phen_section.highlighted,
-div.fen_menu_panel li.phen_item.highlighted {
-    /* background: #fc0; Chi ha messo sto background aluconogeno? */
+.transcription img {
+	display: block;
+	border: 1px solid #d2d2d2;
+	padding: 1px;
 }
-
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-
+.transcription .transcription_img_wrapper a.transcription_open_icon {
+	position: absolute;
+	top: 1px;
+	left: 1px;
+}
+.transcription .transcription_img_wrapper a.transcription_close_icon {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+}
+.transcription a.transcription_image_icon {
+	display: block;
+	width: 13px;
+	height: 13px;
+	background: transparent url(pi/img/transcription_icons.png) top left no-repeat;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+.transcription a.transcription_image_icon:hover {
+	background-position: 0px -13px;
+}
+.transcription a.transcription_letter_icon {
+	display: block;
+	width: 13px;
+	height: 13px;
+	background: transparent url(pi/img/transcription_icons.png) top left no-repeat;
+	text-indent: -9999px;
+	background-position: -13px -0;
+	cursor: pointer;
+}
+.transcription a.transcription_letter_icon:hover {
+	background-position: -13px -13px;
+}
 
 	/* Toggle larghezza colonna trascrizione */
 	.box.transcription .widgetContent.notes-hidden .transcription_text { width: 100%; }
@@ -281,12 +295,12 @@ div.fen_menu_panel li.phen_item.highlighted {
 }
 	/* Toggle larghezza colonna trascrizione */
 	.box.transcription .widgetContent.notes-hidden .transcription_notes { display: none; }
-	.box.transcription .widgetContent.notes-displayed  .transcription_notes { display: block ;width: 27%; margin-top: -10px; padding-top: 10px}
+	.box.transcription .widgetContent.notes-displayed  .transcription_notes { display: block ;width: 27%; margin-top: -10px; margin-right: -10px; padding-top: 10px;}
 
 	.transcription_notes a.transcription_close_icon {
 		position: absolute;
-		top: 16px;
-		right: 6px;
+		top: 5px;
+		right: 5px;
 	}
 	
 	.transcription_notes .transcription_notes_content {
@@ -295,9 +309,10 @@ div.fen_menu_panel li.phen_item.highlighted {
 	}
 	
 		.transcription_notes .transcription_notes_content .note p{
-			font-size: 10px;
-			line-height: 15px;
+			font-size: 11px;
+			line-height: 13px;
 			padding-bottom: 3px;
+			padding-right: 20px;
 			margin-bottom: 3px;
 		}
 		
@@ -316,151 +331,169 @@ div.fen_menu_panel li.phen_item.highlighted {
 			color: #999;
 		}
 
-/*
-Box Trascrizione > Widget Trascrizione > Immagini dentro al testo
-*/
-.transcription .transcription_img_wrapper {
-	display: inline-block; /* Occhio alla compatibilità */
-	position: relative;
+
+
+	
+/* ________________________________________________________________________________________________________________
+	05. WIDGETS
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. Generic Widget Features ------- */
+.boxViewContainer .box .boxContent .widget .widgetContent { /* Nota: controllare se si può togliere .boxViewContainer .box .boxContent */
+	padding: 10px;
+}
+.boxViewContainer .box .boxContent .widget { /* Nota: controllare se si può togliere .boxViewContainer .box .boxContent  */
+	clear: both;
 }
 
-.transcription img {
-	display: block;
-	border: 1px solid #d2d2d2;
-	padding: 1px;
+/* ------- 2. Collapsable Description Fields ------- */
+.widgetContent .widgetField .field_title {
+    display:block;
+   	font-size: 12px;
+	line-height: 20px;
+	padding-left: 15px;
+	font-family:Arial, Helvetica, sans-serif;
+	color: #808080;
+	cursor: pointer;
+}
+.widgetContent div span.field_title.expanded {
+	background-image: url(img/widget_inner_icon_expanded.png);
+	background-position: 0px 3px;
+	background-repeat: no-repeat;
+}
+.widgetContent div span.field_title.collapsed {
+	background-image: url(img/widget_inner_icon_collapsed.png);
+	background-position: 0px 3px;
+	background-repeat: no-repeat;
 }
 
-.transcription .transcription_img_wrapper a.transcription_open_icon {
-	position: absolute;
-	top: 1px;
-	left: 1px;
+
+/* ------- 3. Widget Right Icons Normal ------- */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: 0 center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -150px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -200px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.prev a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.prev a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -50px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -100px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.note a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.note a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -300px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.illustrazione a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.illustrazione a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -250px center;
 }
 
-.transcription .transcription_img_wrapper a.transcription_close_icon {
-	position: absolute;
-	top: 1px;
-	right: 1px;
+/* ------- 4. Widget Right Icons Rollover ------- */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -25px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.fenomeni a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -175px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.anastatica a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -225px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.prev a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.prev a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -75px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.next a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -125px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.note a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.note a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -325px center;
+}
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.illustrazione a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.illustrazione a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -275px center;
 }
 
-.transcription a.transcription_image_icon {
-	display: block;
-	width: 13px;
-	height: 13px;
-	background: transparent url(pi/img/transcription_icons.png) top left no-repeat;
-	text-indent: -9999px;
+/* ________________________________________________________________________________________________________________
+	06. MENU FENOMENI
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. Generic Menu Features ------- */
+.boxViewContainer .fen_menu_panel {
+    background-color: #DCDCDC;
+    box-shadow: 0 1px 3px #000000;
+    display: block;
+    padding: 8px 8px 12px 8px;
+    position: absolute;
+    right: 50px;
+    top: 56px;
+    width: 180px;
+    
+	-moz-border-radius-bottomleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+
+	-webkit-border-bottom-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	
+	/*DEBUG: sta roba andra' sopra al flash? boh .. */
+    z-index: 10;
+    display: block;
+}
+div.fen_menu_panel.hidden {
+    display: none;
+}
+
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel ul,
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li {
+	padding: 0px; margin: 0px;
+	border: 0px;
 	cursor: pointer;
 }
 
-	.transcription a.transcription_image_icon:hover {
-		background-position: 0px -13px;
-	}
-
-.transcription a.transcription_letter_icon {
-	display: block;
-	width: 13px;
-	height: 13px;
-	background: transparent url(pi/img/transcription_icons.png) top left no-repeat;
-	text-indent: -9999px;
-	background-position: -13px -0;
-	cursor: pointer;
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li.highlighted {
+	/* background-color: #FFFFFF; */
+	background-color: transparent;
+    border: 1px dotted #992000;
+    padding: 0 3px;
+}
+    
+.fen_menu_panel li.phen_section {
+	font-size:11px;
+	font-weight: bold;
+}
+.boxviewcontainer div.fen_menu_panel li.phen_item {
+	margin-left: 8px;
+	font-size:10px;
 }
 
-	.transcription a.transcription_letter_icon:hover {
-		background-position: -13px -13px;
-	}
+/* ________________________________________________________________________________________________________________
+	GARBAGE
+ ________________________________________________________________________________________________________________ */
+/*GIULIO LEGGIMI E RIMUOVIMI... O SMISTAMI... */
 
-/*
-******************************************
-Header
-******************************************
-*/
-#pageHeader {
-	height: 102px;
-	margin: 0;
-	width: 100%;
+span.ill_md.zone_highlighted,
+a.zone_highlighted,
+.transcription_text .zone_highlighted,
+.transcription_text .highlighted.zone_highlighted {
+	background-color: rgba(255, 0, 0, 0.75);
 }
-	#pageHeader h1 {
-		display: block;
-		font-size: 44px;
-		margin: 0;
-		padding: 0;
-		position: absolute;
-		left: 10px;
-		top: 10px;
-	}
-	
-	#pageHeader p {
-		display: block;
-		font-size: 20px;
-		margin: 0;
-		padding: 0;
-		position: absolute;
-		left: 10px;
-		top: 70px;
-	}
-	
-	/*
-	Header Preferences 
-	Box in alto a destra nella testata che contiene le icone dei vari strumenti di settaggio delle preferenze
-	*/
-	
-	#header_preferences_wrapper {
-		position: absolute;
-		height: 34px; margin: 0; padding: 0 7px 0 0; 
-		top: 23px;
-		right: 10px;
-		background: url(pi/img/preferences_bg_right.png) no-repeat scroll right top transparent;
-	}
-		#header_preferences {
-			height: 34px; 
-			margin: 0;
-			padding: 0 0 0 7px; 
-			background: url(pi/img/preferences_bg_left.png) no-repeat scroll left top transparent;
-		}
-			#header_preferences ul {
-				height: 34px; margin: 0; padding: 0; 
-				overflow: hidden;
-				background: url(pi/img/preferences_bg.png) repeat-x scroll left top transparent;
-				cursor: pointer;
-			}
-				#header_preferences ul li {
-					margin: 7px 0 5px 0;
-					padding: 0 4px 0 4px;
-					display: block;
-					width: 22px;
-					height: 22px; 
-					float: left;
-					background: url(pi/img/pref_icons.png) center right no-repeat;
-					background-position: 28px 0;
-					cursor: pointer;
-					text-indent: -9999px;
-				}
-				
-				#header_preferences ul li:last-child {
-					background: none;
-				}
-				
-				#header_preferences ul li a {
-					text-indent: -9999px;
-					display: block;
-					width: 20px;
-					height: 20px;
-					background: url(pi/img/pref_icons.png) center right no-repeat;
-					cursor: pointer;
-				}
-				
-				#header_preferences #pref_intro {background-position: -2px 0;}
-				#header_preferences #pref_help {background-position: -22px 0;}
-				#header_preferences #pref_history {background-position: -42px 0;}
-				#header_preferences #pref_link {background-position: -62px 0;}
-				#header_preferences #pref_notebooks {background-position: -82px 0;}
-				#header_preferences #pref_settings {background-position: -102px 0;}
-				
-				#header_preferences #pref_intro:hover {background-position: -2px -20px;}
-				#header_preferences #pref_help:hover {background-position: -22px -20px;}
-				#header_preferences #pref_history:hover {background-position: -42px -20px;}
-				#header_preferences #pref_link:hover {background-position: -62px -20px;}
-				#header_preferences #pref_notebooks:hover {background-position: -82px -20px;}
-				#header_preferences #pref_settings:hover {background-position: -102px -20px;}
+/* Una span.line rappresenta una linea della trascrizione.. deve mandare a capo */
+
+
 
 
