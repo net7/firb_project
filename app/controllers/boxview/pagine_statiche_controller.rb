@@ -9,4 +9,9 @@ class Boxview::PagineStaticheController < Boxview::BaseController
   def pi_help
   end
 
+  def fi_introduzione
+  end
+
+  def fi_help
+  end
 end

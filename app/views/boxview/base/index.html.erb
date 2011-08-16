@@ -1,6 +1,7 @@
 <%
-    theme = TaliaCore::CONFIG['firb']['theme'] || 'pi'
-    site_name = TaliaCore::CONFIG['site_name'] || 'Default site_name'
+theme = TaliaCore::CONFIG['firb']['theme'] || 'pi'
+site_name = TaliaCore::CONFIG['site_name'] || 'Default site_name'
+site_name_javascript = escape_javascript(site_name)
 %>
 
 <html>
@@ -52,8 +53,8 @@
                 e.preventDefault();
                 myBoxView.addBoxFromAjax({
                     qstring: '<%= url_for(:controller => "boxview/pagine_statiche/#{theme}_introduzione") %>',
-                    title: '<%= site_name %>: Introduzione', 
-                    verticalTitle: '<%= site_name %>: Introduzione',
+                    title: '<%= site_name_javascript %>: Introduzione', 
+                    verticalTitle: '<%= site_name_javascript %>: Introduzione',
                     resId: '<%= theme %>_intro',
                     type: 'intro',
                     collapsed: false
@@ -65,8 +66,8 @@
                 e.preventDefault();
                 myBoxView.addBoxFromAjax({
                     qstring: '<%= url_for(:controller => "boxview/pagine_statiche/#{theme}_help") %>',
-                    title: '<%= site_name %>: Help', 
-                    verticalTitle: '<%= site_name %>: Help',
+                    title: '<%= site_name_javascript %>: Help', 
+                    verticalTitle: '<%= site_name_javascript %>: Help',
                     resId: '<%= theme %>_help',
                     type: 'help',
                     collapsed: false
@@ -76,8 +77,8 @@
             // Add the menu automatically
             myBoxView.addBoxFromAjax({
                 qstring: '<%= url_for(:controller => "boxview/indici/#{theme}") %>',
-                title: '<%= site_name %>: Indice', 
-                verticalTitle: '<%= site_name %>: Indice',
+                title: '<%= site_name_javascript %>: Indice', 
+                verticalTitle: '<%= site_name_javascript %>: Indice',
                 resId: '<%= theme %>_index',
                 type: 'index',
                 collapsed: false

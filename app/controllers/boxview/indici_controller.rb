@@ -23,4 +23,8 @@ class Boxview::IndiciController < Boxview::BaseController
     @models = {:schede_testo => 'Pi_Text_Card', :illustrazioni => 'Pi_Illustration_Card', :immagini_memoria => 'Pi_Illustrated_Md_Card', :anastatica => 'Anastatica'}
   end
 
+  def fi
+    @collection = TaliaCore::Collection.find(:first).id
+    @models = {:schede_carro => 'Fi_Parade_Cart_Cards'}
+  end
 end

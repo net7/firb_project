@@ -67,10 +67,14 @@ ActionController::Routing::Routes.draw do |map|
   map.boxview_pi_scheda_testo '/boxview/pi_scheda_testo/:id', :controller => 'boxview/pi_scheda_testo', :action => 'show'
   map.connect '/boxview/indici', :controller => 'boxview/indici', :action => "index" 
   map.connect '/boxview/indici/pi', :controller => 'boxview/indici', :action => "pi" 
+  map.connect '/boxview/indici/fi', :controller => 'boxview/indici', :action => "fi" 
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
 
+  map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
+    boxview.resources :fi_parade_cart_cards
+  end
 
   # Default semantic dispatch
   map.connect ':dispatch_uri.:format', :controller => 'sources', :action => 'dispatch',
