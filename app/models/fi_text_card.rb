@@ -39,5 +39,15 @@ class FiTextCard < TextCard
     
     triples
   end
-      
+
+  def boxview_data
+    desc = self.title.nil? ? "" : "#{self.title.slice(0, 80)}.."
+    { :controller => 'boxview/fi_text_cards', 
+      :title => "Scheda testo: #{self.page_position}", 
+      :description => desc,
+      :res_id => "fi_text_card_#{self.id}", 
+      :box_type => 'transcription',
+      :thumb => nil
+    }
+  end
 end

@@ -12,7 +12,6 @@ module FiCardsCommonFields
       before_validation :validate_procession
       after_save :save_procession
     end
-    
   end
 
   # Manual property procession getter and setter
@@ -80,5 +79,4 @@ module FiCardsCommonFields
   def has_notes?
     !new_record? && (notes.count > 0)
   end
-  
 end

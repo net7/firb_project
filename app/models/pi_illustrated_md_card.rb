@@ -1,11 +1,11 @@
 class PiIllustratedMdCard < IllustrationCard
-  
+
   include StandardPermissions
   extend Mixin::Showable
   showable_in PiIllustrationCard
-  
+
   autofill_uri :force => true
-  
+
   # Short description: brief desc. of the depiction, say "Male person
   # drawing"
   singular_property :short_description, N::TALIA.short_description

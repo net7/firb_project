@@ -3,6 +3,7 @@ class FiParadeCartCard < IllustrationCard
   
   include FiCardsCommonFields
   extend FiCardsCommonFields::DefinedProperties
+  include Mixin::HasParts
   
   common_properties
   autofill_uri :force => true
@@ -22,7 +23,7 @@ class FiParadeCartCard < IllustrationCard
   def boxview_data
     { :controller => 'boxview/fi_parade_cart_cards', 
       :title => self.deity,
-      :description => "",
+      :description => self.description,
       :res_id => "fi_parade_cart_card_#{self.id}", 
       :box_type => nil,
       :thumb => nil
@@ -31,5 +32,22 @@ class FiParadeCartCard < IllustrationCard
 
   def deity
     @deity ||= FiDeityCard.find :first, :find_through => [N::TALIA.cart, self.uri]
+  end
+
+  # TODO: intelligent conversion to string?
+  def position_in_procession
+    # FIXME
+    if self.procession.is_a? Array
+      self.procession.index(self) + 1
+    else
+      ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute.index(self) + 1
+    end
+  end
+
+  ##
+  # Rewrite of HasParts#can_show? to make all parts "showable".
+  #
+  def can_show?(klass)
+    true
   end
 end
