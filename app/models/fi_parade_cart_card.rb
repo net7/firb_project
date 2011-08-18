@@ -31,17 +31,41 @@ class FiParadeCartCard < IllustrationCard
   end
 
   def deity
-    @deity ||= FiDeityCard.find :first, :find_through => [N::TALIA.cart, self.uri]
+    @deity  ||= FiDeityCard.find :first, :find_through => [N::TALIA.cart, self.uri]
+  end
+
+  def throne
+    @throne ||= FiThroneCard.find :first, :find_through => [N::TALIA.cart, self.uri]
+  end
+
+  def vehicle
+    @vehicle ||= FiVehicleCard.find :first, :find_through => [N::TALIA.cart, self.uri]
+  end
+
+  def animal
+    @animal ||= FiAnimalCard.find :first, :find_through => [N::TALIA.cart, self.uri]
+  end
+
+  # FIXME (and remove me!)
+  def fetch_procession
+    if super.is_a? Array
+      super
+    else
+      ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute
+    end
   end
 
   # TODO: intelligent conversion to string?
-  def position_in_procession
-    # FIXME
-    if self.procession.is_a? Array
-      self.procession.index(self) + 1
-    else
-      ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute.index(self) + 1
-    end
+  def procession_position
+    procession.index(self).to_i + 1
+  end
+
+  def procession_characters
+    procession.select {|el| el.is_a? FiCharacterCard}
+  end
+
+  def children
+    [deity, throne, vehicle, animal].compact
   end
 
   ##

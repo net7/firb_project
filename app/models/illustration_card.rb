@@ -88,4 +88,20 @@ class IllustrationCard < BaseCard
   def parts_query
     ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::TALIA.parent_card,self)
   end
+
+  def iconclasses(sort=true, all=true)
+    iconclasses = self.iconclass_terms.map {|iconclass| iconclass}
+
+    self.children.each do |child|
+      child.iconclass_terms.each do |iconclass|
+        iconclasses << iconclass
+      end
+    end if all
+
+    iconclasses.sort! do |iconclass1, iconclass2|
+      iconclass1.label <=> iconclass2.label
+    end if sort
+
+    iconclasses
+  end
 end

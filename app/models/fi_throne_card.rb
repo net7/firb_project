@@ -10,4 +10,7 @@ class FiThroneCard < IllustrationCard
 
   singular_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
   
+  def iconclasses(sort=true)
+    super(sort, false)
+  end
 end

@@ -41,22 +41,6 @@ class PiIllustrationCard < IllustrationCard
     @children_components_by_type
   end
 
-  def iconclasses(sort=true, all=true)
-    iconclasses = self.iconclass_terms.map {|iconclass| iconclass}
-
-    self.children.each do |child|
-      child.iconclass_terms.each do |iconclass|
-        iconclasses << iconclass
-      end
-    end if all
-
-    iconclasses.sort! do |iconclass1, iconclass2|
-      iconclass1.label <=> iconclass2.label
-    end if sort
-
-    iconclasses
-  end
-
   def boxview_data
     desc = self.short_description.nil? ? "" : "#{self.short_description.slice(0, 80)}.."
     { :controller => 'boxview/illustrazioni_madri', 
@@ -97,10 +81,6 @@ class PiIllustrationCard < IllustrationCard
     end
     result
   end
-
-
-
-
 end
 
 

@@ -9,5 +9,8 @@ class FiDeityCard < IllustrationCard
   autofill_uri :force => true
 
   singular_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
-  
+
+  def iconclasses(sort=true)
+    super(sort, false)
+  end
 end
