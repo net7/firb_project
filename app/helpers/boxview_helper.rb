@@ -52,9 +52,18 @@ module BoxviewHelper
          data-type="#{type.to_s}">#{text}</a>]
   end
 
-  def boxview_link_for_object(o, options={})
-    data = o.boxview_data()
-    boxview_link(url_for(:controller => data[:controller], :action => "show", :id => o.id), data[:title], data[:title], data[:res_id], data[:box_type], options) 
+  ##
+  # Options (overrides object's options):
+  #   :controller
+  #   :text (:title is used if no value for :text is provided)
+  #   :title
+  #   :res_id
+  #   :box_type
+  # Link Options not used atm.
+  def boxview_link_for_object(o, options={}, link_options={})
+    data = o.boxview_data().merge(options)
+    data[:text] = data[:title] if data[:text].nil?
+    boxview_link(url_for(:controller => data[:controller], :action => "show", :id => o.id), data[:text], data[:title], data[:res_id], data[:box_type], link_options) 
   end
 
   # Options:

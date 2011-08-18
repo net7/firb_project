@@ -69,7 +69,18 @@ class FiParadeCartCard < IllustrationCard
   end
 
   ##
+  # Used by Mixin::HasParts
+  def parts_query
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::DCT.isPartOf, self)
+  end
+
+  def additional_parts
+    self.children
+  end
+
+  ##
   # Rewrite of HasParts#can_show? to make all parts "showable".
+  # TODO: possible misunderstanding of the request here. Check if this should follow the standard procedure instead.a
   #
   def can_show?(klass)
     true

@@ -85,8 +85,9 @@ class IllustrationCard < BaseCard
     super(options)
   end
 
+  # TODO this could be the wrong relation, make sure.
   def parts_query
-    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::TALIA.parent_card,self)
+    ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(:part, N::TALIA.parent_card, self)
   end
 
   def iconclasses(sort=true, all=true)
