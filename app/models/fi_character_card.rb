@@ -15,4 +15,13 @@ class FiCharacterCard < IllustrationCard
   rdf_property :qualities_profession, N::TALIA.qualities_profession, :type => :string
   rdf_property :qualities_ethnic_group, N::TALIA.qualities_ethnic_group, :type => :string
   
+  def boxview_data
+    { :controller => 'boxview/fi_character_cards', 
+      :title => self.name,
+      :description => "",
+      :res_id => "fi_character_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
 end

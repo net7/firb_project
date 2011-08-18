@@ -13,4 +13,14 @@ class FiAnimalCard < IllustrationCard
   def iconclasses(sort=true)
     super(sort, false)
   end
+
+  def boxview_data
+    { :controller => 'boxview/fi_animal_cards', 
+      :title => self.name,
+      :description => "",
+      :res_id => "fi_animal_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
 end

@@ -10,4 +10,13 @@ class FiVehicleCard < IllustrationCard
 
   singular_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
 
+  def boxview_data
+    { :controller => 'boxview/fi_vehicle_cards', 
+      :title => self.name,
+      :description => "",
+      :res_id => "fi_vehicle_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
 end

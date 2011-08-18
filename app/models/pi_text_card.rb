@@ -92,6 +92,4 @@ class PiTextCard < TextCard
       :thumb => nil
     }
   end
-
-
 end

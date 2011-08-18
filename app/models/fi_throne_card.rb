@@ -9,8 +9,18 @@ class FiThroneCard < IllustrationCard
   autofill_uri :force => true
 
   singular_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
-  
+
   def iconclasses(sort=true)
     super(sort, false)
+  end
+
+  def boxview_data
+    { :controller => 'boxview/fi_throne_cards', 
+      :title => self.name,
+      :description => "",
+      :res_id => "fi_throne_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
   end
 end

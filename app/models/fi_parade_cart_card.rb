@@ -20,16 +20,6 @@ class FiParadeCartCard < IllustrationCard
     result
   end
 
-  def boxview_data
-    { :controller => 'boxview/fi_parade_cart_cards', 
-      :title => self.deity,
-      :description => self.description,
-      :res_id => "fi_parade_cart_card_#{self.id}", 
-      :box_type => nil,
-      :thumb => nil
-    }
-  end
-
   def deity
     @deity  ||= FiDeityCard.find :first, :find_through => [N::TALIA.cart, self.uri]
   end
@@ -66,6 +56,16 @@ class FiParadeCartCard < IllustrationCard
 
   def children
     [deity, throne, vehicle, animal].compact
+  end
+
+  def boxview_data
+    { :controller => 'boxview/fi_parade_cart_cards', 
+      :title => self.deity,
+      :description => self.description,
+      :res_id => "fi_parade_cart_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
   end
 
   ##

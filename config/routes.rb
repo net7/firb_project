@@ -75,6 +75,11 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
     boxview.resources :fi_parade_cart_cards
     boxview.resources :fi_text_cards
+    boxview.resources :fi_deity_cards
+    boxview.resources :fi_throne_cards
+    boxview.resources :fi_vehicle_cards
+    boxview.resources :fi_animal_cards
+    boxview.resources :fi_character_cards
   end
 
   # Default semantic dispatch

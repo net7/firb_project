@@ -102,6 +102,6 @@ class IllustrationCard < BaseCard
       iconclass1.label <=> iconclass2.label
     end if sort
 
-    iconclasses
+    iconclasses.uniq
   end
 end
