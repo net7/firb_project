@@ -38,7 +38,7 @@ class FiParadeCartCard < IllustrationCard
 
   # FIXME (and remove me!)
   def fetch_procession
-    if super.is_a? Array
+    if super.is_a? FiProcession
       super
     else
       ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute
