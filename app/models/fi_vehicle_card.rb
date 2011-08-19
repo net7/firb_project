@@ -10,6 +10,10 @@ class FiVehicleCard < IllustrationCard
 
   singular_property :cart, N::TALIA.cart, :type => TaliaCore::ActiveSource
 
+  def episodes
+    FiEpisodeCard.find(:all, :find_through => [N::TALIA.vehicle, self])
+  end
+
   def boxview_data
     { :controller => 'boxview/fi_vehicle_cards', 
       :title => self.name,

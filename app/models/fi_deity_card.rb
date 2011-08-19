@@ -23,4 +23,12 @@ class FiDeityCard < IllustrationCard
       :thumb => nil
     }
   end
+
+  def parts_query
+    nil
+  end
+
+  def additional_parts
+    self.image_components
+  end
 end

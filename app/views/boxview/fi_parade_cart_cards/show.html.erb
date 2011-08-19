@@ -1,12 +1,11 @@
-<% #TODO i18n? %>
 <% imt_id = "imt_fi_parade_cart_cards_#{@resource.id}" %>
 <%= boxview_widget 'Illustrazione', {:class => 'ImageWidget widget_draggable'} do |w|
   content = imt_viewer(imt_id) do |imt|
     imt.base64 = imt_image_b64 @image, @resource.showable_zones
     imt.init   = "jsapi_initializeIMW(id);"
 #   imt.click  = "$('#image_zone_'+ki).click();"
-    imt.over   = "$('#image_zone_'+ki).addClass('zone_highlighted');"
-    imt.out    = "$('#image_zone_'+ki).removeClass('zone_highlighted');"
+    imt.over   = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).addClass('zone_highlighted');"
+    imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
   end
 
   w.content content_tag(:div, content, :class => 'picture')
@@ -16,7 +15,8 @@ end
   w.content boxview_widget_field('Codice', @resource.code)
   w.content boxview_widget_field('Collocazione', @resource.collocation)
   w.content boxview_widget_field('Autore', @resource.author)
-  w.content boxview_widget_field('Tecnica e misure', "#{@resource.tecnique} - #{@resource.measure}")
+  content = "#{@resource.tecnique} #{@resource.measure}".join(' - ')
+  w.content boxview_widget_field('Tecnica e misure', content)
   w.content boxview_widget_field('Note descrittive', @resource.descriptive_notes)
   w.content boxview_widget_field('Ordine di apparizione nella sfilata', @resource.procession_position)
 end
@@ -24,8 +24,11 @@ end
 <%=
 boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
   w.content boxview_widget_field('Descrizione', @resource.description)
-  # HERE
-  notes = @resource.notes.map {|n| imt_highlight imt_id, n.name, n.image_zone.id}.join(', ')
+
+  notes = @resource.notes.map do |n|
+    name = n.name.blank? ? "" : "#{n.name}: "
+    imt_highlight imt_id, "#{name}#{n.content}", n.image_zone.id
+  end.join(', ')
   w.content boxview_widget_field('Trascrizioni note manoscritte', notes)
 
   if @resource.baldini_text or @resource.cini_text
@@ -41,7 +44,7 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Testi correlati', content_tag(:ul, content))
   end
 
-  # TODO: better sorting
+  # TODO: better sorting?
   unless @resource.iconclasses.size.zero?
     iconclasses = @resource.iconclasses.map! do |iconclass|
       %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]

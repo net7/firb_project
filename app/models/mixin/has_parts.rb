@@ -4,12 +4,12 @@
 # (or nil if there are none, or cannot be retrieved with a query).
 #
 # Every model including this mixin CAN implement an additional_parts method:
-# #additional_parts should return an array of parts that could not be retreived with the query from #parts_query.
+# #additional_parts should return an array (or equivalent) of parts that could not be retreived with the query from #parts_query.
 module Mixin::HasParts
   def parts
     raise Exception, "To use HasPart mixin, class needs to implement a #parts_query method" unless self.respond_to? :parts_query
     parts = self.parts_query.nil? ? [] : self.parts_query.execute
-    parts += self.additional_parts if self.respond_to? :additional_parts
+    parts += self.additional_parts.to_a if self.respond_to? :additional_parts
     parts
   end
 

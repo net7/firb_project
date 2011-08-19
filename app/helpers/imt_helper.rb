@@ -36,11 +36,19 @@ module ImtHelper
   end
   alias_method :boxview_imt_viewer, :imt_viewer
 
+  def imt_highlight_id(imt_id, zone_id)
+    "#{imt_id}_image_zone_#{zone_id}"
+  end
+
+  def imt_jquery_highlight_selector(imt_id)
+    "##{imt_highlight_id(imt_id, "")}"
+  end
+
   def imt_highlight(id, text, zone)
     content_tag :span, text, {
       :onmouseover => "getFlashObject('#{id}').setPolygonHighlighted(true, '#{zone}');",
       :onmouseout  => "getFlashObject('#{id}').setPolygonHighlighted(false, '#{zone}');",
-      :id          => "image_zone_#{zone}",
+      :id          => imt_highlight_id(id, zone),
       :class       => "single-zone"
     }
   end
