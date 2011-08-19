@@ -4,6 +4,7 @@ class FiVehicleCard < IllustrationCard
 
   include FiCardsCommonFields
   extend FiCardsCommonFields::DefinedProperties
+  include Mixin::HasParts
 
   common_properties
   autofill_uri :force => true
@@ -13,6 +14,8 @@ class FiVehicleCard < IllustrationCard
   def episodes
     FiEpisodeCard.find(:all, :find_through => [N::TALIA.vehicle, self])
   end
+  # Used by IllustrationCard#iconclasses
+  alias_method :children, :episodes
 
   def boxview_data
     { :controller => 'boxview/fi_vehicle_cards', 
@@ -22,5 +25,15 @@ class FiVehicleCard < IllustrationCard
       :box_type => 'image',
       :thumb => nil
     }
+  end
+
+  def parts_query
+    nil
+  end
+
+  def additional_parts
+    self.episodes.map do |e|
+      e.image_components.to_a
+    end.flatten
   end
 end

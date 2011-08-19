@@ -1,0 +1,102 @@
+<% #TODO: i18n? %>
+<% imt_id = "imt_fi_deity_cards_#{resource.id}" %>
+
+<%=
+boxview_widget 'Illustrazione', {:class => 'ImageWidget widget_draggable'} do |w|
+  content = imt_viewer(imt_id) do |imt|
+    imt.base64 = imt_image_b64 @image, resource.showable_zones
+    imt.init   = "jsapi_initializeIMW(id);"
+    imt.click  = "$('.image_zone_'+ki).click();"
+    imt.over   = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).addClass('zone_highlighted');"
+    imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
+  end
+  w.right_icons boxview_link_for_object(resource.cart)
+  w.content content_tag(:div, content, :class => 'picture')
+end
+%>
+
+<%=
+boxview_widget 'Scheda', {:class => 'TextWidget widget_draggable'} do |w|
+  w.content boxview_widget_field('Codice', resource.code)
+  w.content boxview_widget_field('Collocazione', resource.collocation)
+  w.content boxview_widget_field('Autore', resource.author)
+  content = [resource.tecnique.to_s, resource.measure.to_s].select {|c| not c.blank?}.join(' - ')
+  w.content boxview_widget_field('Tecnica e misure', content)
+  w.content boxview_widget_field('Note descrittive', resource.descriptive_notes)
+end
+%>
+
+<%=
+boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
+  w.content boxview_widget_field('Descrizione', resource.description)
+
+  if resource.baldini_text or resource.cini_text
+    content =  ""
+    if resource.baldini_text
+      link = boxview_link_for_object(resource.baldini_text)
+      content << content_tag(:li, link) 
+    end
+    if resource.cini_text
+      link = boxview_link_for_object(resource.cini_text)
+      content << content_tag(:li, link) 
+    end
+    w.content boxview_widget_field('Testi correlati', content_tag(:ul, content))
+  end
+
+  # TODO: better sorting?
+  unless resource.iconclasses.size.zero?
+    iconclasses = resource.iconclasses.map! do |iconclass|
+      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
+    end
+    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
+  end
+
+  unless resource.bibliography_items.size.zero?
+    content = resource.bibliography_items.map do |item|
+      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    end.join('')
+    w.content boxview_widget_field('Fonti', content_tag(:ul, content))
+  end
+
+  unless resource.baldini_text.nil? and resource.cini_text.nil?
+    content = resource.baldini_text.bibliography_items.map do |item|
+      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    end.join('') if resource.baldini_text
+
+    (content ||= "") << resource.cini_text.bibliography_items.map do |item|
+      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    end.join('') if resource.cini_text
+
+    w.content boxview_widget_field('Fonti (indirette o ereditate)', content_tag(:ul, content))
+  end
+
+  content = resource.image_components.map do |el|
+              content_tag(:li, imt_highlight(imt_id, el.name, el.image_zone.id))
+            end
+  w.content boxview_widget_field('Lista componenti', content_tag(:ul, content.join(''))) unless content.size.zero?
+
+  w.content boxview_widget_field('Note di studio', resource.study_notes)
+end
+%>
+<%= 
+  boxview_widget 'Elementi correlati', :class => "TextWidget widget_draggable" do |w|
+    if resource.class == FiVehicleCard
+      content = resource.episodes.map do |e|
+                  content_tag(:li, boxview_link_for_object(e))
+                end
+
+      w.content boxview_widget_field('Episodi', content_tag(:ul, content.join('')))
+    end
+
+    w.content boxview_widget_field('Scheda madre', content_tag(:ul, content_tag(:li, boxview_link_for_object(resource.cart))))
+  end
+%>
+<% unless resource.bibliography_items.size.zero? %>
+<%= 
+  boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
+    w.content(content_tag :ul, (resource.bibliography_items.map do |item|
+      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    end.join('')))
+  end
+%>
+<% end %>

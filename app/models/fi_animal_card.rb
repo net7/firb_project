@@ -4,6 +4,7 @@ class FiAnimalCard < IllustrationCard
 
   include FiCardsCommonFields
   extend FiCardsCommonFields::DefinedProperties
+  include Mixin::HasParts
 
   common_properties
   autofill_uri :force => true
@@ -22,5 +23,13 @@ class FiAnimalCard < IllustrationCard
       :box_type => 'image',
       :thumb => nil
     }
+  end
+
+  def parts_query
+    nil
+  end
+
+  def additional_parts
+    self.image_components
   end
 end

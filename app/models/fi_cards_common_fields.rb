@@ -51,7 +51,8 @@ module FiCardsCommonFields
   end
   
   def fetch_procession
-    ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute.first
+    FiProcession.find(:first, :find_through => [N::DCT.hasPart, self])
+    # ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute.first
   end
 
   def procession_valid?

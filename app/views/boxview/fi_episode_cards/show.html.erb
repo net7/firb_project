@@ -1,4 +1,4 @@
-<% imt_id = "imt_fi_parade_cart_cards_#{@resource.id}" %>
+<% imt_id = "imt_fi_episode_cards_#{@resource.id}" %>
 <%= boxview_widget 'Illustrazione', {:class => 'ImageWidget widget_draggable'} do |w|
   content = imt_viewer(imt_id) do |imt|
     imt.base64 = imt_image_b64 @image, @resource.showable_zones
@@ -7,6 +7,8 @@
     imt.over   = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).addClass('zone_highlighted');"
     imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
   end
+
+  w.right_icons boxview_link_for_object(@resource.vehicle)
 
   w.content content_tag(:div, content, :class => 'picture')
 end
@@ -19,19 +21,12 @@ end
   content = [@resource.tecnique.to_s, @resource.measure.to_s].select {|c| not c.blank?}.join(' - ')
   w.content boxview_widget_field('Tecnica e misure', content)
   w.content boxview_widget_field('Note descrittive', @resource.descriptive_notes)
-  w.content boxview_widget_field('Ordine di apparizione nella sfilata', @resource.procession_position)
 end
 %>
 
 <%=
 boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
   w.content boxview_widget_field('Descrizione', @resource.description)
-
-  notes = @resource.notes.map do |n|
-    name = n.name.blank? ? "" : "#{n.name}: "
-    imt_highlight imt_id, "#{name}#{n.content}", n.image_zone.id
-  end.join(', ')
-  w.content boxview_widget_field('Trascrizioni note manoscritte', notes)
 
   if @resource.baldini_text or @resource.cini_text
     content =  ""
@@ -44,14 +39,6 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
       content << content_tag(:li, link) 
     end
     w.content boxview_widget_field('Testi correlati', content_tag(:ul, content))
-  end
-
-  # TODO: better sorting?
-  unless @resource.iconclasses.size.zero?
-    iconclasses = @resource.iconclasses.map! do |iconclass|
-      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
-    end
-    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
 
   unless @resource.bibliography_items.size.zero?
@@ -73,35 +60,28 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Fonti (indirette o ereditate)', content_tag(:ul, content))
   end
 
+  # TODO: better sorting?
+  unless @resource.iconclasses.size.zero?
+    iconclasses = @resource.iconclasses.map! do |iconclass|
+      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
+    end
+    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
+  end
+
   w.content boxview_widget_field('Note di studio', @resource.study_notes)
 end
 %>
 
 <%=
 boxview_widget 'Elementi collegati', {:class => 'TextWidget widget_draggable'} do |w|
-  content = @resource.procession_characters.map do |el|
-              content_tag(:li, boxview_link_for_object(el))
-            end
-  w.content boxview_widget_field('Personaggi', content_tag(:ul, content.join(''))) unless content.size.zero?
 
-  content = []
-  if card = @resource.deity
-    link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Divinità'}: #{link}")
-  end
-  if card = @resource.throne
-    link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Trono'}: #{link}")
-  end
-  if card = @resource.vehicle
-    link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Veicolo'}: #{link}")
-  end
-  if card = @resource.animal
-    link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Animale'}: #{link}")
-  end
-  w.content boxview_widget_field('Sezioni carro', content_tag(:ul, content.join(''))) unless content.size.zero?
+  w.content boxview_widget_field('Carro', content_tag(:ul, content_tag(:li, boxview_link_for_object(@resource.cart))))
+  w.content boxview_widget_field('Carretto', content_tag(:ul, content_tag(:li, boxview_link_for_object(@resource.vehicle))))
+
+  content = @resource.vehicle.episodes.map do |el|
+              content_tag(:li, boxview_link_for_object(el)) unless el == @resource
+            end.compact
+  w.content boxview_widget_field('Altri episodi sullo stesso carretto', content_tag(:ul, content.join(''))) unless content.size.zero?
 end
 %>
 

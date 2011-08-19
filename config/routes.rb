@@ -72,6 +72,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
 
+  # FIRB FIRENZE
   map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
     boxview.resources :fi_parade_cart_cards
     boxview.resources :fi_text_cards
@@ -80,6 +81,7 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :fi_vehicle_cards
     boxview.resources :fi_animal_cards
     boxview.resources :fi_character_cards
+    boxview.resources :fi_episode_cards
   end
 
   # Default semantic dispatch

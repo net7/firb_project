@@ -4,6 +4,7 @@ class FiDeityCard < IllustrationCard
 
   include FiCardsCommonFields
   extend FiCardsCommonFields::DefinedProperties
+  include Mixin::HasParts
 
   common_properties
   autofill_uri :force => true

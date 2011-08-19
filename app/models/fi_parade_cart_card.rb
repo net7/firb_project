@@ -36,15 +36,6 @@ class FiParadeCartCard < IllustrationCard
     @animal ||= FiAnimalCard.find :first, :find_through => [N::TALIA.cart, self.uri]
   end
 
-  # FIXME (and remove me!)
-  def fetch_procession
-    if super.is_a? FiProcession
-      super
-    else
-      ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute
-    end
-  end
-
   # TODO: intelligent conversion to string?
   def procession_position
     procession.index(self).to_i + 1
@@ -60,13 +51,22 @@ class FiParadeCartCard < IllustrationCard
 
   def boxview_data
     { :controller => 'boxview/fi_parade_cart_cards', 
-      :title => self.deity,
+      :title => self.deity || "Carta #{self.anastatica.page_position}",
       :description => self.description,
       :res_id => "fi_parade_cart_card_#{self.id}", 
       :box_type => 'image',
       :thumb => nil
     }
   end
+
+  # FIXME (and remove me!)
+  # def fetch_procession
+  #   if super.is_a? FiProcession
+  #     super
+  #   else
+  #     ActiveRDF::Query.new(FiProcession).select(:procession).where(:procession, N::DCT.hasPart, self).execute
+  #   end
+  # end
 
   ##
   # Used by Mixin::HasParts

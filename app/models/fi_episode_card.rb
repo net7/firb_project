@@ -8,5 +8,22 @@ class FiEpisodeCard < IllustrationCard
   autofill_uri :force => true
 
   singular_property :vehicle, N::TALIA.vehicle, :type => TaliaCore::ActiveSource
-  
+
+  def cart
+    vehicle.cart
+  end
+
+  def iconclasses(sort=true)
+    super(sort, false)
+  end
+
+  def boxview_data
+    { :controller => 'boxview/fi_episode_cards', 
+      :title => self.name,
+      :description => self.description,
+      :res_id => "fi_episode_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
 end
