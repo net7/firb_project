@@ -18,9 +18,13 @@ params = Hash[[:id, :base64, :js_prefix, :init, :click, :over, :out].map do |par
 end]
 params[:js_prefix] ||= 'jsapi'
 params[:id]        ||= rand(Time.now.to_i)
+
+# Used to force Flash cache.
+now = Time.now.to_f.to_s.gsub('.','')
 %>
 
 <div class="imt-viewer resizeme">
+
   <object class="IMTViewer" 
           classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
           id="<%= params[:id] %>" 
@@ -28,11 +32,12 @@ params[:id]        ||= rand(Time.now.to_i)
           height="90%"
           b64="<%= params[:base64] %>"
           codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
-    <param name="movie" value="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_") %>" />
+    <param name="movie" value="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_&c=#{now}") %>" />
     <param name="quality" value="high" />
     <param name="bgcolor" value="#ffffff" />
     <param name="allowScriptAccess" value="always" />
-    <embed src="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_&oid=#{params[:id]}")%>"
+
+    <embed src="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_&oid=#{params[:id]}&c=#{now}")%>"
            quality="high"
            bgcolor="#ffffff"
            width="90%"

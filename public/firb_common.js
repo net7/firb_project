@@ -41,7 +41,6 @@ function jsapi_initializeIMW(id) {
         new_b64 = $("#"+id).attr('b64');
     else 
         new_b64 = $('#'+id+" embed").attr('b64');
-
     // Mode=2: the zones have an hierarchi, IMT will zoom the view
     // to the root zone
     getFlashObject(id).initialize(new_b64, 2);
