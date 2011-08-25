@@ -17,7 +17,7 @@ class FiParadeCartCard < IllustrationCard
       my_index = collection.index(c)
       result[my_index] = c unless my_index.nil? #or !c.is_public?
     end
-    result
+    result.compact
   end
 
   def deity

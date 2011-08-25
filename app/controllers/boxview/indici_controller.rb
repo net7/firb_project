@@ -24,7 +24,23 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def fi
-    @collection = TaliaCore::Collection.find(:first).id
-    @models = {:schede_carro => 'Fi_Parade_Cart_Cards'}
+
+    # the TaliaCore::Collection to which the anastatica are linked is the only one that
+    # is neither a FiProcession nor a FiParade
+    TaliaCore::Collection.all.each do |c|       
+      if !c.is_a? FiProcession and !c.is_a? FiParade
+        @collection = c
+      end
+    end
+
+
+
+    
+
+
+    
+    @parade = FiParade.first
+
+     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte"}
   end
 end

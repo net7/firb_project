@@ -41,6 +41,6 @@ class PiIllustratedMdCard < IllustrationCard
     cards.each do |c|
       result << c unless c.nil?
     end
-    result
+    result.compact
   end
 end

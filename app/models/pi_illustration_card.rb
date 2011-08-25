@@ -64,7 +64,7 @@ class PiIllustrationCard < IllustrationCard
         result[my_index] = c unless my_index.nil? or !c.is_public?
       end
     end
-    result
+    result.compact
   end
 
   # @collection is a TaliaCore::Collection
@@ -79,7 +79,7 @@ class PiIllustrationCard < IllustrationCard
         result[my_index] = c unless my_index.nil? or !c.is_public?
       end
     end
-    result
+    result.compact
   end
 end
 

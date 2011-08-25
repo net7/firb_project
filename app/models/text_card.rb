@@ -120,7 +120,7 @@ class TextCard < TaliaCore::Source
         result[my_index] = c unless my_index.nil? or !c.is_public?
       end
     end
-    result
+    result.compact
   end
 
 
