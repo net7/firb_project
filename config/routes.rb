@@ -82,6 +82,7 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :fi_animal_cards
     boxview.resources :fi_character_cards
     boxview.resources :fi_episode_cards
+    boxview.resources :fi_processions
   end
 
   # Default semantic dispatch
