@@ -18,11 +18,9 @@ module ImtHelper
       unless zones.size.zero?
         # First zone is assumed as the one of main interest, where the image will focus (zoom to).
         outer = zones.delete zones.first
-# TODO: remove next line
-#        outer_coordinates = outer.coordinates.nil? ? "0:0:0:1:1:0:1:1" : outer.coordinates
         xml.a(:r => outer.id.to_s, :s => outer.uri.to_s, :l =>outer.name, :t =>"#{image.uri}@#{outer.coordinates}"){
           zones.each do |z|
-            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}")
+            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}") unless z.coordinates.nil?
           end
         }
       end
