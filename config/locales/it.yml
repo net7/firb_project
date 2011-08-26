@@ -40,6 +40,9 @@ it:
             heading: "Crea un nuovo libro"
         title: "Nome di riferimento"
 
+    fi_carte:
+        menu_item_name: "Tavole"
+
     anastaticas:
         menu_item_name: "Pagine del libro"
         model_name: "Anastatica"
@@ -534,6 +537,7 @@ it:
         belonging_to_this_parade: "Appartengono a questa Parata"
 
     fi_processions:
+        menu_item_name: "Sfilate"
         model_name: "Corteo"
         nav_item: "Cortei"
         model_name_plural: "Cortei"
@@ -561,6 +565,7 @@ it:
         no_elements: "Non contiene alcun elemento."
 
     fi_parade_cart_cards:
+        menu_item_name: "Parate"
         actions:
             new: "Crea nuova scheda Carro"
             delete: "Cancella scheda"

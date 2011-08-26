@@ -95,4 +95,28 @@ class FiProcession < TaliaCore::Collection
     end
   end
 
+  def boxview_data
+    { :controller => 'boxview/fi_processions', 
+      :title => "Corteo #{self.name}",
+#      :description => self.description,
+      :res_id => "fi_procession_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
+
+  # @collection is a FiParade
+  # returns the ordered list of element to be shown in the menu list
+  def self.menu_items_for(collection)
+    result = []
+    cards = self.find(:all)
+    cards.each do |c|
+      my_index = collection.index(c)
+      result[my_index] = c unless my_index.nil? #or !c.is_public?
+    end
+    result.compact
+  end
+
+
+
 end

@@ -34,13 +34,9 @@ class Boxview::IndiciController < Boxview::BaseController
     end
 
 
-
-    
-
-
     
     @parade = FiParade.first
 
-     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte"}
+     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_procession"}
   end
 end
