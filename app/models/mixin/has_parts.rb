@@ -33,7 +33,7 @@ module Mixin::HasParts
   def showable_zones
     zones = showable_parts.values.flatten.map do |z|
       z.respond_to?(:image_zones) ? z.image_zones.to_a : z.image_zone
-    end.flatten
+    end.flatten.uniq
     return self.respond_to?(:image_zone) ? ([self.image_zone] + zones) : zones
   end
 
