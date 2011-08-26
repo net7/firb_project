@@ -18,11 +18,17 @@ module ImtHelper
       unless zones.size.zero?
         # First zone is assumed as the one of main interest, where the image will focus (zoom to).
         outer = zones.delete zones.first
+        if !outer.coordinates.nil?
         xml.a(:r => outer.id.to_s, :s => outer.uri.to_s, :l =>outer.name, :t =>"#{image.uri}@#{outer.coordinates}"){
           zones.each do |z|
             xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}")
           end
         }
+        else 
+          zones.each do |z|
+            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}") unless z.coordinates.nil?
+          end
+        end
       end
       }
       xml.cb(:u => nil, :p => "base64xml")
