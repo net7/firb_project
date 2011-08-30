@@ -1,15 +1,15 @@
 <% imt_id = "imt_illustrazione_madre_#{@resource.id}" %>
 <% anastatica_title = "#{@resource.anastatica.page_position}" %>
 <%= boxview_widget 'Illustrazione', :class => "ImageWidget widget_draggable" do |w|
-  content = render :partial => '/boxview/shared/imageviewer',
-    :locals => {:id => imt_id,
-    :base64 => imt_image_b64(@image, @resource.showable_zones),
-    # :base64 => image_xml(@image),
-    :js_prefix => 'jsapi'}
+  content = imt_viewer(imt_id) do |imt|
+    imt.base64 = imt_image_b64 @image, @resource.showable_zones
+    imt.init   = "jsapi_initializeIMW(id);"
+    imt.click  = "return imtActivateFirstWithLink($('#{imt_jquery_highlight_selector(imt_id)}'+ki));"
+    imt.over   = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).addClass('zone_highlighted');"
+    imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
+  end
 
   w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
-
-
   w.content content_tag(:div, content, :class => 'picture')
 end %>
 
@@ -39,7 +39,8 @@ end %>
     # SEE: ticket #216.
     children = content_tag :ul, (@resource.children.map do |child|
         title = child.short_description || child.name
-        content_tag :li, boxview_link_for_object(child) #, title, title, child.id, :image)
+        text = imt_highlight(imt_id, card.boxview_data[:title].to_s, card.image_zone.id)
+        content_tag :li, boxview_link_for_object(child, :text => text)
       end.join(''))
     w.content boxview_widget_field('Immagini di memoria', children)
 
