@@ -59,7 +59,7 @@ module BoxviewHelper
   #   :title
   #   :res_id
   #   :box_type
-  # Link Options not used atm.
+  # Link Options will be used when calling #boxview_link internally.
   def boxview_link_for_object(o, options={}, link_options={})
     data = o.boxview_data().merge(options)
     data[:text] = data[:title] if data[:text].nil?
