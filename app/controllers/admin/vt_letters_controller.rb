@@ -11,7 +11,7 @@ class Admin::VtLettersController < Admin::AdminSiteController
     file = params[:vt_letter].delete(:file)
     hobo_source_create do |card|
       foo = card.attach_pdf_file(file) if (file)
-      flash[:notice] += foo if (foo)
+#      flash[:notice] += foo if (foo)
       redirect_to :action => :index
     end
   end
