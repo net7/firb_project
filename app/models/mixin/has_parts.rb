@@ -1,4 +1,4 @@
-a##
+##
 # Every model including this mixin MUST implement a parts_query method:
 # #parts_query should return an ActiveRDF::Query object to use to recover the model's parts
 # (or nil if there are none, or cannot be retrieved with a query).
