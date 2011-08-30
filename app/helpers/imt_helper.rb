@@ -6,6 +6,30 @@ module ImtHelper
   include AdminHelper
 
   ##
+  # Defines a set of javascrip/jQuery functions that can be used in conjunction with the imt helpers.
+  #
+  def imt_jquery_helper_functions
+    <<-eos
+    <script language="javascript">
+      // Helper functions for Image Mapper Tool.
+
+      // Given a jQuery selector, this function will locate the first element identified
+      // by the selector is a link. If found, the function will "click" it.
+      function imtActivateFirstWithLink(elements) {
+        if(elements) {
+          elements.each(function(i, el) {
+            if($(el).parent().is('a')) {
+              $(el).parent().click();return false;
+            }
+          });
+        }
+        return false;
+      }
+    </script>
+    eos
+  end
+
+  ##
   #
   # Uses AdminHelper.original_image_url.
   def imt_image_b64(image, zones=[])
@@ -36,20 +60,24 @@ module ImtHelper
   end
   alias_method :boxview_imt_viewer, :imt_viewer
 
+  # NOTE deprecated: do not use ids to identify zone-related elements, univocity cannot be guaranteed.
   def imt_highlight_id(imt_id, zone_id)
     "#{imt_id}_image_zone_#{zone_id}"
   end
 
+  def imt_highlight_class(imt_id, zone_id)
+    "#{imt_id}_image_zone_#{zone_id}"
+  end
+
   def imt_jquery_highlight_selector(imt_id)
-    "##{imt_highlight_id(imt_id, "")}"
+    ".#{imt_highlight_class(imt_id, "")}"
   end
 
   def imt_highlight(id, text, zone)
     content_tag :span, text, {
-      :onmouseover => "getFlashObject('#{id}').setPolygonHighlighted(true, '#{zone}');",
-      :onmouseout  => "getFlashObject('#{id}').setPolygonHighlighted(false, '#{zone}');",
-      :id          => imt_highlight_id(id, zone),
-      :class       => "single-zone"
+      :onmouseover => "if(getFlashObject('#{id}')) getFlashObject('#{id}').setPolygonHighlighted(true, '#{zone}');",
+      :onmouseout  => "if(getFlashObject('#{id}')) getFlashObject('#{id}').setPolygonHighlighted(false, '#{zone}');",
+      :class       => "#{imt_highlight_class(id, zone)} single-zone"
     }
   end
   alias_method :boxview_imt_highlight, :imt_highlight

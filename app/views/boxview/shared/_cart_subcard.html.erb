@@ -9,7 +9,8 @@ boxview_widget 'Illustrazione', {:class => 'ImageWidget widget_draggable'} do |w
   content = imt_viewer(imt_id) do |imt|
     imt.base64 = imt_image_b64 image, resource.showable_zones
     imt.init   = "jsapi_initializeIMW(id);"
-    imt.click  = "$('.image_zone_'+ki).click();"
+    # No zones?
+    # imt.click  = "$('.image_zone_'+ki).click();"
     imt.over   = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).addClass('zone_highlighted');"
     imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
   end
