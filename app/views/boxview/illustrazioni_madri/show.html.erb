@@ -39,7 +39,7 @@ end %>
     # SEE: ticket #216.
     children = content_tag :ul, (@resource.children.map do |child|
         title = child.short_description || child.name
-        text = imt_highlight(imt_id, card.boxview_data[:title].to_s, card.image_zone.id)
+        text = imt_highlight(imt_id, child.boxview_data[:title].to_s, child.image_zone.id)
         content_tag :li, boxview_link_for_object(child, :text => text)
       end.join(''))
     w.content boxview_widget_field('Immagini di memoria', children)
