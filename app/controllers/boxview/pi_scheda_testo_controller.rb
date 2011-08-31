@@ -2,8 +2,6 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
 
   require 'nokogiri'
   # included to have access to the imt_image_b64 helper
-  include ImtHelper
-  include BoxviewHelper
 
   def show
     @resource = PiTextCard.find(params[:id], :prefetch_relations => true)

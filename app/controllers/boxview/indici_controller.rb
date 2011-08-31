@@ -39,4 +39,8 @@ class Boxview::IndiciController < Boxview::BaseController
 
      @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions"}
   end
+
+  def vt
+    @temp = VtLetter.find :first
+  end
 end

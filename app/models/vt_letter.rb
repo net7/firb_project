@@ -17,6 +17,31 @@ class VtLetter < TaliaCore::Collection
   rdf_property :date_string, N::TALIA.date_string, :type => :string
   rdf_property :printed_collocation, N::TALIA.printed_collocation, :type => :string
   rdf_property :handwritten_collocation, N::TALIA.handwritten_collocation, :type => :string
+
+  def self.edition_title_for(edition)
+    begin
+      result = edition.name.nil? ? "" : "(#{edition.name})"
+      result << " #{edition.bibliography_item.author}: #{edition.bibliography_item.title} "
+      result << (edition.pages.nil? ? "" : " ("+edition.pages+")")
+    rescue
+      ""
+    end
+  end
+
+  ##
+  # This model is a special case: it is actually called to show either its handwritten or printed cards.
+  #
+  # See use in the index (views/boxview/indici/vt.html.erb).
+  def boxview_data
+    { :controller => 'boxview/vt_letters_controller', 
+      :title => self.title || self.name,
+      :description => "",
+      :res_id => "vt_letter_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
+  
   
   def name
     title.blank? ? uri.local_name : title
@@ -30,4 +55,19 @@ class VtLetter < TaliaCore::Collection
     ordered_objects.find_all { |el| el.is_a?(VtPrintedTextCard) }
   end
 
+  def handwritten_reference_edition
+    begin
+      @handwritten_reference_edition ||= handwritten_cards.first.bibliography_items.first
+    rescue
+      nil
+    end
+  end
+
+  def printed_reference_edition
+    begin
+      @printed_reference_edition ||= printed_cards.first.bibliography_items.first
+    rescue
+      nil
+    end
+  end
 end

@@ -4,7 +4,10 @@ ActionController::Routing::Routes.draw do |map|
   map.site_search  'search', :controller => 'admin/front', :action => 'search'
 
   Hobo.add_routes(map)
-  
+
+
+  map.root :controller => 'boxview/base', :action => 'index'
+
   map.admin '/admin', :controller => 'admin/front', :action => 'index'
   map.connect '/admin/import/:action', :controller => 'admin/import'
   map.connect '/admin/talia_sources/:action/:id', :controller => 'admin/talia_sources'
@@ -68,6 +71,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici', :controller => 'boxview/indici', :action => "index" 
   map.connect '/boxview/indici/pi', :controller => 'boxview/indici', :action => "pi" 
   map.connect '/boxview/indici/fi', :controller => 'boxview/indici', :action => "fi" 
+  map.connect '/boxview/indici/vt', :controller => 'boxview/indici', :action => "vt" 
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
@@ -83,6 +87,17 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :fi_character_cards
     boxview.resources :fi_episode_cards
     boxview.resources :fi_processions
+  end
+
+  # FIRB VITERBO
+  map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
+
+    boxview.resources :vt_letters do |letter|
+      letter.resources :vt_handwritten_text_cards, :only => :index
+      letter.resources :vt_printed_text_cards, :only => :index
+    end
+
+#    boxview.resources :vt_letters, :member => {:printed => :get, :handwritten => :get}#, :only => [:show, :printed, :handwritten]
   end
 
   # Default semantic dispatch
@@ -127,7 +142,7 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
   #  map.root :controller => "boxView", :action => 'index'
-  map.root :controller => "sources", :action => 'index'
+  #map.root :controller => "sources", :action => 'index'
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.

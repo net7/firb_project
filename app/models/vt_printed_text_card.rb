@@ -38,7 +38,7 @@ class VtPrintedTextCard < TextCard
   def letter
     @letter ||= fetch_letter
   end
-  
+
   def letter=(value)
     unless value.empty?
       @letter = (value.is_a?(TaliaCollection) ? value : TaliaCollection.find(value)).real_source
@@ -64,8 +64,17 @@ class VtPrintedTextCard < TextCard
       end
     end
   end
-  
-  
+
+  def boxview_data
+    { :controller => 'boxview/vt_printed_text_cards',
+      :title => self.title,
+      :description => "",
+      :res_id => "vt_printed_text_card_#{self.id}",
+      :box_type => 'text',
+      :thumb => nil
+    }
+  end
+
   def validate_letter
     if(!letter_valid?)
       @letter.errors.each_full { |msg| errors.add('letter', msg) }
