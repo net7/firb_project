@@ -1,5 +1,5 @@
 /* Local BoxView overwrite config */ 
-// BoxViewSuiteConfig.theme = "test_empty_theme";
 BoxViewSuiteConfig.theme = "demo";
+// BoxViewSuiteConfig.theme = "firb-memorie";
 
 BoxViewSuiteConfig.boxViewConfig.iconsAlignment = 'alignMiddle';
