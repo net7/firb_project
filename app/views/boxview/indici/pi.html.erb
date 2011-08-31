@@ -1,3 +1,4 @@
+
 <%#= 
     boxview_widget 'TEMP DA RIMUOVERE', :class => "index widget_draggable" do |w|
         w.content "<ul>"
@@ -43,7 +44,7 @@
         types = ImageComponent.zone_types_for(PiIllustrationCard)
         types.each do |type|
           w.content "<li>"
-          w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", type, "Indice #{type}", "index_type", :index)
+          w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", type, "Indice #{type}", "index_#{type}", :index)
           w.content "</li>"
         end
         w.content "</li></ul></li>"
