@@ -97,6 +97,9 @@ ActionController::Routing::Routes.draw do |map|
       letter.resources :vt_printed_text_cards, :only => :index
     end
 
+    boxview.resources :vt_handwritten_text_cards, :member => {:diplomatic => :get, :critic => :get}
+    boxview.resources :vt_printed_text_cards
+
 #    boxview.resources :vt_letters, :member => {:printed => :get, :handwritten => :get}#, :only => [:show, :printed, :handwritten]
   end
 

@@ -42,5 +42,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def vt
     @temp = VtLetter.find :first
+    @handwritten = VtHandwrittenTextCard.find :first
+    @printed = VtPrintedTextCard.find :first
   end
 end

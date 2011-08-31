@@ -4,4 +4,10 @@ class Boxview::VtPrintedTextCardsController < Boxview::BaseController
     @cards   = @resource.printed_cards
     @edition = @resource.printed_reference_edition
   end
+
+  def show
+    @resource = VtPrintedTextCard.find_by_id params[:id];
+    @letter   = @resource.letter
+    @edition  = @resource.bibliography_items.blank? ? nil : @resource.bibliography_items.first
+  end
 end
