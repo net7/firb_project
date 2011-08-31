@@ -78,10 +78,10 @@ site_name_javascript = escape_javascript(site_name)
             // Add the menu automatically
             myBoxView.addBoxFromAjax({
                 qstring: '<%= url_for(:controller => "boxview/indici/#{theme}") %>',
-                title: '<%= site_name_javascript %>: Indice', 
-                verticalTitle: '<%= site_name_javascript %>: Indice',
+                title: '<%= site_name_javascript %>: Menù', 
+                verticalTitle: '<%= site_name_javascript %>: Menù',
                 resId: '<%= theme %>_index',
-                type: 'index',
+                type: 'menu',
                 collapsed: false
             });
 

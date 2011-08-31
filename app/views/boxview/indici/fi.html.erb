@@ -4,7 +4,7 @@ boxview_widget 'Navigation', :class => "index widget_draggable" do |w|
 
   #carte aka Anastatiche
 
-  w.content "<li>"
+  w.content "<li class='menu_subitem'>"
 
   m = @models[:carte]
   w.content boxview_link("/boxview/indici/#{@collection.id}/#{m}",  I18n.t("#{m}.menu_item_name"), "Indice "+I18n.t("#{m}.menu_item_name"), "index_#{m}", :index)
@@ -17,7 +17,7 @@ boxview_widget 'Navigation', :class => "index widget_draggable" do |w|
 
   #ordine di sfilata aka cortei aka FiProcession
 
-  w.content "<li>"
+  w.content "<li class='menu_subitem'>"
   m = @models[:cortei]
   w.content boxview_link("/boxview/indici/#{@parade.id}/#{m}", I18n.t("#{m}.menu_item_name"), "Indice "+I18n.t("#{m}.menu_item_name"), "index_#{m}", :index)
   w.content "</li>"
