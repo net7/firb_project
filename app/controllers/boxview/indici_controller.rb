@@ -36,8 +36,8 @@ class Boxview::IndiciController < Boxview::BaseController
 
     
     @parade = FiParade.first
-
-     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions"}
+    @text_cards = FiTextCard.find(:all)
+    @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions"}
   end
 
   def vt

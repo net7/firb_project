@@ -1,0 +1,14 @@
+<%
+	# Parameters:
+	# @custom : custom bibliography item to display
+	# @item : real bibliography item
+%>
+<bibl> 
+	<span class="bibl_author"><%= item.author %></span>, 
+	<span class="bibl_title"><%= item.title %></span> 
+
+<%= ",<span class='bibl_pubPlace'>#{item.published_in}</span>" unless item.published_in.nil? %>
+<%= ",<span class='bibl_publisher'>#{item.publisher}</span>" unless item.publisher.nil? %>
+<%= ",<span class='bibl_date'>#{item.date}</span>" unless item.date.nil? %>
+<%= ",<span class='bibl_pages'>#{custom.pages}</span>" unless custom.pages.nil? %>
+</bibl>
