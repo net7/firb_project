@@ -8,5 +8,6 @@ config/rdfstore.yml
 config/*.pi.yml
 config/*.fi.yml
 config/*.vt.yml
+config/*.bg.yml
 data
 
