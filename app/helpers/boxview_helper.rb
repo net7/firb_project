@@ -41,7 +41,7 @@ module BoxviewHelper
   #      history
   #
   def boxview_link(url, text, title, id, type, options={})
-    url_separator = url.include?('?') ? '&' : '?'
+    url_separator = (url.try :include?, '?') ? '&' : '?'
     link_id = "id='#{options[:link_id]}'" unless (options[:link_id].nil?)
     %[<a #{link_id} class="boxview_link #{options[:class]}"
          href="VISUALIZZATORE_SINGOLI_BOX?title=#{title}&type=#{type.to_s}&id=#{id}&url=#{URI.encode(url)}"
@@ -55,6 +55,8 @@ module BoxviewHelper
   ##
   # Options (overrides object's options):
   #   :controller
+  #   :action (defaults to "show")
+  #   :url (overrides :controller and :action)
   #   :text (:title is used if no value for :text is provided)
   #   :title
   #   :res_id
@@ -63,7 +65,9 @@ module BoxviewHelper
   def boxview_link_for_object(o, options={}, link_options={})
     data = o.boxview_data().merge(options)
     data[:text] = data[:title] if data[:text].nil?
-    boxview_link(url_for(:controller => data[:controller], :action => "show", :id => o.id), data[:text], data[:title], data[:res_id], data[:box_type], link_options) 
+    data[:action] ||= "show"
+    url = data[:url].blank? ? url_for(:controller => data[:controller], :action => data[:action], :id => o.id) : data[:url]
+    boxview_link(url, data[:text], data[:title], data[:res_id], data[:box_type], link_options) 
   end
 
   # Options:

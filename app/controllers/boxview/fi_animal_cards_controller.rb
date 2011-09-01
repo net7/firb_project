@@ -1,6 +1,4 @@
 class Boxview::FiAnimalCardsController < Boxview::BaseController
-  include ImtHelper
-  include BoxviewHelper
 
   def show
     @resource = FiAnimalCard.find_by_id params[:id]

@@ -32,5 +32,4 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   def to_list_s
     "#{ref_name} (#{author}: #{title})"
   end
-  
 end

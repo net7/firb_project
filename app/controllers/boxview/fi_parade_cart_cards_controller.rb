@@ -1,6 +1,4 @@
 class Boxview::FiParadeCartCardsController < Boxview::BaseController
-  include ImtHelper
-  include BoxviewHelper
 
   def show
     @resource = FiParadeCartCard.find_by_id params[:id]

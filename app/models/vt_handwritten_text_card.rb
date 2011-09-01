@@ -80,6 +80,17 @@ class VtHandwrittenTextCard < TextCard
       end
     end
   end
+
+  def boxview_data
+    { :controller => 'boxview/vt_handwritten_text_cards',
+      :title => self.anastatica.page_position,
+      :description => "",
+      :res_id => "vt_handwritten_text_card_#{self.id}",
+      :box_type => 'text',
+      :thumb => nil
+    }
+  end
+
   
   def validate_letter
     if(!letter_valid?)

@@ -22,7 +22,8 @@ Page Sections
 	margin: 0; padding: 0; border: 0;
 	right: 0px;
 	top: 102px;
-	left: 217px;
+	/* left: 217px; */
+	left: 0;
 	overflow: hidden;
 }
 

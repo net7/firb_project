@@ -1,0 +1,32 @@
+<%= boxview_widget 'Informazioni tecniche', {:class => 'TextWidget widget_draggable'} do |w|
+  # Anastatica Stampa
+  if @resource.anastatica
+    w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+  end
+  # Trascrizione Critica
+  unless @letter.handwritten_cards.blank?
+    w.right_icons boxview_link_for_object(@letter.handwritten_cards.first, :url => vt_handwritten_text_card_url(@resource.id)), {:class => 'critic_transcription'}
+  end
+
+  unless @letter.data_records.blank?
+    w.right_icons link_for("Scarica versione PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+  end
+
+  edition_title = VtLetter.edition_title_for @resource.bibliography_items.first
+
+  w.content boxview_widget_field('Edizione di riferimento', edition_title) unless edition_title.blank?
+  w.content boxview_widget_field('Numero della lettera', @letter.name) unless @letter.name.blank?
+
+  begin
+    page_position = @resource.anastatica.page_position
+    w.content boxview_widget_field('Numero della pagina', page_position) unless page_position.blank?
+  rescue; end
+
+
+end
+%>
+
+<%= boxview_widget 'Trascrizione', {:class => 'TextWidget widget_draggable'} do |w|
+  w.content "TODO"
+end
+%>

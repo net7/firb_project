@@ -1,6 +1,4 @@
 class Boxview::FiTextCardsController < Boxview::BaseController
-  include BoxviewHelper
-
   def show
     @resource = FiTextCard.find_by_id params[:id]
   end

@@ -1,0 +1,45 @@
+<%= boxview_widget 'Informazioni tecniche', {:class => 'TextWidget widget_draggable'} do |w|
+  if @resource.anastatica
+    w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+  end
+  w.right_icons boxview_link_for_object(@resource, :url => diplomatic_vt_handwritten_text_card_url(@resource.id)), {:class => 'diplomatic_transcription'}
+
+  unless @letter.printed_cards.blank?
+    w.right_icons boxview_link_for_object(@letter.printed_cards.first, :url => vt_printed_text_card_url(@letter.printed_cards.first.id)), {:class => 'print'}
+  end
+
+  unless @letter.data_records.blank?
+    w.right_icons link_for("Scarica versione PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+  end
+
+  w.content boxview_widget_field('Segnatura', @resource.signature)                        unless @resource.signature.blank?
+  w.content boxview_widget_field('Misure', @resource.measure)                             unless @resource.measure.blank?
+  w.content boxview_widget_field('Filigrana', @resource.watermark)                        unless @resource.watermark.blank?
+  w.content boxview_widget_field('Cartulazione', @resource.cartulation)                   unless @resource.cartulation.blank?
+  w.content boxview_widget_field('Altre note manoscritte', @resource.technical_notes)     unless @resource.technical_notes.blank?
+  w.content boxview_widget_field('Stato di conservazione', @resource.conservation_status) unless @resource.conservation_status.blank?
+  w.content boxview_widget_field('Autografia', @resource.autography)                      unless @resource.autography.blank?
+  w.content boxview_widget_field('Data', @resource.date)                                  unless @resource.date.blank?
+  
+end
+%>
+
+<%= boxview_widget 'Trascrizione Critica', {:class => 'TextWidget widget_draggable'} do |w|
+  w.content "TODO"
+end
+%>
+
+<%= boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
+  w.content "TODO"
+end
+%>
+
+<% unless @resource.bibliography_items.size.zero? %>
+<%= boxview_widget 'Bibliografia', {:class => 'TextWidget widget_draggable'} do |w|
+      content = @resource.bibliography_items.map do |item|
+        content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+      end.join('')
+      w.content boxview_widget_field('Fonti', content_tag(:ul, content))
+    end
+%>
+<% end %>
