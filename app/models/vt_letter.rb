@@ -33,8 +33,8 @@ class VtLetter < TaliaCore::Collection
   #
   # See use in the index (views/boxview/indici/vt.html.erb).
   def boxview_data
-    { :controller => 'boxview/vt_letters_controller', 
-      :title => self.title || self.name,
+    { :controller => 'boxview/vt_letters',
+      :title => self.letter_number,
       :description => "",
       :res_id => "vt_letter_#{self.id}", 
       :box_type => 'image',
