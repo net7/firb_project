@@ -2,22 +2,24 @@
 
 01. HTML TAGS 
 		1. .....
-02. PAGE STRUCTURE
+02. GENERIC CLASSES 
+		1. Text Zone Highlight
+03. PAGE STRUCTURE
 		1. Page Sections
 		2. Header
-03. HEADER
+04. HEADER
 		1. Main Header Attributes
 		2. Header Preferences
-04. BOX
+05. BOX
 		1. Generic Box Features
 		2. Index Box
 		3. Trascription Box
-05. WIDGETS
+06. WIDGETS
 		1. Generic Widget Features
 		2. Collapsable Description Fields
 		3. Widget Right Icons Normal
 		4. Widget Right Icons Rollover
-06. MENU FENOMENI
+07. MENU FENOMENI
 		1. Generic Menu Features
 GARBAGE
 --- */
@@ -30,7 +32,15 @@ GARBAGE
 
 
 /* ________________________________________________________________________________________________________________
-	02. PAGE STRUCTURE
+	02. GENERIC CLASSES
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. Text Zone Highlight ------- */
+.zone_highlighted {
+	background-color: #fffbb9;
+}
+
+/* ________________________________________________________________________________________________________________
+	03. PAGE STRUCTURE
  ________________________________________________________________________________________________________________ */
 /* ------- 1. Page Sections ------- */
 #pageExt {
@@ -61,7 +71,7 @@ GARBAGE
 }
 
 /* ________________________________________________________________________________________________________________
-	03. HEADER
+	04. HEADER
  ________________________________________________________________________________________________________________ */
 /* ------- 1. Main Header Attributes ------- */
 #pageHeader h1 {
@@ -141,7 +151,7 @@ GARBAGE
 			#header_preferences #pref_settings:hover {background-position: -102px -20px;}
 			
 /* ________________________________________________________________________________________________________________
-	04. BOX
+	05. BOX
  ________________________________________________________________________________________________________________ */
 /* ------- 1. Generic Box Features ------- */
  .boxViewContainer .boxContent {
@@ -196,10 +206,12 @@ GARBAGE
 .boxViewContainer .box.transcription .widgetContent {
 	padding: 0;
 	overflow: visible;
+	position: relative;
 }
-.transcription_text {
+.boxViewContainer .transcription_text {
 	float: left;
 	font-family:Arial, Helvetica, sans-serif;
+	padding-bottom: 10px;
 }
 .transcription_text span.line { /* Manda a capo */
 	display: block;
@@ -225,8 +237,7 @@ GARBAGE
 }
 
 .transcription_text .highlighted {
-	background-color: #FFFFFF;
-    border: 1px dotted #992000;
+   	background-color: #fffbb9;
     padding: 0 3px;
 }
 
@@ -284,7 +295,7 @@ GARBAGE
 	.box.transcription .widgetContent.notes-displayed  .transcription_text { width: 70%; }
 
 	.transcription_text .transcription_text_content {
-		padding: 10px;
+		/* padding: 10px; Controllare se effettivamente funziona */
 	}
 
 .transcription_notes {
@@ -301,11 +312,13 @@ GARBAGE
 		position: absolute;
 		top: 5px;
 		right: 5px;
+		z-index: 2;
 	}
 	
 	.transcription_notes .transcription_notes_content {
 		padding: 10px;
 		height: 500px; 
+		z-index: 1;
 	}
 	
 		.transcription_notes .transcription_notes_content .note p{
@@ -326,16 +339,23 @@ GARBAGE
 		
 		.transcription_notes .transcription_notes_content .note.open {
 			color: #666;
+			background-color: #fffbb9;
+			border: 1px solid #f6f0ad;
+			padding: 3px;
 		}
 		.transcription_notes .transcription_notes_content .note.closed {
 			color: #999;
+			color: #992000;
 		}
-
+		.transcription_notes .transcription_notes_content .note.closed:hover {
+			text-decoration: underline;
+			background: none;
+		}
 
 
 	
 /* ________________________________________________________________________________________________________________
-	05. WIDGETS
+	06. WIDGETS
  ________________________________________________________________________________________________________________ */
 /* ------- 1. Generic Widget Features ------- */
 .boxViewContainer .box .boxContent .widget .widgetContent { /* Nota: controllare se si può togliere .boxViewContainer .box .boxContent */
@@ -428,19 +448,25 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.il
 }
 
 /* ________________________________________________________________________________________________________________
-	06. MENU FENOMENI
+	07. MENU FENOMENI
  ________________________________________________________________________________________________________________ */
 /* ------- 1. Generic Menu Features ------- */
 .boxViewContainer .fen_menu_panel {
-    background-color: #DCDCDC;
-    box-shadow: 0 1px 3px #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 13px;
+    background-color: #ededed;
+    /* box-shadow: 0 1px 3px #000000; */
+    border-left: 1px solid #dad9d8;
+    border-bottom: 1px solid #dad9d8;
+    border-right: 1px solid #dad9d8;
     display: block;
-    padding: 8px 8px 12px 8px;
+    padding: 5px;
     position: absolute;
     right: 50px;
-    top: 56px;
+    top: 0px;
     width: 180px;
-    
+    /*
 	-moz-border-radius-bottomleft: 7px;
 	-moz-border-radius-bottomright: 7px;
 
@@ -449,11 +475,12 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.il
 
 	border-bottom-left-radius: 7px;
 	border-bottom-right-radius: 7px;
-	
+	*/
 	/*DEBUG: sta roba andra' sopra al flash? boh .. */
     z-index: 10;
     display: block;
 }
+
 div.fen_menu_panel.hidden {
     display: none;
 }
@@ -465,20 +492,38 @@ div.fen_menu_panel.hidden {
 	cursor: pointer;
 }
 
-.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li.highlighted {
-	/* background-color: #FFFFFF; */
-	background-color: transparent;
-    border: 1px dotted #992000;
-    padding: 0 3px;
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li {
+	padding-left: 10px;
 }
-    
+
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li.phen_section, .boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li.phen_item {
+	padding-top: 3px;
+	margin-top: 2px;
+	padding-bottom: 3px;
+	margin-bottom: 2px;
+}
+
+.boxviewcontainer .box .boxcontent .widget div.fen_menu_panel li.highlighted {
+	background-color: #fffbb9;
+	border: 1px solid #f6f0ad;
+    padding: 2px 5px 2px 15px;
+}
+
 .fen_menu_panel li.phen_section {
-	font-size:11px;
 	font-weight: bold;
 }
+
+.fen_menu_panel ul li ul li.phen_item {
+	background: url(img/fen_menu_panel_list.png) top left no-repeat;
+	background-position: 0 8px;
+}
+
+.fen_menu_panel ul li ul li.phen_item.highlighted {
+	background-position: 5px 8px;
+}
+
 .boxviewcontainer div.fen_menu_panel li.phen_item {
 	margin-left: 8px;
-	font-size:10px;
 }
 
 /* ________________________________________________________________________________________________________________
@@ -486,12 +531,15 @@ div.fen_menu_panel.hidden {
  ________________________________________________________________________________________________________________ */
 /*GIULIO LEGGIMI E RIMUOVIMI... O SMISTAMI... */
 
+/*
 span.ill_md.zone_highlighted,
 a.zone_highlighted,
 .transcription_text .zone_highlighted,
 .transcription_text .highlighted.zone_highlighted {
-	background-color: rgba(255, 0, 0, 0.75);
+	background-color: #fffdba;
 }
+*/
+
 /* Una span.line rappresenta una linea della trascrizione.. deve mandare a capo */
 
 
