@@ -1,22 +1,3 @@
-
-<%#= 
-    boxview_widget 'TEMP DA RIMUOVERE', :class => "index widget_draggable" do |w|
-        w.content "<ul>"
-        @temp_models.each do |c,m|
-            w.content "<li>"
-            w.content boxview_link("/boxview/indici/#{c}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index) 
-            w.content "</li>"
-        end 
-        w.content %[
-              <li>Altra voce</li>
-              <li>Altra voce numero due</li>
-              <li>Pure la terza</li>
-            </ul>
-        ]
-    end
-%>
-
-
 <%= 
     boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
         w.content "<ul>"
