@@ -167,6 +167,8 @@
 
             if (h.length === 0) {
                 co.log("No fragments from URI "+url);
+                self.onDomAnnotated();
+                self.postAnnotatedContent();
                 return;
             }
 
