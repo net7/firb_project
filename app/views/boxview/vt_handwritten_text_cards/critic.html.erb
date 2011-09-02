@@ -34,12 +34,12 @@ end
 end
 %>
 
-<% unless @resource.bibliography_items.size.zero? %>
-<%= boxview_widget 'Bibliografia', {:class => 'TextWidget widget_draggable'} do |w|
-      content = @resource.bibliography_items.map do |item|
-        content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-      end.join('')
-      w.content boxview_widget_field('Fonti', content_tag(:ul, content))
+<%=
+    unless @bibl.nil?
+	 	boxview_widget 'Bibliografia', {:class => 'studio widget_draggable'} do |w| 
+			content = ''
+			@bibl.each{ |item| content += "<li>#{item}</li>" }
+		  	w.content boxview_widget_field('Fonti', content_tag(:ul, content))
+		end
     end
 %>
-<% end %>
