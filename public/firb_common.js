@@ -139,4 +139,25 @@ function init_firb_common(theme) {
         reposition_notes($(this).parents('div.box').attr('id'));
     });
 
+	// Widget's field collapse/expand button
+	$("div.box span.field_title").live("click", function() { 
+
+	    var t = $(this), 
+	        n = t.next(),
+	        box_id = $(this).parents('div.box').attr('id'),
+	        len = 400;
+
+	    if (t.hasClass("expanded")) {
+	        t.addClass("collapsed").removeClass("expanded");
+            n.hide(len).removeClass("expanded").addClass("collapsed");
+	    } else {
+	        t.addClass("expanded").removeClass("collapsed");
+            n.hide().removeClass("collapsed").addClass("expanded").show(len);
+	    }
+
+	    return false;
+	});
+	
+
+
 } // init_firb_common
