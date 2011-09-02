@@ -28,8 +28,8 @@ now = Time.now.to_f.to_s.gsub('.','')
   <object class="IMTViewer" 
           classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
           id="<%= params[:id] %>" 
-          width="90%" 
-          height="90%"
+          width="100%" 
+          height="100%"
           b64="<%= params[:base64] %>"
           codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
     <param name="movie" value="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_&c=#{now}") %>" />
@@ -40,8 +40,8 @@ now = Time.now.to_f.to_s.gsub('.','')
     <embed src="<%= image_path("ImageMapperViewer.swf?js_prefix=#{params[:js_prefix]}_&oid=#{params[:id]}&c=#{now}")%>"
            quality="high"
            bgcolor="#ffffff"
-           width="90%"
-           height="90%"
+           width="100%"
+           height="100%"
            name="<%= params[:id] %>"
            align="middle"
            play="true"
