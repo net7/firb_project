@@ -87,6 +87,7 @@ class TextCard < TaliaCore::Source
   def prev_card
     anastatica = self.anastatica
     collection = anastatica.collections.first
+    return nil if collection.nil?
     begin
       anastatica = collection.prev(anastatica)
       return nil if anastatica.nil?
@@ -98,6 +99,7 @@ class TextCard < TaliaCore::Source
   def next_card
     anastatica = self.anastatica
     collection = anastatica.collections.first
+    return nil if collection.nil?
     begin
       anastatica = collection.next(anastatica)
       return nil if anastatica.nil?

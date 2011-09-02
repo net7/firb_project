@@ -4,10 +4,11 @@
 	# @fenomeni: contains the phenomen hierarchy
 	# @content: annotated transcription content
 	# @resource: the obj itself
+	# [optional] @widget_title: title of the widget..
 
     notes_content = ''
     num = 0
-    unless notes.nil?
+    unless notes.nil? || notes.empty?
 		notes.each do |n|
 	        num = num+1
 	        notes_content << %[
@@ -45,16 +46,7 @@
 	                    b.find('.#{n[:class]}').addClass('highlighted');
 	                    reposition_notes(b.attr('id'));
                     
-	                });
-	                /*
-	                .mouseover(function() {
-	                    $(this).parents('div.box').find('.#{n[:class]}').addClass('highlighted');
-	                }).mouseout(function() {
-	                    if ($('#note_#{n[:class]}').hasClass('closed'))
-	                        $(this).parents('div.box').find('.#{n[:class]}').removeClass('highlighted');
-	                });
-	                */
-                
+	                });                
 	            </script>
 	            ]
 	    end # notes.each do n
@@ -62,7 +54,8 @@
 
     fenomeni_content = "<div class='fen_menu_panel hidden'><ul>"
     last_type = ''
-	unless fenomeni.nil?
+	last_class = ''
+	unless fenomeni.nil? || fenomeni.empty?
 	    fenomeni.each do |f|
         
 	        if (last_type != f[:item_type])
@@ -73,9 +66,13 @@
 	                ]
 	            last_type = f[:item_type]
 	        end
-	        fenomeni_content << %[
-	                <li class='phen_item' about='#{f[:class]}'>#{f[:name]}</li>
-	            ]
+			
+			if (last_class != f[:class])
+	        	fenomeni_content << %[
+	                	<li class='phen_item' about='#{f[:class]}'>#{f[:name]}</li>
+	            	]
+				last_class = f[:class]
+			end
 	    end
 	end
     fenomeni_content += "</ul></li></ul></div>"
@@ -85,22 +82,24 @@
             #{fenomeni_content}
             #{content}
         </div>
+	]
+	
+	transcription_content += %[	
         <div class="transcription_notes">
             <a class="transcription_close_icon" id="close_notes_#{resource.id}">CHIUDI</a>
             <div class="transcription_notes_content">
-                #{notes_content}
+                #{notes_content} -- #{notes.inspect}
             </div>
         </div>
-    ]
+    ] unless notes.nil? || notes.empty?
 
 %>
 
 <%= 
-    boxview_widget 'Trascrizione', {:class => 'transcription widget_draggable'} do |w|
+    boxview_widget widget_title || "Trascrizioni", {:class => 'transcription widget_draggable'} do |w|
 
         mostra_note = content_tag(:a, 'Note', :class => "note", :href => "#", :id => "mostra_note_trascrizione_#{resource.id}", :title => 'Mostra le note')
-        mostra_fenomeni = content_tag(:a, 'Fenomeni', :href => "#", :id => "mostra_fenomeni_#{resource.id}", :title => 'Mostra i fenomeni')
-        mostra_fenomeni << %[
+        mostra_note << %[
             <script type="text/javascript">
             $("#mostra_note_trascrizione_#{resource.id}, #close_notes_#{resource.id}").click(function(e) {
                 e.preventDefault();
@@ -124,7 +123,10 @@
                 reposition_notes(bo.attr('id'));
                 return false;
             });
-
+		]
+        mostra_fenomeni = content_tag(:a, 'Fenomeni', :href => "#", :id => "mostra_fenomeni_#{resource.id}", :title => 'Mostra i fenomeni')
+        mostra_fenomeni << %[
+            <script type="text/javascript">
             $("#mostra_fenomeni_#{resource.id}").click(function(e) {
                 e.preventDefault();
                 $(this).parents('div.box').find('div.fen_menu_panel').toggleClass('hidden');
@@ -132,17 +134,17 @@
             });
             </script>]
 
-	    if (resource.respond_to?(:anastatica))
+	    if (resource.respond_to?(:anastatica) && resource.respond_to?(:prev_card) && resource.respond_to?(:next_card))
         	unless resource.prev_card.nil?
           		w.right_icons boxview_link_for_object(resource.prev_card), {:class => 'prev'}
         	end
         	unless resource.next_card.nil?
-          		w.right_icons boxview_link_for_object(resource.next_card), {:class => 'next'}
+          	   w.right_icons boxview_link_for_object(resource.next_card), {:class => 'next'}
         	end
 		end
 
-		w.right_icons mostra_note, {:class =>'note'} unless notes.nil? 
-        w.right_icons mostra_fenomeni, {:class => 'fenomeni'} unless fenomeni.nil? 
+		w.right_icons mostra_note, {:class =>'note'} unless (notes.nil? || notes.empty?) 
+        w.right_icons mostra_fenomeni, {:class => 'fenomeni'} unless (fenomeni.nil? || fenomeni.empty?)
         w.right_icons boxview_link_for_object(resource.anastatica), {:class => 'anastatica'} if resource.respond_to?(:anastatica)
         w.content content_tag(:div, transcription_content, :id => "trascrizione_#{@resource.id}"), 'notes-hidden'
     end 

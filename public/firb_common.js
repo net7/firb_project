@@ -86,6 +86,20 @@ function init_firb_common(theme) {
         b.find('span.'+c).removeClass('zone_highlighted');
         $(this).removeClass('zone_highlighted');
     });
+
+    // '.lessico' items, highlights the related transcription 
+	// fragments
+    $('.lessico').live('mouseover', function() {
+        var c = $(this).attr('about'),
+            b = $(this).parents('div.box');
+        b.find('span.'+c).addClass('zone_highlighted');
+        $(this).addClass('zone_highlighted');
+    }).live('mouseout', function(){
+        var c = $(this).attr('about'),
+            b = $(this).parents('div.box');
+        b.find('span.'+c).removeClass('zone_highlighted');
+        $(this).removeClass('zone_highlighted');
+    });
     
     // Phen item: highlight the selected item
     $('div.fen_menu_panel li.phen_item').live('click', function() {
@@ -138,5 +152,26 @@ function init_firb_common(theme) {
         $(this).parent().prev().removeClass('hidden');
         reposition_notes($(this).parents('div.box').attr('id'));
     });
+
+	// Widget's field collapse/expand button
+	$("div.box span.field_title").live("click", function() { 
+
+	    var t = $(this), 
+	        n = t.next(),
+	        box_id = $(this).parents('div.box').attr('id'),
+	        len = 400;
+
+	    if (t.hasClass("expanded")) {
+	        t.addClass("collapsed").removeClass("expanded");
+            n.hide(len).removeClass("expanded").addClass("collapsed");
+	    } else {
+	        t.addClass("expanded").removeClass("collapsed");
+            n.hide().removeClass("collapsed").addClass("expanded").show(len);
+	    }
+
+	    return false;
+	});
+	
+
 
 } // init_firb_common
