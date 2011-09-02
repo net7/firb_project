@@ -86,6 +86,20 @@ function init_firb_common(theme) {
         b.find('span.'+c).removeClass('zone_highlighted');
         $(this).removeClass('zone_highlighted');
     });
+
+    // '.lessico' items, highlights the related transcription 
+	// fragments
+    $('.lessico').live('mouseover', function() {
+        var c = $(this).attr('about'),
+            b = $(this).parents('div.box');
+        b.find('span.'+c).addClass('zone_highlighted');
+        $(this).addClass('zone_highlighted');
+    }).live('mouseout', function(){
+        var c = $(this).attr('about'),
+            b = $(this).parents('div.box');
+        b.find('span.'+c).removeClass('zone_highlighted');
+        $(this).removeClass('zone_highlighted');
+    });
     
     // Phen item: highlight the selected item
     $('div.fen_menu_panel li.phen_item').live('click', function() {

@@ -39,8 +39,7 @@ end
 			inner_content = ''
 			last_type = item[:item_type]
 		end
-		inner_content += "<li>#{item[:name]}</li>"
-		
+		inner_content += "<li class='lessico' about='#{item[:class]}'>#{item[:name]}</li>"
 	end
 	w.content content
 end
