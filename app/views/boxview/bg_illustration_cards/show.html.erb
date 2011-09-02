@@ -1,0 +1,73 @@
+<% imt_id = "imt_bg_illustration_cards_#{@resource.id}" %>
+<% unless @image.nil? %>
+<%= boxview_widget 'Illustrazione', {:class => 'ImageWidget widget_draggable'} do |w|
+      content = imt_viewer(imt_id) do |imt|
+      imt.base64 = imt_image_b64 @image, [@resource.image_zone]
+      imt.init   = "jsapi_initializeIMW(id);"
+      # imt.click  = "return imtActivateFirstWithLink($('#{imt_jquery_highlight_selector(imt_id)}'+ki));"
+      # imt.over   = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).addClass('zone_highlighted');"
+      # imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
+    end
+
+    w.content content_tag(:div, content, :class => 'picture')
+  end 
+%>
+<% end %>
+
+<%= boxview_widget 'Scheda', {:class => 'TextWidget widget_draggable'} do |w|
+  w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+
+  w.content boxview_widget_field('Segnatura', @resource.signature)
+  w.content boxview_widget_field('Collocazione', @resource.collocation)
+  content = [@resource.tecnique.to_s, @resource.measure.to_s].select {|c| not c.blank?}.join(' - ')
+  w.content boxview_widget_field('Tecnica e misure', content)
+  w.content boxview_widget_field('Posizione', @resource.position)
+  w.content boxview_widget_field('Note descrittive', @resource.descriptive_notes)
+  w.content boxview_widget_field('Autore', @resource.author)
+  w.content boxview_widget_field('Anno', "#TODO")
+  w.content boxview_widget_field('Editore', "#TODO")
+  w.content boxview_widget_field('Luogo di edizione', "#TODO")
+
+end
+%>
+
+<%= boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
+  w.content boxview_widget_field('Parole chiave', "#TODO")
+
+  unless @resource.iconclasses.size.zero?
+    iconclasses = @resource.iconclasses.map! do |iconclass|
+      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
+    end
+    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
+  end
+
+  content = [@resource.motto, @resource.motto_language].select {|c| not c.blank?}.join(',  ')
+  w.content boxview_widget_field('Motto', content)
+
+  w.content boxview_widget_field('Traduzione del motto', @resource.motto_translation)
+  w.content boxview_widget_field("Possessore dell’impresa", @resource.owner)
+
+  contents = @resource.anastatica_sources_in('http://imprese-firb.ctl.sns.it/collection/586234609').map do |source|
+    content_tag :li, boxview_link_for_object(source.anastatica)
+  end
+  w.content boxview_widget_field('Fonti dell’immagine, opere di Doni', content_tag(:li, contents.join(''))) unless contents.size.zero?
+
+  contents = @resource.anastatica_sources_in('http://imprese-firb.ctl.sns.it/collection/1038896625').map do |source|
+    content_tag :li, boxview_link_for_object(source.anastatica)
+  end
+  w.content boxview_widget_field('Fonti dell’immagine, opere di altri', content_tag(:li, contents.join(''))) unless contents.size.zero?
+
+  contents = @resource.anastatica_sources_out('http://imprese-firb.ctl.sns.it/collection/586234609').map do |source|
+    content_tag :li, boxview_link_for_object(source.anastatica)
+  end
+  w.content boxview_widget_field('Usi successivi, opere di Doni', content_tag(:li, contents.join(''))) unless contents.size.zero?
+
+  contents = @resource.anastatica_sources_out('http://imprese-firb.ctl.sns.it/collection/1038896625').map do |source|
+    content_tag :li, boxview_link_for_object(source.anastatica)
+  end
+  w.content boxview_widget_field('Usi successivi, opere di altri', content_tag(:li, contents.join(''))) unless contents.size.zero?
+
+  w.content boxview_widget_field("Significato originale", @resource.original_meaning)
+  w.content boxview_widget_field("Significato contestuale", @resource.contextual_meaning)
+end
+%>

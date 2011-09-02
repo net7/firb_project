@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# Represents a 
 class BgIllustrationCard < IllustrationCard
 
   include StandardPermissions
@@ -86,28 +84,49 @@ class BgIllustrationCard < IllustrationCard
       @book << self
     end
   end
-  
+
+  def iconclasses(sort=true)
+    super(sort, false)
+  end
+
+  def anastatica_sources_in(collection_uri)
+    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_in.to_a.map {|c| c.anastatica unless c.nil?}.compact
+  end
+
+  def anastatica_sources_out(collection_uri)
+    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_out.to_a.map {|c| c.anastatica unless c.nil?}.compact
+  end
+
   def validate_book
     if(!book_valid?)
       @book.errors.each_full { |msg| errors.add('book', msg) }
     end
     book_valid?
   end
-  
+
   def save_book
     is_new = @book_new
     @book_new = false
     is_new ? @book.save : book_valid?
   end
-  
+
   def fetch_book
     book = TaliaCollection.find(:first, :find_through => [N::DCT.hasPart, self.uri])
     # we need to re-find it because it would be read-only otherwise (!?)
     book ? TaliaCore::Collection.find(book.real_source.uri) : nil
   end
-  
+
   def book_valid?
     @book ? @book.valid? : true
   end
-  
+
+  def boxview_data
+    { :controller => 'boxview/bg_illustration_cards', 
+      :title => anastatica.page_position,
+      :description => self.description,
+      :res_id => "bg_illustration_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
 end

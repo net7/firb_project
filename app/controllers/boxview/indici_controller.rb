@@ -47,5 +47,6 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def bg
+    @temp = BgIllustrationCard.find_by_id 1311
   end
 end
