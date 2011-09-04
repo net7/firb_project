@@ -71,3 +71,20 @@ end
   w.content boxview_widget_field("Significato contestuale", @resource.contextual_meaning)
 end
 %>
+
+<% unless @resource.copyright_notes.blank? %>
+<%= boxview_widget 'Copyright', {:class => 'TextWidget widget_draggable'} do |w|
+  w.content boxview_widget_field('Dettaglio copyright dell’illustrazione', @resource.copyright_notes)
+end
+%>
+<% end %>
+
+<% unless @resource.bibliography_items.size.zero? %>
+<%= 
+  boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
+    w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
+      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    end.join('')))
+  end
+%>
+<% end %>
