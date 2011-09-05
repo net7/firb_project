@@ -41,13 +41,6 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Testi correlati', content_tag(:ul, content))
   end
 
-  unless @resource.bibliography_items.size.zero?
-    content = @resource.bibliography_items.map do |item|
-      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-    end.join('')
-    w.content boxview_widget_field('Fonti', content_tag(:ul, content))
-  end
-
   unless @resource.baldini_text.nil? and @resource.cini_text.nil?
     content = @resource.baldini_text.bibliography_items.map do |item|
       content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
@@ -57,7 +50,14 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
       content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
     end.join('') if @resource.cini_text
 
-    w.content boxview_widget_field('Fonti (indirette o ereditate)', content_tag(:ul, content))
+    w.content boxview_widget_field('Fonti', content_tag(:ul, content))
+  end
+
+  unless @resource.bibliography_items.size.zero?
+    content = @resource.bibliography_items.map do |item|
+      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    end.join('')
+    w.content boxview_widget_field('Ulteriori fonti', content_tag(:ul, content))
   end
 
   # TODO: better sorting?
