@@ -2,6 +2,9 @@ class BgIllustrationCard < IllustrationCard
 
   include StandardPermissions
 
+  extend Mixin::Showable
+  showable_in Anastatica
+
   autofill_uri :force => true
 
   # Fonti dell'immagine (in) ed usi successivi (out)

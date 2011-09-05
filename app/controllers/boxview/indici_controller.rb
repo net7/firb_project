@@ -47,7 +47,11 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def bg
-    @temp = BgIllustrationCard.find_by_id 1311
-    @temp2 = BgIllustrationCard.find_by_id 1297
+    @collection_id = TaliaCore::Collection.find(:first).id
+    @temp_models = [[@collection_id, 'Bg_Illustration_Card'], [@collection_id ,'Bg_Text_Card'], [@collection_id, 'Anastatica']]
+    @models = {:illustrazioni => 'Pi_Illustration_Card', :schede_testo => 'Pi_Text_Card', :anastatica => 'Anastatica'}
+
+    # @temp = BgIllustrationCard.find_by_id 1311
+    # @temp2 = BgIllustrationCard.find_by_id 1297
   end
 end

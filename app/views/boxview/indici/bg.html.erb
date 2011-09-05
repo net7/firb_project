@@ -1,11 +1,36 @@
-<%= boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
-  w.content %[
-    <ul>
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :title  => 'TEST ILLUSTRATION CARD 1311')}</li>
-    </ul>
-    <ul>
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp2, :title  => 'TEST ILLUSTRATION CARD 1297')}</li>
-    </ul>
-  ]
-end
+<%#= boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
+  #w.content %[
+  #  <ul>
+  #    <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :title  => 'TEST ILLUSTRATION CARD 1311')}</li>
+  #  </ul>
+  #  <ul>
+  #    <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp2, :title  => 'TEST ILLUSTRATION CARD 1297')}</li>
+  #  </ul>
+  #]
+#end
+%>
+
+<%= 
+    boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
+        w.content "<ul>"
+
+        # anastatica 
+        m = @models[:anastatica]
+        w.content "<li class='menu_firstlevel leaf'>"
+        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
+
+        # illustrazioni 
+        m = @models[:illustrazioni]
+        w.content "<li class='menu_firstlevel leaf'>"
+        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
+
+        # testo
+        m = @models[:schede_testo]
+        w.content "<li class='menu_firstlevel leaf'>"
+        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
+        w.content "</ul>"
+    end
 %>

@@ -54,7 +54,7 @@ class ImageZone < ImageElement
   def get_image_parent
     parent = self.get_parent
     loop do
-      break if (parent.class.to_s == "Image")
+      break if (parent.nil? or parent.class.to_s == "Image")
       parent = parent.get_parent
     end
     parent
