@@ -174,6 +174,4 @@ class SwickyNotebooksController < ApplicationController
       @auth_user = User.authenticate(user_email, pass) if(@user.name == user)
     end
   end
-  
-  
 end

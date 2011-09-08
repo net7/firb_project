@@ -1,6 +1,10 @@
 class BgTextCard < TextCard
   hobo_model
   include StandardPermissions
+
+  extend Mixin::Showable
+  showable_in Anastatica
+
   autofill_uri :force => true
 
   setup_publish_properties
