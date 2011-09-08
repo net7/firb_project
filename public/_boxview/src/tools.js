@@ -335,11 +335,13 @@ BoxStrapper.prototype = {
     showOverlay: function() {
         // DEBUG: any better ideas than appending a div
         foo = document.createElement('div');
-        foo.style.background = "#180c0c";
+        foo.style.background = "rgba(0,0,0,0.85)";
         foo.style.height = '100%';
         foo.style.width = '100%';
         foo.style['z-index'] = "10";
         foo.style.position = 'absolute';
+        foo.style.top = "0px";
+        foo.style.left = "0px";
         foo.id = 'foo_remove_me';
         document.getElementsByTagName('body')[0].appendChild(foo);
     }, // showOverlay()
@@ -376,7 +378,7 @@ BoxStrapper.prototype = {
         $('#startupProgress .total').html(this.itemsToLoad);
 
         for (var i=5; i>=0; i--) $('#startupScreenContainer .fade'+i).removeClass('fade'+i).addClass('fade'+(i+1));
-        $('#startupScreenContainer').prepend("<div class='fade0'><span class='ui-icon ui-icon-check' style='float:left;'></span>"+name+"</div>");
+        $('#startupScreenContainer').prepend("<div class='fade0' style='clear:both;'><span class='ui-icon ui-icon-check' style='float:left;'></span>"+name+"</div>");
     }, // addToStartupScreen()
 
     initComponents: function() {
