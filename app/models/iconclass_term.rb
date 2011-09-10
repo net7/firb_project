@@ -62,4 +62,49 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   def self.make_uri(term)
     'http://www.iconclass.org/rkd/' << CGI.escape(term.gsub(' ', '')) << '/'
   end
+
+  
+  def boxview_data
+    desc = self.pref_label
+    { :controller => 'boxview/iconclass', 
+      :title => "Iconclass: #{self.pref_label}", 
+      :description => desc,
+      :res_id => "iconclass_#{self.id}", 
+      :box_type => 'list',
+      :thumb => nil
+    }
+  end
+
+  # This is needed to use #sort on the array containing IconclassTerm
+  def <=>(term)
+    self.pref_label < term.pref_label ? -1 : 1
+  end
+
+  def self.items_starting_with(letter)
+
+    qry = ActiveRDF::Query.new(IconclassTerm).select(:x).distinct
+    qry.where(:x, N::RDF.type, N::TALIA.IconclassTerm)           
+    qry.where(:x, N::SKOS.prefLabel, :pref_label)
+    qry.regexp(:pref_label, "^#{letter}")
+    qry.execute.sort
+  end
+
+
+  # @collection is a TaliaCore::Collection
+  # returns the ordered list of element to be shown in the menu list
+  
+  def self.menu_items_for(collection)
+  # it actually ignore the collection thing, it is there for compatibility with other menu
+
+    ('A'..'Z').each do |letter|                           
+      if IconclassTerm.items_starting_with(letter).count > 0
+        puts letter                                           
+      end
+    end
+  
+  end
+
+
+
+
 end

@@ -96,6 +96,7 @@ it:
         model_name_plural: "Utenti"
 
     iconclass_terms:
+        menu_item_name: "Iconclass"
         model_name: "Termine iconclass"
         nav_item: "Termini Iconclass"
         model_name_plural: "Termini iconclass"
@@ -121,7 +122,7 @@ it:
         iconclass_link: "Vedi questo termine su www.iconclass.org"
 
     pi_text_cards:
-        menu_item_name: "Schede di testo"
+        menu_item_name: "Testo Completo"
         model_name: "Scheda di testo"
         nav_item: "Schede di testo"
         model_name_plural: "Schede di testo"    
