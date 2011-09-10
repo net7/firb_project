@@ -73,6 +73,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/fi', :controller => 'boxview/indici', :action => "fi" 
   map.connect '/boxview/indici/vt', :controller => 'boxview/indici', :action => "vt" 
   map.connect '/boxview/indici/bg', :controller => 'boxview/indici', :action => "bg" 
+  map.connect '/boxview/indici/grouped_iconclass/:collection', :controller => 'boxview/indici', :action => "show_grouped_iconclass"
+  map.connect '/boxview/indici/filtered_iconclass/:collection/:iconclass', :controller => 'boxview/indici', :action => "show_filtered_by_iconclass"
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'

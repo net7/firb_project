@@ -81,7 +81,6 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   end
 
   def self.items_starting_with(letter)
-
     qry = ActiveRDF::Query.new(IconclassTerm).select(:x).distinct
     qry.where(:x, N::RDF.type, N::TALIA.IconclassTerm)           
     qry.where(:x, N::SKOS.prefLabel, :pref_label)
@@ -91,16 +90,19 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
 
 
   # @collection is a TaliaCore::Collection
-  # returns the ordered list of element to be shown in the menu list
+  # returns the ordered list of groups to be shown in the menu list
   
-  def self.menu_items_for(collection)
+  def self.menu_groups_for(collection)
   # it actually ignore the collection thing, it is there for compatibility with other menu
+ #   letters = []
+ #   ('A'..'Z').each do |letter|                           
+ #     if IconclassTerm.items_for(letter).count > 0
+ #       letters << letter                                           
+ #     end
 
-    ('A'..'Z').each do |letter|                           
-      if IconclassTerm.items_starting_with(letter).count > 0
-        puts letter                                           
-      end
-    end
+
+    ('A'..'Z')
+#    end
   
   end
 

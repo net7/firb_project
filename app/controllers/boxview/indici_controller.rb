@@ -9,6 +9,18 @@ class Boxview::IndiciController < Boxview::BaseController
     @items = params[:type].camelcase.singularize.constantize.menu_items_for(collection)
   end
 
+  def show_grouped_iconclass
+    @collection = TaliaCore::Collection.find_by_id(params[:collection])
+    @groups = IconclassTerm.menu_groups_for(@collection)    
+  end
+
+  def show_filtered_by_iconclass
+    iconclass = IconclassTerm.find_by_id(params[:iconclass])
+    params[:type] = 'iconclass_term'
+    @items = IllustrationCard.find_anastaticas_by_iconclass(iconclass)
+    render :show
+  end
+
   def show_filtered
     collection = TaliaCore::Collection.find_by_id(params[:collection])
     @items = params[:type].camelcase.singularize.constantize.filtered_menu_items_for(collection, params[:subtype])

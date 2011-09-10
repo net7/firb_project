@@ -105,4 +105,13 @@ class IllustrationCard < BaseCard
 
     iconclasses.uniq
   end
+
+  def self.find_anastaticas_by_iconclass(iconclass)
+    qry = ActiveRDF::Query.new(IllustrationCard).select(:ana).distinct
+    qry.where(:ill, N::DCT.subject, iconclass)
+    qry.where(:ill, N::DCT.isPartOf, :ana)
+    qry.execute
+  end
+
+
 end
