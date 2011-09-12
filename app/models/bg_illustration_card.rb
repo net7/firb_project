@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
-# Represents a 
 class BgIllustrationCard < IllustrationCard
 
   include StandardPermissions
+
+  extend Mixin::Showable
+  showable_in Anastatica
 
   autofill_uri :force => true
 
@@ -86,28 +87,70 @@ class BgIllustrationCard < IllustrationCard
       @book << self
     end
   end
-  
+
+  def iconclasses(sort=true)
+    super(sort, false)
+  end
+
+  def anastatica_sources_in(collection_uri)
+    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_in.to_a.map {|c| c.anastatica unless c.nil?}.compact
+  end
+
+  def anastatica_sources_out(collection_uri)
+    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_out.to_a.map {|c| c.anastatica unless c.nil?}.compact
+  end
+
   def validate_book
     if(!book_valid?)
       @book.errors.each_full { |msg| errors.add('book', msg) }
     end
     book_valid?
   end
-  
+
   def save_book
     is_new = @book_new
     @book_new = false
     is_new ? @book.save : book_valid?
   end
-  
+
   def fetch_book
     book = TaliaCollection.find(:first, :find_through => [N::DCT.hasPart, self.uri])
     # we need to re-find it because it would be read-only otherwise (!?)
     book ? TaliaCore::Collection.find(book.real_source.uri) : nil
   end
-  
+
   def book_valid?
     @book ? @book.valid? : true
   end
-  
+
+
+
+  # @collection is a TaliaCore::Collection
+  # this returns a list of Owners, a field of this model
+  def self.menu_items_for(collection)
+    qry = ActiveRDF::Query.new().select(:o).distinct   
+    qry.where(:x, N::TALIA.owner, :o)
+    qry.execute.sort
+  end
+
+
+  # returns a list of anastatica whose related BgIllustrationCard has the #owner == owner
+  def self.items_for(owner)
+    qry = ActiveRDF::Query.new(Anastatica).select(:x).distinct
+    qry.where(:ill, N::DCT.isPartOf, :x)
+    qry.where(:ill, N::TALIA.owner, :o)
+    qry.regexp(:o, owner.gsub(/'/,"\\\\'") )
+    qry.execute.sort
+  end
+
+
+  def boxview_data
+    { :controller => 'boxview/bg_illustration_cards', 
+      :title => anastatica.page_position,
+      :description => self.description,
+      :res_id => "bg_illustration_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end
 end

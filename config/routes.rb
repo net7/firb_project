@@ -73,12 +73,15 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/fi', :controller => 'boxview/indici', :action => "fi" 
   map.connect '/boxview/indici/vt', :controller => 'boxview/indici', :action => "vt" 
   map.connect '/boxview/indici/bg', :controller => 'boxview/indici', :action => "bg" 
+  map.connect '/boxview/indici/grouped_iconclass/:collection', :controller => 'boxview/indici', :action => "show_grouped_iconclass"
+  map.connect '/boxview/indici/filtered_iconclass/:collection/:iconclass', :controller => 'boxview/indici', :action => "show_filtered_by_iconclass"
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
 
-  # FIRB FIRENZE
   map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
+
+    # FIRB FIRENZE
     boxview.resources :fi_parade_cart_cards
     boxview.resources :fi_text_cards
     boxview.resources :fi_deity_cards
@@ -88,11 +91,8 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :fi_character_cards
     boxview.resources :fi_episode_cards
     boxview.resources :fi_processions
-  end
 
-  # FIRB VITERBO
-  map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
-
+    # FIRB VITERBO
     boxview.resources :vt_letters do |letter|
       letter.resources :vt_handwritten_text_cards, :only => :index
       letter.resources :vt_printed_text_cards, :only => :index
@@ -101,7 +101,8 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :vt_handwritten_text_cards, :member => {:diplomatic => :get, :critic => :get}
     boxview.resources :vt_printed_text_cards
 
-#    boxview.resources :vt_letters, :member => {:printed => :get, :handwritten => :get}#, :only => [:show, :printed, :handwritten]
+    # FIRB BERGAMO
+    boxview.resources :bg_illustration_cards
   end
 
   # Default semantic dispatch

@@ -9,6 +9,18 @@ class Boxview::IndiciController < Boxview::BaseController
     @items = params[:type].camelcase.singularize.constantize.menu_items_for(collection)
   end
 
+  def show_grouped_iconclass
+    @collection = TaliaCore::Collection.find_by_id(params[:collection])
+    @groups = IconclassTerm.menu_groups_for(@collection)    
+  end
+
+  def show_filtered_by_iconclass
+    iconclass = IconclassTerm.find_by_id(params[:iconclass])
+    params[:type] = 'iconclass_term'
+    @items = IllustrationCard.find_anastaticas_by_iconclass(iconclass)
+    render :show
+  end
+
   def show_filtered
     collection = TaliaCore::Collection.find_by_id(params[:collection])
     @items = params[:type].camelcase.singularize.constantize.filtered_menu_items_for(collection, params[:subtype])
@@ -20,7 +32,8 @@ class Boxview::IndiciController < Boxview::BaseController
     @temp_models = [[@collection_id, 'Pi_Text_Card'], [@collection_id ,'Pi_Illustration_Card'], [@collection_id, 'Pi_Illustrated_Md_Card'], [@collection_id, 'Pi_Letter_Illustration_Card'], [@collection_id, 'Anastatica']]
 
 
-    @models = {:schede_testo => 'Pi_Text_Card', :illustrazioni => 'Pi_Illustration_Card', :immagini_memoria => 'Pi_Illustrated_Md_Card', :anastatica => 'Anastatica'}
+    @models = {:schede_testo => 'Pi_Text_Card', :illustrazioni => 'Pi_Illustration_Card', :immagini_memoria => 'Pi_Illustrated_Md_Card', :anastatica => 'Anastatica', :iconclass => 'Iconclass_Term'}
+    
   end
 
   def fi
@@ -47,5 +60,8 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def bg
+    @collection_id = TaliaCore::Collection.find(:first).id
+    @models = {:illustrazioni => 'Bg_Illustration_Card', :schede_testo => 'Bg_Text_Card', :anastatica => 'Anastatica'}
+
   end
 end

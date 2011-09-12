@@ -7,7 +7,7 @@
 /* Generic font used by the boxview */
 .boxViewContainer * { 
     /* font-family: Helvetica, Arial, sans-serif; Crea troppi conflitti, la wildcard rompe! */
-    font-size: 10pt;
+	/* font-size: 10pt; */
 }
 
 /* Bg for the whole boxview */
@@ -120,6 +120,10 @@
 /* Menu Box */
 .boxViewContainer .box.menu.expanded .boxHeader { background: #717171 url(images/box-header-menu.gif) center left repeat-x; }
 .boxViewContainer .box.menu.collapsed { background: #717171 url(images/box-header-menu-collpsed.gif) center left repeat-y; }
+
+/* Intro Box */
+.boxViewContainer .box.intro.expanded .boxHeader { background: #717171 url(images/box-header-intro.gif) center left repeat-x; }
+.boxViewContainer .box.intro.collapsed { background: #717171 url(images/box-header-intro-collapsed.gif) center left repeat-y; }
 
 /* Anastatic Box */
 .boxViewContainer .box.anastatic.expanded .boxHeader { background: #717171 url(images/box-header-anastatic.gif) center left repeat-x; }

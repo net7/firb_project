@@ -96,7 +96,7 @@
 %>
 
 <%= 
-    boxview_widget widget_title || "Trascrizioni", {:class => 'transcription widget_draggable'} do |w|
+    boxview_widget @widget_title || "Trascrizioni", {:class => 'transcription widget_draggable'} do |w|
 
         mostra_note = content_tag(:a, 'Note', :class => "note", :href => "#", :id => "mostra_note_trascrizione_#{resource.id}", :title => 'Mostra le note')
         mostra_note << %[

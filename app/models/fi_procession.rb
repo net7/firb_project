@@ -63,7 +63,10 @@ class FiProcession < TaliaCore::Collection
   end
   
   def fetch_parade
-    ActiveRDF::Query.new(FiParade).select(:parade).where(:parade, N::DCT.hasPart, self).execute.first
+#    ActiveRDF::Query.new(FiParade).select(:parade).where(:parade, N::DCT.hasPart, self).execute.first
+     parade = FiParade.find(:first, :find_through => [N::DCT.hasPart, self.uri])
+    # we need to re-find it because it would be read-only otherwise (!?)                                                                                              
+    parade ? FiParade.find(parade.uri) : nil
   end
 
   def parade_valid?

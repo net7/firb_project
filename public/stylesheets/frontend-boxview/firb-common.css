@@ -14,14 +14,21 @@
 		1. Generic Box Features
 		2. Index Box
 		3. Trascription Box
+		4. Anastatic Box
 06. WIDGETS
 		1. Generic Widget Features
 		2. Collapsable Description Fields
 		3. Widget Right Icons Normal
 		4. Widget Right Icons Rollover
-07. MENU FENOMENI
+07. MENU WIDGET
+		1. Main Features
+		2. First Level
+		3. Second Level
+		4. Sub Levels Titles
+08. MENU FENOMENI
 		1. Generic Menu Features
 GARBAGE
+
 --- */
 
 
@@ -352,6 +359,22 @@ GARBAGE
 			background: none;
 		}
 
+/* ------- 4. Anastatic Box ------- */
+/* Lista Elementi correlati */
+.box.anastatic .widgetContent ul li .indexContent h5{
+	font-size: 12px;
+	line-height: 12px;
+}
+.box.anastatic .widgetContent ul li .indexContent h5 a.boxview_link {
+	font-size: 12px;
+	line-height: 12px;
+	padding: 0;
+	margin: 0 0 5px 0;
+}
+.box.anastatic .widgetContent ul li .indexContent p.indexItemDescription {
+	line-height: 14px;
+}
+
 
 	
 /* ________________________________________________________________________________________________________________
@@ -363,6 +386,9 @@ GARBAGE
 }
 .boxViewContainer .box .boxContent .widget { /* Nota: controllare se si può togliere .boxViewContainer .box .boxContent  */
 	clear: both;
+}
+.boxViewContainer .box .widgetContent {
+	font-size: 11px;
 }
 
 /* ------- 2. Collapsable Description Fields ------- */
@@ -377,12 +403,12 @@ GARBAGE
 }
 .widgetContent div span.field_title.expanded {
 	background-image: url(img/widget_inner_icon_expanded.png);
-	background-position: 0px 3px;
+	background-position: 0px 4px;
 	background-repeat: no-repeat;
 }
 .widgetContent div span.field_title.collapsed {
 	background-image: url(img/widget_inner_icon_collapsed.png);
-	background-position: 0px 3px;
+	background-position: 0px 4px;
 	background-repeat: no-repeat;
 }
 
@@ -447,8 +473,82 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.il
 	background-position: -275px center;
 }
 
+
 /* ________________________________________________________________________________________________________________
-	07. MENU FENOMENI
+	07. MENU WIDGET
+ ________________________________________________________________________________________________________________ */
+/* ------- 1. Main Features ------- */
+.boxViewContainer .box.menu .widget.menu .widgetContent ul {
+		list-style-type: none;
+	}
+	/* A little reset */
+	.boxViewContainer .box.menu .widget.menu .widgetContent ul li, .boxViewContainer .box.menu .widget.menu .widgetContent ul li a {
+		border: none;
+		padding: 0;
+		margin: 0;
+	}
+
+/* ------- 2. First Level ------- */
+.boxViewContainer .box.menu .widget.menu .widgetContent ul li.menu_firstlevel a.boxview_link  {
+	margin: 0;
+	padding: 5px 5px 5px 0px;
+	display: block;
+	font-size: 12px;
+	overflow: hidden;
+	border-bottom: 1px solid #ededed;
+	font-weight: normal;
+	/* color: #555555; */
+}
+	.boxViewContainer .box.menu .widget.menu .widgetContent ul li.menu_firstlevel a.boxview_link:hover {
+	}
+		
+/* ------- 3. Second Level ------- */
+.boxViewContainer .box.menu .widget.menu .widgetContent ul li.menu_firstlevel ul li.menu_secondlevel {
+	border-bottom: 0;
+	margin: 0;
+}
+	.boxViewContainer .box.menu .widget.menu .widgetContent ul li.menu_firstlevel ul li.menu_secondlevel a.boxview_link  {
+		margin: 0;
+		padding: 5px 5px 5px 17px;
+		font-size: 11px;
+		border-bottom: 1px solid #ededed;
+		text-decoration: none;
+		font-weight: normal;
+	}
+		.boxViewContainer .box.menu .widget.menu .widgetContent ul li.menu_firstlevel ul li.menu_secondlevel a.boxview_link:hover {
+			text-decoration: underline;
+		}
+		
+/* ------- 4. Sub Levels Titles ------- */			
+.boxViewContainer .box.menu .widget.menu .widgetContent ul li a.menu {
+	font-size: 12px;
+	margin: 0;
+	padding: 5px 5px 5px 17px;
+	border-bottom: 1px solid #ededed;
+	color: #555;
+	text-decoration: none;
+	font-weight: normal;
+}
+	.boxViewContainer .box.menu .widget.menu .widgetContent ul li a.menu:hover {
+		color: #555;
+		text-decoration: none;
+		font-weight: normal;
+	}
+	.boxViewContainer .box.menu .widget.menu .widgetContent ul li a.menu.expanded {
+		background-image: url(img/widget_inner_icon_expanded.png);
+		background-position: 0px 9px;
+		background-repeat: no-repeat;
+	}
+	
+	.boxViewContainer .box.menu .widget.menu .widgetContent ul li a.menu.collapsed {
+		background-image: url(img/widget_inner_icon_collapsed.png);
+		background-position: 0px 9px;
+		background-repeat: no-repeat;
+	}
+
+
+/* ________________________________________________________________________________________________________________
+	08. MENU FENOMENI
  ________________________________________________________________________________________________________________ */
 /* ------- 1. Generic Menu Features ------- */
 .boxViewContainer .fen_menu_panel {
@@ -467,6 +567,7 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.il
     top: 0px;
     width: 180px;
     /*
+    Bottom rounded borders... not that nice!
 	-moz-border-radius-bottomleft: 7px;
 	-moz-border-radius-bottomright: 7px;
 

@@ -1,22 +1,27 @@
 <% imt_id = "imt_anastatica_#{@resource.id}" %>
 <%= boxview_widget Anastatica, {:class => 'widget_draggable'} do |w|
-  content = imt_viewer(imt_id) do |imt|
-    imt.base64 = imt_image_b64 @image, @resource.showable_zones
-    imt.init   = "jsapi_initializeIMW(id);"
-    imt.click  = "$('#ana_zone_'+ki).click();"
-    imt.over   = "$('#ana_zone_'+ki).addClass('zone_highlighted');"
-    imt.out    = "$('#ana_zone_'+ki).removeClass('zone_highlighted');"
+  unless @image.nil?
+    content = imt_viewer(imt_id) do |imt|
+      imt.base64 = imt_image_b64 @image, @resource.showable_zones
+      imt.init   = "jsapi_initializeIMW(id);"
+      imt.click  = "$('#ana_zone_'+ki).click();"
+      imt.over   = "$('#ana_zone_'+ki).addClass('zone_highlighted');"
+      imt.out    = "$('#ana_zone_'+ki).removeClass('zone_highlighted');"
+    end
+    w.content content_tag(:div, content, :class => 'picture')
+  else
+    w.content "Immagine non disponibile"
   end
-
-  w.content content_tag(:div, content, :class => 'picture')
 end %>
 
-
+<% if @resource.showable_zones.size > 1 %>
 <%=
     boxview_widget 'Elementi correlati', {:class => 'widget_draggable'} do |w|
         w.content "<ul>"
         @resource.showable_zones[1..1000].uniq.each do |z|
             o = z.get_related_objects.first
+
+
 
             data = o.boxview_data()
             w.content render :partial => '/boxview/shared/index_item', 
@@ -42,3 +47,4 @@ end %>
         w.content "</ul>"
     end
 %>
+<% end %>

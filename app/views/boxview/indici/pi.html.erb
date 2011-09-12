@@ -21,7 +21,7 @@
         #w.content "</li>"
 
         m = @models[:illustrazioni]
-        w.content "<li class='menu_firstlevel'><a href='#' class='menu collapsed'>Immagini di memoria</a><ul><li>"
+        w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria Illustrate</a><ul><li>"
         types = ImageComponent.zone_types_for(PiIllustrationCard)
         types.each do |type|
           w.content "<li class='menu_secondlevel leaf'>"
@@ -30,11 +30,23 @@
         end
         w.content "</li></ul></li>"
 
-        # testo
+ 
+        # Schede testo
         m = @models[:schede_testo]
         w.content "<li class='menu_firstlevel leaf'>"
         w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
         w.content "</li>"
+
+
+        # Iconclass
+        m = @models[:iconclass]
+        w.content "<li class='menu_firstlevel leaf'>"
+         w.content boxview_link("/boxview/indici/grouped_iconclass/#{@collection_id}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
+
+
+
+
 
         w.content "</ul>"
     end
