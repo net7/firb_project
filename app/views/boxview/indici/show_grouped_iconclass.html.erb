@@ -8,8 +8,7 @@ w.content "<ul>"
     w.content "<ul>"
 
       ## TODO: questo deve diventare qualcosa passato via ajax andando a de-collassare la voce di menu poco sopra 
-
-     IconclassTerm.items_starting_with(i.to_s).each do |el|
+     IconclassTerm.items_for(i).each do |el|
       
         unless IllustrationCard.find_anastaticas_by_iconclass(el).empty?
           w.content "<li >"  

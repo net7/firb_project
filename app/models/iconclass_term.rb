@@ -80,7 +80,7 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
     self.pref_label < term.pref_label ? -1 : 1
   end
 
-  def self.items_starting_with(letter)
+  def self.items_for(letter)
     qry = ActiveRDF::Query.new(IconclassTerm).select(:x).distinct
     qry.where(:x, N::RDF.type, N::TALIA.IconclassTerm)           
     qry.where(:x, N::SKOS.prefLabel, :pref_label)
