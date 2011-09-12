@@ -9,6 +9,17 @@ class Boxview::IndiciController < Boxview::BaseController
     @items = params[:type].camelcase.singularize.constantize.menu_items_for(collection)
   end
 
+
+  def show_bg_illustration_by_owner
+    @items = BgIllustrationCard.menu_items_for(CGI::unescape(params[:owner]).gsub('___thedot___','.'))
+    render :show
+  end
+
+  def show_bg_owners
+    collection = TaliaCore::Collection.find_by_id(params[:collection])
+    @items = BgIllustrationCard.owners_for(collection)
+  end
+
   def show_grouped_iconclass
     @collection = TaliaCore::Collection.find_by_id(params[:collection])
     @groups = IconclassTerm.menu_groups_for(@collection)    
@@ -61,7 +72,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def bg
     @collection_id = TaliaCore::Collection.find(:first).id
-    @models = {:illustrazioni => 'Bg_Illustration_Card', :schede_testo => 'Bg_Text_Card', :anastatica => 'Anastatica'}
+    @models = {:illustrazioni => 'Bg_Illustration_Card', :schede_testo => 'Bg_Text_Card', :anastatica => 'Anastatica', :iconclass => 'Iconclass_Term'}
 
   end
 end
