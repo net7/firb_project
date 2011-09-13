@@ -6,9 +6,11 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
     @edition = @resource.handwritten_reference_edition
   end
 
+  # Not wanted anymore.
   def diplomatic
-    @resource = VtHandwrittenTextCard.find_by_id params[:id];
-    @letter   = @resource.letter
+    # @resource = VtHandwrittenTextCard.find_by_id params[:id];
+    # @letter   = @resource.letter
+    self.critic
   end
 
   def critic

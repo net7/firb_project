@@ -65,9 +65,21 @@ class VtPrintedTextCard < TextCard
     end
   end
 
+  def index_in_letter
+    @position_in_letter ||= letter.printed_cards.index self
+  end
+
+  def next_card
+    letter.printed_cards[index_in_letter.next]
+  end
+
+  def previous_card
+    index_in_letter < 1 ? nil : letter.printed_cards[index_in_letter.pred]
+  end
+
   def boxview_data
     { :controller => 'boxview/vt_printed_text_cards',
-      :title => self.anastatica.page_position,
+      :title => "Trascrizione stampa: #{self.anastatica.page_position}",
       :description => "",
       :res_id => "vt_printed_text_card_#{self.id}",
       :box_type => 'text',

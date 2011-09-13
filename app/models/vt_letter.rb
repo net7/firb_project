@@ -55,11 +55,11 @@ class VtLetter < TaliaCore::Collection
   end
 
   def handwritten_cards
-    ordered_objects.find_all { |el| el.is_a?(VtHandwrittenTextCard) }
+    @handwritten_cards ||= ordered_objects.find_all { |el| el.is_a?(VtHandwrittenTextCard) }
   end
 
   def printed_cards
-    ordered_objects.find_all { |el| el.is_a?(VtPrintedTextCard) }
+    @printed_cards ||= ordered_objects.find_all { |el| el.is_a?(VtPrintedTextCard) }
   end
 
   def handwritten_reference_edition

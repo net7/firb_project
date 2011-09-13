@@ -102,7 +102,9 @@ ActionController::Routing::Routes.draw do |map|
       letter.resources :vt_printed_text_cards, :only => :index
     end
 
-    boxview.resources :vt_handwritten_text_cards, :member => {:diplomatic => :get, :critic => :get}
+    # Diplomatic transcription is not wanted, poor thing.
+    # boxview.resources :vt_handwritten_text_cards, :member => {:diplomatic => :get, :critic => :get}
+    boxview.resources :vt_handwritten_text_cards, :member => {:critic => :get}
     boxview.resources :vt_printed_text_cards
 
     # FIRB BERGAMO

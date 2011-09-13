@@ -63,13 +63,13 @@ class Boxview::IndiciController < Boxview::BaseController
     # is neither a FiProcession nor a FiParade
     TaliaCore::Collection.all.each do |c|       
       if !c.is_a? FiProcession and !c.is_a? FiParade
-        @collection = c
+        @collection_id = c.id
       end
     end
     
     @parade = FiParade.first
     @text_cards = FiTextCard.find(:all)
-    @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions"}
+    @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions", :iconclass => "Iconclass_Term"}
   end
 
   def vt

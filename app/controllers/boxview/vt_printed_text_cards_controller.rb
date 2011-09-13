@@ -6,8 +6,9 @@ class Boxview::VtPrintedTextCardsController < Boxview::BaseController
   end
 
   def show
-    @resource = VtPrintedTextCard.find_by_id params[:id];
-    @letter   = @resource.letter
-    @edition  = @resource.bibliography_items.blank? ? nil : @resource.bibliography_items.first
+    @resource    = VtPrintedTextCard.find_by_id params[:id];
+    @letter      = @resource.letter
+    @edition     = @resource.bibliography_items.blank? ? nil : @resource.bibliography_items.first
+    @handwritten = @letter.handwritten_cards
   end
 end
