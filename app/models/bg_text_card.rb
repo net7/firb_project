@@ -78,5 +78,14 @@ class BgTextCard < TextCard
   def book_valid?
     @book ? @book.valid? : true
   end
-    
+
+  def boxview_data
+    { :controller => 'boxview/bg_text_cards', 
+      :title => "Scheda testo: #{anastatica.page_position}",
+      :description => "",
+      :res_id => "bg_text_card_#{self.id}", 
+      :box_type => 'image',
+      :thumb => nil
+    }
+  end    
 end
