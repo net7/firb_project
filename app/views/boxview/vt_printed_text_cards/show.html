@@ -3,13 +3,23 @@
   if @resource.anastatica
     w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
   end
+
   # Trascrizione Critica
-  unless @letter.handwritten_cards.blank?
-    w.right_icons boxview_link_for_object(@letter.handwritten_cards.first, :url => vt_handwritten_text_card_url(@resource.id)), {:class => 'critic_transcription'}
+  unless @handwritten.blank?
+    w.right_icons boxview_link_for_object(@handwritten.first, :url => critic_vt_handwritten_text_card_url(@letter.id)),
+                  :class => 'transcription'
   end
 
   unless @letter.data_records.blank?
-    w.right_icons link_for("Scarica versione PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+    w.right_icons link_for("Apparato critico: scarica PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+  end
+
+  if @resource.previous_card
+    w.right_icons boxview_link_for_object(@resource.previous_card), :class => 'prev'
+  end
+
+  if @resource.next_card
+    w.right_icons boxview_link_for_object(@resource.next_card), :class => 'nextxsd'
   end
 
   edition_title = VtLetter.edition_title_for @resource.bibliography_items.first

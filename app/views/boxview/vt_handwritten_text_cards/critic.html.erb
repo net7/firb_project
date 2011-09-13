@@ -2,8 +2,10 @@
   if @resource.anastatica
     w.right_icons boxview_link_for_object(@resource.anastatica, :title => 'Anastatica'), :class => 'anastatica'
   end
-  w.right_icons boxview_link_for_object(@resource, :url => diplomatic_vt_handwritten_text_card_url(@resource.id)),
-                :class => 'diplomatic_transcription'
+
+  unless @letter.data_records.blank?
+    w.right_icons link_for("Apparato critico: scarica PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+  end
 
   unless @letter.printed_cards.blank?
     w.right_icons boxview_link_for_object(@letter.printed_cards.first, :url => vt_printed_text_card_url(@letter.printed_cards.first.id)),
@@ -12,6 +14,14 @@
 
   unless @letter.data_records.blank?
     w.right_icons link_for("Scarica versione PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+  end
+
+  if @resource.previous_card
+    w.right_icons boxview_link_for_object(@resource.previous_card, :url => critic_vt_handwritten_text_card_url(@resource.previous_card.id)), :class => 'prev'
+  end
+
+  if @resource.next_card
+    w.right_icons boxview_link_for_object(@resource.next_card, :url => critic_vt_handwritten_text_card_url(@resource.next_card.id)), :class => 'nextxsd'
   end
 
   w.content boxview_widget_field('Segnatura', @resource.signature)                        unless @resource.signature.blank?
@@ -36,7 +46,7 @@ end
 	inner_content = ''
 	last_type = @lex_art.first[:item_type]
 	@lex_art.uniq.each do |item| 
-		if (last_type != item[:item_type])
+  if (last_type != item[:item_type])
 			content += boxview_widget_field(last_type, content_tag(:ul, inner_content))
 			inner_content = ''
 			last_type = item[:item_type]

@@ -50,13 +50,6 @@ class VtHandwrittenTextCard < TextCard
     uri :string
   end
 
-  def title(type=:diplomatic)
-    case type
-      when :critic then "Trascrizione critica: #{self.anastatica.page_position}"
-      else "Apparato critico: #{self.anastatica.page_position}"
-    end
-  end
-
   def letter
     @letter ||= fetch_letter
   end
@@ -66,7 +59,7 @@ class VtHandwrittenTextCard < TextCard
     unless value.empty?
       @letter = (value.is_a?(TaliaCollection) ? value : TaliaCollection.find(value)).real_source
       @letter_new = true
-      
+
       old_letter = fetch_letter
       if !old_letter.nil? && old_letter.to_uri != @letter.to_uri
         # FIXME: ? the following line will not work for some reasons
@@ -88,9 +81,21 @@ class VtHandwrittenTextCard < TextCard
     end
   end
 
+  def index_in_letter
+    @position_in_letter ||= letter.handwritten_cards.index self
+  end
+
+  def next_card
+    letter.handwritten_cards[index_in_letter.next]
+  end
+
+  def previous_card
+    index_in_letter < 1 ? nil : letter.handwritten_cards[index_in_letter.pred]
+  end
+
   def boxview_data
     { :controller => 'boxview/vt_handwritten_text_cards',
-      :title => self.title,
+      :title => "Trascrizione critica: #{self.anastatica.page_position}",
       :description => "",
       :res_id => "vt_handwritten_text_card_#{self.id}",
       :box_type => 'text',
@@ -98,7 +103,6 @@ class VtHandwrittenTextCard < TextCard
     }
   end
 
-  
   def validate_letter
     if(!letter_valid?)
       @letter.errors.each_full { |msg| errors.add('letter', msg) }
