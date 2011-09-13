@@ -130,7 +130,11 @@
             <script type="text/javascript">
             $("#mostra_fenomeni_#{resource.id}").click(function(e) {
                 e.preventDefault();
-                $(this).parents('div.box').find('div.fen_menu_panel').toggleClass('hidden');
+				var pa = $(e.target).parents('.boxViewContainer').get(0),
+					top = $(e.target).offset().top - $(pa).offset().top + $(e.target).height();
+                $(this).parents('div.box').find('div.fen_menu_panel')
+					.slideToggle()
+					.css({top: top+"px"});
                 return false;
             });
             </script>]
