@@ -50,6 +50,13 @@ class VtHandwrittenTextCard < TextCard
     uri :string
   end
 
+  def title(type=:diplomatic)
+    case type
+      when :critic then "Trascrizione critica: #{self.anastatica.page_position}"
+      else "Apparato critico: #{self.anastatica.page_position}"
+    end
+  end
+
   def letter
     @letter ||= fetch_letter
   end
@@ -83,7 +90,7 @@ class VtHandwrittenTextCard < TextCard
 
   def boxview_data
     { :controller => 'boxview/vt_handwritten_text_cards',
-      :title => self.anastatica.page_position,
+      :title => self.title,
       :description => "",
       :res_id => "vt_handwritten_text_card_#{self.id}",
       :box_type => 'text',
