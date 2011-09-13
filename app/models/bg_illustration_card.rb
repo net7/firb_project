@@ -2,6 +2,10 @@ class BgIllustrationCard < IllustrationCard
 
   include StandardPermissions
 
+  include Mixin::Publish
+  extend Mixin::Publish::PublishProperties
+  setup_publish_properties
+
   extend Mixin::Showable
   showable_in Anastatica
 
