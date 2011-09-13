@@ -31,8 +31,23 @@
 end
 %>
 
+<%= render :partial => '/boxview/shared/widget_trascrizione_fenomeni_note', 
+		:locals => {:resource => @resource, :fenomeni => @fenomeni, :content => @content, :notes => [] } 
+%>
+
 <%= boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
-  w.content boxview_widget_field('Parole chiave', "#TODO")
+
+	parole_chiave = ""
+	unless @fenomeni.nil? || @fenomeni.empty?
+	    @fenomeni.each do |f|
+	        if (f[:fen_class] == Digest::MD5.hexdigest("http://purl.oclc.org/firb/swn_ontology#keywordForImageZone"))
+				parole_chiave << ", " unless (parole_chiave.empty?)
+	            parole_chiave << %[<span class='bg_keyword' about='#{f[:class]}'>#{f[:name]}</span>]
+	        end
+	    end
+	end
+
+  w.content boxview_widget_field('Parole chiave', parole_chiave)
 
   unless @resource.iconclasses.size.zero?
     iconclasses = @resource.iconclasses.map! do |iconclass|
@@ -41,7 +56,7 @@ end
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
 
-  w.content boxview_widget_field 'Note di studio: testo esteso', card.study_notes
+  w.content boxview_widget_field 'Note di studio: testo esteso', @resource.study_notes
 
   content = [@resource.motto, @resource.motto_language].select {|c| not c.blank?}.join(',  ')
   w.content boxview_widget_field('Motto', content)

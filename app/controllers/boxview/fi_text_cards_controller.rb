@@ -33,7 +33,7 @@ class Boxview::FiTextCardsController < Boxview::BaseController
         fen_class = Digest::MD5.hexdigest('bibliography_item')
         @fenomeni.push({:name => n_name, :fen_class => fen_class, :item_type => 'Elementi Bibliografici', :class => ca_class})
         @notes.push({:name => n_name, :content => n_content, :class => ca_class})
-        v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
+        v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}" }
         d.remove
       end
 
