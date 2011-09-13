@@ -15,7 +15,7 @@
 <% end %>
 
 <%= boxview_widget 'Scheda', {:class => 'TextWidget widget_draggable'} do |w|
-  w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+  w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica', :title => "Anastatica"}
 
   w.content boxview_widget_field('Segnatura', @resource.signature)
   w.content boxview_widget_field('Collocazione', @resource.collocation)
@@ -40,6 +40,8 @@ end
     end
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
+
+  w.content boxview_widget_field 'Note di studio: testo esteso', card.study_notes
 
   content = [@resource.motto, @resource.motto_language].select {|c| not c.blank?}.join(',  ')
   w.content boxview_widget_field('Motto', content)
