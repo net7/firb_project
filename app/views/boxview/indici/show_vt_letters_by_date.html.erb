@@ -1,0 +1,15 @@
+<%= 
+    boxview_widget 'Indice', :class => "index widget_draggable" do |w|
+        w.content "<ul>"
+        @items.each do |i|
+          unless i.nil?
+            data = i.boxview_data()
+            w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => boxview_link_for_object(i, :url => vt_letter_vt_handwritten_text_cards_url(i), 
+                                           :title  => i.name,
+                                           :res_id => "vt_letter_vt_handwritten_text_cards_#{i.id}"), :description => data[:description]}
+          end
+        end
+        w.content "</ul>"
+    end
+%>

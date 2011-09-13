@@ -1,0 +1,13 @@
+<%= 
+    boxview_widget 'Indice', :class => "index widget_draggable" do |w|
+        w.content "<ul>"
+        @items.each do |i|
+          unless i.nil?
+#            data = i.boxview_data()
+            w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => boxview_link("/boxview/indici/bg_illustration_by_owner/#{CGI::escape(i.gsub('.','___thedot___'))}", i.to_s, "Indice "+"#{i.to_s}", "index_#{i.to_s}", :index), :description => i.to_s}
+          end
+        end
+        w.content "</ul>"
+    end
+%>

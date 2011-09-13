@@ -32,17 +32,24 @@ class VtLetter < TaliaCore::Collection
   # This model is a special case: it is actually called to show either its handwritten or printed cards.
   #
   # See use in the index (views/boxview/indici/vt.html.erb).
+
   def boxview_data
-    { :controller => 'boxview/vt_letters',
-      :title => self.letter_number,
-      :description => "",
+    desc = self.date_string
+    { :controller => 'boxview/vt_letters_vt_handwritten_text_cards',
+      :title => self.name,
+      :description => desc,
       :res_id => "vt_letter_#{self.id}", 
       :box_type => 'image',
-      :thumb => nil
+      :thumb => nil,
+      :url => "boxview/vt_letters_vt_handwritten_text_cards/#{self.id}"
     }
   end
-  
-  
+
+  # used for #sort
+  def <=>(letter)
+    self.date < letter.date  ? -1 : 1
+  end
+
   def name
     title.blank? ? uri.local_name : title
   end
@@ -70,4 +77,17 @@ class VtLetter < TaliaCore::Collection
       nil
     end
   end
+
+
+  # returns list of date_string values 
+  def self.menu_items_by_date
+    VtLetter.find(:all).sort
+  end
+
+
+    # returns list of date_string values 
+  def self.menu_items_by_recipient
+    VtLetter.find(:all).sort
+  end
+
 end

@@ -1,32 +1,59 @@
 <%= 
-boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
-  w.content %[
-    <ul>
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, 
-                                           :title  => 'TEST FIRST LETTER, Introduction',
-                                           :res_id => "vt_letter_#{@temp.id}")}</li>
+    boxview_widget 'Navigation', :class => "index widget_draggable" do |w|
+        w.content "<ul>"
 
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => vt_letter_vt_handwritten_text_cards_url(@temp), 
-                                           :title  => 'TEST FIRST LETTER, handwritten',
-                                           :res_id => "vt_letter_vt_handwritten_text_cards_#{@temp.id}")}</li>
 
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => vt_letter_vt_printed_text_cards_url(@temp), 
-                                           :title  => 'TEST FIRST LETTER, printed',
-                                           :res_id => "vt_letter_vt_printed_text_cards_#{@temp.id}")}</li>
+        # per data
+        m = @models[:letter]
+        w.content "<li class='menu_firstlevel leaf'>"
+        w.content boxview_link("/boxview/indici/vt_letters_by_date", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+        w.content "</li>"
 
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => diplomatic_vt_handwritten_text_card_url(@handwritten.id),
-                                           :title  => 'TEST FIRST DIPLOMATIC',
-                                           :res_id => "diplomatic_vt_handwritten_text_card_#{@handwritten.id}")}</li>
+  
+        # per destinatari
+#        m = @models[:letter]
+#        w.content "<li class='menu_firstlevel leaf'>"
+#        w.content boxview_link("/boxview/indici/vt_letters_by_recipient", I18n.t("#{m.tableize}.recipient_menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_#name"), "index_#{m.tableize}", :index)
+#        w.content "</li>"
+       
 
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => critic_vt_handwritten_text_card_url(@handwritten.id),
-                                           :title  => 'TEST FIRST CRITIC',
-                                           :res_id => "critic_vt_handwritten_text_card_#{@handwritten.id}")}</li>
 
-      <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => vt_printed_text_card_url(@printed.id), 
-                                           :title  => 'TEST FIRST PRINTED',
-                                           :res_id => "vt_printed_text_card_#{@printed.id}")}</li>
-    </ul>
-  ]
-end
+  
+        w.content "</ul>"
+    end
+
+
+
+<!-- boxview_widget 'Navigation', :class => "index widget_draggable" do |w| -->
+<!--   w.content %[ -->
+<!--     <ul> -->
+<!--       <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp,  -->
+<!--                                            :title  => 'TEST FIRST LETTER, Introduction', -->
+<!--                                            :res_id => "vt_letter_#{@temp.id}")}</li> -->
+
+<!--       <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => vt_letter_vt_handwritten_text_cards_url(@temp),  -->
+<!--                                            :title  => 'TEST FIRST LETTER, handwritten', -->
+<!--                                            :res_id => "vt_letter_vt_handwritten_text_cards_#{@temp.id}")}</li> -->
+
+<!--       <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => vt_letter_vt_printed_text_cards_url(@temp),  -->
+<!--                                            :title  => 'TEST FIRST LETTER, printed', -->
+<!--                                            :res_id => "vt_letter_vt_printed_text_cards_#{@temp.id}")}</li> -->
+
+<!--       <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => diplomatic_vt_handwritten_text_card_url(@handwritten.id), -->
+<!--                                            :title  => 'TEST FIRST DIPLOMATIC', -->
+<!--                                            :res_id => "diplomatic_vt_handwritten_text_card_#{@handwritten.id}")}</li> -->
+
+<!--       <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => critic_vt_handwritten_text_card_url(@handwritten.id), -->
+<!--                                            :title  => 'TEST FIRST CRITIC', -->
+<!--                                            :res_id => "critic_vt_handwritten_text_card_#{@handwritten.id}")}</li> -->
+
+<!--       <li class="menu_firstlevel leaf">#{boxview_link_for_object(@temp, :url => vt_printed_text_card_url(@printed.id),  -->
+<!--                                            :title  => 'TEST FIRST PRINTED', -->
+<!--                                            :res_id => "vt_printed_text_card_#{@printed.id}")}</li> -->
+<!--     </ul> -->
+<!--   ] -->
+<!-- end -->
+
+
 %>
 
