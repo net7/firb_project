@@ -2,14 +2,15 @@
    boxview_widget 'Indice', :class => "index widget_draggable" do |w|
 w.content "<ul>"
   @groups.each do |i|
-
-  
+ 
+unless (items = IconclassTerm.items_for(i)).empty? 
+ 
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{i.to_s}</a>"
+
     w.content "<ul>"
 
       ## TODO: questo deve diventare qualcosa passato via ajax andando a de-collassare la voce di menu poco sopra 
-     IconclassTerm.items_for(i).each do |el|
-      
+     items.each do |el|      
         unless IllustrationCard.find_anastaticas_by_iconclass(el).empty?
           w.content "<li >"  
            w.content boxview_link("/boxview/indici/filtered_iconclass/#{@collection.id}/#{el.id}", "#{el.pref_label}", "#{el.pref_label}", "index_#{el.pref_label}", :index) 
@@ -17,7 +18,10 @@ w.content "<ul>"
 	end
       end  
    w.content "</ul>"
+
+
     w.content"</li>"
+end
   
   end
   w.content "</ul>"

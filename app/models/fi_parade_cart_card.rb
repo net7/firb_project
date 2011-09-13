@@ -52,7 +52,7 @@ class FiParadeCartCard < IllustrationCard
   def boxview_data
     { :controller => 'boxview/fi_parade_cart_cards', 
       :title => self.deity || "Carta #{self.anastatica.page_position}",
-      :description => self.description,
+      :description => '',
       :res_id => "fi_parade_cart_card_#{self.id}", 
       :box_type => 'image',
       :thumb => nil

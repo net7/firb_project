@@ -77,14 +77,14 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
 
   # This is needed to use #sort on the array containing IconclassTerm
   def <=>(term)
-    self.pref_label < term.pref_label ? -1 : 1
+    self.pref_label.downcase < term.pref_label.downcase ? -1 : 1
   end
 
   def self.items_for(letter)
     qry = ActiveRDF::Query.new(IconclassTerm).select(:x).distinct
     qry.where(:x, N::RDF.type, N::TALIA.IconclassTerm)           
     qry.where(:x, N::SKOS.prefLabel, :pref_label)
-    qry.regexp(:pref_label, "^#{letter}")
+    qry.regexp(:pref_label, "^[#{letter.downcase}#{letter.upcase}]")
     qry.execute.sort
   end
 

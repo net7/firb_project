@@ -540,7 +540,7 @@ it:
         belonging_to_this_parade: "Appartengono a questa Parata"
 
     fi_processions:
-        menu_item_name: "Sfilate"
+        menu_item_name: "Cortei"
         model_name: "Corteo"
         nav_item: "Cortei"
         model_name_plural: "Cortei"
