@@ -44,10 +44,13 @@ class FiTextCard < TextCard
     
     # DEBUG: there could be just one edition, but the it's a 
     # collection anyway... just pick the last one.
-    self.edition.map do |item|
-      @title = "#{item.bibliography_item.author}: #{item.bibliography_item.title}, #{self.page_position}"
-    end
-    
+#    self.edition.map do |item|
+#      @title = "#{item.bibliography_item.author}: #{item.bibliography_item.title}, #{self.page_position}"
+
+#    end
+ 
+    @title = "#{self.title}, #{self.page_position}" 
+   
     desc = self.title.nil? ? "" : "#{self.title.slice(0, 80)}.."
     { :controller => 'boxview/fi_text_cards', 
       :title => "Scheda testo: #{@title}", 
