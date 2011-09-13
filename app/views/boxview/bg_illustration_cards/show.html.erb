@@ -2,7 +2,7 @@
 <% unless @image.nil? %>
 <%= boxview_widget 'Illustrazione', {:class => 'ImageWidget widget_draggable'} do |w|
       content = imt_viewer(imt_id) do |imt|
-      imt.base64 = imt_image_b64 @image, [@resource.image_zone]
+      imt.base64 = imt_image_b64 @image, [@resource.image_zone].concat(@zones)
       imt.init   = "jsapi_initializeIMW(id);"
       # imt.click  = "return imtActivateFirstWithLink($('#{imt_jquery_highlight_selector(imt_id)}'+ki));"
       # imt.over   = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).addClass('zone_highlighted');"
@@ -42,7 +42,22 @@ end
 	    @fenomeni.each do |f|
 	        if (f[:fen_class] == Digest::MD5.hexdigest("http://purl.oclc.org/firb/swn_ontology#keywordForImageZone"))
 				parole_chiave << ", " unless (parole_chiave.empty?)
-	            parole_chiave << %[<span class='bg_keyword' about='#{f[:class]}'>#{f[:name]}</span>]
+	            parole_chiave << %[
+					<span class='bg_keyword zone_#{:class}' about='#{f[:zone_id]}'>#{f[:name]}</span>
+					<script>
+						$('.bg_keyword.zone_#{:class}').mouseover(function(item) {
+							var zid = $(item.target).attr('about');
+							if (typeof(getFlashObject('#{imt_id}').setPolygonHighlighted) === 'function') 
+            					getFlashObject('#{imt_id}').setPolygonHighlighted(true, zid);
+								$(this).addClass('zone_highlighted');
+						}).mouseout(function(item) {
+							var zid = $(item.target).attr('about');
+							if (typeof(getFlashObject('#{imt_id}').setPolygonHighlighted) === 'function') 
+		           				getFlashObject('#{imt_id}').setPolygonHighlighted(false, zid);
+								$(this).removeClass('zone_highlighted');
+							});
+					</script>
+				]
 	        end
 	    end
 	end

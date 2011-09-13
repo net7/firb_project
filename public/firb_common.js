@@ -108,7 +108,7 @@ function init_firb_common(theme) {
             h = $(this).hasClass('highlighted');
             
         // Close the menu panel
-        b.find('div.fen_menu_panel').toggleClass('hidden');
+        b.find('div.fen_menu_panel').slideToggle();
 
         // TODO: if the parent section is highlighted, deselect all
         // and force the selection of this content again
