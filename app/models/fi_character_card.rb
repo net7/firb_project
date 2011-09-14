@@ -16,6 +16,9 @@ class FiCharacterCard < IllustrationCard
   rdf_property :qualities_profession, N::TALIA.qualities_profession, :type => :string
   rdf_property :qualities_ethnic_group, N::TALIA.qualities_ethnic_group, :type => :string
 
+  # Bibliografia moderna
+  multi_property :modern_bibliography_items, N::TALIA.hasModernBibliograhy, :type => TaliaCore::ActiveSource
+
   def cart
     procession.cart
   end

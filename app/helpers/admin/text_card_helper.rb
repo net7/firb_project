@@ -69,6 +69,17 @@ module Admin::TextCardHelper
     end 
   end
 
+  def modern_bibl_select_for(source)
+    source.modern_bibliography_items.collect do |b|
+      if (b.is_a?(BibliographyItem))
+        ["[[ CANCELLAMI ]] #{b.ref_name} (#{b.author}: #{b.title})", b.uri.to_s] 
+      elsif (b.is_a?(CustomBibliographyItem))
+        name = (b.name.nil?) ? "" : b.name+": "
+        ["#{name} (#{b.bibliography_item.author}: #{b.bibliography_item.title}) #{b.pages}", b.uri.to_s] 
+      end
+    end 
+  end
+
   def iconclass_select
     IconclassTerm.all.collect { |ic| [ "#{ic.term}", ic.uri.to_s ] }.sort
   end
