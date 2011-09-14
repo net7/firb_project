@@ -126,24 +126,16 @@ class Admin::PublishController < Admin::AdminSiteController
            if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasMemoryDepiction')
              md_id = d.xpath(".//div[@class='object']")[0]['about']
 
-#             begin
-#               md = PiIllustratedMdCard.find(md_id, :prefetch_relations => true)
-#             rescue
-#               md = PiNonIllustratedMdCard.find(md_id, :prefetch_relations => true)
-#             else
-
                if PiNonIllustratedMdCard.exists?(md_id)
                  md = PiNonIllustratedMdCard.find(md_id, :prefetch_relations => true)   
                elsif PiIllustratedMdCard.exists?(md_id)
                  md = PiIllustratedMdCard.find(md_id, :prefetch_relations => true) 
                end
 
-               # DEBUG: just one class for both ill and non-ill MDs? 
-               @fenomeni.push({:name => md.short_description, :fen_class => fen_class, :item_type => "Immagini di memoria", :class => ca_class})
+               @fenomeni.push({:name => md.short_description, :item_type => "Immagini di memoria", :class => ca_class})
                d.remove
-#             end
-
            end
+
            d.remove
          end
          
