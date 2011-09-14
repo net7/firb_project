@@ -11,11 +11,11 @@ unless (items = IconclassTerm.items_for(i)).empty?
 
       ## TODO: questo deve diventare qualcosa passato via ajax andando a de-collassare la voce di menu poco sopra 
      items.each do |el|      
-        unless IllustrationCard.find_anastaticas_by_iconclass(el).empty?
+#        unless IllustrationCard.find_anastaticas_by_iconclass(el).empty?
           w.content "<li >"  
            w.content boxview_link("/boxview/indici/filtered_iconclass/#{@collection.id}/#{el.id}", "#{el.pref_label}", "#{el.pref_label}", "index_#{el.pref_label}", :index) 
           w.content"</li>"
-	end
+#	end
       end  
    w.content "</ul>"
 
