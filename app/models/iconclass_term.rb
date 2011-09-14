@@ -84,6 +84,7 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
     qry = ActiveRDF::Query.new(IconclassTerm).select(:x).distinct
     qry.where(:x, N::RDF.type, N::TALIA.IconclassTerm)           
     qry.where(:x, N::SKOS.prefLabel, :pref_label)
+    qry.where(:y, N::DCT.subject, :x) # this means that the iconclass is actually used by some card
     qry.regexp(:pref_label, "^[#{letter.downcase}#{letter.upcase}]")
     qry.execute.sort
   end

@@ -38,7 +38,7 @@ class Boxview::IndiciController < Boxview::BaseController
   def show_filtered_by_iconclass
     iconclass = IconclassTerm.find_by_id(params[:iconclass])
     params[:type] = 'iconclass_term'
-    @items = IllustrationCard.find_anastaticas_by_iconclass(iconclass)
+    @items = IllustrationCard::find_anastaticas_by_iconclass(iconclass)
     render :show
   end
 

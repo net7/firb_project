@@ -12,13 +12,13 @@ class Admin::PublishController < Admin::AdminSiteController
 
      @source = TaliaCore::ActiveSource.find(params[:id])
      if (@source) then
-       @source.attach_html2("<div>"+html2 + annotations+"</div>")
+       @source.attach_html2("<div>#{html2}#{annotations}</div>")
        @source.save!
 
        id = @source.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').id
        record = TaliaCore::DataTypes::DataRecord.find(id)
        @raw_content = record.content_string
-     
+       
        if (@source.is_a?(FiTextCard))
 
          v = Nokogiri::HTML.parse(@raw_content)
@@ -90,6 +90,7 @@ class Admin::PublishController < Admin::AdminSiteController
 
        elsif (@source.is_a?(PiTextCard))
          
+         v = Nokogiri::HTML.parse(@raw_content)
          # Handle consolidated annotations
          v.xpath(".//div[@class='consolidatedAnnotation']").each do |d|
            pred = d.xpath(".//div[@class='predicate']")[0]['about'];
