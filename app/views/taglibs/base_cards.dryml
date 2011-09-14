@@ -44,6 +44,9 @@
                 <field-row field="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
                 </field-row>
+                <field-row field="modern_bibliography_items" name="modern_bibliography_items" >
+                    <view:><modern-bibl-items-edit name='modern_bibliography_items' /></view:>
+                </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><custom-bibl-items-edit /></view:>
                 </field-row>
@@ -89,6 +92,9 @@
                 <field-edit-row field="study_notes" />
                 <field-row field="iconclass_terms">
                     <view:><iconclass-terms-edit /></view:>
+                </field-row>
+                <field-row field="modern_bibliography_items" name="modern_bibliography_items" >
+                    <view:><modern-bibl-items-edit name='modern_bibliography_items' /></view:>
                 </field-row>
                 <field-row field="bibliography_items" param="bibliography" >
                     <view:><custom-bibl-items-edit /></view:>
@@ -758,6 +764,16 @@
                 :existing => (name.nil? ? custom_bibliography_select_for(this_parent) : custom_edition_select_for(this_parent)) }
     %>
 </def>
+
+<def tag="modern-bibl-items-edit" attrs="name">
+    <%= 
+        render :partial => 'shared/custom_bibl_item', 
+            :locals => { :main_name => (@full_type_name || controller.my_name), :param_name => (name || "modern_bibliography_items"),
+                :options => bibliography_select, :custom_options => custom_bibliography_select,
+                :existing => modern_bibl_select_for(this_parent) }
+    %>
+</def>
+
 
 <def tag="iconclass-terms-edit">
     <%= 

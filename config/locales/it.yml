@@ -230,6 +230,7 @@ it:
         cini_text: "Scheda testo Cini"
         iconclass_terms: "Termini iconclass"
         bibliography_items: "Elementi bibliografici"
+        modern_bibliography_items: "Bibliografia moderna"
         character_qualities: "Qualità del personaggio"
         notes: "Note"
         vehicle: "Veicolo"

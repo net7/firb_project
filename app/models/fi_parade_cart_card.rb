@@ -6,6 +6,14 @@ class FiParadeCartCard < IllustrationCard
   include Mixin::HasParts
   
   common_properties
+
+  # Bibliografia moderna
+  multi_property :modern_bibliography_items, N::TALIA.hasModernBibliograhy, :type => TaliaCore::ActiveSource
+
+  fields do
+    uri :string
+  end
+
   autofill_uri :force => true
 
   # @collection is a TaliaCore::Collection
