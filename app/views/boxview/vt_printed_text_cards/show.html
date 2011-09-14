@@ -11,7 +11,7 @@
   end
 
   unless @letter.data_records.blank?
-    w.right_icons link_for("Apparato critico: scarica PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+    w.right_icons link_to("Apparato critico: scarica PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
   end
 
   if @resource.previous_card
