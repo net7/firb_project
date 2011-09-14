@@ -19,6 +19,10 @@ class Admin::PublishController < Admin::AdminSiteController
        record = TaliaCore::DataTypes::DataRecord.find(id)
        @raw_content = record.content_string
        
+       @notes = []
+       @fenomeni = []
+       @lex_art = []
+       
        if (@source.is_a?(FiTextCard))
 
          v = Nokogiri::HTML.parse(@raw_content)
@@ -70,7 +74,7 @@ class Admin::PublishController < Admin::AdminSiteController
              di_id = d.xpath(".//div[@class='object']")[0]['about']
              di = DictionaryItem.find(di_id, :prefetch_relations => true)
              di_type = di.item_type.slice(41,100)
-             @lex_art.push({:name => di.name, :fen_class => fen_class, :item_type => di_type, :class => ca_class})
+             @lex_art.push({:name => di.name, :item_type => di_type, :class => ca_class})
              d.remove
            end
 
@@ -109,16 +113,14 @@ class Admin::PublishController < Admin::AdminSiteController
              di_id = d.xpath(".//div[@class='object']")[0]['about']
              di = DictionaryItem.find(di_id, :prefetch_relations => true)
              di_type = di.item_type.slice(41,100)
-             @fenomeni.push({:name => di.name, :fen_class => fen_class, :item_type => di_type, :class => ca_class})
+             @fenomeni.push({:name => di.name, :item_type => di_type, :class => ca_class})
              d.remove
            end
 
            # Has image zone
            if (pred == "http://purl.oclc.org/firb/swn_ontology#hasImageZone")
-             z_uri = d.xpath(".//div[@class='object']")[0]['about']
-             z = ImageZone.find(z_uri, :prefetch_relations => true)
              z_name = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
-             @fenomeni.push({:name => z_name, :fen_class => fen_class, :item_type => "Zone di immagine", :class => ca_class})
+             @fenomeni.push({:name => z_name, :item_type => "Zone di immagine", :class => ca_class})
              d.remove
            end
 
@@ -141,6 +143,21 @@ class Admin::PublishController < Admin::AdminSiteController
          
          
        elsif (@source.is_a?(BgIllustrationCard))
+         v = Nokogiri::HTML.parse(@raw_content)
+         # Handle consolidated annotations
+         v.xpath(".//div[@class='consolidatedAnnotation']").each do |d|
+           pred = d.xpath(".//div[@class='predicate']")[0]['about'];
+           ca_class = d.xpath(".//span[@class='annotationClass']")[0].text
+
+           # Has keyword
+           if (pred == "http://purl.oclc.org/firb/swn_ontology#keywordForImageZone")
+             z_name = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
+             @fenomeni.push({:name => z_name, :item_type => "Zone di immagine", :class => ca_class})
+             d.remove
+           end
+
+         end
+         
        end
      end
      

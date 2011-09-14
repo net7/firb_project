@@ -82,17 +82,17 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasMemoryDepiction')
         md_id = d.xpath(".//div[@class='object']")[0]['about']
 
-        begin
-          md = PiIllustratedMdCard.find(md_id, :prefetch_relations => true)
-        rescue
-          md = PiNonIllustratedMdCard.find(md_id, :prefetch_relations => true)
-        else
-          # DEBUG: just one class for both ill and non-ill MDs? 
-          fen_class = Digest::MD5.hexdigest(pred)
-          @fenomeni.push({:name => md.short_description, :fen_class => fen_class, :item_type => "Immagini di memoria", :class => ca_class})
-          v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
-          d.remove
+        if PiNonIllustratedMdCard.exists?(md_id)
+          md = PiNonIllustratedMdCard.find(md_id, :prefetch_relations => true)   
+        elsif PiIllustratedMdCard.exists?(md_id)
+          md = PiIllustratedMdCard.find(md_id, :prefetch_relations => true) 
         end
+
+        # DEBUG: just one class for both ill and non-ill MDs? 
+        fen_class = Digest::MD5.hexdigest(pred)
+        @fenomeni.push({:name => md.short_description, :fen_class => fen_class, :item_type => "Immagini di memoria", :class => ca_class})
+        v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
+        d.remove
           
       end
       d.remove
