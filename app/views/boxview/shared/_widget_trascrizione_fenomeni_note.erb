@@ -29,6 +29,8 @@
 	                    b.find('div.note.open, #note_#{n[:class]}').toggleClass('open closed');
 	                    b.find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
 	                    reposition_notes(b.attr('id'));
+						if (b.find('div.note.open').hasClass('open'))
+							close_transcription_images(b.attr('id'));
 	                });
 
 	                // Note link in the text: click opens the notes column
@@ -107,13 +109,16 @@
                     wc = w.find('div.widgetContent'),
                     bo = $(this).parents('div.box'),
                     h;
+
                 wc.toggleClass('notes-hidden notes-displayed');
+
                 if (wc.hasClass('notes-displayed')) {
                     // Set the notes column height
                     h = w.find('div.widgetContent div.transcription_text').height();
                     w.find('div.widgetContent div.transcription_notes_content').height(h);
                     // Close all the open notes
                     wc.find('div.note.open').toggleClass('open closed');
+					close_transcription_images(bo.attr('id'));
                     
                 } else {
                     // Remove any highlight, close open notes

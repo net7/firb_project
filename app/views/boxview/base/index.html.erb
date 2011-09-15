@@ -87,6 +87,11 @@ site_name_javascript = escape_javascript(site_name)
 
             // Add all the common listeners
             init_firb_common();
+			
+			myBoxView.onCollapseAddCallBack(function() { reposition_all_notes() });
+			myBoxView.onExpandAddCallBack(function() { reposition_all_notes() });
+			myBoxView.onRemoveAddCallBack(function() { reposition_all_notes() })
+			myBoxView.onAddAddCallBack(function() { reposition_all_notes() });
 
         } // onInitDone()
 
