@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} ^([^.]+)/$
+RewriteRule ^[^.]+/$ /%1 [QSA,L]
+
+RewriteCond %{THE_REQUEST} ^(GET|HEAD)
+RewriteCond %{REQUEST_URI} ^([^.]+)$
+RewriteCond %{DOCUMENT_ROOT}/cache/%1.html -f
+RewriteRule ^[^.]+$ /cache/%1.html [QSA,L]
