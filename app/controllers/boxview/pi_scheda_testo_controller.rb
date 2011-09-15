@@ -134,7 +134,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
                 });
             ]
         end
-        imt += "<script>#{zid_map}</script>";
+        imt += "<script type='text/javascript'> #{zid_map}</script>";
       end
       
       imt += "<span class='transcription_img_wrapper hidden'>"
@@ -155,7 +155,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       imt += boxview_link_for_object(o, {}, {:class => "transcription_open_icon"})
 
       # imt += '<a title="Apri la scheda in un nuovo box" data-type="image" data-id="2967" data-title="" class="boview_link transcription_open_icon">APRI IN BOX</a>'
-      imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
+      imt += '<a title="Chiudi" class="transcription_close_icon close_image">CHIUDI</a>'
       imt += "</span></div>"
 
       values['node'].replace(Nokogiri::HTML.parse(imt).xpath(".//div")[0])
