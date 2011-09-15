@@ -6,8 +6,7 @@ class Admin::BaseCardsController < Admin::AdminSiteController
   before_filter :set_card_type, :uri_params
 
   include Admin::AnnotableController
-  cache_sweeper :iconclass_sweeper
-
+  cache_sweeper :iconclass_sweeper, :fi_cards_sweeper
 
   def index
     @base_cards = @card_type.paginate(:page => params[:page], :prefetch_relations => true)

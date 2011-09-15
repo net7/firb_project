@@ -1,5 +1,7 @@
 class Boxview::FiAnimalCardsController < Boxview::BaseController
 
+  caches_page :show
+
   def show
     @resource = FiAnimalCard.find_by_id params[:id]
     @image    = @resource.image_zone.get_parent
