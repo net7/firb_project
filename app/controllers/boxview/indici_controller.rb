@@ -32,7 +32,7 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def show_grouped_iconclass
-#    @collection = TaliaCore::Collection.find_by_id(params[:collection])
+    @collection = TaliaCore::Collection.first
     @groups = IconclassTerm.menu_groups    
   end
 

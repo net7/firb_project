@@ -23,7 +23,7 @@ boxview_widget 'Navigation', :class => "index widget_draggable" do |w|
   # Iconclass
   m = @models[:iconclass]
   w.content "<li class='menu_firstlevel leaf'>"
-    w.content boxview_link("/boxview/indici/grouped_iconclass", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+    w.content boxview_link("/boxview/indici/show_grouped_iconclass", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
   w.content "</li>"
 
 
