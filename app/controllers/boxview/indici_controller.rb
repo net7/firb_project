@@ -1,5 +1,8 @@
 class Boxview::IndiciController < Boxview::BaseController
 
+  caches_page :show_grouped_iconclass
+
+
   def index
     @models = TaliaCore::CONFIG['shown_tabs'] + TaliaCore::CONFIG['base_card_types']
   end
@@ -17,8 +20,6 @@ class Boxview::IndiciController < Boxview::BaseController
     @items = VtLetter.menu_items_by_recipient('foo')
   end
 
-
-
   def show_bg_illustration_by_owner
     @items = BgIllustrationCard.menu_items_for(CGI::unescape(params[:owner]).gsub('___thedot___','.'))
     render :show
@@ -31,8 +32,8 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def show_grouped_iconclass
-    @collection = TaliaCore::Collection.find_by_id(params[:collection])
-    @groups = IconclassTerm.menu_groups_for(@collection)    
+    @collection = TaliaCore::Collection.first
+    @groups = IconclassTerm.menu_groups    
   end
 
   def show_filtered_by_iconclass
