@@ -5,13 +5,14 @@ function reposition_all_notes() {
 }
 
 function reposition_notes(id) {
-
     var b = $('#'+id),
         t = b.find('div.widgetContent div.transcription_text');
 
 	// No transcription? No notes!
 	if (t.length === 0) 
 		return;
+
+	console.log('repo repo ', id);
 
 	var n = b.find('div.widgetContent div.transcription_notes_content'),
         maxH=0,
@@ -36,7 +37,6 @@ function reposition_notes(id) {
 			$(e).find('p.closed').prepend((i+1)+'. ');
 		});
 	}
-
 
     notes_cache[id].each(function(i, e){
         var note_id = $(e).attr('id'),
@@ -190,13 +190,12 @@ function init_firb_common(theme) {
     $('.transcription_image_icon, .transcription_letter_icon').live('click', function() {
         $(this).next().removeClass('hidden');
         $(this).addClass('hidden');
-        reposition_notes($(this).parents('div.box').attr('id'));
+		$(this).parents('div.widgetContent').find('div.transcription_notes a.transcription_close_icon').click();
     });
     // Collapses an image
     $('.transcription_close_icon').live('click', function() {
         $(this).parent().addClass('hidden');
         $(this).parent().prev().removeClass('hidden');
-        reposition_notes($(this).parents('div.box').attr('id'));
     });
 
 	// Widget's field collapse/expand button

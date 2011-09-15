@@ -1067,8 +1067,14 @@
             			var f = this.onExpandFunctions;
             			if (f.length > 0) 
             			    for (var j = f.length - 1; j >= 0; j--)
-            			        if (typeof(f[j]) === "function")
-            			            f[j].call(this, this.boxOptions[i].resId);
+            			        if (typeof(f[j]) === "function") 
+								    setTimeout((
+										function(ob, resId) {
+											return function() { 
+												ob.call(self, resId) 
+											}
+										})(f[j], this.boxOptions[i].resId),
+										20);
 
 					// Collapsing the box
 					} else {
@@ -1090,11 +1096,17 @@
             			if (f.length > 0) 
             			    for (var j = f.length - 1; j >= 0; j--)
             			        if (typeof(f[j]) === "function")
-            			            f[j].call(this, this.boxOptions[i].resId);
+								    setTimeout((
+										function(ob, resId) {
+											return function() { 
+												ob.call(self, resId) 
+											}
+										})(f[j], this.boxOptions[i].resId),
+										20);
 
 					}
-
         			this.resize();
+
 					return;
 				} // if boxOptions[i][id] == id
 		}, // toggleCollapseBox()
