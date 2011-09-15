@@ -93,21 +93,14 @@ class IconclassTerm < TaliaCore::SourceTypes::SkosConcept
   # @collection is a TaliaCore::Collection
   # returns the ordered list of groups to be shown in the menu list
   
-  def self.menu_groups_for(collection)
-  # it actually ignore the collection thing, it is there for compatibility with other menu
- #   letters = []
- #   ('A'..'Z').each do |letter|                           
- #     if IconclassTerm.items_for(letter).count > 0
- #       letters << letter                                           
- #     end
-
-
-    ('A'..'Z')
-#    end
-  
+  def self.menu_groups
+   letters = []
+   ('A'..'Z').each do |letter|                           
+      if IconclassTerm.items_for(letter).count > 0
+        letters << letter                                           
+      end
+      letters
+    end
   end
-
-
-
-
+    
 end
