@@ -138,7 +138,6 @@ class Admin::PublishController < Admin::AdminSiteController
                d.remove
            end
 
-           d.remove
          end
          
          

@@ -95,7 +95,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
         d.remove
           
       end
-      d.remove
+
     end
 
     imts.each do |bounding_zone, values| 
@@ -152,7 +152,7 @@ class Boxview::PiSchedaTestoController < Boxview::BaseController
       # PiIllustrationCard/PiLetterIllustrationCard explicitly??!
       o = z.get_related_objects.first
       data = o.boxview_data()
-      imt += boxview_link_for_object(o, {:class => "transcription_open_icon"})
+      imt += boxview_link_for_object(o, {}, {:class => "transcription_open_icon"})
 
       # imt += '<a title="Apri la scheda in un nuovo box" data-type="image" data-id="2967" data-title="" class="boview_link transcription_open_icon">APRI IN BOX</a>'
       imt += '<a title="Chiudi" class="transcription_close_icon">CHIUDI</a>'
