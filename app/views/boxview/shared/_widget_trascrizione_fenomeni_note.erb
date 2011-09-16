@@ -14,15 +14,16 @@
 			apparatus = n[:apparatus] || ''
 	        notes_content << %[
 	            <div class="note closed" about="#{n[:class]}" id="note_#{apparatus}#{n[:class]}">
-	                <p class="open">
-	                    #{n[:name]}<br>
-	                    #{n[:content]}
-	                </p>
+					<p class="open">
+						<span class="note_title">#{n[:name]}</span>
+						<span class="note_body">#{n[:content]}</span>
+					</p>
+
 	                <p class="closed">#{n[:name]}</p>
 	            </div>
 	            <script type="text/javascript">
 	                // Add the link after the last span of this class 
-	                $('.#{n[:class]}:last').after('<span class="note_link" about="#{n[:class]}" id="note_link_#{apparatus}#{n[:class]}"><a class="transcription_open_icon"></a></span>');
+	                $('.#{n[:class]}:last').after('<span class="note_link" about="#{n[:class]}" id="note_link_#{apparatus}#{n[:class]}"></span>');
 
 	                // Click on a note in the notes column highlights the linked note
 	                $('#note_#{apparatus}#{n[:class]}').click(function(){
