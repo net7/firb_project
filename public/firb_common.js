@@ -1,15 +1,56 @@
+notes_cache = [];
+
+function reposition_all_notes() {
+	$('div.box').each(function(i, e) { reposition_notes($(e).attr('id')) });
+}
+
 function reposition_notes(id) {
     var b = $('#'+id),
-        t = b.find('div.widgetContent div.transcription_text'),
-        n = b.find('div.widgetContent div.transcription_notes_content'),
+        t = b.find('div.widgetContent div.transcription_text');
+
+	// No transcription? No notes!
+	if (t.length === 0) 
+		return;
+
+	console.log('repo repo ', id);
+
+	var n = b.find('div.widgetContent div.transcription_notes_content'),
         maxH=0,
-        t_top = t.offset().top;
+        t_top = t.offset().top,
+		last_bottom_height = 0;
     
-    $('#'+id+' div.transcription_notes_content div.note').each(function(i, e){
+	if (typeof(notes_cache[id]) === 'undefined') {
+		notes_cache[id] = $('#'+id+' div.transcription_notes_content div.note').sort(function(a, b) {
+			var aclass = $(a).attr('id').substr(5),
+				bclass = $(b).attr('id').substr(5),
+				aoff = $('#'+id+' .'+aclass+':first').offset(),
+				boff = $('#'+id+' .'+bclass+':first').offset();
+
+			if (aoff.top === boff.top)
+				return aoff.left - boff.left;
+			return aoff.top - boff.top;
+		});
+		
+	    notes_cache[id].each(function(i, e) {
+	        var note_id = $(e).attr('id');
+			$('span#note_link_'+note_id.substr(5)+'').prepend('['+(i+1)+']');
+			$(e).find('p.closed').prepend((i+1)+'. ');
+		});
+	}
+
+    notes_cache[id].each(function(i, e){
         var note_id = $(e).attr('id'),
             my_class = note_id.substr(5),
-            top = $('#'+id+' .'+my_class+':first').offset().top;
+			ob = $('#'+id+' .'+my_class+':first'),
+            top = ob.offset().top;
+
+		if (top<last_bottom_height) 
+			top = last_bottom_height;
+
+		last_bottom_height = top + $(this).height() + 8;
+
         $(this).offset({top: top});
+
         if (top+$(this).height()-t_top > maxH)
             maxH = top + $(this).height() - t_top;
     });
@@ -19,6 +60,11 @@ function reposition_notes(id) {
     n.height(Math.max(t.height(), maxH));
 
 } // reposition_notes
+
+function close_transcription_images(id) {
+	var b = $('#'+id);
+	b.find('.transcription_close_icon.close_image').each(function(i, e){ $(e).click(); })
+}
 
 function getFlashObject(movieName) {
     if (navigator.appName.indexOf("Microsoft") != -1) {
@@ -144,13 +190,12 @@ function init_firb_common(theme) {
     $('.transcription_image_icon, .transcription_letter_icon').live('click', function() {
         $(this).next().removeClass('hidden');
         $(this).addClass('hidden');
-        reposition_notes($(this).parents('div.box').attr('id'));
+		$(this).parents('div.widgetContent').find('div.transcription_notes a.transcription_close_icon').click();
     });
     // Collapses an image
-    $('.transcription_close_icon, .transcription_letter_icon').live('click', function() {
+    $('.transcription_close_icon').live('click', function() {
         $(this).parent().addClass('hidden');
         $(this).parent().prev().removeClass('hidden');
-        reposition_notes($(this).parents('div.box').attr('id'));
     });
 
 	// Widget's field collapse/expand button
