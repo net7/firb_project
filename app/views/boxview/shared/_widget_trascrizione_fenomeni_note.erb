@@ -11,22 +11,26 @@
     unless notes.nil? || notes.empty?
 		notes.each do |n|
 	        num = num+1
+			apparatus = n[:apparatus] || ''
+			related_link = n[:related_link] || ''
+			
 	        notes_content << %[
-	            <div class="note closed" id="note_#{n[:class]}">
-	                <p class="open">
-	                    #{n[:name]}<br>
-	                    #{n[:content]}
-	                </p>
+	            <div class="note closed" about="#{n[:class]}" id="note_#{apparatus}#{n[:class]}">
+					<p class="open">
+						<span class="note_title">#{n[:name]}</span>
+						<span class="note_body">#{n[:content]} #{related_link}</span>
+					</p>
+
 	                <p class="closed">#{n[:name]}</p>
 	            </div>
 	            <script type="text/javascript">
 	                // Add the link after the last span of this class 
-	                $('.#{n[:class]}:last').after('<span class="note_link" id="note_link_#{n[:class]}"><a class="transcription_open_icon"></a></span>');
+	                $('.#{n[:class]}:last').after('<span class="note_link" about="#{n[:class]}" id="note_link_#{apparatus}#{n[:class]}"></span>');
 
 	                // Click on a note in the notes column highlights the linked note
-	                $('#note_#{n[:class]}').click(function(){
+	                $('#note_#{apparatus}#{n[:class]} p.closed, #note_#{apparatus}#{n[:class]} span.note_title').click(function(){
 	                    var b = $(this).parents('div.box');
-	                    b.find('div.note.open, #note_#{n[:class]}').toggleClass('open closed');
+	                    b.find('div.note.open, #note_#{apparatus}#{n[:class]}').toggleClass('open closed');
 	                    b.find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
 	                    reposition_notes(b.attr('id'));
 						if (b.find('div.note.open').hasClass('open'))
@@ -36,14 +40,14 @@
 	                // Note link in the text: click opens the notes column
 	                // and open the linked note; mouse over/out: highlights 
 	                // the linked text portion
-	                $('#note_link_#{n[:class]}').click(function() {
+	                $('#note_link_#{apparatus}#{n[:class]}').click(function() {
 	                    var b = $(this).parents('div.box');
 	                    if (b.find('div.widgetContent').hasClass('notes-hidden')) 
 	                        $("#mostra_note_trascrizione_#{resource.id}").click();
                     
 	                    // keep the note open clicking on the note link
 	                    b.find('div.note.open').toggleClass('open closed');
-	                    b.find('#note_#{n[:class]}').addClass('open').removeClass('closed');
+	                    b.find('#note_#{apparatus}#{n[:class]}').addClass('open').removeClass('closed');
 	                    b.find('.highlighted').removeClass('highlighted');
 	                    b.find('.#{n[:class]}').addClass('highlighted');
 	                    reposition_notes(b.attr('id'));
@@ -98,7 +102,7 @@
 %>
 
 <%= 
-    boxview_widget @widget_title || "Trascrizioni", {:class => 'transcription widget_draggable'} do |w|
+    boxview_widget widget_title || "Trascrizione", {:class => 'transcription widget_draggable'} do |w|
 
         mostra_note = content_tag(:a, 'Note', :class => "note", :href => "#", :id => "mostra_note_trascrizione_#{resource.id}", :title => 'Mostra le note')
         mostra_note << %[

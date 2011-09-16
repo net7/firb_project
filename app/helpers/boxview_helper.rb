@@ -20,6 +20,7 @@ module BoxviewHelper
              type: $(this).data("type"),
              collapsed: false}
           );
+          return false;
         });]
   end
 

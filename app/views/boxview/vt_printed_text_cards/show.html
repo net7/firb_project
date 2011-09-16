@@ -36,7 +36,7 @@
 end
 %>
 
-<%= boxview_widget 'Trascrizione', {:class => 'TextWidget widget_draggable'} do |w|
-  w.content "TODO"
-end
+<%= render :partial => '/boxview/shared/widget_trascrizione_fenomeni_note', 
+		:locals => {:resource => @resource, :fenomeni => @fenomeni, :notes => @notes, :content => @content,
+			 		:widget_title => "Trascrizione"} 
 %>
