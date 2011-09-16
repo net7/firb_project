@@ -12,7 +12,40 @@
 		notes.each do |n|
 	        num = num+1
 			apparatus = n[:apparatus] || ''
+			other_apparatus = n[:other_apparatus] || nil
 			related_link = n[:related_link] || ''
+			
+			unless (other_apparatus.nil?) then
+				other_b_code_column = %[
+						var other_b = $('#note_#{other_apparatus}#{n[:class]}').parents('div.box');
+						if (other_b.length === 0) {
+							console.log('niente other b 1');
+							return;
+						}
+	                    other_b.find('div.note.open, #note_#{other_apparatus}#{n[:class]}').toggleClass('open closed');
+	                    other_b.find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
+	                    reposition_notes(other_b.attr('id'));
+					]
+				other_b_code_text = %[
+						var other_b = $('#note_#{other_apparatus}#{n[:class]}').parents('div.box');
+						if (other_b.length === 0) {
+							console.log('niente other b 2');
+							return;
+						}
+	                    if (other_b.find('div.widgetContent').hasClass('notes-hidden')) 
+		                	other_b.find('li.note a.note').click();
+                   
+	                    // keep the note open clicking on the note link
+	                    other_b.find('div.note.open').toggleClass('open closed');
+	                    other_b.find('#note_#{apparatus}#{n[:class]}').addClass('open').removeClass('closed');
+	                    other_b.find('.highlighted').removeClass('highlighted');
+	                    other_b.find('.#{n[:class]}').addClass('highlighted');
+	                    reposition_notes(other_b.attr('id'));
+					]
+			else
+				other_b_code_column = ''
+				other_b_code_text = ''	
+			end
 			
 	        notes_content << %[
 	            <div class="note closed" about="#{n[:class]}" id="note_#{apparatus}#{n[:class]}">
@@ -35,6 +68,7 @@
 	                    reposition_notes(b.attr('id'));
 						if (b.find('div.note.open').hasClass('open'))
 							close_transcription_images(b.attr('id'));
+	                 	#{other_b_code_column}
 	                });
 
 	                // Note link in the text: click opens the notes column
@@ -43,7 +77,7 @@
 	                $('#note_link_#{apparatus}#{n[:class]}').click(function() {
 	                    var b = $(this).parents('div.box');
 	                    if (b.find('div.widgetContent').hasClass('notes-hidden')) 
-	                        $("#mostra_note_trascrizione_#{resource.id}").click();
+	                        b.find('li.note a.note').click();
                     
 	                    // keep the note open clicking on the note link
 	                    b.find('div.note.open').toggleClass('open closed');
@@ -51,7 +85,7 @@
 	                    b.find('.highlighted').removeClass('highlighted');
 	                    b.find('.#{n[:class]}').addClass('highlighted');
 	                    reposition_notes(b.attr('id'));
-                    
+                    	#{other_b_code_text}
 	                });                
 	            </script>
 	            ]
