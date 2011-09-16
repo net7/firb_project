@@ -83,8 +83,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
 
-  map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
 
+  map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
     # FIRB FIRENZE
     boxview.resources :fi_parade_cart_cards
     boxview.resources :fi_text_cards
@@ -97,6 +97,7 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :fi_processions
 
     # FIRB VITERBO
+    boxview.vt_search '/vt_search', :controller => 'vt_search', :action => :results
     boxview.resources :vt_letters do |letter|
       letter.resources :vt_handwritten_text_cards, :only => :index
       letter.resources :vt_printed_text_cards, :only => :index
