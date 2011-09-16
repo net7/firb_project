@@ -6,6 +6,8 @@ class VtLetter < TaliaCore::Collection
   include FileAttached
   extend RdfProperties
 
+  include Mixin::Searchable
+
   autofill_uri :force => true
 
   declare_attr_type :name, :string

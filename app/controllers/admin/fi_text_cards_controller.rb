@@ -6,6 +6,8 @@ class Admin::FiTextCardsController < Admin::TextCardsController
   hobo_model_controller
   auto_actions :all
 
+  cache_sweeper :fi_cards_sweeper
+
   def index
     @fi_text_cards = FiTextCard.paginate(:page => params[:page], :prefetch_relations => true)
   end
