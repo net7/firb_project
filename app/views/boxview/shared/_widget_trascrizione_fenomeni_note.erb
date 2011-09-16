@@ -37,7 +37,7 @@
                    
 	                    // keep the note open clicking on the note link
 	                    other_b.find('div.note.open').toggleClass('open closed');
-	                    other_b.find('#note_#{apparatus}#{n[:class]}').addClass('open').removeClass('closed');
+	                    other_b.find('#note_#{other_apparatus}#{n[:class]}').addClass('open').removeClass('closed');
 	                    other_b.find('.highlighted').removeClass('highlighted');
 	                    other_b.find('.#{n[:class]}').addClass('highlighted');
 	                    reposition_notes(other_b.attr('id'));
