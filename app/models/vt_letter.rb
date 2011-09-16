@@ -43,7 +43,7 @@ class VtLetter < TaliaCore::Collection
       :res_id => "vt_letter_#{self.id}", 
       :box_type => 'image',
       :thumb => nil,
-      :url => "boxview/vt_letters_vt_handwritten_text_cards/#{self.id}"
+      :url => "boxview/vt_letters/#{self.id}/vt_handwritten_text_cards"
     }
   end
 

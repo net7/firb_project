@@ -68,7 +68,7 @@ module BoxviewHelper
     data[:text] = data[:title] if data[:text].nil?
     data[:action] ||= "show"
     url = data[:url].blank? ? url_for(:controller => data[:controller], :action => data[:action], :id => o.id) : data[:url]
-    boxview_link(url, data[:text], data[:title], data[:res_id], data[:box_type], link_options) 
+    boxview_link(url, data[:text], data[:title], data[:res_id], data[:box_type], link_options)
   end
 
   # Options:

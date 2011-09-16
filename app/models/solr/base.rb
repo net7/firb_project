@@ -1,22 +1,55 @@
 module SOLR
   class Base
+    include ActionController::UrlWriter
     attr_accessor :uri
-    attr_reader   :original
+
+    def self.solr_setup(&block)
+      Sunspot.setup self do
+        integer :database_id,   :stored => true
+        string  :boxview_url,   :stored => true
+        string  :boxview_type,  :stored => true
+        text    :boxview_title, :stored => true
+      end
+      Sunspot.setup self, &block
+    end
 
     def self.from(original)
-      @original = original
-      new original.uri
+      self.new(original.uri).tap {|o| o.original = original}
     end
 
     def initialize(uri)
       self.uri = uri
-      @original = original_class.new uri 
     end
+
+    def original
+      @original ||= original_class.new uri
+    end
+    attr_writer :original
+
 
     def original_class
       self.class.name.gsub(/SOLR::/, '').constantize
     rescue
       raise Exception, "This solr class does not seem to have a corresponding Talia class."
+    end
+
+    def boxview_url
+      data = original.boxview_data
+      return "/#{data[:url]}" if data[:url]
+      action = data[:action] || "show"
+      url_for(:only_path => true, :controller => data[:controller], :action => action, :id => original.id)
+    end
+
+    def boxview_title
+      original.boxview_data[:title] || original.name
+    end
+
+    def boxview_type
+      original.boxview_data[:boxtype] || "image"
+    end
+
+    def database_id
+      original.id
     end
 
     def solr_index
@@ -28,8 +61,8 @@ module SOLR
     end
 
     def method_missing(method)
-      if @original.respond_to? method
-        @original.send method unless method.to_s.ends_with? '='
+      if original.respond_to? method
+        original.send method unless method.to_s.ends_with? '='
       else
         super
       end
