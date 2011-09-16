@@ -18,8 +18,9 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
     id = @resource.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').id
     record = TaliaCore::DataTypes::DataRecord.find(id)
     @raw_content = record.content_string
-
+    
     @letter   = @resource.letter
+    @printed = @letter.printed_cards
     
     @notes = []
     @fenomeni = []
@@ -70,7 +71,12 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
       if (pred == 'http://purl.oclc.org/firb/swn_ontology#evolvedIn')
         n_this = d.xpath(".//div[@class='object']/span[@class='label']")[0].text
         n_that = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
-        @notes.push({:name => "\"#{n_this}\"", :content => "diventa \"#{n_that}\"", :class => ca_class, :apparatus => 'hw'})
+
+        unless @printed.blank?
+          related_link = "<br />in #{boxview_link_for_object(@printed.first, :url => vt_printed_text_card_url(@printed.first.id))}"
+        end
+        
+        @notes.push({:name => n_this, :content => "diventa \"#{n_that}\"", :class => ca_class, :apparatus => 'hw', :related_link => related_link})
         d.remove
       end
 

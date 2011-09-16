@@ -12,11 +12,13 @@
 		notes.each do |n|
 	        num = num+1
 			apparatus = n[:apparatus] || ''
+			related_link = n[:related_link] || ''
+			
 	        notes_content << %[
 	            <div class="note closed" about="#{n[:class]}" id="note_#{apparatus}#{n[:class]}">
 					<p class="open">
 						<span class="note_title">#{n[:name]}</span>
-						<span class="note_body">#{n[:content]}</span>
+						<span class="note_body">#{n[:content]} #{related_link}</span>
 					</p>
 
 	                <p class="closed">#{n[:name]}</p>
@@ -26,7 +28,7 @@
 	                $('.#{n[:class]}:last').after('<span class="note_link" about="#{n[:class]}" id="note_link_#{apparatus}#{n[:class]}"></span>');
 
 	                // Click on a note in the notes column highlights the linked note
-	                $('#note_#{apparatus}#{n[:class]}').click(function(){
+	                $('#note_#{apparatus}#{n[:class]} p.closed, #note_#{apparatus}#{n[:class]} span.note_title').click(function(){
 	                    var b = $(this).parents('div.box');
 	                    b.find('div.note.open, #note_#{apparatus}#{n[:class]}').toggleClass('open closed');
 	                    b.find('.highlighted, .#{n[:class]}').toggleClass('highlighted');
