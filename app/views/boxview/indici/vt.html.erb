@@ -2,6 +2,33 @@
     boxview_widget 'Navigation', :class => "index widget_draggable" do |w|
         w.content "<ul>"
 
+################
+# TEST RICERCA #
+################
+
+        w.content %[
+          <li>
+            Cerca tra le lettere: <input id="vt_menu_search" type="text" value="" style="border: 1px solid black;"/>
+            <script>
+              $("#vt_menu_search").focus();
+              $("#vt_menu_search").live('keyup', function(e) {
+                key = e.keyCode; value = $.trim($(this).val());
+                e.preventDefault(); 
+                if(key == 13 && value != "") {
+                  myBoxView.addBoxFromAjax({
+                    qstring: '/boxview/vt_search?q='+encodeURIComponent(value),
+                    title: 'Risultati ricerca di "'+value+'"',
+                    verticalTitle: 'Risultati ricerca di "'+value+'"',
+                    resId: 'vt_search'+value.replace(' ', '_'),
+                    type: 'menu',
+                    collapsed: false
+                  });
+                }
+                return false;
+              });
+            </script>
+          </li>
+        ]
 
         # per data
         m = @models[:letter]
@@ -9,7 +36,6 @@
         w.content boxview_link("/boxview/indici/vt_letters_by_date", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
         w.content "</li>"
 
-  
         # per destinatari
 #        m = @models[:letter]
 #        w.content "<li class='menu_firstlevel leaf'>"

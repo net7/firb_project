@@ -1,0 +1,28 @@
+<% title = "#{@search.total} " + (@search.total == 1 ? "Risultato" : "Risultati") %>
+<%= boxview_widget title, {:class => 'TextWidget widget_draggable'} do |w|
+  w.content "<ul>"
+  @search.each_hit_with_result do |hit, result|
+    result = result.original
+    text = if hit.highlight(:title)
+             hit.highlight(:title).format {|word| "<span class=\"zone_highlighted\">#{word}</span>"}
+           else
+             result.title
+           end
+
+    desc = if hit.highlight(:date_string)
+             hit.highlight(:date_string).format {|word| "<span class=\"zone_highlighted\">#{word}</span>"}
+           else
+             result.date_string
+           end
+
+    w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => boxview_link_for_object(result,
+                                             :url    => vt_letter_vt_handwritten_text_cards_url(result.id),
+                                             :text   => text,
+                                             :title  => result.title,
+                                             :res_id => "vt_letter_vt_handwritten_text_cards_#{result.id}"),
+                                 :description => desc}
+  end
+  w.content "</ul>"
+end
+%>
