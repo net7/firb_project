@@ -12,17 +12,15 @@ function reposition_notes(id) {
 	if (t.length === 0) 
 		return;
 
-	console.log('repo repo ', id);
-
 	var n = b.find('div.widgetContent div.transcription_notes_content'),
         maxH=0,
         t_top = t.offset().top,
-		last_bottom_height = 0;
+		last_bottom_height = -1000000;
     
 	if (typeof(notes_cache[id]) === 'undefined') {
 		notes_cache[id] = $('#'+id+' div.transcription_notes_content div.note').sort(function(a, b) {
-			var aclass = $(a).attr('id').substr(5),
-				bclass = $(b).attr('id').substr(5),
+			var aclass = $(a).attr('about'), // .substr(5),
+				bclass = $(b).attr('about'), // .substr(5),
 				aoff = $('#'+id+' .'+aclass+':first').offset(),
 				boff = $('#'+id+' .'+bclass+':first').offset();
 
@@ -32,15 +30,14 @@ function reposition_notes(id) {
 		});
 		
 	    notes_cache[id].each(function(i, e) {
-	        var note_id = $(e).attr('id');
-			$('span#note_link_'+note_id.substr(5)+'').prepend('['+(i+1)+']');
+	        var note_class = $(e).attr('about');
+			$('#'+id+' span[about="'+note_class+'"]').prepend('['+(i+1)+']');
 			$(e).find('p.closed').prepend((i+1)+'. ');
 		});
 	}
 
     notes_cache[id].each(function(i, e){
-        var note_id = $(e).attr('id'),
-            my_class = note_id.substr(5),
+        var my_class = $(e).attr('about'),
 			ob = $('#'+id+' .'+my_class+':first'),
             top = ob.offset().top;
 

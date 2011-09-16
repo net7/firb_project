@@ -66,6 +66,14 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
         d.remove
       end
 
+      # Evolved in
+      if (pred == 'http://purl.oclc.org/firb/swn_ontology#evolvedIn')
+        n_this = d.xpath(".//div[@class='object']/span[@class='label']")[0].text
+        n_that = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
+        @notes.push({:name => "\"#{n_this}\"", :content => "diventa \"#{n_that}\"", :class => ca_class, :apparatus => 'hw'})
+        d.remove
+      end
+
     end
 
     # Sort fenomeni by type, name

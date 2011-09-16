@@ -98,7 +98,7 @@ class VtHandwrittenTextCard < TextCard
       :title => "Trascrizione critica: #{self.anastatica.page_position}",
       :description => "",
       :res_id => "vt_handwritten_text_card_#{self.id}",
-      :box_type => 'text',
+      :box_type => 'transcription',
       :thumb => nil
     }
   end
