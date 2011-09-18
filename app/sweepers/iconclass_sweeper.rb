@@ -12,7 +12,7 @@ class IconclassSweeper < ActionController::Caching::Sweeper
   private
   
   def expire_cache_for(illustrationCard)
-    expire_page(:controller => 'boxview/indici_controller', :action => 'show_grouped_iconclass')
+    expire_page(:controller => '/boxview/indici', :action => 'show_grouped_iconclass')
   end
 
 end
