@@ -76,7 +76,8 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
           related_link = "<br />in #{boxview_link_for_object(@printed.first, :url => vt_printed_text_card_url(@printed.first.id))}"
         end
         
-        @notes.push({:name => n_this, :content => "diventa \"#{n_that}\"", :class => ca_class, :apparatus => 'hw', :related_link => related_link})
+        @notes.push({:name => n_this, :content => "diventa \"#{n_that}\"", :class => ca_class, 
+                      :apparatus => 'hw', :other_apparatus => 'pr', :related_link => related_link})
         d.remove
       end
 
