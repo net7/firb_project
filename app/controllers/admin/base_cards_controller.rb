@@ -37,9 +37,12 @@ class Admin::BaseCardsController < Admin::AdminSiteController
       redirect_to :action => :index
     end
   end
-  
+
   def update
     file = card_params.delete(:file)
+
+    card_params['bibliography_items'] = card_params['bibliography_items'] || [] 
+
     hobo_source_update(:params => card_params) do |card|
       if (file)
         card.attach_xml_file(file)
