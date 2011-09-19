@@ -44,9 +44,9 @@ module ImtHelper
         outer = zones.delete zones.first
         xml.a(:r => outer.id.to_s, :s => outer.uri.to_s, :l =>outer.name, :t =>"#{image.uri}@#{outer.coordinates}"){
           zones.each do |z|
-            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}") unless z.coordinates.nil?
+            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}") unless z.nil? or z.coordinates.nil?
           end
-        }
+        } 
       end
       }
       xml.cb(:u => nil, :p => "base64xml")
