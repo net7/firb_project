@@ -15,10 +15,13 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
 
   def critic
     @resource = VtHandwrittenTextCard.find(params[:id], :prefetch_relations => true)
-    id = @resource.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').id
-    record = TaliaCore::DataTypes::DataRecord.find(id)
+ #   id = @resource.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').id
+ #   record = TaliaCore::DataTypes::DataRecord.find(id)
+    record = @resource.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html')
     @raw_content = record.content_string
-    
+
+
+     
     @letter   = @resource.letter
     @printed = @letter.printed_cards
     

@@ -4,7 +4,7 @@
   end
 
   unless @letter.data_records.blank?
-    w.right_icons link_to("Apparato critico: scarica PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
+    w.right_icons link_to("Apparato critico: scarica PDF", url_for_data_record(@letter.data_records.first), {:title => "Apparato Critico"}), :class => 'pdf'
   end
 
   unless @letter.printed_cards.blank?
@@ -12,16 +12,12 @@
                   :class => 'print'
   end
 
-  unless @letter.data_records.blank?
-    w.right_icons link_to("Scarica versione PDF", url_for_data_record(@letter.data_records.first)), :class => 'pdf'
-  end
-
   if @resource.previous_card
     w.right_icons boxview_link_for_object(@resource.previous_card, :url => critic_vt_handwritten_text_card_url(@resource.previous_card.id)), :class => 'prev'
   end
 
   if @resource.next_card
-    w.right_icons boxview_link_for_object(@resource.next_card, :url => critic_vt_handwritten_text_card_url(@resource.next_card.id)), :class => 'nextxsd'
+    w.right_icons boxview_link_for_object(@resource.next_card, :url => critic_vt_handwritten_text_card_url(@resource.next_card.id)), :class => 'next'
   end
 
   w.content boxview_widget_field('Segnatura', @resource.signature)                        unless @resource.signature.blank?
