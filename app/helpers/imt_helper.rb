@@ -42,7 +42,7 @@ module ImtHelper
         # First zone is assumed as the one of main interest, where the image will focus (zoom to).
         outer = zones.delete zones.first
         outer_coordinates = outer.coordinates
-        outer_coordinates = "0:0:1:0:1:1:0:1" unless outer_coordinates.nil?
+        outer_coordinates = "0:0:1:0:1:1:0:1" if outer_coordinates.nil?
         xml.xml{
           xml.a(:r => outer.id.to_s, :s => outer.uri.to_s, :l =>outer.name, :t =>"#{image.uri}@#{outer_coordinates}"){
             zones.each do |z|
