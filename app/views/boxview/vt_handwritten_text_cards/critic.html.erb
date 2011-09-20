@@ -4,7 +4,7 @@
   end
 
   unless @letter.data_records.blank?
-    w.right_icons link_to("Apparato critico: scarica PDF", url_for_data_record(@letter.data_records.first), {:title => "Apparato Critico"}), :class => 'pdf'
+    w.right_icons link_to("Trascrizione critica e apparato", url_for_data_record(@letter.data_records.first), {:title => "Trascrizione critica e apparato"}), :class => 'pdf'
   end
 
   unless @letter.printed_cards.blank?
