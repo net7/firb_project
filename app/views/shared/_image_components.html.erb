@@ -39,7 +39,7 @@
         <% existing.each do |name, value|
            field_name = "#{main_name}[#{param_name}][][uri]"
         %>
-            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
+            populate_with_item(populate_ul_id, '<%= escape_javascript name %>', [{name: '<%= field_name %>', value: '<%= value %>'}]);
         <% end %>
     });
     
