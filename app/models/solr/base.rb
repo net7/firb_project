@@ -9,6 +9,7 @@ module SOLR
         string  :boxview_url,   :stored => true
         string  :boxview_type,  :stored => true
         text    :boxview_title, :stored => true
+        text    :boxview_description, :stored => true
       end
       Sunspot.setup self, &block
     end
@@ -42,6 +43,10 @@ module SOLR
 
     def boxview_title
       original.boxview_data[:title] || original.name
+    end
+
+    def boxview_description
+      original.boxview_data[:description] || ""
     end
 
     def boxview_type

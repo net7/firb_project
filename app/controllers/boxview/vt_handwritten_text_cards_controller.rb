@@ -51,7 +51,7 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
         v.xpath(".//span[contains(@class, '#{ca_class}')]").each{ |span| span['class'] += " #{fen_class}"  }
         d.remove
       end
-      
+
       # Has Bibliography Item
       if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasBibliographyItem')
         custom_bibl_url = d.xpath(".//div[@class='object']")[0]['about']

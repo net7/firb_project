@@ -37,32 +37,32 @@ end
 %>
 
 <%= render :partial => '/boxview/shared/widget_trascrizione_fenomeni_note', 
-		:locals => {:resource => @resource, :fenomeni => @fenomeni, :notes => @notes, :content => @content,
-			 		:widget_title => "Trascrizione Critica"} 
+    :locals => {:resource => @resource, :fenomeni => @fenomeni, :notes => @notes, :content => @content,
+          :widget_title => "Trascrizione Critica"} 
 %>
 
 <%= boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
-	content = ''
-	inner_content = ''
-	last_type = @lex_art.first[:item_type]
-	@lex_art.uniq.each do |item| 
+  content = ''
+  inner_content = ''
+  last_type = @lex_art.first[:item_type]
+  @lex_art.uniq.each do |item| 
   if (last_type != item[:item_type])
-			content += boxview_widget_field(last_type, content_tag(:ul, inner_content))
-			inner_content = ''
-			last_type = item[:item_type]
-		end
-		inner_content += "<li class='lessico' about='#{item[:class]}'>#{item[:name]}</li>"
-	end
-	w.content content
+      content += boxview_widget_field(last_type, content_tag(:ul, inner_content))
+      inner_content = ''
+      last_type = item[:item_type]
+    end
+    inner_content += "<li class='lessico' about='#{item[:class]}'>#{item[:name]}</li>"
+  end
+  w.content content
 end
 %>
 
 <%=
     unless @bibl.nil?
-	 	boxview_widget 'Bibliografia', {:class => 'studio widget_draggable'} do |w| 
-			content = ''
-			@bibl.each{ |item| content += "<li>#{item}</li>" }
-		  	w.content boxview_widget_field('Fonti', content_tag(:ul, content))
-		end
+      boxview_widget 'Bibliografia', {:class => 'studio widget_draggable'} do |w| 
+        content = ''
+        @bibl.each{ |item| content += "<li>#{item}</li>" }
+        w.content boxview_widget_field('Fonti', content_tag(:ul, content))
+      end
     end
 %>
