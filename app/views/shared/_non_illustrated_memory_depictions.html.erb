@@ -33,7 +33,7 @@ Component type:
         <% existing.each do |name, value|
            field_name = "#{main_name}[#{param_name}][]"
         %>
-            populate_with_item(populate_ul_id, '<%= name %>', [{name: '<%= field_name %>[uri]', value: '<%= value %>'}]);
+            populate_with_item(populate_ul_id, '<%= escape_javascript name %>', [{name: '<%= field_name %>[uri]', value: '<%= value %>'}]);
         <% end %>
     });
     

@@ -31,7 +31,7 @@
         <% existing.each do |name, value|
            field_name = "#{escape_javascript main_name}[#{escape_javascript param_name}][]"
         %>
-            populate_with_item(populate_ul_id, '<%=escape_javascript name %>', [{name: '<%= field_name %>', value: '<%=escape_javascript value %>'}]);
+            populate_with_item(populate_ul_id, '<%= escape_javascript name %>', [{name: '<%= field_name %>', value: '<%=escape_javascript value %>'}]);
         <% end %>
     });
     

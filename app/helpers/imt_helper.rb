@@ -38,17 +38,19 @@ module ImtHelper
       xml.img{
         xml.a(:r => image.id.to_s, :s => image.uri.to_s, :l => image.name, :u => original_image_url(image))
       }
-      xml.xml{
       unless zones.size.zero?
         # First zone is assumed as the one of main interest, where the image will focus (zoom to).
         outer = zones.delete zones.first
-        xml.a(:r => outer.id.to_s, :s => outer.uri.to_s, :l =>outer.name, :t =>"#{image.uri}@#{outer.coordinates}"){
-          zones.each do |z|
-            xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}") unless z.coordinates.nil?
-          end
+        outer_coordinates = outer.coordinates
+        outer_coordinates = "0:0:1:0:1:1:0:1" if outer_coordinates.nil?
+        xml.xml{
+          xml.a(:r => outer.id.to_s, :s => outer.uri.to_s, :l =>outer.name, :t =>"#{image.uri}@#{outer_coordinates}"){
+            zones.each do |z|
+              xml.a(:r => z.id.to_s, :s => z.uri.to_s, :l=> z.name, :t => "#{image.uri}@#{z.coordinates}") unless z.nil? or z.coordinates.nil?
+            end
+          } 
         }
       end
-      }
       xml.cb(:u => nil, :p => "base64xml")
     }
     Base64.encode64(xml.target!).gsub(/\s/, '')
