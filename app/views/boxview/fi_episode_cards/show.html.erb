@@ -68,7 +68,7 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
 
-  w.content boxview_widget_field('Note di studio', @resource.study_notes)
+  w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end
 %>
 
@@ -76,12 +76,12 @@ end
 boxview_widget 'Elementi collegati', {:class => 'TextWidget widget_draggable'} do |w|
 
   w.content boxview_widget_field('Carro', content_tag(:ul, content_tag(:li, boxview_link_for_object(@resource.cart))))
-  w.content boxview_widget_field('Carretto', content_tag(:ul, content_tag(:li, boxview_link_for_object(@resource.vehicle))))
+  w.content boxview_widget_field('Veicolo', content_tag(:ul, content_tag(:li, boxview_link_for_object(@resource.vehicle))))
 
   content = @resource.vehicle.episodes.map do |el|
               content_tag(:li, boxview_link_for_object(el)) unless el == @resource
             end.compact
-  w.content boxview_widget_field('Altri episodi sullo stesso carretto', content_tag(:ul, content.join(''))) unless content.size.zero?
+  w.content boxview_widget_field('Altri episodi sullo stesso veicolo', content_tag(:ul, content.join(''))) unless content.size.zero?
 end
 %>
 

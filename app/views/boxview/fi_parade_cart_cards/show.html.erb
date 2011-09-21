@@ -19,7 +19,7 @@ end
   content = [@resource.tecnique.to_s, @resource.measure.to_s].select {|c| not c.blank?}.join(' - ')
   w.content boxview_widget_field('Tecnica e misure', content)
   w.content boxview_widget_field('Note descrittive', @resource.descriptive_notes)
-  w.content boxview_widget_field('Ordine di apparizione nella sfilata', @resource.procession_position)
+#  w.content boxview_widget_field('Ordine di apparizione nella sfilata', @resource.procession_position)
 end
 %>
 
@@ -28,9 +28,12 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
   w.content boxview_widget_field('Descrizione', @resource.description)
 
   notes = @resource.notes.map do |n|
-    name = n.name.blank? ? "" : "#{n.name}: "
-    imt_highlight imt_id, "#{name}#{n.content}", n.image_zone.id
-  end.join(', ')
+#    name = n.name.blank? ? "" : "#{n.name}: "
+#    imt_highlight imt_id, "#{name}#{n.content}", n.image_zone.id
+    imt_highlight imt_id, "#{n.content}", n.image_zone.id
+  end.join('<br/>')
+
+
   w.content boxview_widget_field('Trascrizioni note manoscritte', notes)
 
   if @resource.baldini_text or @resource.cini_text
@@ -72,7 +75,7 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Fonti', content_tag(:ul, content))
   end
 
-  w.content boxview_widget_field('Note di studio', @resource.study_notes)
+  w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end
 %>
 
@@ -86,20 +89,20 @@ boxview_widget 'Elementi collegati', {:class => 'TextWidget widget_draggable'} d
   content = []
   if card = @resource.deity
     link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Divinità'}: #{link}")
+    content << content_tag(:li, "Divinità: #{link}")
 
   end
   if card = @resource.throne
     link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Trono'}: #{link}")
+    content << content_tag(:li, "Trono: #{link}")
   end
   if card = @resource.vehicle
     link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Veicolo'}: #{link}")
+    content << content_tag(:li, "Veicolo: #{link}")
   end
   if card = @resource.animal
     link = boxview_link_for_object(card, :text => imt_highlight(imt_id, card.name, card.image_zone.id))
-    content << content_tag(:li, "#{t 'Animale'}: #{link}")
+    content << content_tag(:li, "Animale: #{link}")
   end
   w.content boxview_widget_field('Sezioni carro', content_tag(:ul, content.join(''))) unless content.size.zero?
 end

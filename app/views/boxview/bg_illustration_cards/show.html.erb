@@ -71,7 +71,7 @@ end
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
 
-  w.content boxview_widget_field 'Note di studio: testo esteso', @resource.study_notes
+  w.content boxview_widget_field 'Note di studio, @resource.study_notes.gsub("\r\n",'<br/>') unless @resource.study_notes.nil?
 
   content = [@resource.motto, @resource.motto_language].select {|c| not c.blank?}.join(',  ')
   w.content boxview_widget_field('Motto', content)

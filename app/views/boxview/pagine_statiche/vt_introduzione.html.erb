@@ -1,7 +1,51 @@
 <%=
     boxview_widget 'Introduzione', {:class => 'introduzione widget_draggable'} do |w| 
-        w.content %[
-            Contenuto statico della pagina introduzione progetto memorie
-        ]
+        w.content %[ 
+<P CLASS=\"western\" ALIGN=CENTER STYLE=\"margin-bottom: 0cm\">Lettere
+autografe di Pietro Aretino sull’arte</P>
+<P CLASS=\"western\" STYLE=\"margin-bottom: 0cm\"><BR>
+</P>
+<P CLASS=\"western\" ALIGN=JUSTIFY STYLE=\"margin-bottom: 0cm\">Il
+database raccoglie un gruppo di lettere originali di Pietro Aretino
+che offre una preziosa testimonianza del dialogo ininterrotto di uno
+dei massimi letterati del Cinquecento italiano con l’universo delle
+arti figurative e dei suoi protagonisti, da Giulio Romano a Tiziano,
+a Sansovino, a Michelangelo. La corrispondenza aretiniana documenta
+la graduale conquista di una funzione di mediatore fra artisti e
+mecenati illustri che messer Pietro manifesta anche attraverso la
+padronanza linguistica di un formulario critico ricco e innovativo.</P>
+<P CLASS=\"western\" ALIGN=JUSTIFY STYLE=\"margin-bottom: 0cm\">	Il
+progetto si è sviluppato a partire dal censimento degli autografi
+aretiniani pubblicato nel primo volume di <I>Autografi dei letterati
+italiani. Il Cinquecento</I> (Roma, Salerno Ed., 2009) che ha
+permesso di definire i confini di un <I>corpus</I> manoscritto di
+provenienza quasi esclusivamente epistolare.</P>
+<P CLASS=\"western\" ALIGN=JUSTIFY STYLE=\"margin-bottom: 0cm\">	La
+funzione principale del database è quella di mettere a disposizione
+della ricerca una prima raccolta sistematica di materiale testuale
+originale in vista di uno studio approfondito del lessico artistico
+aretiniano. A questo fine si è proceduto a un’indicizzazione dei
+nomi di persona, di luogo e delle opere d’arte citate e si è
+completata una marcatura del lessico estesa a tutte le forme verbali,
+nominali e aggettivali in varia misura attinenti alla materia
+artistica, sia sul versante più propriamente tecnico che su quello
+critico.</P>
+<P CLASS=\"western\" ALIGN=JUSTIFY STYLE=\"margin-bottom: 0cm\"><BR>
+</P>
+<P CLASS=\"western\" ALIGN=JUSTIFY STYLE=\"margin-bottom: 0cm\">Tutti i
+testi sono presentati in trascrizione critica con le riproduzioni
+fotografiche degli originali. Per i testi approdati a pubblicazione
+nei volumi delle <I>Lettere</I> aretiniane si è provveduto a una
+trascrizione della redazione a stampa completa dell’indicizzazione
+e della marcatura del lessico artistico e corredata dalla
+riproduzione fotografica dell’originale. Delle varianti tra le due
+redazioni si rende conto in sede di apparato (disponibile nel
+documento pdf allegato alle singole lettere).</P>
+<P CLASS=\"western\" ALIGN=JUSTIFY STYLE=\"margin-bottom: 0cm\">	Nel caso
+della lettera a Vincenzo Vecellio è stata sperimentata una sorta di
+collazione elettronica che consente di visualizzare immediatamente
+sulle trascrizioni le differenze tra la stesura manoscritta e quella
+a stampa.</P>
+] + "<p>" +boxview_link(url_for(:controller => "boxview/pagine_statiche/vt_crediti"), "Crediti", "Crediti", "vt_crediti", 'intro') + "</p><p>" +  boxview_link(url_for(:controller => "boxview/pagine_statiche/vt_criteri_trascrizione"),"Criteri di trascrizione", "Criteri di trascrizione", "vt_criteri", 'intro') + "</p><p>" + boxview_link(url_for(:controller => "boxview/pagine_statiche/vt_istituzioni"), "Riconoscimenti", "Riconoscimenti", "vt_riconoscimenti", 'intro') + "</p>"
     end
 %>

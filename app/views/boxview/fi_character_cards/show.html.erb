@@ -19,7 +19,7 @@ end
   content = [@resource.tecnique.to_s, @resource.measure.to_s].select {|c| not c.blank?}.join(' - ')
   w.content boxview_widget_field('Tecnica e misure', content)
   w.content boxview_widget_field('Note descrittive', @resource.descriptive_notes)
-  w.content boxview_widget_field('Ordine di apparizione nella sfilata', @resource.procession_position)
+#  w.content boxview_widget_field('Ordine di apparizione nella sfilata', @resource.procession_position)
 end
 %>
 
@@ -28,16 +28,18 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
   w.content boxview_widget_field('Descrizione', @resource.description)
 
   content = []
-  content << "Età: #{@resource.qualities_age}"                unless @resource.qualities_age.blank?
-  content << "sesso: #{@resource.qualities_gender}"           unless @resource.qualities_gender.blank?
-  content << "etnia: #{@resource.qualities_ethnic_group}"     unless @resource.qualities_ethnic_group.blank?
-  content << "professione: #{@resource.qualities_profession}" unless @resource.qualities_profession.blank?
+  content << "#{@resource.qualities_age}"                unless @resource.qualities_age.blank?
+  content << "#{@resource.qualities_gender}"           unless @resource.qualities_gender.blank?
+  content << "#{@resource.qualities_ethnic_group}"     unless @resource.qualities_ethnic_group.blank?
+  content << "#{@resource.qualities_profession}" unless @resource.qualities_profession.blank?
   w.content boxview_widget_field('Qualità', content.join(', '))
 
   notes = @resource.notes.map do |n|
-    name = n.name.blank? ? "" : "#{n.name}: "
-    imt_highlight imt_id, "#{name}#{n.content}", n.image_zone.id
-  end.join(', ')
+#    name = n.name.blank? ? "" : "#{n.name}: "
+#    imt_highlight imt_id, "#{name}#{n.content}", n.image_zone.id
+    imt_highlight imt_id, "#{n.content}", n.image_zone.id
+
+  end.join('<br/>')
   w.content boxview_widget_field('Trascrizioni delle note', notes)
 
   if @resource.baldini_text or @resource.cini_text
@@ -87,7 +89,7 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
 
-  w.content boxview_widget_field('Note di studio', @resource.study_notes)
+  w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end
 %>
 

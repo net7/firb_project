@@ -41,7 +41,7 @@ end %>
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
 
-  w.content boxview_widget_field('Note di studio', @resource.study_notes)
+  w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end %>
 
 <% unless @resource.bibliography_items.size.zero? %>

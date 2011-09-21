@@ -18,6 +18,15 @@ class Boxview::PagineStaticheController < Boxview::BaseController
   def vt_introduzione
   end
 
+  def vt_criteri_trascrizione
+  end
+
+  def vt_istituzioni
+  end
+
+  def vt_crediti
+  end
+
   def vt_help
   end
 
