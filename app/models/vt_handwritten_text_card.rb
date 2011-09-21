@@ -1,6 +1,9 @@
 class VtHandwrittenTextCard < TextCard
   hobo_model
   include StandardPermissions
+
+  include Mixin::Searchable
+
   autofill_uri :force => true
   setup_publish_properties
   

@@ -24,7 +24,6 @@ class Admin::PublishController < Admin::AdminSiteController
        @lex_art = []
        
        if (@source.is_a?(FiTextCard))
-
          v = Nokogiri::HTML.parse(@raw_content)
          # Handle consolidated annotations
          v.xpath(".//div[@class='consolidatedAnnotation']").each do |d|
@@ -39,20 +38,20 @@ class Admin::PublishController < Admin::AdminSiteController
              d.remove
            end
 
-           # Has Bibliography Item
-           if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasBibliographyItem')
-             custom_bibl_url = d.xpath(".//div[@class='object']")[0]['about']
-             custom_bibl = CustomBibliographyItem.find(custom_bibl_url, :prefetch_relations => true)
-             bi = custom_bibl.bibliography_item
-             n_name = "[#{bi.author} #{bi.date}]"
-             # TODO: add more fields to this bibl item! ;)
-             n_content = "\"#{bi.title}\": #{bi.author}, #{bi.pages}, #{bi.date}"
-             @notes.push({:name => n_name, :content => n_content, :class => ca_class})
-             d.remove
-           end
+           # # Has Bibliography Item
+           # if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasBibliographyItem')
+           #   custom_bibl_url = d.xpath(".//div[@class='object']")[0]['about']
+           #   custom_bibl = CustomBibliographyItem.find(custom_bibl_url, :prefetch_relations => true)
+           #   bi = custom_bibl.bibliography_item
+           #   n_name = "[#{bi.author} #{bi.date}]"
+           #   # TODO: add more fields to this bibl item! ;)
+           #   n_content = "\"#{bi.title}\": #{bi.author}, #{bi.pages}, #{bi.date}"
+           #   @notes.push({:name => n_name, :content => n_content, :class => ca_class})
+           #   d.remove
+           # end
 
          end # v.xpath().each 
-         
+
        elsif (@source.is_a?(VtHandwrittenTextCard) || @source.is_a?(VtPrintedTextCard))
          
          v = Nokogiri::HTML.parse(@raw_content)
@@ -78,22 +77,20 @@ class Admin::PublishController < Admin::AdminSiteController
              d.remove
            end
 
-           # Has Bibliography Item
-           if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasBibliographyItem')
-             custom_bibl_url = d.xpath(".//div[@class='object']")[0]['about']
-             custom_bibl = CustomBibliographyItem.find(custom_bibl_url, :prefetch_relations => true)
-             bi = custom_bibl.bibliography_item
-             n_name = "[#{bi.author} #{bi.date}]"
-             # TODO: add more fields to this bibl item! ;)
-             n_content = "\"#{bi.title}\": #{bi.author}, #{bi.pages}, #{bi.date}"
-             @notes.push({:name => n_name, :content => n_content, :class => ca_class})
-             d.remove
-           end
-
+           # # Has Bibliography Item
+           # if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasBibliographyItem')
+           #   custom_bibl_url = d.xpath(".//div[@class='object']")[0]['about']
+           #   custom_bibl = CustomBibliographyItem.find(custom_bibl_url, :prefetch_relations => true)
+           #   bi = custom_bibl.bibliography_item
+           #   n_name = "[#{bi.author} #{bi.date}]"
+           #   # TODO: add more fields to this bibl item! ;)
+           #   n_content = "\"#{bi.title}\": #{bi.author}, #{bi.pages}, #{bi.date}"
+           #   @notes.push({:name => n_name, :content => n_content, :class => ca_class})
+           #   d.remove
+           # end
          end
 
        elsif (@source.is_a?(PiTextCard))
-         
          v = Nokogiri::HTML.parse(@raw_content)
          # Handle consolidated annotations
          v.xpath(".//div[@class='consolidatedAnnotation']").each do |d|
@@ -117,12 +114,12 @@ class Admin::PublishController < Admin::AdminSiteController
              d.remove
            end
 
-           # Has image zone
-           if (pred == "http://purl.oclc.org/firb/swn_ontology#hasImageZone")
-             z_name = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
-             @fenomeni.push({:name => z_name, :item_type => "Zone di immagine", :class => ca_class})
-             d.remove
-           end
+           # # Has image zone
+           # if (pred == "http://purl.oclc.org/firb/swn_ontology#hasImageZone")
+           #   z_name = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
+           #   @fenomeni.push({:name => z_name, :item_type => "Zone di immagine", :class => ca_class})
+           #   d.remove
+           # end
 
            # Has memory depiction (both illustrated and non illustrated)
            if (pred == 'http://purl.oclc.org/firb/swn_ontology#hasMemoryDepiction')
@@ -137,10 +134,8 @@ class Admin::PublishController < Admin::AdminSiteController
                @fenomeni.push({:name => md.short_description, :item_type => "Immagini di memoria", :class => ca_class})
                d.remove
            end
-
          end
-         
-         
+
        elsif (@source.is_a?(BgIllustrationCard))
          v = Nokogiri::HTML.parse(@raw_content)
          # Handle consolidated annotations
@@ -154,13 +149,10 @@ class Admin::PublishController < Admin::AdminSiteController
              @fenomeni.push({:name => z_name, :item_type => "Zone di immagine", :class => ca_class})
              d.remove
            end
-
          end
-         
        end
      end
-     
+
      render :text => "ok"
    end
-    
 end
