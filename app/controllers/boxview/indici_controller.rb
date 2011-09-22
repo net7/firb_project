@@ -32,6 +32,7 @@ class Boxview::IndiciController < Boxview::BaseController
       s.dynamic :facets do |f|
         f.facet @name, @category
       end
+      s.order_by :boxview_title
     end
   end
 
