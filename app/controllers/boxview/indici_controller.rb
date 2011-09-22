@@ -25,7 +25,6 @@ class Boxview::IndiciController < Boxview::BaseController
     render :show
   end
 
-
   def show_bg_owners
     collection = TaliaCore::Collection.find_by_id(params[:collection])
     @items = BgIllustrationCard.owners_for(collection)
@@ -71,6 +70,9 @@ class Boxview::IndiciController < Boxview::BaseController
     @parade = FiParade.first
     @text_cards = FiTextCard.find(:all)
     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions", :iconclass => "Iconclass_Term"}
+
+    @personaggi = (FiCharacterCard.all + FiDeityCard.all).sort
+
   end
 
   def vt
