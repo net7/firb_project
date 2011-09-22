@@ -1,5 +1,8 @@
 class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
 
+  caches_page :critic, :diplomatic
+
+
   def index
     @resource = VtLetter.find_by_id params[:vt_letter_id]
     @cards   = @resource.handwritten_cards
@@ -47,7 +50,7 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
       if (pred == 'http://purl.oclc.org/firb/swn_ontology#instanceOf')
         di_id = d.xpath(".//div[@class='object']")[0]['about']
         di = DictionaryItem.find(di_id, :prefetch_relations => true)
-        di_type = di.item_type.slice(41,100)
+        di_type = di.item_type.split('#').last
         fen_class = Digest::MD5.hexdigest(di.item_type)
         @fenomeni.push({:name => di.name, :fen_class => fen_class, :item_type => di_type, :class => ca_class})
         @lex_art.push({:name => di.name, :fen_class => fen_class, :item_type => di_type, :class => ca_class})

@@ -1,5 +1,7 @@
 class Admin::PublishController < Admin::AdminSiteController
   
+  cache_sweeper :fi_cards_sweeper, :vt_cards_sweeper
+
   def toggle
     @source = TaliaCore::ActiveSource.find(params[:id])    
     @source.toggle_published_by(current_user.name)
@@ -72,7 +74,7 @@ class Admin::PublishController < Admin::AdminSiteController
            if (pred == 'http://purl.oclc.org/firb/swn_ontology#instanceOf')
              di_id = d.xpath(".//div[@class='object']")[0]['about']
              di = DictionaryItem.find(di_id, :prefetch_relations => true)
-             di_type = di.item_type.slice(41,100)
+             di_type = di.item_type.split('#').last
              @lex_art.push({:name => di.name, :item_type => di_type, :class => ca_class})
              d.remove
            end
@@ -109,7 +111,7 @@ class Admin::PublishController < Admin::AdminSiteController
            if (pred == 'http://purl.oclc.org/firb/swn_ontology#instanceOf')
              di_id = d.xpath(".//div[@class='object']")[0]['about']
              di = DictionaryItem.find(di_id, :prefetch_relations => true)
-             di_type = di.item_type.slice(41,100)
+             di_type = di.item_type.split('#').last
              @fenomeni.push({:name => di.name, :item_type => di_type, :class => ca_class})
              d.remove
            end

@@ -9,7 +9,7 @@
 
   unless @letter.printed_cards.blank?
     w.right_icons boxview_link_for_object(@letter.printed_cards.first, :url => vt_printed_text_card_url(@letter.printed_cards.first.id)),
-                  :class => 'print'
+                  :class => 'print' if @letter.printed_cards.first.is_public?
   end
 
   if @resource.previous_card
