@@ -3,6 +3,7 @@ class VtHandwrittenTextCard < TextCard
   include StandardPermissions
 
   include Mixin::Searchable
+  include Mixin::VtFacetable
 
   autofill_uri :force => true
   setup_publish_properties
@@ -157,5 +158,4 @@ class VtHandwrittenTextCard < TextCard
 
     triples
   end
-
 end
