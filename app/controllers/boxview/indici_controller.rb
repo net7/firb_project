@@ -30,8 +30,9 @@ class Boxview::IndiciController < Boxview::BaseController
     @name = params[:name]
     @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
       s.dynamic :facets do |f|
-        f.facet @name, @category
+        f.with @category, @name
       end
+
       s.order_by :boxview_title
     end
   end
