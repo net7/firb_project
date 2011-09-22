@@ -21,14 +21,14 @@
         #w.content "</li>"
 
         m = @models[:illustrazioni]
-        w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria Illustrate</a><ul><li>"
+        w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria Illustrate</a><ul>"
         types = ImageComponent.zone_types_for(PiIllustrationCard)
         types.each do |type|
           w.content "<li class='menu_secondlevel leaf'>"
           w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", type, "Indice #{type}", "index_#{type}", :index)
           w.content "</li>"
         end
-        w.content "</li></ul></li>"
+        w.content "</ul></li>"
 
  
         # Schede testo
