@@ -66,7 +66,7 @@ class Boxview::VtPrintedTextCardsController < Boxview::BaseController
         n_that = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
         
         unless @handwritten.blank?
-          related_link = "<br />in #{boxview_link_for_object(@handwritten.first, :url => critic_vt_handwritten_text_card_url(@letter.id))}"
+          related_link = "<br />in #{boxview_link_for_object(@handwritten.first)}"
         end
         
         @notes.push({:name => n_this, :content => "diventa \"#{n_that}\"", :class => ca_class, 

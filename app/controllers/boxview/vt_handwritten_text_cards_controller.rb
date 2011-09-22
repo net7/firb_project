@@ -1,6 +1,6 @@
 class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
 
-  caches_page :critic, :diplomatic
+  caches_page :show
 
 
   def index
@@ -9,14 +9,7 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
     @edition = @resource.handwritten_reference_edition
   end
 
-  # Not wanted anymore.
-  def diplomatic
-    # @resource = VtHandwrittenTextCard.find_by_id params[:id];
-    # @letter   = @resource.letter
-    self.critic
-  end
-
-  def critic
+  def show
     @resource = VtHandwrittenTextCard.find(params[:id], :prefetch_relations => true)
  #   id = @resource.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').id
  #   record = TaliaCore::DataTypes::DataRecord.find(id)
