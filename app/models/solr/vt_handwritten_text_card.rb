@@ -30,5 +30,5 @@ module SOLR
         end.compact.join ', '
       end
     end
-  end
-end
+  end # class VtHandwrittenTextCard
+end # module SOLR

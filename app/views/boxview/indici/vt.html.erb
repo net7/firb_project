@@ -36,6 +36,29 @@
         w.content boxview_link("/boxview/indici/vt_letters_by_date", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
         w.content "</li>"
 
+
+
+        # per "facet" di nomi
+        m = @models[:letter]
+        w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t("Lettere per nomi di")}</a><ul>"
+        ['Divinità', 'Luogo', 'Persona', 'Personaggio'].each do |category|
+          w.content "<li class='menu_secondlevel leaf'>"
+          w.content boxview_link("/boxview/indici/vt_names_category?category=#{category}",
+                                 category,
+                                 "Indice dei nomi di #{category}",
+                                 "index_nomi_#{URI.escape category}",
+                                 :index)
+          w.content "</li>"
+        end
+
+        types = ImageComponent.zone_types_for(PiIllustrationCard)
+        types.each do |type|
+          w.content "<li class='menu_secondlevel leaf'>"
+          w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", type, "Indice #{type}", "index_#{type}", :index)
+          w.content "</li>"
+        end
+        w.content "</ul></li>"
+
         # per destinatari
 #        m = @models[:letter]
 #        w.content "<li class='menu_firstlevel leaf'>"
