@@ -51,14 +51,11 @@ class Boxview::IndiciController < Boxview::BaseController
     @work = params[:work]
     @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
       s.dynamic :facets do |f|
-        f.facet @work, @category
+        f.with @category, @work
       end
       s.order_by :boxview_title
     end
   end
-
-
-
 
   def show_vt_letters_by_recipient
     @items = VtLetter.menu_items_by_recipient('foo')
