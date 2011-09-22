@@ -21,6 +21,7 @@ class Boxview::IndiciController < Boxview::BaseController
     @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
       s.dynamic :facets do |f|
         f.facet @category
+        f.with @category
       end
     end
   end
@@ -30,6 +31,7 @@ class Boxview::IndiciController < Boxview::BaseController
     @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
       s.dynamic :facets do |f|
         f.facet @category
+        f.with @category
       end
     end
   end
