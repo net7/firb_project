@@ -1,5 +1,4 @@
-<% title = "#{@search.total} " + (@search.total == 1 ? "Risultato" : "Risultati") %>
-<%= boxview_widget title, {:class => 'TextWidget widget_draggable'} do |w|
+<%= boxview_widget "Indice", :class => "index widget_draggable" do |w|
   w.content "<ul>"
   @search.hits.each do |hit|
     w.content render :partial => '/boxview/shared/index_item', 
