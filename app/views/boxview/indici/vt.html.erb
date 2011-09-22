@@ -50,14 +50,23 @@
                                  :index)
           w.content "</li>"
         end
+        w.content "</ul></li>"
 
-        types = ImageComponent.zone_types_for(PiIllustrationCard)
-        types.each do |type|
+       # per "facet" di opere
+        m = @models[:letter]
+        w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('vt_letters.index_by_work_item_name')}</a><ul>"
+        ['Opera D\'Arte', 'Opera Letteraria'].each do |category|
           w.content "<li class='menu_secondlevel leaf'>"
-          w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", type, "Indice #{type}", "index_#{type}", :index)
+          w.content boxview_link("/boxview/indici/vt_works_category?category=#{category}",
+                                 category,
+                                 "Indice delle #{category}",
+                                 "index_work_#{URI.escape category}",
+                                 :index)
           w.content "</li>"
         end
-        w.content "</ul></li>"
+      w.content "</ul></li>"
+
+
 
         # per destinatari
 #        m = @models[:letter]

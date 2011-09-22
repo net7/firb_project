@@ -79,6 +79,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/bg_illustration_by_owner/:owner', :controller => 'boxview/indici', :action => "show_bg_illustration_by_owner"
   map.connect '/boxview/indici/vt_letters_by_date', :controller => 'boxview/indici', :action => "show_vt_letters_by_date"
   map.connect '/boxview/indici/vt_names_category', :controller => 'boxview/indici', :action => "show_vt_names_category"
+  map.connect '/boxview/indici/vt_works_category', :controller => 'boxview/indici', :action => "show_vt_works_category"
   map.connect '/boxview/indici/vt_letters_by_name', :controller => 'boxview/indici', :action => "show_vt_letters_by_name"
   map.connect '/boxview/indici/vt_letters_by_recipient', :controller => 'boxview/indici', :action => "show_vt_letters_by_recipient"
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"

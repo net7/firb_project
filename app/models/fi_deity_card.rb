@@ -15,9 +15,15 @@ class FiDeityCard < IllustrationCard
     super(sort, false)
   end
 
+  # This is needed to use #sort 
+  def <=>(deity)
+    self.name < deity.name ? -1 : 1
+  end
+
   def boxview_data
+    title = "Carta #{self.anastatica.page_position} - #{self.name} - (#{self.cart.name})"
     { :controller => 'boxview/fi_deity_cards', 
-      :title => self.name,
+      :title => title,
       :description => "",
       :res_id => "fi_deity_card_#{self.id}", 
       :box_type => 'image',

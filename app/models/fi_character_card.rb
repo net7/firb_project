@@ -32,9 +32,16 @@ class FiCharacterCard < IllustrationCard
     procession.select {|el| el.is_a? FiCharacterCard}
   end
 
+  # This is needed to use #sort 
+  def <=>(character)
+    self.name < character.name ? -1 : 1
+  end
+
+
   def boxview_data
+    title = "Carta #{self.anastatica.page_position} - #{self.name} - (#{self.cart.name})"
     { :controller => 'boxview/fi_character_cards', 
-      :title => self.name,
+      :title => title,
       :description => "",
       :res_id => "fi_character_card_#{self.id}", 
       :box_type => 'image',
