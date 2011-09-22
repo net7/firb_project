@@ -19,8 +19,18 @@ class Boxview::IndiciController < Boxview::BaseController
   def show_vt_names_category
     @category = params[:category]
     @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
-      s.dynamic :facets do
-        facet params[:category]
+      s.dynamic :facets do |f|
+        f.facet @category
+      end
+    end
+  end
+
+  def show_vt_letters_by_name
+    @category = params[:category]
+    @name = params[:name]
+    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.facet @name, @category
       end
     end
   end
