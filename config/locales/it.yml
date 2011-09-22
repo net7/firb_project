@@ -654,8 +654,8 @@ it:
             create_success: "La scheda Veicolo è stata creata."
 
     vt_letters:
-        menu_item_name: "Lettere per Data"
-        recipient_menu_item_name: "Lettere per Destinatari"
+        index_by_date_item_name: "Lettere per data"
+        index_by_name_item_name: "Lettere per nomi di"	
         nav_item: "Lettere"
         model_name: "Lettera"
         model_name_plural: "Lettere"
