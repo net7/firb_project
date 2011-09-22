@@ -9,6 +9,10 @@ module SOLR
 
       string :bibliography, :multiple => true
 
+      dynamic_string :facets, :multiple => true, :stored => true do
+        facets
+      end
+
       # Other fields (filters?)
       # measure
       # cartulation
