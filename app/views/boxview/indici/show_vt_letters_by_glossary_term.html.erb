@@ -1,11 +1,16 @@
 <%= boxview_widget "Indice", :class => "index widget_draggable" do |w|
   w.content "<ul>"
-  @search.hits.each do |hit|
+  @search.each_hit_with_result do |hit, result|
+    boxview_id = if result.is_a?(SOLR::VtPrintedTextCard)
+                   "vt_printed_text_card_#{hit.stored(:database_id)}"
+                 else
+                   "vt_handwritten_text_card_#{hit.stored(:database_id)}"
+                 end
     w.content render :partial => '/boxview/shared/index_item', 
                      :locals => {:title => boxview_link(hit.stored(:boxview_url),
                                                         hit.stored(:boxview_title), 
                                                         hit.stored(:boxview_title),
-                                                        "vt_handwritten_text_cards_#{hit.stored(:database_id)}",
+                                                        "vt_handwritten_text_card_#{hit.stored(:database_id)}",
                                                         hit.stored(:boxview_type)),
                                  :description => hit.stored(:boxview_description)}
   end

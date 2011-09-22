@@ -57,6 +57,17 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
+  def show_vt_letters_by_glossary_term
+    @category = params[:category]
+    @term = params[:term]
+    @search = SOLR.search(SOLR::VtHandwrittenTextCard, SOLR::VtPrintedTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.with @category, @term
+      end
+      s.order_by :boxview_title
+    end
+  end
+
   def show_vt_letters_by_recipient
     @items = VtLetter.menu_items_by_recipient('foo')
   end
@@ -119,11 +130,17 @@ class Boxview::IndiciController < Boxview::BaseController
   def vt
     @collection_id = TaliaCore::Collection.find(:first).id #actually useless, needed by show method above
     @models = {:letter => 'Vt_Letter', :printed => 'Vt_Printed_Text_Card'}
+    @glossary = "Lessico artistico"
+    @search = SOLR.search(SOLR::VtHandwrittenTextCard, SOLR::VtPrintedTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.facet @glossary
+        f.with  @glossary
+      end
+    end
   end
 
   def bg
     @collection_id = TaliaCore::Collection.find(:first).id
     @models = {:illustrazioni => 'Bg_Illustration_Card', :schede_testo => 'Bg_Text_Card', :anastatica => 'Anastatica', :iconclass => 'Iconclass_Term'}
-
   end
 end

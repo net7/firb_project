@@ -38,6 +38,7 @@
             "index_#{m.tableize}",
             :index)
   w.content "</li>"
+
   # per "facet" di nomi
   m = @models[:letter]
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('vt_letters.index_by_name_item_name')}</a><ul>"
@@ -62,6 +63,19 @@
                            "index_work_#{URI.escape category}",
                            :index)
     w.content "</li>"
+  end
+  w.content "</ul></li>"
+
+  w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('vt_letters.index_by_glossary_item_name')}</a><ul>"
+  @search.facets.first.rows.each do |term|
+    # name.count should return the incidence count for this name.
+    w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => boxview_link("/boxview/indici/vt_letters_by_glossary_term?term=#{term.value.to_s}&category=#{@glossary}",
+                                                        term.value.to_s,
+                                                        "Lettere contenti '#{term.value.to_s}'",
+                                                        "index_letters_by_glossary_term_#{URI.escape term.value.to_s}",
+                                                        :index),
+                                 :description => ""}
   end
   w.content "</ul></li>"
   w.content "</ul>"
