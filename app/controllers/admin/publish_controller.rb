@@ -5,6 +5,10 @@ class Admin::PublishController < Admin::AdminSiteController
   def toggle
     @source = TaliaCore::ActiveSource.find(params[:id])    
     @source.toggle_published_by(current_user.name)
+    if @source.respond_to? :to_solr
+      @source.is_public? ? @source.solr_index! : SOLR::Remove(@source.to_solr)
+    end
+
     hobo_ajax_response if request.xhr?
    end
 

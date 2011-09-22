@@ -24,6 +24,13 @@ module SOLR
   end
 
   ##
+  # Just a link to Sunspot remove method, to keep names consistent.
+  #
+  def self.remove(*objects, &block)
+    Sunspot.remove(*objects, &block)
+  end
+
+  ##
   # Just a link to Sunspot remove_all! method, to keep names consistent.
   #
   def self.remove_all!
