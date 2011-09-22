@@ -656,6 +656,7 @@ it:
     vt_letters:
         index_by_date_item_name: "Lettere per data"
         index_by_name_item_name: "Lettere per nomi di"	
+        index_by_work_item_name: "Lettere per opere"
         nav_item: "Lettere"
         model_name: "Lettera"
         model_name_plural: "Lettere"

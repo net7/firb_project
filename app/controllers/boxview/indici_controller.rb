@@ -25,6 +25,15 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
+  def show_vt_works_category
+    @category = params[:category]
+    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.facet @category
+      end
+    end
+  end
+
   def show_vt_letters_by_name
     @category = params[:category]
     @name = params[:name]
@@ -36,6 +45,20 @@ class Boxview::IndiciController < Boxview::BaseController
       s.order_by :boxview_title
     end
   end
+
+  def show_vt_letters_by_work
+    @category = params[:category]
+    @work = params[:work]
+    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.facet @work, @category
+      end
+      s.order_by :boxview_title
+    end
+  end
+
+
+
 
   def show_vt_letters_by_recipient
     @items = VtLetter.menu_items_by_recipient('foo')
