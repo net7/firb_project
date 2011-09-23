@@ -28,7 +28,6 @@ module Mixin::Facetable
       @facet_labels = {}
       @transcription_text = ""
       html = facets_transcription_xml
-      components = image_components if respond_to? :image_components
       return {} if html.nil? and components.nil?
 
       @facets = {}.tap do |facets|
@@ -64,16 +63,14 @@ module Mixin::Facetable
           end
           @transcription_text = html.to_s
 
-        end unless html.nil?  
-        # html.xpath(".//div[@class='consolidatedAnnotation']").each
-        
-        components.each do |c|
+        end unless html.nil? # end html.xpath(".//div[@class='consolidatedAnnotation']").each
+
+        (respond_to?(:image_components) ? image_components : []).each do |c|
           # FI doesn't have zone_type set, other may have. 
-          key = c.zone_type || "components"
-          facets[key] << c.name if key.present? and not (facets[key.to_s] ||= []).include?(c.name)
-        end unless components.nil? 
-        # components.each do |c
-      end # {}.tap do |facets|
+          key = c.zone_type.presence || "components"
+          @facets[key.to_s] << c.name unless (@facets[key.to_s] ||= []).include? c.name
+        end # end components.each
+      end # {}.tap
     end # def build_facets
 
     def facets_transcription_xml
