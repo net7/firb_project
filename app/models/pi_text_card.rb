@@ -2,6 +2,9 @@ class PiTextCard < TextCard
   hobo_model
   include StandardPermissions
   extend Mixin::Showable
+  include Mixin::Searchable
+  include Mixin::Facetable::Pi
+
   showable_in Anastatica
   setup_publish_properties
 

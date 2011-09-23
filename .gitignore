@@ -10,4 +10,4 @@ config/*.fi.yml
 config/*.vt.yml
 config/*.bg.yml
 data
-
+switch_firb.sh
