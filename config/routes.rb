@@ -80,9 +80,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/vt_letters_by_date', :controller => 'boxview/indici', :action => "show_vt_letters_by_date"
   map.connect '/boxview/indici/vt_names_category', :controller => 'boxview/indici', :action => "show_vt_names_category"
   map.connect '/boxview/indici/vt_works_category', :controller => 'boxview/indici', :action => "show_vt_works_category"
+  map.connect '/boxview/indici/vt_glossary_term', :controller => 'boxview/indici', :action => "show_vt_glossary_term"
   map.connect '/boxview/indici/vt_letters_by_glossary_term', :controller => 'boxview/indici', :action => "show_vt_letters_by_glossary_term"
   map.connect '/boxview/indici/vt_letters_by_name', :controller => 'boxview/indici', :action => "show_vt_letters_by_name"
-  map.connect '/boxview/indici/vt_letters_by_recipient', :controller => 'boxview/indici', :action => "show_vt_letters_by_recipient"
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
