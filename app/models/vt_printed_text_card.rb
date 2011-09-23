@@ -3,7 +3,7 @@ class VtPrintedTextCard < TextCard
   include StandardPermissions
 
   include Mixin::Searchable
-  include Mixin::VtFacetable
+  include Mixin::Facetable::Vt
 
   autofill_uri :force => true
   setup_publish_properties
