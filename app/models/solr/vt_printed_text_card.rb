@@ -10,6 +10,8 @@ module SOLR
       dynamic_string :facets, :multiple => true, :stored => true do
         facets
       end
+      text :transcription_text
+
     end
 
     def ref_edition

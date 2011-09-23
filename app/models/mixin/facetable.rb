@@ -4,6 +4,13 @@ module Mixin::Facetable
     @facets ||= build_facets
   end
 
+  def transcription_text
+    html = facets_transcription_xml
+    return "" if html.nil?
+    html.xpath(".//div[@class='consolidatedAnnotation']").each {|annotation| annotation.remove}
+    html.to_s
+  end
+
   protected
     def facets_allowed_predicates
       [N::FIRBSWN.hasNote.to_s, N::FIRBSWN.instanceOf.to_s]
@@ -41,15 +48,17 @@ module Mixin::Facetable
           end # if facets_predicate_allowed?
           annotation.remove
           facets[key.to_s] << value.to_s if key.present? and value.present? and not (facets[key.to_s] ||= []).include?(value.to_s)
-        end
-      end
+        end # html.xpath(".//div[@class='consolidatedAnnotation']").each
+      end # {}.tap do |facets|
     end # def build_facets
 
     def facets_transcription_xml
-      raw_content = data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').content_string
-      raw_content.present? ? Nokogiri::HTML.parse(raw_content) : nil
-    rescue
-      nil
+      @facets_transcription_xml ||= begin
+                                      raw_content = data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').content_string
+                                      raw_content.present? ? Nokogiri::HTML.parse(raw_content) : nil
+                                    rescue
+                                      nil
+                                    end
     end
 
     def facets_annotation_get(annotation, class1, class2=nil)
