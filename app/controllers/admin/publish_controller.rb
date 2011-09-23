@@ -5,7 +5,10 @@ class Admin::PublishController < Admin::AdminSiteController
   def toggle
     @source = TaliaCore::ActiveSource.find(params[:id])    
     @source.toggle_published_by(current_user.name)
+
     if @source.respond_to? :to_solr
+      #yes, it's that ugly: we reload it. otherwise @source.is_public? fails. 
+      @source = TaliaCore::ActiveSource.find(params[:id])
       @source.is_public? ? @source.solr_index! : SOLR.remove(@source.to_solr)
     end
 
