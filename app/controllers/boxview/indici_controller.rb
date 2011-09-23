@@ -36,6 +36,17 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
+  def show_vt_glossary_term
+    @glossary = params[:glossary]
+    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.facet @glossary
+        f.with @glossary
+      end
+    end
+  end
+
+
   def show_vt_letters_by_name
     @category = params[:category]
     @name = params[:name]
@@ -43,7 +54,6 @@ class Boxview::IndiciController < Boxview::BaseController
       s.dynamic :facets do |f|
         f.with @category, @name
       end
-
       s.order_by :boxview_title
     end
   end
@@ -60,18 +70,14 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def show_vt_letters_by_glossary_term
-    @category = params[:category]
+    @glossary = params[:glossary]
     @term = params[:term]
     @search = SOLR.search(SOLR::VtHandwrittenTextCard, SOLR::VtPrintedTextCard) do |s|
       s.dynamic :facets do |f|
-        f.with @category, @term
+        f.with @glossary, @term
       end
       s.order_by :boxview_title
     end
-  end
-
-  def show_vt_letters_by_recipient
-    @items = VtLetter.menu_items_by_recipient('foo')
   end
 
   def show_bg_illustration_by_owner
