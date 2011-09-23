@@ -6,6 +6,7 @@ module SOLR
       text :technical_notes
       text :conservation_status
       text :bibliography
+      text :facets
 
       string :bibliography, :multiple => true
 
