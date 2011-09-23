@@ -11,6 +11,9 @@ module SOLR
       string :code
       string :description
 
+      text :bibliography
+      string :bibliography, :multiple => true
+
       text :transcription
       text :name
 
@@ -19,7 +22,6 @@ module SOLR
         facets
       end
     end # solr_setup
-
 
     def bibliography
       parts = []
