@@ -9,6 +9,9 @@ class FiCharacterCard < IllustrationCard
   extend FiCardsCommonFields::DefinedProperties
   include Mixin::HasParts
 
+  include Mixin::Searchable
+  include Mixin::Facetable::Fi
+
   common_properties
 
   rdf_property :qualities_age, N::TALIA.qualities_age, :type => :string

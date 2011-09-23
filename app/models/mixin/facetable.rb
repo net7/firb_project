@@ -22,7 +22,8 @@ module Mixin::Facetable
 
     def build_facets
       html = facets_transcription_xml
-      return {} if html.nil?
+      components = image_components if respond_to? :image_components
+      return {} if html.nil? and components.nil?
 
       {}.tap do |facets|
         html.xpath(".//div[@class='consolidatedAnnotation']").each do |annotation|
@@ -48,8 +49,17 @@ module Mixin::Facetable
           end # if facets_predicate_allowed?
           annotation.remove
           facets[key.to_s] << value.to_s if key.present? and value.present? and not (facets[key.to_s] ||= []).include?(value.to_s)
-        end # html.xpath(".//div[@class='consolidatedAnnotation']").each
-      end # {}.tap do |facets|
+        end unless html.nil?  
+        # html.xpath(".//div[@class='consolidatedAnnotation']").each
+        
+        components.each do |c|
+          # FI doesn't have zone_type set, other may have. 
+          key = c.zone_type || "components"
+          facets[key] << c.name if key.present? and not (facets[key.to_s] ||= []).include?(c.name)
+        end unless components.nil? 
+        # components.each do |c
+
+      end # {}.tap do |facets|      
     end # def build_facets
 
     def facets_transcription_xml

@@ -131,8 +131,6 @@ class Boxview::IndiciController < Boxview::BaseController
     @text_cards = FiTextCard.find(:all)
     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions", :iconclass => "Iconclass_Term"}
 
-    @personaggi = (FiCharacterCard.all + FiDeityCard.all).sort
-
   end
 
   def vt

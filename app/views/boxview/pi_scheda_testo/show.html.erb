@@ -4,8 +4,8 @@
 
 <%=
     boxview_widget 'Parafrasi', {:class => 'parafrasi widget_draggable'} do |w| 
-        w.content content_tag(:div, @resource.parafrasi)
-    end
+        w.content content_tag(:div, @resource.parafrasi.gsub("\r\n",'<br/>'))
+    end unless @resource.parafrasi.nil?
 %>
 
 <%= render :partial => '/boxview/shared/widget_notes', :locals => {:notes => @notes } %>

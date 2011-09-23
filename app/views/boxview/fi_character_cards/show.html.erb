@@ -68,11 +68,11 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
   end
 
 
-  unless @resource.bibliography_items.size.zero?
-    content = @resource.bibliography_items.map do |item|
+  unless @resource.modern_bibliography_items.size.zero?
+    content = @resource.modern_bibliography_items.map do |item|
       content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
     end.join('')
-    w.content boxview_widget_field('Ulteriori fonti', content_tag(:ul, content))
+    w.content boxview_widget_field('Fonti moderne', content_tag(:ul, content))
   end
 
 
