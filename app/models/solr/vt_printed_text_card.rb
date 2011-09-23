@@ -5,12 +5,14 @@ module SOLR
       text :name
       # text :page_position
 
+
+      text :facets
       dynamic_string :facets, :multiple => true, :stored => true do
         facets
       end
     end
 
-    def edition_ref
+    def ref_edition
       VtLetter.edition_title_for bibliography_items.first
     end
 

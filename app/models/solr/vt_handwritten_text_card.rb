@@ -6,10 +6,9 @@ module SOLR
       text :technical_notes
       text :conservation_status
       text :bibliography
-      text :facets
-
       string :bibliography, :multiple => true
 
+      text :facets
       dynamic_string :facets, :multiple => true, :stored => true do
         facets
       end
