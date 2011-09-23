@@ -4,6 +4,8 @@ class PiIllustratedMdCard < IllustrationCard
   extend Mixin::Showable
   showable_in PiIllustrationCard
 
+  include Mixin::Searchable
+
   autofill_uri :force => true
 
   # Short description: brief desc. of the depiction, say "Male person

@@ -66,11 +66,26 @@ module SOLR
       Sunspot.index! self
     end
 
+    def iconclasses
+      original.iconclasses(false).map {|i| i.pref_label} if original.respond_to? :iconclasses
+    end # def iconclasses
+
     def method_missing(method)
       if original.respond_to? method
         original.send method unless method.to_s.ends_with? '='
       else
         super
+      end
+    end
+    
+    def bibliography
+      bibliography_items.to_a.map do |item|
+        [].tap do |parts|
+          parts << item.bibliography_item.published_in.to_s
+          parts << item.bibliography_item.publisher.to_s
+          parts << item.bibliography_item.date.to_s
+          parts << item.pages.to_s
+        end.compact.join ' '
       end
     end
   end

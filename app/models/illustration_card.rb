@@ -109,7 +109,7 @@ class IllustrationCard < BaseCard
   end
 
   def iconclasses(sort=true, all=true)
-    iconclasses = self.iconclass_terms.map {|iconclass| iconclass}
+    iconclasses = self.iconclass_terms.map {|i| i}
 
     self.children.each do |child|
       child.iconclass_terms.each do |iconclass|

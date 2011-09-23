@@ -4,7 +4,8 @@ class PiLetterIllustrationCard < IllustrationCard
   include StandardPermissions
   extend Mixin::Showable
   showable_in Anastatica
-  
+  include Mixin::Searchable
+
   autofill_uri :force => true
 
   # Missing: 

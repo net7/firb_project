@@ -6,7 +6,6 @@ module SOLR
       text :technical_notes
       text :conservation_status
       text :bibliography
-      string :bibliography, :multiple => true
 
       text :facets
       dynamic_string :facets, :multiple => true, :stored => true do
@@ -19,17 +18,6 @@ module SOLR
       # cartulation
       # autography ("Completa" for all cards?)
       # date
-    end
-
-    def bibliography
-      bibliography_items.to_a.map do |item|
-        [].tap do |parts|
-          parts << item.bibliography_item.published_in.to_s
-          parts << item.bibliography_item.publisher.to_s
-          parts << item.bibliography_item.date.to_s
-          parts << item.pages.to_s
-        end.compact.join ', '
-      end
     end
   end # class VtHandwrittenTextCard
 end # module SOLR
