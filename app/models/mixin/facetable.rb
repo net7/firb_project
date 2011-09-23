@@ -1,15 +1,19 @@
 module Mixin::Facetable
   
   def facets
-    @facets ||= build_facets
+    build_facets unless @facets
+    @facets
+  end
+
+  def facet_labels
+    build_facets unless @facet_labels
+    @facet_labels
   end
 
   def transcription_text
-    html = facets_transcription_xml
-    return "" if html.nil?
-    html.xpath(".//div[@class='consolidatedAnnotation']").each {|annotation| annotation.remove}
-    html.to_s
-  end
+    build_facets unless @transcription_text
+    @transcription_text
+  end    
 
   protected
     def facets_allowed_predicates
@@ -21,44 +25,54 @@ module Mixin::Facetable
     end
 
     def build_facets
+      @facet_labels = {}
+      @transcription_text = ""
       html = facets_transcription_xml
       return {} if html.nil?
 
-      {}.tap do |facets|
+      @facets = {}.tap do |facets|
         html.xpath(".//div[@class='consolidatedAnnotation']").each do |annotation|
           if facets_predicate_allowed?(predicate = annotation.xpath(".//div[@class='predicate']")[0]['about'])
             case predicate
               when N::FIRBSWN.hasNote.to_s
                 key   = facets_annotation_get annotation, :object, :name
                 value = facets_annotation_get annotation, :object, :content
+                label = facets_annotation_get annotation, :subject, :label
               when N::FIRBSWN.instanceOf.to_s
                 dictionary_value = DictionaryItem.find facets_annotation_get(annotation, :object), :prefetch_relations => true
                 key   = dictionary_value.item_type.split('#').last
                 value = dictionary_value.name
+                label = facets_annotation_get annotation, :subject, :label
               when N::FIRBSWN.hasMemoryDepiction.to_s
                 if(illustration = PiNonIllustratedMdCard.find(facets_annotation_get(:object), :prefetch_relations => true) rescue nil)
                   key   = "Immagini di memoria"
                   value = illustration.short_description
+                  label = facets_annotation_get annotation, :subject, :label
                 end
               when N::FIRBSWN.keywordForImageZone
                 key   = "Zone di immagine"
                 value = facets_annotation_get(annotation, :subject, :label)
-              else key, value = nil
+                label = facets_annotation_get annotation, :subject, :label
+              else key, value, label = nil
             end # case predicate
           end # if facets_predicate_allowed?
           annotation.remove
-          facets[key.to_s] << value.to_s if key.present? and value.present? and not (facets[key.to_s] ||= []).include?(value.to_s)
+
+          if [key, value].all? {|x| x.present?}
+            facets[key.to_s] << value.to_s unless (facets[key.to_s] ||= []).include? value.to_s
+            @facet_labels[value.to_s] << label.to_s unless (@facet_labels[value.to_s] ||= []).include? label.to_s or label.to_s.blank?
+          end
+          @transcription_text = html.to_s
+
         end # html.xpath(".//div[@class='consolidatedAnnotation']").each
       end # {}.tap do |facets|
     end # def build_facets
 
     def facets_transcription_xml
-      @facets_transcription_xml ||= begin
-                                      raw_content = data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').content_string
-                                      raw_content.present? ? Nokogiri::HTML.parse(raw_content) : nil
-                                    rescue
-                                      nil
-                                    end
+      raw_content = data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').content_string
+      raw_content.present? ? Nokogiri::HTML.parse(raw_content) : nil
+    rescue
+      nil
     end
 
     def facets_annotation_get(annotation, class1, class2=nil)
