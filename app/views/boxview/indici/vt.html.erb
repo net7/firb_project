@@ -44,10 +44,10 @@
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('vt_letters.index_by_name_item_name')}</a><ul>"
   ['Divinità', 'Luogo', 'Persona', 'Personaggio'].each do |category|
     w.content "<li class='menu_secondlevel leaf'>"
-    w.content boxview_link("/boxview/indici/vt_names_category?category=#{category}",
+    w.content boxview_link("/boxview/indici/vt_name_category?category=#{category}",
                            category,
                            "Indice dei nomi di #{category}",
-                           "index_nomi_#{URI.escape category}",
+                           "vt_index_names_#{URI.escape category}",
                            :index)
     w.content "</li>"
   end
@@ -61,7 +61,7 @@
     w.content boxview_link("/boxview/indici/vt_works_category?category=#{category}",
                            category,
                            "Indice delle #{category}",
-                           "index_work_#{URI.escape category}",
+                           "vt_index_work_#{URI.escape category}",
                            :index)
     w.content "</li>"
   end
@@ -76,7 +76,7 @@
     w.content boxview_link("/boxview/indici/vt_glossary_term?glossary=#{glossary}",
                            glossary,
                            "Indice delle #{glossary}",
-                           "index_glossary_#{URI.escape glossary}",
+                           "vt_index_glossary_#{URI.escape glossary}",
                            :index)
     w.content "</li>"
   end

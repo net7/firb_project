@@ -117,6 +117,27 @@ class Boxview::IndiciController < Boxview::BaseController
     
   end
 
+  def show_pi_memory_category
+    @category = params[:category]
+    @search = SOLR.search(SOLR::PiTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.facet @category
+        f.with @category
+      end
+    end
+  end
+
+  def show_pi_text_by_memory
+    @category = params[:category]
+    @name = params[:name]
+    @search = SOLR.search(SOLR::PiTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.with @category, @name
+      end
+      s.order_by :boxview_title
+    end
+  end
+
   def fi
 
     # the TaliaCore::Collection to which the anastatica are linked is the only one that

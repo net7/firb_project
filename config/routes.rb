@@ -69,7 +69,13 @@ ActionController::Routing::Routes.draw do |map|
   map.boxview_capolettera '/boxview/capolettera/:id', :controller => 'boxview/capolettera', :action => 'show'
   map.boxview_pi_scheda_testo '/boxview/pi_scheda_testo/:id', :controller => 'boxview/pi_scheda_testo', :action => 'show'
   map.connect '/boxview/indici', :controller => 'boxview/indici', :action => "index" 
-  map.connect '/boxview/indici/pi', :controller => 'boxview/indici', :action => "pi" 
+
+  # INDICI PISA
+  map.connect '/boxview/indici/pi', :controller => 'boxview/indici', :action => "pi"
+  map.connect '/boxview/indici/pi_memory_category', :controller => 'boxview/indici', :action => "show_pi_memory_category"
+  map.connect '/boxview/indici/pi_memory_by_name',  :controller => 'boxview/indici', :action => "show_pi_memory_by_name"
+  map.connect '/boxview/indici/vt_text_by_memory',  :controller => 'boxview/indici', :action => "show_vt_text_by_memory"
+
   map.connect '/boxview/indici/fi', :controller => 'boxview/indici', :action => "fi" 
   map.connect '/boxview/indici/vt', :controller => 'boxview/indici', :action => "vt" 
   map.connect '/boxview/indici/bg', :controller => 'boxview/indici', :action => "bg" 

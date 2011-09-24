@@ -1,0 +1,14 @@
+<%= boxview_widget "Indice", :class => "index widget_draggable" do |w|
+  w.content "<ul>"
+  @search.facets.first.rows.each do |facet|
+    w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => boxview_link("/boxview/indici/vt_text_by_memory?facet=#{facet.value.to_s}&category=#{@category}",
+                                                        facet.value.to_s,
+                                                        "Lettere contenti '#{facet.value.to_s}'",
+                                                        "index_pi_text_memory_#{URI.escape facet.value.to_s}",
+                                                        :index),
+                                 :description => ""}
+  end
+  w.content "</ul>"
+end
+%>
