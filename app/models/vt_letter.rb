@@ -23,7 +23,7 @@ class VtLetter < TaliaCore::Collection
   def self.edition_title_for(edition)
     begin
  #     result = edition.name.nil? ? "" : "(#{edition.name})"
-      result = " #{edition.bibliography_item.author}, #{edition.bibliography_item.title} "
+      result = "#{edition.bibliography_item.author}, #{edition.bibliography_item.title}"
 #      result << (edition.pages.nil? ? "" : " ("+edition.pages+")")
     rescue
       ""

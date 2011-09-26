@@ -31,8 +31,8 @@ rescue
 end
 %>
 <%= boxview_widget 'Informazioni tecniche', {:class => 'TextWidget widget_draggable'} do |w|
- w.content boxview_widget_field('Edizione di riferimento', VtLetter.edition_title_for(@edition))
+# w.content boxview_widget_field('Edizione di riferimento', VtLetter.edition_title_for(@edition))
  w.content boxview_widget_field("Collocazione dell'esemplare a stampa", @resource.printed_collocation)
- w.content boxview_widget_field('Numero carta', page.to_s) unless page.nil?
+# w.content boxview_widget_field('Cartulazione', @resource.letter_number) unless page.nil?
 end
 %>
