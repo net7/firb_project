@@ -10,15 +10,10 @@ class ImageComponent < TaliaCore::Source
   rdf_property :zone_type, N::DCT.type
   rdf_property :image_zone, N::TALIA.image_zone, :type => TaliaCore::ActiveSource
 
-  after_save :clear_cache
 
 
   def zone_type
     self.DCT.type.nil? ? "Components" : self.DCT.type
-  end
-
-  def clear_cache
-    expire fragment('image_components')
   end
 
   def self.zone_types_for(klass)

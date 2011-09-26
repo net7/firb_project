@@ -11,7 +11,7 @@ class CustomBibliographyItem < TaliaCore::Source
   after_save :clear_cache
 
   def clear_cache
-    expire fragment('custom_biblio_with_options')
+    expire_fragment('custom_biblio_with_options')
   end
 
   # Local bibliography item, the kind we already have

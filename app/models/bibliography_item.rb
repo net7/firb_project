@@ -23,7 +23,7 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   after_save :clear_cache
 
   def clear_cache
-        expire fragment('biblio_item')
+        expire_fragment('biblio_item')
   end
   
   def name
