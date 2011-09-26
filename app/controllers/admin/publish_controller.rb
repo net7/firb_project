@@ -1,7 +1,7 @@
 class Admin::PublishController < Admin::AdminSiteController
   
   cache_sweeper :fi_cards_sweeper, :vt_cards_sweeper
-
+  
   def toggle
     @source = TaliaCore::ActiveSource.find(params[:id])
     # The toggle_published_by method breaks #is_public?,
@@ -12,18 +12,18 @@ class Admin::PublishController < Admin::AdminSiteController
     if @source.respond_to? :to_solr
       should_be_suntanned ? @source.solr_index! : SOLR.remove(@source.to_solr)
     end
-
+    
     hobo_ajax_response if request.xhr?
-   end
-
-   def post_annotated
-      html2 = params[:content] || ""
-      annotations = params[:annotations] || ""
-
-      @source = TaliaCore::ActiveSource.find(params[:id])
-      if (@source) then
-        @source.attach_html2("<div>#{html2}#{annotations}</div>")
-        @source.save!
+  end
+  
+  def post_annotated
+    html2 = params[:content] || ""
+    annotations = params[:annotations] || ""
+    
+    @source = TaliaCore::ActiveSource.find(params[:id])
+    if (@source) then
+      @source.attach_html2("<div>#{html2}#{annotations}</div>")
+      @source.save!
 
      #   id = @source.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').id
      #   record = TaliaCore::DataTypes::DataRecord.find(id)
@@ -161,8 +161,9 @@ class Admin::PublishController < Admin::AdminSiteController
      #       end
      #     end
      #   end
-     # end
 
-     render :text => "ok"
-   end
+
+    end
+    render :text => "ok"
+  end
 end
