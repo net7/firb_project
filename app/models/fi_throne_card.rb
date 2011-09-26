@@ -30,7 +30,7 @@ class FiThroneCard < IllustrationCard
   end
 
   def additional_parts
-    ic = self.image_components || []
+    ic = self.image_components.to_a || []
     n = self.notes || []
     ic + n
   end
