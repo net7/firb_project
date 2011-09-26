@@ -15,7 +15,7 @@ module SOLR
     end
 
     def ref_edition
-      VtLetter.edition_title_for bibliography_items.first
+      ::VtLetter.edition_title_for bibliography_items.first
     end
 
   end # class VtPrintedTextCard
