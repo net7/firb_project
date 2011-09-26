@@ -17,13 +17,13 @@ class Admin::PublishController < Admin::AdminSiteController
    end
 
    def post_annotated
-     # html2 = params[:content] || ""
-     # annotations = params[:annotations] || ""
+      html2 = params[:content] || ""
+      annotations = params[:annotations] || ""
 
-     # @source = TaliaCore::ActiveSource.find(params[:id])
-     # if (@source) then
-     #   @source.attach_html2("<div>#{html2}#{annotations}</div>")
-     #   @source.save!
+      @source = TaliaCore::ActiveSource.find(params[:id])
+      if (@source) then
+        @source.attach_html2("<div>#{html2}#{annotations}</div>")
+        @source.save!
 
      #   id = @source.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').id
      #   record = TaliaCore::DataTypes::DataRecord.find(id)
