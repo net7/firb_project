@@ -9,9 +9,10 @@ module SOLR
     end
 
     def bibliography
-      super +
-        baldini_text.bibliography_items.map {|item| item.bibliography_item.name}.compact +
-        cini_text.bibliography_items.map    {|item| item.bibliography_item.name}.compact
+      super.tap do |biblio|
+        biblio + baldini_text.bibliography_items.map {|item| item.bibliography_item.name} if baldini_text
+        biblio + cini_text.bibliography_items.map {|item| item.bibliography_item.name} if cini_text
+      end.compact
     end # def bibliography
-  # end class FiAnimalCard
+  end # class FiAnimalCard
 end # module SOLR
