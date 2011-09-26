@@ -2,11 +2,18 @@ class Note < TaliaCore::Source
   hobo_model # Don't put anything above this
   include StandardPermissions
   extend RdfProperties
+  extend Mixin::Showable
+  showable_in FiDeityCard, FiAnimalCard, FiVehicleCard, FiThroneCard, FiCharacterCard
+
 
   singular_property :text_card, N::DCT.isPartOf
   rdf_property :content, N::TALIA.content, :type => :text
   rdf_property :name, N::TALIA.name, :type => :string
   rdf_property :image_zone, N::TALIA.image_zone, :type => TaliaCore::ActiveSource
+
+
+
+
 
   fields do
     uri :string
