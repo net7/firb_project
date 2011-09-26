@@ -1,0 +1,15 @@
+<%= boxview_widget "Indice", :class => "index widget_draggable" do |w|
+  w.content "<ul>"
+  @search.facets.first.rows.each do |facet|
+    value = facet.value.to_s
+    # work.count should return the incidence count for this work.
+    w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => boxview_link("/boxview/indici/fi_characters_by_quality_value?quality=#{@quality}&value=#{value}",
+                                                        value, value,
+                                                        "fi_characters_by_value_#{URI.escape value}",
+                                                        :index),
+                                 :description => ""}
+  end
+  w.content "</ul>"
+end
+%>

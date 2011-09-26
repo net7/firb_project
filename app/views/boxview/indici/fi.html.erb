@@ -26,19 +26,19 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
 #  w.content boxview_link("/boxview/indici/#{@parade.id}/#{m}", I18n.t("#{m}.menu_item_name"), "Indice "+I18n.t("#{m}.menu_item_name"), "index_#{m}#", :index)
 #  w.content "</li>"
   
-  # # Per attributi
-  # w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('fi_cards_by_character_quality')}</a><ul>"
-  # w.content "<li class='menu_secondlevel leaf'>"
-  #   w.content boxview_link("/boxview/indici/fi_attributes_category?category=quality",
-  #                          category,
-  #                          "Indice delle #{category}",
-  #                          "vt_index_work_#{URI.escape category}",
-  #                          :index)
-  # w.content "</li>"
-  # w.content "</ul></li>"
+  # Per attributi
+  w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('fi_character_qualities')}</a><ul>"
+  w.content "<li class='menu_secondlevel leaf'>"
+  [:qualities_age, :qualities_gender, :qualities_profession, :qualities_ethnic_group].each do |quality|
+    w.content boxview_link("/boxview/indici/fi_character_quality_values?quality=#{quality}",
+                           "#{I18n.t quality}",
+                           "#{I18n.t quality}",
+                           "fi_character_quality_#{URI.escape quality.to_s}",
+                           :index)
+  end
 
-
-
+  w.content "</li>"
+  w.content "</ul></li>"
 
   # Iconclass
   m = @models[:iconclass]

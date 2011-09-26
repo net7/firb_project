@@ -138,8 +138,24 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
-  def fi
+  def fi_character_quality_values
+    @quality = params[:quality]
+    @search = SOLR.search(SOLR::FiCharacterCard) do |s|
+      s.facet @quality
+      s.with @quality
+    end
+  end
 
+  def fi_characters_by_quality_value
+    @quality = params[:quality]
+    @quality_value = params[:quality_value]
+    @search = SOLR.search(SOLR::FiCharacterCard) do |s|
+      s.with @quality, @quality_value
+      s.order_by :boxview_title
+    end
+  end
+
+  def fi
     # the TaliaCore::Collection to which the anastatica are linked is the only one that
     # is neither a FiProcession nor a FiParade
     TaliaCore::Collection.all.each do |c|       
@@ -151,7 +167,6 @@ class Boxview::IndiciController < Boxview::BaseController
     @parade = FiParade.first
     @text_cards = FiTextCard.find(:all)
     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions", :iconclass => "Iconclass_Term"}
-
   end
 
   def vt
