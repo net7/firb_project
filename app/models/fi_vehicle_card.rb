@@ -32,8 +32,11 @@ class FiVehicleCard < IllustrationCard
   end
 
   def additional_parts
-    self.episodes.map do |e|
+    e = self.episodes.map do |e|
       e.image_components.to_a
     end.flatten
+
+    n = self.notes || []
+    e + n
   end
 end

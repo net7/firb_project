@@ -72,6 +72,8 @@ class FiCharacterCard < IllustrationCard
   end
 
   def additional_parts
-    self.image_components
+    ic = self.image_components || []
+    n = self.notes || []
+    ic + n
   end
 end
