@@ -83,7 +83,9 @@ class FiParadeCartCard < IllustrationCard
   end
 
   def additional_parts
-    self.children
+    c = self.children || []
+    n = self.notes || []
+    c + n
   end
 
   ##

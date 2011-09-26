@@ -11,6 +11,11 @@ class ImageComponent < TaliaCore::Source
   rdf_property :image_zone, N::TALIA.image_zone, :type => TaliaCore::ActiveSource
 
 
+
+  def zone_type
+    self.DCT.type.nil? ? "Components" : self.DCT.type
+  end
+
   def self.zone_types_for(klass)
     qry = ActiveRDF::Query.new().select(:x).distinct
     qry.where(:ic, N::DCT.type, :x)

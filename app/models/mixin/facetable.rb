@@ -69,7 +69,7 @@ module Mixin::Facetable
 
       (respond_to?(:image_components) ? image_components : []).each do |c|
         # FI doesn't have zone_type set, other may have. 
-        key = c.zone_type.presence || "components"
+        key = c.zone_type
         @facets[key.to_s] << c.name unless (@facets[key.to_s] ||= []).include? c.name
       end # end components.each
     end # def build_facets
