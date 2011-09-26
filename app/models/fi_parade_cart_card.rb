@@ -4,7 +4,8 @@ class FiParadeCartCard < IllustrationCard
   include FiCardsCommonFields
   extend FiCardsCommonFields::DefinedProperties
   include Mixin::HasParts
-  
+  include Mixin::Searchable
+
   common_properties
 
   # Bibliografia moderna

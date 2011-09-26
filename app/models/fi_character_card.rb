@@ -10,7 +10,6 @@ class FiCharacterCard < IllustrationCard
   include Mixin::HasParts
 
   include Mixin::Searchable
-  include Mixin::Facetable::Fi
 
   common_properties
 

@@ -1,6 +1,10 @@
 class FiTextCard < TextCard
   hobo_model
   include StandardPermissions
+
+  include Mixin::Searchable
+  include Mixin::Facetable::Fi
+
   autofill_uri :force => true
 
   setup_publish_properties
@@ -36,7 +40,7 @@ class FiTextCard < TextCard
       triples.push [cbi.uri, N::RDF.type, N::FIRBSWN.BibliographyItem]
       triples.push [cbi.uri, N::RDFS.label, "#{cbi.name} (#{cbi.bibliography_item.author}: #{cbi.bibliography_item.title}) #{cbi.pages}"]
     end
-    
+
     triples
   end
 

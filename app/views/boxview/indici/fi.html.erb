@@ -26,6 +26,17 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
 #  w.content boxview_link("/boxview/indici/#{@parade.id}/#{m}", I18n.t("#{m}.menu_item_name"), "Indice "+I18n.t("#{m}.menu_item_name"), "index_#{m}#", :index)
 #  w.content "</li>"
   
+  # # Per attributi
+  # w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('fi_cards_by_character_quality')}</a><ul>"
+  # w.content "<li class='menu_secondlevel leaf'>"
+  #   w.content boxview_link("/boxview/indici/fi_attributes_category?category=quality",
+  #                          category,
+  #                          "Indice delle #{category}",
+  #                          "vt_index_work_#{URI.escape category}",
+  #                          :index)
+  # w.content "</li>"
+  # w.content "</ul></li>"
+
 
 
 

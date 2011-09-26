@@ -5,6 +5,7 @@ class FiThroneCard < IllustrationCard
   include FiCardsCommonFields
   extend FiCardsCommonFields::DefinedProperties
   include Mixin::HasParts
+  include Mixin::Searchable
 
   common_properties
   autofill_uri :force => true

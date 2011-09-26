@@ -79,14 +79,7 @@ module SOLR
     end
     
     def bibliography
-      bibliography_items.to_a.map do |item|
-        [].tap do |parts|
-          parts << item.bibliography_item.published_in.to_s
-          parts << item.bibliography_item.publisher.to_s
-          parts << item.bibliography_item.date.to_s
-          parts << item.pages.to_s
-        end.compact.join ' '
-      end
+      bibliography_items.to_a.map {|item| item.bibliography_item.name}.compact
     end
   end
 end
