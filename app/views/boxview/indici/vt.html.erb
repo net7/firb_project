@@ -44,7 +44,7 @@
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('vt_letters.index_by_name_item_name')}</a><ul>"
   ['Divinità', 'Luogo', 'Persona', 'Personaggio'].each do |category|
     w.content "<li class='menu_secondlevel leaf'>"
-    w.content boxview_link("/boxview/indici/vt_name_category?category=#{category}",
+    w.content boxview_link("/boxview/indici/vt_names_category?category=#{category}",
                            category,
                            "Indice dei nomi di #{category}",
                            "vt_index_names_#{URI.escape category}",
