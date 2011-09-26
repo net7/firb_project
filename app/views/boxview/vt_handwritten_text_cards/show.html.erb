@@ -58,7 +58,7 @@ end
       boxview_widget 'Bibliografia', {:class => 'studio widget_draggable'} do |w| 
         content = ''
         @bibl.each{ |item| content += "<li>#{item}</li>" }
-        w.content boxview_widget_field('Fonti', content_tag(:ul, content))
+        w.content boxview_widget_field('Bibliografia', content_tag(:ul, content))
       end
     end
 %>
