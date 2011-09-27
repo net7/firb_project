@@ -1,11 +1,20 @@
 class Boxview::SearchController < Boxview::BaseController
 
+  def pi_results
+    search_for pi_fulltext_klasses
+  end
+
   def fi_results
     search_for fi_fulltext_klasses
   end
 
   def vt_results
     search_for vt_fulltext_klasses
+  end
+
+
+  def bg_results
+    search_for bg_fulltext_klasses
   end
 
   private
@@ -40,7 +49,7 @@ class Boxview::SearchController < Boxview::BaseController
     end
 
     def bg_fulltext_klasses
-      []
+      [SOLR::BgTextCard, SOLR::BgIllustrationCard]
     end
   # end private
 end

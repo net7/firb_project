@@ -108,10 +108,10 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
 
     # FIRB PISA
-    boxview.vt_search '/pi_search', :controller => 'search', :action => :fi_results
+    boxview.pi_search '/pi_search', :controller => 'search', :action => :pi_results
 
     # FIRB FIRENZE
-    boxview.vt_search '/fi_search', :controller => 'search', :action => :fi_results
+    boxview.fi_search '/fi_search', :controller => 'search', :action => :fi_results
     boxview.resources :fi_parade_cart_cards
     boxview.resources :fi_text_cards
     boxview.resources :fi_deity_cards

@@ -9,6 +9,9 @@ class BgIllustrationCard < IllustrationCard
   extend Mixin::Showable
   showable_in Anastatica
 
+  include Mixin::Searchable
+  include Mixin::Facetable::Bg
+
   autofill_uri :force => true
 
   # Fonti dell'immagine (in) ed usi successivi (out)

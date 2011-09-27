@@ -4,7 +4,9 @@ class BgTextCard < TextCard
 
   extend Mixin::Showable
   showable_in Anastatica
-
+  include Mixin::Searchable
+  include Mixin::Facetable::Bg
+  
   autofill_uri :force => true
 
   setup_publish_properties
