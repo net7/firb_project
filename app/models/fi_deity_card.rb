@@ -22,7 +22,7 @@ class FiDeityCard < IllustrationCard
   end
 
   def boxview_data
-    title = "Carta #{self.anastatica.page_position} - #{self.name} - (#{self.cart.name})"
+    title = "Carta #{self.anastatica.page_position} - #{self.name}"
     { :controller => 'boxview/fi_deity_cards', 
       :title => title,
       :description => "",
