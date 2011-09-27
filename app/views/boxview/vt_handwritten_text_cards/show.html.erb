@@ -28,7 +28,6 @@
   w.content boxview_widget_field('Stato di conservazione', @resource.conservation_status) unless @resource.conservation_status.blank?
   w.content boxview_widget_field('Autografia', @resource.autography)                      unless @resource.autography.blank?
   w.content boxview_widget_field('Data', @resource.date)                                  unless @resource.date.blank?
-
 end
 %>
 
@@ -37,6 +36,8 @@ end
           :widget_title => "Trascrizione Critica"} 
 %>
 
+
+<% if @lext_art.present? %>
 <%= boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
   content = ''
   inner_content = ''
@@ -52,13 +53,13 @@ end
   w.content content
 end
 %>
+<% end %>
 
-<%=
-    unless @bibl.nil?
-      boxview_widget 'Bibliografia', {:class => 'studio widget_draggable'} do |w| 
-        content = ''
-        @bibl.each{ |item| content += "<li>#{item}</li>" }
-        w.content boxview_widget_field('Bibliografia', content_tag(:ul, content))
-      end
-    end
+<% if @bibl.present? %>
+<%= boxview_widget 'Bibliografia', {:class => 'studio widget_draggable'} do |w| 
+  content = ''
+  @bibl.each{ |item| content += "<li>#{item}</li>" }
+  w.content boxview_widget_field('Bibliografia', content_tag(:ul, content))
+end
 %>
+<% end %>

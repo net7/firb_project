@@ -3,8 +3,6 @@ module SOLR
     solr_setup do
       text :ref_edition
       text :name
-      # text :page_position
-
 
       text :facets
       dynamic_string :facets, :multiple => true, :stored => true do
