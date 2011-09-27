@@ -62,8 +62,9 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
                            :index)
   w.content "</li>"
 
+  # Fulltext search
   w.content "<li class='menu_firstlevel leaf'>"
-  <%= render :partial => '/boxview/shared/search', :object => :fi %>
+  w.content render(:partial => '/boxview/shared/search', :object => :fi)
   w.content "</li>"
 
   w.content "</ul>"
