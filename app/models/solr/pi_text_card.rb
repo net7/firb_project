@@ -6,12 +6,13 @@ module SOLR
       text :facets
       text :transcription_text
 
-      dynamic_string :facets, :multiple => true, :stored => true do
+      dynamic_string :image_components, :multiple => true, :stored => true do
         facets
       end
-      dynamic_string :facet_labels, :multiple => true, :stored => true do
-        facets
-      end
+
+      # dynamic_string :facets, :multiple => true, :stored => true do
+      #   facets
+      # end
     end
 
   end # class PiTextCard

@@ -9,10 +9,15 @@ module SOLR
       text :descriptive_notes
       text :description
       text :image_components
+      # This does not come from Mixin::Facetable but is a Talia relation.
       text :transcription_text
       text :iconclasses
       text :study_notes
       text :bibliography
+
+      dynamic_string :image_components, :multiple => true, :stored => true do
+        original.image_components.reduce({}) {|x, y| x.merge(y.zone_type.to_s => y.name.to_s)}
+      end
     end
 
     def iconclasses

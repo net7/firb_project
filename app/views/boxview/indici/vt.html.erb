@@ -1,34 +1,6 @@
 <%= boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
   w.content "<ul>"
 
-################
-# TEST RICERCA #
-################
-
-  w.content %[
-    <li>
-      Cerca tra le lettere: <input id="vt_menu_search" type="text" value="" style="border: 1px solid black;"/>
-      <script>
-        $("#vt_menu_search").focus();
-        $("#vt_menu_search").live('keyup', function(e) {
-          key = e.keyCode; value = $.trim($(this).val());
-          e.preventDefault(); 
-          if(key == 13 && value != "") {
-            myBoxView.addBoxFromAjax({
-              qstring: '/boxview/vt_search?q='+encodeURIComponent(value),
-              title: 'Risultati ricerca di "'+value+'"',
-              verticalTitle: 'Risultati ricerca di "'+value+'"',
-              resId: 'vt_search'+value.replace(' ', '_'),
-              type: 'index',
-              collapsed: false
-            });
-          }
-          return false;
-        });
-      </script>
-    </li>
-  ]
-
   # per data
   m = @models[:letter]
   w.content "<li class='menu_firstlevel leaf'>"
@@ -67,8 +39,6 @@
   end
   w.content "</ul></li>"
 
-
-
   # per "lessico artistico"
   m = @models[:letter]
   ['Lessico artistico'].each do |glossary|
@@ -81,10 +51,11 @@
     w.content "</li>"
   end
 
+  # Fulltext search
+  w.content "<li class='menu_firstlevel leaf'>"
+  w.content render(:partial => '/boxview/shared/search', :object => :vt)
+  w.content "</li>"
 
-
-
-
+  w.content "</ul>"
 end
 %>
-

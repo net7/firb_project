@@ -12,6 +12,10 @@ module SOLR
       text :iconclasses
       text :study_notes
       text :bibliography
+
+      dynamic_string :image_components, :multiple => true, :stored => true do
+        original.image_components.reduce({}) {|x, y| x.merge(y.zone_type.to_s => y.name.to_s)}
+      end
     end
 
     def iconclasses

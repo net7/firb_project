@@ -53,7 +53,7 @@ class Boxview::FiTextCardsController < Boxview::BaseController
 
     @bibl = []
     @resource.bibliography_items.map do |item|
-        @bibl.push render_to_string :partial => '/boxview/shared/custom_bibliography_item', :locals => {:custom => item, :item => item.bibliography_item}
+      @bibl.push render_to_string :partial => '/boxview/shared/custom_bibliography_item', :locals => {:custom => item, :item => item.bibliography_item}
     end
 
   end

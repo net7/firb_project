@@ -12,7 +12,9 @@ class Admin::PublishController < Admin::AdminSiteController
     if @source.respond_to? :to_solr
       should_be_suntanned ? @source.solr_index! : SOLR.remove(@source.to_solr)
     end
-    
+
+  rescue
+  ensure
     hobo_ajax_response if request.xhr?
   end
   

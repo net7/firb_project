@@ -18,7 +18,7 @@
         w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria Illustrate</a><ul>"
           ["Animali", "Luoghi", "Numeri", "Lettere dell`alfabeto", "Persone", "Oggetti", "Scene"].each do |category|
           w.content "<li class='menu_secondlevel leaf'>"
-          w.content boxview_link("/boxview/indici/pi_memory_category?category=#{category}",
+          w.content boxview_link("/boxview/indici/pi_memory_category?category=#{category.to_s.downcase}",
                                  category,
                                  "Indice #{category}",
                                  "pi_index_memory_#{URI.escape category}",

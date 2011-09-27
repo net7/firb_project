@@ -118,8 +118,8 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def show_pi_memory_category
     @category = params[:category]
-    @search = SOLR.search(SOLR::PiTextCard) do |s|
-      s.dynamic :facets do |f|
+    @search = SOLR.search(SOLR::PiTextCard, SOLR::PiIllustrationCard, SOLR::PiIllustratedMdCard) do |s|
+      s.dynamic :image_components do |f|
         f.facet @category
         f.with @category
       end
@@ -130,7 +130,7 @@ class Boxview::IndiciController < Boxview::BaseController
     @category = params[:category]
     @name = params[:name]
     @search = SOLR.search(SOLR::PiTextCard) do |s|
-      s.dynamic :facets do |f|
+      s.dynamic :image_components do |f|
         f.with @category, @name
       end
       s.order_by :boxview_title
