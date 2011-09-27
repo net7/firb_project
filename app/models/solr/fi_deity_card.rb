@@ -1,6 +1,17 @@
 module SOLR
   class FiDeityCard < Base
     solr_setup do
+      text :code
+      text :collocation
+      text :author
+      text :tecnique
+      text :descriptive_notes
+      text :study_notes      
+
+      text :image_components
+      text :bibliography
+
+      text :iconclasses
       text :bibliography
       text :image_components
 

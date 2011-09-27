@@ -1,6 +1,17 @@
 module SOLR
   class FiParadeCartCard < Base
     solr_setup do
+      text :code
+      text :collocation
+      text :author
+      text :tecnique
+      text :descriptive_notes
+      text :description
+      text :notes
+      text :study_notes
+
+      text :iconclasses
+
       text :image_components
       text :bibliography
 

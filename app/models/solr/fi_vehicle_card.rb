@@ -1,6 +1,13 @@
 module SOLR
   class FiVehicleCard < Base
     solr_setup do
+      text :code
+      text :collocation
+      text :author
+      text :tecnique
+      text :descriptive_notes
+      text :study_notes      
+
       text :bibliography
       text :image_components
 

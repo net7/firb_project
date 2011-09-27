@@ -77,8 +77,8 @@ module Mixin::Facetable
     def facets_transcription_xml
       raw_content = data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html').content_string
       raw_content.present? ? Nokogiri::HTML.parse(raw_content) : nil
-#    rescue
-#      nil
+    rescue
+      nil
     end
 
     def facets_annotation_get(annotation, class1, class2=nil)

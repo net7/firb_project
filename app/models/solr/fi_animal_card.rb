@@ -1,8 +1,16 @@
 module SOLR
   class FiAnimalCard < Base
     solr_setup do
-      text :bibliography
+      text :code
+      text :collocation
+      text :author
+      text :tecnique
+      text :descriptive_notes
+      text :study_notes      
+
+      text :iconclasses
       text :image_components
+      text :bibliography
 
       string :image_components, :multiple => true
       string :bibliography, :multiple => true, :stored => true

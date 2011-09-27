@@ -106,7 +106,9 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
+
     # FIRB FIRENZE
+    boxview.vt_search '/fi_search', :controller => 'search', :action => :fi_results
     boxview.resources :fi_parade_cart_cards
     boxview.resources :fi_text_cards
     boxview.resources :fi_deity_cards
@@ -118,7 +120,7 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :fi_processions
 
     # FIRB VITERBO
-    boxview.vt_search '/vt_search', :controller => 'vt_search', :action => :results
+    boxview.vt_search '/vt_search', :controller => 'search', :action => :vt_results
     boxview.resources :vt_letters do |letter|
       letter.resources :vt_handwritten_text_cards, :only => :index
       letter.resources :vt_printed_text_cards, :only => :index

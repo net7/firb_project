@@ -1,0 +1,19 @@
+Cerca: <input id="menu_search" type="text" value="" style="border: 1px solid black;"/>
+<script>
+  $("#menu_search").focus();
+  $("#menu_search").live('keyup', function(e) {
+    key = e.keyCode; value = $.trim($(this).val());
+    e.preventDefault(); 
+    if(key == 13 && value != "") {
+      myBoxView.addBoxFromAjax({
+        qstring: '/boxview/<%= search.to_s %>_search?q='+encodeURIComponent(value),
+        title: 'Risultati ricerca di "'+value+'"',
+        verticalTitle: 'Risultati ricerca di "'+value+'"',
+        resId: '<%= search.to_s %>_search'+value.replace(' ', '_'),
+        type: 'index',
+        collapsed: false
+      });
+    }
+    return false;
+  });
+</script>

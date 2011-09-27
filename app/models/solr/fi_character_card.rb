@@ -1,10 +1,20 @@
 module SOLR
   class FiCharacterCard < Base
     solr_setup do
+      text :code
+      text :collocation
+      text :author
+      text :tecnique
+      text :description
+      text :notes
+      text :descriptive_notes
+      text :study_notes      
+
       text :qualities_age
       text :qualities_gender
       text :qualities_profession
       text :qualities_ethnic_group
+
       text :image_components
       text :bibliography
 
