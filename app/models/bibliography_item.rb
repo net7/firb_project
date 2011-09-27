@@ -20,11 +20,6 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   rdf_property :curator, N::TALIA.curator
   rdf_property :translator, N::TALIA.translator
 
-  after_save :clear_cache
-
-  def clear_cache
-        expire_fragment('biblio_item')
-  end
   
   def name
     title || uri.local_name

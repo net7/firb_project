@@ -41,7 +41,7 @@ it:
         title: "Nome di riferimento"
 
     fi_carte:
-        menu_item_name: "Tavole"
+        menu_item_name: "Carte"
 
     anastaticas:
         menu_item_name: "Pagine del libro"

@@ -22,9 +22,7 @@
     <br />
 <% end %>
 <%= I18n.t('image_components.image_zone') %>: 
-<% cache('image_components') do %>
 <%= select_tag "#{ImageZone}[image_component_zone]", options_for_select(image_zone_select_uri), {:id => 'zone_image_id'} %>
-<% end %>
 
 <input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_button_id %>' />
 

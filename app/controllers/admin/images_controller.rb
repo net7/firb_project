@@ -61,7 +61,6 @@ class Admin::ImagesController < Admin::AdminSiteController
     Image.first.try.updatable_by?(current_user) or raise Hobo::PermissionDeniedError, "#{self.class.name}#update"
     b64 = params[:base64xml]
     ImageElement.save_from_xml(b64)
-    expire_fragment('image_components')
     render :text => "OK"
   end
   
