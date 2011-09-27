@@ -2,7 +2,6 @@ class Boxview::IndiciController < Boxview::BaseController
 
   caches_page :show_grouped_iconclass
 
-
   def index
     @models = TaliaCore::CONFIG['shown_tabs'] + TaliaCore::CONFIG['base_card_types']
   end
@@ -155,6 +154,29 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
+  def fi_cards_by_image_component
+    @component = params[:component]
+    @search = SOLR.search(*fi_all_searchable_cards) do |s|
+      s.with :image_components, @component
+      s.order_by :boxview_title
+    end
+  end
+
+  def fi_bibliographies
+    @search = SOLR.search(*fi_all_searchable_cards) do |s|
+      s.facet :bibliograpy
+      s.with  :bibliograpy
+    end
+  end
+
+  def fi_cards_by_bibliography
+    @bibliography = params[:bibliography]
+    @search = SOLR.search(*fi_all_searchable_cards) do |s|
+      s.with  :bibliograpy, @bibliography
+      s.order_by :boxview_title
+    end
+  end
+
   def fi
     # the TaliaCore::Collection to which the anastatica are linked is the only one that
     # is neither a FiProcession nor a FiParade
@@ -162,6 +184,11 @@ class Boxview::IndiciController < Boxview::BaseController
       if !c.is_a? FiProcession and !c.is_a? FiParade
         @collection_id = c.id
       end
+    end
+
+    @search = SOLR.search(*fi_all_searchable_cards) do |s|
+      s.with :image_components
+      s.facet :image_components
     end
     
     @parade = FiParade.first
@@ -185,4 +212,10 @@ class Boxview::IndiciController < Boxview::BaseController
     @collection_id = TaliaCore::Collection.find(:first).id
     @models = {:illustrazioni => 'Bg_Illustration_Card', :schede_testo => 'Bg_Text_Card', :anastatica => 'Anastatica', :iconclass => 'Iconclass_Term'}
   end
+
+  private
+    def fi_all_searchable_cards
+      [SOLR::FiAnimalCard, SOLR::FiCharacterCard, SOLR::FiDeityCard, SOLR::FiParadeCartCard, SOLR::FiThroneCard, SOLR::FiVehicleCard]
+    end
+  # end private
 end

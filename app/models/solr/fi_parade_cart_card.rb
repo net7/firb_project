@@ -8,6 +8,10 @@ module SOLR
       string :bibliography, :multiple => true, :stored => true
     end
 
+    def image_components
+      original.image_components.to_a
+    end
+
     def bibliography
       super.tap do |biblio|
         biblio + baldini_text.bibliography_items.map {|item| item.bibliography_item.name} if baldini_text

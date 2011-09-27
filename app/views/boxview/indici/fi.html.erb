@@ -26,7 +26,7 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
 #  w.content boxview_link("/boxview/indici/#{@parade.id}/#{m}", I18n.t("#{m}.menu_item_name"), "Indice "+I18n.t("#{m}.menu_item_name"), "index_#{m}#", :index)
 #  w.content "</li>"
   
-  # Per attributi
+  # Per qualità
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('fi_character_qualities')}</a><ul>"
   w.content "<li class='menu_secondlevel leaf'>"
   [:qualities_age, :qualities_gender, :qualities_profession, :qualities_ethnic_group].each do |quality|
@@ -37,6 +37,19 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
                            :index)
   end
 
+  # Per attributi
+  w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('fi_attributes')}</a><ul>"
+  w.content "<li class='menu_secondlevel leaf'>"
+  @search.facets.first.rows.each do |facet|
+    value = facet.value.to_s
+    # work.count should return the incidence count for this work.
+    w.content render :partial => '/boxview/shared/index_item', 
+                     :locals => {:title => boxview_link("/boxview/indici/fi_cards_by_image_component?component=#{value}",
+                                                        value, value,
+                                                        "fi_cards_by_image_component_#{URI.escape value}",
+                                                        :index),
+                                 :description => ""}
+  end
   w.content "</li>"
   w.content "</ul></li>"
 
@@ -46,14 +59,14 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
     w.content boxview_link("/boxview/indici/show_grouped_iconclass", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
   w.content "</li>"
 
-
-
-#  #carri
-#  w.content "<li>"
-#  m = @models[:schede_carro].tableize
-#  w.content boxview_link("/boxview/indici/#{@collection_id}/#{m}", I18n.t("#{m}.menu_item_name"), "Indice "+I18n.t("#{m}.menu_item_name"), "index_#{m}", :index)
-#  w.content "</li>"
-
+  # Fonti
+  w.content "<li class='menu_firstlevel leaf'>"
+    w.content boxview_link("/boxview/indici/fi_bibliographies",
+                           I18n.t("fi_bibliographies"),
+                           "Indice "+I18n.t("fi_bibliographies"),
+                           "index_fi_bibliographies",
+                           :index)
+  w.content "</li>"
 
   w.content "</ul>"
 end

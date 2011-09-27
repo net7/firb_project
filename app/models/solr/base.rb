@@ -5,10 +5,12 @@ module SOLR
 
     def self.solr_setup(&block)
       Sunspot.setup self do
-        integer :database_id,   :stored => true
-        string  :boxview_url,   :stored => true
-        string  :boxview_type,  :stored => true
-        text    :boxview_title, :stored => true
+        integer :database_id,    :stored => true
+        string  :boxview_url,    :stored => true
+        string  :boxview_type,   :stored => true
+        text    :boxview_title,  :stored => true
+        text    :boxview_res_id, :stored => true
+
         string  :boxview_title
         text    :boxview_description, :stored => true
       end
@@ -52,6 +54,10 @@ module SOLR
 
     def boxview_type
       original.boxview_data[:boxtype] || "image"
+    end
+
+    def boxview_res_id
+      original.boxview_data[:res_id] || "#{original.class.name.underscore}_#{original.id}"
     end
 
     def database_id

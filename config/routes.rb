@@ -91,6 +91,12 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/vt_letters_by_name', :controller => 'boxview/indici', :action => "show_vt_letters_by_name"
   map.connect '/boxview/indici/fi_character_quality_values', :controller => 'boxview/indici', :action => "fi_character_quality_values"
   map.connect '/boxview/indici/fi_characters_by_quality_value', :controller => 'boxview/indici', :action => "fi_characters_by_quality_value"
+  map.connect '/boxview/indici/fi_cards_by_image_component', :controller => 'boxview/indici', :action => "fi_cards_by_image_component"
+  map.connect '/boxview/indici/fi_bibliographies', :controller => 'boxview/indici', :action => "fi_cards_by_image_component"
+  map.connect '/boxview/indici/fi_cards_by_bibliography', :controller => 'boxview/indici', :action => "fi_cards_by_bibliography"
+
+
+
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
   map.connect '/boxview/pagine_statiche/:action', :controller => 'boxview/pagine_statiche'
