@@ -154,6 +154,13 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
+  def fi_image_components
+    @search = SOLR.search(*fi_all_searchable_cards) do |s|
+      s.with     :image_components
+      s.facet    :image_components
+    end
+  end
+
   def fi_cards_by_image_component
     @component = params[:component]
     @search = SOLR.search(*fi_all_searchable_cards) do |s|
@@ -164,15 +171,15 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def fi_bibliographies
     @search = SOLR.search(*fi_all_searchable_cards) do |s|
-      s.facet :bibliograpy
-      s.with  :bibliograpy
+      s.facet :bibliography
+      s.with  :bibliography
     end
   end
 
   def fi_cards_by_bibliography
     @bibliography = params[:bibliography]
     @search = SOLR.search(*fi_all_searchable_cards) do |s|
-      s.with  :bibliograpy, @bibliography
+      s.with  :bibliography, @bibliography
       s.order_by :boxview_title
     end
   end
@@ -186,11 +193,6 @@ class Boxview::IndiciController < Boxview::BaseController
       end
     end
 
-    @search = SOLR.search(*fi_all_searchable_cards) do |s|
-      s.with :image_components
-      s.facet :image_components
-    end
-    
     @parade = FiParade.first
     @text_cards = FiTextCard.find(:all)
     @models = {:schede_carro => 'Fi_Parade_Cart_Cards', :carte => "fi_carte", :cortei => "fi_processions", :iconclass => "Iconclass_Term"}
