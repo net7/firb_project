@@ -34,7 +34,7 @@ module Mixin::HasParts
     zones = showable_parts.values.flatten.map do |z|
       if z.respond_to?(:image_zones) 
         z.image_zones.to_a 
-      elsif z.image_zone.present?
+      elsif z.respond_to?(:image_zone) && z.image_zone.present?
         z.image_zone
       end
     end.flatten.uniq
