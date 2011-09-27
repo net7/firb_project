@@ -857,3 +857,12 @@ it:
             update_success: "Il termine è stato salvato."
             create_success: "Il termine è stato creato."
         
+    #menu
+    #fi
+    fi_character_qualities: "Qualità"
+    qualities_age: "Età"
+    qualities_gender: "Sesso"
+    qualities_profession: "Professione"
+    qualities_ethnic_group: "Etnia"
+    fi_bibliographies: "Fonti"
+    fi_image_components: "Elementi grafici"
