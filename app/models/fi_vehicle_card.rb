@@ -19,8 +19,9 @@ class FiVehicleCard < IllustrationCard
   alias_method :children, :episodes
 
   def boxview_data
+    title = "Carta #{self.anastatica.page_position} - #{self.name}"
     { :controller => 'boxview/fi_vehicle_cards', 
-      :title => self.name,
+      :title => title,
       :description => "",
       :res_id => "fi_vehicle_card_#{self.id}", 
       :box_type => 'image',

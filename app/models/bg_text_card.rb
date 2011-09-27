@@ -80,8 +80,14 @@ class BgTextCard < TextCard
   end
 
   def boxview_data
+    if anastatica.present?
+      title = "Scheda testo: #{anastatica.page_position}"
+    else
+      title = "Scheda testo: #{name}"
+    end
+
     { :controller => 'boxview/bg_text_cards', 
-      :title => "Scheda testo: #{anastatica.page_position}",
+      :title => title,
       :description => "",
       :res_id => "bg_text_card_#{self.id}", 
       :box_type => 'image',

@@ -17,8 +17,9 @@ class FiThroneCard < IllustrationCard
   end
 
   def boxview_data
+    title = "Carta #{self.anastatica.page_position} - #{self.name}"
     { :controller => 'boxview/fi_throne_cards', 
-      :title => self.name,
+      :title => title,
       :description => "",
       :res_id => "fi_throne_card_#{self.id}", 
       :box_type => 'image',

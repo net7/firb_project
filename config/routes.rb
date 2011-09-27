@@ -136,6 +136,7 @@ ActionController::Routing::Routes.draw do |map|
     # FIRB BERGAMO
     boxview.bg_search '/bg_search', :controller => 'search', :action => :bg_results
     boxview.resources :bg_illustration_cards
+    boxview.resources :bg_text_cards
   end
 
   # Default semantic dispatch
