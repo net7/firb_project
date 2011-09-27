@@ -25,7 +25,7 @@
   edition_title = VtLetter.edition_title_for @resource.bibliography_items.first
 
   w.content boxview_widget_field('Edizione di riferimento', edition_title) unless edition_title.blank?
-  w.content boxview_widget_field('Numero della lettera', @letter.name) unless @letter.name.blank?
+#  w.content boxview_widget_field('Numero della lettera', @letter.letter_number) unless @letter.name.blank?
 
   begin
     page_position = @resource.anastatica.page_position

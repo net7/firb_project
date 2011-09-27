@@ -53,7 +53,7 @@ module SOLR
     end
 
     def boxview_type
-      original.boxview_data[:boxtype] || "image"
+      original.boxview_data[:box_type] || "image"
     end
 
     def boxview_res_id

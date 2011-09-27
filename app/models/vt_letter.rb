@@ -23,7 +23,7 @@ class VtLetter < TaliaCore::Collection
   def self.edition_title_for(edition)
     begin
  #     result = edition.name.nil? ? "" : "(#{edition.name})"
-      result = " #{edition.bibliography_item.author}, #{edition.bibliography_item.title} "
+      result = "#{edition.bibliography_item.author}, #{edition.bibliography_item.title}"
 #      result << (edition.pages.nil? ? "" : " ("+edition.pages+")")
     rescue
       ""
@@ -38,7 +38,7 @@ class VtLetter < TaliaCore::Collection
   def boxview_data
     desc = self.date_string
     { :controller => 'boxview/vt_letters_vt_handwritten_text_cards',
-      :title => self.name,
+      :title => self.introduction,
       :description => desc,
       :res_id => "vt_letter_#{self.id}", 
       :box_type => 'image',

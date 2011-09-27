@@ -8,12 +8,6 @@ class CustomBibliographyItem < TaliaCore::Source
   rdf_property :name, N::TALIA.name
   rdf_property :pages, N::DCT.pages
 
-  after_save :clear_cache
-
-  def clear_cache
-    expire_fragment('custom_biblio_with_options')
-  end
-
   # Local bibliography item, the kind we already have
   rdf_property :bibliography_item, N::TALIA.bibliographyItem, :type => TaliaCore::ActiveSource
 

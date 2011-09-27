@@ -23,9 +23,7 @@
 <% if !custom_options.nil? %>
     <div style='border: 1px dashed #666; margin-top: 20px; padding: 5px'>
         <%= I18n.t('bibliography_items.custom_bibl_items') %>: <br />
-	<% cache('custom_biblio_with_options') do %>
         <%= select_tag "", options_for_select(custom_options), {:id => custom_bibl_select_id} %>
-	<% end %>
         <br /><input type='button' class='button' value="<%= I18n.t('general.add') %>" name='<%= add_button_id %>' id='<%= add_existing_button_id %>' />
     </div>
 <% end %>
@@ -35,9 +33,7 @@
     <div id='<%= item_customization_id %>'>
         <% if !options.nil? %>
             <%= I18n.t('bibliography_items.model_name') %>: <br />
-	    <% cache('biblio_item') do %>
             <%= select_tag "", options_for_select(options), {:id => bibl_select_id} %>
-	    <% end %>
             <br />
         <% end %>
 

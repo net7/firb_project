@@ -33,6 +33,11 @@ end
 boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
   w.content boxview_widget_field('Descrizione', resource.description)
 
+  content = resource.image_components.map do |el|
+              content_tag(:li, imt_highlight(imt_id, el.name, el.image_zone.id))
+            end
+  w.content boxview_widget_field('Lista componenti', content_tag(:ul, content.join(''))) unless content.size.zero?
+
   if resource.baldini_text or resource.cini_text
     content =  ""
     if resource.baldini_text
@@ -46,13 +51,6 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Testi correlati', content_tag(:ul, content))
   end
 
-  # TODO: better sorting?
-  unless resource.iconclasses.size.zero?
-    iconclasses = resource.iconclasses.map! do |iconclass|
-      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
-    end
-    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
-  end
 
   unless resource.baldini_text.nil? and resource.cini_text.nil?
     content = resource.baldini_text.bibliography_items.map do |item|
@@ -73,12 +71,18 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Ulteriori fonti', content_tag(:ul, content))
   end
 
-  content = resource.image_components.map do |el|
-              content_tag(:li, imt_highlight(imt_id, el.name, el.image_zone.id))
-            end
-  w.content boxview_widget_field('Lista componenti', content_tag(:ul, content.join(''))) unless content.size.zero?
 
   w.content boxview_widget_field('Note di studio', resource.study_notes.gsub("\r\n",'<br/>')) unless resource.study_notes.nil?
+
+  # TODO: better sorting?
+  unless resource.iconclasses.size.zero?
+    iconclasses = resource.iconclasses.map! do |iconclass|
+      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
+    end
+    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
+  end
+
+
 end
 %>
 <%= 
