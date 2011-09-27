@@ -134,6 +134,7 @@ ActionController::Routing::Routes.draw do |map|
     boxview.resources :vt_printed_text_cards
 
     # FIRB BERGAMO
+    boxview.bg_search '/bg_search', :controller => 'search', :action => :bg_results
     boxview.resources :bg_illustration_cards
   end
 

@@ -217,7 +217,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   private
     def fi_all_searchable_cards
-      [SOLR::FiAnimalCard, SOLR::FiCharacterCard, SOLR::FiDeityCard, SOLR::FiParadeCartCard, SOLR::FiThroneCard, SOLR::FiVehicleCard]
+      [SOLR::FiAnimalCard, SOLR::FiCharacterCard, SOLR::FiDeityCard, SOLR::FiParadeCartCard, SOLR::FiThroneCard, SOLR::FiVehicleCard, SOLR::FiEpisodeCard]
     end
   # end private
 end

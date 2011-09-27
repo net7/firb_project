@@ -25,11 +25,22 @@ class Boxview::SearchController < Boxview::BaseController
     end
 
     def fi_fulltext_klasses
-      [SOLR::FiTextCard, SOLR::FiAnimalCard, SOLR::FiCharacterCard, SOLR::FiDeityCard, SOLR::FiParadeCartCard, SOLR::FiThroneCard, SOLR::FiVehicleCard]
+      [SOLR::FiTextCard,
+       SOLR::FiAnimalCard,
+       SOLR::FiCharacterCard,
+       SOLR::FiDeityCard,
+       SOLR::FiParadeCartCard,
+       SOLR::FiThroneCard,
+       SOLR::FiVehicleCard,
+       SOLR::FiEpisodeCard]
     end
 
     def vt_fulltext_klasses
       [SOLR::VtHandwrittenTextCard, SOLR::VtPrintedTextCard, SOLR::VtLetter]
+    end
+
+    def bg_fulltext_klasses
+      []
     end
   # end private
 end
