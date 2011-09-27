@@ -20,6 +20,10 @@ class Boxview::SearchController < Boxview::BaseController
       render 'results'
     end
 
+    def pi_fulltext_klasses
+      [SOLR::PiIllustratedMdCard, SOLR::PiIllustrationCard, SOLR::PiLetterIllustrationCard, SOLR::PiTextCard]
+    end
+
     def fi_fulltext_klasses
       [SOLR::FiTextCard, SOLR::FiAnimalCard, SOLR::FiCharacterCard, SOLR::FiDeityCard, SOLR::FiParadeCartCard, SOLR::FiThroneCard, SOLR::FiVehicleCard]
     end

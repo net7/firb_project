@@ -41,8 +41,10 @@
         w.content "</li>"
 
 
-
-
+  # Fulltext search
+  w.content "<li class='menu_firstlevel leaf'>"
+  w.content render(:partial => '/boxview/shared/search', :object => :pi)
+  w.content "</li>"
 
         w.content "</ul>"
     end
