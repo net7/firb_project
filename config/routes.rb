@@ -88,6 +88,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/vt_glossary_term', :controller => 'boxview/indici', :action => "show_vt_glossary_term"
   map.connect '/boxview/indici/vt_letters_by_glossary_term', :controller => 'boxview/indici', :action => "show_vt_letters_by_glossary_term"
   map.connect '/boxview/indici/vt_letters_by_name', :controller => 'boxview/indici', :action => "show_vt_letters_by_name"
+  map.connect '/boxview/indici/vt_letters_by_work', :controller => 'boxview/indici', :action => "show_vt_letters_by_work"
 
   map.connect '/boxview/indici/fi_character_quality_values', :controller => 'boxview/indici', :action => "fi_character_quality_values"
   map.connect '/boxview/indici/fi_characters_by_quality_value', :controller => 'boxview/indici', :action => "fi_characters_by_quality_value"
