@@ -17,7 +17,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def show_vt_names_category
     @category = params[:category]
-    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+    @search = SOLR.search(*vt_all_searchable_cards) do |s|
       s.dynamic :facets do |f|
         f.facet @category
         f.with @category
@@ -27,7 +27,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def show_vt_works_category
     @category = params[:category]
-    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+    @search = SOLR.search(*vt_all_searchable_cards) do |s|
       s.dynamic :facets do |f|
         f.facet @category
         f.with @category
@@ -37,7 +37,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def show_vt_glossary_term
     @glossary = params[:glossary]
-    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+    @search = SOLR.search(*vt_all_searchable_cards) do |s|
       s.dynamic :facets do |f|
         f.facet @glossary
         f.with @glossary
@@ -49,7 +49,7 @@ class Boxview::IndiciController < Boxview::BaseController
   def show_vt_letters_by_name
     @category = params[:category]
     @name = params[:name]
-    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+    @search = SOLR.search(*vt_all_searchable_cards) do |s|
       s.dynamic :facets do |f|
         f.with @category, @name
       end
@@ -60,7 +60,7 @@ class Boxview::IndiciController < Boxview::BaseController
   def show_vt_letters_by_work
     @category = params[:category]
     @work = params[:work]
-    @search = SOLR.search(SOLR::VtHandwrittenTextCard) do |s|
+    @search = SOLR.search(*vt_all_searchable_cards) do |s|
       s.dynamic :facets do |f|
         f.with @category, @work
       end
@@ -71,7 +71,7 @@ class Boxview::IndiciController < Boxview::BaseController
   def show_vt_letters_by_glossary_term
     @glossary = params[:glossary]
     @term = params[:term]
-    @search = SOLR.search(SOLR::VtHandwrittenTextCard, SOLR::VtPrintedTextCard) do |s|
+    @search = SOLR.search(*vt_all_searchable_cards) do |s|
       s.dynamic :facets do |f|
         f.with @glossary, @term
       end
@@ -202,7 +202,7 @@ class Boxview::IndiciController < Boxview::BaseController
     @collection_id = TaliaCore::Collection.find(:first).id #actually useless, needed by show method above
     @models = {:letter => 'Vt_Letter', :printed => 'Vt_Printed_Text_Card'}
     @glossary = "Lessico artistico"
-    @search = SOLR.search(SOLR::VtHandwrittenTextCard, SOLR::VtPrintedTextCard) do |s|
+    @search = SOLR.search(*vt_all_searchable_cards) do |s|
       s.dynamic :facets do |f|
         f.facet @glossary
         f.with  @glossary
@@ -218,6 +218,10 @@ class Boxview::IndiciController < Boxview::BaseController
   private
     def fi_all_searchable_cards
       [SOLR::FiAnimalCard, SOLR::FiCharacterCard, SOLR::FiDeityCard, SOLR::FiParadeCartCard, SOLR::FiThroneCard, SOLR::FiVehicleCard, SOLR::FiEpisodeCard]
+    end
+
+    def vt_all_searchable_cards
+      [SOLR::VtHandwrittenTextCard, SOLR::VtPrintedTextCard]
     end
   # end private
 end
