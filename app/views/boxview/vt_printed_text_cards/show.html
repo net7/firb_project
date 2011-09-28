@@ -1,13 +1,12 @@
 <%= boxview_widget 'Informazioni tecniche', {:class => 'TextWidget widget_draggable'} do |w|
   # Anastatica Stampa
   if @resource.anastatica
-    w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+    w.right_icons boxview_link_for_object(@resource.anastatica, {:title => "Anastatica stampa #{@resource.anastatica.page_position}"}), {:class => 'anastatica'}
   end
 
   # Trascrizione Critica
   unless @handwritten.blank?
-    w.right_icons boxview_link_for_object(@handwritten.first),
-                  :class => 'transcription'
+    w.right_icons boxview_link_for_object(@handwritten.first, {:title => "Trascrizione critica manoscritta #{@resource.anastatica.page_position}"}), {:class => 'transcription'
   end
 
   unless @letter.data_records.blank?
@@ -26,6 +25,7 @@
 
   w.content boxview_widget_field('Edizione di riferimento', edition_title) unless edition_title.blank?
   w.content boxview_widget_field('Numero della lettera', @letter.letter_number) unless @letter.name.blank?
+  w.content boxview_widget_field("Collocazione dell'esemplare a stampa", @letter.printed_collocation)
 
   begin
     page_position = @resource.anastatica.page_position
@@ -36,5 +36,5 @@ end
 
 <%= render :partial => '/boxview/shared/widget_trascrizione_fenomeni_note', 
 		:locals => {:resource => @resource, :fenomeni => @fenomeni, :notes => @notes, :content => @content,
-			 		:widget_title => "Trascrizione"} 
+			 		:widget_title => "Trascrizione", :show_anastatica => false} 
 %>

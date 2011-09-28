@@ -1,10 +1,12 @@
 <% 
-	# Parameters:
-	# @notes: contains the notes for the right column
-	# @fenomeni: contains the phenomen hierarchy
-	# @content: annotated transcription content
-	# @resource: the obj itself
-	# [optional] @widget_title: title of the widget..
+  # Parameters:
+  # @notes: contains the notes for the right column
+  # @fenomeni: contains the phenomen hierarchy
+  # @content: annotated transcription content
+  # @resource: the obj itself
+  # @show_anastatica: boolan telling if the anastatica icon has to be shown
+  # [optional] @widget_title: title of the widget..
+
 
     notes_content = ''
     num = 0
@@ -189,11 +191,13 @@
         	unless resource.next_card.nil?
           	   w.right_icons boxview_link_for_object(resource.next_card), {:class => 'next'}
         	end
-		end
+            end
 
-		w.right_icons mostra_note, {:class =>'note'} unless (notes.nil? || notes.empty?) 
+	w.right_icons mostra_note, {:class =>'note'} unless (notes.nil? || notes.empty?) 
         w.right_icons mostra_fenomeni, {:class => 'fenomeni'} unless (fenomeni.nil? || fenomeni.empty?)
-        w.right_icons boxview_link_for_object(resource.anastatica), {:class => 'anastatica'} if resource.respond_to?(:anastatica)
+        if show_anastatica && resource.respond_to?(:anastatica) && resource.anastatica.present?
+          w.right_icons boxview_link_for_object(resource.anastatica), {:class => 'anastatica'} 
+        end
         w.content content_tag(:div, transcription_content, :id => "trascrizione_#{@resource.id}"), 'notes-hidden'
     end 
 %>
