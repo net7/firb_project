@@ -1,51 +1,58 @@
-<%= 
-    boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
-        w.content "<ul>"
+<%= boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
+  w.content "<ul>"
 
-        # anastatica 
-        m = @models[:anastatica]
-        w.content "<li class='menu_firstlevel leaf'>"
-        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
-        w.content "</li>"
+  # anastatica 
+  m = @models[:anastatica]
+  w.content "<li class='menu_firstlevel leaf'>"
+  w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+  w.content "</li>"
 
-        # illustrazioni 
-        m = @models[:illustrazioni]
-        w.content "<li class='menu_firstlevel leaf'>"
-        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
-        w.content "</li>"
+  # illustrazioni 
+  m = @models[:illustrazioni]
+  w.content "<li class='menu_firstlevel leaf'>"
+  w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+  w.content "</li>"
 
-        # immagini di memoria
-        w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria Illustrate</a><ul>"
-          ["Animali", "Luoghi", "Numeri", "Lettere dell`alfabeto", "Persone", "Oggetti", "Scene"].each do |category|
-          w.content "<li class='menu_secondlevel leaf'>"
-          w.content boxview_link("/boxview/indici/pi_memory_category?category=#{category.to_s.downcase}",
-                                 category,
-                                 "Indice #{category}",
-                                 "pi_index_memory_#{URI.escape category}",
-                                 :index)
-          w.content "</li>"
-        end
-        w.content "</ul></li>"
+  # immagini di memoria
+  m = @models[:illustrazioni] 
+  w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria Illustrate</a><ul>" 
+  types = ImageComponent.zone_types_for(PiIllustrationCard) 
+  types.each do |type| 
+    w.content "<li class='menu_secondlevel leaf'>" 
+    w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", type, "Indice #{type}", "index_#{type}", :index) 
+    w.content "</li>"
+  end
+  w.content "</ul></li>"
 
-        # Schede testo
-        m = @models[:schede_testo]
-        w.content "<li class='menu_firstlevel leaf'>"
-        w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
-        w.content "</li>"
+  w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria non illustrate</a><ul>"
+  ["Animali", "Luoghi", "Numeri", "Lettere dell`alfabeto", "Persone", "Oggetti", "Scene"].each do |category|
+    w.content "<li class='menu_secondlevel leaf'>"
+    w.content boxview_link("/boxview/indici/pi_memory_category?category=#{category.to_s.downcase}",
+                           category,
+                           "Indice #{category}",
+                           "pi_index_memory_#{URI.escape category}",
+                           :index)
+    w.content "</li>"
+  end
+  w.content "</ul></li>"
 
+  # Schede testo
+  m = @models[:schede_testo]
+  w.content "<li class='menu_firstlevel leaf'>"
+  w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+  w.content "</li>"
 
-        # Iconclass
-        m = @models[:iconclass]
-        w.content "<li class='menu_firstlevel leaf'>"
-         w.content boxview_link("/boxview/indici/show_grouped_iconclass", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
-        w.content "</li>"
-
+  # Iconclass
+  m = @models[:iconclass]
+  w.content "<li class='menu_firstlevel leaf'>"
+  w.content boxview_link("/boxview/indici/show_grouped_iconclass", I18n.t("#{m.tableize}.menu_item_name"), "Indice "+I18n.t("#{m.tableize}.menu_item_name"), "index_#{m.tableize}", :index)
+  w.content "</li>"
 
   # Fulltext search
   w.content "<li class='menu_firstlevel leaf'>"
   w.content render(:partial => '/boxview/shared/search', :object => :pi)
   w.content "</li>"
 
-        w.content "</ul>"
-    end
+  w.content "</ul>"
+end
 %>
