@@ -5,7 +5,7 @@
     w.content render :partial => '/boxview/shared/index_item', 
                      :locals => {:title => boxview_link("/boxview/indici/vt_letters_by_name?name=#{name.value.to_s}&category=#{@category}",
                                                         name.value.to_s,
-                                                        %[Lettere contenenti "#{name.value.to_s}"],
+                                                        "Lettere contenenti \"#{name.value.to_s}\"",
                                                         "index_letters_by_name_#{URI.escape name.value.to_s}",
                                                         :index),
                                  :description => ""}
