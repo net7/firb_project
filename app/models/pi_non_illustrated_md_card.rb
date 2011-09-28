@@ -11,4 +11,9 @@ class PiNonIllustratedMdCard < BaseCard
   rdf_property :short_description, N::TALIA.short_description, :type => :text
   rdf_property :depiction_type, N::TALIA.depiction_type # Type of the depiction
 
+  
+  def is_public?
+    true
+  end
+
 end
