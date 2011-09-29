@@ -18,10 +18,8 @@ end %>
 <%=
     boxview_widget 'Elementi correlati', {:class => 'widget_draggable'} do |w|
         w.content "<ul>"
-        @resource.showable_zones[1..1000].uniq.each do |z|
+        @resource.showable_zones[1..1000].compact.uniq.each do |z|
             o = z.get_related_objects.first
-
-
 
             data = o.boxview_data()
             w.content render :partial => '/boxview/shared/index_item', 

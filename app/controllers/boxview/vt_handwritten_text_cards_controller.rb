@@ -21,7 +21,7 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
     @raw_content = ''
     if record = @resource.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html')
       @raw_content = record.content_string
-    
+
       v = Nokogiri::HTML.parse(@raw_content)
       # Handle consolidated annotations
       v.xpath(".//div[@class='consolidatedAnnotation']").each do |d|
@@ -71,8 +71,8 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
           unless @printed.blank?
             related_link = "<br />in #{boxview_link_for_object(@printed.first, :url => vt_printed_text_card_url(@printed.first.id))}"
           end
-        
-          @notes.push({:name => n_this, :content => "diventa \"#{n_that}\"", :class => ca_class, 
+
+          @notes.push({:name => n_this, :content => "diventa \"#{n_that}\"", :class => ca_class,
                         :apparatus => 'hw', :other_apparatus => 'pr', :related_link => related_link})
           d.remove
         end

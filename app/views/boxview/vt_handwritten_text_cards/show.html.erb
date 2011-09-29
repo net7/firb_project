@@ -1,6 +1,6 @@
 <%= boxview_widget 'Informazioni tecniche', {:class => 'TextWidget widget_draggable'} do |w|
   if @resource.anastatica
-    w.right_icons boxview_link_for_object(@resource.anastatica, :title => 'Anastatica'), :class => 'anastatica'
+    w.right_icons boxview_link_for_object(@resource.anastatica, :title =>  "Anastatica manoscritto #{@resource.anastatica.page_position}"), :class => 'anastatica'
   end
 
   unless @letter.data_records.blank?
@@ -33,7 +33,7 @@ end
 
 <%= render :partial => '/boxview/shared/widget_trascrizione_fenomeni_note', 
     :locals => {:resource => @resource, :fenomeni => @fenomeni, :notes => @notes, :content => @content,
-          :widget_title => "Trascrizione Critica"} 
+          :widget_title => "Trascrizione Critica", :show_anastatica => false} 
 %>
 
 

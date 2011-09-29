@@ -4,7 +4,7 @@
     w.content render :partial => '/boxview/shared/index_item', 
                      :locals => {:title => boxview_link("/boxview/indici/pi_text_by_memory?facet=#{facet.value.to_s}&category=#{@category}",
                                                         facet.value.to_s,
-                                                        %[Lettere contenenti "#{facet.value.to_s}"],
+                                                        "Lettere contenenti #{facet.value.to_s}",
                                                         "index_pi_text_memory_#{URI.escape facet.value.to_s}",
                                                         :index),
                                  :description => ""}
