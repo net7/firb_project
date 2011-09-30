@@ -2,9 +2,9 @@
   w.content "<ul>"
   @search.facets.first.rows.sort {|x,y| x.value.to_s <=> y.value.to_s}.each do |facet|
     w.content render :partial => '/boxview/shared/index_item', 
-                     :locals => {:title => boxview_link("/boxview/indici/pi_text_by_memory?facet=#{facet.value.to_s}&category=#{@category}",
+                     :locals => {:title => boxview_link("/boxview/indici/pi_text_by_memory?name=#{facet.value.to_s}&category=#{@category}",
                                                         facet.value.to_s,
-                                                        "Lettere contenenti #{facet.value.to_s}",
+                                                        "Pagine contenenti #{facet.value.to_s}",
                                                         "index_pi_text_memory_#{URI.escape facet.value.to_s}",
                                                         :index),
                                  :description => ""}
