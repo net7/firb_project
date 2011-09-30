@@ -1,6 +1,6 @@
 <%= boxview_widget "Indice", :class => "index widget_draggable" do |w|
   w.content "<ul>"
-  @search.facets.first.rows.each do |facet|
+  @search.facets.first.rows.sort {|x,y| x.value.to_s <=> y.value.to_s}.each do |facet|
     value = facet.value.to_s
     # work.count should return the incidence count for this work.
     w.content render :partial => '/boxview/shared/index_item', 
