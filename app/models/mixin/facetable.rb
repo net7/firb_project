@@ -33,6 +33,7 @@ module Mixin::Facetable
         html.xpath(".//div[@class='consolidatedAnnotation']").each do |annotation|
           if facets_predicate_allowed?(predicate = annotation.xpath(".//div[@class='predicate']")[0]['about'])
             case predicate
+
             when N::FIRBSWN.hasNote.to_s
               key   = facets_annotation_get annotation, :object, :name
               value = facets_annotation_get annotation, :object, :content
@@ -64,7 +65,7 @@ module Mixin::Facetable
           end
           @transcription_text = html.to_s
         end # html.xpath(".//div[@class='consolidatedAnnotation']").each 
-      end unless html.blank? # end {}.tap
+      end unless html.to_s.blank? # end {}.tap
 
 
       (respond_to?(:image_components) ? image_components : []).each do |c|

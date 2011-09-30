@@ -1,12 +1,12 @@
 <%= boxview_widget "Indice", :class => "index widget_draggable" do |w|
   w.content "<ul>"
-  @search.facets.first.rows.each do |work|
-    # work.count should return the incidence count for this work.
+  @search.facets.first.rows.sort {|x,y| x.value.to_s <=> y.value.to_s}.each do |facet|
+    # facet.count should return the incidence count for this facet.
     w.content render :partial => '/boxview/shared/index_item', 
-                     :locals => {:title => boxview_link("/boxview/indici/vt_letters_by_work?work=#{work.value.to_s}&category=#{@category}",
-                                                        work.value.to_s,
-                                                        "Lettere contenenti #{work.value.to_s}",
-                                                        "index_letters_by_work_#{URI.escape work.value.to_s}",
+                     :locals => {:title => boxview_link("/boxview/indici/vt_letters_by_work?work=#{facet.value.to_s}&category=#{@category}",
+                                                        facet.value.to_s,
+                                                        "Lettere contenenti #{facet.value.to_s}",
+                                                        "index_letters_by_work_#{URI.escape facet.value.to_s}",
                                                         :index),
                                  :description => ""}
   end
