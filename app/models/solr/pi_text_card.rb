@@ -7,7 +7,7 @@ module SOLR
       text :transcription_text
 
       dynamic_string :image_components, :multiple => true, :stored => true do
-        original.image_components.reduce({}) {|x, y| x.merge(y.depiction_type.to_s => y.short_description.to_s)}
+        original.non_illustrated_memory_depictions.reduce({}) {|x, y| x.merge(y.depiction_type.to_s => y.short_description.to_s)}
       end
 
       # dynamic_string :facets, :multiple => true, :stored => true do
