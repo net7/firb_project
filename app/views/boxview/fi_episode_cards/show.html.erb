@@ -60,6 +60,12 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Ulteriori fonti', content_tag(:ul, content))
   end
 
+
+  content = @resource.image_components.map do |el|
+              content_tag(:li, imt_highlight(imt_id, el.name, el.image_zone.id))
+            end
+  w.content boxview_widget_field('Lista componenti', content_tag(:ul, content.join(''))) unless content.size.zero?
+
   # TODO: better sorting?
   unless @resource.iconclasses.size.zero?
     iconclasses = @resource.iconclasses.map! do |iconclass|
