@@ -99,12 +99,12 @@ class BgIllustrationCard < IllustrationCard
     super(sort, false)
   end
 
-  def anastatica_sources_in(collection_uri)
-    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_in.to_a.map {|c| c.anastatica unless c.nil?}.compact
+  def sources_in(collection_uri)
+    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_in.to_a.map {|c| c unless c.nil?}.compact
   end
 
-  def anastatica_sources_out(collection_uri)
-    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_out.to_a.map {|c| c.anastatica unless c.nil?}.compact
+  def sources_out(collection_uri)
+    TaliaCore::Collection.find(collection_uri).to_a.compact & related_source_out.to_a.map {|c| c unless c.nil?}.compact
   end
 
   def validate_book

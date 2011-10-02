@@ -9,6 +9,17 @@
       # imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
     end
 
+
+    if (@resource.respond_to?(:anastatica) && @resource.respond_to?(:previous_card) && @resource.respond_to?(:next_card))
+       unless @resource.previous_card.nil?
+         w.right_icons boxview_link_for_object(@resource.previous_card), {:class => 'prev'}
+       end
+       unless @resource.next_card.nil?
+         w.right_icons boxview_link_for_object(@resource.next_card), {:class => 'next'}
+       end
+    end
+
+
     w.content content_tag(:div, content, :class => 'picture')
   end 
 %>
@@ -79,25 +90,45 @@ end
   w.content boxview_widget_field('Traduzione del motto', @resource.motto_translation)
   w.content boxview_widget_field("Possessore dell’impresa", @resource.owner)
 
-  contents = @resource.anastatica_sources_in('http://imprese-firb.ctl.sns.it/collection/586234609').map do |source|
-    content_tag :li, boxview_link_for_object(source.anastatica)
+  imprese_coll = TaliaCore::Collection.find_by_title('Imprese').first.uri.to_s
+  doni_coll = TaliaCore::Collection.find_by_title('Opere di Doni').first.uri.to_s
+  altri_coll = TaliaCore::Collection.find_by_title('Opere di altri autori').first.uri.to_s
+
+  contents = @resource.sources_in(doni_coll).map do |source|
+    content_tag :li, boxview_link_for_object(source)
   end
   w.content boxview_widget_field('Fonti dell’immagine, opere di Doni', content_tag(:li, contents.join(''))) unless contents.size.zero?
 
-  contents = @resource.anastatica_sources_in('http://imprese-firb.ctl.sns.it/collection/1038896625').map do |source|
-    content_tag :li, boxview_link_for_object(source.anastatica)
+  contents = @resource.sources_in(altri_coll).map do |source|
+    content_tag :li, boxview_link_for_object(source)
   end
   w.content boxview_widget_field('Fonti dell’immagine, opere di altri', content_tag(:li, contents.join(''))) unless contents.size.zero?
 
-  contents = @resource.anastatica_sources_out('http://imprese-firb.ctl.sns.it/collection/586234609').map do |source|
-    content_tag :li, boxview_link_for_object(source.anastatica)
+  contents = @resource.sources_out(doni_coll).map do |source|
+    content_tag :li, boxview_link_for_object(source)
   end
   w.content boxview_widget_field('Usi successivi, opere di Doni', content_tag(:li, contents.join(''))) unless contents.size.zero?
 
-  contents = @resource.anastatica_sources_out('http://imprese-firb.ctl.sns.it/collection/1038896625').map do |source|
-    content_tag :li, boxview_link_for_object(source.anastatica)
+  contents = @resource.sources_out(altri_coll).map do |source|
+    content_tag :li, boxview_link_for_object(source)
   end
   w.content boxview_widget_field('Usi successivi, opere di altri', content_tag(:li, contents.join(''))) unless contents.size.zero?
+
+### incontro VT ###
+
+  contents = @resource.sources_in(imprese_coll).map do |source|
+    content_tag :li, boxview_link_for_object(source)
+  end
+  w.content boxview_widget_field('Fonti dell’immagine', content_tag(:li, contents.join(''))) unless contents.size.zero?
+
+  contents = @resource.sources_out(imprese_coll).map do |source|
+    content_tag :li, boxview_link_for_object(source)
+  end
+  w.content boxview_widget_field('Usi successivi', content_tag(:li, contents.join(''))) unless contents.size.zero?
+
+
+### fine incontro VT ###
+  
 
   w.content boxview_widget_field("Significato originale", @resource.original_meaning)
   w.content boxview_widget_field("Significato contestuale", @resource.contextual_meaning)

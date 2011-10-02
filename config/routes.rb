@@ -99,7 +99,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/fi_bibliographies', :controller => 'boxview/indici', :action => "fi_bibliographies"
   map.connect '/boxview/indici/fi_cards_by_bibliography', :controller => 'boxview/indici', :action => "fi_cards_by_bibliography"
 
-
+  
 
   map.connect '/boxview/indici/:collection/:type', :controller => 'boxview/indici', :action => "show"
   map.connect '/boxview/indici/:collection/:type/:subtype', :controller => 'boxview/indici', :action => "show_filtered"
@@ -107,6 +107,8 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
+
+    boxview.resource :bibliography_item
 
     # FIRB PISA
     boxview.pi_search '/pi_search', :controller => 'search', :action => :pi_results

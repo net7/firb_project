@@ -132,4 +132,33 @@ class IllustrationCard < BaseCard
   end
 
 
+  def previous_card
+    anastatica = self.anastatica
+    return nil unless anastatica.present?
+    collection = anastatica.collections.first
+    return nil if collection.nil?
+    begin
+      anastatica = collection.prev(anastatica)
+      return nil if anastatica.nil?
+      prev_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
+    end while prev_card.class != self.class and prev_card.present? and !prev_card.is_public?
+    return prev_card unless prev_card.class != self.class
+  end
+
+  def next_card
+    anastatica = self.anastatica
+    return nil unless anastatica.present?
+    collection = anastatica.collections.first
+    return nil if collection.nil?
+    begin
+      anastatica = collection.next(anastatica)
+      return nil if anastatica.nil?
+      next_card = anastatica.inverse[N::DCT.isPartOf].first unless anastatica.nil?
+    end while next_card.class != self.class and next_card.present? and !next_card.is_public?
+    return next_card unless next_card.class != self.class
+  end
+
+
+
+
 end

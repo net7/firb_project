@@ -84,7 +84,7 @@ class TextCard < TaliaCore::Source
     super(options)
   end
 
-  def prev_card
+  def previous_card
     anastatica = self.anastatica
     collection = anastatica.collections.first
     return nil if collection.nil?
