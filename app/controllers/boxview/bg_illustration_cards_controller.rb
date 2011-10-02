@@ -1,4 +1,7 @@
 class Boxview::BgIllustrationCardsController < Boxview::BaseController
+
+caches_page :show
+
   def show
     @resource = BgIllustrationCard.find(params[:id], :prefetch_relations => true)
     @image    = @resource.image_zone.get_parent
