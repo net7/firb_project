@@ -14,7 +14,7 @@ module SOLR
       text :bibliography
 
       dynamic_string :image_components, :multiple => true, :stored => true do
-        original.image_components.reduce({}) {|x, y| x.merge(y.zone_type.to_s => y.name.to_s)}
+        image_components
       end
     end
 
@@ -22,5 +22,12 @@ module SOLR
       original.iconclasses false, false
     end
 
+    def image_components
+      result = {}
+      original.image_components.to_a.each do |x|
+        (result[x.zone_type.to_s] ||= []) << x.name.to_s
+      end
+      result
+    end
   end # class PiLetterIllustrationCard
 end # module SOLR
