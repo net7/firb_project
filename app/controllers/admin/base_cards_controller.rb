@@ -41,6 +41,8 @@ class Admin::BaseCardsController < Admin::AdminSiteController
   def update
     file = card_params.delete(:file)
 
+    # since TaliaCore::Source#rewrite_attributes expects a multi parameter to be present and empty 
+    # to empty it, we need this in case the user wanted to pass through an empty set...
     card_params['bibliography_items'] = card_params['bibliography_items'] || [] 
 
     hobo_source_update(:params => card_params) do |card|

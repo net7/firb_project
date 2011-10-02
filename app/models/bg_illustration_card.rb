@@ -155,7 +155,7 @@ class BgIllustrationCard < IllustrationCard
 
   def boxview_data
     { :controller => 'boxview/bg_illustration_cards', 
-      :title => "Scheda illustrazione: #{anastatica.page_position}",
+      :title => "Scheda illustrazione: #{self.name}",
       :description => self.description,
       :res_id => "bg_illustration_card_#{self.id}", 
       :box_type => 'image',
