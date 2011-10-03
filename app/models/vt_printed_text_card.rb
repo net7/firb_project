@@ -83,7 +83,7 @@ class VtPrintedTextCard < TextCard
 
   def boxview_data
     { :controller => 'boxview/vt_printed_text_cards',
-      :title => "Trascrizione stampa: #{self.anastatica.page_position}",
+      :title => "Trascrizione critica stampa: #{self.anastatica.page_position}",
       :description => "",
       :res_id => "vt_printed_text_card_#{self.id}",
       :box_type => 'transcription',
