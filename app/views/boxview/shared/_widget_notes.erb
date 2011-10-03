@@ -5,11 +5,11 @@
     notes_w = ''
     notes.each do |n|
         notes_w << %[
-            <div class="note closed" id="note_#{n[:class]}">
+            <div class="note" id="note_#{n[:class]}">
                 <p class="open">
-                    #{n[:content]}
+                  <span>#{n[:name]}</span>
+                  <span>#{n[:content]}</span>
                 </p>
-                <p class="closed">#{n[:name]}</p>
             </div>
         ]
     end
@@ -19,5 +19,5 @@
 <%= 
     boxview_widget 'Note', {:class => 'notes widget_draggable'} do |w| 
         w.content content_tag(:div, notes_w)
-    end
+    end if notes_w.present?
 %>

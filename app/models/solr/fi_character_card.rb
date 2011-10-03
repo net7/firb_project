@@ -30,6 +30,24 @@ module SOLR
       original.image_components.to_a
     end
 
+
+    def qualities_age
+      original.qualities_age.to_s
+    end
+
+    def qualities_gender
+      original.qualities_gender.to_s
+    end
+
+    def qualities_profession
+      original.qualities_profession.to_s
+    end
+
+    def qualities_ethnic_group
+      original.qualities_ethnic_group.to_s
+    end
+
+    
     def bibliography
       super.tap do |biblio|
         biblio + baldini_text.bibliography_items.map {|item| item.bibliography_item.name} if baldini_text

@@ -16,21 +16,23 @@
   # immagini di memoria
   m = @models[:illustrazioni] 
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria Illustrate</a><ul>" 
-  types = ImageComponent.zone_types_for(PiIllustrationCard) 
-  types.each do |type| 
+#  types = ImageComponent.zone_types_for(PiIllustrationCard) 
+# types.each do |type|  
+  {"animali" => "animali", "luoghi" => "luoghi", "numeri" => "numeri", "lettere" => "lettere dell`alfabeto", "persone" => "persone", "oggetti" => "oggetti"}.each do |key, type|
+
     w.content "<li class='menu_secondlevel leaf'>" 
-    w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", type, "Indice #{type}", "index_#{type}", :index) 
+    w.content boxview_link("/boxview/indici/#{@collection_id}/#{m.tableize}/#{type}", I18n.t("menu.pi.non_illustrated_#{key}"), "Indice " + I18n.t("menu.pi.non_illustrated_#{key}"), "pi_index_non_illustrated_#{key}", :index)
     w.content "</li>"
   end
   w.content "</ul></li>"
 
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria non illustrate</a><ul>"
-  ["Animali", "Luoghi", "Numeri", "Lettere dell`alfabeto", "Persone", "Oggetti", "Scene"].each do |category|
+  {"animali" => "animali", "luoghi" => "luoghi", "numeri" => "numeri", "lettere" => "lettere dell`alfabeto", "persone" => "persone", "oggetti" => "oggetti"}.each do |key,  category| 
     w.content "<li class='menu_secondlevel leaf'>"
     w.content boxview_link("/boxview/indici/pi_memory_category?category=#{category.to_s.downcase}",
-                           category,
-                           "Indice #{category}",
-                           "pi_index_memory_#{URI.escape category}",
+                           I18n.t("menu.pi.illustrated_#{key}"),
+                           "Indice " + I18n.t("menu.pi.illustrated_#{key}"),
+                           "pi_index_illustrated_#{URI.escape key}",
                            :index)
     w.content "</li>"
   end

@@ -43,6 +43,15 @@
 		// Default type (used as class in the markup)
 		type: 'defType',
 
+		// Is a box collapsable?
+		collapsable: true,
+
+		// Is a box draggable?
+		draggable: true, 
+
+		// Is a box closable?
+		closable: true,
+
 		// Is a box initially collapsed?
 		collapsed: 0,
 
@@ -94,7 +103,7 @@
 		animations: true,
 
         // Default fields to be used for anchorman description
-        anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring'],
+        anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'draggable', 'collapsable'],
 
 		// Will check every lazyResizeInterval ms if boxview's container width/height are
 		// changed
@@ -177,6 +186,7 @@
                 if (self.container.height() !== self.bvc.height() || self.container.width() !== self.bvc.width()) {
                     self.log("Lazy resizing spotted a wrong sized boxview!");
                     self.resize();
+					self.repaint();
                 }
 			}, self.options.lazyResizeTime);
 
@@ -193,7 +203,7 @@
 					self.resize();
 					return false;
 				});
-			$("div#"+ self.boxViewName +" div.boxHeader, div#"+ this.boxViewName +" div.boxCollapsedContent").live("dblclick", function() { 
+			$("div#"+ self.boxViewName +" div.box.collapsable div.boxHeader, div#"+ this.boxViewName +" div.box.collapsable div.boxCollapsedContent").live("dblclick", function() { 
 				    self.toggleCollapseBox($(this).parents('div.box').attr('id'));
 					self.resize();
 					return false;
@@ -289,20 +299,35 @@
 			} // for i
 
 			// Finally repaint with the new values
-			this.repaint() 
+			this.repaint();
 
             // Double check after repaint:
             var self = this;
 			setTimeout(function() { 
-		        if (startingExpandedWidth != $(self.bvc).width()) {
+		        if (startingExpandedWidth != $(self.bvc).width() || self.boxesDimensionsCheck()) {
 		            self.log("Dobule check! Current BVC width doesnt match with real container width, resizing again.");
 		            self.resize();
 		        } else {
 		            self.log("Double check BVC width passed.");
 		        }
-		    }, 200);
+		    }, 400);
                 
 		}, // resize()
+
+		boxesDimensionsCheck: function() {
+			var self = this;
+
+			for (i in self.boxOptions) {
+				var b = self.boxOptions[i],
+					left = parseInt($('#'+b.id).css('left').substring(-2)),
+					width = parseInt($('#'+b.id).css('width').substring(-2));
+				if (left != b.left || width != b.width) {
+					self.log('Spotted a box with wrong dimensions!');
+					return true;
+				}
+			}
+			return false;
+		},
 
 		// Draws/animates the new positions and sizes of all boxes
 		repaint : function () {
@@ -498,6 +523,10 @@
 		// Will add a box and call the callbacks
 		addBox : function(boxContent, opts) {
 
+			for (x in opts)  
+				if (opts[x] === 'false') 
+					opts[x] = false; 
+
 			this.log("Calling addBox with "+opts);
 
 			if (typeof(opts) !== 'undefined')
@@ -505,8 +534,9 @@
                     // Flash the box if this resId is already open!
 			 		if (this.getIdFromResId(opts.resId) !== -1) {
 						this.log("There's already a box with resId="+opts['resId']+" .. flashing it");
-						if (this.options.animateResize === true)
-							$('#' + this.getIdFromResId(opts.resId)).fadeTo(200, "0.3").fadeTo(200, "1.0").fadeTo(200, "0.3").fadeTo(200, "1.0");
+						// TODO: add an option to animate the flash window or flash it always ..
+						// if (this.options.animateResize === true)
+						$('#' + this.getIdFromResId(opts.resId)).fadeTo(200, "0.3").fadeTo(200, "1.0").fadeTo(200, "0.3").fadeTo(200, "1.0");
 							
 						return false;
 					}
@@ -515,7 +545,7 @@
 			// leaving a blank space in the Nth position, then do the
 			// usual stuff on boxOptions[n]
 			var n = NaN;
-			if (typeof(opts) != "undefined")
+			if (typeof(opts) !== "undefined")
 				n = parseInt(opts.position);
 
 			var foo = {};
@@ -565,22 +595,28 @@
 
 			// Make boxes draggable, sets some properties and attach functions
 			// to handle drag, dragstart and dragend inside boxView.
-			var thisBoxView = this;
-			$('#'+boxopt['id']).draggable({ 
-				containment: 'parent', 
-				handle: '.boxDragHandle',
-				cursor: 'move',
-				zIndex: 20,
-				stack: 'div.box',
-				opacity: 0.70,
-				start: function() { thisBoxView.dragStart($(this).attr('id')); },
-				drag: function() { thisBoxView.drag($(this).attr('id')); },
-				stop: function() { thisBoxView.dragStop($(this).attr('id')); }
-			});
-			
-			$('#'+boxopt['id']+" .resizable:not[.resizing]").each(function(i,e) {
+			var self = this;
+			if (boxopt['draggable'])
+				$('#'+boxopt['id']).draggable({ 
+					containment: 'parent', 
+					handle: '.boxDragHandle',
+					cursor: 'move',
+					zIndex: 20,
+					stack: 'div.box',
+					opacity: 0.70,
+					start: function() { self.dragStart($(this).attr('id')); },
+					drag: function() { self.drag($(this).attr('id')); },
+					stop: function() { self.dragStop($(this).attr('id')); }
+				});
+
+			/*
+			// DEBUG: this crashes IE ..... fun.
+			$("#"+boxopt['id']+" .resizable:not[.resizing]").each(function(i, e) {
+				self.log('estiqaatsi');
 			    $(e).addClass('firstresize');
+				return false;
 			});
+			*/
 
 			this.log("Added box "+boxopt['id']+" in position " + this.n + " with resId " +  boxopt['resId']);
 
@@ -611,15 +647,22 @@
             if (self.boxStrapper !== false)
                 self.boxStrapper.addLoadingItem("Box: "+opts.title);
 
+		    // DEBUG IE: random string to trick the cache, if there's no
+			// question mark, add it.. else use &
+			// TODO DEBUG: is this enough? :|
+		    if (typeof(window.ActiveXObject) === 'function')
+				if (opts.qstring.match(/\?/) === null)
+					opts.qstring += '?ie='+((Math.random()*100000)|0);
+				else
+					opts.qstring += '&ie='+((Math.random()*100000)|0);
+
             // TODO: make some sanity checks, is the box already open? Flash and return?
             // are the informations correct? Set loading?
             $.ajax({
                 type: 'GET',
                 url: opts.qstring,
-                success: function(data) { 
-                    self.addBox(data, {qstring: opts.qstring, collapsed: opts.collapsed, 
-                                        resId: opts.resId, type: opts.type, title: opts.title, 
-                                        verticalTitle: opts.verticalTitle});
+                success: function(data) {
+	  				self.addBox(data, opts);  
                     if (self.boxStrapper !== false)
                         self.boxStrapper.removeLoadedItem("Box: "+opts.title);
                     return false;
@@ -629,24 +672,34 @@
         }, // addBoxFromAjax
 
         getBoxHtml : function (n) {
-            var b = this.boxOptions[n];
+            var b = this.boxOptions[n],
+            	html = "<div class='box " + b['type']+" ";
 
-            var html = "<div class='box " + b['type']+" ";
-            html += (b['collapsed']) ? 'collapsed' : 'expanded';
+            html += (b['collapsed']) ? 'collapsed ' : 'expanded ';
+            html += (b['collapsable']) ? 'collapsable ' : '';
+            html += (b['draggable']) ? 'draggable ' : '';
+            html += (b['closable']) ? 'closable ' : '';
+
             html += "' id='"+b['id']+"'>"+
             		"<div class='boxHeader boxDragHandle'>"+
             			"<div class='leftIcons'>"+
-            				"<ul>"+
-            					"<li class='collapseTool'><a class='collapseTool' href=''>Collapse</a></li>"+
-            				"</ul>"+
+            				"<ul>";
+
+			if (b['collapsable'])
+            	html += "<li class='collapseTool'><a class='collapseTool' href=''>Collapse</a></li>";
+
+			html += 		"</ul>"+
             			"</div>"+
             			"<div class='title'>"+
             				"<h3 class='boxHeaderTitle'>" + b['title'] + "</h3>"+
             			"</div>"+
             			"<div class='rightIcons'>"+
-            				"<ul>"+
-            				    "<li class='removeTool'><a class='removeTool' href=''>Close</a></li>"+
-            				"</ul>"+
+            				"<ul>";
+							
+			if (b['closable'])
+    			html += "<li class='removeTool'><a class='removeTool' href=''>Close</a></li>";
+
+			html +=			"</ul>"+
             			"</div>"+
             		"</div>"+
             		"<div class='boxContent'>"+b['content']+"</div>"+
@@ -807,6 +860,9 @@
 						changed = "left";
 						moving_box = i;
 
+						if (this.boxOptions[i].draggable === false) 
+							return false;
+							
 						var foo = this.boxOptions[moving_box].left;
 						this.boxOptions[moving_box].left += this.boxOptions[drag_box].width + this.options.boxMargin;
 						this.boxOptions[drag_box].left = foo;
@@ -945,11 +1001,19 @@
             this.history.push(opts);
 
             // Add an item in the history box, if open
-            var classes = (opts.collapsed ? "collapsed " : "") + " history_item " +opts.type,
-            item = "<div class='"+classes+"' about='"+opts.id+"'>"+
-                    "<span class='history_status'></span>"+ opts.verticalTitle + "</div>";
+			// TODO: what's this! Rewrite this mess .. !!
+            var classes = (opts.collapsed ? "collapsed " : "") +
+						 	" history_item " +
+							opts.type + " " +
+							(opts.collapsable ? 'collapsable ' : '') +
+				            (opts.draggable ? 'draggable ' : '') +
+				            (opts.closable ? 'closable ' : ''),
+           		item = "<div class='"+classes+"' about='"+opts.id+"'>"+
+                    	"<span class='history_status'></span>"+ opts.verticalTitle + "</div>";
 
             $(item).appendTo('div.widget.open_boxes div.widgetContent').slideUp(0).slideDown(750);
+
+
 
         }, // historyAdd()
 
@@ -978,17 +1042,19 @@
         historyHandleMouseEnter : function (item) {
 
             if ($(item).hasClass('closed')) {
-                $(item).append("<span class='history_action open'>Open</span>");
+				if ($(item).hasClass('closable'))
+					$(item).append("<span class='history_action open'>Open</span>");
             } else {
+				if ($(item).hasClass('closable'))
+                	$(item).append("<span class='history_action close'>Close</span>");
 
-                $(item).append("<span class='history_action close'>Close</span>");
-                if ($(item).hasClass('collapsed'))
-                    $(item).append("<span class='history_action expand'>Expand</span>");
-                else
-                    $(item).append("<span class='history_action collapse'>Collapse</span>");
+				if ($(item).hasClass('collapsable'))
+					if ($(item).hasClass('collapsed'))
+						$(item).append("<span class='history_action expand'>Expand</span>");
+					else
+						$(item).append("<span class='history_action collapse'>Collapse</span>");
 
                 $(item).append("<span class='history_action maximize'>Maximize</span>");
-                
             }
         }, // historyHandleMouseEnter()
 
