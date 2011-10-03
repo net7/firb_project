@@ -224,15 +224,15 @@ GARBAGE
 	display: block;
 }
 .transcription_notes_content .note {
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 .transcription_notes_content .note:hover {
-    cursor: pointer;
-    background-color: rgba(100,100,100,0.1); /* Nota: cambiare il colore - Spostare in firb.css? */
+    /* cursor: pointer; */
+    /* background-color: rgba(100,100,100,0.1); */ /* Nota: cambiare il colore - Spostare in firb.css? */
 }
 .transcription_text span.note_link {
     padding: 0px 5px;
-    color: #f00;
+    color: #992000;
 }
 .transcription_text span.note_link:hover {
     cursor: pointer;
@@ -346,13 +346,11 @@ GARBAGE
 		
 		.transcription_notes .transcription_notes_content .note.open {
 			color: #666;
-			background-color: #fffbb9;
-			border: 1px solid #f6f0ad;
-			padding: 3px;
+			border-bottom: 1px solid #ccc;
 		}
 		.transcription_notes .transcription_notes_content .note.closed {
-			color: #999;
 			color: #992000;
+			cursor: pointer;
 		}
 		.transcription_notes .transcription_notes_content .note.closed:hover {
 			text-decoration: underline;
