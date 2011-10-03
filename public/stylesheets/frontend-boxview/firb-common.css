@@ -1,7 +1,7 @@
 /* --- Table Of Contents
 
 01. HTML TAGS 
-		1. .....
+		1. Firefox a tag dotted line removal
 02. GENERIC CLASSES 
 		1. Text Zone Highlight
 03. PAGE STRUCTURE
@@ -13,8 +13,9 @@
 05. BOX
 		1. Generic Box Features
 		2. Index Box
-		3. Trascription Box
-		4. Anastatic Box
+		3. Index Box Multilevel
+		4. Trascription Box
+		5. Anastatic Box
 06. WIDGETS
 		1. Generic Widget Features
 		2. Collapsable Description Fields
@@ -35,7 +36,10 @@ GARBAGE
 /* ________________________________________________________________________________________________________________
 	01. HTML TAGS
  ________________________________________________________________________________________________________________ */
-/* ------- 1. ... ------- */
+/* ------- 1. Firefox a tag dotted line removal ------- */
+a {
+   outline: 0;
+}
 
 
 /* ________________________________________________________________________________________________________________
@@ -166,6 +170,10 @@ GARBAGE
 }
 
 /* ------- 2. Index Box ------- */
+.boxViewContainer .box.index .boxContent .widgetContent ul li {
+	padding: 5px 0;	
+}
+
 .box.index .widgetContent ul li .indexContent h5{
 	font-size: 13px;
 	line-height: 16px;
@@ -181,7 +189,39 @@ GARBAGE
 	line-height: 14px;
 }
 
-/* ------- 3. Trascription Box ------- */
+/* ------- 3. Index Box Multilevel ------- */
+.box.index .widgetContent ul {
+}
+
+.boxViewContainer .box.index .widgetContent ul li {
+	border-bottom: 0;
+}
+
+.box.index .widgetContent ul li a.menu {
+	font-size: 30px;
+}
+
+.box.index .widgetContent ul li a.menu ul {
+}
+
+.boxViewContainer .box.index .widgetContent ul li a.menu ul li {
+	border-bottom: 1px solid #D3D3D3;
+	border-bottom: 0;
+}
+
+.box.index .widgetContent ul li a.menu ul li a.boxview_link {
+	font-size: 12px;
+} 
+
+
+
+
+
+
+
+
+
+/* ------- 4. Trascription Box ------- */
 /* Da capire bene che fanno */
 .transcription a.transcription_open_icon {
 	display: inline-block; /* Occhio alla compatibilità */
@@ -357,7 +397,7 @@ GARBAGE
 			background: none;
 		}
 
-/* ------- 4. Anastatic Box ------- */
+/* ------- 5. Anastatic Box ------- */
 /* Lista Elementi correlati */
 .box.anastatic .widgetContent ul li .indexContent h5{
 	font-size: 12px;
