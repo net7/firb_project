@@ -39,7 +39,7 @@
             collapsable: true,
             prevnext: false,
             zoomable: false,
-            type: '',
+            type: ''
         },
 
         // Use animations to collapse widgets?
@@ -175,7 +175,6 @@
             $('div.box.expanded div.widgetContent.notes-displayed').each(function (i, e) {
                 var th = $(e).find('div.transcription_text').height();
                 $(e).find('div.transcription_notes_content').height(th);
-                console.log('Resizing!!');
             });
             
         }, // resizeWidgets()
