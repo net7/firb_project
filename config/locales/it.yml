@@ -866,3 +866,21 @@ it:
     qualities_ethnic_group: "Etnia"
     fi_bibliographies: "Fonti"
     fi_image_components: "Elementi grafici"
+
+    menu:
+      pi:
+        non_illustrated_animali: "Animali"
+        non_illustrated_luoghi: "Luoghi"
+        non_illustrated_numeri: "Numeri"
+        non_illustrated_lettere: "Lettere dell'alfabeto"
+        non_illustrated_persone: "Persone"
+        non_illustrated_oggetti: "Oggetti"
+        # illustrated card
+        illustrated_animali: "Animali"
+        illustrated_luoghi: "Luoghi"
+        illustrated_numeri: "Numeri"
+        illustrated_lettere: "Lettere dell'alfabeto"
+        illustrated_persone: "Persone"
+        illustrated_oggetti: "Oggetti"
+
+
