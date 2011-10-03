@@ -22,7 +22,8 @@ class PiIllustrationCard < IllustrationCard
   end
 
   def children
-    @children ||= PiIllustratedMdCard.find :all, :find_through => [N::TALIA.parent_card, self.uri]
+#    @children ||= PiIllustratedMdCard.find :all, :find_through => [N::TALIA.parent_card, self.uri]
+    @children ||= self.child_cards
   end
 
   def children_components_by_type
