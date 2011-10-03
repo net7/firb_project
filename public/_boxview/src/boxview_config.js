@@ -37,7 +37,7 @@ var
             waitBeforeClose: 1000,
             
             // Lenght of the fade animation (milliseconds)
-            animationLenght: 1500,
+            animationLenght: 1500
             
         },
 
@@ -157,7 +157,7 @@ var
             // your veryImportantField name, like: encodeveryImportantField: true
 
             // Box fields to be saved into AnchorMan, encoding some in base64
-            anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'title', 'verticalTitle', 'collapsable', 'draggable'],
+            anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'title', 'verticalTitle', 'closable', 'collapsable', 'draggable'],
             encodeqstring: true,
             encodetitle: true,
             encodeverticalTitle: true,

@@ -180,6 +180,8 @@ BoxStrapper.prototype = {
     // remove it. Once per level, the last item will trigger next level.
     removeFromLoadingQueue: function(name) {
 
+		this.log('Removing from queue: '+name);
+
         // debug: invert for
         for (var k=0; k<=this.highestPrio; k++) {
 
@@ -233,9 +235,9 @@ BoxStrapper.prototype = {
                 var item = this.loadingQueue[this.lowestPrio][i];
                 this.addLoadingItem(item.name);
                 if (typeof(item.fun) === "function") {
-                    // Call the remove when the funcion is finished
+                    // Call the remove when the function is finished
+                    var self = this;
                     item.fun.call(this);
-                    self = this;
                     setTimeout(function() { self.removeFromLoadingQueue(item.name); }, self.forceRemoveTime);
                 }
 
@@ -280,7 +282,11 @@ BoxStrapper.prototype = {
     }, // checkFile()
     
     _loadResource: function(file, name, type) {
-        var s, field;
+        var s, field, 
+			self = this,
+			isIe = typeof(window.ActiveXObject) === 'function';
+
+		self.log("_LOADRES "+file+" -- "+name+" -- "+type);
 
         // If it's an absolute URL, load it.. else add path and load it
         if (file.match(/http:/) === null) 
@@ -299,18 +305,25 @@ BoxStrapper.prototype = {
 
         if (type === "js") {
             s = document.createElement('script');
-            s.rel = 'stylesheet';
-            s.media = 'screen'
             field = 'src';
             s.type = 'text/javascript';
         }
 
-        var self = this;
-        s.onload = function () { self.removeFromLoadingQueue(name); };
+		// Always set the onload function for css files;
+		// If it's IE, dont set it for other types
+        if (!isIe || type === 'css')
+	        s.onload = function () { 
+				self.log("Normal browser correctly loaded "+name+": "+file); 
+				self.removeFromLoadingQueue(name); 
+			};
         
-        // Little hack: poll every 100ms if the stylesheet has been loaded, since
-        // some browsers dont fire the onload event for certain tags (LINK!).
-        if (type === "css")
+        // Lazy-load-a-css-little hack: poll every 100ms if the stylesheet has been loaded, 
+		// since some browsers dont fire the onload event for certain tags (LINK!).
+        if (type === "css") {
+		    s.async = true;  
+			s[field] = file;
+            document.getElementsByTagName('head')[0].appendChild(s); 
+	    
             (function() {
     			try {
     				s.sheet.cssRules;
@@ -320,22 +333,63 @@ BoxStrapper.prototype = {
     			};
                 s.onload(); 
     		})();
-        
-        s.onerror = function () { 
-            // DEBUG: do something here, errors with just SCRIPTS not loading
-            self.log("ERROR LOADING "+name); 
-            self.removeFromLoadingQueue(name); 
-        };
+		}
 
-        s[field] = file; 
-        document.getElementsByTagName('head')[0].appendChild(s);
+		// IE doesnt fire onload callbacks for <script>. Using
+		// an ajax call to get the content of the script, add
+		// the <script> node to the dom putting content in its 
+		// .text field. 
+		// If it's a normal browser.. just append the node
+		// and wait the onload() to get called
+        if (type === 'js' && !isIe) {
+	        s.onerror = function () { 
+	            self.log("NORMAL BROWSER ERROR LOADING "+ name); 
+	            self.removeFromLoadingQueue(name); 
+	        }
+	        s.async = true;  
+			s[field] = file;
+            document.getElementsByTagName('head')[0].appendChild(s); 
+
+		} else {
+            var xmlhttp = null;
+            try { xmlhttp = new XMLHttpRequest(); } catch(e) {
+                try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); } catch(e) { 
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }}  
+
+			xmlhttp.onreadystatechange  = function() {
+	            try {
+	                if (this.done !== undefined)
+	                    return;
+
+					// Correctly loaded
+	                if (this.status >= 200 && this.status < 300){
+	                    this.done = true;
+	                    s.text = this.responseText;
+	                    document.getElementsByTagName('head')[0].appendChild(s);
+						self.log("IE correctly loaded "+name+": "+file); 
+	                    self.removeFromLoadingQueue(name);
+	                }
+					// Error somewhere
+	                if (this.status >= 400){
+	                    this.done =  true;
+			            self.log("ERROR LOADING WITH IE "+name+" :: "+file); 
+			            self.removeFromLoadingQueue(name); 
+	                }
+	             } catch(e){}
+			  };
+           	xmlhttp.open('get', file, true);                             
+			xmlhttp.send(null); 
+
+        } // type === js && isIe
 
     }, // _loadResource
     
     showOverlay: function() {
         // DEBUG: any better ideas than appending a div
         foo = document.createElement('div');
-        foo.style.background = "rgba(0,0,0,0.85)";
+		// IE DEBUG: rgba() !
+        // foo.style.background = "rgba(0,0,0,0.85)";
+        foo.style.background = "black";
         foo.style.height = '100%';
         foo.style.width = '100%';
         foo.style['z-index'] = "10";
@@ -403,15 +457,17 @@ BoxStrapper.prototype = {
         window[usn] = new $.urlShortener(BoxViewSuiteConfig.URLShortenerConfig);
 
         // Create the AnchorMan and connect some callbacks
-        window[amn] = new $.anchorMan(BoxViewSuiteConfig.boxViewConfig);
-        for (var i in callBacks) {
-            name = callBacks[i];
-            window[bvn][name+"AddCallBack"](function() { window[amn].set_section_from_object(sen, window[bvn].getAnchorManDesc())});
-        }
+        if (BoxViewSuiteConfig.useAnchorMan === true) {
+            window[amn] = new $.anchorMan(BoxViewSuiteConfig.anchorManConfig);
+            for (var i in callBacks) {
+                name = callBacks[i];
+                window[bvn][name+"AddCallBack"](function() { window[amn].set_section_from_object(sen, window[bvn].getAnchorManDesc())});
+            }
 
-    	window[amn].setCallbacks(sen, BoxViewSuiteConfig.anchorManCallbacks);
-        window[amn].describeSection(sen, window[bvn].options.anchorManDescription);
-    	window[amn].call_init_callbacks();
+        	window[amn].setCallbacks(sen, BoxViewSuiteConfig.anchorManCallbacks);
+            window[amn].describeSection(sen, window[bvn].options.anchorManDescription);
+        	window[amn].call_init_callbacks();
+	    }
     }, // initComponents()
  
 	log: function(w) {
