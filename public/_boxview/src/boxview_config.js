@@ -75,6 +75,15 @@ var
     		// in the HTML markup)
     		type: 'defType',
 
+			// Is a box collapsable? (true/false)
+			collapsable: true,
+
+			// Is a box draggable? (true/false)
+			draggable: true, 
+
+			// Is a box closable? (true/false)
+			closable: true,
+
     		// Is a box initially collapsed? (true/false)
     		collapsed: false,
 
@@ -148,7 +157,7 @@ var
             // your veryImportantField name, like: encodeveryImportantField: true
 
             // Box fields to be saved into AnchorMan, encoding some in base64
-            anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'title', 'verticalTitle'],
+            anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'title', 'verticalTitle', 'collapsable', 'draggable'],
             encodeqstring: true,
             encodetitle: true,
             encodeverticalTitle: true,
