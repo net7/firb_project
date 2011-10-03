@@ -40,13 +40,13 @@ module Mixin::Facetable
               label = facets_annotation_get annotation, :subject, :label
             when N::FIRBSWN.instanceOf.to_s
               dictionary_value = DictionaryItem.find facets_annotation_get(annotation, :object), :prefetch_relations => true
-              key   = dictionary_value.item_type.split('#').last
-              value = dictionary_value.name
+              key   = dictionary_value.item_type.split('#').last.to_s
+              value = dictionary_value.name.to_s
               label = facets_annotation_get annotation, :subject, :label
             when N::FIRBSWN.hasMemoryDepiction.to_s
               if(illustration = PiNonIllustratedMdCard.find(facets_annotation_get(:object), :prefetch_relations => true) rescue nil)
                 key   = "Immagini di memoria"
-                value = illustration.short_description
+                value = illustration.short_description.to_s
                 label = facets_annotation_get annotation, :subject, :label
               end
             when N::FIRBSWN.keywordForImageZone
@@ -60,6 +60,8 @@ module Mixin::Facetable
           annotation.remove
 
           if [key, value].all? {|x| x.present?}
+            label = URI.encode label
+            key = URI.encode label
             facets[key.to_s] << value.to_s unless (facets[key.to_s] ||= []).include? value.to_s
             @facet_labels[value.to_s] << label.to_s unless (@facet_labels[value.to_s] ||= []).include? label.to_s or label.to_s.blank?
           end

@@ -75,6 +75,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/boxview/indici/pi_memory_category', :controller => 'boxview/indici', :action => "show_pi_memory_category"
   map.connect '/boxview/indici/pi_memory_by_name',  :controller => 'boxview/indici', :action => "show_pi_memory_by_name"
   map.connect '/boxview/indici/pi_text_by_memory',  :controller => 'boxview/indici', :action => "show_pi_text_by_memory"
+  map.connect '/boxview/indici/pi_name',  :controller => 'boxview/indici', :action => "show_pi_name"
+  map.connect '/boxview/indici/pi_name_by_category',  :controller => 'boxview/indici', :action => "show_pi_name_by_category"
   map.connect '/boxview/indici/fi', :controller => 'boxview/indici', :action => "fi" 
   map.connect '/boxview/indici/vt', :controller => 'boxview/indici', :action => "vt" 
   map.connect '/boxview/indici/bg', :controller => 'boxview/indici', :action => "bg" 

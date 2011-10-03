@@ -29,7 +29,7 @@
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Immagini di memoria non illustrate</a><ul>"
   {"animali" => "animali", "luoghi" => "luoghi", "numeri" => "numeri", "lettere" => "lettere dell`alfabeto", "persone" => "persone", "oggetti" => "oggetti"}.each do |key,  category| 
     w.content "<li class='menu_secondlevel leaf'>"
-    w.content boxview_link("/boxview/indici/pi_memory_category?category=#{category.to_s.downcase}",
+    w.content boxview_link("/boxview/indici/pi_memory_category?category=#{URI.encode category.to_s.downcase}",
                            I18n.t("menu.pi.illustrated_#{key}"),
                            "Indice " + I18n.t("menu.pi.illustrated_#{key}"),
                            "pi_index_illustrated_#{URI.escape key}",
@@ -37,6 +37,22 @@
     w.content "</li>"
   end
   w.content "</ul></li>"
+  
+  # Per nomi
+
+  w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>Nomi di</a><ul>"
+  {"persone" => "nome di persona", "luoghi" => "nome di luogo"}.each do |key,  name| 
+    w.content "<li class='menu_secondlevel leaf'>"
+    w.content boxview_link("/boxview/indici/pi_name?category=#{URI.encode name.to_s.downcase}",
+                           I18n.t("menu.pi.name_#{key}"),
+                           "Indice " + I18n.t("menu.pi.name_#{key}"),
+                           "pi_index_illustrated_#{URI.escape key}",
+                           :index)
+    w.content "</li>"
+  end
+  w.content "</ul></li>"
+
+
 
   # Schede testo
   m = @models[:schede_testo]
