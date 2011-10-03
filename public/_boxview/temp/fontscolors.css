@@ -1,0 +1,1097 @@
+/*
+
+Css addetto allo stile dell'interfaccia:
+colori e font
+
+*/
+
+/*
+Tags definitions
+*/
+html, body {
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+body {
+	background: #FFF url(images/body_bg.gif) top left repeat-y;
+}
+
+a {
+	color: #8e3121;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*
+Page Sections
+*/
+#pageContent {
+	background: #ccc;
+}
+
+
+/*
+Header
+*/
+#pageHeader {
+	background: #30261d url(images/header/Header_bg.gif) top left repeat-x;
+}
+	#pageHeader h1{
+		background: #000000 url(images/header/Header_h1.gif) top left no-repeat;
+	}
+
+	/*
+	Header Preferences 
+	Box in alto a destra nella testata
+	che contiene le icone dei vari strumenti
+	di settaggio delle preferenze
+	*/
+	#pageHeader #header_preferences_wrapper {
+		background: url(images/preferences/preferences_right.gif) top right no-repeat;
+	}
+		#pageHeader #header_preferences_wrapper #header_preferences {
+			background: url(images/preferences/preferences_left.gif) top left no-repeat;
+		}
+		
+			#pageHeader #header_preferences_wrapper #header_preferences ul {
+				background: url(images/preferences/preferences_bg.gif) top left repeat-x;
+			}
+			
+				#pageHeader #header_preferences_wrapper #header_preferences ul li {
+					background: url(images/preferences/preferences_separator.gif) top right no-repeat;
+				}
+								
+				#pageHeader #header_preferences_wrapper #header_preferences ul li a#helpButton {
+					background: url(images/preferences/preferences_icon_help.gif) center center no-repeat;
+				}
+				
+				#pageHeader #header_preferences_wrapper #header_preferences ul li a#undoButton {
+					background: url(images/preferences/preferences_icon_undo.gif) center center no-repeat;
+				}
+				
+				#pageHeader #header_preferences_wrapper #header_preferences ul li a#introButton {
+					background: url(images/preferences/preferences_icon_home.gif) center center no-repeat;
+				}
+				
+				#pageHeader #header_preferences_wrapper #header_preferences ul li a.inactive#undoButton {
+					background: url(images/preferences/preferences_icon_undo_inactive.gif) center center no-repeat;
+				}
+				
+				#pageHeader #header_preferences_wrapper #header_preferences ul li a#prefButton {
+					background: url(images/preferences/preferences_icon_settings.gif) center center no-repeat;
+				}
+				
+				#pageHeader #header_preferences_wrapper #header_preferences ul li a#myDoni {
+					background: url(images/preferences/preferences_icon_user.gif) center center no-repeat;
+				}
+	
+	      /* Simone 21/07/10:  */
+				#pageHeader #header_preferences_wrapper #header_preferences ul li#url_to_copy {
+          display: none;
+        }
+				#pageHeader #header_preferences_wrapper #header_preferences ul li#url_to_copy input {
+					border: 0; background: #666; color: white; width: 280px;
+				}
+				#pageHeader #header_preferences_wrapper #header_preferences ul li#copy_button_li div#clip_button {
+          height: 20px;
+          width: 20px; 
+          text-align: center; 
+          border: 1px solid red; 
+          background-color: #ccc; 
+        }
+				#pageHeader #header_preferences_wrapper #header_preferences ul li#copy_button_li.link div#copy_button {
+          display: none;
+        }
+				#pageHeader #header_preferences_wrapper #header_preferences ul li#copy_button_li.link a {
+          display: block;
+  				background: url(images/preferences/preferences_icon_copy.gif) center center no-repeat;
+	      }
+				#pageHeader #header_preferences_wrapper #header_preferences ul li#copy_button_li.copy div#copy_button {
+          display: block;
+        }
+				#pageHeader #header_preferences_wrapper #header_preferences ul li#copy_button_li.copy a {
+          display: none;
+        }
+        #copy_button.hover { background-color: #fc0; color: red; cursor: pointer; }
+        #copy_button.active { background-color: #aaa; }
+	
+	
+	
+/*
+Menu
+*/
+	div#menu_container h3 {
+		background: #1f1f1f url(images/menu/menu_container_h3_bg.gif) top left repeat-x;
+		color: #FFFFFF;
+
+		/*
+		  visi 29/06/10: "p. 10" la p va minuscola, tolta questa regola e modificato il 
+		  codice PHP che produce la stringa del titolo
+		  text-transform: uppercase;
+		*/
+		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+		font-weight: normal;
+	}
+
+	/* Primo livello */
+	div#menu_container ul li {
+		background: #e4e4e4;
+		border-bottom: 1px solid #cdcdcd;
+		border-right: 1px solid #cdcdcd;
+	}
+		div#menu_container ul li a{
+			color: #333333;
+			text-decoration: none;
+		}
+		div#menu_container ul li a:hover{
+			text-decoration: underline;
+		}
+		
+	div#menu_container ul li a.menu.collapsed{
+		background: transparent url(images/menu/sublevel_collapsed.gif) center left no-repeat;
+		background-position: 5px center;
+	}
+	div#menu_container ul li a.menu.expanded {
+		background: transparent url(images/menu/sublevel_expanded.gif) center left no-repeat;
+		background-position: 5px center;
+	}
+	
+	/* Secondo livello */
+	div#menu_container ul li ul li {
+		border-top: 1px solid #cdcdcd;
+	}
+		div#menu_container ul li ul li a{
+			color: #666666;
+		}
+		
+	div#menu_container ul li div.context input{
+		color: #333333;
+		text-decoration: none;
+	}
+	div#menu_container ul li div.context label{
+		color: #333333;
+		text-decoration: none;
+	}
+	div#menu_container ul li a#menu_update {
+		color: #8e3121;
+	}
+	div#menu_container ul li a#menu_update:hover {
+	
+	}
+	
+
+/*
+Load dialog
+*/
+#loadingDialog {
+	color: #ffffff;
+	background: #211b14;
+}
+
+/*
+BoxView and boxes
+*/
+.boxViewContainer {
+	background: #fff;
+}
+
+/* Colore dei link visited */
+.boxViewContainer a.visited {
+	color: #C64F34;
+}
+
+/* Simone 20/07: Colore dei link LAST visited */
+.boxViewContainer a.last_visited {
+	color: #b62F14;
+}
+
+.boxViewContainer .box {
+	background: #fff;
+}
+
+.boxViewContainer div.box.yellow {
+	background: #fc7;
+}
+
+/* Expanded BOX */
+
+/* Icone Header Box*/
+
+/* Settare qui i colori delle testat dei vari BOX/SCHEDE */
+
+/* Deafult Color */
+.boxViewContainer div.box div.boxHeader, .boxViewContainer div.box.collapsed, .boxViewContainer div.box.collapsed div.boxCollapsedContent {
+	background-color: #ccc;
+}
+
+
+/* Intro */
+.boxViewContainer div.box.intro div.boxHeader, .boxViewContainer div.box.intro.collapsed, .boxViewContainer div.box.collapsed.intro div.boxCollapsedContent {
+	background-color: #635343;
+}
+
+/* Edition */
+.boxViewContainer div.box.edition div.boxHeader, .boxViewContainer div.box.edition.collapsed, .boxViewContainer div.box.collapsed.edition div.boxCollapsedContent {
+	background-color: #635343;
+}
+
+/* Archivio */
+.boxViewContainer div.box.archivio div.boxHeader, .boxViewContainer div.box.archivio.collapsed, .boxViewContainer div.box.collapsed.archivio div.boxCollapsedContent {
+	background-color: #635343;
+}
+
+/* Crediti */
+.boxViewContainer div.box.crediti div.boxHeader, .boxViewContainer div.box.crediti.collapsed, .boxViewContainer div.box.collapsed.crediti div.boxCollapsedContent {
+	background-color: #635343;
+}
+
+/* Aiuto */
+.boxViewContainer div.box.aiuto div.boxHeader, .boxViewContainer div.box.aiuto.collapsed, .boxViewContainer div.box.collapsed.aiuto div.boxCollapsedContent {
+	background-color: #635343;
+}
+
+/* Index */
+.boxViewContainer div.box.index div.boxHeader, .boxViewContainer div.box.index.collapsed, .boxViewContainer div.box.collapsed.index div.boxCollapsedContent {
+	background-color: #8e3418;
+}
+
+/* Simone 14/07/10 myDoni */ 
+.boxViewContainer div.box.myDoni div.boxHeader, .boxViewContainer div.box.myDoni.collapsed, .boxViewContainer div.box.collapsed.myDoni div.boxCollapsedContent, .boxViewContainer div.box.myDoniNotebook div.boxHeader, .boxViewContainer div.box.myDoniNotebook.collapsed, .boxViewContainer div.box.collapsed.myDoniNotebook div.boxCollapsedContent {
+	background-color: #7f6d4d;
+}
+
+/* Trascription */
+.boxViewContainer div.box.transcription div.boxHeader, .boxViewContainer div.box.transcription.collapsed, .boxViewContainer div.box.collapsed.transcription div.boxCollapsedContent {
+	background-color: #e9bf5d;
+}
+
+/* Anastatica */
+.boxViewContainer div.box.facsimile div.boxHeader, .boxViewContainer div.box.facsimile.collapsed, .boxViewContainer div.box.collapsed.facsimile div.boxCollapsedContent {
+	background-color: #d78134;
+}
+
+/* Immagine */
+.boxViewContainer div.box.imageInfo div.boxHeader, .boxViewContainer div.box.imageInfo.collapsed, .boxViewContainer div.box.collapsed.imageInfo div.boxCollapsedContent {
+	background-color: #c94e23;
+}
+
+/* Quotation box, schede riscritture */
+.boxViewContainer div.box.quotation div.boxHeader, .boxViewContainer div.box.quotation.collapsed, .boxViewContainer div.box.collapsed.quotation div.boxCollapsedContent {
+	background-color: #5c3623;
+}
+
+	.boxViewContainer div.box.expanded div.boxHeader h3.boxHeaderTitle {
+		font-family: Georgia, "Times New Roman", Times, serif;
+		color: #fff;
+		/*
+		  SIMONE 29/06/10: "p. 10" la p va minuscola, tolta questa regola e modificato il 
+		  codice PHP che produce la stringa del titolo
+		  text-transform: uppercase;
+		*/
+		font-weight: normal;
+	}
+	.boxViewContainer div.box.expanded div.boxHeader div.boxHeaderTools {
+	}
+	.boxViewContainer div.box.expanded div.boxHeader div.boxHeaderTools p.collapseTool{
+	}
+	.boxViewContainer div.box.expanded div.boxHeader div.boxHeaderTools p.removeTool{
+	}
+	
+
+/* Loading BOX - Opacita' per box in fase di caricamento */ 
+.boxViewContainer div.box.transcription.expanded.loadingContent div.boxContent, .boxViewContainer div.box.facsimile.expanded.loadingContent div.boxContent, .boxViewContainer div.box.index.expanded.loadingContent div.boxContent, .boxViewContainer div.box.myDoni.expanded.loadingContent div.boxContent, .boxViewContainer div.box.imageInfo.expanded.loadingContent div.boxContent { 
+	opacity: 0.5; 
+}
+	
+
+/* Collapsed BOX */
+/* Testo del box header quando  collassato */
+.boxViewContainer div.box.collapsed div.boxCollapsedContent .verticalContainer{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #fff;
+	font-weight: normal;
+}
+
+
+/*
+Widget
+*/
+.boxViewContainer div.box div.boxContent div.widget {
+	background-color: #ededed;
+}
+
+.boxViewContainer div.box.myDoni div.boxContent div.widget, .boxViewContainer div.box.myDoniNotebook div.boxContent div.widget, .boxViewContainer div.box div.boxContent div.widget.myDoni {
+	background-color: #efeadd;
+}
+	.boxViewContainer div.box div.boxContent div.widget div.widgetHeader {
+		background-color: #c2c2c2;
+	}
+	
+	.boxViewContainer div.box.myDoni div.boxContent div.widget div.widgetHeader, .boxViewContainer div.box.myDoniNotebook div.boxContent div.widget div.widgetHeader, .boxViewContainer div.box div.boxContent div.widget.myDoni div.widgetHeader {
+		background-color: #cfbd98;
+	}
+		.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p {
+			border-left: 1px solid #9d9d9d;
+		}
+		
+		.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p a {
+
+		}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.collapse a.expanded {
+				background: transparent url(images/widget/widget_icon_expanded.png) top left no-repeat;
+				background-position: 8px 5px;
+				background-repeat: no-repeat;
+			}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.collapse a.expanded:hover {
+				background: transparent url(images/widget/widget_icon_expanded_ro.png) top left no-repeat;
+				background-position: 8px 5px;
+				background-repeat: no-repeat;
+			}	
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.collapse a.collapsed {
+				background: transparent url(images/widget/widget_icon_collapsed.png) top left no-repeat;
+				background-position: 8px 5px;
+				background-repeat: no-repeat;
+			}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.collapse a.collapsed:hover {
+				background: transparent url(images/widget/widget_icon_collapsed_ro.png) top left no-repeat;
+				background-position: 8px 5px;
+				background-repeat: no-repeat;
+			}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.previous a {
+				background: transparent url(images/widget/widget_icon_back.gif) top left no-repeat;}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.next a {
+				background: transparent url(images/widget/widget_icon_forward.gif) top left no-repeat;}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.zoom a {
+				background: transparent url(images/widget/widget_icon_zoom.gif) top left no-repeat;}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.drag a {
+				background: transparent url(images/widget/widget_icon_drag.gif) top left no-repeat;}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.anastatica a {
+				background: transparent url(images/widget/widget_icon_anastatica.gif) top left no-repeat;}
+			.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.fenomeni a {
+				background: transparent url(images/widget/widget_icon_fenomeni.gif) top left no-repeat;}
+    		.boxViewContainer div.box div.boxContent div.widget div.widgetHeader div.widgetHeaderTools p.trascrizione a {
+    			background: transparent url(images/widget/widget_icon_trascrizione.gif) top left no-repeat;}
+		
+	.boxViewContainer div.box div.boxContent div.widget div.widgetHeader h3 {
+		font-weight: bold;
+		color: #555555;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	.boxViewContainer div.box.myDoni div.boxContent div.widget div.widgetHeader h3, .boxViewContainer div.box.myDoniNotebook div.boxContent div.widget div.widgetHeader h3 {
+		color: #615b4c;
+	}
+	
+	/* Formattazione generica widget content */
+	.boxViewContainer div.box div.boxContent div.widget div.widgetContent {
+		color: #514f4c;
+	}
+	
+	/* Formattazione generica tag P dentro al widget content */
+	.boxViewContainer div.box div.boxContent div.widget div.widgetContent p{
+		color: #514f4c;
+	}
+	
+	/* Formattazione generica tag IMG dentro al widget content */
+	.boxViewContainer div.box div.boxContent div.widget div.widgetContent img{
+		padding: 3px;
+		background-color: #FFF;
+		border: 1px solid #c2c2c2;
+	}
+	
+	.boxViewContainer div.box.myDoni div.boxContent div.widget div.widgetContent, .boxViewContainer div.box.myDoniNotebook div.boxContent div.widget div.widgetContent {
+		color: #666666;
+	}
+	
+	/* Formattazione interna ai WIDGET CONTENT */
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div, .boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent span {
+		color: #514f4c;
+	}
+	
+	/* Formattazione testi trascrizioni */
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head span,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head span,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription a,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span a,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head a,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.tr_head span a,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head a,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent p.tr_head span a {
+		font-family: Georgia, Times, Times New Roman, serif;
+		color: #343434;
+	}
+	
+	/* Nomi dialoganti */
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.func_character
+	{
+		color: #634b32;
+	}
+	
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.image-keyword {
+		font-family: Georgia, Times, Times New Roman, serif;
+		color: #8e3121;
+	}
+
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.seg-title {
+	    font-style: italic;
+	}
+
+	/* SIMONE 06/01: link quotations_rewriting (riscritture), dentro le trascrizioni. Attivi (cliccabili) se il box e' highlight */
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.highlight a.quotation_link {
+		text-decoration: none;
+	}
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.highlight a.quotation_link:hover {
+		text-decoration: none;
+	}
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.highlight.selected a.quotation_link {
+		text-decoration: none;
+	}
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.highlight.selected a.quotation_link:hover {
+		text-decoration: none;
+		background: #f00;
+		background: #feff5c;
+	}
+
+	
+	/* SIMONE 20/12: aggiunto dopo l'introduzione di IMT nel frontend del doni */
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.image-keyword.highlight,
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.transcription span.image-keyword:hover {
+		font-family: Georgia, Times, Times New Roman, serif;	
+		color: #cc0000;
+		text-decoration: underline;
+		background: #fc0;
+	}
+	
+	.boxViewContainer div.box div.boxContent div.widgetContent div span.field_title {
+		font-family:Arial, Helvetica, sans-serif;
+		color: #808080;
+		cursor: pointer;
+	}
+
+	/* Icona expand collapse dei titoli INTERNI ai widget */
+	.boxViewContainer div.box div.boxContent div.widgetContent div span.field_title.expanded {
+		background-image: url(images/widget/widget_inner_icon_expanded.gif);
+	}
+	
+	.boxViewContainer div.box div.boxContent div.widgetContent div span.field_title.collapsed {
+		background-image: url(images/widget/widget_inner_icon_collapsed.gif);
+	}
+	
+	/* Icona expand collapse dei titoli INTERNI ai widget myDoni */
+	.boxViewContainer div.box div.boxContent div.myDoniWidget div.widgetContent div span.field_title.expanded, .boxViewContainer div.box div.boxContent div.myDoni div.widgetContent div span.field_title.expanded {
+		background-image: url(images/widget/widget_mydoni_inner_icon_expanded.gif);
+	}
+	
+	.boxViewContainer div.box div.boxContent div.myDoniWidget div.widgetContent div span.field_title.collapsed, .boxViewContainer div.box div.boxContent div.myDoni div.widgetContent div span.field_title.collapsed {
+		background-image: url(images/widget/widget_mydoni_inner_icon_collapsed.gif);
+	}
+	
+	/* Box contenente il notebook selezionato (es."Mio Notebook") - Titolo con icona collapse expand */
+	div.box.myDoniNotebook div.boxContent div.widget div.widgetContent span.notebook_title.expanded {
+		background-image: url(images/widget/widget_mydoni_inner_icon_expanded.gif);
+	}
+	
+	div.box.myDoniNotebook div.boxContent div.widget div.widgetContent span.notebook_title.collapsed {
+		background-image: url(images/widget/widget_mydoni_inner_icon_collapsed.gif);
+	}
+	
+	/* Formattazione lista */
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent ul {
+
+	}
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent ul li {
+	}
+	
+	/* Formattazione bibliografia */
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent div.image-bibliography {
+	}
+	.boxViewContainer div.box div.boxContent div.widget.textWidget div.widgetContent span.bibl_title{
+		font-style: italic;
+	}
+
+
+
+/* Risultati di ricerca - Index box */
+div.box.index div.boxContent {
+}
+	div.box.index div.boxContent ul {
+	}
+	div.box.index div.boxContent ul li{
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node {
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node h3{
+		background-color: #c2c2c2;
+		font-weight: bold;
+		color: #555555;
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node h3 a{
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools {
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools p.vista{
+	}
+	
+	/* Swithcer tra vista Tree/List */
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools.list p.vista, div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools.tree p.vista {
+
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools.list p.vista a{
+		background: transparent url(images/widget/widget_icon_tree_view.gif) center center no-repeat;
+	}
+
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools.tree p.vista a{
+		background: transparent url(images/widget/widget_icon_list_view.gif) center center no-repeat;
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools p {
+	}
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools p.collapse{
+	}
+	
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools p.collapse {
+	}
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools p.collapse a{
+	}
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools p.collapse a.collapsed {
+		background: transparent url(images/boxes/search_result_collapsed_1.gif) center left no-repeat;
+	}
+	div.box.index div.boxContent ul li div.box_index_node div.boxIndexNodeTools p.collapse a.expanded {
+		background: transparent url(images/boxes/search_result_expanded_1.gif) center left no-repeat;
+	}
+	
+		/* Secondo livello */
+		div.box.index div.boxContent ul li ul li div.box_index_node h3{
+			background-color: #d3d3d3;
+			font-weight: normal;
+			color: #555555;
+		}
+		div.box.index div.boxContent ul li ul li div.box_index_node h3 a { 
+		}
+		div.box.index div.boxContent ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse {
+		}
+		div.box.index div.boxContent ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse a.collapsed {
+			background: transparent url(images/boxes/search_result_collapsed_2.gif) center left no-repeat;
+		}
+		div.box.index div.boxContent ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse a.expanded {
+			background: transparent url(images/boxes/search_result_expanded_2.gif) center left no-repeat;
+		}	
+			
+			/* Terzo livello */
+			div.box.index div.boxContent ul li ul li ul li div.box_index_node h3{
+				background-color: #e3e3e3;
+				font-weight: normal;
+				color: #555555;
+			}
+			div.box.index div.boxContent ul li ul li ul li div.box_index_node h3 a {
+			}
+			div.box.index div.boxContent ul li ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse {
+			}
+			div.box.index div.boxContent ul li ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse a.collapsed {
+				background: transparent url(images/boxes/search_result_collapsed_3.gif) center left no-repeat;
+			}
+			div.box.index div.boxContent ul li ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse a.expanded {
+				background: transparent url(images/boxes/search_result_expanded_3.gif) center left no-repeat;
+			}
+			
+		
+				/* Quarto livello */
+				div.box.index div.boxContent ul li ul li ul li ul li div.box_index_node h3{}
+				div.box.index div.boxContent ul li ul li ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse {}
+				/* Quinto livello */
+				div.box.index div.boxContent ul li ul li ul li ul li ul li div.box_index_node h3{}
+				div.box.index div.boxContent ul li ul li ul li ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse {}
+				/* Sesto livello */
+				div.box.index div.boxContent ul li ul li ul li ul li ul li ul li div.box_index_node h3{}
+				div.box.index div.boxContent ul li ul li ul li ul li ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse {}
+				/* Settimo livello */
+				div.box.index div.boxContent ul li ul li ul li ul li ul li ul li ul li div.box_index_node h3{}
+				div.box.index div.boxContent ul li ul li ul li ul li ul li ul li ul li div.box_index_node div.boxIndexNodeTools p.collapse {}
+	
+	
+	
+	/* Foglie ! */
+	div.box div.boxContent div.box_index_leaf {
+		border-bottom: 1px solid #d3d3d3;
+	}
+		div.box div.boxContent div.box_index_leaf h4 {
+			font-weight: bold;
+			font-family:Arial, Helvetica, sans-serif;
+			color: #333333;
+		}
+		div.box div.boxContent div.box_index_leaf h4 a {
+			text-decoration: none;
+			color: #8e3121;
+		}
+		div.box div.boxContent div.box_index_leaf h4 a:hover {
+			text-decoration: underline;
+		}
+		div.box div.boxContent div.box_index_leaf p {
+		}
+		
+		/* SIMONE 03/01: thumbnails negli indici .... sistemare! */
+		div.box div.boxContent div.indexThumb {
+		}
+		div.box div.boxContent div.indexThumb img {
+		}
+		div.box div.boxContent ul li div.indexThumb {}
+		div.box div.boxContent ul li  ul li div.indexThumb { }
+		div.box div.boxContent ul li  ul li  ul li div.indexThumb { }
+		div.box div.boxContent ul li  ul li  ul li  ul li div.indexThumb { }
+		div.box div.boxContent ul li  ul li  ul li  ul li  ul li div.indexThumb { }
+		
+		
+	/* Indentazione in base al livello */
+	div.box div.boxContent ul li div.box_index_leaf { }
+	div.box div.boxContent ul li  ul li div.box_index_leaf { }
+	div.box div.boxContent ul li  ul li  ul li div.box_index_leaf { }
+	div.box div.boxContent ul li  ul li  ul li  ul li div.box_index_leaf { }
+	div.box div.boxContent ul li  ul li  ul li  ul li  ul li div.box_index_leaf { }
+
+/* Questo sta dentro a div.box div.boxContent div.widgetHeader */
+/*
+Finestra con la lista dei fenomeni che possono essere attivati e disattivati
+*/
+	div.fenomeni ul {
+		border-top: 1px solid #9d9d9d;
+	}
+	div.fenomeni ul li {
+		background: #dddddd;
+		border-bottom: 1px solid #9d9d9d;
+		border-left: 1px solid #9d9d9d;
+		border-right: 1px solid #9d9d9d;
+	}
+	div.fenomeni a.selected {
+		background: #ffff99;
+	}
+	
+	/*
+	Questo e' nella div.box div.boxContent div.widgetContent. Viene aggiunta la classe
+    selected alle span.highlight
+ 	*/
+	span.highlight.selected {
+		background: #ffff99;
+	}
+
+/*
+******************************************
+Introduzione, Archivio, Aiuto, Crediti
+******************************************
+*/
+div.intro .boxContent {
+	background-color: #efeae4;
+}
+
+div.intro h4, div.archivio h4, div.aiuto h4, div.crediti h4 {
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2","Georgia";
+	font-weight: normal;
+	color: #867565;
+}
+
+div.intro h4 .smallcaps, div.archivio h4 .smallcaps, div.aiuto h4 .smallcaps, div.crediti h4 .smallcaps{
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2","Georgia";
+	font-variant: small-caps;
+	color: #635343;
+}
+
+div.intro h5, div.archivio h5, div.aiuto h5, div.crediti h5 {
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2","Georgia";
+	font-weight: normal;
+	color: #a09181;
+}
+
+div.intro h6.top_subtitile, div.archivio h6.top_subtitile, div.aiuto h6.top_subtitile, div.crediti h6.top_subtitile {
+	color: #635343;
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2","Georgia";
+}
+
+div.intro h6.top_subtitile strong, div.archivio h6.top_subtitile strong, div.aiuto h6.top_subtitile strong, div.crediti h6.top_subtitile strong {
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2","Georgia";
+	font-weight: 600; /* Semibold */
+}
+
+div.intro h6, div.intro h6, div.aiuto h6, div.crediti h6 {
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Menu interno per la navigazione in Archivio, Aiuto, Crediti */
+div.intro ul.internal_navigation {
+	border-top: 1px solid #e0ddd9;
+	border-bottom: 1px solid #e0ddd9;
+}
+
+	div.intro ul.internal_navigation li {
+		text-transform: uppercase;
+	}
+	
+	div.intro ul.internal_navigation li a.static_resource {
+		color: #990000;
+		text-transform: uppercase;
+		font-weight: 600; /* Semibold */
+		font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2","Georgia";
+	}
+	
+	div.intro ul.home_list li span, div.crediti ul.home_list li span, div.archivio ul.home_list li span {
+		color: #aaa;
+	}
+	
+	div.intro ul.internal_navigation li a.static_resource:hover {
+	}
+
+
+div.intro p {
+	color: #333;
+}
+
+div.intro ul.home_list {
+	list-style-image: url(images/list_image_1.gif);
+}
+
+div.intro ul.home_list li {
+	color: #333;
+}
+
+div.intro ul.home_list li span{
+	font-style: italic;
+	color: #777;
+}
+
+/* Edizione */
+.boxViewContainer div.box.expanded.edition div.boxContent {
+	background-color: #ededed;
+	background-color: #fff;
+}
+
+.boxViewContainer div.box.expanded.edition div.boxContent ul.edition {
+	border-bottom: 1px solid #bbb;
+}
+.boxViewContainer div.box.expanded.edition div.boxContent ul.edition li.long_desc p, .boxViewContainer div.box.expanded.edition div.boxContent ul.edition li.long_desc p em {
+	color: #555;
+}
+
+/*
+******************************************
+MyDony & Notebooks
+******************************************
+*/
+
+/*
+!!! Estrapolare i colori e metterli in style.css !!!
+*/
+
+/*
+Box: MyDoni
+Widget: Login
+Form di login in box MyDoni
+*/
+div#myDoniLoginBox input, div#myDoniLoginBox textarea
+{
+	border: 1px solid #d7d2c6;
+	color: #555;
+}
+
+div#myDoniLoginBox button
+{
+	color: white;
+	background-color: #aaaaaa;
+	border: 2px solid #bbbbbb;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/*
+Box: MyDoni
+Widget: I Miei Notebbook, Notebook Preferiti
+Elementi del BOX MyDoni
+*/
+/* Logout Button */
+div.myDoniWidget button.logout
+{
+	color: #666666;
+}
+
+div.myDoniWidget input.my_doni_notebook_title
+{
+	border: 1px solid #ccc;
+	color: #555;
+}
+
+
+div.myDoniWidget p.addNotebook
+{
+	color: #666666;
+}
+
+div.myDoniWidget p.createNotebook a, div.myDoniWidget p.createNotebook a:hover
+{
+	color: #666666;
+}
+
+/* Elenco dei notebook in box myDoni > I miei preferiti*/
+div.box.myDoni div.boxContent div.myDoniWidget div.myNotebooksList span.notebook_title, div.box.myDoni div.boxContent div.myDoniWidget div.myFavouritesNotebooksList span.notebook_title /* Titolo sensibile per collapse/expand */
+{
+	color: #7f6d4d;
+}
+
+
+/* Nota */
+div.box.myDoni div.boxContent div.myDoniWidget div.myNotebooksList div.notebook_note, div.box.myDoni div.boxContent div.myDoniWidget div.myFavouritesNotebooksList div.notebook_note
+{
+	color: #666666;
+}
+
+/* Autore */
+div.box.myDoni div.boxContent div.myDoniWidget div.myNotebooksList div.notebook_author, div.box.myDoni div.boxContent div.myDoniWidget div.myFavouritesNotebooksList div.notebook_author
+{
+	color: #666666;
+}
+div.box.myDoni div.boxContent div.myDoniWidget div.myNotebooksList div.notebook_author span, div.box.myDoni div.boxContent div.myDoniWidget div.myFavouritesNotebooksList div.notebook_author span
+{
+	color: #999999;
+}
+
+/* Info notebook */
+div.box.myDoni div.boxContent div.myDoniWidget div.myNotebooksList div.notebook_info, div.box.myDoni div.boxContent div.myDoniWidget div.myFavouritesNotebooksList div.notebook_info
+{
+	color: #666666;
+}
+div.box.myDoni div.boxContent div.myDoniWidget div.myNotebooksList div.notebook_info span, div.box.myDoni div.boxContent div.myDoniWidget div.myFavouritesNotebooksList div.notebook_info span
+{
+	color: #999999;
+}
+
+div.box.myDoni div.boxContent div.myDoniWidget div.myNotebooksList div.notebook_links, div.box.myDoni div.boxContent div.myDoniWidget div.myFavouritesNotebooksList div.notebook_links
+{
+	color: #666666;
+}
+
+.boxViewContainer div.box div.boxContent div.myDoniWidget div.widgetContent div.widgetField {
+	border-bottom: 1px solid #d7d2c6;
+}
+    
+
+
+/*
+Box: Specifico notebook
+Widget: Note presenti nel notebook
+Box contenente il notebook selezionato (es."Mio Notebook")
+*/
+div.box.myDoniNotebook div.boxContent div.note_author
+{
+	font-size: 11px;
+	margin-bottom: 3px;
+	color: #666666;
+}
+
+div.box.myDoniNotebook div.boxContent div.note_author span
+{
+	font-size: 11px;
+	color: #999999;
+}
+
+div.box.myDoniNotebook div.boxContent div.note_text
+{
+	font-size: 12px;
+	color: #666666;
+}
+
+/* Info notebook */
+div.box.myDoniNotebook div.boxContent div.notebook_info
+{
+	color: #666666;
+}
+div.box.myDoniNotebook div.boxContent div.notebook_info span
+{
+	color: #999999;
+}
+
+/* Singolo div per ogni ntebook */
+div.box.myDoniNotebook div.boxContent div.widget div.widgetContent div.single_notebook
+{
+	border-bottom: 1px solid #d7d2c6;
+}
+
+/* Titolo con icona collapse expand */
+div.box.myDoniNotebook div.boxContent div.widget div.widgetContent span.notebook_title
+{
+	color: #7f6d4d;
+}
+/* Data */
+div.box.myDoniNotebook div.boxContent div.widget div.widgetContent div.note_date
+{
+	color: #666666;
+}
+div.box.myDoniNotebook div.boxContent div.widget div.widgetContent div.note_date span
+{
+	color: #999999;
+}
+/* Testo Nota */
+div.box.myDoniNotebook div.boxContent div.widget div.widgetContent div.note_text
+{
+	color: #666666;
+}
+
+
+
+/*
+Box: Di contenuto qualsiasi (Trascrizione, Illustrazione, Anastatica ...)
+Widget: I Miei Notebook, Notebook Preferiti
+*/
+div.box div.boxContent div.widget.myDoni div.widgetContent span.notebook_title
+{
+	color: #7f6d4d;
+}
+div.box div.boxContent div.widget.myDoni div.widgetContent div.note_date
+{
+	color: #666666;
+}
+div.box div.boxContent div.widget.myDoni div.widgetContent div.note_date span
+{
+	color: #999999;
+}
+
+div.box div.boxContent div.widget.myDoni div.widgetContent div.note_text
+{
+	color: #666666;
+}
+
+div.box div.boxContent div.widget.myDoni div.widgetContent div.single_note
+{
+	border-bottom: 1px solid #d7d2c6;
+}
+
+div.box div.boxContent div.widget.myDoni div.widgetContent p.createNote a
+{
+	color: #666666;
+}
+
+
+
+
+/*
+******************************************
+POP UP
+UI JQUERY
+******************************************
+*/
+div.ui-dialog h3
+{
+	color: #7f6d4d;
+}
+
+div.ui-dialog ul.form li.type span
+{
+	color: #999;
+}
+
+div.ui-dialog ul.form li.date
+{
+	color: #666666;
+}
+
+div.ui-dialog ul.form li.date span
+{
+	color: #999;
+}
+
+div.ui-dialog ul.form li label
+{
+}
+
+div.ui-dialog ul.form li.validation_error label
+{
+	color: #cc0000;
+}
+
+div.ui-dialog ul.form li.validation_error input
+{
+	border: 1px solid #cc0000;
+}
+
+div.ui-dialog ul.form li input
+{
+	border: 1px solid #d7d2c6;
+	color: #555;
+}
+
+div.ui-dialog ul.form li select
+{
+	border: 1px solid #d7d2c6;
+	color: #555;
+}
+
+div.ui-dialog ul.form li textarea
+{
+	border: 1px solid #d7d2c6;
+	color: #555;
+}
+
+
+/* Pulsanti */
+div.ui-dialog ul.buttons li button, div.ui-dialog ul.form li button, div.ui-dialog .ui-dialog-buttonset button
+{
+	color: white;
+	background-color: #aaaaaa;
+	border: 2px solid #bbbbbb;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+div.ui-dialog ul.buttons li a, div.ui-dialog ul.buttons li a#copy_button
+{
+	color: white;
+	background-color: #aaaaaa;
+	text-transform: uppercase;
+	border: 2px solid #bbbbbb;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+div.ui-dialog ul.buttons li a:hover, div.ui-dialog ul.buttons li a#copy_button:hover
+{
+	color: white;
+	background-color: #bbbbbb;
+	text-transform: uppercase;
+	border: 2px solid #cccccc;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/* Pulsante default della dialog */
+div.ui-dialog button.ui-button, div.ui-dialog button.ui-button.ui-state-default 
+{
+	color: white;
+	background: none;
+	background-color: #aaaaaa;
+	text-transform: uppercase;
+	border: 2px solid #bbbbbb;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+div.ui-dialog button.ui-button:hover, div.ui-dialog button.ui-button.ui-state-default:hover
+{
+	
+	background: none;
+	border: 2px solid #cccccc;
+	background-color: #bbbbbb;
+}
+
+
+
+/*
+Fine
+*/

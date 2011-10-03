@@ -1,0 +1,86 @@
+<html>
+<head>
+	<title> BoxView Example: simple HTML with widgets </title>
+
+    <!-- BoxView Suite needed css -->
+    <link href="../css/boxview.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="../css/widgets.css" media="screen" type="text/css" rel="stylesheet">
+
+    <!-- BoxView chosen theme css -->
+    <link href="../themes/default/css/style.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="../themes/default/jquery-ui/jquery-ui-1.8.10.custom.css" media="screen" type="text/css" rel="stylesheet">
+
+    <!-- User's defined css -->
+    <link href="examples.css" media="screen" type="text/css" rel="stylesheet">
+
+    <!-- jQuery libraries -->
+	<script src="../jq/jquery.js"></script>
+	<script src="../jq/jquery-ui.js"></script>
+
+    <!-- BoxView Suite javascript code -->
+	<script src="../src/boxview.js"></script>
+	<script src="../src/widgets.js"></script>
+
+	<script>
+		var myBoxView, myWidgets;
+		
+		$(document).ready(function() {
+			
+			var content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tortor mi, cursus at porttitor quis, pharetra sit amet justo. Curabitur condimentum consectetur enim id iaculis. Sed id erat in purus convallis sollicitudin. Aliquam erat volutpat. Aliquam mi massa, aliquet eget euismod vel, varius et neque. Cras eget porta leo. Fusce euismod feugiat est faucibus accumsan. Quisque eget urna quis sapien auctor fermentum. Curabitur non lacus ut lacus ullamcorper vehicula in sit amet nunc. Curabitur hendrerit viverra libero, eget fringilla orci ultricies quis. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sit amet ultrices sem. Duis eget ipsum vel lorem euismod facilisis. Curabitur id quam vel arcu varius eleifend. Integer vestibulum, ante vitae tincidunt volutpat, tortor magna lacinia risus, et sagittis tellus turpis at est. Morbi elit neque, iaculis eu facilisis suscipit, rutrum quis odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum condimentum purus, eget tincidunt nisi volutpat in. Phasellus at dui nulla, ut dignissim arcu. Sed purus lectus, eleifend non mollis quis, blandit vitae felis. Nulla magna elit, consectetur cursus convallis volutpat, faucibus eu erat. Maecenas bibendum vestibulum fermentum. Pellentesque non eros sit amet dui tempor dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sapien eget tellus egestas elementum. Maecenas rutrum vehicula risus, ut blandit risus molestie at. Vivamus mollis sem at ante rutrum at convallis est tincidunt. Quisque id erat eu massa vehicula laoreet in ac nibh. Fusce iaculis fermentum lorem, vitae mattis sem consectetur et. Aliquam sit amet felis et mi volutpat suscipit.",
+			content_short = content.substring(0, 500);
+			
+			
+			// Sets boxview's height to match the height of the page.
+			$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+
+			$(window).resize(function(){
+				$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+			});
+
+            // Create the boxview
+			myBoxView = new $.boxView($('#pageContent'), 
+				{ "animations" : true,
+				"animationLength": 750
+				});
+
+            // Create the widget helper
+            myWidgets = new $.widgets({});
+
+
+			$('#addbox').click(function() {
+				myBoxView.addBox(myWidgets.widgetify("Widget title", content), {type: 'orange'});
+			});
+			$('#addbox2').click(function() {
+				myBoxView.addBox('This box was born collapsed', {collapsed: 1, title: "Gray title", verticalTitle: "Collapsed gray title" });
+			});
+
+			// Create a string containing some widgets, all sharing the same widget_options
+			// but one
+            var widget_options = {collapsable: true, draggable: true};
+			    multiple_widgets = myWidgets.widgetify("Important section", 'Imagine some important stuff here! ;)', {draggable: false, zoomable: true}) +
+			                        myWidgets.widgetify("Long text", content_short, widget_options) +
+			                        myWidgets.widgetify("Some other text", 'Third section ...', widget_options) +
+			                        myWidgets.widgetify("Finally more text", content_short, {collapsable: true, prevnext: true, draggable: true});
+			
+			$('#addbox3').click(function() {
+				myBoxView.addBox(multiple_widgets, {type: 'yellow', title: "Awesome title", verticalTitle: "Vertical awesomeness" });
+			});
+		}); // doc ready
+	</script>
+
+</head>
+<body>
+
+	<div id="pageExt">
+		<div id="pageHeader">
+			1st BoxView:
+			<a href="#" id="addbox">Add a default widget box</a> --
+			<a href="#" id="addbox2">Add a collapsed text box</a> --
+			<a href="#" id="addbox3">Add a yellow customized widgeted box</a> 
+		</div>
+		<div id="pageContent"></div>
+		<div id="pageContent2"></div>
+	</div>
+
+</body>
+</html>
