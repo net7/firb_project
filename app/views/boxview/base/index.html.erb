@@ -83,7 +83,10 @@ site_name_javascript = escape_javascript(site_name)
                 resId: '<%= theme %>_index',
                 type: 'menu',
                 closable: false,
-                collapsed: false
+	        collapsable: false, 
+                draggable: false, 
+                collapsed: false,
+                position: 0
             });
 
             // Add all the common listeners
