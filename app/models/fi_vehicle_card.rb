@@ -38,7 +38,8 @@ class FiVehicleCard < IllustrationCard
       e.image_components.to_a
     end.flatten
 
-    n = self.notes || []
-    e + n
+    n = self.notes.to_a
+    my_e = self.image_components.to_a
+    e + n + my_e
   end
 end
