@@ -181,7 +181,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def fi_characters_by_quality_value
     @quality = params[:quality]
-    @quality_value = params[:quality_value]
+    @quality_value = params[:value]
     @search = SOLR.search(SOLR::FiCharacterCard) do |s|
       s.with @quality, @quality_value
       s.order_by :boxview_title
