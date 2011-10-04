@@ -60,8 +60,8 @@ module Mixin::Facetable
           annotation.remove
 
           if [key, value].all? {|x| x.present?}
-            label = URI.encode label
-            key = URI.encode label
+#            label = URI.encode label
+#            key = URI.encode label
             facets[key.to_s] << value.to_s unless (facets[key.to_s] ||= []).include? value.to_s
             @facet_labels[value.to_s] << label.to_s unless (@facet_labels[value.to_s] ||= []).include? label.to_s or label.to_s.blank?
           end
