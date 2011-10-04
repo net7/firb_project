@@ -100,7 +100,7 @@ class FiProcession < TaliaCore::Collection
 
   def boxview_data
     { :controller => 'boxview/fi_processions', 
-      :title => "Corteo #{self.name}",
+      :title => "Corteo: #{self.name}",
 #      :description => self.description,
       :res_id => "fi_procession_#{self.id}", 
       :box_type => 'image',

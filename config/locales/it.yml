@@ -861,11 +861,11 @@ it:
     #fi
     fi_character_qualities: "Qualità"
     qualities_age: "Età"
-    qualities_gender: "Sesso"
-    qualities_profession: "Professione"
-    qualities_ethnic_group: "Etnia"
+    qualities_gender: "Genere"
+    qualities_profession: "Tipo"
+    qualities_ethnic_group: "Aspetto"
     fi_bibliographies: "Fonti"
-    fi_image_components: "Elementi grafici"
+    fi_image_components: "Componenti"
     menu:
       fi:
         personaggi: "Personaggi"

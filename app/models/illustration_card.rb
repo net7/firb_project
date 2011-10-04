@@ -130,6 +130,14 @@ class IllustrationCard < BaseCard
     qry.where(:ill, N::DCT.isPartOf, :ana)
     qry.execute
   end
+  
+  def self.find_by_iconclass(iconclass)
+    qry = ActiveRDF::Query.new(IllustrationCard).select(:ill).distinct
+    qry.where(:ill, N::DCT.subject, iconclass)
+    qry.execute
+  end
+  
+
 
 
   def previous_card
