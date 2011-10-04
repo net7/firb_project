@@ -171,15 +171,16 @@ a {
 
 /* ------- 2. Index Box ------- */
 .boxViewContainer .box.index .boxContent .widgetContent ul li {
-	padding: 5px 0;	
+	padding: 5px 0;
+	border-bottom: 1px solid #D3D3D3;
 }
 
 .box.index .widgetContent ul li .indexContent h5{
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 16px;
 }
 .box.index .widgetContent ul li .indexContent h5 a.boxview_link {
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 16px;
 	padding: 0;
 	margin: 0 0 3px 0;
@@ -193,30 +194,35 @@ a {
 .box.index .widgetContent ul {
 }
 
-.boxViewContainer .box.index .widgetContent ul li {
+.boxViewContainer .box.index .boxContent .widgetContent ul li.menu_firstlevel {
 	border-bottom: 0;
+	margin-bottom: 5px;
 }
 
 .box.index .widgetContent ul li a.menu {
-	font-size: 30px;
+	font-size: 25px;
+	font-weight: 100;
+	color: #999;
+	text-decoration: none;
+	cursor: default; 
+	font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
+}
+
+.box.index .widgetContent ul li a.menu:hover {
+	color: #535353;
+	text-decoration: none;
 }
 
 .box.index .widgetContent ul li a.menu ul {
 }
 
-.boxViewContainer .box.index .widgetContent ul li a.menu ul li {
+.boxViewContainer .box.index .widgetContent ul li ul li {
 	border-bottom: 1px solid #D3D3D3;
 }
 
 .box.index .widgetContent ul li a.menu ul li a.boxview_link {
 	font-size: 12px;
 } 
-
-
-
-
-
-
 
 
 
