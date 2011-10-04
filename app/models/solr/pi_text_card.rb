@@ -10,6 +10,11 @@ module SOLR
         image_components
       end
 
+      dynamic_string :facets, :multiple => true, :stored => true do
+        facets
+      end
+
+
       # dynamic_string :facets, :multiple => true, :stored => true do
       #   facets
       # end

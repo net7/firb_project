@@ -1,6 +1,9 @@
 class Boxview::IndiciController < Boxview::BaseController
 
   caches_page :show_grouped_iconclass
+  
+
+  caches_page :show, :if => Proc.new {|c| c.request.url.split('/').last.in? ['anastaticas', 'pi_illustration_cards']}
 
   def index
     @models = TaliaCore::CONFIG['shown_tabs'] + TaliaCore::CONFIG['base_card_types']
@@ -118,7 +121,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   def show_pi_memory_category
     @category = params[:category]
-    @search = SOLR.search(*pi_all_searchable_cards) do |s|
+    @search = SOLR.search(SOLR::PiTextCard) do |s|
       s.dynamic :image_components do |f|
         f.facet @category
         f.with @category
@@ -126,10 +129,35 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
+
+  def show_pi_name
+    @category = params[:category]
+    @search = SOLR.search(SOLR::PiTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.facet @category
+        f.with @category
+      end
+    end
+  end
+
+  def show_pi_name_by_category
+    @category = params[:category]
+    @name = params[:name]
+    @search = SOLR.search(SOLR::PiTextCard) do |s|
+      s.dynamic :facets do |f|
+        f.with @category, @name
+      end
+#      s.order_by :boxview_title
+    end
+  end
+
+
+
+
   def show_pi_text_by_memory
     @category = params[:category]
     @name = params[:name]
-    @search = SOLR.search(*pi_all_searchable_cards) do |s|
+    @search = SOLR.search(SOLR::PiTextCard) do |s|
       s.dynamic :image_components do |f|
         f.with @category, @name
       end
@@ -225,7 +253,7 @@ class Boxview::IndiciController < Boxview::BaseController
     end
 
     def pi_all_searchable_cards
-      [SOLR::PiTextCard]
+      [SOLR::PiIllustratedMdCard, SOLR::PiIllustrationCard, SOLR::PiLetterIllustrationCard, SOLR::PiTextCard]
     end
 
   # end private
