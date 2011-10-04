@@ -1,8 +1,7 @@
 class Boxview::IndiciController < Boxview::BaseController
 
-  caches_page :show_grouped_iconclass
+  caches_page :show_grouped_iconclass, :fi_personaggi
   
-
   caches_page :show, :if => Proc.new {|c| c.request.url.split('/').last.in? ['anastaticas', 'pi_illustration_cards']}
 
   def index
@@ -163,6 +162,13 @@ class Boxview::IndiciController < Boxview::BaseController
       end
       s.order_by :boxview_title
     end
+  end
+
+
+  def fi_personaggi
+    @personaggi = (FiCharacterCard.all + FiDeityCard.all).sort do |p1, p2|
+        p1.name.to_s.strip <=> p2.name.to_s.strip
+      end
   end
 
   def fi_character_quality_values

@@ -11,7 +11,7 @@
       items.each do |el|      
         
         w.content render :partial => '/boxview/shared/index_item', 
-        :locals => {:title => boxview_link("/boxview/indici/filtered_iconclass/#{@collection.id}/#{el.id}", "#{el.pref_label}", "#{el.pref_label}", "index_#{el.pref_label}", :index)}
+        :locals => {:title => boxview_link("/boxview/indici/filtered_iconclass/#{@collection.id}/#{el.id}", "#{el.pref_label}", "#{el.pref_label}", "index_#{el.pref_label}", :index), :description => ''}
         
       end
       

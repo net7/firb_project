@@ -21,11 +21,11 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
 
   #personaggi
 
-#  w.content "<li class='menu_firstlevel leaf'>"
-#  m = @models[:personaggi]
-#  w.content boxview_link("/boxview/indici/#{@parade.id}/#{m}", I18n.t("#{m}.menu_item_name"), "Indice "+I18n.t("#{m}.menu_item_name"), "index_#{m}#", :index)
-#  w.content "</li>"
-  
+  w.content "<li class='menu_firstlevel leaf'>"
+  m = @models[:personaggi]
+  w.content boxview_link("/boxview/indici/fi_personaggi", I18n.t("menu.fi.personaggi"), "Indice "+I18n.t("menu.fi.personaggi"), "index_fi_personaggi#", :index)
+  w.content "</li>"
+ 
   # Per qualità
   w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('fi_character_qualities')}</a><ul>"
   w.content "<li class='menu_secondlevel leaf'>"

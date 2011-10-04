@@ -866,8 +866,9 @@ it:
     qualities_ethnic_group: "Etnia"
     fi_bibliographies: "Fonti"
     fi_image_components: "Elementi grafici"
-
     menu:
+      fi:
+        personaggi: "Personaggi"
       pi:
         non_illustrated_animali: "Animali"
         non_illustrated_luoghi: "Luoghi"

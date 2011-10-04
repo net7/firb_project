@@ -23,6 +23,11 @@ class FiCardsSweeper < ActionController::Caching::Sweeper
     expire_page(url_for(:only_path => true, :type => false,:controller => '/boxview/fi_parade_cart_cards', :action => 'show', :id => illustrationCard.id))
     expire_page(url_for(:only_path => true, :type => false,:controller => '/boxview/fi_throne_cards', :action => 'show', :id => illustrationCard.id))
 
+#    if illustrationCard.is_a? FiCharacterCard or illustrationCard.is_a? FiDeityCard
+      expire_page(url_for(:only_path => true, :type => false, :controller => "/boxview/indici/fi_personaggi")) 
+#   end
+
+
   end
 
 end
