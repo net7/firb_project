@@ -480,6 +480,31 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.il
 	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
 	background-position: -250px center;
 }
+/* Trascrizione Critica Manoscritto  */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_manuscript a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_manuscript a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -400px center;
+}
+/* Trascrizione Critica Stampa */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_print a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_print a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -350px center;
+}
+/* Apparato */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.pdf a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.pdf a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -450px center;
+}
+/* Icona carro */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.cart a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.cart a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -500px center;
+}
+/* Icona veicolo */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.vehicle a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.vehicle a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -500px center;
+}
 
 /* ------- 4. Widget Right Icons Rollover ------- */
 div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a.alignMiddle:hover {
@@ -510,7 +535,31 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.il
 	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
 	background-position: -275px center;
 }
-
+/* Trascrizione Critica Manoscritto  */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_manuscript a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_manuscript a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -425px center;
+}
+/* Trascrizione Critica Stampa */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_print a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_print a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -375px center;
+}
+/* Apparato */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.pdf a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.pdf a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -475px center;
+}
+/* Icona carro */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.cart a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.cart a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -525px center;
+}
+/* Icona veicolo */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.vehicle a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.vehicle a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -525px center;
+}
 
 /* ________________________________________________________________________________________________________________
 	07. MENU WIDGET
