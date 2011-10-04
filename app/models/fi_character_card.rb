@@ -41,8 +41,8 @@ class FiCharacterCard < IllustrationCard
 
 
   def boxview_data
-    title = "Carta #{self.anastatica.page_position} - #{self.name}"
-    title += " - (#{self.cart.name})" if self.cart.present?
+    title = "Carta #{self.anastatica.page_position} - #{self.name.to_s}"
+    title += " - (#{self.procession.name.to_s})" if self.procession.present?
     
     { :controller => 'boxview/fi_character_cards', 
       :title => title,
