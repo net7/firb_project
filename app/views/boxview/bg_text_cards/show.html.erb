@@ -4,7 +4,6 @@
 
 <%=
 	boxview_widget 'Studio', {:class => 'studio widget_draggable'} do |w| 
-                w.content boxview_widget_field('Commento', @resource.comment) if @resource.comment.present?
-
-	end
+                w.content boxview_widget_field('Commento', @resource.comment) 
+	end if @resource.comment.present?
 %>

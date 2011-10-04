@@ -81,6 +81,14 @@ class BgTextCard < TextCard
     @book ? @book.valid? : true
   end
 
+  def previous_card
+    nil
+  end
+  
+  def next_card
+    nil
+  end
+
   def boxview_data
     if anastatica.present?
       title = "Scheda testo: #{anastatica.page_position}"
