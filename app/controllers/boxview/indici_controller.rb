@@ -164,7 +164,6 @@ class Boxview::IndiciController < Boxview::BaseController
     end
   end
 
-
   def fi_personaggi
     @personaggi = (FiCharacterCard.all + FiDeityCard.all).sort do |p1, p2|
         p1.name.to_s.strip <=> p2.name.to_s.strip
