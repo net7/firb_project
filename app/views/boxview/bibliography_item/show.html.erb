@@ -1,0 +1,15 @@
+<%= boxview_widget 'Scheda', :class => "TextWidget widget_draggable" do |w|
+
+  w.content boxview_widget_field('Titolo', @resource.title)  if @resource.title.present?
+  w.content boxview_widget_field('Abstract', @resource.abstract)  if @resource.abstract.present?
+  w.content boxview_widget_field('Editore', @resource.publisher)  if @resource.publisher.present?
+  w.content boxview_widget_field('Autore', @resource.author)  if @resource.author.present?
+  w.content boxview_widget_field('Data', @resource.date)  if @resource.date.present?
+  w.content boxview_widget_field('Risorsa esterna', @resource.external_url)  if @resource.external_url.present?
+
+
+
+end %>
+
+
+

@@ -69,6 +69,7 @@ ActionController::Routing::Routes.draw do |map|
   map.boxview_capolettera '/boxview/capolettera/:id', :controller => 'boxview/capolettera', :action => 'show'
   map.boxview_pi_scheda_testo '/boxview/pi_scheda_testo/:id', :controller => 'boxview/pi_scheda_testo', :action => 'show'
   map.connect '/boxview/indici', :controller => 'boxview/indici', :action => "index" 
+  map.boxview_bibliography_item '/boxview/bibliography_item/:id', :controller => 'boxview/bibliography_item', :action => 'show'
 
   # INDICI PISA
   map.connect '/boxview/indici/pi', :controller => 'boxview/indici', :action => "pi"
@@ -109,8 +110,6 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.with_options(:namespace => "boxview/", :path_prefix => 'boxview', :only => :show) do |boxview|
-
-    boxview.resource :bibliography_item
 
     # FIRB PISA
     boxview.pi_search '/pi_search', :controller => 'search', :action => :pi_results

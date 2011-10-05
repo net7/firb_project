@@ -1,0 +1,13 @@
+<%
+  # Parameters:
+  # @items: it has #bibliograpy_items
+  # @title: widget field title
+
+  @title ||= 'Fonti'
+
+    content = (content_tag :ul, (@items.to_a.each do |item|
+      content_tag :li, boxview_link_for(item)
+    end.join('')))
+   boxview_widget_field('Ulteriori fonti', content_tag(:ul, content))
+
+%>

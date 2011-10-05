@@ -14,5 +14,18 @@ class CustomBibliographyItem < TaliaCore::Source
   # remote bibliography item, probably a URI for some bibl-store somewhere on the interwebs
   # TODO: change type :string to .. ActiveSource? Another active type? Something new?
   rdf_property :remote_bibliography_item, N::TALIA.remoteBibliographyItem, :type => :string
+
+  def boxview_data
+    i = self.bibliography_item
+    title = [i.author, i.title, i.published_in, i.publisher, i.date, self.pages].compact.join(', ')
+    { :controller => 'boxview/bibliography_item',
+      :title => title,
+      :description => "",
+      :res_id => "bibliography_item_#{self.id}",
+      :box_type => '',
+      :thumb => nil
+    }
+
+  end
   
 end
