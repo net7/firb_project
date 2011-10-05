@@ -62,11 +62,11 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
 
   fonti = []
   unless @resource.baldini_text.nil? and @resource.cini_text.nil?
-    @resource.baldini_text.bibliography_items.to_a.map  do |item|
+    @resource.baldini_text.bibliography_items.to_a.each  do |item|
        fonti << item
     end if @resource.baldini_text
 
-    @resource.cini_text.bibliography_items.to_a.map do |item|
+    @resource.cini_text.bibliography_items.to_a.each do |item|
        fonti << item
     end if @resource.cini_text
   end
