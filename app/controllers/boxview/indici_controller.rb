@@ -82,7 +82,8 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
   def show_bg_illustration_by_owner
-    @items = BgIllustrationCard.menu_items_for(CGI::unescape(params[:owner]).gsub('___thedot___','.'))
+ #   @items = BgIllustrationCard.menu_items_for(CGI::unescape(params[:owner]).gsub('___thedot___','.'))
+   @items = BgIllustrationCard.find_by_owner(CGI::unescape(params[:owner]).gsub('___thedot___','.'))
     render :show
   end
 

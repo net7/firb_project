@@ -142,15 +142,15 @@ class BgIllustrationCard < IllustrationCard
 
 
   # returns a list of anastatica whose related BgIllustrationCard has the #owner == owner
-  def self.menu_items_for(owner)
-    qry = ActiveRDF::Query.new(Anastatica).select(:x).distinct
-    qry.where(:ill, N::DCT.isPartOf, :x)
-    qry.where(:ill, N::TALIA.owner, :o)
-    qry.regexp(:o, owner.gsub(/'/,"\\\\'") )
-    result = qry.execute
-# at the moment bg_illustration_cards have no is_public method
-#    result.delete_if {|el| !el.is_public?}
-  end
+#  def self.menu_items_for(owner)
+#    qry = ActiveRDF::Query.new(Anastatica).select(:x).distinct
+#    qry.where(:ill, N::DCT.isPartOf, :x)
+#    qry.where(:ill, N::TALIA.owner, :o)
+#    qry.regexp(:o, owner.gsub(/'/,"\\\\'") )
+#    result = qry.execute
+## at the moment bg_illustration_cards have no is_public method
+##    result.delete_if {|el| !el.is_public?}
+#  end
 
 
   def boxview_data
