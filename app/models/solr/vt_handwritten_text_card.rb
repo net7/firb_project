@@ -5,7 +5,9 @@ module SOLR
       text :watermark
       text :technical_notes
       text :conservation_status
-      text :bibliography
+      text :text_bibliography do
+        bibliography
+      end
 
       text :text_facets do
         facets

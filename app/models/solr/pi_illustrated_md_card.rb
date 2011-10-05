@@ -13,7 +13,9 @@ module SOLR
       text :transcription_text
       text :iconclasses
       text :study_notes
-      text :bibliography
+      text :text_bibliography do
+        bibliography
+      end
 
       dynamic_string :image_components, :multiple => true, :stored => true do
         image_components
