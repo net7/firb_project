@@ -13,7 +13,7 @@ module SOLR
       text :contextual_meaning
       text :copyright_notes
       text :text_bibliography do
-        bibliography
+        bibliography_full_text
       end
       text :transcription_text
       text :facets

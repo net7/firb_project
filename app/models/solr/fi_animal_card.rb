@@ -11,7 +11,7 @@ module SOLR
       text :iconclasses
       text :image_components
       text :text_bibliography do 
-        bibliography
+        bibliography_full_text
       end
 
       string :image_components, :multiple => true

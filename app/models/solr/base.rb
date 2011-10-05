@@ -84,7 +84,7 @@ module SOLR
       end
     end
     
-    def bibliography
+    def bibliography_full_text
       res =[]
       bibliography_items.to_a.each {|i| res <<  [i.bibliography_item.author, i.bibliography_item.title].join(', ')} 
       res.compact

@@ -2,7 +2,7 @@ module SOLR
   class FiTextCard < Base
     solr_setup do
       text :text_bibliography do 
-        bibliography
+        bibliography_full_text
       end
 
       text :transcription_text

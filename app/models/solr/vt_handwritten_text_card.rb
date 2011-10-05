@@ -6,7 +6,7 @@ module SOLR
       text :technical_notes
       text :conservation_status
       text :text_bibliography do
-        bibliography
+        bibliography_full_text
       end
 
       text :text_facets do
