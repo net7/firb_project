@@ -103,7 +103,7 @@ class FiProcession < TaliaCore::Collection
       :title => "Corteo: #{self.name}",
 #      :description => self.description,
       :res_id => "fi_procession_#{self.id}", 
-      :box_type => 'image',
+      :box_type => 'index',
       :thumb => nil
     }
   end

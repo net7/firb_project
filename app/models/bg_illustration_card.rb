@@ -141,6 +141,11 @@ class BgIllustrationCard < IllustrationCard
   end
 
 
+  ###FIXME: remove after INCONTRO VT###
+  def is_public?
+    true
+  end
+
   # returns a list of anastatica whose related BgIllustrationCard has the #owner == owner
 #  def self.menu_items_for(owner)
 #    qry = ActiveRDF::Query.new(Anastatica).select(:x).distinct
