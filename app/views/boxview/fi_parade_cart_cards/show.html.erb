@@ -68,10 +68,10 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     end.join('') if @resource.cini_text
   end
 
-  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => fonti, :title => 'Fonti'}  unless fonti.size.zero? 
+  w.content  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => fonti, :title => 'Fonti'}  unless fonti.size.zero? 
 
 
-  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => @resource.bibliography_items, :title => 'Ulteriori fonti'} unless @resource.bibliography_items.size.zero?
+  w.content render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => @resource.bibliography_items, :title => 'Ulteriori fonti'} unless @resource.bibliography_items.size.zero?
 
 
   w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?

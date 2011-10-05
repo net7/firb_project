@@ -61,19 +61,17 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
 
 
   fonti = []
-  unless @resource.baldini_text.nil? and @resource.cini_text.nil?
     @resource.baldini_text.bibliography_items.to_a.each  do |item|
        fonti << item
-    end if @resource.baldini_text
+    end if @resource.baldini_text.present?
 
     @resource.cini_text.bibliography_items.to_a.each do |item|
        fonti << item
-    end if @resource.cini_text
-  end
+    end if @resource.cini_text.present?
 
-  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => fonti, :title => 'Fonti'}  unless fonti.size.zero? 
+  w.content render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => fonti, :title => 'Fonti'}  unless fonti.size.zero? 
 
-  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => @resource.modern_bibliography_items, :title => 'Fonti Moderne'} unless @resource.modern_bibliography_items.size.zero? 
+w.content  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => @resource.modern_bibliography_items, :title => 'Fonti Moderne'} unless @resource.modern_bibliography_items.size.zero? 
 
 
   w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
