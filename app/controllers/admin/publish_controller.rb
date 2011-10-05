@@ -1,6 +1,6 @@
 class Admin::PublishController < Admin::AdminSiteController
   
-  cache_sweeper :fi_cards_sweeper, :vt_cards_sweeper, :pi_cards_sweeper
+  cache_sweeper :fi_cards_sweeper, :vt_cards_sweeper, :pi_cards_sweeper, :bg_cards_sweeper
   
   def toggle
     @source = TaliaCore::ActiveSource.find(params[:id])

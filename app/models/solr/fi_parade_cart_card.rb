@@ -26,11 +26,11 @@ module SOLR
     end
 
     def bibliography
-      super.tap do |biblio|
-        biblio + baldini_text.bibliography_items.map {|item| item.bibliography_item.name} if baldini_text
-        biblio + cini_text.bibliography_items.map {|item| item.bibliography_item.name} if cini_text
-        biblio + modern_bibliography_items.map {|item| item.bibliography_item.name} if modern_bibliography_items
-      end.compact
+      res =[]
+      baldini_text.bibliography_items.to_a.each{|i| res << [i.bibliography_item.author, i.bibliography_item.title].join(', ')} if baldini_text.present?
+      cini_text.bibliography_items.to_a.each{|i| res <<  [i.bibliography_item.author, i.bibliography_item.title].join(', ')} if cini_text.present?
+      modern_bibliography_items.to_a.each{|i| res <<  [i.bibliography_item.author, i.bibliography_item.title].join(', ')} if modern_bibliography_items.present?
+      res.compact
     end # def bibliography
   end # class FiParadeCartCard
 end # module SOLR

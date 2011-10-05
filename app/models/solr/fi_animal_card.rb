@@ -23,10 +23,10 @@ module SOLR
     end
 
     def bibliography
-      super.tap do |biblio|
-        biblio + baldini_text.bibliography_items.map {|item| item.bibliography_item.name} if baldini_text
-        biblio + cini_text.bibliography_items.map {|item| item.bibliography_item.name} if cini_text
-      end.compact
+      res =[]
+      baldini_text.bibliography_items.to_a.each{|i| res << [i.bibliography_item.author, i.bibliography_item.title].join(', ')} if baldini_text.present?
+      cini_text.bibliography_items.to_a.each{|i| res <<  [i.bibliography_item.author, i.bibliography_item.title].join(', ')} if cini_text.present?
+      res.compact
     end # def bibliography
   end # class FiAnimalCard
 end # module SOLR

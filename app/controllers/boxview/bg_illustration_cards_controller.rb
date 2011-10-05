@@ -7,14 +7,15 @@ caches_page :show
     @image    = @resource.image_zone.get_parent
 
     record = @resource.data_records.find_by_type_and_location('TaliaCore::DataTypes::XmlData', 'html2.html')
-    if record.present?
-      @raw_content = record.content_string
 
       @notes = []
       @fenomeni = []
       @content = ''
       @zones = []
       zid_annclass = []
+    if record.present?
+      @raw_content = record.content_string
+
 
       v = Nokogiri::HTML.parse(@raw_content)
       # Handle consolidated annotations

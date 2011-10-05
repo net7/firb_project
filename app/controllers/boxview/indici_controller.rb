@@ -2,7 +2,7 @@ class Boxview::IndiciController < Boxview::BaseController
 
   caches_page :show_grouped_iconclass, :fi_personaggi
   
-  caches_page :show, :if => Proc.new {|c| c.request.url.split('/').last.in? ['anastaticas', 'pi_illustration_cards']}
+  caches_page :show, :if => Proc.new {|c| c.request.url.split('/').last.in? ['anastaticas', 'pi_illustration_cards', 'bg_illustration_cards']}
 
   def index
     @models = TaliaCore::CONFIG['shown_tabs'] + TaliaCore::CONFIG['base_card_types']

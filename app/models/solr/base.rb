@@ -85,7 +85,9 @@ module SOLR
     end
     
     def bibliography
-      bibliography_items.to_a.map {|item| item.bibliography_item.name}.compact
+      res =[]
+      bibliography_items.to_a.each {|i| res <<  [i.bibliography_item.author, i.bibliography_item.title].join(', ')} 
+      res.compact
     end
   end
 end
