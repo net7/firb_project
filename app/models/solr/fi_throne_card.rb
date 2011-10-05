@@ -9,10 +9,10 @@ module SOLR
       text :study_notes      
 
       text :image_components
-      text :bibliography
+      text :text_bibliography do 
+        bibliography
+      end
 
-      text :bibliography
-      text :image_components
 
       string :image_components, :multiple => true
       string :bibliography, :multiple => true, :stored => true

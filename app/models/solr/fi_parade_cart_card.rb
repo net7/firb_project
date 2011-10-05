@@ -13,7 +13,9 @@ module SOLR
       text :iconclasses
 
       text :image_components
-      text :bibliography
+      text :text_bibliography do 
+        bibliography
+      end
 
       string :image_components, :multiple => true
       string :bibliography, :multiple => true, :stored => true

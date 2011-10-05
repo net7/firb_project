@@ -44,11 +44,9 @@ end %>
   w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end %>
 
+
 <% unless @resource.bibliography_items.size.zero? %>
-  <%= boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
-    w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
-          content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-        end.join('')))
-  end %>
+<%= render :partial => '/boxview/shared/widget_bibliography', :locals => {:items => @resource.bibliography_items} %>
 <% end %>
+
 

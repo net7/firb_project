@@ -1,0 +1,12 @@
+<%=
+
+  # Parameters:
+  # @image_components: image_components array
+  # @imt_id: id of IMT object
+
+  content = image_components.map do |el|
+    imt_highlight(imt_id, el.name, el.image_zone.id)
+  end
+  
+  boxview_widget_field('Lista componenti', content.join(', ')) unless content.size.zero?
+%>

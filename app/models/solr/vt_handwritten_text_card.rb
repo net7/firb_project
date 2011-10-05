@@ -7,7 +7,9 @@ module SOLR
       text :conservation_status
       text :bibliography
 
-      text :facets
+      text :text_facets do
+        facets
+      end
       dynamic_string :facets, :multiple => true, :stored => true do
         facets
       end

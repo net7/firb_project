@@ -4,7 +4,9 @@ module SOLR
       text :ref_edition
       text :name
 
-      text :facets
+      text :text_facets do
+        facets
+      end
       dynamic_string :facets, :multiple => true, :stored => true do
         facets
       end

@@ -3,11 +3,14 @@ module SOLR
 
     solr_setup do
       text :parafrasi
-#      text :facets
       text :transcription_text
 
       dynamic_string :image_components, :multiple => true, :stored => true do
         image_components
+      end
+
+      text :text_facets do
+        facets
       end
 
       dynamic_string :facets, :multiple => true, :stored => true do

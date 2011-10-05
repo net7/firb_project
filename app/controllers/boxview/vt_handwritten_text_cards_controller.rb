@@ -55,7 +55,8 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
           bi = custom_bibl.bibliography_item
           n_name = "[#{bi.author} #{bi.date}]"
           # TODO: add more fields to this bibl item! ;)
-          n_content = "\"#{bi.title}\": #{bi.author}, #{bi.pages}, #{bi.date}"
+#          n_content = "\"#{bi.title}\": #{bi.author}, #{bi.pages}, #{bi.date}"
+          n_content = custom_bibl.boxview_data[:title]
           fen_class = Digest::MD5.hexdigest('bibliography_item')
           @fenomeni.push({:name => n_name, :fen_class => fen_class, :item_type => 'Elementi Bibliografici', :class => ca_class})
           @notes.push({:name => n_name, :content => n_content, :class => ca_class})
@@ -101,10 +102,10 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
 
     end # if record
 
-    @bibl = []
-    @resource.bibliography_items.map do |item|
-        @bibl.push render_to_string :partial => '/boxview/shared/custom_bibliography_item', :locals => {:custom => item, :item => item.bibliography_item}
-    end
+    @bibl = @resource.bibliography_items.to_a
+#    @resource.bibliography_items.map do |item|
+#        @bibl.push boxview_link_for item
+#    end
 
   rescue
   end # def show

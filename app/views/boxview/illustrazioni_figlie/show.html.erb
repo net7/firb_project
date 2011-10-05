@@ -1,4 +1,4 @@
-<% imt_id = "imt_illustrazione_figlia_#{@resource.id}" %>
+\<% imt_id = "imt_illustrazione_figlia_#{@resource.id}" %>
 <% scheda_madre = @resource.parent_card.image_zone.get_related_objects.first %>
 <% scheda_madre_title = @resource.anastatica.page_position %>
 
@@ -66,11 +66,9 @@ end %>
   w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end %>
 
+
 <% unless @resource.bibliography_items.size.zero? %>
-  <%= boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
-    w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
-          content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-        end.join('')))
-  end %>
+<%= render :partial => '/boxview/shared/widget_bibliography', :locals => {:items => @resource.bibliography_items} %>
 <% end %>
+
 

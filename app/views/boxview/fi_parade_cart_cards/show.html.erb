@@ -56,24 +56,23 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
   end
 
-  unless @resource.bibliography_items.size.zero?
-    content = @resource.bibliography_items.map do |item|
-      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-    end.join('')
-    w.content boxview_widget_field('Ulteriori fonti', content_tag(:ul, content))
-  end
 
+  fonti = []
   unless @resource.baldini_text.nil? and @resource.cini_text.nil?
-    content = @resource.baldini_text.bibliography_items.map do |item|
-      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    @resource.baldini_text.bibliography_items.to_a.each  do |item|
+       fonti << item
     end.join('') if @resource.baldini_text
 
-    (content ||= "") << @resource.cini_text.bibliography_items.map do |item|
-      content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
+    @resource.cini_text.bibliography_items.to_a.each do |item|
+       fonti << item
     end.join('') if @resource.cini_text
-
-    w.content boxview_widget_field('Fonti', content_tag(:ul, content))
   end
+
+  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => fonti, :title => 'Fonti'}  unless fonti.size.zero? 
+
+
+  render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => @resource.bibliography_items, :title => 'Ulteriori fonti'} unless @resource.bibliography_items.size.zero?
+
 
   w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end
@@ -108,12 +107,7 @@ boxview_widget 'Elementi correlati', {:class => 'TextWidget widget_draggable'} d
 end
 %>
 
+
 <% unless @resource.bibliography_items.size.zero? %>
-<%= 
-     boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
-       w.content(content_tag :ul, (@resource.bibliography_items.map do |item|
-         content_tag :li, %[#{item.bibliography_item.name} #{item.name}]
-       end.join('')))
-  end
-%>
+<%= render :partial => '/boxview/shared/widget_bibliography', :locals => {:items => @resource.bibliography_items} %>
 <% end %>

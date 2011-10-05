@@ -8,7 +8,10 @@ module SOLR
       text :descriptive_notes
       text :study_notes      
 
-      text :bibliography
+      text :text_bibliography do 
+        bibliography
+      end
+
       text :image_components
 
       string :image_components, :multiple => true

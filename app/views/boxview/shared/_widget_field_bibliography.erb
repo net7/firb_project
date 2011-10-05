@@ -3,11 +3,15 @@
   # @items: it has #bibliograpy_items
   # @title: widget field title
 
-  @title ||= 'Fonti'
+  title ||= 'Fonti'
 
-    content = (content_tag :ul, (@items.to_a.each do |item|
-      content_tag :li, boxview_link_for(item)
-    end.join('')))
-   boxview_widget_field('Ulteriori fonti', content_tag(:ul, content))
+  content = (items.to_a.map do |item|
+      content_tag :li, boxview_link_for_object(item, {:title => item.bibliography_item.name, :text => item.boxview_data[:title]})
+  end.join(''))
 
+%>
+
+<%=
+    boxview_widget_field(title, content_tag(:ul, content))
+ 
 %>

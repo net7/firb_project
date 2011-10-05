@@ -16,7 +16,9 @@ module SOLR
       text :qualities_ethnic_group
 
       text :image_components
-      text :bibliography
+      text :text_bibliography do 
+        bibliography
+      end
 
       string :qualities_age, :stored => true
       string :qualities_gender, :stored => true

@@ -1,12 +1,17 @@
 <%= boxview_widget 'Scheda', :class => "TextWidget widget_draggable" do |w|
 
-  w.content boxview_widget_field('Titolo', @resource.title)  if @resource.title.present?
-  w.content boxview_widget_field('Abstract', @resource.abstract)  if @resource.abstract.present?
-  w.content boxview_widget_field('Editore', @resource.publisher)  if @resource.publisher.present?
-  w.content boxview_widget_field('Autore', @resource.author)  if @resource.author.present?
-  w.content boxview_widget_field('Data', @resource.date)  if @resource.date.present?
-  w.content boxview_widget_field('Risorsa esterna', @resource.external_url)  if @resource.external_url.present?
 
+  note_tipografiche = [@resource.publisher, @resource.date].compact.join(', ')
+
+  field_to_show =  {"Autore" => @resource.author, "Titolo" => @resource.title, "Note tipografiche" => note_tipografiche, "Abstract" => @resource.abstract, "Risorsa esterna" => @resource.external_url, 'DOI' => @resource.doi}
+
+
+    field_to_show.each do |k,v|
+
+    w.content boxview_widget_field(k, v) if v.present?
+  end
+
+  
 
 
 end %>

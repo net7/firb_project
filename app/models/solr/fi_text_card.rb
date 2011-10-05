@@ -1,7 +1,10 @@
 module SOLR
   class FiTextCard < Base
     solr_setup do
-      text :bibliography
+      text :text_bibliography do 
+        bibliography
+      end
+
       text :transcription_text
       text :facets
 

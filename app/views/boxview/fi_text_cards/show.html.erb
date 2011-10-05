@@ -2,12 +2,8 @@
 		:locals => {:resource => @resource, :fenomeni => @fenomeni, :notes => @notes, :content => @content, :widget_title => "Trascrizione", :show_anastatica => true } 
 %>
 
-<%=
-    unless @bibl.nil?
-	 	boxview_widget 'Studio', {:class => 'studio widget_draggable'} do |w| 
-			content = ''
-			@bibl.each{ |item| content += "<li>#{item}</li>" }
-		  	w.content boxview_widget_field('Fonti', content_tag(:ul, content))
-		end
-    end
-%>
+
+<% unless @bibl.size.zero? %>
+<%= render :partial => '/boxview/shared/widget_bibliography', :locals => {:items => @bibl} %>
+<% end %>
+

@@ -4,9 +4,13 @@
   # @items: array of #bibliograpy_items
   # @field_title: widget_field_title
 
-  @field_title ||= 'Fonti'
+  field_title ||= 'Fonti'
+%>
 
+<%=
   boxview_widget 'Bibliografia', :class => "TextWidget widget_draggable" do |w|
-    w.content render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => @items, :title => @field_title}
+    w.content render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => items, :title => field_title}
   end
+
+
 %>
