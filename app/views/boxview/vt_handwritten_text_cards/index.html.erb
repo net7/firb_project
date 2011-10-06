@@ -1,7 +1,7 @@
 <% # Note that @resource is actually a VtLetter instance, VtHandwrittenTextCard instances are in @cards %>
 <%= boxview_widget 'Illustrazione', {:class => 'ImageWidget widget_draggable'} do |w|
   unless @cards.size.zero?
-    w.right_icons boxview_link_for_object(@cards.first, {:title => "Trascrizione critica manoscritto #{@cards.first.anastatica.page_position}"}), :class => 'critical_manuscript', if @cards.first.is_public?
+    w.right_icons boxview_link_for_object(@cards.first, {:title => "Trascrizione critica manoscritto #{@cards.first.anastatica.page_position}"}), :class => 'critical_manuscript'  if @cards.first.is_public?
   end
 
   unless @resource.data_records.blank?
