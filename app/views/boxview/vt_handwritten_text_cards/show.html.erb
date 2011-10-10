@@ -27,7 +27,7 @@
   w.content boxview_widget_field('Altre note manoscritte', @resource.technical_notes)     unless @resource.technical_notes.blank?
   w.content boxview_widget_field('Stato di conservazione', @resource.conservation_status) unless @resource.conservation_status.blank?
   w.content boxview_widget_field('Autografia', @resource.autography)                      unless @resource.autography.blank?
-  w.content boxview_widget_field('Data', @resource.date)                                  unless @resource.date.blank?
+  w.content boxview_widget_field('Data', @resource.letter.date_string)                    unless @resource.letter.date_string.blank?
 end
 %>
 
@@ -58,6 +58,4 @@ end
 
 <% unless @resource.bibliography_items.size.zero? %>
 <%= render :partial => '/boxview/shared/widget_bibliography', :locals => {:items => @resource.bibliography_items, :title => 'Bibliografia'} %>
-<% end %>
-
 <% end %>
