@@ -44,7 +44,10 @@ site_name_javascript = escape_javascript(site_name)
     <%= imt_jquery_helper_functions%>
     <script src="/_boxview/src/tools.js"></script>
     <script>
-        var bs = new BoxStrapper('../_boxview/', '../boxview_config.js');
+        var bs = new BoxStrapper('../_boxview/', 
+	{userConfig: '../boxview_config.js',
+	themePath: '../_boxview/themes/'}
+	);
         function onInitDone() {
 
             <%= boxview_link_code %>

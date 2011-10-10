@@ -1,3 +1,7 @@
+/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* This Software is released under the terms of the MIT License */
+/* See LICENSE.TXT for the full text of the license.            */
+
 (function ($) {
 
     // URLShortener constructor
@@ -33,13 +37,14 @@
         // Css selector for the "shorten this URL" button, will trigger
         // an ajax call to the shortener script and open the dialog 
         // window with the shortened url
-        buttonCssSelector: 'a#urlShortenerLink',
-
-        debug: false
+        buttonCssSelector: 'a#urlShortenerLink'
 
     }; // defaults
+	
+	$.urlShortener.globalHelperName = 'UrlShortenerHelper';
 
     $.urlShortener.prototype = {
+		
         init: function () { 
 
             var self = this;
@@ -90,7 +95,9 @@
                 self.getCurrentShortenedUrl();
                 return false;
             });
-    	
+
+            window[$.urlShortener.globalHelperName] = this;
+
         }, // init()
 
         getCurrentShortenedUrl: function() {
@@ -125,9 +132,6 @@
             }); // ajax()
 
         } // getCurrentShortenedUrl()
-        
-        // DEBUG: is log() needed for such a simple plugin, mmh.. 
-        // log: function() { }
         
     }; // urlShortener.prototype
 })(jQuery);

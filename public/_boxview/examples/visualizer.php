@@ -12,7 +12,7 @@
 	<script src="../src/boxview.js"></script>
 	<script src="../src/widgets.js"></script>
 
-<?
+<?php
 
     $what = isset($_GET['what']) ? $_GET['what'] : 'html_index';
     $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -28,7 +28,7 @@
 
     <div class="boxViewContainer">
         <div class="box">
-            <?
+            <?php
                 // Dont forget to personalize the cookie name!
                 if (isset($_COOKIE['LastVisitedBoxView'])) 
                     echo "<a href='".$_COOKIE['LastVisitedBoxView']."'>&lt;&lt; Back to the boxview</a><br><br>";

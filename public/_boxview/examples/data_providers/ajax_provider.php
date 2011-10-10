@@ -9,7 +9,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : 'html_index';
 if (!$db = new SQLiteDatabase('db.sqlite', 0666)) 
     die("Cant connect to the file database. Make sure the db file is in the right place and the directory is writable by the web server.");
 
-
 switch ($what) {
 
     // Ask for all breeds and just shows them as text

@@ -1,0 +1,101 @@
+<!-- Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       -->
+<!-- This Software is released under the terms of the MIT License -->
+<!-- See LICENSE.TXT for the full text of the license.            -->
+
+<html>
+<head>
+	<title> BoxView Example: simple HTML with widgets </title>
+
+    <!-- User's defined css -->
+    <link href="examples.css" media="screen" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+	<div id="pageExt">
+		<div id="pageHeader">
+			1st BoxView:
+			<a href="#" id="addbox2">Plain text box</a> --
+			<a href="#" id="addbox">Plain text inside a widget box</a> --
+			<a href="#" id="addbox3">Yellow customized widgeted box</a> --
+			<a href="#" id="addbox4">Widgets options</a>
+		</div>
+		<div id="pageContent"></div>
+	</div>
+
+    <script src="../src/tools.js"></script>
+	<script>
+
+    var bs = new BoxStrapper('../', {userConfig: 'example_suite_config.js', themePath: '../themes/'});
+
+    function onInitDone() {
+			
+			var content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tortor mi, cursus at porttitor quis, pharetra sit amet justo. Curabitur condimentum consectetur enim id iaculis. Sed id erat in purus convallis sollicitudin. Aliquam erat volutpat. Aliquam mi massa, aliquet eget euismod vel, varius et neque. Cras eget porta leo. Fusce euismod feugiat est faucibus accumsan. Quisque eget urna quis sapien auctor fermentum. Curabitur non lacus ut lacus ullamcorper vehicula in sit amet nunc. Curabitur hendrerit viverra libero, eget fringilla orci ultricies quis. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sit amet ultrices sem. Duis eget ipsum vel lorem euismod facilisis. Curabitur id quam vel arcu varius eleifend. Integer vestibulum, ante vitae tincidunt volutpat, tortor magna lacinia risus, et sagittis tellus turpis at est. Morbi elit neque, iaculis eu facilisis suscipit, rutrum quis odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum condimentum purus, eget tincidunt nisi volutpat in. Phasellus at dui nulla, ut dignissim arcu. Sed purus lectus, eleifend non mollis quis, blandit vitae felis. Nulla magna elit, consectetur cursus convallis volutpat, faucibus eu erat. Maecenas bibendum vestibulum fermentum. Pellentesque non eros sit amet dui tempor dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sapien eget tellus egestas elementum. Maecenas rutrum vehicula risus, ut blandit risus molestie at. Vivamus mollis sem at ante rutrum at convallis est tincidunt. Quisque id erat eu massa vehicula laoreet in ac nibh. Fusce iaculis fermentum lorem, vitae mattis sem consectetur et. Aliquam sit amet felis et mi volutpat suscipit.",
+			content_short = content.substring(0, 500);
+			
+			
+			// Sets boxview's height to match the height of the page.
+			$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+
+			$(window).resize(function(){
+				$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+			});
+
+
+			myWidgetsHelper = window[$.widgets.defaults.globalHelperName];
+
+			$('#addbox2').click(function(e) {
+				e.preventDefault();
+				myBoxView.addBox(content+content, {type: 'green', title: "Plain text"});
+			});
+			$('#addbox').click(function(e) {
+				e.preventDefault();
+				myBoxView.addBox(myWidgetsHelper.widgetify("Text in a widget", content), {type: 'orange', title: 'Stilish text'});
+			});
+
+			// Create a string containing some widgets using some options
+            var multiple_widgets = 
+				myWidgetsHelper.widgetify("Important section", 'Imagine some important stuff here! ;)<br>No drag, no collapse allowed.', 
+					{draggable: false, collapsable: false}) +
+			    myWidgetsHelper.widgetify("Sticky text: cant drag me", content_short, {draggable: false}) +
+			    myWidgetsHelper.widgetify("Some other text", 'Third section ...') +
+			    myWidgetsHelper.widgetify("Finally more text", content_short, {prevnext: true});
+			
+			$('#addbox3').click(function(e) {
+				e.preventDefault();
+				myBoxView.addBox(multiple_widgets, {type: 'yellow', title: "Awesome title", verticalTitle: "Vertical awesomeness" });
+			});
+
+			var explanation = 
+				myWidgetsHelper.widgetify("Single widgets available options", "draggable: true/false<br>collapsable: true/false")+
+				myWidgetsHelper.widgetify("More ready-to-use icons", "prevnext: true/false (will display two different icons)<br>"+
+					"zoomable: true/false<br><br>Icons depends on the theme. If the theme doesnt support them, a default icon is shown", 
+					{prevnext: true, zoomable: true})+
+				myWidgetsHelper.widgetify("How to use those icons?", "Just bind a listener on 'div.widgetHeader li.NAME a', where NAME "+
+					"is one of zoom, previous, next. See this page code .. for example.<br>Soon the support for your own names and icons!");
+
+			$('#addbox4').click(function(e) {
+				e.preventDefault();
+				myBoxView.addBox(explanation, {type: 'blue', title: "Widgets options" });
+			});
+			
+			// Use the unused widget buttons in some funky way
+			$('div.widgetHeader li.next a').live('click', function(e) {
+				e.preventDefault();
+				alert('Next! >>>');
+			});
+			$('div.widgetHeader li.previous a').live('click', function(e) {
+				e.preventDefault();
+				alert('<<< Previous!');
+			});
+			$('div.widgetHeader li.zoom a').live('click', function(e) {
+				e.preventDefault();
+				alert('Zoom');
+				alert('Wait.. zoom what?');
+			});
+
+	}; // onInitDone()
+</script>
+
+</body>
+</html>

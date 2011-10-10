@@ -10,7 +10,7 @@ if (!$db = new SQLiteDatabase('db.sqlite', 0666))
 // TODO: make this configurable someway? .. some nicer way! 
 define('DB_TABLE', 'shortenedurls');
 define('SHORTENER_BASE_HREF', "http://" . $_SERVER["HTTP_HOST"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"] . "?u=");
-define('FALLBACK_URL', $_["SERVER_NAME"] . $_SERVER["SERVER_PORT"] . '/boxview/examples/');
+define('FALLBACK_URL', $_SERVER["SERVER_NAME"] . $_SERVER["SERVER_PORT"] . '/boxview/examples/');
 
 // Request to shorten a long url
 if ($_REQUEST['longurl']) {
@@ -20,7 +20,7 @@ if ($_REQUEST['longurl']) {
     if (!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten)) {
 
     	// check if the URL has already been shortened
-    	$q = 'SELECT id FROM ' . DB_TABLE. ' WHERE long_url="' . mysql_real_escape_string($url_to_shorten) . '"';
+    	$q = 'SELECT id FROM ' . DB_TABLE. ' WHERE long_url="' . sqlite_escape_string($url_to_shorten) . '"';
         $already_shortened = $db->singleQuery($q);
         
     	if (!empty($already_shortened)) {
@@ -32,7 +32,7 @@ if ($_REQUEST['longurl']) {
             $res = $db->singleQuery($q);
 
             $new_id = intval($res)+1;
-            $q = 'INSERT INTO '.DB_TABLE.' (id, long_url, created, creator) VALUES ('.$new_id.', "'.mysql_real_escape_string($url_to_shorten).'", "'.time().'", "'.        mysql_real_escape_string($_SERVER['REMOTE_ADDR']).'")';
+            $q = 'INSERT INTO '.DB_TABLE.' (id, long_url, created, creator) VALUES ("'.$new_id.'", "'.sqlite_escape_string($url_to_shorten).'", "'.time().'", "'.        sqlite_escape_string($_SERVER['REMOTE_ADDR']).'")';
             $res = $db->query($q);
             $shortened_url = getShortenedURLFromID($new_id);
     	}
@@ -54,11 +54,12 @@ if ($_REQUEST['u']) {
         
     $shortened_id = getIDFromShortenedURL($_GET['u']);
 
-    $q = 'SELECT long_url FROM ' . DB_TABLE . ' WHERE id="' . mysql_real_escape_string($shortened_id) . '"';
-	$long_url = $db->singleQuery($q);
+
+    $q = 'SELECT long_url FROM ' . DB_TABLE . ' WHERE id="' . sqlite_escape_string($shortened_id) . '"';
+    $long_url = $db->singleQuery($q);
 
     // Send the Location header to redirect the browser to long_url
-    header('Location: ' .  $long_url);
+    header('Location: '.$long_url);
     exit;
 
 } // if _REQUEST[u]

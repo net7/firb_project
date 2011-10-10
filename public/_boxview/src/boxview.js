@@ -1,3 +1,7 @@
+/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* This Software is released under the terms of the MIT License */
+/* See LICENSE.TXT for the full text of the license.            */
+
 (function($) {  
 	
 	// BoxView jQuery object constructor
@@ -102,12 +106,14 @@
         // given animate* parameter
 		animations: true,
 
+		animationLength: 450,
+
         // Default fields to be used for anchorman description
         anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'draggable', 'collapsable'],
 
-		// Will check every lazyResizeInterval ms if boxview's container width/height are
+		// Will check every animationLength+lazyResizeInterval ms if boxview's container width/height are
 		// changed
-		lazyResizeInterval: 250,
+		lazyResizeInterval: 100,
 
 		// Default title and resource id
 		title: "Default box title",
@@ -150,6 +156,16 @@
             // Will contain informations about open and closed boxes
 			this.history = [];
 			
+			this.useWidgets = false;
+			if (typeof($.widgets.defaults.globalHelperName) === "string") {
+				this.useWidgets = true;
+				this.widgets = window[$.widgets.defaults.globalHelperName];
+				this.widgets.bindBVListener();
+			}
+			
+			// Is the boxview double check running?
+			this.waitingDoubleCheck = false;
+			
 			// Connect some callbacks, if there's any in the options object. Add a function called
 			// *AddCallBack (for example .onSortAddCallBack() or .onAddAddCallBack()) to the boxview
 			// object, to let the user add his own callbacks
@@ -186,9 +202,8 @@
                 if (self.container.height() !== self.bvc.height() || self.container.width() !== self.bvc.width()) {
                     self.log("Lazy resizing spotted a wrong sized boxview!");
                     self.resize();
-					self.repaint();
                 }
-			}, self.options.lazyResizeTime);
+			}, self.options.lazyResizeInterval+self.options.animationLength);
 
 			// Adding the event delegation for collapse and remove tool, bind it
 			// to this div only so if there are more boxview on the same page we
@@ -234,6 +249,8 @@
 		
 		// Recalculate sizes of all boxes
 		resize : function() {
+
+			var self = this;
 
 			// Make the box container height match its own container's height
 			this.bvc.height(this.container.height());
@@ -299,35 +316,37 @@
 			} // for i
 
 			// Finally repaint with the new values
-			this.repaint();
+			self.repaint();
 
             // Double check after repaint:
-            var self = this;
-			setTimeout(function() { 
-		        if (startingExpandedWidth != $(self.bvc).width() || self.boxesDimensionsCheck()) {
-		            self.log("Dobule check! Current BVC width doesnt match with real container width, resizing again.");
-		            self.resize();
-		        } else {
-		            self.log("Double check BVC width passed.");
-		        }
-		    }, 400);
+			if (!self.waitingDoubleCheck) {
+				self.waitingDoubleCheck = true;
+				setTimeout(function() { 
+					self.waitingDoubleCheck = false;
+			        if (startingExpandedWidth != $(self.bvc).width() || self.boxesDimensionsCheck()) {
+			            self.log("Double check failed!");
+			            self.resize();
+			        } else {
+			            self.log("Double check BVC width passed.");
+			        }
+			    }, self.options.animationLength+10);
+			}
                 
 		}, // resize()
 
+		// Will return true if there is a box with width or left css
+		// values not in sync with internal computed ones
 		boxesDimensionsCheck: function() {
 			var self = this;
-
 			for (i in self.boxOptions) {
 				var b = self.boxOptions[i],
 					left = parseInt($('#'+b.id).css('left').substring(-2)),
 					width = parseInt($('#'+b.id).css('width').substring(-2));
-				if (left != b.left || width != b.width) {
-					self.log('Spotted a box with wrong dimensions!');
+				if (left != b.left || Math.abs(width - b.width) > 2) 
 					return true;
-				}
-			}
+			} // for i
 			return false;
-		},
+		}, // boxesDimensionsCheck
 
 		// Draws/animates the new positions and sizes of all boxes
 		repaint : function () {
@@ -467,7 +486,8 @@
 					if (this.options.animateAdd == true) {
 						box.css({width: '10px', left: (this.boxOptions[i].left + this.boxOptions[i].width)});
 						box.animate({width: this.boxOptions[i].width, left: this.boxOptions[i].left}, this.options.animationLength, function() {
-						    WidgetsHelper.resizeWidgets();
+							if (this.useWidgets)
+						    	this.widgets.resizeWidgets();
 						});
 					} else {
 
@@ -482,18 +502,17 @@
 
 					// Dont redraw the items which are being dragged!
 					if (!this.boxOptions[i].isBeingDragged) 
-						if (this.options.animateResize == true) {
+						if (this.options.animateResize === true) {
 							box.stop().fadeTo(0, "1.0")
 							    .animate({width: this.boxOptions[i].width, left: this.boxOptions[i].left}, 
 							        this.options.animationLength,
-							        function() { WidgetsHelper.resizeWidgets();
-        						});
+							        function() { if (self.useWidgets) self.widgets.resizeWidgets(); });
 						} else {
 							box.css({width: this.boxOptions[i].width, left: this.boxOptions[i].left});
-							WidgetsHelper.resizeWidgets();
+							if (self.useWidgets)
+								self.widgets.resizeWidgets();
 						    
 						}
-					WidgetsHelper.resizeWidgets();
 
 				} // if isFirtShow()
 
@@ -639,6 +658,11 @@
         // control them better
         addBoxFromAjax : function (opts) {
             var self = this;
+
+			if (typeof(opts.qstring) === 'undefined' || opts.qstring === '') {
+				self.log('Called addBoxFromAjax without qstring ... what should i load? :|');
+				return false;
+			}
 
             // DEBUG: put this into some fixed variable and not into a string
             if (opts.qstring === "history") 
@@ -910,37 +934,54 @@
 			return false;
         },
 
+		getHistoryBoxItemHTML: function(opts) {
+            var title,
+				cl = 'history_item '+opts.type;
+
+			if (opts.collapsed) cl += ' collapsed';
+			if (opts.draggable) cl += ' draggable';
+			if (opts.closable) cl += ' closable';
+			if (opts.collapsable) cl += ' collapsable';
+			if (typeof(opts.qstring) !== 'undefined' && opts.qstring != '') 
+				cl += ' openable';
+
+			if (opts.verticalTitle !== $.boxView.defaults.verticalTitle)
+			 	title = opts.verticalTitle;
+			else 
+				title = opts.title;
+
+			return "<div class='"+cl+"' about='"+opts.id+"'>"+
+                	"<span class='history_status'></span>"+ title +"</div>";
+		},
+
         openHistoryBox : function() {
             var content = widget = "",
                 opts, openBoxesIds = [];
 
+			if (!this.useWidgets) {
+				this.log("Cant use history box without widgets enabled.");
+				return;
+			}
+
             // Open boxes
             for (var i = this.n - 1; i >= 0; i--) 
                 if (this.boxOptions[i].resId !== 'history') {
-                    var classes = (this.boxOptions[i].collapsed? "collapsed " : "") 
-                                  + " history_item " +this.boxOptions[i].type;
-                              
-                    widget += "<div class='"+classes+"' about='"+this.boxOptions[i].id+"'>"+
-                                "<span class='history_status'></span>"+ this.boxOptions[i].verticalTitle + "</div>";
+					widget += this.getHistoryBoxItemHTML(this.boxOptions[i]);
                     openBoxesIds.push(this.boxOptions[i].resId);
                 }
 
-            // TODO: add some sanity check for WidgetsHelper.. and dont use widgets if
-            // there's no support..
-            content += WidgetsHelper.widgetify("Open boxes", widget, 
+            content += this.widgets.widgetify("Open boxes", widget, 
                         {type: "open_boxes", draggable: true, collapsable: true, prevnext: false, zoomable: false});
 
             // Closed boxes
             widget = "";
-            for (var i = this.history.length - 1; i >= 0; i--) 
-                // if it's not the history box itself and -1, current resId is not present in openBoxesIds
-                if (this.history[i].resId !== 'history' && $.inArray(this.history[i].resId, openBoxesIds) === -1) {
-                    var classes = this.history[i].type + "closed history_item";
-                    widget += "<div class='"+classes+"' about='"+this.history[i].id+"'>"+
-                                "<span class='history_status'></span>"+ this.history[i].verticalTitle + "</div>";
-                }
 
-            content += WidgetsHelper.widgetify("Closed boxes", widget, 
+            // if it's not the history box itself and -1, current resId is not present in openBoxesIds
+            for (var i = this.history.length - 1; i >= 0; i--) 
+                if (this.history[i].resId !== 'history' && $.inArray(this.history[i].resId, openBoxesIds) === -1) 
+					widget += this.getHistoryBoxItemHTML(this.boxOptions[i]);
+
+            content += this.widgets.widgetify("Closed boxes", widget, 
                         {type: "closed_boxes", draggable: true, collapsable: true, prevnext: false, zoomable: false});
 
             opts = {title: "History box", verticalTitle: "Session History", type: "history", qstring: "history", resId: "history" };
@@ -969,6 +1010,7 @@
 
         historyAdd : function (opts) {
             
+			// History box closed? cool, return.
             if (opts.resId === 'history') 
                 return false;
             
@@ -1000,20 +1042,10 @@
             // Add the item to the history array
             this.history.push(opts);
 
-            // Add an item in the history box, if open
-			// TODO: what's this! Rewrite this mess .. !!
-            var classes = (opts.collapsed ? "collapsed " : "") +
-						 	" history_item " +
-							opts.type + " " +
-							(opts.collapsable ? 'collapsable ' : '') +
-				            (opts.draggable ? 'draggable ' : '') +
-				            (opts.closable ? 'closable ' : ''),
-           		item = "<div class='"+classes+"' about='"+opts.id+"'>"+
-                    	"<span class='history_status'></span>"+ opts.verticalTitle + "</div>";
-
-            $(item).appendTo('div.widget.open_boxes div.widgetContent').slideUp(0).slideDown(750);
-
-
+			// And to the open_boxes widget in the history box
+            $(this.getHistoryBoxItemHTML(opts))
+				.appendTo('div.widget.open_boxes div.widgetContent')
+				.slideUp(0).slideDown(750);
 
         }, // historyAdd()
 
@@ -1042,7 +1074,7 @@
         historyHandleMouseEnter : function (item) {
 
             if ($(item).hasClass('closed')) {
-				if ($(item).hasClass('closable'))
+				if ($(item).hasClass('openable'))
 					$(item).append("<span class='history_action open'>Open</span>");
             } else {
 				if ($(item).hasClass('closable'))
@@ -1296,7 +1328,8 @@
 			// Copy back the options in the boxOptions space
 			this.boxOptions = $.extend({}, foo.boxOptions, {});
 			this.lastOrder = newOrder;
-			this.resize();
+			// DEBUG: why resize() here?
+			// this.resize();
 		}, // sortLike()
 
 		// Toggles animations on or off

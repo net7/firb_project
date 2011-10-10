@@ -1,0 +1,62 @@
+<!-- Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       -->
+<!-- This Software is released under the terms of the MIT License -->
+<!-- See LICENSE.TXT for the full text of the license.            -->
+
+<html>
+<head>
+	<title> BoxView Example: Loading the entire BoxView suite</title>
+</head>
+	<link rel="stylesheet" href="examples.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<body>
+
+	<div id="pageExt">
+		<div id="pageHeader">
+			<a href="#" id="addbox">A link</a> -- 
+			<a href="#" id="addbox2">Another link</a> -- 
+		</div>
+		<div id="pageContent"></div>
+	</div>
+
+    <script src="../src/tools.js"></script>
+	<script>
+
+    // Use the BoxStrapper to boot the boxview and all of its components.
+    // The first paramenter is the relative path, from this page, to the
+    // boxview directory. The second parameter is a relative path, from
+    // this page, of an user's supplied configuration which will
+    // overwrite boxview defaults and theme configurations.
+    var bs = new BoxStrapper('../', {themePath: '../themes/'});
+
+    function onInitDone() {
+
+		// Some random content
+		var c = "abcdefghijklmnopqrstuvz0123456789        ",
+			i = 0, 
+			len = c.length,
+			content = "Random string ";
+		while (i++ <= 300) {
+			var rnd = Math.floor(Math.random()*len);
+			content += c.substring(rnd, rnd+1);
+		}
+				    		
+		// Sets boxview's height to match the height of the page.
+		$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+		$(window).resize(function(){
+			$('#pageContent').height(($(window).height() - $('#pageHeader').height() - 1));
+		});
+
+		$('#addbox').click(function() {
+			myBoxView.addBox(content, {title: 'a title', type: 'red'});
+			return false;
+		});
+
+		$('#addbox2').click(function() {
+			myBoxView.addBox(content+content, {title: 'another title', type: 'blue'});
+			return false;
+		});
+
+	}	
+	</script>
+
+</body>
+</html>

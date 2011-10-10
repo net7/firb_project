@@ -3,7 +3,11 @@ My first BoxView
 
 What’s a BoxView
 ----------------
-What’s a BoxView
+BoxView is a suite of Open Source JavaScript libraries designed to handle the simultaneous visualization of multiple documents and multimedia objects.
+
+BoxView splits the page in multiple “boxes” where each of them is a container in which any type of content can be visualized (a menu, a fragment of text, an entire html page, a video player, an image viewer and so on).
+
+BoxView handles the boxes’ interactions, including automatically resizing them to fit the container, ordering, letting the user drag them around or collapse some of them.
 
 
 BoxView’s components
@@ -17,6 +21,7 @@ The BoxView itself doesnt need anything special, but your browser.
 
 In order to run all the examples, the tests and the related components of the BoxView family thought, you will need a *PHP* interpreter **((VERSION?))** installed on your server, with *SQLiteDatabase* extension to use the given demo data. For example on Ubuntu systems and alikes just make sure you have the *php5-sqlite* package installed.
 
+*Watch out*! If you plan to use the baked in sqlite database (enabling you to see the awesome dogs example and the url shortener thingie in action), make sure the db.sqlite file is writable by the webserver. Moreover, the web server must have read/write access on the directory containing this file as well.
 
 
 Get the code
@@ -30,7 +35,8 @@ if not, install it from http://git-scm.com/download (on Ubuntus etc just install
 
 To manually download the latest release (or any other given tag/release) in a compressed archive, surf to https://net7.codebasehq.com/libraries/boxview/tree/master, and click “Download Archive”.  Some authorization might be needed.
 
-A public repository with BoxView compressed releases can be found on **((SI FA UNA PAGINA SU MURUCA.ORG O NEI DINTORNI?))**
+
+Boxview home page can be found at http://www.muruca.org/boxview/, so be sure to check it out for latest updates and more goodies to download.
 
 
 Run the examples
@@ -50,8 +56,15 @@ More examples can be found in the `/examples/` directory:
 **((FOR MORE INFORMATIONS ON THE EXAMPLES READ SOMETHING SOMEWHERE BLABLA))**
 
 
+Use the BoxView Suite
+---------------------
 
-Build your very own first BoxView in 1 line of code!
+To use the BoxView Suite in your page, you just need to include a single file and write one line of code!
+
+
+
+
+Build your very own suite-less first BoxView in 1 line of code!
 ----------------------------------------------------
 Let’s start with an HTML only BoxView, with some placeholder data, just to get it running. In a few we will add widgets too.
 
@@ -143,12 +156,47 @@ We can now initialize the widgets helper object, inside the javascript `<script>
     
     var myWidgets = new $.widgets();
     
-then modify the `#addbox` `click()` function to call `widgetify()` which returns a simple string with a widget’s HTML code. For example let’s put two widgets in the `content` variable:
+then modify the `#addbox` `click()` function to call `widgetify()`, which returns a simple string with the desired widget’s HTML code. For example let’s put two widgets in the `content` variable:
 
     var content = myWidgets.widgetify("Title", "And content");
     content += myWidgets.widgetify("Another title", "Another content!");
+
+and then use this new variable to add a box:
+
     myBoxView.addBox(content);
 
+
+The final page should, more or less, look like this:
+
+    <html><head>
+    <link href="css/boxview.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="css/widgets.css" media="screen" type="text/css" rel="stylesheet">
+    	<script src="jq/jquery.js"></script>
+    	<script src="jq/jquery-ui.js"></script>
+    	<script src="src/boxview.js"></script>
+        <script src="src/widgets.js"></script>
+        <style>
+            #pageExt { height: 100%; }
+            #pageHeader { height: 10%; }
+            #pageContent { height: 90%; }
+        </style>
+    </head>
+    <body>
+    	<div id="pageExt">
+    		<div id="pageHeader">
+    			<a href="#" id="addbox">Click me!</a>
+    		</div>
+    		<div id="pageContent"></div>
+    	</div>
+    <script>
+    	var myBoxView = new $.boxView($('#pageContent'));
+    	$('#addbox').click(function() {
+            var content = myWidgets.widgetify("Title", "And content");
+            content += myWidgets.widgetify("Another title", "Another content!");
+            myBoxView.addBox(content);
+    	});
+    </script>
+    </body></html>
 
 
 Customize and configure BoxView
@@ -399,8 +447,6 @@ can be bound to every remove like this:
 
     Will be called when the content of a box is replaced
 
-###Advanced settings?
-
 ###Troubleshooting
 
 * **debug** : (true/false)
@@ -409,10 +455,4 @@ can be bound to every remove like this:
     browser's console.log or adding a div to the dom.
 
 
-
-
-To configure coloring, font styles and other CSS-related aspects of the result you want to get,  build your own stylesheets, following some easy rules.
-
-**((REGOLE CSS PER CONFIGURARE HEADER,ICONE,ECCECC OPPURE “RTFM” O GUARDATEVI I CSS IN EXAMPLES/ ?))**
-
-
+To configure coloring, font styles and other CSS-related aspects of the result you want to get you can have a look at css.txt.

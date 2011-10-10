@@ -1,3 +1,7 @@
+<!-- Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       -->
+<!-- This Software is released under the terms of the MIT License -->
+<!-- See LICENSE.TXT for the full text of the license.            -->
+
 <html>
 <head>
 	<title> BoxView Example: simple, HTML only </title>
@@ -7,8 +11,8 @@
     <link href="../css/widgets.css" media="screen" type="text/css" rel="stylesheet">
 
     <!-- BoxView chosen theme css -->
-    <link href="../themes/default/css/style.css" media="screen" type="text/css" rel="stylesheet">
-    <link href="../themes/default/jquery-ui/jquery-ui-1.8.10.custom.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="../themes/standard/css/style.css" media="screen" type="text/css" rel="stylesheet">
+    <link href="../themes/standard/jquery-ui/jquery-ui-1.8.10.custom.css" media="screen" type="text/css" rel="stylesheet">
 
     <!-- User's defined css -->
     <link href="examples.css" media="screen" type="text/css" rel="stylesheet">
@@ -24,8 +28,8 @@
 		var myBoxView, myBoxView2;
 		
 		$(document).ready(function() {
-			
-			var content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tortor mi, cursus at porttitor quis, pharetra sit amet justo. Curabitur condimentum consectetur enim id iaculis. Sed id erat in purus convallis sollicitudin. Aliquam erat volutpat. Aliquam mi massa, aliquet eget euismod vel, varius et neque. Cras eget porta leo. Fusce euismod feugiat est faucibus accumsan. Quisque eget urna quis sapien auctor fermentum. Curabitur non lacus ut lacus ullamcorper vehicula in sit amet nunc. Curabitur hendrerit viverra libero, eget fringilla orci ultricies quis. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sit amet ultrices sem. Duis eget ipsum vel lorem euismod facilisis. Curabitur id quam vel arcu varius eleifend. Integer vestibulum, ante vitae tincidunt volutpat, tortor magna lacinia risus, et sagittis tellus turpis at est. Morbi elit neque, iaculis eu facilisis suscipit, rutrum quis odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum condimentum purus, eget tincidunt nisi volutpat in. Phasellus at dui nulla, ut dignissim arcu. Sed purus lectus, eleifend non mollis quis, blandit vitae felis. Nulla magna elit, consectetur cursus convallis volutpat, faucibus eu erat. Maecenas bibendum vestibulum fermentum. Pellentesque non eros sit amet dui tempor dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sapien eget tellus egestas elementum. Maecenas rutrum vehicula risus, ut blandit risus molestie at. Vivamus mollis sem at ante rutrum at convallis est tincidunt. Quisque id erat eu massa vehicula laoreet in ac nibh. Fusce iaculis fermentum lorem, vitae mattis sem consectetur et. Aliquam sit amet felis et mi volutpat suscipit.";
+		
+ 			var content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tortor mi, cursus at porttitor quis, pharetra sit amet justo. Curabitur condimentum consectetur enim id iaculis. Sed id erat in purus convallis sollicitudin. Aliquam erat volutpat. Aliquam mi massa, aliquet eget euismod vel, varius et neque. Cras eget porta leo. Fusce euismod feugiat est faucibus accumsan. Quisque eget urna quis sapien auctor fermentum. Curabitur non lacus ut lacus ullamcorper vehicula in sit amet nunc. Curabitur hendrerit viverra libero, eget fringilla orci ultricies quis. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis sit amet ultrices sem. Duis eget ipsum vel lorem euismod facilisis. Curabitur id quam vel arcu varius eleifend. Integer vestibulum, ante vitae tincidunt volutpat, tortor magna lacinia risus, et sagittis tellus turpis at est. Morbi elit neque, iaculis eu facilisis suscipit, rutrum quis odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vestibulum condimentum purus, eget tincidunt nisi volutpat in. Phasellus at dui nulla, ut dignissim arcu. Sed purus lectus, eleifend non mollis quis, blandit vitae felis. Nulla magna elit, consectetur cursus convallis volutpat, faucibus eu erat. Maecenas bibendum vestibulum fermentum. Pellentesque non eros sit amet dui tempor dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sapien eget tellus egestas elementum. Maecenas rutrum vehicula risus, ut blandit risus molestie at. Vivamus mollis sem at ante rutrum at convallis est tincidunt. Quisque id erat eu massa vehicula laoreet in ac nibh. Fusce iaculis fermentum lorem, vitae mattis sem consectetur et. Aliquam sit amet felis et mi volutpat suscipit.";
 			
 			
 			// Sets boxviews' heights to match the height of the page.
@@ -38,9 +42,8 @@
 			});
 
             // Create the boxviews
-			myBoxView = new $.boxView($('#pageContent'));
-			myBoxView2 = new $.boxView($('#pageContent2'), 
-				{"animations" : false});
+			myBoxView = new $.boxView($('#pageContent'), {'animationLength': 300});
+			myBoxView2 = new $.boxView($('#pageContent2'), {"animations" : false});
 
 			$('#addbox').click(function() {
 				myBoxView.addBox(content, {type: 'orange'});
@@ -53,15 +56,11 @@
 			});
 
 			$('#addbox4').click(function() {
-				myBoxView2.addBox('This box contains a few words only.', {collapsed: 1, type: 'orange'});
+				myBoxView2.addBox('This box contains a few words only.', {collapsed: 1, type: 'green'});
 			});
 
 			$('#addbox5').click(function() {
-				myBoxView2.addBox(content);
-			});
-
-			$('#undo').click(function() {
-				myBoxView2.undo();
+				myBoxView2.addBox(content, {type: 'red'});
 			});
  			
 		})
@@ -80,8 +79,7 @@
 			<br>
 			
 			2nd BoxView: <a href="#" id="addbox4">Add a little box</a> --
-			<a href="#" id="addbox5">Add a text box</a> ///
-			<a href="#" id="undo">Undo</a>
+			<a href="#" id="addbox5">Add a text box</a>
 		</div>
 		<div id="pageContent"></div>
 		<div id="pageContent2"></div>

@@ -1,3 +1,7 @@
+/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* This Software is released under the terms of the MIT License */
+/* See LICENSE.TXT for the full text of the license.            */
+
 // Adding a special "contentchange" event to jquery, triggers when the 
 // given item content.. changes.
 (function(){
@@ -55,37 +59,28 @@
         iconSize: 20,
 
         // TODO
-        iconSlotsHorizontalMarginLeft: 40,
+        iconSlotsHorizontalMarginLeft: 4,
 
         // TODO
-        iconSlotsHorizontalMarginRight: 10,
+        iconSlotsHorizontalMarginRight: 0,
 
         // TODO
         headerTitleMargin: 5,
 
         // TODO 
-        iconsAlignment: 'alignMiddle',
-        
-        // Used internally by the suite: provides a reference to
-        // the $.widgets object in the global scope under this name
-        globalHelperName: "WidgetsHelper",
-
-        debug: false
+        iconsAlignment: 'alignMiddle'
 
     }; // defaults
+        
+    // Used internally by the suite: provides a reference to
+    // the $.widgets object in the global scope under this name
+    $.widgets.defaults.globalHelperName = "ssffsfsfWidgetsHelper";
 
     $.widgets.prototype = {
         init: function() { 
 
             var _foo = ".boxViewContainer div.box div.widget div.widgetHeader",
                 self = this;
-
-            $('.boxViewContainer').bind('contentchange', function() {
-                // DEBUG: if it's already sortable, dont do this again :)
-                // Add a class or something? 
-                $('.boxContent').sortable({ containment: 'parent', handle: 'div.widgetHeader .title, div.widgetHeader .drag', items: 'div.widget.widget_draggable'});
-                self.resizeWidgets();
-            });
             
             // DEBUG: need to add && collapsable===true someway?
             if (this.options.collapseOnDoubleClick)
@@ -100,9 +95,27 @@
             if (this.options.animations === false)
                 this.options.animationsLenght = 0;
 
-            window[this.options.globalHelperName] = this;
+            window[$.widgets.defaults.globalHelperName] = this;
 
         }, // init()
+
+		// Each BV instance will call this function, to be sure that its widgets
+		// gets sortable, resized etc at run time
+		bindBVListener: function() {
+			var self = this;
+			
+            $('.boxViewContainer').bind('contentchange', function() {
+                // DEBUG: if it's already sortable, dont do this again :)
+                // Add a class or something? 
+                $('.boxContent').sortable({ 
+					containment: 'parent', 
+					handle: 'div.widgetHeader .title, div.widgetHeader .drag', 
+					items: 'div.widget.widget_draggable'
+				});
+                self.resizeWidgets();
+            });
+			
+		}, // bindBVListener
         
         widgetify: function(title, content, opts) {
 
@@ -209,7 +222,6 @@
 
             return false;    
         } // collapseWidget()
-        
 
     } // widgets.prototype
 })(jQuery);

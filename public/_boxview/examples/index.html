@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>BoxView Examples</title>
+</head>
+
+	<link rel="stylesheet" href="examples.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<body>
+	<div id="pageExt">
+		<div id="pageHeader">
+			<h1> BoxView Examples </h1>
+		</div>
+
+		<div id='informations'>
+			<h3>Please remember that...</h3>
+			<ul>
+				<li>BoxView and the History Box can re-open only boxes loaded through Ajax, basicly all of the examples
+					where you see some dog.</li>
+				<li>For the same reason, when you try to use an URL of a boxview (either short or long) to open a new 
+					page, the boxview will load only boxes that can be loaded through Ajax calls.</li>
+				<li>In all of the examples where AnchorMan is used, your browser's back button will undo your
+					last BoxView interaction: collapse, open, close a box or reorder them.</li>
+				<li>To make the Ajax examples work, the database file and the directory containing it, must be
+					writable by the webserver user (or chmod a+w examples/data_providers/ examples/data_providers/db.sqlite
+					if you feel brave enough!). You will also need your webserver to load the php sqlite module!</li>
+			</ul>
+		</div>
+
+		<div id='examples'>
+			<table border="0" cellspacing="5" cellpadding="5">
+				<tr><th colspan='2'>Examples using the Suite</th></tr>
+
+				<tr>
+					<td width='30%'><a href="example_simple_suite.html" title="Suite">Using the suite</a></td>
+					<td>
+						<p> Initialize the Suite and let it load the components .. </p>
+						<p> Uses the boxview defaults -- read: this example has no custom configuration file.
+							The logic to add boxes is hard coded in the html page.</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td><a href="example_ajax_anchorman_short_urls_loader.html" title="Suite: ajax+anchorman">Ajax provided content + AnchorMan + Short URLs</a></td>
+					<td>
+						<p>A BoxView with very fast animations, AnchorMan and the built-in URL shortener</p>
+						<p>Open some boxes, drag them around and check your browser's back button: it will reverse
+							your actions. Did you close by mistake box? Click back and .. here it is! Get a shortened
+							URL for this exact page, and try open it in a new window: exactly the same boxes will pop out.</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td><a href="example_box_settings.html" title="Customize boxes behaviours">Customize boxes behaviours</a></td>
+					<td>
+						<p>A bunch of links to open boxes, each one configured differently. One cant be dragged around, the next
+							cant be closed. A third refuses to be collapsed. And the mighty WIN box, which cant
+							be collapsed, closed neither dragged and spawns in first position, no matter what!</p>
+						<p>Open some boxes, drag them around and see how they behave differently. Note that the WIN box
+							is the only one with a given 'resId', so it can be opened just once.</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td><a href="example_widgets_settings.html" title="Customize widgets behaviours">Customize widgets behaviours</a></td>
+					<td>
+						<p>A bunch of links to open boxes organized in widgets.</p>
+						<p>Possible settings are explained and demonstrated.</p> 
+					</td>
+				</tr>
+
+				<tr><th colspan="2">Examples without Suite</th></tr>
+				<tr>
+					<td><a href="example_simple.html" title="Simple">Simple boxview without suite</a></td>
+					<td>
+						<p>An example on how to use just the Boxview component of the suite. Initialization,
+							styling and interaction logic are coded directly in the HTML page.</p>
+						<p>An animated boxview on the upper part of the page, one without on the bottom.</p>
+						<p>Click the links, drag'n'drop the boxes around, collapse and close them and try
+							resizing the window as well: the boxviews will just follow.</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

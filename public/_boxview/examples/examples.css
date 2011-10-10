@@ -1,3 +1,7 @@
+/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* This Software is released under the terms of the MIT License */
+/* See LICENSE.TXT for the full text of the license.            */
+
 /* Outer container */
 #pageExt {
 	bottom: 0;
@@ -36,40 +40,39 @@ html, body {
     text-decoration: underline;
 }
 
-/* DEBUG: MOVE THIS INTO THE TOOLBOX CSS */
-#loadingDialog {
-	position: absolute;
-	padding: 0 30px 0 60px;
-	height: 33px;
-	right: 276px;
-	top: 35px;
-	z-index: 10;
-	line-height: 33px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
+#pageHeader h1 {
+	margin: 5px;
+	text-align: center;
+	color: #fc0
 }
 
-#loadingDialog img {
-	position: absolute;
-	top: 8px;
-	left:  30px;
+#examples, #informations {
+	font-family: sans-serif;
+	position: relative;
+	left: 10%;
+	width: 80%;
 }
 
-/* DEBUG: MOVE THIS INTO TOOLBOX CSS */ 
-#startupScreenContainer { margin: 10px; padding: 0px 20px; }
-#startupScreenContainer div { border-bottom: 1px dashed #ccc; }
-#startupScreenContainer .fade0 { font-size: 1.1em; color: #333; }
-#startupScreenContainer .fade1 { opacity: 0.8; }
-#startupScreenContainer .fade2 { opacity: 0.6; }
-#startupScreenContainer .fade3 { opacity: 0.4; }
-#startupScreenContainer .fade4 { opacity: 0.2; }
-#startupScreenContainer .fade5 { opacity: 0.1; }
-#startupScreenContainer .fade6 { display: none; }
+#examples tr td {
+	padding: 15px;
+	text-align:justify;	
+	background-color: #eee;
+}
+#examples tr th, #informations h3 {
+	font-size: 1.3em;
+	padding: 10px 5px;
+	background-color: #600;
+	color: white;
+}
 
-#startupProgress { font-size: 1.5em; margin: 10px; text-align: center; }
-#startupProgress .loaded { color: #f00; }
-#startupProgress .total { color: #000; }
-#startupProgress .done { color: #090; }
+#examples a { color: #900; text-decoration: none; }
+#examples a:hover { color: #f90; text-decoration: underline; }
+
+#informations li {
+	text-align:justify;	
+	margin: 15px 20px;
+}
+
 
 /* Example box coloring */
 

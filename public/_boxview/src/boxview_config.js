@@ -1,23 +1,19 @@
+/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* This Software is released under the terms of the MIT License */
+/* See LICENSE.TXT for the full text of the license.            */
+
 var 
     // BoxView section name inside AnchorMan description. Just make sure
     // AnchorMan is not used by something else with this same name
     bvAMSectionName = "bv",
-
-    // BoxView object that will be availabe to the user! If you use
-    // 'fooView' here, then you will be able to call fooView.addBoxFromAjax() and 
-    // all of the methods from the fooView object.
-    boxViewName = "myBoxView",
-
-    // AnchorMan object name, same as above.
-    anchorManName = "myAnchorman",
 
     // BoxView Suite Configuration object!
     BoxViewSuiteConfig = {
 
         // Theme to be applied to the boxview suite items. See the manual
         // for more informations on how to roll your own theme. The default
-        // theme is called .. 'default'!
-        theme: 'default',
+        // theme is called .. 'standard'!
+        theme: 'standard',
 
         /////////////////////////////////////////////////////////////////
         ////// BoxStrapper configuration                           //////
@@ -47,7 +43,7 @@ var
         /////////////////////////////////////////////////////////////////
 
         // Name of BoxView object instance, see top of this config file
-        boxViewName: boxViewName,
+        boxViewName: 'myBoxView',
 
         // boxView container, a jQuery object like $('.someClass') or $('#someId')
         boxViewContainer: $('#pageContent'),
@@ -185,8 +181,8 @@ var
         // Use Widgets? (true/false)
         useWidgets: true,
 
-        // Name of widgets object instance, see top of this config file
-        widgetsName: 'myWidgetsHelper',
+        // Name of widgets object instance
+        widgetsName: 'myWidgets',
 
         // Widgets options object
         widgetsConfig : {
@@ -236,7 +232,7 @@ var
         useAnchorMan: true,
 
         // Name of AnchorMan object instance, see top of this config file
-        anchorManName: anchorManName,
+        anchorManName: 'myAnchorman',
 
         // AnchorMan options object
         anchorManConfig : {
@@ -296,17 +292,17 @@ var
     			function(o) {
     			    // Use the decodeFields() function to automatically decode the 
     			    // fields the user decided to encode, and pass the object to addBoxFromAjax()
-                    window[boxViewName].addBoxFromAjax(window[boxViewName].decodeFields(o));
+                    window[BoxViewSuiteConfig.boxViewName].addBoxFromAjax(window[BoxViewSuiteConfig.boxViewName].decodeFields(o));
     			},
     		onRemove:	
     		    function(o) {
-    				window[boxViewName].removeBox(o.id);
+    				window[BoxViewSuiteConfig.boxViewName].removeBox(o.id);
     			},
     		onChange: 
     			function(oldObj, newObj) {
     				// The only thing can change is the collapsed flag
     				if (oldObj.collapsed == 1 && newObj.collapsed == 0 || oldObj.collapsed == 0 && newObj.collapsed == 1) 
-    					window[boxViewName].toggleCollapseBox(newObj.id);
+    					window[BoxViewSuiteConfig.boxViewName].toggleCollapseBox(newObj.id);
     			},
     		onSort:
     			function(objects_array) {
@@ -314,9 +310,27 @@ var
     				// Collect just the ids from the objects array
     				for (var i=0; i<objects_array.length; i++)
     					ids[i] = objects_array[i].id;
-    				window[boxViewName].sortLike(ids);
+    				window[BoxViewSuiteConfig.boxViewName].sortLike(ids);
     			}
         },
+
+
+        /////////////////////////////////////////////////////////////////
+        ////// URLShortener configuration                          //////
+        /////////////////////////////////////////////////////////////////
+
+		// TODO
+		useToolbar: true,
+		boxToolbarName: 'myBoxToolbar',
+		// TODO 
+		boxToolbarConfig: {
+			// TODO
+			toolbarShowHistory: true,
+			toolbarShowUrlShortener: true,
+			toolbarShowLoading: true,
+			toolbarShowPreferences: true
+			
+		},
 
         
         /////////////////////////////////////////////////////////////////

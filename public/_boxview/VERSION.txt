@@ -1,0 +1,45 @@
+1.0-RC3
+
+BoxView Release Candidate 3
+
+- Cleaned and sorted examples and (a bit of) documentation
+- Removed old and unused themes
+- Widgets and BoxViews now work again together like good old friends
+- Added license information in every file
+
+** ATTENTION: important change from RC2 ** 
+
+- Changed BoxStrapper() accepted parameters to:
+ 1st. path where to find the boxview (nothing changed here)
+ 2nd. object with user's options (used to be a path to user's configuration file)
+- The object can contain the following fields:
+ - userConfig: path to user's configuration file
+ - themePath: path to user's themes
+- All of the given paths are relative to the file where you are writing them.
+- For example: 
+
+   BoxStrapper('../BoxView/', // BoxView tree can be found here
+      { userConfig: '../myConfig.js', // My personal configuration file
+        themePath: '../myThemes/' // My themes are stored here
+   })
+
+
+BoxView Release Candidate 2
+
+- BoxToolbar component up and running, in most of the examples
+- defaults icons in boxtoolbar: history box and urlshortener
+- history box code reviewed to enforce expected behaviors
+- fixed a bug preventing the users to set a different boxview name in their config
+- added examples on how to customize boxes and widgets behaviors and make up
+- UrlShortener adds himself to the global scope automaticly, ready to be used
+- modified suite component load order to allow boxview to take advantage of widgets
+- not opening boxes with addBoxFromAjax if there's no valid query string
+
+
+BoxView Release Candidate 1
+
+- preliminary (but quite stable) IE8 support
+- user config file overrides theme+default config files
+- very few examples ready
+- improved animation code (should be faster, smoother, .. etc)
+- using 'standard' theme as default theme

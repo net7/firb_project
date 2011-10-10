@@ -1,0 +1,101 @@
+/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* This Software is released under the terms of the MIT License */
+/* See LICENSE.TXT for the full text of the license.            */
+
+
+#loadingDialog {
+	position: absolute;
+	padding: 0 30px 0 60px;
+	height: 33px;
+	right: 276px;
+	top: 35px;
+	z-index: 10;
+	line-height: 33px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+#loadingDialog img {
+	position: absolute;
+	top: 8px;
+	left:  30px;
+}
+
+/* Startup Screen: the jQuery UI dialog */
+#startupScreenContainer { margin: 10px; padding: 0px 20px; }
+#startupScreenContainer div { border-bottom: 1px dashed #ccc; }
+#startupScreenContainer .fade0 { font-size: 1.1em; color: #333; }
+#startupScreenContainer .fade1 { opacity: 0.8; }
+#startupScreenContainer .fade2 { opacity: 0.6; }
+#startupScreenContainer .fade3 { opacity: 0.4; }
+#startupScreenContainer .fade4 { opacity: 0.2; }
+#startupScreenContainer .fade5 { opacity: 0.1; }
+#startupScreenContainer .fade6 { display: none; }
+
+#startupProgress { font-size: 1.5em; margin: 10px; text-align: center; }
+#startupProgress .loaded { color: #f00; }
+#startupProgress .total { color: #000; }
+#startupProgress .done { color: #090; }
+
+
+
+.boxview_toolbar_wrapper {
+    position: absolute;
+    height: 34px; margin: 0; padding: 0 7px 0 0; 
+    top: 23px;
+    right: 10px;
+    background: url(../themes/standard/css/images/toolbar/preferences_bg_right.png) no-repeat scroll right top transparent;
+}
+    .boxview_toolbar {
+        height: 34px; 
+        margin: 0;
+        padding: 0 0 0 7px; 
+        background: url(../themes/standard/css/images/toolbar/preferences_bg_left.png) no-repeat scroll left top transparent;
+    }
+        .boxview_toolbar ul {
+            height: 34px; margin: 0; padding: 0; 
+            overflow: hidden;
+            background: url(../themes/standard/css/images/toolbar/preferences_bg.png) repeat-x scroll left top transparent;
+            cursor: pointer;
+        }
+            .boxview_toolbar ul li {
+                margin: 7px 0 5px 0;
+                padding: 0 4px 0 4px;
+                display: block;
+                width: 22px;
+                height: 22px; 
+                float: left;
+                background: url(../themes/standard/css/images/toolbar/pref_icons.png) center right no-repeat;
+                background-position: 28px 0;
+                cursor: pointer;
+                text-indent: -9999px;
+            }
+            .boxview_toolbar ul li:last-child {
+                background: none;
+            }
+            .boxview_toolbar ul li a {
+                text-indent: -9999px;
+                display: block;
+                width: 20px;
+                height: 20px;
+                background: url(../themes/standard/css/images/toolbar//pref_icons.png) center right no-repeat;
+                cursor: pointer;
+            }
+            .boxview_toolbar .toolbar_history {background-position: -42px 0;}
+            .boxview_toolbar .toolbar_urlshortener {background-position: -62px 0;}
+            .boxview_toolbar .toolbar_settings {background-position: -102px 0;}
+
+            .boxview_toolbar .toolbar_history:hover {background-position: -42px -20px;}
+            .boxview_toolbar .toolbar_urlshortener:hover {background-position: -62px -20px;}
+            .boxview_toolbar .toolbar_settings:hover {background-position: -102px -20px;}
+
+
+			/** GIULIO: Le teniamo nel tema standard o fan parte solo del FIRB ? **/
+            .boxview_toolbar .toolbar_notebooks {background-position: -82px 0;}
+            .boxview_toolbar .toolbar_intro {background-position: -2px 0;}
+            .boxview_toolbar .toolbar_help {background-position: -22px 0;}
+            
+            .boxview_toolbar .toolbar_intro:hover {background-position: -2px -20px;}
+            .boxview_toolbar .toolbar_help:hover {background-position: -22px -20px;}
+            .boxview_toolbar .toolbar_notebooks:hover {background-position: -82px -20px;}
+

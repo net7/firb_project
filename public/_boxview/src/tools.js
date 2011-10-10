@@ -1,13 +1,20 @@
-function BoxStrapper(path, config) {
+/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* This Software is released under the terms of the MIT License */
+/* See LICENSE.TXT for the full text of the license.            */
+
+function BoxStrapper(path, opts) {
 
     if (typeof(path) !== 'undefined') {
         this.path = path;
         this.log("Setting path to "+path);
     } else
         this.path = '../'
-        
-    if (typeof(config) !== 'undefined') 
-        this.userConfig = config;
+    
+    if (typeof(opts.userConfig) !== 'undefined') 
+        this.userConfig = opts.userConfig;
+
+	this.themePath = opts.themePath || 'themes/';
+	
 
     this.startedAt = new Date().getTime();
     this.showOverlay();
@@ -44,27 +51,30 @@ BoxStrapper.prototype = {
         var self = this;
 
         // The browser can load js and css together.. 
-        self.loadCss(10, "BoxView Stylesheet", 'css/boxview.css');
-        self.loadCss(10, "Widgets Stylesheet", 'css/widgets.css');
+        self.loadCss(10, "BoxView Stylesheet", self.path + 'css/boxview.css');
+		// TODO are we using widgets? 
+        self.loadCss(10, "Widgets Stylesheet", self.path + 'css/widgets.css');
+		// TODO are we using the toolbar?
+        self.loadCss(10, "BoxToolbar Stylesheet", self.path + 'css/boxtoolbar.css');
 
         // Load jquery if it's not already loaded
-        if (typeof($) !== "function") 
-            self.loadScript(10, "JQuery core", 'jq/jquery.js');
+        if (typeof(jQuery) !== "function") 
+            self.loadScript(10, "JQuery core", self.path + 'jq/jquery.js');
 
         // Load jquery-ui if it's not already loaded, after jquery to avoid UI to be
         // initialized before jQuery ..
-        if (typeof($) !== "function" || typeof($.ui) !== "object") 
-            self.loadScript(20, "JQuery UI", 'jq/jquery-ui.js');
+        if (typeof(jQuery) !== "function" || typeof($.ui) !== "object") 
+            self.loadScript(20, "JQuery UI", self.path + 'jq/jquery-ui.js');
 
         // Load the configuration file
         if (typeof(BoxViewSuiteConfig) !== 'object') 
-            self.loadScript(30, "Suite config", 'src/boxview_config.js');
+            self.loadScript(30, "Suite config", self.path + 'src/boxview_config.js');
 
         self.loadCall(35, "User's custom config files", 
                     function() {
                         if (typeof(self.userConfig) === 'undefined') {
-                            self.loadScriptCheck(36, "User's configuration files config.js", 'config.js', 37);
-                            self.loadScriptCheck(36, "User's configuration files ../config.js", '../config.js', 37);
+                            self.loadScriptCheck(36, "User's configuration files config.js", self.path + 'config.js', 37);
+                            self.loadScriptCheck(36, "User's configuration files ../config.js", self.path + '../config.js', 37);
                         } else 
                             self.loadScriptCheck(37, "User's configuration via BoxStrapper()", self.userConfig, 38);
                     });
@@ -72,10 +82,12 @@ BoxStrapper.prototype = {
         // Load the css at run time, when we know which theme to use
         self.loadCall(40, "Theme stylesheets", 
                     function() {
-                        self.loadScriptCheck(41, "Theme's configuration files", self.path+'themes/'+BoxViewSuiteConfig.theme+'/config.js', 42);
-                        self.loadCss(41, "Theme Jquery UI stylesheet", 'themes/'+BoxViewSuiteConfig.theme+'/jquery-ui/jquery-ui-1.8.10.custom.css');
-                        self.loadScript(41, "Theme general config", 'themes/'+BoxViewSuiteConfig.theme+'/config.js');
-                        self.loadCss(41, "Theme general stylesheet", 'themes/'+BoxViewSuiteConfig.theme+'/css/style.css');
+						// DEBUG TODO: what if we upgrade jquery UI? prolly best to force the name to jquery-ui.css
+                        self.loadCss(41, "Theme Jquery UI stylesheet", self.themePath + BoxViewSuiteConfig.theme+'/jquery-ui/jquery-ui-1.8.10.custom.css');
+                        self.loadScript(41, "Theme general config", self.themePath + BoxViewSuiteConfig.theme+'/config.js');
+                        self.loadCss(41, "Theme general stylesheet", self.themePath + BoxViewSuiteConfig.theme+'/css/style.css');
+                        if (typeof(self.userConfig) !== 'undefined') 
+                            self.loadScriptCheck(42, "Overwriting theme config with user supplied config", self.userConfig, 43);
                     });
 
         // Show the startup screen if it's needed, AFTER the css.. 
@@ -88,11 +100,13 @@ BoxStrapper.prototype = {
                     });
 
         // Let's get all the code we need
-        self.loadScript(60, "URL Shortener core", 'src/urlshortener.js');
-        self.loadScript(60, "BoxView core", 'src/boxview.js');
-        self.loadScript(60, "AnchorMan core", 'src/anchorman.js');
-        self.loadScript(60, "Base64 Lib", 'jq/base64.js');
-        self.loadScript(60, "Widgets core", 'src/widgets.js');
+        self.loadScript(60, "URL Shortener core", self.path + 'src/urlshortener.js');
+        self.loadScript(60, "BoxView core", self.path + 'src/boxview.js');
+		// TODO: dont load all the js if we dont need them
+        self.loadScript(60, "AnchorMan core", self.path + 'src/anchorman.js');
+        self.loadScript(60, "Base64 Lib", self.path + 'jq/base64.js');
+        self.loadScript(60, "Widgets core", self.path + 'src/widgets.js');
+        self.loadScript(60, "BoxToolbar and friends", self.path + 'src/boxtoolbar.js');
 
         self.loadCall(70, "Initializing Components", function() { self.initComponents(); });
         self.loadCall(80, "Initializing User's code", function() { if (typeof(onInitDone) === "function") onInitDone(); });
@@ -263,15 +277,16 @@ BoxStrapper.prototype = {
             p = (l.port !== '') ? ':'+l.port : '',
             // DEBUG: is this cross browser enough?? Changed twice for firefox.. :|
             absolutePath = l.protocol+"//"+l.hostname+p+h.substring(0, h.lastIndexOf('/')+1),
-            absoluteFile = absolutePath + file + '?x='+Math.floor(Math.random()*100000);
+            absoluteFile = absolutePath + file,
+ 			absoluteFileIE = absoluteFile + '?x='+Math.floor(Math.random()*100000);
 
         // DEBUG: if the given file is already an absolute URL, just use it
         $.ajax({
             type: "HEAD",
             async: true,
-            url: absoluteFile,
+            url: absoluteFileIE,
             success: function(){ 
-                self.loadScript(prio, "Checked file "+absoluteFile, absoluteFile);
+                self.loadScript(prio, "Checked file "+file, file);
                 self.removeFromLoadingQueue(name);
             },
             error: function(){ 
@@ -289,8 +304,8 @@ BoxStrapper.prototype = {
 		self.log("_LOADRES "+file+" -- "+name+" -- "+type);
 
         // If it's an absolute URL, load it.. else add path and load it
-        if (file.match(/http:/) === null) 
-            file = this.path + file;
+        //if (file !== self.userConfig && file.match(/http:/) === null) 
+        //    file = this.path + file;
 
         // DEBUG: random string to trick the cache
         file += '?x='+Math.floor(Math.random()*100000);
@@ -320,6 +335,10 @@ BoxStrapper.prototype = {
         // Lazy-load-a-css-little hack: poll every 100ms if the stylesheet has been loaded, 
 		// since some browsers dont fire the onload event for certain tags (LINK!).
         if (type === "css") {
+	        s.onerror = function () { 
+	            self.log("NORMAL BROWSER ERROR LOADING "+ name); 
+	            self.removeFromLoadingQueue(name); 
+	        }
 		    s.async = true;  
 			s[field] = file;
             document.getElementsByTagName('head')[0].appendChild(s); 
@@ -341,55 +360,58 @@ BoxStrapper.prototype = {
 		// .text field. 
 		// If it's a normal browser.. just append the node
 		// and wait the onload() to get called
-        if (type === 'js' && !isIe) {
-	        s.onerror = function () { 
-	            self.log("NORMAL BROWSER ERROR LOADING "+ name); 
-	            self.removeFromLoadingQueue(name); 
-	        }
-	        s.async = true;  
-			s[field] = file;
-            document.getElementsByTagName('head')[0].appendChild(s); 
+        if (type === 'js')
+ 			if (!isIe) {
+		        s.onerror = function () { 
+		            self.log("NORMAL BROWSER ERROR LOADING "+ name); 
+		            self.removeFromLoadingQueue(name); 
+		        }
+		        s.async = true;  
+				s[field] = file;
+	            document.getElementsByTagName('head')[0].appendChild(s); 
+			} else {
+	            var xmlhttp = null;
+	            try { xmlhttp = new XMLHttpRequest(); } catch(e) {
+	                try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); } catch(e) { 
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }}  
 
-		} else {
-            var xmlhttp = null;
-            try { xmlhttp = new XMLHttpRequest(); } catch(e) {
-                try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); } catch(e) { 
-					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }}  
+				xmlhttp.onreadystatechange  = function() {
+		            try {
+		                if (this.done !== undefined)
+		                    return;
 
-			xmlhttp.onreadystatechange  = function() {
-	            try {
-	                if (this.done !== undefined)
-	                    return;
+						// Correctly loaded
+		                if (this.status >= 200 && this.status < 300){
+		                    this.done = true;
+		                    s.text = this.responseText;
+		                    document.getElementsByTagName('head')[0].appendChild(s);
+							self.log("IE correctly loaded "+name+": "+file); 
+		                    self.removeFromLoadingQueue(name);
+		                }
+						// Error somewhere
+		                if (this.status >= 400){
+		                    this.done =  true;
+				            self.log("ERROR LOADING WITH IE "+name+" :: "+file); 
+				            self.removeFromLoadingQueue(name); 
+		                }
+		             } catch(e){}
+				  };
+	           	xmlhttp.open('get', file, true);                             
+				xmlhttp.send(null); 
 
-					// Correctly loaded
-	                if (this.status >= 200 && this.status < 300){
-	                    this.done = true;
-	                    s.text = this.responseText;
-	                    document.getElementsByTagName('head')[0].appendChild(s);
-						self.log("IE correctly loaded "+name+": "+file); 
-	                    self.removeFromLoadingQueue(name);
-	                }
-					// Error somewhere
-	                if (this.status >= 400){
-	                    this.done =  true;
-			            self.log("ERROR LOADING WITH IE "+name+" :: "+file); 
-			            self.removeFromLoadingQueue(name); 
-	                }
-	             } catch(e){}
-			  };
-           	xmlhttp.open('get', file, true);                             
-			xmlhttp.send(null); 
-
-        } // type === js && isIe
+        	} // type === js && isIe
 
     }, // _loadResource
     
     showOverlay: function() {
         // DEBUG: any better ideas than appending a div
         foo = document.createElement('div');
+
 		// IE DEBUG: rgba() !
-        // foo.style.background = "rgba(0,0,0,0.85)";
-        foo.style.background = "black";
+		if (typeof(window.ActiveXObject) === 'function')
+        	foo.style.background = "rgba(0,0,0,0.85)";
+		else
+        	foo.style.background = "black";
         foo.style.height = '100%';
         foo.style.width = '100%';
         foo.style['z-index'] = "10";
@@ -442,13 +464,14 @@ BoxStrapper.prototype = {
             sen = BoxViewSuiteConfig.boxViewSectionName,
             usn = BoxViewSuiteConfig.urlShortenerName,
             win = BoxViewSuiteConfig.widgetsName,
+			tol = BoxViewSuiteConfig.boxToolbarName,
             callBacks = ["onSort", "onAdd", "onRemove", "onCollapse", "onExpand", "onReplace"];
-
-        // Create the BoxView
-        window[bvn] = new $.boxView(BoxViewSuiteConfig.boxViewContainer, BoxViewSuiteConfig.boxViewConfig);
 
         // Create the widgets helper object
         window[win] = new $.widgets(BoxViewSuiteConfig.widgetsConfig);
+
+        // Create the BoxView
+        window[bvn] = new $.boxView(BoxViewSuiteConfig.boxViewContainer, BoxViewSuiteConfig.boxViewConfig);
 
         // Set the BoxStrapper reference before the call_init_callback
         window[bvn].setBoxStrapper(this);
@@ -456,12 +479,15 @@ BoxStrapper.prototype = {
         // Create the URLShortener
         window[usn] = new $.urlShortener(BoxViewSuiteConfig.URLShortenerConfig);
 
+		// Create the BoxToolBox and friends
+		window[tol] = new $.BoxToolbar(window[bvn], BoxViewSuiteConfig.boxToolbarConfig);
+
         // Create the AnchorMan and connect some callbacks
         if (BoxViewSuiteConfig.useAnchorMan === true) {
             window[amn] = new $.anchorMan(BoxViewSuiteConfig.anchorManConfig);
             for (var i in callBacks) {
                 name = callBacks[i];
-                window[bvn][name+"AddCallBack"](function() { window[amn].set_section_from_object(sen, window[bvn].getAnchorManDesc())});
+                window[bvn][name+"AddCallBack"](function() { window[amn].set_section_from_object(sen, window[bvn].getAnchorManDesc()); });
             }
 
         	window[amn].setCallbacks(sen, BoxViewSuiteConfig.anchorManCallbacks);
