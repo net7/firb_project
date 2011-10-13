@@ -1,4 +1,4 @@
-\<% imt_id = "imt_illustrazione_figlia_#{@resource.id}" %>
+<% imt_id = "imt_illustrazione_figlia_#{@resource.id}" %>
 <% scheda_madre = @resource.parent_card.image_zone.get_related_objects.first %>
 <% scheda_madre_title = @resource.anastatica.page_position %>
 
@@ -55,13 +55,8 @@ end %>
     w.content boxview_widget_field('Trascrizione', content)
   end
 
+  w.content render :partial => '/boxview/shared/widget_field_iconclass', :locals => {:items => @resource.iconclasses.to_a} unless @resource.iconclasses.size.zero?
 
-  unless @resource.iconclass_terms.size.zero?
-    iconclasses = @resource.iconclass_terms.to_a.map! do |iconclass|
-      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
-    end
-    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
-  end
 
   w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 end %>

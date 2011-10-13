@@ -49,12 +49,7 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
     w.content boxview_widget_field('Testi correlati', content_tag(:ul, content))
   end
 
-  unless @resource.iconclasses.size.zero?
-    iconclasses = @resource.iconclasses.map! do |iconclass|
-      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
-    end
-    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
-  end
+  w.content render :partial => '/boxview/shared/widget_field_iconclass', :locals => {:items => @resource.iconclasses.to_a} unless @resource.iconclasses.size.zero?
 
 
   fonti = []

@@ -69,17 +69,10 @@ boxview_widget 'Studio', {:class => 'TextWidget widget_draggable'} do |w|
 
   w.content boxview_widget_field('Note di studio', resource.study_notes.gsub("\r\n",'<br/>')) unless resource.study_notes.nil?
 
-  # TODO: better sorting?
-  unless resource.iconclasses.size.zero?
-    iconclasses = resource.iconclasses.map! do |iconclass|
-      %[<a target="_black" href='http://www.iconclass.org/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
-    end
-    w.content boxview_widget_field('Codici iconclass', iconclasses.join(', '))
-  end
+  w.content render :partial => '/boxview/shared/widget_field_iconclass', :locals => {:items => resource.iconclasses.to_a} unless resource.iconclasses.size.zero?
 
+end %>
 
-end
-%>
 <%= 
   boxview_widget 'Elementi correlati', :class => "TextWidget widget_draggable" do |w|
     if resource.class == FiVehicleCard
