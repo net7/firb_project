@@ -135,6 +135,29 @@ class Boxview::IndiciController < Boxview::BaseController
   end
 
 
+  def show_pi_memory_illustrated_category
+    @category = params[:category]
+    @search = SOLR.search(SOLR::PiIllustrationCard) do |s|
+      s.dynamic :image_components do |f|
+        f.facet @category
+        f.with @category
+      end
+    end
+  end
+
+  def show_pi_illustration_by_memory
+    @category = params[:category]
+    @name = params[:name]
+    @search = SOLR.search(SOLR::PiIllustrationCard) do |s|
+      s.dynamic :image_components do |f|
+        f.with @category, @name
+      end
+      s.order_by :boxview_title
+    end
+  end
+
+
+
   def show_pi_name
     @category = params[:category]
     @search = SOLR.search(SOLR::PiTextCard) do |s|
@@ -155,8 +178,6 @@ class Boxview::IndiciController < Boxview::BaseController
 #      s.order_by :boxview_title
     end
   end
-
-
 
 
   def show_pi_text_by_memory

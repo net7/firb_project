@@ -36,6 +36,9 @@ module SOLR
       original.image_components.to_a.each do |x|
         (result[x.zone_type.to_s] ||= []) << x.name.to_s
       end
+      original.children_components.to_a.each do |x|
+        (result[x.zone_type.to_s] ||= []) << x.name.to_s
+      end
       result
     end
 

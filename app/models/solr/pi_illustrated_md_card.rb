@@ -23,7 +23,7 @@ module SOLR
     end
 
     def iconclasses
-      original.iconclasses false, false
+      original.iconclasses false
     end
 
     def image_components

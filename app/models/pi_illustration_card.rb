@@ -26,6 +26,17 @@ class PiIllustrationCard < IllustrationCard
     @children ||= self.child_cards
   end
 
+
+  def children_components
+    res = []
+    self.children.each do |child|
+      child.image_components.each do |component|
+        res << component
+      end
+    end
+    res.compact.uniq
+  end
+
   def children_components_by_type
     return @children_components_by_type unless @children_components_by_type.nil?
     @children_components_by_type = {}
