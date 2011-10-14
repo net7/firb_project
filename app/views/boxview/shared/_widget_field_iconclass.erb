@@ -1,0 +1,13 @@
+<%=
+  # Parameters:
+  # @items: list of iconclasses
+  # @title: widget field title
+
+  title ||= 'Codici iconclass'
+
+  iconclasses = (items.to_a.map do |iconclass|
+    %[<a target="_black" href='http://www.iconclass.org/rkd/#{iconclass.name}/'>#{iconclass.name}</a>: #{iconclass.pref_label}]
+  end.join(', '))
+    
+  boxview_widget_field('Codici iconclass', iconclasses)
+%>
