@@ -4,7 +4,7 @@
     value = facet.value.to_s
     # work.count should return the incidence count for this work.
     w.content render :partial => '/boxview/shared/index_item', 
-                     :locals => {:title => boxview_link("/boxview/indici/fi_cards_by_bibliography?biblioraphy=#{value}",
+                     :locals => {:title => boxview_link("/boxview/indici/fi_cards_by_bibliography?bibliography=#{value}",
                                                         value, value,
                                                         "fi_cards_by_bibliography_#{URI.escape value}",
                                                         :index),
