@@ -46,7 +46,7 @@ end %>
 
     contents = []
     @resource.children_components_by_type.each do |type, components|
-      components.each do |component|
+      components.uniq.each do |component|
         contents << imt_highlight(imt_id, "#{component.name} (#{type.to_s})", component.image_zone.id)
       end
     end

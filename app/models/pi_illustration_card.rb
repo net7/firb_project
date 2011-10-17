@@ -45,6 +45,10 @@ class PiIllustrationCard < IllustrationCard
         (@children_components_by_type[component.zone_type.to_sym] ||= []) << component
       end
     end
+    
+    self.image_components.each do |component|
+       (@children_components_by_type[component.zone_type.to_sym] ||= []) << component
+    end
 
     @children_components_by_type.each_key do |type|
       @children_components_by_type[type].sort! do |component1, component2|
@@ -64,6 +68,12 @@ class PiIllustrationCard < IllustrationCard
       :thumb => nil
     }
   end
+
+  def additional_parts
+    ic = self.image_components.to_a || []
+    ic
+  end
+
 
   # @collection is a TaliaCore::Collection
   # returns the ordered list of element to be shown in the menu list
@@ -94,6 +104,8 @@ class PiIllustrationCard < IllustrationCard
     end
     result.compact
   end
+      
+
 end
 
 

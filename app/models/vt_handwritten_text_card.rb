@@ -99,7 +99,7 @@ class VtHandwrittenTextCard < TextCard
 
   def boxview_data
     { :controller => 'boxview/vt_handwritten_text_cards',
-      :title => "Trascrizione critica: #{self.anastatica.page_position}",
+      :title => "Trascrizione critica manoscritto: #{self.anastatica.page_position}",
       :description => "",
       :res_id => "vt_handwritten_text_card_#{self.id}",
       :box_type => 'transcription',

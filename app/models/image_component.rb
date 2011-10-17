@@ -3,7 +3,7 @@ class ImageComponent < TaliaCore::Source
   include StandardPermissions
   extend RdfProperties
   extend Mixin::Showable
-  showable_in PiIllustratedMdCard, PiLetterIllustrationCard, FiDeityCard, FiAnimalCard, FiVehicleCard, FiThroneCard, FiCharacterCard
+  showable_in PiIllustrationCard, PiIllustratedMdCard, PiLetterIllustrationCard, FiDeityCard, FiAnimalCard, FiVehicleCard, FiThroneCard, FiCharacterCard
   autofill_uri :force => true
   
   rdf_property :name, N::TALIA.name
