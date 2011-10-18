@@ -1,4 +1,13 @@
-1.0-RC3
+1.0.1
+
+BoxView 1.0
+
+Hello and welcome to the first stable release of the BoxView suite!
+If you have previous BoxView installation, be sure to read the rest 
+of the release notes.. 
+
+Anyway have fun!
+
 
 BoxView Release Candidate 3
 

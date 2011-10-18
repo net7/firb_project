@@ -407,11 +407,11 @@ BoxStrapper.prototype = {
         // DEBUG: any better ideas than appending a div
         foo = document.createElement('div');
 
-		// IE DEBUG: rgba() !
+		// IE DEBUG: me dont like rgba() !
 		if (typeof(window.ActiveXObject) === 'function')
-        	foo.style.background = "rgba(0,0,0,0.85)";
+    	    foo.style.background = "black";
 		else
-        	foo.style.background = "black";
+    	    foo.style.background = "rgba(0,0,0,0.85)";
         foo.style.height = '100%';
         foo.style.width = '100%';
         foo.style['z-index'] = "10";
