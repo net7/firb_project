@@ -69,14 +69,28 @@ class Boxview::VtHandwrittenTextCardsController < Boxview::BaseController
           n_this = d.xpath(".//div[@class='object']/span[@class='label']")[0].text
           n_that = d.xpath(".//div[@class='subject']/span[@class='label']")[0].text
 
-          unless @printed.blank?
-            related_link = "<br />in #{boxview_link_for_object(@printed.first, :url => vt_printed_text_card_url(@printed.first.id))}"
-          end
+          n_this_object = d.xpath(".//div[@class='object']")[0]['about']
+          n_this_subject = d.xpath(".//div[@class='subject']")[0]['about']
+
+                   
+          qry = ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:x).distinct
+          qry.where(N::URI.new(n_this_object.to_s), N::DISCOVERY.isPartOf, :x)
+          related_object = qry.execute.first
+
+          qry = ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:x).distinct
+          qry.where(N::URI.new(n_this_subject.to_s), N::DISCOVERY.isPartOf, :x)
+          related_subject = qry.execute.first
+
+          other_card = (related_object.is_a? VtPrintedTextCard) ? related_object : related_subject
+
+
+          related_link = "<br/>in #{boxview_link_for_object(other_card)}"
 
           @notes.push({:name => n_this, :content => "diventa \"#{n_that}\"", :class => ca_class,
                         :apparatus => 'hw', :other_apparatus => 'pr', :related_link => related_link})
           d.remove
         end
+
       end
 
       # Sort fenomeni by type, name
