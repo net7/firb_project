@@ -21,9 +21,9 @@
     w.right_icons boxview_link_for_object(@resource.next_card), :class => 'next'
   end
 
-  edition_title = VtLetter.edition_title_for @resource.bibliography_items.first
+   w.content render :partial => '/boxview/shared/widget_field_bibliography', :locals => {:items => @resource.bibliography_items.to_a, :title => 'Edizione di riferimento'} unless @resource.bibliography_items.empty?
 
-  w.content boxview_widget_field('Edizione di riferimento', edition_title) unless edition_title.blank?
+
   w.content boxview_widget_field('Numero della lettera', @letter.letter_number) unless @letter.name.blank?
   w.content boxview_widget_field("Collocazione dell'esemplare a stampa", @letter.printed_collocation)
 
