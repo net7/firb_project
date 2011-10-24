@@ -15,6 +15,17 @@ class CustomBibliographyItem < TaliaCore::Source
   # TODO: change type :string to .. ActiveSource? Another active type? Something new?
   rdf_property :remote_bibliography_item, N::TALIA.remoteBibliographyItem, :type => :string
 
+  after_save :clear_cached_fragments
+
+  def clear_cached_fragments 
+
+    ActionController::Base.new.expire_fragment('custom_biblio', options = nil)
+    ActionController::Base.new.expire_fragment('custom_biblio_with_options', options = nil)
+
+  end 
+
+
+
   def boxview_data
     i = self.bibliography_item
     title = [i.author, i.title, i.published_in, i.publisher, i.date, self.pages].compact.join(', ')

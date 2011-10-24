@@ -20,6 +20,14 @@ class BibliographyItem < TaliaCore::SourceTypes::MarcontResource
   rdf_property :curator, N::TALIA.curator
   rdf_property :translator, N::TALIA.translator
 
+  after_save :clear_cached_fragments
+
+  def clear_cached_fragments
+    ActionController::Base.new.expire_fragment('custom_biblio', options = nil)
+    ActionController::Base.new.expire_fragment('custom_biblio_with_options', options = nil)
+  end 
+
+
   
   def name
     title || uri.local_name
