@@ -76,8 +76,12 @@ class Anastatica < TaliaCore::Source
 
   def boxview_data
     desc = self.name.nil? ? "" : "#{self.name.slice(0, 80)}.."
+    title = "Anastatica: #{self.page_position}"
+    if (VtLetter.count > 0)
+      title = "Fac-simile: #{self.page_position}"
+    end
     { :controller => 'boxview/anastatiche', 
-      :title => "Anastatica: #{self.page_position}", 
+      :title => title,
       :description => desc,
       :res_id => "anastatica_#{self.id}", 
       :box_type => 'anastatic',

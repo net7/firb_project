@@ -1,5 +1,12 @@
 <% imt_id = "imt_anastatica_#{@resource.id}" %>
-<%= boxview_widget Anastatica, {:class => 'widget_draggable'} do |w|
+<% 
+ title = 'Anastatica'
+ if VtLetter.count > 0
+   title = 'Fac-simile'
+ end
+%>
+
+<%= boxview_widget title, {:class => 'widget_draggable'} do |w|
   unless @image.nil?
     content = imt_viewer(imt_id) do |imt|
       imt.base64 = imt_image_b64 @image, @resource.showable_zones
