@@ -12,6 +12,12 @@ class Note < TaliaCore::Source
   rdf_property :image_zone, N::TALIA.image_zone, :type => TaliaCore::ActiveSource
 
 
+  
+  after_save :clear_cached_fragments
+
+  def clear_cached_fragments 
+    ActionController::Base.new.expire_fragment('note_image_zone', options = nil)
+  end 
 
 
 
