@@ -19,7 +19,7 @@
 
     <% if (with_zone_image) %>
         <%= I18n.t('general.note_image_zone') %>: <br />
- <% cache('note_image_zone) do %>
+ <% cache('note_image_zone') do %>
         <%= select_tag "#{ImageZone}[note_image_zone]", options_for_select(image_zone_select_uri), {:id => '', :class => 'image_zone_url'} %>
 
  <% end %>
