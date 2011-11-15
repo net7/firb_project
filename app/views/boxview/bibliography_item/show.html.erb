@@ -3,12 +3,11 @@
 
   note_tipografiche = [@resource.publisher, @resource.date].compact.join(', ')
 
-  field_to_show =  {"Autore" => @resource.author, "Titolo" => @resource.title, "Note tipografiche" => note_tipografiche, "Abstract" => @resource.abstract, "Risorsa esterna" => @resource.external_url, 'DOI' => @resource.doi}
+  field_to_show =  {"Autore" => @resource.author, "Titolo" => @resource.title, "Note tipografiche" => note_tipografiche, "Abstract" => @resource.abstract, "Risorsa esterna" => "<a href='#{@resource.external_url}' target='_blank'>Accedi alla risorsa esterna</a>", 'DOI' => @resource.doi}
 
 
-    field_to_show.each do |k,v|
-
-    w.content boxview_widget_field(k, v) if v.present?
+  field_to_show.each do |k,v|
+     w.content boxview_widget_field(k, v) if v.present?
   end
 
   
