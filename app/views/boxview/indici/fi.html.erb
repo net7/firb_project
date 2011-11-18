@@ -27,7 +27,7 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
   w.content "</li>"
  
   # Per qualità
-  w.content "<li class='menu_firstlevel'><a href='#' onclick='return false' class='menu collapsed'>#{I18n.t('fi_character_qualities')}</a><ul>"
+  w.content "<li class='menu_firstlevel'><div class='widgetField'><span class='field_title collapsed'>#{I18n.t('fi_character_qualities')}</span><ul class='collapsed' style='display: none'>"
   w.content "<li class='menu_secondlevel leaf'>"
   [:qualities_age, :qualities_gender, :qualities_profession, :qualities_ethnic_group].each do |quality|
     w.content boxview_link("/boxview/indici/fi_character_quality_values?quality=#{quality}",
@@ -36,6 +36,7 @@ boxview_widget 'Navigation', :class => "menu widget_draggable" do |w|
                            "fi_character_quality_#{URI.escape quality.to_s}",
                            :index)
   end
+ w.content "</li></ul></div></li>"
 
   # Per attributi
   w.content "<li class='menu_firstlevel leaf'>"
