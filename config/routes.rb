@@ -18,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/admin/image_zones/:action/:id', :controller => 'admin/image_zones', :id => nil
   map.connect '/admin/pi_text_cards/:action/:id', :controller => 'admin/pi_text_cards', :id => nil
   map.connect '/admin/fi_text_cards/:action/:id', :controller => 'admin/fi_text_cards', :id => nil
+  map.connect '/admin/clean_funny_state', :controller => 'admin/fi_text_cards', :action => 'clean_funny_state'
   map.connect '/admin/vt_handwritten_text_cards/:action/:id', :controller => 'admin/vt_handwritten_text_cards', :id => nil
   map.connect '/admin/vt_printed_text_cards/:action/:id', :controller => 'admin/vt_printed_text_cards', :id => nil
   map.connect '/admin/bg_text_cards/:action/:id', :controller => 'admin/bg_text_cards', :id => nil

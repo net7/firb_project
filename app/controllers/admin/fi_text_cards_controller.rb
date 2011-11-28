@@ -45,4 +45,20 @@ class Admin::FiTextCardsController < Admin::TextCardsController
     end
   end
 
+  def clean_funny_state
+    FiProcession.all.each do |procession|
+      if procession.count != procession.elements.count
+        procession.each do |el|
+          if el.nil?   
+            puts "Procession #{procession.uri} aveva elementi nil"
+            procession.delete el
+          end
+        end
+        procession.save
+      end 
+    end
+    render :layout => false, :text => 'Strange state should be fixed now'
+  end
+
+
 end
