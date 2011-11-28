@@ -36,7 +36,8 @@ module ImtHelper
     xml = Builder::XmlMarkup.new(:indent => 2)
     xml.dctl_ext_init{
       xml.img{
-        xml.a(:r => image.id.to_s, :s => image.uri.to_s, :l => image.name, :u => original_image_url(image))
+#        xml.a(:r => image.id.to_s, :s => image.uri.to_s, :l => image.name, :u => original_image_url(image))
+        xml.a(:r => image.id.to_s, :s => image.uri.to_s, :l => image.name, :u => thumb_url(image))
       }
       unless zones.size.zero?
         # First zone is assumed as the one of main interest, where the image will focus (zoom to).

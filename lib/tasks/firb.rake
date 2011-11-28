@@ -50,6 +50,21 @@ namespace :firb do
 
 	end
    end    
+  
+   desc "Recreates the thumbnails for all the Images"
+   task :recreate_thumbnails => 'talia_core:init' do	  
+   
+     prog = ProgressBar.new('Recreating', Image.count)
+
+     Image.all.each do |image|
+       data_records = image.data_records
+       image_data = data_records.find_by_type('TaliaCore::DataTypes::ImageData')
+       iip_data = data_records.find_by_type('TaliaCore::DataTypes::IipData')
+       iip_data.write_file_after_save(TaliaCore::DataTypes::FileStore::DataPath.new(image_data.file_path))
+       prog.inc      
+     end
+
+   end
 
 
 end
