@@ -58,13 +58,16 @@ namespace :firb do
 
      Image.all.each do |image|
        data_records = image.data_records
-       image_data = data_records.find_by_type('TaliaCore::DataTypes::ImageData')
+       image_data = data_records.find_by_type('TaliaCore::DataTypes::ImageData').
        iip_data = data_records.find_by_type('TaliaCore::DataTypes::IipData')
-       iip_data.write_file_after_save(TaliaCore::DataTypes::FileStore::DataPath.new(image_data.file_path))
+#       iip_data.write_file_after_save(TaliaCore::DataTypes::FileStore::DataPath.new(image_data.file_path))
+       TaliaUtil::ImageConversions::create_thumb(TaliaCore::DataTypes::FileStore::DataPath.new(image_data.file_path), TaliaCore::DataTypes::FileStore::DataPath.new(iip_data.file_path))
+
        prog.inc      
      end
 
    end
+
 
 
 end
