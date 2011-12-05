@@ -76,10 +76,9 @@ end
   w.content boxview_widget_field('Parole chiave', parole_chiave)
 
 
-  w.content render :partial => '/boxview/shared/widget_field_iconclass, :locals => {:items => @resource.iconclasses}  unless @resource.iconclasses.size.zero
+  w.content render :partial => '/boxview/shared/widget_field_iconclass', :locals => {:items => @resource.iconclasses}  unless @resource.iconclasses.size.zero?
 
-
-  w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>') unless @resource.study_notes.nil?
+  w.content boxview_widget_field('Note di studio', @resource.study_notes.gsub("\r\n",'<br/>')) unless @resource.study_notes.nil?
 
   content = [@resource.motto, @resource.motto_language].select {|c| not c.blank?}.join(',  ')
   w.content boxview_widget_field('Motto', content)
