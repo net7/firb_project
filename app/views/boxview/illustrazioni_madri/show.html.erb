@@ -45,11 +45,15 @@ end %>
     w.content boxview_widget_field('Immagini di memoria', children)
 
     contents = []
-    @resource.children_components_by_type.each do |type, components|
-      components.uniq.each do |component|
-        contents << imt_highlight(imt_id, "#{component.name} (#{type.to_s})", component.image_zone.id)
-      end
-    end
+#    @resource.children_components_by_type.each do |type, components|
+#      components.uniq.each do |component|
+#        contents << imt_highlight(imt_id, "#{component.name} (#{type.to_s})", component.image_zone.id)
+#      end
+#    end
+
+     @resource.children_components.sort {|a,b| a.name <=> b.name}.each do |component|
+         contents << imt_highlight(imt_id, "#{component.name} (#{component.zone_type})", component.image_zone.id)
+     end
 
     w.content boxview_widget_field('Componenti immagini di memoria', contents.join(', ')) unless contents.size.zero?
   end

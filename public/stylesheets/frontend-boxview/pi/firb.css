@@ -57,3 +57,11 @@ Box Trascrizione > Widget Trascrizione
     font-family: Georgia,Times,Times New Roman,serif;
     font-family: 'OFL Sorts Mill Goudy TT', Georgia, 'Times New Roman', Times, serif;
 }
+
+
+/*
+widget note
+*/
+.note p.open span.name {
+    color: #992200
+}
