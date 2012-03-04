@@ -511,6 +511,15 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.ve
 	background-position: -500px center;
 }
 
+
+/* goToBuddy! */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.goToBuddy a, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.goToBuddy a.alignMiddle {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -550px center;
+}
+
+
+
 /* ------- 4. Widget Right Icons Rollover ------- */
 div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.trascrizione a.alignMiddle:hover {
 	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
@@ -540,6 +549,13 @@ div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.il
 	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
 	background-position: -275px center;
 }
+
+/* goToBuddy! */
+div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.goToBuddy a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.goToBuddy a.alignMiddle:hover {
+	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
+	background-position: -575px center;
+}
+
 /* Trascrizione Critica Manoscritto  */
 div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_manuscript a:hover, div.boxViewContainer div.box div.widget div.widgetHeader div.rightIcons ul li.critical_manuscript a.alignMiddle:hover {
 	background: url(img/widget_added_icons_right_sprite.png) center center no-repeat;
