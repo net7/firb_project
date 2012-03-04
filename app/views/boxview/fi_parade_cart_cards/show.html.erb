@@ -8,6 +8,7 @@
     imt.out    = "$('#{imt_jquery_highlight_selector(imt_id)}'+ki).removeClass('zone_highlighted');"
   end
   w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+  w.right_icons link_to('index'), {:class => 'goToBuddy'}
   w.content content_tag(:div, content, :class => 'picture')
 end
 %>

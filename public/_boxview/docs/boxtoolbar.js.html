@@ -1,0 +1,281 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: BoxView
+    
+    
+      &rarr; boxtoolbar.js (file)
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="BoxView 1.0.3">BoxView 1.0.3</a> v
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="BoxView 1.0.3">BoxView 1.0.3</a>
+          &rarr; module <a href="./module_boxview.html" title="BoxView">BoxView</a>
+          
+          
+            &rarr; file boxtoolbar.js
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_boxview.html">BoxView</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li >
+                    <a href="BoxViewSuiteConfig.html">BoxViewSuiteConfig</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li >
+                    <a href="anchorman.js.html">anchorman.js</a>
+                  </li>
+                  <li  class="selected" >
+                    <a href="boxtoolbar.js.html">boxtoolbar.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview.js.html">boxview.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview_config.js.html">boxview_config.js</a>
+                  </li>
+                  <li >
+                    <a href="tools.js.html">tools.js</a>
+                  </li>
+                  <li >
+                    <a href="urlshortener.js.html">urlshortener.js</a>
+                  </li>
+                  <li >
+                    <a href="widgets.js.html">widgets.js</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+
+        <!--! source code view -->
+        <div id="srcout">
+          <h2>
+            file <strong>boxtoolbar.js</strong>
+          </h2>
+
+          <div class="highlight"><pre><span class="cm">/* Copyright (c) 2012 Net7 SRL, &lt;http://www.netseven.it/&gt;       */</span>
+<span class="cm">/* This Software is released under the terms of the MIT License */</span>
+<span class="cm">/* See LICENSE.TXT for the full text of the license.            */</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// BVToolbar constructor</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">BoxToolbar</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">bv</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">$</span><span class="p">.</span><span class="nx">BoxToolbar</span><span class="p">.</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">boxview</span> <span class="o">=</span> <span class="nx">bv</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+    <span class="p">};</span> <span class="c1">// $.urlShortener()</span>
+
+    <span class="c1">// DEFAULTS</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">BoxToolbar</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+
+		<span class="c1">// TODO: let the user supply a selector where </span>
+		<span class="c1">// to put the content of the toolbox</span>
+		<span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+
+		<span class="nx">toolboxShowHistory</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">toolboxShowUrlShortener</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">toolboxShowLoading</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">toolboxShowPreferences</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+		<span class="nx">defaultContainerClass</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+
+
+    <span class="p">};</span> <span class="c1">// defaults</span>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">BoxToolbar</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
+
+            <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">self</span><span class="p">.</span><span class="nx">urlShortener</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">globalHelperName</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> 
+				<span class="nx">self</span><span class="p">.</span><span class="nx">urlShortener</span> <span class="o">=</span> <span class="nb">window</span><span class="p">[</span><span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">globalHelperName</span><span class="p">];</span>
+
+			<span class="nx">self</span><span class="p">.</span><span class="nx">initComponentsHTML</span><span class="p">();</span>
+			<span class="nx">self</span><span class="p">.</span><span class="nx">initListeners</span><span class="p">();</span>
+    	
+        <span class="p">},</span> <span class="c1">// init()</span>
+        
+		<span class="nx">initListeners</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+				<span class="nx">bvn</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">boxview</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">;</span>
+
+			<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.boxview_toolbar.bv_&#39;</span><span class="o">+</span><span class="nx">bvn</span><span class="o">+</span><span class="s1">&#39; a.toolbar_history&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="nx">self</span><span class="p">.</span><span class="nx">boxview</span><span class="p">.</span><span class="nx">openHistoryBox</span><span class="p">();</span>
+			<span class="p">});</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">)</span>
+				<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.boxview_toolbar.bv_&#39;</span><span class="o">+</span><span class="nx">bvn</span><span class="o">+</span><span class="s1">&#39; a.toolbar_urlshortener&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+					<span class="nx">self</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">getCurrentShortenedUrl</span><span class="p">();</span>
+				<span class="p">});</span>
+			
+		<span class="p">},</span> <span class="c1">// initListeners()</span>
+
+		<span class="nx">initComponentsHTML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+				<span class="nx">bvn</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">boxview</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">,</span>
+				<span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+			
+			<span class="nx">s</span> <span class="o">+=</span> <span class="s1">&#39;&lt;div class=&quot;boxview_toolbar_wrapper&quot;&gt;&lt;div class=&quot;boxview_toolbar bv_&#39;</span><span class="o">+</span><span class="nx">bvn</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;ul&gt;&#39;</span><span class="p">;</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">toolboxShowHistory</span><span class="p">)</span>
+				<span class="nx">s</span> <span class="o">+=</span> <span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;toolbar_history&quot; title=&quot;Check your navigation history&quot;&gt;History&lt;/a&gt;&lt;/li&gt;&#39;</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">toolboxShowUrlShortener</span><span class="p">)</span>
+				<span class="nx">s</span> <span class="o">+=</span> <span class="s1">&#39;&lt;li&gt;&lt;a class=&quot;toolbar_urlshortener&quot; title=&quot;Get a short link for this page&quot;&gt;Link to this page&lt;/a&gt;&lt;/li&gt;&#39;</span><span class="p">;</span>
+
+				<span class="cm">/* TODO TODO TODO</span>
+<span class="cm">			if (self.options.toolboxShowPreferences) </span>
+<span class="cm">				s += &#39;&lt;li&gt;&lt;a class=&quot;toolbar_settings&quot; title=&quot;User settings&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;&#39;;</span>
+<span class="cm">				*/</span>
+			<span class="nx">s</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">toolboxShowLoading</span><span class="p">)</span>
+				<span class="nx">s</span> <span class="o">+=</span> <span class="s1">&#39;&lt;div style=&quot;display: none;&quot; class=&quot;boxview_loading_dialog&quot;&gt;&lt;p&gt;Caricamento in corso&lt;/p&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+
+            <span class="c1">// TODO:  Initialize the content of the user pref dialog</span>
+			
+			<span class="c1">// TODO: check if user supplied a selector</span>
+			<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+			
+		<span class="p">}</span>
+
+    <span class="p">};</span> <span class="c1">// BoxToolbar.prototype</span>
+<span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span>
+</pre></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2012 Yahoo! Inc.. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>

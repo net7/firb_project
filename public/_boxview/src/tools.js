@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* Copyright (c) 2012 Net7 SRL, <http://www.netseven.it/>       */
 /* This Software is released under the terms of the MIT License */
 /* See LICENSE.TXT for the full text of the license.            */
 
@@ -74,7 +74,7 @@ BoxStrapper.prototype = {
                     function() {
                         if (typeof(self.userConfig) === 'undefined') {
                             self.loadScriptCheck(36, "User's configuration files config.js", self.path + 'config.js', 37);
-                            self.loadScriptCheck(36, "User's configuration files ../config.js", self.path + '../config.js', 37);
+                            // self.loadScriptCheck(36, "User's configuration files ../config.js", self.path + '../config.js', 37);
                         } else 
                             self.loadScriptCheck(37, "User's configuration via BoxStrapper()", self.userConfig, 38);
                     });
@@ -83,7 +83,7 @@ BoxStrapper.prototype = {
         self.loadCall(40, "Theme stylesheets", 
                     function() {
 						// DEBUG TODO: what if we upgrade jquery UI? prolly best to force the name to jquery-ui.css
-                        self.loadCss(41, "Theme Jquery UI stylesheet", self.themePath + BoxViewSuiteConfig.theme+'/jquery-ui/jquery-ui-1.8.10.custom.css');
+                        self.loadCss(41, "Theme Jquery UI stylesheet", self.themePath + BoxViewSuiteConfig.theme+'/jquery-ui/jquery-ui.css');
                         self.loadScript(41, "Theme general config", self.themePath + BoxViewSuiteConfig.theme+'/config.js');
                         self.loadCss(41, "Theme general stylesheet", self.themePath + BoxViewSuiteConfig.theme+'/css/style.css');
                         if (typeof(self.userConfig) !== 'undefined') 

@@ -1,38 +1,80 @@
-/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* Copyright (c) 2012 Net7 SRL, <http://www.netseven.it/>       */
 /* This Software is released under the terms of the MIT License */
 /* See LICENSE.TXT for the full text of the license.            */
-
+/**
+ * @module BoxView
+ * @class BoxViewSuiteConfig
+ * @description Default configuration options for the boxview suite:
+ * boxview, widgets, anchorman, boxStrapper, boxToolbar, urlshortener
+ * and themes.<br /><br />
+ * Each of these properties can be individually overridden in your
+ * local configuration file.
+ */
 var 
     // BoxView section name inside AnchorMan description. Just make sure
     // AnchorMan is not used by something else with this same name
     bvAMSectionName = "bv",
 
-    // BoxView Suite Configuration object!
+    /**
+    * @property BoxViewSuiteConfig
+    * @type object
+    * @description BoxView Suite Configuration object
+    */
     BoxViewSuiteConfig = {
 
-        // Theme to be applied to the boxview suite items. See the manual
-        // for more informations on how to roll your own theme. The default
-        // theme is called .. 'standard'!
+        /**
+        * @property BoxViewSuiteConfig.theme
+        * @type string
+        * @default standard
+        * @description Theme to be applied to the boxview 
+        * suite items. See the manual for more informations on how to roll 
+        * your own theme. 
+        */
         theme: 'standard',
 
         /////////////////////////////////////////////////////////////////
         ////// BoxStrapper configuration                           //////
         /////////////////////////////////////////////////////////////////
 
+        /**
+        * @property BoxViewSuiteConfig.boxStrapperConfig
+        * @type object
+        * @description boxview loader (boxStrapper) configuration object
+        */
         boxStrapperConfig: {
 
-            // Use the fancy startup screen while boxview and boxes are
-            // loading? (true/false)
+            /**
+            * @property BoxViewSuiteConfig.boxStrapperConfig.useStartupScreen
+            * @type boolean
+            * @default true
+            * @description Use the fancy startup screen while boxview and boxes are
+            * loading?  
+            */
             useStartupScreen: true,
             
-            // Close automatically the loading dialog when BoxStrapper is
-            // done?
+            /**
+            * @property BoxViewSuiteConfig.boxStrapperConfig.closeOnDone
+            * @type boolean
+            * @default true
+            * @description Closes automatically the loading dialog when BoxStrapper is
+            * done
+            */
             closeOnDone: true,
 
-            // Wait some time before closing the loading dialog? (milliseconds)
+            /**
+            * @property BoxViewSuiteConfig.boxStrapperConfig.waitBeforeClose
+            * @type milliseconds
+            * @default 1000
+            * @description Wait time before closing the loading dialog
+            */
             waitBeforeClose: 1000,
             
-            // Lenght of the fade animation (milliseconds)
+            /**
+            * @property BoxViewSuiteConfig.boxStrapperConfig.animationLenght
+            * @type milliseconds
+            * @default 1500
+            * @description Animation lenght of the loading panel
+            */
             animationLenght: 1500
             
         },
@@ -42,118 +84,322 @@ var
         ////// BoxView configuration                               //////
         /////////////////////////////////////////////////////////////////
 
-        // Name of BoxView object instance, see top of this config file
+        /**
+        * @property BoxViewSuiteConfig.boxViewName
+        * @type string
+        * @default 'myBoxView'
+        * @description Name of the BoxView object instance in the global
+        * scope
+        */
         boxViewName: 'myBoxView',
-
-        // boxView container, a jQuery object like $('.someClass') or $('#someId')
+ 
+        /**
+        * @property BoxViewSuiteConfig.boxViewContainer
+        * @type jquery object
+        * @default $('#pageContent')
+        * @description The container for the BoxView, a jQuery object like 
+        * $('.someClass') or $('#someId')
+        */
         boxViewContainer: $('#pageContent'),
 
-        // boxView options object
+        /**
+        * @property BoxViewSuiteConfig.boxViewConfig
+        * @type object
+        * @description All of the following css classes will be used in the HTML markup.<br/>
+        * For example when a box is collapsed collapsedClass will be added as
+        * css class to the box HTML markup, and removed when expanded.
+        * Changing the names here means that the page must provide a css
+        * stylesheet with the needed definitions, to style the elements
+        * accordingly. See the manual for more informations and examples.
+        */
         boxViewConfig: {
 
-            // All of the following css classes will be used in the HTML markup.
-            // For example when a box is collapsed collapsedClass will be added as
-            // css class to the box HTML markup, and removed when expanded.
-            // Changing the names here means that the page must provide a css
-            // stylesheet with the needed definitions, to style the elements
-            // accordingly. See the manual for more informations and examples.
             
-            // Css class added to the box when collapsed
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.collapsedClass
+            * @type css class
+            * @default 'collapsedBox'
+            * @description Css class added to the box when collapsed
+            */
     		collapsedClass: 'collapsedBox',
 
-    		// Css class added to the box when expanded
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.expandedClass
+            * @type css class
+            * @default 'expandedBox'
+            * @description Css class added to the box when expanded
+            */
     		expandedClass: 'expandedBox',
 		
-    		// Css class added while the box is loading
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.loadingClass
+            * @type css class
+            * @default 'loadingContent'
+            * @description Css class added while the box is loading
+            */
     		loadingClass: 'loadingContent',
 		
-    		// Default type for typeless boxes (every type is used as box css class
-    		// in the HTML markup)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.type
+            * @type css class
+            * @default'defType'
+            * @description Default type for typeless boxes (every type is 
+            * used as box css class in the HTML markup)
+            */
     		type: 'defType',
 
-			// Is a box collapsable? (true/false)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.collapsable
+            * @type boolean
+            * @default true
+            * @description Are boxes collapsable by default?
+            */
 			collapsable: true,
 
-			// Is a box draggable? (true/false)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.draggable
+            * @type boolean
+            * @default true
+            * @description Are boxes draggable by default?
+            */
 			draggable: true, 
 
-			// Is a box closable? (true/false)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.closable
+            * @type boolean
+            * @default true
+            * @description Are boxes closable by default?
+            */
 			closable: true,
 
-    		// Is a box initially collapsed? (true/false)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.collapsed
+            * @type boolean
+            * @default false
+            * @description Do boxes spawn collapsed by default?
+            */
     		collapsed: false,
 
-    		// Box width when collapsed (pixels)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.collapsedWidth
+            * @type pixels
+            * @default 30
+            * @description Box width when collapsed
+            */
     		collapsedWidth: 30,
 
-            // Box header's height when collapsed, usually contains tools like 
-            // close/expand (pixels)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.collapsedHeaderHeight
+            * @type pixels
+            * @default 50
+            * @description Box header's height when collapsed, usually 
+            * contains tools like close/expand
+            */
             collapsedHeaderHeight: 50,
 
-            // Box header's height when expanded, contains tools and title (pixels)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.headerHeight
+            * @type pixels
+            * @default 30
+            * @description Box header's height when expanded, contains tools and title
+            */
             headerHeight: 30,
 
-            // TODO
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.headerTitleMargin
+            * @type pixels
+            * @default 4
+            * @description left/right margin for the title of the box, inside 
+            * its header part
+            */
             headerTitleMargin: 4,
 
-            // TODO
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.iconSize
+            * @type pixels
+            * @default 16
+            * @description width and heigth of for the box icons, in its header part
+            */
             iconSize: 16,
 
-            // TODO alignMiddle / alignTop / alignBottom
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.
+            * @type string
+            * @default 'alignMiddle'
+            * @description Alignment for the box icons. Possible values are "alignMiddle",
+            * "alignTop" and "alignBottom"
+            */
             iconsAlignment: 'alignMiddle',
 
-            // TODO 
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin
+            * @type pixels
+            * @default 7
+            * @description Top margin when the icons are displayed vertically, box
+            * collapsed
+            */
             iconsVerticalTopMargin: 7,
             
-            // TODO
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin
+            * @type pixels
+            * @default 7
+            * @description Horizontal margin for each icon slot in the box header
+            */
             iconSlotsHorizontalMargin: 7,
             
-            // Use a fixed width for every box (false/pixels) // TODOTODO, should this stay here?
-            fixedWidth: false,
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.maxWidth
+            * @type boolean/pixels
+            * @default false
+            * @description If a pixels value is passed, boxview will force the box
+            * to have at most this width.
+            */
+            maxWidth: false,
 
-    		// Space between boxes (pixels)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.minWidth
+            * @type boolean/pixels
+            * @default false
+            * @description If a pixels value is passed, boxview will force the box
+            * to have at least this width.
+            */
+            minWidth: false,
+
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.boxMargin
+            * @type pixels
+            * @default 1
+            * @description Space between boxes
+            */
     		boxMargin: 1,
 
-            // Enforce max width for images with .resizeme (true/false)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight
+            * @type boolean
+            * @default true
+            * @description Enforces a maximum height for images and containers having 
+            * the 'resizeme' css class
+            */
             resizemeImagesForceMaxHeight: true,
 
-            // Minimum height for the .resizeme elements (pixels) 
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight
+            * @type pixels
+            * @default 100
+            * @description Enforces a minimum height for images and containers having 
+            * the 'resizeme' css class
+            */
             resizemeImagesMinHeight: 100,
 
-            // Maximum height for the .resizeme elements (pixels) 
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight
+            * @type pixels
+            * @default 400
+            * @description Maximum height for the .resizeme elements 
+            */
             resizemeImagesMaxHeight: 400,
 
-    		// Margin for .resizeme images (pixels)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesMargin
+            * @type pixels
+            * @default 15
+            * @description  Margin for .resizeme elements
+            */
     		resizemeImagesMargin: 15,
 
-    		// Animations (true/false)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.animateAdd
+            * @type boolean
+            * @default false
+            * @description Use an animation when a box is added
+            */
     		animateAdd: false,
+
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.animateRemove
+            * @type boolean
+            * @default false
+            * @description Use an animation when a box is removed
+            */
     		animateRemove: false,
+
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.animateCollapse
+            * @type boolean
+            * @default false
+            * @description Use an animation when a box is collapsed or expanded
+            */
     		animateCollapse: false,
+
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.animateResize
+            * @type boxViewConfig
+            * @default false
+            * @description Use an animation when a box is resized
+            */
     		animateResize: false,
 
-            // Shortcut to set all of the animations at once, overrides any other 
-            // given animate* parameter. If set to a string will use the animate*
-            // parameters individually (true/false/'')
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.animations
+            * @type boolean
+            * @default true
+            * @description Shortcut to set all of the animations at once, 
+            * overrides any other given animate* parameter.
+            */
     		animations: true,
 
-            // Boxview's animations length (milliseconds)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.animationLength
+            * @type milliseconds
+            * @default 750
+            * @description Boxview's animations length
+            */
         	animationLength: 750,
 
-    		// Default titles for the titleless boxes
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.title
+            * @type string
+            * @default "Default box title"
+            * @description Box title
+            */
     		title: "Default box title",
+
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.verticalTitle
+            * @type string
+            * @default "Default vertical title"
+            * @description Box title when it is vertical (collapsed)
+            */
     		verticalTitle: "Default vertical title",
 
-    		// Will check every lazyResizeInterval ms if boxview's container width/height are
-    		// changed and resize the boxview if needed (milliseconds)
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.lazyResizeInterval
+            * @type milliseconds
+            * @default 250
+            * @description Will check every lazyResizeInterval ms if boxview's container 
+            * width/height are changed and resizes the boxview if needed
+            */
     		lazyResizeInterval: 250,
 
-            // If you need to use some strange character in your own fields 
-            // (for example check AnchorManConfig separators!), prepend "encode" to
-            // your veryImportantField name, like: encodeveryImportantField: true
-
-            // Box fields to be saved into AnchorMan, encoding some in base64
-            anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'title', 'verticalTitle', 'closable', 'collapsable', 'draggable'],
+            /**
+            * @property BoxViewSuiteConfig.boxViewConfig.anchorManDescription
+            * @type array of box properties
+            * @default ['id', 'resId', 'type', 'collapsed', 'qstring', 'title', 'verticalTitle', 'closable', 'collapsable', 'draggable', 
+                'minWidth', 'maxWidth']
+            * @description Box fields to be saved into AnchorMan, encoding some in base64<br/>
+            * If you need to use some strange character in your own fields 
+            * (for example check AnchorManConfig separators!), prepend "encode" to
+            * your veryImportantField name, like: encodeveryImportantField: true.<br/>
+            * By default qstring, title and verticalTitle are encoded before getting
+            * saved with anchorman
+            */
+            anchorManDescription: [
+                'id', 'resId', 'type', 'collapsed', 'qstring', 
+                'title', 'verticalTitle', 
+                'closable', 'collapsable', 'draggable', 
+                'minWidth', 'maxWidth'
+            ],
             encodeqstring: true,
             encodetitle: true,
             encodeverticalTitle: true,
@@ -219,6 +465,12 @@ var
 
             // Collapse widgets by double-clicking on the header?
             collapseOnDoubleClick: true,
+
+            // true: content will be cloned and current widget collapsed
+            // false: content will be moved to the new box
+            cloneOnBuddy: true,
+
+            buddyTitlePrefix: 'buddy - ',
 
             debug: false
         },
@@ -316,7 +568,7 @@ var
 
 
         /////////////////////////////////////////////////////////////////
-        ////// URLShortener configuration                          //////
+        ////// boxToolbar configuration                            //////
         /////////////////////////////////////////////////////////////////
 
 		// TODO

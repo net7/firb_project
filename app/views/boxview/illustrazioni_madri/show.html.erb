@@ -10,6 +10,7 @@
   end
 
   w.right_icons boxview_link_for_object(@resource.anastatica), {:class => 'anastatica'}
+  w.right_icons link_to('index'), {:class => 'goToBuddy'}
   w.content content_tag(:div, content, :class => 'picture')
 end %>
 
@@ -53,7 +54,7 @@ end %>
 
      @resource.children_components.sort {|a,b| a.name <=> b.name}.each do |component|
          contents << imt_highlight(imt_id, "#{component.name} (#{component.zone_type})", component.image_zone.id)
-     end
+     end if @resource.children_components
 
     w.content boxview_widget_field('Componenti immagini di memoria', contents.join(', ')) unless contents.size.zero?
   end

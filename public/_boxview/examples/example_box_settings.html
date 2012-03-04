@@ -1,4 +1,4 @@
-<!-- Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       -->
+<!-- Copyright (c) 2012 Net7 SRL, <http://www.netseven.it/>       -->
 <!-- This Software is released under the terms of the MIT License -->
 <!-- See LICENSE.TXT for the full text of the license.            -->
 
@@ -12,11 +12,15 @@
 	<div id="pageExt">
 		<div id="pageHeader">
 			<a href="#" id="def">Default, no option at all.</a> -- 
-			<a href="#" id="ver">I just spawn collapsed</a> -- 
+			<a href="#" id="ver">I just spawn collapsed</a><br / > 
 			<a href="#" id="dra">Not Draggable</a> -- 
 			<a href="#" id="clo">Not Closable</a> -- 
 			<a href="#" id="col">Not Collapsable</a> -- 
-			<a href="#" id="win">Not Collapsable Not Closable Not Draggable, and in first position!! WIN!</a> 
+			<a href="#" id="win">Not Collapsable Not Closable Not Draggable, and in first position!! WIN!</a> <br />
+			<a href="#" id="max">Max width: 350px</a> -- 
+			<a href="#" id="min">Min width: 350px</a> -- 
+			<a href="#" id="maxmin">Max AND min width: 200px</a> -- 
+			
 		</div>
 		<div id="pageContent"></div>
 	</div>
@@ -68,6 +72,23 @@
 			myBoxView.addBox('collapsable: false', {title: 'Not collapsable', type: 'green', collapsable: false});
 			return false;
 		});
+
+		$('#max').click(function() {
+			myBoxView.addBox("Maximum width in action", {title: 'Maximum width', type: 'blue', maxWidth: 300});
+			return false;
+		});
+
+		$('#min').click(function() {
+			myBoxView.addBox("Minimum width in action", {title: 'Minimum width', type: 'yellow', minWidth: 300});
+			return false;
+		});
+
+		$('#maxmin').click(function() {
+			myBoxView.addBox("Maximum AND minimum width in action: fixed width", {title: 'FIXED width', type: 'red', minWidth: 200, maxWidth: 200});
+			return false;
+		});
+
+
 
 		$('#win').click(function() {
 			myBoxView.addBox('resId:"win",<br>collapsable: false,<br>draggable: false,<br>closable: false,<br>position: 0', {

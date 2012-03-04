@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* Copyright (c) 2012 Net7 SRL, <http://www.netseven.it/>       */
 /* This Software is released under the terms of the MIT License */
 /* See LICENSE.TXT for the full text of the license.            */
 
@@ -68,7 +68,13 @@
         headerTitleMargin: 5,
 
         // TODO 
-        iconsAlignment: 'alignMiddle'
+        iconsAlignment: 'alignMiddle',
+        
+        buddyTitlePrefix: 'buddy - ',
+        
+        // true: content will be cloned and current widget collapsed
+        // false: content will be moved to the new box
+        cloneOnBuddy: true
 
     }; // defaults
         
@@ -85,6 +91,47 @@
             // DEBUG: need to add && collapsable===true someway?
             if (this.options.collapseOnDoubleClick)
                 $(_foo+" .widgetHeaderTitle,"+_foo+" .widgetHeaderTools").live("dblclick", function() { return self.collapseWidget(this); });
+
+            $(".boxViewContainer div.box div.widget div.widgetHeader .goToBuddy a").live("click", function() { 
+                var bv = window[BoxViewSuiteConfig.boxViewName],
+                    id = $(this).parents('div.box:first').attr('id');
+                    
+                // Add the new box if needed                
+                if (bv.getIdFromResId(id+'_buddy') === -1) {
+                    var opts = bv.getOptsFromId(bv.getResIdFromId(id));
+                    
+                    bv.addBox('',{
+                            resId: id+'_buddy', 
+                            title: self.options.buddyTitlePrefix+" "+opts.title,
+                            verticalTitle: self.options.buddyTitlePrefix+" "+opts.verticalTitle,
+                            type: opts.type+" buddy"
+                        });
+                }
+                
+                var buddyId = bv.getIdFromResId(id+'_buddy');
+                
+                // Move the widget
+                $('#'+buddyId+' .boxContent').html('');
+            
+                if (self.options.cloneOnBuddy)
+                    $(this).parents('div.widget').clone().appendTo('#'+buddyId+' .boxContent');
+                else
+                    $(this).parents('div.widget').appendTo('#'+buddyId+' .boxContent');
+
+                // Expand buddy widget if it's collapsed
+                wc = $('#'+buddyId+' .boxContent div.widgetContent');
+                if (wc.hasClass('collapsed'))
+                    wc.slideDown().addClass('expanded');
+
+                // remove all buddy widget icons, and collapse the clicked widget
+                $('#'+buddyId+' .boxContent div.widgetHeader li').remove();
+                
+                
+                if (self.options.cloneOnBuddy && $($(this).parents('div.widget').find('.collapse a')).hasClass('expanded'))
+                    self.collapseWidget(this);
+
+                return false;
+            });
 
             // Bind widget collapse button
             $(_foo+" .collapse a").live("click", function() { return self.collapseWidget(this); });

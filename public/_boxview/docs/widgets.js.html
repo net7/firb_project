@@ -1,0 +1,464 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: BoxView
+    
+    
+      &rarr; widgets.js (file)
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="BoxView 1.0.3">BoxView 1.0.3</a> v
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="BoxView 1.0.3">BoxView 1.0.3</a>
+          &rarr; module <a href="./module_boxview.html" title="BoxView">BoxView</a>
+          
+          
+            &rarr; file widgets.js
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_boxview.html">BoxView</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li >
+                    <a href="BoxViewSuiteConfig.html">BoxViewSuiteConfig</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li >
+                    <a href="anchorman.js.html">anchorman.js</a>
+                  </li>
+                  <li >
+                    <a href="boxtoolbar.js.html">boxtoolbar.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview.js.html">boxview.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview_config.js.html">boxview_config.js</a>
+                  </li>
+                  <li >
+                    <a href="tools.js.html">tools.js</a>
+                  </li>
+                  <li >
+                    <a href="urlshortener.js.html">urlshortener.js</a>
+                  </li>
+                  <li  class="selected" >
+                    <a href="widgets.js.html">widgets.js</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+
+        <!--! source code view -->
+        <div id="srcout">
+          <h2>
+            file <strong>widgets.js</strong>
+          </h2>
+
+          <div class="highlight"><pre><span class="cm">/* Copyright (c) 2012 Net7 SRL, &lt;http://www.netseven.it/&gt;       */</span>
+<span class="cm">/* This Software is released under the terms of the MIT License */</span>
+<span class="cm">/* See LICENSE.TXT for the full text of the license.            */</span>
+
+<span class="c1">// Adding a special &quot;contentchange&quot; event to jquery, triggers when the </span>
+<span class="c1">// given item content.. changes.</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">interval</span><span class="p">;</span>
+    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">contentchange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;contentchange&#39;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">special</span><span class="p">.</span><span class="nx">contentchange</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">setup</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">namespaces</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+                <span class="nx">$this</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">),</span>
+                <span class="nx">$originalContent</span> <span class="o">=</span> <span class="nx">$this</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+            <span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">$originalContent</span> <span class="o">!=</span> <span class="nx">$this</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="nx">$originalContent</span> <span class="o">=</span> <span class="nx">$this</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+                    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">special</span><span class="p">.</span><span class="nx">contentchange</span><span class="p">.</span><span class="nx">handler</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">teardown</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">interval</span><span class="p">);</span> <span class="p">},</span>
+        <span class="nx">handler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">event</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;contentchange&#39;</span><span class="p">});</span> <span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">})();</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Widgets constructor</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">widgets</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">$</span><span class="p">.</span><span class="nx">widgets</span><span class="p">.</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+    <span class="p">};</span> <span class="c1">// $.widgets()</span>
+
+    <span class="c1">// DEFAULTS</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">widgets</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="c1">// Widget&#39;s options defaults for the widgetify() method</span>
+        <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">draggable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">collapsable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">prevnext</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">zoomable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+        <span class="p">},</span>
+
+        <span class="c1">// Use animations to collapse widgets?</span>
+        <span class="nx">animations</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// Animation lenght</span>
+        <span class="nx">animationsLenght</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
+
+        <span class="c1">// Collapse widgets by double-clicking on the header?</span>
+        <span class="nx">collapseOnDoubleClick</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// TODO</span>
+        <span class="nx">iconSize</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+
+        <span class="c1">// TODO</span>
+        <span class="nx">iconSlotsHorizontalMarginLeft</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+
+        <span class="c1">// TODO</span>
+        <span class="nx">iconSlotsHorizontalMarginRight</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+
+        <span class="c1">// TODO</span>
+        <span class="nx">headerTitleMargin</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+
+        <span class="c1">// TODO </span>
+        <span class="nx">iconsAlignment</span><span class="o">:</span> <span class="s1">&#39;alignMiddle&#39;</span><span class="p">,</span>
+        
+        <span class="nx">buddyTitlePrefix</span><span class="o">:</span> <span class="s1">&#39;buddy - &#39;</span><span class="p">,</span>
+        
+        <span class="c1">// true: content will be cloned and current widget collapsed</span>
+        <span class="c1">// false: content will be moved to the new box</span>
+        <span class="nx">cloneOnBuddy</span><span class="o">:</span> <span class="kc">true</span>
+
+    <span class="p">};</span> <span class="c1">// defaults</span>
+        
+    <span class="c1">// Used internally by the suite: provides a reference to</span>
+    <span class="c1">// the $.widgets object in the global scope under this name</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">widgets</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">globalHelperName</span> <span class="o">=</span> <span class="s2">&quot;ssffsfsfWidgetsHelper&quot;</span><span class="p">;</span>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">widgets</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+
+            <span class="kd">var</span> <span class="nx">_foo</span> <span class="o">=</span> <span class="s2">&quot;.boxViewContainer div.box div.widget div.widgetHeader&quot;</span><span class="p">,</span>
+                <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+            
+            <span class="c1">// DEBUG: need to add &amp;&amp; collapsable===true someway?</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">collapseOnDoubleClick</span><span class="p">)</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">_foo</span><span class="o">+</span><span class="s2">&quot; .widgetHeaderTitle,&quot;</span><span class="o">+</span><span class="nx">_foo</span><span class="o">+</span><span class="s2">&quot; .widgetHeaderTools&quot;</span><span class="p">).</span><span class="nx">live</span><span class="p">(</span><span class="s2">&quot;dblclick&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">self</span><span class="p">.</span><span class="nx">collapseWidget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="p">});</span>
+
+            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.boxViewContainer div.box div.widget div.widgetHeader .goToBuddy a&quot;</span><span class="p">).</span><span class="nx">live</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+                <span class="kd">var</span> <span class="nx">bv</span> <span class="o">=</span> <span class="nb">window</span><span class="p">[</span><span class="nx">BoxViewSuiteConfig</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">],</span>
+                    <span class="nx">id</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.box:first&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+                    
+                <span class="c1">// Add the new box if needed                </span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">bv</span><span class="p">.</span><span class="nx">getIdFromResId</span><span class="p">(</span><span class="nx">id</span><span class="o">+</span><span class="s1">&#39;_buddy&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="nx">bv</span><span class="p">.</span><span class="nx">getOptsFromId</span><span class="p">(</span><span class="nx">bv</span><span class="p">.</span><span class="nx">getResIdFromId</span><span class="p">(</span><span class="nx">id</span><span class="p">));</span>
+                    
+                    <span class="nx">bv</span><span class="p">.</span><span class="nx">addBox</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,{</span>
+                            <span class="nx">resId</span><span class="o">:</span> <span class="nx">id</span><span class="o">+</span><span class="s1">&#39;_buddy&#39;</span><span class="p">,</span> 
+                            <span class="nx">title</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">buddyTitlePrefix</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nx">opts</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+                            <span class="nx">verticalTitle</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">buddyTitlePrefix</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nx">opts</span><span class="p">.</span><span class="nx">verticalTitle</span><span class="p">,</span>
+                            <span class="nx">type</span><span class="o">:</span> <span class="nx">opts</span><span class="p">.</span><span class="nx">type</span><span class="o">+</span><span class="s2">&quot; buddy&quot;</span>
+                        <span class="p">});</span>
+                <span class="p">}</span>
+                
+                <span class="kd">var</span> <span class="nx">buddyId</span> <span class="o">=</span> <span class="nx">bv</span><span class="p">.</span><span class="nx">getIdFromResId</span><span class="p">(</span><span class="nx">id</span><span class="o">+</span><span class="s1">&#39;_buddy&#39;</span><span class="p">);</span>
+                
+                <span class="c1">// Move the widget</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">buddyId</span><span class="o">+</span><span class="s1">&#39; .boxContent&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+            
+                <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cloneOnBuddy</span><span class="p">)</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.widget&#39;</span><span class="p">).</span><span class="nx">clone</span><span class="p">().</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">buddyId</span><span class="o">+</span><span class="s1">&#39; .boxContent&#39;</span><span class="p">);</span>
+                <span class="k">else</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.widget&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">buddyId</span><span class="o">+</span><span class="s1">&#39; .boxContent&#39;</span><span class="p">);</span>
+
+                <span class="c1">// Expand buddy widget if it&#39;s collapsed</span>
+                <span class="nx">wc</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">buddyId</span><span class="o">+</span><span class="s1">&#39; .boxContent div.widgetContent&#39;</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">wc</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;collapsed&#39;</span><span class="p">))</span>
+                    <span class="nx">wc</span><span class="p">.</span><span class="nx">slideDown</span><span class="p">().</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;expanded&#39;</span><span class="p">);</span>
+
+                <span class="c1">// remove all buddy widget icons, and collapse the clicked widget</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">buddyId</span><span class="o">+</span><span class="s1">&#39; .boxContent div.widgetHeader li&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+                
+                
+                <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cloneOnBuddy</span> <span class="o">&amp;&amp;</span> <span class="nx">$</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.widget&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.collapse a&#39;</span><span class="p">)).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;expanded&#39;</span><span class="p">))</span>
+                    <span class="nx">self</span><span class="p">.</span><span class="nx">collapseWidget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">});</span>
+
+            <span class="c1">// Bind widget collapse button</span>
+            <span class="nx">$</span><span class="p">(</span><span class="nx">_foo</span><span class="o">+</span><span class="s2">&quot; .collapse a&quot;</span><span class="p">).</span><span class="nx">live</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">self</span><span class="p">.</span><span class="nx">collapseWidget</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="p">});</span>
+
+            <span class="c1">// Bind widget drag button to nothing ..</span>
+            <span class="nx">$</span><span class="p">(</span><span class="nx">_foo</span><span class="o">+</span><span class="s2">&quot; .drag a&quot;</span><span class="p">).</span><span class="nx">live</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">});</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">animations</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">animationsLenght</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+            <span class="nb">window</span><span class="p">[</span><span class="nx">$</span><span class="p">.</span><span class="nx">widgets</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">globalHelperName</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="p">},</span> <span class="c1">// init()</span>
+
+		<span class="c1">// Each BV instance will call this function, to be sure that its widgets</span>
+		<span class="c1">// gets sortable, resized etc at run time</span>
+		<span class="nx">bindBVListener</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			
+            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.boxViewContainer&#39;</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;contentchange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="c1">// DEBUG: if it&#39;s already sortable, dont do this again :)</span>
+                <span class="c1">// Add a class or something? </span>
+                <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.boxContent&#39;</span><span class="p">).</span><span class="nx">sortable</span><span class="p">({</span> 
+					<span class="nx">containment</span><span class="o">:</span> <span class="s1">&#39;parent&#39;</span><span class="p">,</span> 
+					<span class="nx">handle</span><span class="o">:</span> <span class="s1">&#39;div.widgetHeader .title, div.widgetHeader .drag&#39;</span><span class="p">,</span> 
+					<span class="nx">items</span><span class="o">:</span> <span class="s1">&#39;div.widget.widget_draggable&#39;</span>
+				<span class="p">});</span>
+                <span class="nx">self</span><span class="p">.</span><span class="nx">resizeWidgets</span><span class="p">();</span>
+            <span class="p">});</span>
+			
+		<span class="p">},</span> <span class="c1">// bindBVListener</span>
+        
+        <span class="nx">widgetify</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+                <span class="nx">options</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">opts</span><span class="p">),</span>
+                <span class="nx">widget_class</span> <span class="o">=</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">draggable</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;widget_draggable &quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">options</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">],</span>
+                <span class="nx">w</span> <span class="o">=</span> <span class="s2">&quot;&lt;div class=&#39;widget &quot;</span><span class="o">+</span><span class="nx">widget_class</span><span class="o">+</span><span class="s2">&quot;&#39;&gt;&lt;div class=&#39;widgetHeader toBeResized&#39;&gt;&quot;</span><span class="p">;</span>
+            
+            <span class="c1">// LEFT icons: </span>
+            <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;div class=&#39;leftIcons&#39;&gt;&lt;ul&gt;&quot;</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">collapsable</span><span class="p">)</span>
+                <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;li class=&#39;collapse&#39;&gt;&lt;a class=&#39;expanded&#39; href=&#39;#&#39; title=&#39;Collapse&#39;&gt;Collapse&lt;/a&gt;&lt;/li&gt;&quot;</span><span class="p">;</span>
+            <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/ul&gt;&lt;/div&gt;&quot;</span><span class="p">;</span>
+
+            <span class="c1">// Widget TITLE</span>
+            <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;div class=&#39;title&#39;&gt;&lt;h4 class=&#39;widgetHeaderTitle&#39;&gt;&quot;</span> <span class="o">+</span> <span class="nx">title</span> <span class="o">+</span> <span class="s2">&quot;&lt;/h4&gt;&lt;/div&gt;&quot;</span><span class="p">;</span>
+			
+            <span class="c1">// RIGHT icons</span>
+            <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;div class=&#39;rightIcons&#39;&gt;&lt;ul&gt;&quot;</span><span class="p">;</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">prevnext</span><span class="p">)</span>
+                <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;li class=&#39;next&#39;&gt;&lt;a href=&#39;#&#39; title=&#39;Next&#39;&gt;Next&lt;/a&gt;&lt;/li&gt;&quot;</span><span class="o">+</span>
+                    <span class="s2">&quot;&lt;li class=&#39;previous&#39;&gt;&lt;a href=&#39;#&#39; title=&#39;Previous&#39;&gt;Previous&lt;/a&gt;&lt;/li&gt;&quot;</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">zoomable</span><span class="p">)</span>
+                <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;li class=&#39;zoom&#39;&gt;&lt;a href=&#39;#&#39; title=&#39;Zoom&#39;&gt;Zoom&lt;/a&gt;&lt;/li&gt;&quot;</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">draggable</span><span class="p">)</span>
+                <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;li class=&#39;drag&#39;&gt;&lt;a href=&#39;#&#39; title=&#39;Drag&#39;&gt;Drag&lt;/a&gt;&lt;/li&gt;&quot;</span><span class="p">;</span>
+            
+            <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/ul&gt;&lt;/div&gt;&quot;</span><span class="p">;</span>
+
+            <span class="c1">// Widget CONTENT</span>
+            <span class="nx">w</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/div&gt;&lt;div class=&#39;widgetContent expanded&#39;&gt;&quot;</span><span class="o">+</span><span class="nx">content</span><span class="o">+</span><span class="s2">&quot;&lt;/div&gt;&lt;/div&gt;&quot;</span><span class="p">;</span>
+
+            <span class="k">return</span> <span class="nx">w</span><span class="p">;</span>
+        <span class="p">},</span> <span class="c1">// widgetify()</span>
+
+        <span class="c1">// TODO: call this just once per widget added?</span>
+        <span class="c1">// Resizes widgets: headers, icons and the rest</span>
+        <span class="nx">resizeWidgets</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+            
+            <span class="c1">// For each .widgetHeader.toBeResized element .. resize its left/right</span>
+            <span class="c1">// icon slots and icons, along with the title</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.widget div.widgetHeader.toBeResized&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.leftIcons li&#39;</span><span class="p">),</span>
+                    <span class="nx">right</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.rightIcons li&#39;</span><span class="p">),</span>
+                    <span class="nx">titleLeft</span> <span class="o">=</span> <span class="nx">left</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconSize</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconSlotsHorizontalMarginLeft</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">headerTitleMargin</span><span class="p">,</span>
+                    <span class="nx">titleRight</span> <span class="o">=</span> <span class="nx">right</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconSize</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconSlotsHorizontalMarginRight</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">headerTitleMargin</span><span class="p">;</span>
+
+                <span class="c1">// Set title&#39;s margin left/right to make space for icons</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.title&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="s1">&#39;margin-left&#39;</span><span class="o">:</span> <span class="nx">titleLeft</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="s1">&#39;margin-right&#39;</span><span class="o">:</span> <span class="nx">titleRight</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">});</span>
+    
+                <span class="c1">// Resize the icons</span>
+                <span class="c1">// $(e).find(&#39;li, li a&#39;).css({&#39;width&#39;: self.options.iconSize+&#39;px&#39;, height: self.options.iconSize+&#39;px&#39;});</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;li, li a&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="s1">&#39;width&#39;</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconSize</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">});</span>
+
+                <span class="c1">// Add the icon alignment classes</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;li a&quot;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconsAlignment</span><span class="p">);</span>
+
+                <span class="c1">// Set the margin for left/right icon slots</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.leftIcons&quot;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">left</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconSlotsHorizontalMarginLeft</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">});</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;.rightIcons&quot;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">right</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">iconSlotsHorizontalMarginRight</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">});</span>
+
+                <span class="c1">// Remove the class to avoid resizing more than once</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;toBeResized&#39;</span><span class="p">);</span>
+            <span class="p">});</span>
+            
+            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.box.expanded div.widgetContent.notes-displayed&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">th</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;div.transcription_text&#39;</span><span class="p">).</span><span class="nx">height</span><span class="p">();</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;div.transcription_notes_content&#39;</span><span class="p">).</span><span class="nx">height</span><span class="p">(</span><span class="nx">th</span><span class="p">);</span>
+            <span class="p">});</span>
+            
+        <span class="p">},</span> <span class="c1">// resizeWidgets()</span>
+        
+        <span class="nx">collapseWidget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">clicked_item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">clicked_item</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.widget&#39;</span><span class="p">),</span>
+                <span class="nx">t</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">widget</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.collapse a&#39;</span><span class="p">)),</span>
+                <span class="nx">h</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.widgetHeader&#39;</span><span class="p">).</span><span class="nx">next</span><span class="p">(),</span>
+                <span class="nx">box</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.box&#39;</span><span class="p">),</span>
+                <span class="nx">len</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">animationsLenght</span><span class="p">,</span>
+                <span class="nx">e</span> <span class="o">=</span> <span class="s1">&#39;expanded&#39;</span><span class="p">,</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39;collapsed&#39;</span><span class="p">;</span>
+
+            <span class="c1">// Interrupt if the box is already loading something else</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">box</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;loadingContent&#39;</span><span class="p">))</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+            <span class="c1">// No class, we expect it to be expanded</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">||</span> <span class="nx">t</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">c</span><span class="p">)))</span> 
+                <span class="nx">t</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">e</span><span class="p">))</span> <span class="p">{</span>
+                <span class="c1">// expanded: collapse with the animation then set the class</span>
+                <span class="nx">t</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">len</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">h</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+                <span class="k">else</span> <span class="nx">h</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">slideToggle</span><span class="p">(</span><span class="nx">len</span><span class="p">,</span> <span class="s1">&#39;easeOutQuint&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">h</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span> <span class="p">});</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// collapsed: hide, switch class then start the animation</span>
+                <span class="nx">t</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">len</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">h</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">c</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+                <span class="k">else</span> <span class="nx">h</span><span class="p">.</span><span class="nx">hide</span><span class="p">().</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">c</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">e</span><span class="p">).</span><span class="nx">slideToggle</span><span class="p">(</span><span class="nx">len</span><span class="p">,</span> <span class="s1">&#39;easeOutQuint&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>    
+        <span class="p">}</span> <span class="c1">// collapseWidget()</span>
+
+    <span class="p">}</span> <span class="c1">// widgets.prototype</span>
+<span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span>
+</pre></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2012 Yahoo! Inc.. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>

@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       */
+/* Copyright (c) 2012 Net7 SRL, <http://www.netseven.it/>       */
 /* This Software is released under the terms of the MIT License */
 /* See LICENSE.TXT for the full text of the license.            */
 
@@ -82,8 +82,9 @@
 
         iconsAlignment: 'alignMiddle',
 
-        // Use a fixed width for this box (false/pixels)
-        fixedWidth: false,
+        // Enforce max/min width for this box?
+        maxWidth: false,
+        minWidth: false,
 
 		// Space between boxes
 		boxMargin: 1,
@@ -109,7 +110,12 @@
 		animationLength: 450,
 
         // Default fields to be used for anchorman description
-        anchorManDescription: ['id', 'resId', 'type', 'collapsed', 'qstring', 'draggable', 'collapsable'],
+        anchorManDescription: [
+            'id', 'resId', 'type', 'collapsed', 'qstring', 
+            'title', 'verticalTitle', 
+            'closable', 'collapsable', 'draggable', 
+            'minWidth', 'maxWidth'
+        ],
 
 		// Will check every animationLength+lazyResizeInterval ms if boxview's container width/height are
 		// changed
@@ -157,7 +163,7 @@
 			this.history = [];
 			
 			this.useWidgets = false;
-			if (typeof($.widgets.defaults.globalHelperName) === "string") {
+			if (typeof($.widgets) !== 'undefined' && typeof($.widgets.defaults.globalHelperName) === "string") {
 				this.useWidgets = true;
 				this.widgets = window[$.widgets.defaults.globalHelperName];
 				this.widgets.bindBVListener();
@@ -206,7 +212,7 @@
 			}, self.options.lazyResizeInterval+self.options.animationLength);
 
 			// Adding the event delegation for collapse and remove tool, bind it
-			// to this div only so if there are more boxview on the same page we
+			// to this div only so if there are more boxviews on the same page we
 			// dont bind twice every element
 			$("div#"+ self.boxViewName +" div.boxHeader div .removeTool").live("click", function() { 
 					self.removeBox($(this).parents('div.box').attr('id'));
@@ -270,28 +276,63 @@
 
 			// num of expanded/collapsed boxes and
 			// width available to the expanded boxes
-			var expanded = 0, 
-				collapsed = 0,
-				startingExpandedWidth = expandedWidth = $(this.bvc).width();
+			var expanded = 0,
+			    fixed = 0,
+				startingExpandedWidth = expandedWidth = $(this.bvc).width(),
+				fixBoxes = [];
 
 			// If we have a collapsed box substract this collapsed box
 			// width from the width available to expanded boxes
 			for (i=0; i<this.n; i++)
 				if (this.boxOptions[i].collapsed) {
-					collapsed++;
-					expandedWidth -= parseInt(this.boxOptions[i].collapsedWidth);
-				} else {
+				    var cw = parseInt(this.boxOptions[i].collapsedWidth);
+					expandedWidth -= cw;
+					this.boxOptions[i].width = cw;
+                } else if (this.boxOptions[i].minWidth || this.boxOptions[i].maxWidth) {
+                    fixBoxes.push(i);
+                    fixed++;
+				} else 
 					expanded++;
-				}
 
 			// subtract margins from boxes available width
 			expandedWidth -= this.options.boxMargin * (this.n - 1);
 
 			// BaseWidth is exactly the expanded boxes available width divided
 			// by the num of exp. boxes, WidthRemainder is the division remainder.
-			// Eg: avail width=10, exp boxes=4, BaseWidth=10/4=2, remainder=2
-			var boxBaseWidth = Math.floor(expandedWidth / expanded);
-			var boxWidthRemainder = Math.floor(expandedWidth % expanded);
+			var boxBaseWidth = Math.floor(expandedWidth / (expanded+fixed)),
+			    boxWidthRemainder;
+
+            // Max and/or min width: check if we must enforce a fixed width and
+            // do so if needed. Fixed width boxes will decrease expandedWidth for
+            // the other boxes, which will be sized later accordingly
+            for (var i=fixed-1; i>=0; i--) {
+                var b = this.boxOptions[fixBoxes[i]],
+                    min = (b.minWidth) ? parseInt(b.minWidth) : false,
+                    max = (b.maxWidth) ? parseInt(b.maxWidth) : false;
+                    
+                b.fixed = false;
+                if (min && min > boxBaseWidth) {
+                    b.width = min;
+                    b.fixed = true;
+                }
+                
+                if (max && max < boxBaseWidth) {
+                    b.width = max;
+                    b.fixed = true;
+                }
+                
+                if (b.fixed)
+                    expandedWidth -= b.width;
+                else {
+                    expanded++;
+                    fixed--;
+                }
+            }
+			
+			// Calculate again the base width for expanded non-fixed boxes
+			if (fixed > 0)
+			    boxBaseWidth = Math.floor(expandedWidth / expanded);
+			boxWidthRemainder = Math.floor(expandedWidth % expanded);
 
 			// foox will keep the 'left' css value of the current box, to
 			// position boxes from left to right.
@@ -299,10 +340,11 @@
 			// boxWidthRemainder is consumed
 			var foox = 0;
 			for (i=0; i<this.n; i++) {
+			    var b = this.boxOptions[i];
 
 				// calculate this box width and left position
-				if (this.boxOptions[i].collapsed) {
-					this.boxOptions[i].width = this.boxOptions[i].collapsedWidth;
+				if (b.collapsed || b.fixed) {
+                    // We already calculated this box width
 				} else {
 					// if boxWidthRemainder is greater than 0, we enlarge
 					// this box width by 1 pixel, decreasing boxWidhtRemainder by 1
@@ -732,6 +774,38 @@
             return html;
         }, // getBoxHtml()
 
+        replaceBoxFromAjax: function(boxId, opts) {
+            var self = this;
+            
+            if (typeof(opts.qstring) === 'undefined' || opts.qstring === '') {
+				self.log('Called replaceBoxFromAjax without qstring ... what should i load? :|');
+				return false;
+			}
+
+            // DEBUG: put this into some fixed variable and not into a string
+            if (opts.qstring === "history") 
+                return false;
+
+		    // DEBUG IE: random string to trick the cache, if there's no
+			// question mark, add it.. else use &
+		    if (typeof(window.ActiveXObject) === 'function')
+				if (opts.qstring.match(/\?/) === null)
+					opts.qstring += '?ie='+((Math.random()*100000)|0);
+				else
+					opts.qstring += '&ie='+((Math.random()*100000)|0);
+
+            $.ajax({
+                type: 'GET',
+                url: opts.qstring,
+                success: function(data) {
+                    opts.content = data;
+	  				self.replaceBoxContent(boxId, opts);  
+                    return false;
+                }
+            });
+			
+        }, // replaceBoxFromAjax()
+
         // Replaces a box's content
         replaceBoxContent: function(boxId, opts) {
 
@@ -739,14 +813,14 @@
                 var b = this.boxOptions[i];
 				if (b['id'] == boxId) {
 
-				    b.resId = opts.newResId;
-				    b.content = opts.newContent;
-				    b.title = opts.newTitle;
-				    b.verticalTitle = opts.newVerticalTitle;
-				    b.qstring = opts.newQstring;
+				    b.resId = opts.newResId || opts.resId;
+				    b.content = opts.newContent || opts.content;
+				    b.title = opts.newTitle || opts.title;
+				    b.verticalTitle = opts.newVerticalTitle || opts.verticalTitle;
+				    b.qstring = opts.newQstring || opts.qstring;
 				    
-				    $('div#'+boxId+" div.boxContent").html(opts.newContent);
-				    $('div#'+boxId+" h3.boxHeaderTitle").html(opts.newTitle);
+				    $('div#'+boxId+" div.boxContent").html(b.content);
+				    $('div#'+boxId+" h3.boxHeaderTitle").html(b.title);
 				    
         			// Call the onReplace callback
         			var f = this.onReplaceFunctions;
@@ -934,16 +1008,21 @@
 			return false;
         },
 
-		getHistoryBoxItemHTML: function(opts) {
+		getHistoryBoxItemHTML: function(opts, closed) {
             var title,
+                closed = closed || false,
 				cl = 'history_item '+opts.type;
 
-			if (opts.collapsed) cl += ' collapsed';
-			if (opts.draggable) cl += ' draggable';
-			if (opts.closable) cl += ' closable';
-			if (opts.collapsable) cl += ' collapsable';
-			if (typeof(opts.qstring) !== 'undefined' && opts.qstring != '') 
-				cl += ' openable';
+            // TODO if it is in the history, we can open it back! 
+    		if (typeof(opts.qstring) !== 'undefined' && opts.qstring !== '') 
+    			cl += ' openable';
+
+            if (!closed) {
+    			if (opts.collapsed)   cl += ' collapsed';
+    			if (opts.draggable)   cl += ' draggable';
+    			if (opts.closable)    cl += ' closable';
+    			if (opts.collapsable) cl += ' collapsable';
+            }
 
 			if (opts.verticalTitle !== $.boxView.defaults.verticalTitle)
 			 	title = opts.verticalTitle;
@@ -963,6 +1042,9 @@
 				return;
 			}
 
+            // TODO: just cycle over .history and see if a box is open checking
+            // if its id is present in the dom .. 
+
             // Open boxes
             for (var i = this.n - 1; i >= 0; i--) 
                 if (this.boxOptions[i].resId !== 'history') {
@@ -979,12 +1061,19 @@
             // if it's not the history box itself and -1, current resId is not present in openBoxesIds
             for (var i = this.history.length - 1; i >= 0; i--) 
                 if (this.history[i].resId !== 'history' && $.inArray(this.history[i].resId, openBoxesIds) === -1) 
-					widget += this.getHistoryBoxItemHTML(this.boxOptions[i]);
+					widget += this.getHistoryBoxItemHTML(this.history[i], true);
 
             content += this.widgets.widgetify("Closed boxes", widget, 
                         {type: "closed_boxes", draggable: true, collapsable: true, prevnext: false, zoomable: false});
 
-            opts = {title: "History box", verticalTitle: "Session History", type: "history", qstring: "history", resId: "history" };
+            opts = {
+                title: "History box", 
+                verticalTitle: "Session History", 
+                type: "history", 
+                qstring: "history", 
+                resId: "history",
+                maxWidth: 400
+            };
             this.addBox(content, opts);
 
         }, // openHistoryBox()
@@ -1004,8 +1093,7 @@
 
             // Now slideToggle both, when done remove the open_boxes item
             $('div.widget div.history_item[about="'+id+'"]').slideToggle(750, 'easeOutQuint', 
-                function() { $('div.widget.open_boxes div.history_item[about="'+id+'"]').remove(); });
-            
+                function() { $('div.widget.open_boxes div.history_item[about="'+id+'"]').remove(); });            
         },
 
         historyAdd : function (opts) {

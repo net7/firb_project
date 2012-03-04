@@ -1,4 +1,4 @@
-<!-- Copyright (c) 2010 Net7 SRL, <http://www.netseven.it/>       -->
+<!-- Copyright (c) 2012 Net7 SRL, <http://www.netseven.it/>       -->
 <!-- This Software is released under the terms of the MIT License -->
 <!-- See LICENSE.TXT for the full text of the license.            -->
 
@@ -116,8 +116,12 @@
     		        opts = {qstring: href, title: $(this).text(), verticalTitle: 'Dog sheet: '+breed,
                             resId: 'dog_'+href, type: 'orange', collapsed: false};
 
-                myBoxView.addBoxFromAjax(opts);
-                return false;
+             	if ($(this).hasClass('replace')) {
+					var boxId = $(this).parents('div.box').attr('id');
+					myBoxView.replaceBoxFromAjax(boxId, opts);
+				} else
+	            	myBoxView.addBoxFromAjax(opts);
+	            return false;
 
             }); // (a.indexLink).live(click)
 

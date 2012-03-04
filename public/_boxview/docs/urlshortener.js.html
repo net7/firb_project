@@ -1,0 +1,635 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: BoxView
+    
+    
+      &rarr; urlshortener.js (file)
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="BoxView 1.0.3">BoxView 1.0.3</a> v
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="BoxView 1.0.3">BoxView 1.0.3</a>
+          &rarr; module <a href="./module_boxview.html" title="BoxView">BoxView</a>
+          
+          
+            &rarr; file urlshortener.js
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_boxview.html">BoxView</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li >
+                    <a href="BoxViewSuiteConfig.html">BoxViewSuiteConfig</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li >
+                    <a href="anchorman.js.html">anchorman.js</a>
+                  </li>
+                  <li >
+                    <a href="boxtoolbar.js.html">boxtoolbar.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview.js.html">boxview.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview_config.js.html">boxview_config.js</a>
+                  </li>
+                  <li >
+                    <a href="tools.js.html">tools.js</a>
+                  </li>
+                  <li  class="selected" >
+                    <a href="urlshortener.js.html">urlshortener.js</a>
+                  </li>
+                  <li >
+                    <a href="widgets.js.html">widgets.js</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+
+        <!--! source code view -->
+        <div id="srcout">
+          <h2>
+            file <strong>urlshortener.js</strong>
+          </h2>
+
+          <div class="highlight"><pre><span class="cm">/* Copyright (c) 2012 Net7 SRL, &lt;http://www.netseven.it/&gt;       */</span>
+<span class="cm">/* This Software is released under the terms of the MIT License */</span>
+<span class="cm">/* See LICENSE.TXT for the full text of the license.            */</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// URLShortener constructor</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+    <span class="p">};</span> <span class="c1">// $.urlShortener()</span>
+
+    <span class="c1">// DEFAULTS</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="c1">// Path to reach the ZeroClipboard.swf file</span>
+        <span class="nx">zeroClipboardPath</span><span class="o">:</span> <span class="s1">&#39;../swf/ZeroClipboard.swf&#39;</span><span class="p">,</span>
+
+        <span class="c1">// URL shortener dialog title</span>
+        <span class="nx">dialogTitle</span><span class="o">:</span> <span class="s1">&#39;Shortened URL for this page&#39;</span><span class="p">,</span>
+
+        <span class="c1">// Show an alert to the user when the URL has been copied to</span>
+        <span class="c1">// the clipboard? (true/false)</span>
+        <span class="nx">alertOnCopy</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// Automatically close the URL shortener dialog window after</span>
+        <span class="c1">// copy? (true/false)</span>
+        <span class="nx">closeOnCopy</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// Autoselect the URL in the input text element as the mouse</span>
+        <span class="c1">// goes over it or gets focus? (true/false)</span>
+        <span class="nx">autoSelectOnHover</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// URL to reach the url shortener script</span>
+        <span class="nx">urlShortenerURL</span><span class="o">:</span> <span class="s1">&#39;data_providers/url_shortener.php&#39;</span><span class="p">,</span>
+
+        <span class="c1">// Css selector for the &quot;shorten this URL&quot; button, will trigger</span>
+        <span class="c1">// an ajax call to the shortener script and open the dialog </span>
+        <span class="c1">// window with the shortened url</span>
+        <span class="nx">buttonCssSelector</span><span class="o">:</span> <span class="s1">&#39;a#urlShortenerLink&#39;</span>
+
+    <span class="p">};</span> <span class="c1">// defaults</span>
+	
+	<span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">globalHelperName</span> <span class="o">=</span> <span class="s1">&#39;UrlShortenerHelper&#39;</span><span class="p">;</span>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+		
+        <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
+
+            <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+            <span class="c1">// Add the url shortener dialog window to the body</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;&lt;div id=&#39;urlShortenerDialog&#39;&gt;&lt;input type=&#39;text&#39; id=&#39;UrlShortenerUrlToCopy&#39;&gt;&quot;</span><span class="o">+</span>
+            	            <span class="s2">&quot;&lt;div id=&#39;urlShortenerContainer&#39;&gt;&quot;</span><span class="o">+</span>
+            	            <span class="s2">&quot;&lt;a id=&#39;urlShortenerCopyButton&#39; href=&#39;#&#39; style=&#39;z-index: 1500;&#39;&gt;&quot;</span><span class="o">+</span>
+            	            <span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">closeOnCopy</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;Copy and close&quot;</span> <span class="o">:</span> <span class="s2">&quot;Copy&quot;</span><span class="p">)</span> <span class="o">+</span>
+            	            <span class="s2">&quot;&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&quot;</span><span class="p">);</span>
+
+            <span class="c1">// Initialize the content of the url shortener dialog</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#urlShortenerDialog&#39;</span><span class="p">).</span><span class="nx">dialog</span><span class="p">({</span>
+                <span class="nx">title</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">dialogTitle</span><span class="p">,</span>
+            	<span class="nx">draggable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">resizable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>	<span class="nx">bgiframe</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        		<span class="nx">autoOpen</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span> <span class="nx">width</span><span class="o">:</span> <span class="mi">320</span><span class="p">,</span>
+        		<span class="nx">clearStyle</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">modal</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">buttons</span><span class="o">:</span> <span class="p">{},</span>
+        		<span class="nx">close</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">self</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span> <span class="p">}</span>
+        	<span class="p">});</span>
+
+            <span class="c1">// ZeroClipboard initialization</span>
+            <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">setMoviePath</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">zeroClipboardPath</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">clip</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">Client</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">setHandCursor</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">glued</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> 
+
+            <span class="c1">// Click listener on zeroClipboard button</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">client</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">alertOnCopy</span><span class="p">)</span>
+                    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Copied to the clipboard:\n&quot;</span> <span class="o">+</span> <span class="nx">text</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">closeOnCopy</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#urlShortenerDialog&#39;</span><span class="p">).</span><span class="nx">slideUp</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#urlShortenerDialog&#39;</span><span class="p">).</span><span class="nx">dialog</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">);</span> <span class="p">});</span>
+                    <span class="nx">self</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+
+            <span class="c1">// Auto select input text content on mouseover</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">autoSelectOnHover</span><span class="p">)</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#urlShortenerDialog input&#39;</span><span class="p">).</span><span class="nx">live</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">select</span><span class="p">();</span> 
+                <span class="p">});</span>
+                
+            <span class="c1">// External &quot;Shorten this URL&quot; click listener</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">buttonCssSelector</span><span class="p">).</span><span class="nx">live</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">self</span><span class="p">.</span><span class="nx">getCurrentShortenedUrl</span><span class="p">();</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">});</span>
+
+            <span class="nb">window</span><span class="p">[</span><span class="nx">$</span><span class="p">.</span><span class="nx">urlShortener</span><span class="p">.</span><span class="nx">globalHelperName</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="p">},</span> <span class="c1">// init()</span>
+
+        <span class="nx">getCurrentShortenedUrl</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">longUrl</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">,</span>
+                <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="nx">url</span><span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">urlShortenerURL</span><span class="p">,</span> 
+                <span class="nx">data</span><span class="o">:</span> <span class="p">{</span><span class="nx">longurl</span><span class="o">:</span> <span class="nx">longUrl</span><span class="p">},</span> 
+                <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                    
+                    <span class="c1">// Put the received shortened URL in the input text and select it</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#UrlShortenerUrlToCopy&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#UrlShortenerUrlToCopy input&#39;</span><span class="p">).</span><span class="nx">select</span><span class="p">();</span>
+
+                    <span class="c1">// Show the dialog and get ready to copy</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#urlShortenerDialog&#39;</span><span class="p">).</span><span class="nx">dialog</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#urlShortenerDialog&#39;</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+                        <span class="nx">self</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+                        <span class="c1">// Just clip once.. </span>
+                        <span class="c1">// DEBUG: what if the window gets resized? The glued button will move... !</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">glued</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">self</span><span class="p">.</span><span class="nx">glued</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                            <span class="nx">self</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">glue</span><span class="p">(</span><span class="s1">&#39;urlShortenerCopyButton&#39;</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="nx">self</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+                        <span class="nx">self</span><span class="p">.</span><span class="nx">clip</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+                    <span class="p">});</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="p">}</span> <span class="c1">// success()</span>
+            <span class="p">});</span> <span class="c1">// ajax()</span>
+
+        <span class="p">}</span> <span class="c1">// getCurrentShortenedUrl()</span>
+        
+    <span class="p">};</span> <span class="c1">// urlShortener.prototype</span>
+<span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span>
+
+<span class="c1">// Simple Set Clipboard System</span>
+<span class="c1">// Author: Joseph Huckaby (http://code.google.com/p/zeroclipboard/)</span>
+<span class="kd">var</span> <span class="nx">ZeroClipboard</span> <span class="o">=</span> <span class="p">{</span>
+
+	<span class="nx">version</span><span class="o">:</span> <span class="s2">&quot;1.0.7&quot;</span><span class="p">,</span>
+	<span class="nx">clients</span><span class="o">:</span> <span class="p">{},</span> <span class="c1">// registered upload clients on page, indexed by id</span>
+	<span class="nx">moviePath</span><span class="o">:</span> <span class="s1">&#39;ZeroClipboard.swf&#39;</span><span class="p">,</span> <span class="c1">// URL to movie</span>
+	<span class="nx">nextId</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// ID of next movie</span>
+
+	<span class="nx">$</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">thingy</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// simple DOM lookup utility function</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">thingy</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="nx">thingy</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">thingy</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">thingy</span><span class="p">.</span><span class="nx">addClass</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// extend element with a few useful methods</span>
+			<span class="nx">thingy</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span> <span class="p">};</span>
+			<span class="nx">thingy</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span> <span class="p">};</span>
+			<span class="nx">thingy</span><span class="p">.</span><span class="nx">addClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="k">this</span><span class="p">.</span><span class="nx">className</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span> <span class="p">};</span>
+			<span class="nx">thingy</span><span class="p">.</span><span class="nx">removeClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">classes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">className</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\s+/</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">classes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">classes</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">==</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nx">k</span><span class="p">;</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="p">}</span>
+				<span class="p">}</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">idx</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">classes</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span> <span class="nx">idx</span><span class="p">,</span> <span class="mi">1</span> <span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+			<span class="p">};</span>
+			<span class="nx">thingy</span><span class="p">.</span><span class="nx">hasClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="o">!!</span><span class="k">this</span><span class="p">.</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;\\s*&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;\\s*&quot;</span><span class="p">)</span> <span class="p">);</span>
+			<span class="p">};</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="nx">thingy</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">setMoviePath</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// set path to ZeroClipboard.swf</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">moviePath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">dispatch</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// receive event from flash movie, send to client		</span>
+		<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">clients</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">client</span><span class="p">.</span><span class="nx">receiveEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="nx">register</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// register new client to receive events</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">clients</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">client</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">getDOMObjectPosition</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">stopObj</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// get absolute coordinates for dom element</span>
+		<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="p">{</span>
+			<span class="nx">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> 
+			<span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> 
+			<span class="nx">width</span><span class="o">:</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">width</span> <span class="o">?</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">width</span> <span class="o">:</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> 
+			<span class="nx">height</span><span class="o">:</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">height</span> <span class="o">?</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">height</span> <span class="o">:</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">offsetHeight</span>
+		<span class="p">};</span>
+
+		<span class="k">while</span> <span class="p">(</span><span class="nx">obj</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">obj</span> <span class="o">!=</span> <span class="nx">stopObj</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">info</span><span class="p">.</span><span class="nx">left</span> <span class="o">+=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">;</span>
+			<span class="nx">info</span><span class="p">.</span><span class="nx">top</span> <span class="o">+=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">;</span>
+			<span class="nx">obj</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">info</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">Client</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// constructor for new simple upload client</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">handlers</span> <span class="o">=</span> <span class="p">{};</span>
+
+		<span class="c1">// unique ID</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">nextId</span><span class="o">++</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">movieId</span> <span class="o">=</span> <span class="s1">&#39;ZeroClipboardMovie_&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+
+		<span class="c1">// register client with singleton to receive flash events</span>
+		<span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+
+		<span class="c1">// create movie</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">glue</span><span class="p">(</span><span class="nx">elem</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">Client</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+
+	<span class="nx">id</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// unique ID for us</span>
+	<span class="nx">ready</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// whether movie is ready to receive events or not</span>
+	<span class="nx">movie</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="c1">// reference to movie object</span>
+	<span class="nx">clipText</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="c1">// text to copy to clipboard</span>
+	<span class="nx">handCursorEnabled</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// whether to show hand cursor, or default pointer cursor</span>
+	<span class="nx">cssEffects</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// enable CSS mouse effects on dom container</span>
+	<span class="nx">handlers</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="c1">// user event handlers</span>
+
+	<span class="nx">glue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">appendElem</span><span class="p">,</span> <span class="nx">stylesToAdd</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// glue to DOM element</span>
+		<span class="c1">// elem can be ID or actual DOM element object</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="nx">elem</span><span class="p">);</span>
+
+		<span class="c1">// float just above object, or zIndex 99 if dom element isn&#39;t set</span>
+		<span class="kd">var</span> <span class="nx">zIndex</span> <span class="o">=</span> <span class="mi">99</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">zIndex</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">zIndex</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">zIndex</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">appendElem</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">appendElem</span> <span class="o">=</span> <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="nx">appendElem</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">appendElem</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">appendElem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+		<span class="p">}</span>
+
+		<span class="c1">// find X/Y position of domElement</span>
+		<span class="kd">var</span> <span class="nx">box</span> <span class="o">=</span> <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">getDOMObjectPosition</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">,</span> <span class="nx">appendElem</span><span class="p">);</span>
+
+		<span class="c1">// create floating DIV above element</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">;</span>
+		<span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;absolute&#39;</span><span class="p">;</span>
+		<span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">box</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+		<span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">box</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+		<span class="nx">style</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">box</span><span class="p">.</span><span class="nx">width</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+		<span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">box</span><span class="p">.</span><span class="nx">height</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+		<span class="nx">style</span><span class="p">.</span><span class="nx">zIndex</span> <span class="o">=</span> <span class="nx">zIndex</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">stylesToAdd</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="nx">addedStyle</span> <span class="k">in</span> <span class="nx">stylesToAdd</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">style</span><span class="p">[</span><span class="nx">addedStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">stylesToAdd</span><span class="p">[</span><span class="nx">addedStyle</span><span class="p">];</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="nx">appendElem</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">);</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getHTML</span><span class="p">(</span> <span class="nx">box</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">box</span><span class="p">.</span><span class="nx">height</span> <span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">getHTML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// return HTML for movie</span>
+		<span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">flashvars</span> <span class="o">=</span> <span class="s1">&#39;id=&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> 
+			<span class="s1">&#39;&amp;width=&#39;</span> <span class="o">+</span> <span class="nx">width</span> <span class="o">+</span> 
+			<span class="s1">&#39;&amp;height=&#39;</span> <span class="o">+</span> <span class="nx">height</span><span class="p">;</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/MSIE/</span><span class="p">))</span> <span class="p">{</span>
+			<span class="c1">// IE gets an OBJECT tag</span>
+			<span class="kd">var</span> <span class="nx">protocol</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^https/i</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;https://&#39;</span> <span class="o">:</span> <span class="s1">&#39;http://&#39;</span><span class="p">;</span>
+			<span class="nx">html</span> <span class="o">+=</span> <span class="s1">&#39;&lt;object classid=&quot;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&quot; codebase=&quot;&#39;</span><span class="o">+</span><span class="nx">protocol</span><span class="o">+</span><span class="s1">&#39;download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0&quot; width=&quot;&#39;</span><span class="o">+</span><span class="nx">width</span><span class="o">+</span><span class="s1">&#39;&quot; height=&quot;&#39;</span><span class="o">+</span><span class="nx">height</span><span class="o">+</span><span class="s1">&#39;&quot; id=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">movieId</span><span class="o">+</span><span class="s1">&#39;&quot; align=&quot;middle&quot;&gt;&lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot; /&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;false&quot; /&gt;&lt;param name=&quot;movie&quot; value=&quot;&#39;</span><span class="o">+</span><span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">moviePath</span><span class="o">+</span><span class="s1">&#39;&quot; /&gt;&lt;param name=&quot;loop&quot; value=&quot;false&quot; /&gt;&lt;param name=&quot;menu&quot; value=&quot;false&quot; /&gt;&lt;param name=&quot;quality&quot; value=&quot;best&quot; /&gt;&lt;param name=&quot;bgcolor&quot; value=&quot;#ffffff&quot; /&gt;&lt;param name=&quot;flashvars&quot; value=&quot;&#39;</span><span class="o">+</span><span class="nx">flashvars</span><span class="o">+</span><span class="s1">&#39;&quot;/&gt;&lt;param name=&quot;wmode&quot; value=&quot;transparent&quot;/&gt;&lt;/object&gt;&#39;</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">else</span> <span class="p">{</span>
+			<span class="c1">// all other browsers get an EMBED tag</span>
+			<span class="nx">html</span> <span class="o">+=</span> <span class="s1">&#39;&lt;embed id=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">movieId</span><span class="o">+</span><span class="s1">&#39;&quot; src=&quot;&#39;</span><span class="o">+</span><span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">moviePath</span><span class="o">+</span><span class="s1">&#39;&quot; loop=&quot;false&quot; menu=&quot;false&quot; quality=&quot;best&quot; bgcolor=&quot;#ffffff&quot; width=&quot;&#39;</span><span class="o">+</span><span class="nx">width</span><span class="o">+</span><span class="s1">&#39;&quot; height=&quot;&#39;</span><span class="o">+</span><span class="nx">height</span><span class="o">+</span><span class="s1">&#39;&quot; name=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">movieId</span><span class="o">+</span><span class="s1">&#39;&quot; align=&quot;middle&quot; allowScriptAccess=&quot;always&quot; allowFullScreen=&quot;false&quot; type=&quot;application/x-shockwave-flash&quot; pluginspage=&quot;http://www.macromedia.com/go/getflashplayer&quot; flashvars=&quot;&#39;</span><span class="o">+</span><span class="nx">flashvars</span><span class="o">+</span><span class="s1">&#39;&quot; wmode=&quot;transparent&quot; /&gt;&#39;</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="nx">html</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">// temporarily hide floater offscreen</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="s1">&#39;-2000px&#39;</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">// show ourselves after a call to hide()</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">reposition</span><span class="p">();</span>
+	<span class="p">},</span>
+
+	<span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">// destroy control and floater</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+			<span class="k">try</span> <span class="p">{</span> <span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">div</span> <span class="p">);</span> <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{;}</span>
+
+			<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">div</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="nx">reposition</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// reposition our floating div, optionally to new container</span>
+		<span class="c1">// warning: container CANNOT change size, only position</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">=</span> <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="nx">elem</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">box</span> <span class="o">=</span> <span class="nx">ZeroClipboard</span><span class="p">.</span><span class="nx">getDOMObjectPosition</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">;</span>
+			<span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">box</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+			<span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">box</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="nx">setText</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newText</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// set text to be copied to clipboard</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">clipText</span> <span class="o">=</span> <span class="nx">newText</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ready</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="nx">newText</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">addEventListener</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// add user event listener for event</span>
+		<span class="c1">// event types: load, queueStart, fileStart, fileComplete, queueComplete, progress, error, cancel</span>
+		<span class="nx">eventName</span> <span class="o">=</span> <span class="nx">eventName</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^on/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">])</span> <span class="k">this</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">func</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">setHandCursor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// enable hand cursor (true), or default arrow cursor (false)</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">handCursorEnabled</span> <span class="o">=</span> <span class="nx">enabled</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ready</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">setHandCursor</span><span class="p">(</span><span class="nx">enabled</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">setCSSEffects</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">enabled</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// enable or disable CSS effects on DOM container</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">cssEffects</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">enabled</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">receiveEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// receive event from flash</span>
+		<span class="nx">eventName</span> <span class="o">=</span> <span class="nx">eventName</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^on/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+		<span class="c1">// special behavior for certain events</span>
+		<span class="k">switch</span> <span class="p">(</span><span class="nx">eventName</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">case</span> <span class="s1">&#39;load&#39;</span><span class="o">:</span>
+				<span class="c1">// movie claims it is ready, but in IE this isn&#39;t always the case...</span>
+				<span class="c1">// bug fix: Cannot extend EMBED DOM elements in Firefox, must use traditional function</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">movie</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">movieId</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="nx">setTimeout</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">self</span><span class="p">.</span><span class="nx">receiveEvent</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span> <span class="p">},</span> <span class="mi">1</span> <span class="p">);</span>
+					<span class="k">return</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="c1">// firefox on pc needs a &quot;kick&quot; in order to set these in certain cases</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">ready</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/Firefox/</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/Windows/</span><span class="p">))</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+					<span class="nx">setTimeout</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">self</span><span class="p">.</span><span class="nx">receiveEvent</span><span class="p">(</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span> <span class="p">},</span> <span class="mi">100</span> <span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">ready</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+					<span class="k">return</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="k">this</span><span class="p">.</span><span class="nx">ready</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">clipText</span> <span class="p">);</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">movie</span><span class="p">.</span><span class="nx">setHandCursor</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">handCursorEnabled</span> <span class="p">);</span>
+				<span class="k">break</span><span class="p">;</span>
+
+			<span class="k">case</span> <span class="s1">&#39;mouseover&#39;</span><span class="o">:</span>
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">cssEffects</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">);</span>
+					<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">recoverActive</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">break</span><span class="p">;</span>
+
+			<span class="k">case</span> <span class="s1">&#39;mouseout&#39;</span><span class="o">:</span>
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">cssEffects</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">recoverActive</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+					<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">))</span> <span class="p">{</span>
+						<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
+						<span class="k">this</span><span class="p">.</span><span class="nx">recoverActive</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;hover&#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">break</span><span class="p">;</span>
+
+			<span class="k">case</span> <span class="s1">&#39;mousedown&#39;</span><span class="o">:</span>
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">cssEffects</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">break</span><span class="p">;</span>
+
+			<span class="k">case</span> <span class="s1">&#39;mouseup&#39;</span><span class="o">:</span>
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">domElement</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">cssEffects</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">domElement</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">recoverActive</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span> <span class="c1">// switch eventName</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">])</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">idx</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">idx</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">func</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handlers</span><span class="p">[</span><span class="nx">eventName</span><span class="p">][</span><span class="nx">idx</span><span class="p">];</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// actual function reference</span>
+					<span class="nx">func</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">((</span><span class="k">typeof</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">func</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+					<span class="c1">// PHP style object + method, i.e. [myObject, &#39;myMethod&#39;]</span>
+					<span class="nx">func</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span> <span class="nx">func</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">](</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// name of function</span>
+					<span class="nb">window</span><span class="p">[</span><span class="nx">func</span><span class="p">](</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span> <span class="c1">// foreach event handler defined</span>
+		<span class="p">}</span> <span class="c1">// user defined handler for event</span>
+	<span class="p">}</span>
+
+<span class="p">};</span> <span class="c1">// ZeroClipboard</span>
+</pre></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2012 Yahoo! Inc.. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>

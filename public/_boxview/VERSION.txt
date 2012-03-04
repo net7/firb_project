@@ -1,4 +1,22 @@
-1.0.1
+1.0.3
+
+BoxView 1.0.3
+- ** Added support for minWidth and maxWidth boxes attributes
+- using them both will get you a fixed width box
+- modified box settings example to use them
+- ** Introducing a first release of the buddy box!
+- a widget icon "go to buddy" will move/clone the widget to a new box
+- modified ajax provider to add the buddy icon to widgets
+- new buddy configuration options available in the widget section of the conf
+- some debug might be needed with 'active' boxes with flash or other not-plain-html content
+
+
+1.0.2
+
+BoxView 1.0.2
+- Added replaceBoxFromAjax()
+- fixed examples to use it
+
 
 BoxView 1.0
 

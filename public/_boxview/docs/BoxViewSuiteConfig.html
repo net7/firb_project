@@ -1,0 +1,1811 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: BoxView
+    
+      &rarr; BoxViewSuiteConfig class
+    
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="BoxView 1.0.3">BoxView 1.0.3</a> v
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="BoxView 1.0.3">BoxView 1.0.3</a>
+          &rarr; module <a href="./module_boxview.html" title="BoxView">BoxView</a>
+          
+            &rarr; class BoxViewSuiteConfig
+          
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_boxview.html">BoxView</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="BoxViewSuiteConfig.html">BoxViewSuiteConfig</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li >
+                    <a href="anchorman.js.html">anchorman.js</a>
+                  </li>
+                  <li >
+                    <a href="boxtoolbar.js.html">boxtoolbar.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview.js.html">boxview.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview_config.js.html">boxview_config.js</a>
+                  </li>
+                  <li >
+                    <a href="tools.js.html">tools.js</a>
+                  </li>
+                  <li >
+                    <a href="urlshortener.js.html">urlshortener.js</a>
+                  </li>
+                  <li >
+                    <a href="widgets.js.html">widgets.js</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="propertyList" class="module">
+              <h4>Properties</h4>
+              <ul>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig">BoxViewSuiteConfig</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxStrapperConfig">BoxViewSuiteConfig.boxStrapperConfig</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxStrapperConfig.animationLenght">BoxViewSuiteConfig.boxStrapperConfig.animationLenght</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxStrapperConfig.closeOnDone">BoxViewSuiteConfig.boxStrapperConfig.closeOnDone</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxStrapperConfig.useStartupScreen">BoxViewSuiteConfig.boxStrapperConfig.useStartupScreen</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxStrapperConfig.waitBeforeClose">BoxViewSuiteConfig.boxStrapperConfig.waitBeforeClose</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig">BoxViewSuiteConfig.boxViewConfig</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.">BoxViewSuiteConfig.boxViewConfig.</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.anchorManDescription">BoxViewSuiteConfig.boxViewConfig.anchorManDescription</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.animateAdd">BoxViewSuiteConfig.boxViewConfig.animateAdd</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.animateCollapse">BoxViewSuiteConfig.boxViewConfig.animateCollapse</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.animateRemove">BoxViewSuiteConfig.boxViewConfig.animateRemove</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.animateResize">BoxViewSuiteConfig.boxViewConfig.animateResize</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.animationLength">BoxViewSuiteConfig.boxViewConfig.animationLength</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.animations">BoxViewSuiteConfig.boxViewConfig.animations</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.boxMargin">BoxViewSuiteConfig.boxViewConfig.boxMargin</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.closable">BoxViewSuiteConfig.boxViewConfig.closable</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.collapsable">BoxViewSuiteConfig.boxViewConfig.collapsable</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.collapsed">BoxViewSuiteConfig.boxViewConfig.collapsed</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.collapsedClass">BoxViewSuiteConfig.boxViewConfig.collapsedClass</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.collapsedHeaderHeight">BoxViewSuiteConfig.boxViewConfig.collapsedHeaderHeight</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.collapsedWidth">BoxViewSuiteConfig.boxViewConfig.collapsedWidth</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.draggable">BoxViewSuiteConfig.boxViewConfig.draggable</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.expandedClass">BoxViewSuiteConfig.boxViewConfig.expandedClass</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.headerHeight">BoxViewSuiteConfig.boxViewConfig.headerHeight</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.headerTitleMargin">BoxViewSuiteConfig.boxViewConfig.headerTitleMargin</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.iconSize">BoxViewSuiteConfig.boxViewConfig.iconSize</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin">BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin">BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.lazyResizeInterval">BoxViewSuiteConfig.boxViewConfig.lazyResizeInterval</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.loadingClass">BoxViewSuiteConfig.boxViewConfig.loadingClass</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.maxWidth">BoxViewSuiteConfig.boxViewConfig.maxWidth</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.minWidth">BoxViewSuiteConfig.boxViewConfig.minWidth</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight">BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMargin">BoxViewSuiteConfig.boxViewConfig.resizemeImagesMargin</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight">BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight">BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.title">BoxViewSuiteConfig.boxViewConfig.title</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.type">BoxViewSuiteConfig.boxViewConfig.type</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewConfig.verticalTitle">BoxViewSuiteConfig.boxViewConfig.verticalTitle</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewContainer">BoxViewSuiteConfig.boxViewContainer</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.boxViewName">BoxViewSuiteConfig.boxViewName</a>
+                  </li>
+                  <li class=" ">
+                    <a href="#property_BoxViewSuiteConfig.theme">BoxViewSuiteConfig.theme</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+      
+        <h2>
+          
+
+          
+
+          
+
+          class <strong>BoxViewSuiteConfig</strong>
+          
+        </h2>
+
+        <!-- class tree goes here -->
+
+
+
+        <div class="summary description">
+          Default configuration options for the boxview suite:
+boxview, widgets, anchorman, boxStrapper, boxToolbar, urlshortener
+and themes.<br /><br />
+<p>Each of these properties can be individually overridden in your
+local configuration file.</p>
+        </div>
+        
+
+
+
+        <div class="clear"></div>
+
+
+
+
+          <div class="section properties" resource="#properties">
+              <h3>Properties</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>
+                      Properties
+                    </th>
+                    <th>
+                      Type
+                    </th>
+                    <th>
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr class=" " resource="#property_BoxViewSuiteConfig">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig">BoxViewSuiteConfig</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          object
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          BoxView Suite Configuration object
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxStrapperConfig">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxStrapperConfig">BoxViewSuiteConfig.boxStrapperConfig</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          object
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          boxview loader (boxStrapper) configuration object
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxStrapperConfig.animationLenght">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxStrapperConfig.animationLenght">BoxViewSuiteConfig.boxStrapperConfig.animationLenght</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          milliseconds
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Animation lenght of the loading panel
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>1500</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxStrapperConfig.closeOnDone">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxStrapperConfig.closeOnDone">BoxViewSuiteConfig.boxStrapperConfig.closeOnDone</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Closes automatically the loading dialog when BoxStrapper is
+done
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxStrapperConfig.useStartupScreen">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxStrapperConfig.useStartupScreen">BoxViewSuiteConfig.boxStrapperConfig.useStartupScreen</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Use the fancy startup screen while boxview and boxes are
+loading?
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxStrapperConfig.waitBeforeClose">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxStrapperConfig.waitBeforeClose">BoxViewSuiteConfig.boxStrapperConfig.waitBeforeClose</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          milliseconds
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Wait time before closing the loading dialog
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>1000</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig">BoxViewSuiteConfig.boxViewConfig</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          object
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          All of the following css classes will be used in the HTML markup.<br/>
+For example when a box is collapsed collapsedClass will be added as
+css class to the box HTML markup, and removed when expanded.
+Changing the names here means that the page must provide a css
+stylesheet with the needed definitions, to style the elements
+accordingly. See the manual for more informations and examples.
+
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.">BoxViewSuiteConfig.boxViewConfig.</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          string
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Alignment for the box icons. Possible values are "alignMiddle",
+"alignTop" and "alignBottom"
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>'alignMiddle'</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.anchorManDescription">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.anchorManDescription">BoxViewSuiteConfig.boxViewConfig.anchorManDescription</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          array of box properties
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Box fields to be saved into AnchorMan, encoding some in base64<br/>
+If you need to use some strange character in your own fields 
+(for example check AnchorManConfig separators!), prepend "encode" to
+your veryImportantField name, like: encodeveryImportantField: true.<br/>
+By default qstring, title and verticalTitle are encoded before getting
+saved with anchorman
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>['id', 'resId', 'type', 'collapsed', 'qstring', 'title', 'verticalTitle', 'closable', 'collapsable', 'draggable', 
+'minWidth', 'maxWidth']</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.animateAdd">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.animateAdd">BoxViewSuiteConfig.boxViewConfig.animateAdd</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Use an animation when a box is added
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.animateCollapse">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.animateCollapse">BoxViewSuiteConfig.boxViewConfig.animateCollapse</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Use an animation when a box is collapsed or expanded
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.animateRemove">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.animateRemove">BoxViewSuiteConfig.boxViewConfig.animateRemove</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Use an animation when a box is removed
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.animateResize">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.animateResize">BoxViewSuiteConfig.boxViewConfig.animateResize</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boxViewConfig
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Use an animation when a box is resized
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.animationLength">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.animationLength">BoxViewSuiteConfig.boxViewConfig.animationLength</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          milliseconds
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Boxview's animations length
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>750</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.animations">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.animations">BoxViewSuiteConfig.boxViewConfig.animations</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Shortcut to set all of the animations at once, 
+overrides any other given animate* parameter.
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.boxMargin">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.boxMargin">BoxViewSuiteConfig.boxViewConfig.boxMargin</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Space between boxes
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>1</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.closable">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.closable">BoxViewSuiteConfig.boxViewConfig.closable</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Are boxes closable by default?
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.collapsable">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.collapsable">BoxViewSuiteConfig.boxViewConfig.collapsable</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Are boxes collapsable by default?
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.collapsed">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.collapsed">BoxViewSuiteConfig.boxViewConfig.collapsed</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Do boxes spawn collapsed by default?
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.collapsedClass">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.collapsedClass">BoxViewSuiteConfig.boxViewConfig.collapsedClass</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          css class
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Css class added to the box when collapsed
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>'collapsedBox'</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.collapsedHeaderHeight">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.collapsedHeaderHeight">BoxViewSuiteConfig.boxViewConfig.collapsedHeaderHeight</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Box header's height when collapsed, usually 
+contains tools like close/expand
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>50</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.collapsedWidth">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.collapsedWidth">BoxViewSuiteConfig.boxViewConfig.collapsedWidth</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Box width when collapsed
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>30</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.draggable">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.draggable">BoxViewSuiteConfig.boxViewConfig.draggable</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Are boxes draggable by default?
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.expandedClass">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.expandedClass">BoxViewSuiteConfig.boxViewConfig.expandedClass</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          css class
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Css class added to the box when expanded
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>'expandedBox'</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.headerHeight">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.headerHeight">BoxViewSuiteConfig.boxViewConfig.headerHeight</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Box header's height when expanded, contains tools and title
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>30</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.headerTitleMargin">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.headerTitleMargin">BoxViewSuiteConfig.boxViewConfig.headerTitleMargin</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          left/right margin for the title of the box, inside 
+its header part
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>4</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.iconSize">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.iconSize">BoxViewSuiteConfig.boxViewConfig.iconSize</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          width and heigth of for the box icons, in its header part
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>16</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin">BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Horizontal margin for each icon slot in the box header
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>7</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin">BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Top margin when the icons are displayed vertically, box
+collapsed
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>7</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.lazyResizeInterval">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.lazyResizeInterval">BoxViewSuiteConfig.boxViewConfig.lazyResizeInterval</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          milliseconds
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Will check every lazyResizeInterval ms if boxview's container 
+width/height are changed and resizes the boxview if needed
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>250</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.loadingClass">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.loadingClass">BoxViewSuiteConfig.boxViewConfig.loadingClass</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          css class
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Css class added while the box is loading
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>'loadingContent'</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.maxWidth">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.maxWidth">BoxViewSuiteConfig.boxViewConfig.maxWidth</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean/pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          If a pixels value is passed, boxview will force the box
+to have at most this width.
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.minWidth">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.minWidth">BoxViewSuiteConfig.boxViewConfig.minWidth</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean/pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          If a pixels value is passed, boxview will force the box
+to have at least this width.
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>false</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight">BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          boolean
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Enforces a maximum height for images and containers having 
+the 'resizeme' css class
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>true</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMargin">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMargin">BoxViewSuiteConfig.boxViewConfig.resizemeImagesMargin</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Margin for .resizeme elements
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>15</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight">BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Maximum height for the .resizeme elements
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>400</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight">BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          pixels
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Enforces a minimum height for images and containers having 
+the 'resizeme' css class
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>100</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.title">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.title">BoxViewSuiteConfig.boxViewConfig.title</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          string
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Box title
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>"Default box title"</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.type">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.type">BoxViewSuiteConfig.boxViewConfig.type</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          css class
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Default type for typeless boxes (every type is 
+used as box css class in the HTML markup)
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>'defType'</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewConfig.verticalTitle">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewConfig.verticalTitle">BoxViewSuiteConfig.boxViewConfig.verticalTitle</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          string
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Box title when it is vertical (collapsed)
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>"Default vertical title"</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewContainer">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewContainer">BoxViewSuiteConfig.boxViewContainer</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          jquery object
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          The container for the BoxView, a jQuery object like 
+$('.someClass') or $('#someId')
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>$('#pageContent')</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.boxViewName">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.boxViewName">BoxViewSuiteConfig.boxViewName</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          string
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Name of the BoxView object instance in the global
+scope
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>'myBoxView'</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr class=" " resource="#property_BoxViewSuiteConfig.theme">
+                  
+                      <td class="names">
+                        <code>
+                          <a name="property_BoxViewSuiteConfig.theme">BoxViewSuiteConfig.theme</a>
+                        </code>
+                      </td>
+
+                      <td class="type">
+                        <code>
+                          string
+                        </code>
+
+                        
+                        
+                        
+                      </td>
+
+                      <td class="description">
+                        <a href="#top" class="top" title="Jump back to the top">↑</a>
+
+                        <div>
+
+                          Theme to be applied to the boxview 
+suite items. See the manual for more informations on how to roll 
+your own theme.
+
+                            <p>
+                              <strong>Default value:</strong>
+                              <code>standard</code>.
+                            </p>
+                        </div>
+                      </td>
+
+                    </tr>
+              
+                </tbody>
+              </table>
+
+          </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2012 Yahoo! Inc.. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>

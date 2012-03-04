@@ -1,0 +1,817 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: BoxView
+    
+    
+      &rarr; boxview_config.js (file)
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="BoxView 1.0.3">BoxView 1.0.3</a> v
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="BoxView 1.0.3">BoxView 1.0.3</a>
+          &rarr; module <a href="./module_boxview.html" title="BoxView">BoxView</a>
+          
+          
+            &rarr; file boxview_config.js
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_boxview.html">BoxView</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li >
+                    <a href="BoxViewSuiteConfig.html">BoxViewSuiteConfig</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li >
+                    <a href="anchorman.js.html">anchorman.js</a>
+                  </li>
+                  <li >
+                    <a href="boxtoolbar.js.html">boxtoolbar.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview.js.html">boxview.js</a>
+                  </li>
+                  <li  class="selected" >
+                    <a href="boxview_config.js.html">boxview_config.js</a>
+                  </li>
+                  <li >
+                    <a href="tools.js.html">tools.js</a>
+                  </li>
+                  <li >
+                    <a href="urlshortener.js.html">urlshortener.js</a>
+                  </li>
+                  <li >
+                    <a href="widgets.js.html">widgets.js</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+
+        <!--! source code view -->
+        <div id="srcout">
+          <h2>
+            file <strong>boxview_config.js</strong>
+          </h2>
+
+          <div class="highlight"><pre><span class="cm">/* Copyright (c) 2012 Net7 SRL, &lt;http://www.netseven.it/&gt;       */</span>
+<span class="cm">/* This Software is released under the terms of the MIT License */</span>
+<span class="cm">/* See LICENSE.TXT for the full text of the license.            */</span>
+<span class="cm">/**</span>
+<span class="cm"> * @module BoxView</span>
+<span class="cm"> * @class BoxViewSuiteConfig</span>
+<span class="cm"> * @description Default configuration options for the boxview suite:</span>
+<span class="cm"> * boxview, widgets, anchorman, boxStrapper, boxToolbar, urlshortener</span>
+<span class="cm"> * and themes.&lt;br /&gt;&lt;br /&gt;</span>
+<span class="cm"> * &lt;p&gt;Each of these properties can be individually overridden in your</span>
+<span class="cm"> * local configuration file.&lt;/p&gt;</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> 
+    <span class="c1">// BoxView section name inside AnchorMan description. Just make sure</span>
+    <span class="c1">// AnchorMan is not used by something else with this same name</span>
+    <span class="nx">bvAMSectionName</span> <span class="o">=</span> <span class="s2">&quot;bv&quot;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * @property BoxViewSuiteConfig</span>
+<span class="cm">    * @type object</span>
+<span class="cm">    * @description BoxView Suite Configuration object</span>
+<span class="cm">    */</span>
+    <span class="nx">BoxViewSuiteConfig</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * @property BoxViewSuiteConfig.theme</span>
+<span class="cm">        * @type string</span>
+<span class="cm">        * @default standard</span>
+<span class="cm">        * @description Theme to be applied to the boxview </span>
+<span class="cm">        * suite items. See the manual for more informations on how to roll </span>
+<span class="cm">        * your own theme. </span>
+<span class="cm">        */</span>
+        <span class="nx">theme</span><span class="o">:</span> <span class="s1">&#39;standard&#39;</span><span class="p">,</span>
+
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+        <span class="c1">////// BoxStrapper configuration                           //////</span>
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * @property BoxViewSuiteConfig.boxStrapperConfig</span>
+<span class="cm">        * @type object</span>
+<span class="cm">        * @description boxview loader (boxStrapper) configuration object</span>
+<span class="cm">        */</span>
+        <span class="nx">boxStrapperConfig</span><span class="o">:</span> <span class="p">{</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxStrapperConfig.useStartupScreen</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default true</span>
+<span class="cm">            * @description Use the fancy startup screen while boxview and boxes are</span>
+<span class="cm">            * loading?  </span>
+<span class="cm">            */</span>
+            <span class="nx">useStartupScreen</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxStrapperConfig.closeOnDone</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default true</span>
+<span class="cm">            * @description Closes automatically the loading dialog when BoxStrapper is</span>
+<span class="cm">            * done</span>
+<span class="cm">            */</span>
+            <span class="nx">closeOnDone</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxStrapperConfig.waitBeforeClose</span>
+<span class="cm">            * @type milliseconds</span>
+<span class="cm">            * @default 1000</span>
+<span class="cm">            * @description Wait time before closing the loading dialog</span>
+<span class="cm">            */</span>
+            <span class="nx">waitBeforeClose</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+            
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxStrapperConfig.animationLenght</span>
+<span class="cm">            * @type milliseconds</span>
+<span class="cm">            * @default 1500</span>
+<span class="cm">            * @description Animation lenght of the loading panel</span>
+<span class="cm">            */</span>
+            <span class="nx">animationLenght</span><span class="o">:</span> <span class="mi">1500</span>
+            
+        <span class="p">},</span>
+
+
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+        <span class="c1">////// BoxView configuration                               //////</span>
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * @property BoxViewSuiteConfig.boxViewName</span>
+<span class="cm">        * @type string</span>
+<span class="cm">        * @default &#39;myBoxView&#39;</span>
+<span class="cm">        * @description Name of the BoxView object instance in the global</span>
+<span class="cm">        * scope</span>
+<span class="cm">        */</span>
+        <span class="nx">boxViewName</span><span class="o">:</span> <span class="s1">&#39;myBoxView&#39;</span><span class="p">,</span>
+ 
+        <span class="cm">/**</span>
+<span class="cm">        * @property BoxViewSuiteConfig.boxViewContainer</span>
+<span class="cm">        * @type jquery object</span>
+<span class="cm">        * @default $(&#39;#pageContent&#39;)</span>
+<span class="cm">        * @description The container for the BoxView, a jQuery object like </span>
+<span class="cm">        * $(&#39;.someClass&#39;) or $(&#39;#someId&#39;)</span>
+<span class="cm">        */</span>
+        <span class="nx">boxViewContainer</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#pageContent&#39;</span><span class="p">),</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * @property BoxViewSuiteConfig.boxViewConfig</span>
+<span class="cm">        * @type object</span>
+<span class="cm">        * @description All of the following css classes will be used in the HTML markup.&lt;br/&gt;</span>
+<span class="cm">        * For example when a box is collapsed collapsedClass will be added as</span>
+<span class="cm">        * css class to the box HTML markup, and removed when expanded.</span>
+<span class="cm">        * Changing the names here means that the page must provide a css</span>
+<span class="cm">        * stylesheet with the needed definitions, to style the elements</span>
+<span class="cm">        * accordingly. See the manual for more informations and examples.</span>
+<span class="cm">        */</span>
+        <span class="nx">boxViewConfig</span><span class="o">:</span> <span class="p">{</span>
+
+            
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.collapsedClass</span>
+<span class="cm">            * @type css class</span>
+<span class="cm">            * @default &#39;collapsedBox&#39;</span>
+<span class="cm">            * @description Css class added to the box when collapsed</span>
+<span class="cm">            */</span>
+    		<span class="nx">collapsedClass</span><span class="o">:</span> <span class="s1">&#39;collapsedBox&#39;</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.expandedClass</span>
+<span class="cm">            * @type css class</span>
+<span class="cm">            * @default &#39;expandedBox&#39;</span>
+<span class="cm">            * @description Css class added to the box when expanded</span>
+<span class="cm">            */</span>
+    		<span class="nx">expandedClass</span><span class="o">:</span> <span class="s1">&#39;expandedBox&#39;</span><span class="p">,</span>
+		
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.loadingClass</span>
+<span class="cm">            * @type css class</span>
+<span class="cm">            * @default &#39;loadingContent&#39;</span>
+<span class="cm">            * @description Css class added while the box is loading</span>
+<span class="cm">            */</span>
+    		<span class="nx">loadingClass</span><span class="o">:</span> <span class="s1">&#39;loadingContent&#39;</span><span class="p">,</span>
+		
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.type</span>
+<span class="cm">            * @type css class</span>
+<span class="cm">            * @default&#39;defType&#39;</span>
+<span class="cm">            * @description Default type for typeless boxes (every type is </span>
+<span class="cm">            * used as box css class in the HTML markup)</span>
+<span class="cm">            */</span>
+    		<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;defType&#39;</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.collapsable</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default true</span>
+<span class="cm">            * @description Are boxes collapsable by default?</span>
+<span class="cm">            */</span>
+			<span class="nx">collapsable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.draggable</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default true</span>
+<span class="cm">            * @description Are boxes draggable by default?</span>
+<span class="cm">            */</span>
+			<span class="nx">draggable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> 
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.closable</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default true</span>
+<span class="cm">            * @description Are boxes closable by default?</span>
+<span class="cm">            */</span>
+			<span class="nx">closable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.collapsed</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default false</span>
+<span class="cm">            * @description Do boxes spawn collapsed by default?</span>
+<span class="cm">            */</span>
+    		<span class="nx">collapsed</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.collapsedWidth</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 30</span>
+<span class="cm">            * @description Box width when collapsed</span>
+<span class="cm">            */</span>
+    		<span class="nx">collapsedWidth</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.collapsedHeaderHeight</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 50</span>
+<span class="cm">            * @description Box header&#39;s height when collapsed, usually </span>
+<span class="cm">            * contains tools like close/expand</span>
+<span class="cm">            */</span>
+            <span class="nx">collapsedHeaderHeight</span><span class="o">:</span> <span class="mi">50</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.headerHeight</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 30</span>
+<span class="cm">            * @description Box header&#39;s height when expanded, contains tools and title</span>
+<span class="cm">            */</span>
+            <span class="nx">headerHeight</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.headerTitleMargin</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 4</span>
+<span class="cm">            * @description left/right margin for the title of the box, inside </span>
+<span class="cm">            * its header part</span>
+<span class="cm">            */</span>
+            <span class="nx">headerTitleMargin</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.iconSize</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 16</span>
+<span class="cm">            * @description width and heigth of for the box icons, in its header part</span>
+<span class="cm">            */</span>
+            <span class="nx">iconSize</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.</span>
+<span class="cm">            * @type string</span>
+<span class="cm">            * @default &#39;alignMiddle&#39;</span>
+<span class="cm">            * @description Alignment for the box icons. Possible values are &quot;alignMiddle&quot;,</span>
+<span class="cm">            * &quot;alignTop&quot; and &quot;alignBottom&quot;</span>
+<span class="cm">            */</span>
+            <span class="nx">iconsAlignment</span><span class="o">:</span> <span class="s1">&#39;alignMiddle&#39;</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.iconsVerticalTopMargin</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 7</span>
+<span class="cm">            * @description Top margin when the icons are displayed vertically, box</span>
+<span class="cm">            * collapsed</span>
+<span class="cm">            */</span>
+            <span class="nx">iconsVerticalTopMargin</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+            
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.iconSlotsHorizontalMargin</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 7</span>
+<span class="cm">            * @description Horizontal margin for each icon slot in the box header</span>
+<span class="cm">            */</span>
+            <span class="nx">iconSlotsHorizontalMargin</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+            
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.maxWidth</span>
+<span class="cm">            * @type boolean/pixels</span>
+<span class="cm">            * @default false</span>
+<span class="cm">            * @description If a pixels value is passed, boxview will force the box</span>
+<span class="cm">            * to have at most this width.</span>
+<span class="cm">            */</span>
+            <span class="nx">maxWidth</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.minWidth</span>
+<span class="cm">            * @type boolean/pixels</span>
+<span class="cm">            * @default false</span>
+<span class="cm">            * @description If a pixels value is passed, boxview will force the box</span>
+<span class="cm">            * to have at least this width.</span>
+<span class="cm">            */</span>
+            <span class="nx">minWidth</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.boxMargin</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 1</span>
+<span class="cm">            * @description Space between boxes</span>
+<span class="cm">            */</span>
+    		<span class="nx">boxMargin</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesForceMaxHeight</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default true</span>
+<span class="cm">            * @description Enforces a maximum height for images and containers having </span>
+<span class="cm">            * the &#39;resizeme&#39; css class</span>
+<span class="cm">            */</span>
+            <span class="nx">resizemeImagesForceMaxHeight</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesMinHeight</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 100</span>
+<span class="cm">            * @description Enforces a minimum height for images and containers having </span>
+<span class="cm">            * the &#39;resizeme&#39; css class</span>
+<span class="cm">            */</span>
+            <span class="nx">resizemeImagesMinHeight</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesMaxHeight</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 400</span>
+<span class="cm">            * @description Maximum height for the .resizeme elements </span>
+<span class="cm">            */</span>
+            <span class="nx">resizemeImagesMaxHeight</span><span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.resizemeImagesMargin</span>
+<span class="cm">            * @type pixels</span>
+<span class="cm">            * @default 15</span>
+<span class="cm">            * @description  Margin for .resizeme elements</span>
+<span class="cm">            */</span>
+    		<span class="nx">resizemeImagesMargin</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.animateAdd</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default false</span>
+<span class="cm">            * @description Use an animation when a box is added</span>
+<span class="cm">            */</span>
+    		<span class="nx">animateAdd</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.animateRemove</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default false</span>
+<span class="cm">            * @description Use an animation when a box is removed</span>
+<span class="cm">            */</span>
+    		<span class="nx">animateRemove</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.animateCollapse</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default false</span>
+<span class="cm">            * @description Use an animation when a box is collapsed or expanded</span>
+<span class="cm">            */</span>
+    		<span class="nx">animateCollapse</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.animateResize</span>
+<span class="cm">            * @type boxViewConfig</span>
+<span class="cm">            * @default false</span>
+<span class="cm">            * @description Use an animation when a box is resized</span>
+<span class="cm">            */</span>
+    		<span class="nx">animateResize</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.animations</span>
+<span class="cm">            * @type boolean</span>
+<span class="cm">            * @default true</span>
+<span class="cm">            * @description Shortcut to set all of the animations at once, </span>
+<span class="cm">            * overrides any other given animate* parameter.</span>
+<span class="cm">            */</span>
+    		<span class="nx">animations</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.animationLength</span>
+<span class="cm">            * @type milliseconds</span>
+<span class="cm">            * @default 750</span>
+<span class="cm">            * @description Boxview&#39;s animations length</span>
+<span class="cm">            */</span>
+        	<span class="nx">animationLength</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.title</span>
+<span class="cm">            * @type string</span>
+<span class="cm">            * @default &quot;Default box title&quot;</span>
+<span class="cm">            * @description Box title</span>
+<span class="cm">            */</span>
+    		<span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Default box title&quot;</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.verticalTitle</span>
+<span class="cm">            * @type string</span>
+<span class="cm">            * @default &quot;Default vertical title&quot;</span>
+<span class="cm">            * @description Box title when it is vertical (collapsed)</span>
+<span class="cm">            */</span>
+    		<span class="nx">verticalTitle</span><span class="o">:</span> <span class="s2">&quot;Default vertical title&quot;</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.lazyResizeInterval</span>
+<span class="cm">            * @type milliseconds</span>
+<span class="cm">            * @default 250</span>
+<span class="cm">            * @description Will check every lazyResizeInterval ms if boxview&#39;s container </span>
+<span class="cm">            * width/height are changed and resizes the boxview if needed</span>
+<span class="cm">            */</span>
+    		<span class="nx">lazyResizeInterval</span><span class="o">:</span> <span class="mi">250</span><span class="p">,</span>
+
+            <span class="cm">/**</span>
+<span class="cm">            * @property BoxViewSuiteConfig.boxViewConfig.anchorManDescription</span>
+<span class="cm">            * @type array of box properties</span>
+<span class="cm">            * @default [&#39;id&#39;, &#39;resId&#39;, &#39;type&#39;, &#39;collapsed&#39;, &#39;qstring&#39;, &#39;title&#39;, &#39;verticalTitle&#39;, &#39;closable&#39;, &#39;collapsable&#39;, &#39;draggable&#39;, </span>
+<span class="cm">                &#39;minWidth&#39;, &#39;maxWidth&#39;]</span>
+<span class="cm">            * @description Box fields to be saved into AnchorMan, encoding some in base64&lt;br/&gt;</span>
+<span class="cm">            * If you need to use some strange character in your own fields </span>
+<span class="cm">            * (for example check AnchorManConfig separators!), prepend &quot;encode&quot; to</span>
+<span class="cm">            * your veryImportantField name, like: encodeveryImportantField: true.&lt;br/&gt;</span>
+<span class="cm">            * By default qstring, title and verticalTitle are encoded before getting</span>
+<span class="cm">            * saved with anchorman</span>
+<span class="cm">            */</span>
+            <span class="nx">anchorManDescription</span><span class="o">:</span> <span class="p">[</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;resId&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;collapsed&#39;</span><span class="p">,</span> <span class="s1">&#39;qstring&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;verticalTitle&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;closable&#39;</span><span class="p">,</span> <span class="s1">&#39;collapsable&#39;</span><span class="p">,</span> <span class="s1">&#39;draggable&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;minWidth&#39;</span><span class="p">,</span> <span class="s1">&#39;maxWidth&#39;</span>
+            <span class="p">],</span>
+            <span class="nx">encodeqstring</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">encodetitle</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">encodeverticalTitle</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// If you need some custom function to be called on some boxview event, set them</span>
+            <span class="c1">// here or use the onRemoveAddCallBack(), onSortAddCallBack() etc functions on </span>
+            <span class="c1">// the boxView object.</span>
+            <span class="c1">// onRemove: function() {},</span>
+            <span class="c1">// onSort: function() {},</span>
+            <span class="c1">// onAdd: function() {},</span>
+            <span class="c1">// onCollapse: function() {},</span>
+            <span class="c1">// onExpand: function() {},</span>
+            <span class="c1">// onReplace: function() {},</span>
+
+            <span class="c1">// Shows some VERY verbose output about boxview behaviours using</span>
+            <span class="c1">// browser&#39;s console.log or adding a div to the dom. (true/false)</span>
+            <span class="nx">debug</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+
+
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+        <span class="c1">////// Widgets configuration                               //////</span>
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+
+        <span class="c1">// Use Widgets? (true/false)</span>
+        <span class="nx">useWidgets</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// Name of widgets object instance</span>
+        <span class="nx">widgetsName</span><span class="o">:</span> <span class="s1">&#39;myWidgets&#39;</span><span class="p">,</span>
+
+        <span class="c1">// Widgets options object</span>
+        <span class="nx">widgetsConfig</span> <span class="o">:</span> <span class="p">{</span>
+
+            <span class="c1">// Widget&#39;s options defaults for the widgetify() method</span>
+            <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">draggable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">collapsable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">prevnext</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nx">zoomable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+            <span class="p">},</span>
+
+            <span class="c1">// TODO</span>
+            <span class="nx">iconSize</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+
+            <span class="c1">// TODO</span>
+            <span class="nx">iconSlotsHorizontalMarginLeft</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+
+            <span class="c1">// TODO</span>
+            <span class="nx">iconSlotsHorizontalMarginRight</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+
+            <span class="c1">// TODO</span>
+            <span class="nx">headerTitleMargin</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+
+            <span class="c1">// TODO </span>
+            <span class="nx">iconsAlignment</span><span class="o">:</span> <span class="s1">&#39;alignMiddle&#39;</span><span class="p">,</span>
+
+            <span class="c1">// Use animations to collapse widgets?</span>
+            <span class="nx">animations</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// Animation lenght</span>
+            <span class="nx">animationsLenght</span><span class="o">:</span> <span class="mi">750</span><span class="p">,</span>
+
+            <span class="c1">// Collapse widgets by double-clicking on the header?</span>
+            <span class="nx">collapseOnDoubleClick</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// true: content will be cloned and current widget collapsed</span>
+            <span class="c1">// false: content will be moved to the new box</span>
+            <span class="nx">cloneOnBuddy</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="nx">buddyTitlePrefix</span><span class="o">:</span> <span class="s1">&#39;buddy - &#39;</span><span class="p">,</span>
+
+            <span class="nx">debug</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+
+
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+        <span class="c1">////// AnchorMan configuration                             //////</span>
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+
+        <span class="c1">// Use AnchorMan? (true/false)</span>
+        <span class="nx">useAnchorMan</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// Name of AnchorMan object instance, see top of this config file</span>
+        <span class="nx">anchorManName</span><span class="o">:</span> <span class="s1">&#39;myAnchorman&#39;</span><span class="p">,</span>
+
+        <span class="c1">// AnchorMan options object</span>
+        <span class="nx">anchorManConfig</span> <span class="o">:</span> <span class="p">{</span>
+
+            <span class="c1">// Characters used to separate sections, subsections and values.</span>
+            <span class="c1">// IMPORTANT! No content value must contain any of these characters!</span>
+            <span class="c1">// Use encodeYOURFIELDNAME in boxview options if you want that content</span>
+            <span class="c1">// to be automatically encoded with base64. </span>
+            <span class="nx">separatorSections</span><span class="o">:</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span>
+            <span class="nx">separatorSubSections</span><span class="o">:</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span>
+            <span class="nx">separatorValues</span><span class="o">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+
+            <span class="c1">// Use url/cookie to store data? (true/false)</span>
+            <span class="nx">useUrl</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">useCookie</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+            <span class="c1">// Cookies expiration date (days)</span>
+            <span class="nx">cookieExpireDays</span><span class="o">:</span> <span class="mi">365</span><span class="p">,</span>
+
+            <span class="c1">// Will contain the current saved data</span>
+            <span class="nx">cookieName</span><span class="o">:</span> <span class="s1">&#39;anchorMan&#39;</span><span class="p">,</span>
+
+            <span class="c1">// Will contain data&#39;s expire date</span>
+            <span class="nx">cookieDateName</span><span class="o">:</span> <span class="s1">&#39;anchorManDate&#39;</span><span class="p">,</span>
+
+            <span class="c1">// Will contain the full URL of your last visited boxview, can be</span>
+            <span class="c1">// used in visualizers to produce a back link</span>
+            <span class="nx">cookieLastBoxviewName</span> <span class="o">:</span> <span class="s1">&#39;LastVisitedBoxView&#39;</span><span class="p">,</span>
+
+            <span class="c1">// If url&#39;s anchor and cookie both have valid values, which one </span>
+            <span class="c1">// to use? (&#39;url&#39;/&#39;cookie&#39;)</span>
+            <span class="nx">useUrlOrCookie</span><span class="o">:</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span>
+
+            <span class="c1">// Save data on every add/remove? (true/false)</span>
+            <span class="nx">saveOnAdd</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">saveOnRemove</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// Check browser&#39;s back button? (true/false)</span>
+            <span class="nx">checkBackButton</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// Time between each browser&#39;s back button check (milliseconds)</span>
+            <span class="nx">checkBackButtonTimerMS</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+
+            <span class="c1">// Shows some VERY verbose output about boxview behaviours using</span>
+            <span class="c1">// browser&#39;s console.log or adding a div to the dom. (true/false)</span>
+            <span class="nx">debug</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+    
+        <span class="c1">// AnchorMan will use this section name for the boxview</span>
+        <span class="nx">boxViewSectionName</span><span class="o">:</span> <span class="nx">bvAMSectionName</span><span class="p">,</span>
+
+        <span class="c1">// Anchorman &gt; BoxView functions, they get called at startup time</span>
+        <span class="c1">// when the user opens a page with a long AnchorMan data URL</span>
+        <span class="c1">// or when he hits the browser&#39;s back button</span>
+        <span class="nx">anchorManCallbacks</span><span class="o">:</span> <span class="p">{</span>
+    	    <span class="nx">onAdd</span><span class="o">:</span> 
+    			<span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    			    <span class="c1">// Use the decodeFields() function to automatically decode the </span>
+    			    <span class="c1">// fields the user decided to encode, and pass the object to addBoxFromAjax()</span>
+                    <span class="nb">window</span><span class="p">[</span><span class="nx">BoxViewSuiteConfig</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">].</span><span class="nx">addBoxFromAjax</span><span class="p">(</span><span class="nb">window</span><span class="p">[</span><span class="nx">BoxViewSuiteConfig</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">].</span><span class="nx">decodeFields</span><span class="p">(</span><span class="nx">o</span><span class="p">));</span>
+    			<span class="p">},</span>
+    		<span class="nx">onRemove</span><span class="o">:</span>	
+    		    <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+    				<span class="nb">window</span><span class="p">[</span><span class="nx">BoxViewSuiteConfig</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">].</span><span class="nx">removeBox</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+    			<span class="p">},</span>
+    		<span class="nx">onChange</span><span class="o">:</span> 
+    			<span class="kd">function</span><span class="p">(</span><span class="nx">oldObj</span><span class="p">,</span> <span class="nx">newObj</span><span class="p">)</span> <span class="p">{</span>
+    				<span class="c1">// The only thing can change is the collapsed flag</span>
+    				<span class="k">if</span> <span class="p">(</span><span class="nx">oldObj</span><span class="p">.</span><span class="nx">collapsed</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">newObj</span><span class="p">.</span><span class="nx">collapsed</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">oldObj</span><span class="p">.</span><span class="nx">collapsed</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">newObj</span><span class="p">.</span><span class="nx">collapsed</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> 
+    					<span class="nb">window</span><span class="p">[</span><span class="nx">BoxViewSuiteConfig</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">].</span><span class="nx">toggleCollapseBox</span><span class="p">(</span><span class="nx">newObj</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+    			<span class="p">},</span>
+    		<span class="nx">onSort</span><span class="o">:</span>
+    			<span class="kd">function</span><span class="p">(</span><span class="nx">objects_array</span><span class="p">)</span> <span class="p">{</span>
+    				<span class="kd">var</span> <span class="nx">ids</span> <span class="o">=</span> <span class="p">[];</span>
+    				<span class="c1">// Collect just the ids from the objects array</span>
+    				<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">objects_array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    					<span class="nx">ids</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">objects_array</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">;</span>
+    				<span class="nb">window</span><span class="p">[</span><span class="nx">BoxViewSuiteConfig</span><span class="p">.</span><span class="nx">boxViewName</span><span class="p">].</span><span class="nx">sortLike</span><span class="p">(</span><span class="nx">ids</span><span class="p">);</span>
+    			<span class="p">}</span>
+        <span class="p">},</span>
+
+
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+        <span class="c1">////// boxToolbar configuration                            //////</span>
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+
+		<span class="c1">// TODO</span>
+		<span class="nx">useToolbar</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		<span class="nx">boxToolbarName</span><span class="o">:</span> <span class="s1">&#39;myBoxToolbar&#39;</span><span class="p">,</span>
+		<span class="c1">// TODO </span>
+		<span class="nx">boxToolbarConfig</span><span class="o">:</span> <span class="p">{</span>
+			<span class="c1">// TODO</span>
+			<span class="nx">toolbarShowHistory</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">toolbarShowUrlShortener</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">toolbarShowLoading</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+			<span class="nx">toolbarShowPreferences</span><span class="o">:</span> <span class="kc">true</span>
+			
+		<span class="p">},</span>
+
+        
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+        <span class="c1">////// URLShortener configuration                          //////</span>
+        <span class="c1">/////////////////////////////////////////////////////////////////</span>
+
+        <span class="c1">// Use URL Shortener??!</span>
+        <span class="nx">useUrlShortener</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// Name of URLShortener object instance, see top of this config file</span>
+        <span class="nx">urlShortenerName</span><span class="o">:</span> <span class="s1">&#39;myUrlShortener&#39;</span><span class="p">,</span>
+
+        <span class="c1">// URLShortener options object</span>
+        <span class="nx">URLShortenerConfig</span><span class="o">:</span> <span class="p">{</span>
+
+            <span class="c1">// Path to reach the ZeroClipboard.swf file</span>
+            <span class="nx">zeroClipboardPath</span><span class="o">:</span> <span class="s1">&#39;../swf/ZeroClipboard.swf&#39;</span><span class="p">,</span>
+
+            <span class="c1">// URL shortener dialog title</span>
+            <span class="nx">dialogTitle</span><span class="o">:</span> <span class="s1">&#39;Shortened URL for this page&#39;</span><span class="p">,</span>
+
+            <span class="c1">// Show an alert to the user when the URL has been copied to</span>
+            <span class="c1">// the clipboard? (true/false)</span>
+            <span class="nx">alertOnCopy</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// Automatically close the URL shortener dialog window after</span>
+            <span class="c1">// copy? (true/false)</span>
+            <span class="nx">closeOnCopy</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// Autoselect the URL in the input text element as the mouse</span>
+            <span class="c1">// goes over it or gets focus? (true/false)</span>
+            <span class="nx">autoSelectOnHover</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// URL to reach the url shortener script</span>
+            <span class="nx">urlShortenerURL</span><span class="o">:</span> <span class="s1">&#39;data_providers/url_shortener.php&#39;</span><span class="p">,</span>
+
+            <span class="c1">// Css selector for the &quot;shorten this URL&quot; button, will trigger</span>
+            <span class="c1">// an ajax call to the shortener script and open the dialog </span>
+            <span class="c1">// window with the shortened url</span>
+            <span class="nx">buttonCssSelector</span><span class="o">:</span> <span class="s1">&#39;a#urlShortenerLink&#39;</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+</pre></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2012 Yahoo! Inc.. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>

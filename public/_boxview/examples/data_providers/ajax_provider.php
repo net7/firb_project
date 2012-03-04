@@ -54,8 +54,17 @@ switch ($what) {
     }
     break;
 
-    // Show a dog sheet
+    // Shows a dog sheet
     case 'dog':
+
+	$breeds = Array();
+	$q = 'SELECT id,breed_name,description,picture FROM dogs ORDER BY breed_name';
+    @$result = $db->arrayQuery($q);
+    if ($result === false) die("Cant execute $q. Make sure the db file is in the right place and the directory is writable by the web server.");
+    foreach ($result as $dog) {
+		$breeds[$dog['id']] = $dog['breed_name'];
+    }
+
     $q = 'SELECT id,breed_name,picture,description FROM dogs where id='.$id;
     @$result = $db->arrayQuery($q);
 
@@ -63,6 +72,7 @@ switch ($what) {
     else {
         // DEBUG: widgetify this in some PHP-nice-way
         foreach ($result as $dog) {
+		// for ($i=0; $i<sizeof($result); $i++) {
             echo'<div class="widget widget_draggable">'.
                 '  <div class="widgetHeader toBeResized">'.
                 '     <div class="leftIcons"><ul>'.
@@ -70,8 +80,16 @@ switch ($what) {
                 '     </ul></div>'.
                 '     <div class="title"><h4 class="widgetHeaderTitle">Picture</h4></div>'.
                 '     <div class="rightIcons"><ul>'.
-                '         <li class="drag"><a href="#" title="Drag">Drag</a></li>'.
-                '     </ul></div>'.
+                '         <li class="goToBuddy"><a href="#" title="Go to buddy">goToBuddy</a></li>';
+                '         <li class="drag"><a href="#" title="Drag">Drag</a></li>';
+
+			if ($dog['id'] > 0) 
+				echo '    <li class="prev"><a class="indexLink replace" href="visualizer.php?what=dog&id='.($dog['id']-1).'" title="Previous: '.$breeds[$dog['id']-1].'">'.$breeds[$dog['id']-1].'</a></li>';
+				
+			if ($dog['id'] < 7) 
+				echo '    <li class="next"><a class="indexLink replace" href="visualizer.php?what=dog&id='.($dog['id']+1).'" title="Next: '.$breeds[$dog['id']+1].'">'.$breeds[$dog['id']+1].'</a></li>';
+
+            echo'     </ul></div>'.
                 '  </div>'.
                 '  <div class="widgetContent expanded"><div class="picture"><img class="resizable" src="dogs/'.$dog['picture'].'"/></div></div>'.
                 '</div>'.
@@ -82,12 +100,13 @@ switch ($what) {
                 '     </ul></div>'.
                 '     <div class="title"><h4 class="widgetHeaderTitle">General description</h4></div>'.
                 '     <div class="rightIcons"><ul>'.
-                '         <li class="drag"><a href="#" title="Drag">Drag</a></li>'.
+                '         <li class="goToBuddy"><a href="#" title="Go to buddy">goToBuddy</a></li>'.
+				'         <li class="drag"><a href="#" title="Drag">Drag</a></li>'.
                 '     </ul></div>'.
                 '  </div>'.
                 '  <div class="widgetContent expanded">'.$dog['description'].'</div>'.
                 '</div>';
-        } // foreach
+        } // for
     } // if result === false
     break;
 

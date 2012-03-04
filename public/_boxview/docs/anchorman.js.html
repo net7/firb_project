@@ -1,0 +1,806 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <title>
+    API: BoxView
+    
+    
+      &rarr; anchorman.js (file)
+    
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="css/960fluid.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.4.custom.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/navigation.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+  <div id="container" class="container_16">
+    <a name="top"></a>
+
+    <!-- HEADER -->
+    <header>
+      <div id="hd" class="grid_10">
+        <h1>
+          <a href="http://developer.yahoo.com/yui/" title="BoxView 1.0.3">BoxView 1.0.3</a> v
+        </h1>
+      </div> <!--! end of #hd -->
+    </header>
+
+    <div id="filters" class="grid_6">
+      <form action="#" method="get" id="show-toggles">
+        <fieldset>
+          <legend>Display Filters</legend>
+          <span class="classopts">
+            <input type="checkbox" name="show_private" id="show_private">
+            <label for="show_private">Show private</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_protected" id="show_protected">
+            <label for="show_protected">Show protected</label>
+          </span>
+          <span class="classopts">
+            <input type="checkbox" name="show_deprecated" id="show_deprecated">
+            <label for="show_deprecated">Show deprecated</label>
+          </span>
+        </fieldset>
+      </form>
+
+    </div> <!--! end of #hd -->
+
+
+    <!-- SUB-HEADER w/ BREADCRUMBS -->
+
+    <div id="sub-hd" class="grid_16">
+      <div id="breadcrumbs">
+        <form id="search-form" method="get" action="#">
+          <label for="search">Search:</label>
+          <input type="text" id="search" title="Find documentation">
+        </form>
+
+        <a href="./index.html" title="BoxView 1.0.3">BoxView 1.0.3</a>
+          &rarr; module <a href="./module_boxview.html" title="BoxView">BoxView</a>
+          
+          
+            &rarr; file anchorman.js
+          
+      </div>
+    </div> <!--! end of #sub-hd -->
+    
+    <div class="clear"></div>
+    
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav>
+      <div id="navigation" class="grid_4">
+        <div>
+
+            <div id="moduleList" class="module">
+              <h4>Modules</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="module_boxview.html">BoxView</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="classList" class="module">
+              <h4>Classes</h4>
+              <ul>
+                  <li >
+                    <a href="BoxViewSuiteConfig.html">BoxViewSuiteConfig</a>
+                  </li>
+              </ul>
+            </div>
+
+            <div id="fileList" class="module">
+              <h4>Files</h4>
+              <ul>
+                  <li  class="selected" >
+                    <a href="anchorman.js.html">anchorman.js</a>
+                  </li>
+                  <li >
+                    <a href="boxtoolbar.js.html">boxtoolbar.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview.js.html">boxview.js</a>
+                  </li>
+                  <li >
+                    <a href="boxview_config.js.html">boxview_config.js</a>
+                  </li>
+                  <li >
+                    <a href="tools.js.html">tools.js</a>
+                  </li>
+                  <li >
+                    <a href="urlshortener.js.html">urlshortener.js</a>
+                  </li>
+                  <li >
+                    <a href="widgets.js.html">widgets.js</a>
+                  </li>
+              </ul>
+            </div>
+
+
+
+
+
+        </div>
+      </div>  <!-- end of #navigation -->
+    </nav>
+
+
+    <div id="content" class="grid_12">
+      
+
+
+        <!--! source code view -->
+        <div id="srcout">
+          <h2>
+            file <strong>anchorman.js</strong>
+          </h2>
+
+          <div class="highlight"><pre><span class="cm">/* Copyright (c) 2012 Net7 SRL, &lt;http://www.netseven.it/&gt;       */</span>
+<span class="cm">/* This Software is released under the terms of the MIT License */</span>
+<span class="cm">/* See LICENSE.TXT for the full text of the license.            */</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// anchorMan constructor</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">anchorMan</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">// Global options</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">options</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">$</span><span class="p">.</span><span class="nx">anchorMan</span><span class="p">.</span><span class="nx">defaults</span><span class="p">,</span> <span class="nx">opts</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+
+    <span class="p">};</span> <span class="c1">// $.anchorMan()</span>
+
+    <span class="c1">// DEFAULTS: anchorMan will use these as defaults</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">anchorMan</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="c1">// Characters used to separate sections, subsections and values</span>
+        <span class="nx">separatorSections</span><span class="o">:</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span>
+        <span class="nx">separatorSubSections</span><span class="o">:</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span>
+        <span class="nx">separatorValues</span><span class="o">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+
+        <span class="c1">// Use url/cookie to store data?</span>
+        <span class="nx">useUrl</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">useCookie</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
+        <span class="c1">// Name and expiration date of the cookie</span>
+        <span class="nx">cookieName</span><span class="o">:</span> <span class="s1">&#39;anchorMan&#39;</span><span class="p">,</span>
+        <span class="nx">cookieDateName</span><span class="o">:</span> <span class="s1">&#39;anchorManDate&#39;</span><span class="p">,</span>
+        <span class="nx">cookieLastBoxviewName</span> <span class="o">:</span> <span class="s1">&#39;LastVisitedBoxView&#39;</span><span class="p">,</span>
+        <span class="nx">cookieExpireDays</span><span class="o">:</span> <span class="mi">365</span><span class="p">,</span>
+
+        <span class="c1">// If url&#39;s anchor and cookie have some valid values, which one to use?</span>
+        <span class="nx">useUrlOrCookie</span><span class="o">:</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span>
+
+        <span class="c1">// Save data on every add/remove ?</span>
+        <span class="nx">saveOnAdd</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">saveOnRemove</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+
+        <span class="c1">// check url timer time, in ms</span>
+        <span class="nx">checkBackButton</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">checkBackButtonTimerMS</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+
+        <span class="nx">debug</span><span class="o">:</span> <span class="kc">false</span>
+
+    <span class="p">};</span> <span class="c1">// defaults</span>
+
+    <span class="nx">$</span><span class="p">.</span><span class="nx">anchorMan</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+            <span class="c1">// Will keep the needed callback functions</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">addCallbacks</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">removeCallbacks</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">changeCallbacks</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">sortCallbacks</span> <span class="o">=</span> <span class="p">[];</span>
+
+            <span class="c1">// The current anchor you can read on the URL</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">last_parsed_anchor</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+            
+            <span class="k">this</span><span class="p">.</span><span class="nx">checking</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+            <span class="c1">// Will keep the values taken from the URL&#39;s anchor</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">values</span> <span class="o">=</span> <span class="p">{};</span>
+
+            <span class="kd">var</span> <span class="nx">url_anchor</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nx">cookie_anchor</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="nx">cookie_date</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useCookie</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">cookie_anchor</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get_cookie_by_name</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieName</span><span class="p">);</span>
+                <span class="nx">cookie_date</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get_cookie_by_name</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieDateName</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrl</span><span class="p">)</span> <span class="p">{</span> 
+                <span class="nx">url_anchor</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">;</span> 
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Url/cookie: -&quot;</span> <span class="o">+</span> <span class="nx">url_anchor</span> <span class="o">+</span> <span class="s2">&quot;- ||| -&quot;</span> <span class="o">+</span> <span class="nx">cookie_anchor</span> <span class="o">+</span> <span class="s2">&quot;- (&quot;</span> <span class="o">+</span> <span class="nx">cookie_date</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">);</span>
+
+            <span class="c1">// Anchorman is configured to use both, choose which one to go</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useCookie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrl</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">url_anchor</span> <span class="o">===</span> <span class="nx">cookie_anchor</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// They have the same value, just use one of them</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Cookie and url match: pick one!&quot;</span><span class="p">);</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">url_anchor</span><span class="p">;</span>
+
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">url_anchor</span> <span class="o">!==</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">cookie_anchor</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// They dont match and cookie is null</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">url_anchor</span><span class="p">;</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Cookie is null, using url&quot;</span><span class="p">);</span>
+
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">url_anchor</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">cookie_anchor</span> <span class="o">!==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// They dont match and url is null</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">cookie_anchor</span><span class="p">;</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;URL is null, using cookie&quot;</span><span class="p">);</span>
+
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrlOrCookie</span> <span class="o">===</span> <span class="s2">&quot;url&quot;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// They dont match... look at the useUrlOrCookie variable</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;URL/cookie dont match, using useUrlOverCookie = url&quot;</span><span class="p">);</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">url_anchor</span><span class="p">;</span>
+
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrlOrCookie</span> <span class="o">===</span> <span class="s2">&quot;cookie&quot;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;URL/cookie dont match, using useUrlOverCookie = cookie&quot;</span><span class="p">);</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">cookie_anchor</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrlOrCookie</span> <span class="o">===</span> <span class="s2">&quot;ask&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+                    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;They dont match, asking the user&quot;</span><span class="p">);</span>
+
+                    <span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="s2">&quot;Mr. AnchorMan found you have a saved session on &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">get_cookie_by_name</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieDateName</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;\n\n&quot;</span> <span class="o">+</span>
+                        <span class="s2">&quot;Press OK to load it or CANCEL to delete it and load the page you asked from the URL.&quot;</span><span class="p">;</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">confirm</span><span class="p">(</span><span class="nx">q</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">cookie_anchor</span><span class="p">;</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">url_anchor</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useCookie</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrl</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// We are not using url</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">cookie_anchor</span><span class="p">;</span>
+
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useCookie</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrl</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// We are not using cookie</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">url_anchor</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Parse the values from the given string</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">values</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">get_values_from_anchor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span><span class="p">),</span> <span class="p">{});</span>
+
+
+            <span class="c1">// Start the check_url timer</span>
+            <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">checkBackButton</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrl</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">checkUrlTimer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">self</span><span class="p">.</span><span class="nx">check_url</span><span class="p">();</span> <span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">checkBackButtonTimerMS</span><span class="p">);</span>
+            <span class="p">}</span>
+
+        <span class="p">},</span> <span class="c1">// init()</span>
+
+		<span class="c1">// Serialize the values of the tree:</span>
+		<span class="c1">// ret[name] will be something like: [0 =&gt; &quot;val1,val2,val3&quot;, 1 =&gt; &quot;val1,val2,val3&quot;]</span>
+		<span class="c1">// ret[&quot;s_&quot;+name] will be: [&quot;val1,val2,val3&quot; =&gt; 0, &quot;val1,val2,val3&quot; =&gt; 1]</span>
+		<span class="nx">serialize_values</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+			<span class="k">for</span> <span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+
+				<span class="nx">ret</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+				<span class="nx">ret</span><span class="p">[</span><span class="s2">&quot;s_&quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+				
+				<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">);</span>
+					<span class="nx">ret</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">;</span>
+					<span class="nx">ret</span><span class="p">[</span><span class="s2">&quot;s_&quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">][</span><span class="nx">foo</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+		<span class="p">},</span> <span class="c1">// serialize_values()</span>
+		
+
+        <span class="nx">check_url</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checking</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Already checking, checkBackButtonTimerMS too little?? Skipping this one&quot;</span><span class="p">);</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">checking</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!==</span> <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="c1">// Copy old values hash into a temporary variable then</span>
+                <span class="c1">// parse the values from the given string. Finally serialize both</span>
+                <span class="kd">var</span> <span class="nx">oldValues</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">,</span> <span class="p">{}),</span>
+                    <span class="nx">newValues</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">get_values_from_anchor</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">),</span> <span class="p">{}),</span>
+				    <span class="nx">serOld</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">serialize_values</span><span class="p">(</span><span class="nx">oldValues</span><span class="p">),</span> <span class="p">{}),</span> 
+					<span class="nx">serNew</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">serialize_values</span><span class="p">(</span><span class="nx">newValues</span><span class="p">),</span> <span class="p">{}),</span>
+					<span class="nx">name</span><span class="p">;</span>
+				
+                <span class="c1">// The only things we can find here are:</span>
+                <span class="c1">// ABC -&gt; AB : element has been removed</span>
+                <span class="c1">// ABC -&gt; ABCD : element has been added</span>
+                <span class="c1">// ABC -&gt; BCA : order has changed</span>
+                <span class="c1">// ABC -&gt; ADE : multiple elements has been modified</span>
+				<span class="c1">// &quot;&quot; -&gt; A</span>
+				<span class="c1">// A -&gt; &quot;&quot;</span>
+                <span class="c1">// Cycle over all sections</span>
+
+                <span class="k">for</span> <span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">oldValues</span><span class="p">)</span> <span class="p">{</span>
+
+					<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Checking URL &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; // &quot;</span> <span class="o">+</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">]));</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+						<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Found a removed item: &quot;</span> <span class="o">+</span> <span class="nx">serOld</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; (was &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">);</span>
+
+						<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">removeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="p">{</span>
+	                        <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Calling REMOVE callback for &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; with values: &quot;</span> <span class="o">+</span> <span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+	                        <span class="k">this</span><span class="p">.</span><span class="nx">removeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">values2Object</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="mi">0</span><span class="p">]));</span>
+		                <span class="p">}</span>
+						<span class="k">continue</span><span class="p">;</span>
+
+					<span class="p">}</span> <span class="c1">// typeof serNew[name] == undefined</span>
+
+					<span class="c1">// This section didnt change, skip it</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">serOld</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">===</span> <span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span> <span class="p">{</span>
+					    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;: old == new, SKIPPING&quot;</span><span class="p">);</span>
+						<span class="k">continue</span><span class="p">;</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; old != new: &quot;</span> <span class="o">+</span> <span class="nx">serOld</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &gt;&gt; &quot;</span> <span class="o">+</span> <span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">));</span>
+					<span class="p">}</span>
+
+					<span class="c1">// #OLD &gt; #NEW: back action removed an item</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+
+						<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;#OLD &gt; #NEW: Removed item?&quot;</span><span class="p">);</span>
+
+						<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">serOld</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+
+							<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">serOld</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">];</span>
+							<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; #OLD &gt; #NEW: &quot;</span> <span class="o">+</span> <span class="nx">foo</span> <span class="o">+</span> <span class="s2">&quot; -&gt; &quot;</span> <span class="o">+</span> <span class="nx">serNew</span><span class="p">[</span><span class="s2">&quot;s_&quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">][</span><span class="nx">foo</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; len: &quot;</span> <span class="o">+</span> <span class="nx">serOld</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">);</span>
+
+							<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">serNew</span><span class="p">[</span><span class="s2">&quot;s_&quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">][</span><span class="nx">foo</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+								<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, removed item: &quot;</span> <span class="o">+</span> <span class="nx">serOld</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]);</span>
+
+								<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">removeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="p">{</span>
+			                        <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; calling REMOVE callback: &quot;</span> <span class="o">+</span> <span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]);</span>
+			                        <span class="k">this</span><span class="p">.</span><span class="nx">removeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">values2Object</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]));</span>
+				                <span class="p">}</span>
+							<span class="p">}</span> <span class="c1">// if typeof serOld == undefined</span>
+						<span class="p">}</span> <span class="c1">// for i</span>
+
+						
+					<span class="c1">// #NEW &gt; #OLD: back action added an item</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+
+						<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;#OLD &lt; #NEW: Added item?&quot;</span><span class="p">);</span>
+
+						<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+						
+							<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">];</span>
+							<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span><span class="o">+</span> <span class="nx">name</span> <span class="o">+</span><span class="s2">&quot; #OLD &gt; #NEW: &quot;</span><span class="o">+</span><span class="nx">foo</span><span class="o">+</span> <span class="s2">&quot; -&gt; &quot;</span> <span class="o">+</span> <span class="nx">serOld</span><span class="p">[</span><span class="s2">&quot;s_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">][</span><span class="nx">foo</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; len: &quot;</span> <span class="o">+</span> <span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">);</span>
+							
+							<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">serOld</span><span class="p">[</span><span class="s2">&quot;s_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">][</span><span class="nx">foo</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+								<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span><span class="o">+</span> <span class="nx">name</span> <span class="o">+</span><span class="s2">&quot;, added item: &quot;</span> <span class="o">+</span> <span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]);</span>
+
+								<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="p">{</span>
+			                        <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span><span class="o">+</span> <span class="nx">name</span> <span class="o">+</span><span class="s2">&quot; calling ADD callback: &quot;</span> <span class="o">+</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]);</span>
+			                        <span class="k">this</span><span class="p">.</span><span class="nx">addCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">values2Object</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]));</span>
+				                <span class="p">}</span>
+							<span class="p">}</span> <span class="c1">// if typeof serOld == undefined</span>
+						<span class="p">}</span> <span class="c1">// for i</span>
+
+
+					<span class="c1">// #NEW = #OLD: they got sorted? value changed?</span>
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span> 
+						
+						<span class="kd">var</span> <span class="nx">changedCalled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+						
+						<span class="c1">// Cycle over serialized items and look for an item</span>
+						<span class="c1">// who is not in the old array: the changed one!</span>
+						<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+							
+							<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">serNew</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">];</span>
+							<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">serOld</span><span class="p">[</span><span class="s2">&quot;s_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">][</span><span class="nx">foo</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+
+								<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span><span class="o">+</span> <span class="nx">name</span> <span class="o">+</span><span class="s2">&quot;, changed item: &quot;</span> <span class="o">+</span> <span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &gt;&gt; &quot;</span> <span class="o">+</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]);</span>
+								<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">removeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="p">{</span>
+			                        <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span><span class="o">+</span> <span class="nx">name</span> <span class="o">+</span><span class="s2">&quot; calling CHANGE callback: &quot;</span> <span class="o">+</span> <span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]);</span>
+			                        <span class="k">this</span><span class="p">.</span><span class="nx">changeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">values2Object</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]),</span> <span class="k">this</span><span class="p">.</span><span class="nx">values2Object</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">oldValues</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]));</span>
+									<span class="nx">changedCalled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+				                <span class="p">}</span>
+								
+							<span class="p">}</span> <span class="c1">// if typeof == undefined</span>
+
+						<span class="p">}</span> <span class="c1">// for i</span>
+						
+						<span class="c1">// Did we call the onChange callback? If some value has changed, they</span>
+						<span class="c1">// didnt get sorted; on the other hand, if no value has changed but</span>
+						<span class="c1">// hash has, for sure boxes got sorted.</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">changedCalled</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+	                        <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span><span class="o">+</span> <span class="nx">name</span> <span class="o">+</span><span class="s2">&quot; calling SORT callback: &quot;</span> <span class="o">+</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
+							<span class="k">this</span><span class="p">.</span><span class="nx">sortCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">multipleValues2Objects</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">newValues</span><span class="p">[</span><span class="nx">name</span><span class="p">]));</span>
+						<span class="p">}</span>
+						
+						
+					<span class="p">}</span> <span class="c1">// else #NEW = #OLD</span>
+
+                <span class="p">}</span> <span class="c1">// for name</span>
+
+                <span class="c1">// this.last_parsed_anchor = document.location.hash.substring(1);</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span> <span class="c1">// if doc.loc.hash != current_anchor</span>
+    
+            <span class="k">this</span><span class="p">.</span><span class="nx">checking</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+ 
+       	<span class="p">},</span> <span class="c1">// check_url()</span>
+
+        <span class="c1">// Calls the init callbacks, add to be precise!</span>
+        <span class="nx">call_init_callbacks</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">i</span><span class="p">;</span>
+			<span class="nx">values</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">,</span> <span class="p">{});</span>
+
+            <span class="c1">// Cycle over sections, if there&#39;s an addCallback with the same name ..</span>
+            <span class="c1">// cycle over all subsections and call the callback with</span>
+            <span class="c1">// the values from the current subsection</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="nx">values</span><span class="p">)</span> 
+                <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> 
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">&quot;, calling INIT (ADD) with values: &quot;</span> <span class="o">+</span> <span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]);</span>
+                       	<span class="k">this</span><span class="p">.</span><span class="nx">addCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">values2Object</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">]));</span>
+                    <span class="p">}</span>
+
+        <span class="p">},</span> <span class="c1">// call_init_callbacks()</span>
+
+        <span class="c1">// Fills the anchors</span>
+        <span class="nx">get_values_from_anchor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">currentAnchor</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="c1">// No anchor?  .. just return</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">currentAnchor</span><span class="p">)</span>
+                <span class="k">return</span><span class="p">;</span>
+
+            <span class="nx">currentAnchor</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">base64Decode</span><span class="p">(</span><span class="nx">currentAnchor</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Parsing decoded anchor: &quot;</span> <span class="o">+</span> <span class="nx">currentAnchor</span><span class="p">);</span>
+
+            <span class="c1">// TODO: Put some try-catch here .......</span>
+            <span class="c1">// Divide anchor in sections</span>
+
+            <span class="kd">var</span> <span class="nx">sections</span> <span class="o">=</span> <span class="nx">currentAnchor</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">separatorSections</span><span class="p">),</span>
+                <span class="nx">foo</span> <span class="o">=</span> <span class="p">[],</span>
+                <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">name</span><span class="p">;</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">sections</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">name</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+                <span class="c1">// Divide this section in subsections</span>
+                <span class="kd">var</span> <span class="nx">subsections</span> <span class="o">=</span> <span class="nx">sections</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">separatorSubSections</span><span class="p">);</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">j</span> <span class="k">in</span> <span class="nx">subsections</span><span class="p">)</span> <span class="p">{</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="c1">// First item is always the section name</span>
+                        <span class="nx">name</span> <span class="o">=</span> <span class="nx">subsections</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+                        <span class="nx">foo</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="c1">// Finally set the values on the section &#39;name&#39;, on the subsection</span>
+                        <span class="c1">// with index j-1, splitting this subsection</span>
+                        <span class="nx">foo</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+                        <span class="nx">foo</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">subsections</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">separatorValues</span><span class="p">);</span>
+                    <span class="p">}</span> <span class="c1">// if name == null</span>
+                <span class="p">}</span> <span class="c1">// for j in subsections</span>
+
+            <span class="p">}</span> <span class="c1">// for i in sections</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Final anchor parse: &quot;</span><span class="p">);</span>
+            	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">s</span> <span class="k">in</span> <span class="nx">foo</span><span class="p">)</span> 
+                	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">t</span> <span class="k">in</span> <span class="nx">foo</span><span class="p">[</span><span class="nx">s</span><span class="p">])</span> 
+                    	<span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nx">t</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">foo</span><span class="p">[</span><span class="nx">s</span><span class="p">][</span><span class="nx">t</span><span class="p">]);</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Return the object with the values</span>
+            <span class="k">return</span> <span class="nx">foo</span><span class="p">;</span>
+
+        <span class="p">},</span> <span class="c1">// get_values_from_anchor()</span>
+
+        <span class="c1">// Sets the AnchorMan cookie with the current anchor value</span>
+        <span class="nx">set_cookie</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+            <span class="nx">date</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieExpireDays</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">));</span>
+            <span class="kd">var</span> <span class="nx">expires</span> <span class="o">=</span> <span class="s1">&#39;; expires=&#39;</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">toUTCString</span><span class="p">();</span>
+
+            <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieName</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span><span class="p">),</span> <span class="nx">expires</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieDateName</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="nx">expires</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieLastBoxviewName</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">),</span> <span class="nx">expires</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Setting cookie: &quot;</span> <span class="o">+</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">cookieName</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span><span class="p">),</span> <span class="nx">expires</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">));</span>
+
+        <span class="p">},</span> <span class="c1">// set_cookie()</span>
+
+        <span class="c1">// Gets the value of the cookie with the given name,</span>
+        <span class="c1">// returns &quot;&quot; if it&#39;s not found/defined</span>
+        <span class="nx">get_cookie_by_name</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">cookieValue</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nx">cookie</span><span class="p">,</span> <span class="nx">cookies</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">&amp;&amp;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="nx">cookies</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">);</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">cookies</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">cookie</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">cookies</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">name</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">cookieValue</span> <span class="o">=</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+                        <span class="k">break</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span> <span class="c1">// for i</span>
+            <span class="p">}</span> <span class="c1">// if document.cookie</span>
+
+            <span class="k">return</span> <span class="nx">cookieValue</span><span class="p">;</span>
+
+        <span class="p">},</span> <span class="c1">// get_cookie_by_name()</span>
+
+        <span class="c1">// Builds the current anchor from the hash values then saves it</span>
+        <span class="c1">// into url&#39;s anchor and cookie, if needed</span>
+        <span class="nx">save</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="c1">// build the anchor from the saved hash</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">base64Encode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">build_anchor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">));</span>
+
+			<span class="c1">// save cookie and url&#39;s anchor if needed</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useUrl</span> <span class="o">&amp;&amp;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!==</span> <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Saving new current anchor &quot;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span><span class="o">+</span> <span class="s2">&quot; (old was &quot;</span><span class="o">+</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">);</span>
+				<span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">current_anchor</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			    <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;@@@@@@@@@@@@@@@@@@ Not saving the anchor?? WHY&quot;</span><span class="p">);</span>
+			<span class="p">}</span>
+			
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">useCookie</span><span class="p">)</span>
+            	<span class="k">this</span><span class="p">.</span><span class="nx">set_cookie</span><span class="p">();</span>
+
+        <span class="p">},</span> <span class="c1">// save()</span>
+
+        <span class="c1">// resets every value and save </span>
+        <span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">values</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+        <span class="p">},</span> <span class="c1">// reset()</span>
+
+        <span class="c1">// Update the current anchor with the given values hash</span>
+        <span class="nx">build_anchor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="c1">// Add this section&#39;s name with SubSections separator, if there&#39;s elements!</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                	<span class="nx">s</span> <span class="o">+=</span> <span class="nx">name</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">separatorSubSections</span><span class="p">;</span>
+
+                <span class="c1">// Add values joined by the values separator and add a SubSections separator</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span>
+                	<span class="nx">s</span> <span class="o">+=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">i</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">separatorValues</span><span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">separatorSubSections</span><span class="p">;</span>
+
+                <span class="c1">// Trim off the trailing SubSections separator and add the sections separator</span>
+                <span class="nx">s</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">separatorSections</span><span class="p">;</span>
+
+            <span class="p">}</span> <span class="c1">// for name in values</span>
+
+            <span class="c1">// Trim off the trailing sections separator</span>
+            <span class="nx">s</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Final anchor is: &quot;</span> <span class="o">+</span> <span class="nx">s</span><span class="p">);</span>
+
+            <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+        <span class="p">},</span> <span class="c1">// build_anchor()</span>
+
+        <span class="c1">// Adds a callback to be called at page startup</span>
+        <span class="nx">setCallbacks</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callbacks</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onAdd&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span>  
+            	<span class="k">this</span><span class="p">.</span><span class="nx">addCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onAdd&#39;</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onRemove&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span>
+            	<span class="k">this</span><span class="p">.</span><span class="nx">removeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onRemove&#39;</span><span class="p">];</span>
+
+	        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onChange&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span>
+	          	<span class="k">this</span><span class="p">.</span><span class="nx">changeCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onChange&#39;</span><span class="p">];</span>
+
+	        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onSort&#39;</span><span class="p">])</span> <span class="o">===</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span>
+	          	<span class="k">this</span><span class="p">.</span><span class="nx">sortCallbacks</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">callbacks</span><span class="p">[</span><span class="s1">&#39;onSort&#39;</span><span class="p">];</span>
+
+        <span class="p">},</span> <span class="c1">// addCallbacks()</span>
+
+        <span class="c1">// Adds a section to the values hash</span>
+        <span class="nx">add_section</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Creating section &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="p">}</span>
+
+            <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">][</span><span class="nx">len</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Adding to section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; values &quot;</span> <span class="o">+</span> <span class="nx">values</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">saveOnAdd</span><span class="p">)</span>
+            	<span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+        <span class="p">},</span> <span class="c1">// add_section()</span>
+
+        <span class="nx">describeSection</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, described with fields: &quot;</span> <span class="o">+</span> <span class="nx">fields</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set_section_from_values</span><span class="p">(</span><span class="s2">&quot;desc_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">,</span> <span class="p">[</span><span class="nx">fields</span><span class="p">]);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+        <span class="p">},</span>
+
+        <span class="c1">// Overwrites an entire section with the given values,</span>
+        <span class="c1">// it&#39;s like remove/add actions at once</span>
+        <span class="nx">set_section_from_values</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, setting values to: &quot;</span> <span class="o">+</span> <span class="nx">values</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+        <span class="p">},</span> <span class="c1">// set_section_from_values()</span>
+
+        <span class="nx">set_section_from_object</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, setting values to: &quot;</span> <span class="o">+</span> <span class="nx">object</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">object2Values</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">object</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+        <span class="p">},</span> <span class="c1">// set_section_from_object()</span>
+
+        <span class="c1">// Removes a section from the values hash</span>
+        <span class="nx">remove_section</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="o">+</span><span class="s2">&quot;, called remove but there&#39;s no section..&quot;</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{};</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">item</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">)</span>
+            	<span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">!=</span> <span class="nx">name</span><span class="p">)</span>
+            		<span class="nx">foo</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">item</span><span class="p">];</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">values</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({},</span> <span class="nx">foo</span><span class="p">,</span> <span class="p">{});</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="o">+</span><span class="s2">&quot; succesfully removed&quot;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">saveOnRemove</span><span class="p">)</span>
+            	<span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+        <span class="p">},</span> <span class="c1">// remove_section()</span>
+        
+        <span class="nx">multipleValues2Objects</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">values_array</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">values_array</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span>
+                <span class="nx">ret</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">values2Object</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">values_array</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+
+            <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+
+        <span class="p">},</span> <span class="c1">// multipleValues2Objects()</span>
+        
+        <span class="nx">values2Object</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="c1">// Return if there&#39;s no description of the given section</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="s2">&quot;desc_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section desc_&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, called values2object but there&#39;s no section description&quot;</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="kd">var</span> <span class="nx">desc</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="s2">&quot;desc_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+                <span class="nx">ret</span> <span class="o">=</span> <span class="p">{};</span>
+
+            <span class="c1">// Lenght mismatch?? Something went terribly wrong here??!</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">desc</span><span class="p">.</span><span class="nx">length</span> <span class="o">!==</span> <span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">){</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section desc_&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, values2object length mismatch between desc (&quot;</span><span class="o">+</span><span class="nx">desc</span><span class="p">.</span><span class="nx">length</span><span class="o">+</span><span class="s2">&quot;) and values (&quot;</span><span class="o">+</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="o">+</span><span class="s2">&quot;) arrays&quot;</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Values to object &quot;</span><span class="o">+</span><span class="nx">desc</span><span class="o">+</span><span class="s2">&quot; -&gt; &quot;</span><span class="o">+</span><span class="nx">values</span><span class="p">);</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">values</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> 
+                <span class="nx">ret</span><span class="p">[</span><span class="nx">desc</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            
+            <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+            
+        <span class="p">},</span> <span class="c1">// values2Object()</span>
+        
+        <span class="nx">object2Values</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">objects_array</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Return if there&#39;s no description of the given section</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="s2">&quot;desc_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Section desc_&quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot;, called values2object but there&#39;s no section description&quot;</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            
+            <span class="kd">var</span> <span class="nx">desc</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="s2">&quot;desc_&quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+                <span class="nx">ret</span> <span class="o">=</span> <span class="p">[];</span>
+                
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">objects_array</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">ret</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">desc</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">desc</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                    <span class="nx">ret</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">objects_array</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="nx">foo</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Object to values &quot;</span><span class="o">+</span><span class="nx">desc</span><span class="o">+</span><span class="s2">&quot; -&gt; &quot;</span><span class="o">+</span><span class="nx">objects_array</span><span class="o">+</span> <span class="s2">&quot; -&gt; &quot;</span><span class="o">+</span><span class="nx">ret</span><span class="p">);</span>
+
+            <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+            
+        <span class="p">},</span> <span class="c1">// object2Values()</span>
+        
+		<span class="nx">log</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">debug</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">console</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#debug_foo&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> 
+                    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;&lt;div id=&#39;debug_foo&#39; style=&#39;position: absolute; right:2px; bottom: 2px; border: 1px solid red; font-size: 1.1em;&#39;&gt;&lt;/div&gt;&quot;</span><span class="p">);</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#debug_foo&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;&lt;div&gt;&quot;</span><span class="o">+</span><span class="nx">w</span><span class="o">+</span><span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;#AMan# &quot;</span><span class="o">+</span><span class="nx">w</span><span class="p">);</span>
+            <span class="p">}</span>
+        
+		<span class="p">}</span> <span class="c1">// log</span>
+
+    <span class="p">};</span> <span class="c1">// $.anchorMan.prototype</span>
+
+<span class="p">})(</span><span class="nx">jQuery</span><span class="p">);</span>
+</pre></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    
+    <footer>
+      <div id="footer" class="grid_16">
+        <p>
+          Copyright &copy; 2012 Yahoo! Inc.. All rights reserved.
+          &middot;
+          Docs generated using <a href="http://developer.yahoo.com/yui/yuidoc/">YUIDoc</a> sporting the <a href="http://github.com/carlo/yuidoc-theme-dana">Dana theme</a>.
+        </p>
+      </div> <!--! end of #footer -->
+    </footer>
+
+
+    <div class="clear"></div>
+
+  </div>
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cookie.min.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>
