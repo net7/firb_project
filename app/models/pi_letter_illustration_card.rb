@@ -27,6 +27,11 @@ class PiLetterIllustrationCard < IllustrationCard
     true
   end
 
+  def children
+#    @children ||= PiIllustratedMdCard.find :all, :find_through => [N::TALIA.parent_card, self.uri]
+    return {}
+  end
+
 
   def parts_query
     ActiveRDF::Query.new(TaliaCore::ActiveSource).select(:part).where(self, N::TALIA.image_component,:part)
