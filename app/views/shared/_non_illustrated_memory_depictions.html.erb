@@ -12,7 +12,7 @@
 <ul id="<%= populate_ul_id %>"></ul>
 
 <br />
-Descrizione breve dell'immagine di memoria: <input type='text' id='image_component_name'>
+Descrizione breve dell'immagine di memoria: <input type="text" id="image_component_name">
 <br />
 Component type: 
 <%= select_tag "#{ImageZone}[image_component_type]", options_for_select(pi_memory_depiction_types), {:id => 'image_component_type'} %>
@@ -33,7 +33,7 @@ Component type:
         <% existing.each do |name, value|
            field_name = "#{main_name}[#{param_name}][]"
         %>
-            populate_with_item(populate_ul_id, '<%= escape_javascript name %>', [{name: '<%= field_name %>[uri]', value: '<%= value %>'}]);
+            populate_with_item(populate_ul_id, '<%= escape_javascript name %>', [{name: '<%= field_name %>[uri]', value: '<%= escape_javascript value %>'}]);
         <% end %>
     });
     
@@ -55,11 +55,11 @@ Component type:
         hidden_hash.push({name: n, value: v});
 
         // Component type
-        foo = $('image_component_type').options[$('image_component_type').selectedIndex];
-        v = foo.value;
-        n = main_name+"["+param_name+"][][zone_type]";
-        display_string += " ("+v+"): ";
-        hidden_hash.push({name: n, value: v});
+//        foo = $('image_component_type').options[$('image_component_type').selectedIndex];
+//        v = foo.value;
+//        n = main_name+"["+param_name+"][][zone_type]";
+//        display_string += " ("+v+"): ";
+//        hidden_hash.push({name: n, value: v});
 
 
         

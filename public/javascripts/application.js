@@ -77,13 +77,13 @@ function populate_with_item(populate_ul, display_string, values_array) {
         markup = "";
 
     markup += "<li id='"+rand_id+"'>";
-    markup += "<span class='display_string'>"+display_string+"</span>";
+    markup += "<span class='display_string'>"+display_string.replace("'", "&apos;")+"</span>";
 
     // Add all of the needed hidden fields
     for (var i = values_array.length - 1; i >= 0; i--) {
         var name = values_array[i].name,
             value = values_array[i].value;
-        markup += "<input type='hidden' value='"+value+"' name='"+name+"'>"
+        markup += "<input type='hidden' value='"+value.replace("'", "&apos;")+"' name='"+name.replace("'", "&apos;")+"'>"
     };
     
     var rem = 'remove_group("'+rand_id+'")';
