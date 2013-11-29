@@ -45,47 +45,40 @@
 
 
 <script type="text/javascript">
-  $(document).ready(function(){
+    $(document).ready(function(){
 
 
-      var notes = [];
-      <%= @notes.each do |n|
-              puts "notes.push('note_#{n[:class]};');"
-                  end
-                %>
-
-      first_note = notes[0]
-
-      parent_div = $(".widget.notes .widgetContent div #" + first_note).parent()
+        var notes = [];
+        <%  @notes.each do |n| %>
+        notes.push('note_<%= n[:class]%>');
+        <% end %>
 
 
-      var  tmp_note = new Object();
-      for(i = notes.length - 1; i>=0; i--){
-          id = notes[i];
-          el = $(".widget.notes .widgetContent div #"+id);
-          tmp_note[$(el).attr('id')] = $(el);
-          $(el).remove();
-      };
+        first_note = notes[0]
 
-/*
-      $(".widget.notes .widgetContent div.note").each(function(i, el){
-          tmp_note[$(el).attr('id')] = $(el);
-          $(el).remove();
-      });
-*/
-      $('.transcription_text .note_link').each(function(i, el){
-
-          n = $(tmp_note)[0]['note_' + $(el).attr('about')]
-          if (typeof(n) != 'undefined'){
-              $(parent_div).append(n);
-          }
-      });
+        parent_div = $(".widget.notes .widgetContent div #" + first_note).parent()
 
 
-      $(".widget.notes .widgetContent div.note").each(function(i, el){
-          $(el).find(" div.note").remove();
-      })
+        var  tmp_note = new Object();
+        for(i = notes.length - 1; i>=0; i--){
+            id = notes[i];
+            el = $(".widget.notes .widgetContent div #"+id);
+            tmp_note[$(el).attr('id')] = $(el);
+            $(el).remove();
+        };
 
+        $('.transcription_text .note_link').each(function(i, el){
+
+            n = $(tmp_note)[0]['note_' + $(el).attr('about')]
+            if (typeof(n) != 'undefined'){
+                $(parent_div).append(n);
+            }
+        });
+
+
+        $(".widget.notes .widgetContent div.note").each(function(i, el){
+            $(el).find(" div.note").remove();
+        })
 
   })
 </script>
