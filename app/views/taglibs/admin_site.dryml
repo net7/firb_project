@@ -47,7 +47,7 @@
                      <ht key="hobo.published_preview_link" /></a>
                 </unless>
                 <br />
-                <%= "#{l Time.parse(this.published_on), :format => :long}: #{this.published_by}" unless (this.published_on.nil?) %>
+                <%#= "#{l Time.parse(this.published_on), :format => :long}: #{this.published_by}" unless (this.published_on.nil?) %>
             </p>
             
                 <form update="self" spinner-next-to="publish-#{typed_id}" action="&url_for(:controller => 'admin/publish', :action => 'toggle', :id => this.id)">

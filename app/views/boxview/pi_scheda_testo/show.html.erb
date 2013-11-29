@@ -42,3 +42,26 @@
         end
     end
 %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      var  tmp_note = new Object();
+      $(".widget.notes .widgetContent div.note").each(function(i, el){
+          tmp_note[$(el).attr('id')] = $(el);
+          $(el).remove();
+      });
+
+      $('.transcription_text .note_link').each(function(i, el){
+          $(".widget.notes .widgetContent div").append($(tmp_note)[0]['note_' + $(el).attr('about')].clone());
+      });
+
+
+      $(".widget.notes .widgetContent div.note").each(function(i, el){
+          $(el).find(" div.note").remove();
+      })
+
+
+  })
+</script>
